@@ -1,0 +1,1985 @@
+\documentclass[11pt]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+  pdftitle={Goldbach-type representations with prescribed Liouville signs},
+  pdfauthor={Jizhou Guo}}
+\Urlmuskip=0mu plus 1mu
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{inputthm}[theorem]{Input}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\e}{\mathrm e}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\Dpret}{\mathbb D}
+\newcommand{\ph}{\varphi}
+\newcommand{\leanname}[1]{\nolinkurl{#1}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\HS}{HS}
+\DeclareMathOperator{\Rea}{Re}
+\DeclareMathOperator{\cond}{cond}
+\title{Goldbach-type representations with prescribed Liouville signs}
+\author{Jizhou Guo\\Dots Studio, Rednote\\
+  \href{mailto:mitsuha2021b@gmail.com}{\texttt{mitsuha2021b@gmail.com}}}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $\lambda$ be the Liouville function. For every sufficiently large
+integer $N$, each of the four ordered sign patterns
+$(\lambda(a),\lambda(b))$, with $a,b\ge1$ and $a+b=N$, occurs
+$N/4+O(N(\log N)^{-c})$ times, where one may take $c=10^{-200}$.
+Equivalently, $\sum_{1\le n<N}\lambda(n)\lambda(N-n)
+=O(N(\log N)^{-c})$; this proves, for the Liouville function,
+the conjecture of Corradi and Katai that the sum is $o(N)$.
+The proof combines the finite graph and residue-comparison estimates
+of OpenAI's Lean~4 development of two-point correlations, the
+Dirichlet zero-free half-plane $\Rea s>7/8$ from family~003 of the
+same library, and the short-progression
+variance bounds of Klurman--Mangerel--Ter\"av\"ainen. A quotient-coordinate
+construction fixes the graph multiplier while the total $N$ remains
+in the progression modulus. With the same half-plane and
+results of Pintz, Chen--Gupta--Li, Montgomery--Vaughan and Martin,
+Pintz's conditional exponent $3/5$ for the binary Goldbach exceptional
+set holds unconditionally, the least prime in a reduced class modulo
+$q$ is $O_\varepsilon(q^{7/3+\varepsilon})$, the
+polylogarithmic bound for the least quadratic non-residue holds with
+exponent $8$,
+and the least prime primitive root modulo $p$ is $O((\log p)^{24})$.
+\end{abstract}
+
+\section{Statement and context}
+All logarithms are natural. Write $\lambda(n)=(-1)^{\Omega(n)}$ for $n\ge1$,
+where prime factors are counted with multiplicity, and put
+\begin{align*}
+ C(N)&=\sum_{1\le n<N}\lambda(n)\lambda(N-n),\\
+ A_{\epsilon_1,\epsilon_2}(N)&=
+ \#\{(a,b)\in\N_{>0}^2:a+b=N,\ \lambda(a)=\epsilon_1,
+                                      \lambda(b)=\epsilon_2\}.
+\end{align*}
+The pairs in this definition are ordered.
+
+\begin{theorem}\label{thm:main}
+There are absolute constants $C_0,N_0>0$ such that, for every integer
+$N\ge N_0$ and every $(\epsilon_1,\epsilon_2)\in\{-1,1\}^2$,
+\begin{equation}\label{eq:main}
+ \abs{A_{\epsilon_1,\epsilon_2}(N)-\frac N4}
+ \le C_0\frac{N}{(\log N)^{10^{-200}}}.
+\end{equation}
+In particular,
+\begin{equation}\label{eq:correlation}
+ \abs{C(N)}\le C_0\frac{N}{(\log N)^{10^{-200}}}.
+\end{equation}
+\end{theorem}
+
+The inputs are the named theorems of families 003 and 007 in
+\cite{OpenAIMath}, at commit
+\begin{center}\small
+\nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+\end{center}
+Family 003 supplies the Dirichlet zero-free half-plane; family 007 supplies
+the finite closed-word estimates, residue comparisons and spectral transfer.
+At this commit these Lean~4 theorems compile with only the axioms
+\path{propext}, \path{Classical.choice} and \path{Quot.sound}.
+Inputs~\ref{input:zf}, \ref{input:trace}--\ref{input:bad-spectral} and
+\ref{input:paddingcost} transcribe the named declarations into mathematical
+notation. The numerical exponent of Lemma~\ref{lem:explicitA}, the reductions
+to these inputs and the proof of Theorem~\ref{thm:main} are written mathematics.
+In particular, the Lean comparison theorems assert only
+$\exists A_f\ge1000$; the bound $A_f\le10^6$ is read off from their
+source proofs, and the value $c=10^{-200}$ depends on it.
+The ancillary file \texttt{ExplicitBudget.lean} checks the polynomial
+exponents $8457$ and $8458$ of the degree function. The other Lean files
+cited below are also ancillary files of this submission.
+
+The final two-point theorems of \cite{OpenAI007} fix affine forms
+with positive leading coefficients and nonnegative constant terms
+as the summation length grows, with constants depending on the forms.
+Here the form $N-n$ varies with the summation length.
+The argument runs the internal graph estimates at shift/length $1$,
+with \cite{KMT} and Input~\ref{input:zf} supplying the variance of
+$\lambda$ in progressions modulo $N$ needed for centring.
+
+Theorem~\ref{thm:main} proves, for the Liouville function, the conjecture
+of Corradi and Katai that $C(N)=o(N)$, as stated in
+\cite[\S1.1]{Mangerel2024} and \cite[Conjecture~1]{Krishnamoorthy2026}.
+Those papers give \cite{CK69} as its source.
+De Koninck, Germ\'an and K\'atai \cite{DGK15} established a conditional
+result under the existence of infinitely many Siegel zeros; we use the
+description in \cite[\S1.1]{Mangerel2024}.
+Mangerel \cite[Theorem~1.2]{Mangerel2024} proved $|C(N)|<N-1$ for every
+$N\ge11$; for $N\ge2$, equality holds exactly when
+$N\in\{2,3,5,10\}$.
+
+For sign patterns, Shusterman asked whether every even $N>2$ is a sum
+$a+b$ with $\lambda(a)=\lambda(b)=-1$; the question was posted by Pablo
+on MathOverflow in August 2018 \cite{MO}.
+Under GRH, Mangerel \cite[Theorems~1.2--1.3 and Proposition~1.4]{MangerelGRH}
+proved this for all large even $N$, and all four patterns for every $N$
+with a prime factor exceeding a fixed $p_0$. For sufficiently large
+prime $N$, each pattern occurs $\gg N\exp(-C(\log\log N)^6)$ times.
+His Remarks~1 and~9 replace GRH, for the two existence theorems, by
+a zero-free rectangle
+$\Rea s>1-(\log N)^{-\alpha}$, $|\Im s|\le(\log N)^3$,
+for nonprincipal characters modulo $N$, with $0<\alpha<3/50$;
+Input~\ref{input:zf} supplies this rectangle for large $N$.
+CaptainSude \cite[Theorem~1.1]{CaptainSude} gave an elementary proof,
+with a Lean formalization, for every even $N>2$.
+Meng \cite[Theorem~A]{Meng2026} proved that all four patterns occur
+for every $N\ge2$ outside $\{2,3,4,5,6,9,10\}$.
+For $G_k(N)=\sum_{a_1+\cdots+a_k=N}\prod_i\lambda(a_i)$, with $a_i\ge1$,
+Krishnamoorthy \cite[Theorems~1--2]{Krishnamoorthy2026} proved
+$|G_k(N)|\ll_{B,k}N^{k-1}(\log N)^{-B}$ for each fixed $k\ge3$ and $B>0$,
+and, for $k=2$,
+$\#\{N\le X:|C(N)|>tN\}\ll_B t^{-2}X(\log X)^{-B}$ for $t>0$.
+Theorem~\ref{thm:main} gives the asymptotic count of all four patterns
+for every sufficiently large total. Constants and thresholds in this
+note are chosen existentially; their numerical values are not tracked.
+
+\begin{lemma}\label{lem:indicators}
+For every $N\ge2$ and every pair of signs,
+\begin{equation}\label{eq:indicator}
+ A_{\epsilon_1,\epsilon_2}(N)
+ =\frac{N-1+(\epsilon_1+\epsilon_2)
+              \sum_{1\le n<N}\lambda(n)+\epsilon_1\epsilon_2 C(N)}4.
+\end{equation}
+Consequently a bound for $C(N)$ with an absolute logarithmic saving,
+together with such a bound for $\sum_{n<N}\lambda(n)$, gives the four
+counts with the same smaller saving. Conversely, the four counts imply
+the corresponding bound for $C(N)$.
+\end{lemma}
+\begin{proof}
+Expand
+$\frac14\sum_{1\le n<N}(1+\epsilon_1\lambda(n))
+                          (1+\epsilon_2\lambda(N-n))$.
+The two linear sums agree under $n\mapsto N-n$.
+For the converse use
+$C(N)=\sum_{\epsilon_1,\epsilon_2}\epsilon_1\epsilon_2
+ A_{\epsilon_1,\epsilon_2}(N)$; the four main terms cancel.
+\end{proof}
+
+\part{The reflected correlation}
+\section{Zero-free input and progression estimates}
+
+\begin{inputthm}[Family 003, {\cite[Theorem~1.1]{OpenAIQ78}}]\label{input:zf}
+For every positive integer $q$, every Dirichlet character $\chi\pmod q$
+and every $s\in\C$ with $\Rea s>7/8$, one has $L(s,\chi)\ne0$,
+apart from the principal character's pole at $s=1$.
+\end{inputthm}
+The exact Lean name is
+\begin{center}\small
+\path{OAI.DirichletCharacter.LFunction_ne_zero_of_seven_eighths_lt_re}.
+\end{center}
+Its character is Mathlib's $\texttt{DirichletCharacter}\,\C\,q$, its modulus has
+the instance \path{[NeZero q]}, and its explicit pole hypothesis is
+$\neg(\chi=1\wedge s=1)$. The companion theorem
+\path{OAI.riemannZeta_ne_zero_of_seven_eighths_lt_re} supplies the zeta
+statement. Mathlib's zeta function is totalized at $1$; away from that
+point the statement is the usual zero-free assertion for zeta.
+
+Put $\e(t)=\exp(2\pi it)$ and, for 1-bounded multiplicative functions,
+\[
+ \Dpret(f,g;X)^2=\sum_{p\le X}\frac{1-\Rea(f(p)\overline{g(p)})}{p}.
+\]
+
+\begin{lemma}\label{lem:realmean}
+There are absolute $C,X_0>0$ such that, for all $X\ge X_0$, all
+$1\le q\le X$, with $q$ integral, and all real Dirichlet characters $\chi\pmod q$,
+\begin{equation}\label{eq:realmean}
+ \abs{\sum_{n\le X}\lambda(n)\chi(n)}
+ \le C X(\log X)^{-1/40}.
+\end{equation}
+Principal and imprimitive characters are included.
+\end{lemma}
+\begin{proof}
+For a nonprincipal primitive character, truncated Perron at a half-integer
+$y\ge3$, with right line $1+1/\log y$ and height $T\asymp y^2$,
+can be moved to $15/16$.
+Montgomery--Vaughan's local expansion for $L'/L$
+\cite[Lemma 11.1 and Theorem 10.17]{MV} and
+Input~\ref{input:zf} give, uniformly on $15/16\le\sigma\le2$,
+\[
+ \abs{L'/L(\sigma+it,\chi)}\ll\log(2q(|t|+2)).
+\]
+Indeed every zero in the local expansion is at horizontal distance at
+least $1/16$, and the number of local zeros is bounded by the stated
+unit-height zero-counting theorem. The vertical integral is
+$O(y^{15/16}\log(2qT)\log(2T))$; the horizontal integrals and Perron
+error are smaller. Moving the cutoff by at most one von Mangoldt term
+therefore gives
+\begin{equation}\label{eq:psi}
+ \psi(y,\chi)\ll y^{15/16}\log^2(2qy),\qquad y\ge2.
+\end{equation}
+An induced character differs from its primitive character by Euler-factor
+terms of total size at most $O(\log(2q)\log(2y))$.
+Removing prime powers costs $O(\sqrt y\log^2(2y))$.
+Thus \eqref{eq:psi} also bounds
+$\sum_{p\le y}\chi(p)\log p$, for every nonprincipal character, with an
+absolute constant and without a lower bound on $y/q$.
+The range $2\le y<3$ follows by the absolute bound for its finitely many
+von Mangoldt terms.
+
+Set $Y=(\log X)^{64}$. Partial summation, using $q\le X$, gives
+\[
+ \abs{\sum_{Y<p\le X}\frac{\chi(p)}p}
+ \ll (\log X)^2Y^{-1/16}\ll1.
+\]
+For $f=\lambda\chi$, this and Mertens' theorem yield
+\[
+ \Dpret(f,1;X)^2
+ =\sum_{p\le X}\frac1p+\sum_{p\le X}\frac{\chi(p)}p
+ \ge\log\log X-O(\log\log\log X).
+\]
+For a principal character the second sum is nonnegative, so the same
+lower bound holds.
+
+Apply Matom\"aki--Radziwi\l\l--Tao
+\cite[Lemma C.1, corrected version 3]{MRT} with its character slot equal
+to the fixed modulus-one character and its real function slot equal to
+the varying $f$. For $1\le|t|\le X$ it gives
+$\Dpret(f,n^{it};X)\ge\frac14\sqrt{\log\log X}-O(1)$; for $|t|\le1$
+it gives $\Dpret(f,n^{it};X)\ge\frac13\Dpret(f,1;X)-O(1)$.
+Hence, after increasing an absolute $X_0$,
+\[
+ M:=\inf_{|t|\le\sqrt{\log X}}\Dpret(f,n^{it};X)^2
+ \ge\frac1{32}\log\log X.
+\]
+The Hal\'asz inequality \cite[Lemma 7.4, modulus 1]{KMT}, with
+$T=\sqrt{\log X}$, bounds $X^{-1}|\sum_{n\le X}f(n)|$ by
+\[
+ C\{(M+1)\exp(-M)+T^{-1/2}+(\log X)^{-1/4}\}
+ \ll(\log X)^{-1/40}.
+\]
+The constants in the invocation of Lemma C.1 are absolute because its
+character is fixed at modulus one.
+\end{proof}
+
+\begin{lemma}\label{lem:variance}
+Fix $0<\nu\le1$. There are $C_\nu,X_\nu>0$ such that, for every
+positive integer $q$, whenever $X\ge X_\nu$, $X\ge H\ge10q$, and
+$R=H/q\ge\exp((\log X)^\nu)$,
+\begin{equation}\label{eq:variance}
+ \int_X^{2X}\sum_{a\bmod q}
+   \abs{\sum_{x<n\le x+H\atop n\equiv a\ (q)}\lambda(n)}^2\,dx
+ \le C_\nu\frac{XH^2}{q}(\log R)^{-1/1000}.
+\end{equation}
+The sum is over every residue class, including nonunits.
+\end{lemma}
+\begin{proof}
+Write $\varepsilon=(\log R)^{-1/1000}$.
+Use an external modulus upper bound which may exceed the actual $q$.
+Set
+\begin{gather*}
+ T=\log X,\qquad \rho=\varepsilon^{11/10},\qquad \kappa=\rho/50,\\
+ Q_*:=\left\lceil\max\{qR^\kappa,\ H\exp(-T^{2/5})\}\right\rceil,
+ \qquad R_*=H/Q_*,\quad S_*=\log R_*.
+\end{gather*}
+For large $X$, uniformly in the stated range,
+\begin{equation}\label{eq:kmtcap}
+ \begin{gathered}
+ q\le Q_*\le H/10,\\
+ \tfrac12\min(R^{1-\kappa},\exp(T^{2/5}))
+       \le R_*\le\min(R^{1-\kappa},\exp(T^{2/5})).
+ \end{gathered}
+\end{equation}
+Both arguments of the maximum are $o(H)$ and the first is at least $q$.
+The ceiling costs a factor at most two.
+In particular, with $\nu_1=\min(\nu,2/5)$,
+$S_*\ge T^{\nu_1}/3$ for large $X$ and $S_*\le T^{2/5}$.
+The internal parameter lower bound is still
+$\rho\ge S_*^{-1/200}$: before capping,
+$S_*\asymp\log R$ and $0.0011<1/200$; after capping,
+$\rho\ge T^{-0.0011}$ while $S_*^{-1/200}\asymp T^{-1/500}$.
+Also $S_*\gg\rho^{-100}$ in both cases.
+
+The explicit good-modulus set used in
+\cite[Lemma 8.1]{KMT} is
+\[
+ \mathcal Q_{X,u,M}=
+ \left\{q\le X:
+ \begin{array}{l}
+ L(s,\chi)\ne0\text{ for all }\chi\pmod q\text{ with }
+                         \cond\chi>X^{u^{20}},\\
+ \Rea s\ge1-M\log\log X/\log X,
+                         \quad |\Im s|\le3X
+ \end{array}\right\}.
+\]
+The deduction of Theorem 1.5 from Proposition 9.4 in version 5 uses
+$\varepsilon^{1.1}$ in that proposition. Its good-modulus condition is
+therefore $\mathcal Q_{X,\varepsilon^{6.6},\varepsilon^{-88}}$.
+This is contained in
+$\mathcal Q_{X,\varepsilon^6,\varepsilon^{-80}}$, which is contained in
+$\mathcal Q_{X,\varepsilon^6,\varepsilon^{-36}}$ used for the real-function
+reduction. The first set has the smaller conductor cutoff and larger
+zero box. Since
+\[
+ \varepsilon^{-88}\frac{\log\log X}{\log X}
+ \le (\log X)^{-0.912}\log\log X<\frac18,
+\]
+Input~\ref{input:zf} makes all three sets equal to all moduli up to $X$.
+The reduction from Proposition 9.4 uses Lemma 7.7, which needs
+$Z=\varepsilon^{-11}\le(\log X)^{1/20}$ and $q\le H/10$, both satisfied;
+Lemma 6.2, the hybrid large sieve valid for all $q,T\ge1$; and
+equation (50), which \cite{KMT} derive from Lemma~14 of Matom\"aki and Radziwi\l\l
+\cite{MR2016}, which is reference [32] there.
+We use this last step as printed. None restricts $q$ beyond
+$q\le Q_*\le H/10$. The real-valued simplification is Corollary 1.6 and its proof.
+Use $Q_*$ as the external $Q$ in these invocations. The accuracy
+$\varepsilon$ and the actual modulus $q$ remain unchanged.
+
+Here are the parameter margins for the nested invocations in that proof:
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Parameter & Margin\\
+\midrule
+$\varepsilon^{1.1}$ & $(\log R)^{-0.0011}\ge(\log R)^{-1/200}$\\
+$\varepsilon^{6.6}$ & $\ge(\log X)^{-0.0066}>(\log X)^{-1/50}$\\
+$20\varepsilon^{-220}\log\log X/\log X$ &
+  $\le20(\log X)^{-0.78}\log\log X=o(1)$\\
+$\varepsilon^{-11}$ & $\le(\log X)^{0.011}<(\log X)^{1/20}$\\
+$\varepsilon^7$ & $\ge(\log X)^{-0.007}>(\log X)^{-1/13}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+For the internal $\varepsilon^{1.1}$ invocation the last margin has
+exponent $0.0077$, still below $1/13$.
+We also check the auxiliary prime intervals in Section 9.3 of
+\cite{KMT}, including its equation (52). Let $m\ge2$ be the smallest
+integer with $m^{4m+2}S_*^m>T^{1/2}$. Define
+\begin{align*}
+ \log P_1&=\rho S_*,\qquad \log Q_1=S_*;\\
+ \log P_j&=\rho j^{4j}S_*^j,\qquad
+ \log Q_j=j^{4j+2}S_*^j\quad(2\le j<m),
+\end{align*}
+and $\log P_m=\rho^2T$, $\log Q_m=\rho T$.
+For large $X$, $m\le b_\nu:=2+\lceil1/\nu_1\rceil$, since
+$S_*\ge T^{\nu_1}/3$. With $\eta_a=1/100$, the required inequalities
+are
+\begin{equation}\label{eq:kmtintervals}
+ \begin{aligned}
+ \frac{\log\log Q_j}{\log P_{j-1}-1}&\le\frac{\eta_a}{4j^2},\\
+ \frac{\eta_a}{j^2}\log P_j&\ge8\log Q_{j-1}+16\log j
+ \quad(2\le j\le m).
+ \end{aligned}
+\end{equation}
+For $j<m$, the first ratio is
+$O_\nu(\log S_*/(\rho S_*))=o(1)$, using
+$S_*\gg\rho^{-100}$; the second comparison gains a factor comparable
+to $\rho S_*\to\infty$.
+For $m=2$, its defining inequality gives $S_*>T^{1/4}/32$, so
+$\log P_1\ge T^{1/4-11/10000}/32$.
+Meanwhile $\log P_2\ge T^{1-22/10000}$ and
+$\log Q_1\le T^{2/5}$; both terminal inequalities follow.
+For $m\ge3$, minimality gives $\log Q_{m-1}\le T^{1/2}$.
+The defining inequality for $m$ and its fixed bound $b_\nu$ give
+$S_*^{m-1}\gg_\nu T^{(m-1)/(2m)}\ge T^{1/3}$.
+Thus $\log P_{m-1}\gg_\nu T^{1/3-11/10000}$,
+whereas $\log P_m\ge T^{1-22/10000}$ and
+$\log\log Q_m\le\log T$. These bounds prove
+\eqref{eq:kmtintervals} at the last interval as well.
+For the first mean-value estimate in that proof, the case of $X_1$
+on p.~36 of the arXiv version of \cite{KMT}, one needs $X/Q_1\ge q\mathcal T$, where
+$\mathcal T=(X/H)R_*^{\rho/100}$ and $Q_1=H/Q_*=R_*$.
+With $Q=q$, so that $R_*$ would equal $R$, this inequality fails by
+the factor $R^{\rho/100}$;
+the printed condition $Q_1\le h/(QP_1^{0.01})$ is inconsistent
+with $Q_1=h/Q$. The buffer in $Q_*$ supplies the needed inequality:
+\[
+ q\mathcal T=\frac XR R_*^{\rho/100}
+ \le\frac XR R^{\rho/100}
+ \le\frac X{R_*}R^{-\rho/100}\le\frac X{Q_1}.
+\]
+The third inequality uses $Q_*\ge qR^{\rho/50}$.
+The external $Q$ is a free parameter of Theorem~1.5 and Corollary~1.6,
+whose right-hand sides involve $\varepsilon$, $\ph(q)$, $X$ and $H/q$;
+thus this buffer preserves their conclusions.
+The other uses of $Q_*$ also hold: $R_*^{-0.01\rho}\ll\varepsilon$
+and $q/H=1/R\ll\varepsilon$ on p.~33 of the arXiv version, and $P_m\ge P_1$, since
+$\log P_1\le T^{2/5}\ll\rho^2T=\log P_m$ on pp.~36--38 of that version.
+
+The typicality in Definition 1.1 of \cite{KMT} means that
+$\#\{p\mid q:p\le t\}\le\pi(t)/100$ for every $t\ge y$.
+Take $y=R_*^{\varepsilon^2}$.
+There are at most $\log X/\log2$ distinct prime factors of $q$, whereas
+$\pi(y)/\log X\to\infty$: before capping,
+$\log y\asymp(\log R)^{0.998}$, and after capping
+$\log y\gg T^{0.398}$.
+All larger cutoffs satisfy the same condition. The cutoff
+$R_*^{\varepsilon^{1.1}}$ in Proposition 9.4 is larger than $y$.
+
+Corollary 1.6, restricted to unit classes, now gives the variance about
+its real-character main term with error
+$O(\varepsilon\ph(q)X R^2)$. A nonreal main term may be omitted in
+that corollary. For a real main term,
+Lemma~\ref{lem:realmean} at cutoff $3X$ gives the relative squared cost
+\[
+ O\bigl((q/\ph(q))^2(\log X)^{-1/20}\bigr)=o(\varepsilon),
+\]
+using $q/\ph(q)\ll\log\log(3q)$.
+
+To include nonunits, group the classes by $u=(a,q)$ and put
+$n=um$, $x=ut$, $q'=q/u$, $X'=X/u$, $H'=H/u$.
+Then $H'/q'=R$, $R\le X'\le X$, $q'\le X'$, and $dx=u\,dt$.
+At every such scale use the same $\varepsilon=(\log R)^{-1/1000}$.
+Choose its own $Q_*$ by the displayed formula with $X',H',q'$.
+The zero-box and all lower-parameter checks are uniform for
+$X'\in[R,X]$: their worst lower scale is $X'=R$, where, for example,
+$\varepsilon^{-88}\log\log R/\log R=o(1)$.
+The typicality argument is repeated at that scale using
+$\omega(q')\le\log X'/\log2$ and the corresponding $y$; one still has
+$\log R\ge(\log X')^\nu$.
+The function $(\log\log t)^2(\log t)^{-1/20}$ is decreasing for large
+$t$, so its value at $X'$ is at most its value at $R$, which is
+$o(\varepsilon)$.
+Complete multiplicativity and $|\lambda(u)|=1$ show that this gcd group
+contributes at most $C_\nu\varepsilon\ph(q/u)X R^2$.
+Finally $\sum_{u\mid q}\ph(q/u)=q$, which gives \eqref{eq:variance}.
+\end{proof}
+
+\begin{lemma}\label{lem:fourier}
+Fix $0<\nu_0\le1$. For sufficiently large $N$ and every real $D$ with
+$\exp((\log N)^{\nu_0})\le D\le N$, one has
+\begin{equation}\label{eq:fourier}
+ \sup_{\theta\in\R}\frac1N\sum_{r=1}^N
+   \abs{\sum_{0\le k<\lfloor D\rfloor}\lambda(Nk+r)\e(k\theta)}
+ \ll_{\nu_0}D(\log D)^{-1/3000}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Put $K_D=\lfloor D\rfloor$, $Q_0=\lfloor\sqrt D\rfloor$.
+Dirichlet approximation gives $\theta=a/q_0+\beta$ with
+$1\le q_0\le Q_0$ and $|\beta|\le1/(q_0Q_0)$.
+Set
+\[
+ h=\left\lfloor\min\{D/(\log D)^{10},q_0Q_0/100\}\right\rfloor,
+ \qquad t_0=h/(\log D)^{20}.
+\]
+For $t_0\le t\le h$, one has
+$t/q_0\gg\sqrt D/(\log D)^{30}$, and $|\beta|h\le1/100$.
+For $0\le v<K_D$ define
+\[
+ U_{r,v}(t)=\sum_{1\le j\le t}\lambda(N(v+j)+r)
+                                     \e(a(v+j)/q_0).
+\]
+Group by $v+j\pmod{q_0}$ and apply Cauchy--Schwarz.
+The map $(r,b)\mapsto Nb+r$ is a bijection onto all classes modulo
+$Q=Nq_0$ for $1\le r\le N$, $0\le b<q_0$.
+Moving the starting point $Nv+r$ to $Nv+u$, $0\le u<N$, changes each
+progression sum by at most two terms, since $Q\ge N$.
+Integrating in $u$ gives
+\begin{equation}\label{eq:startaverage}
+ \sum_{r,v}|U_{r,v}(t)|^2
+ \ll\frac{q_0}{N}\int_0^{NK_D}\sum_{b\bmod Q}
+   \abs{\sum_{x<n\le x+Nt\atop n\equiv b\ (Q)}\lambda(n)}^2dx
+   +NK_Dq_0^2.
+\end{equation}
+For $0\le x<Nt$, each class has $O(t/q_0+1)$ terms, giving total cost
+$O(Nt^3)$ after multiplication by $q_0/N$.
+Cover the rest by dyadic intervals with starting scale $X'\ge Nt$;
+their starting scales have sum $O(ND)$.
+Lemma~\ref{lem:variance} applies with length $Nt$ and modulus $Q$.
+One may take $\nu=\nu_0/2$, since for large $N$
+\[
+ (2\log N+1)^{\nu_0/2}
+ \le \tfrac12(\log N)^{\nu_0}-30\log\log N-O(1)
+ \le\log(t/q_0).
+\]
+Thus, with $\varepsilon_D=(\log D)^{-1/1000}$,
+\begin{equation}\label{eq:windowvariance}
+ \frac1{NK_D}\sum_{r,v}|U_{r,v}(t)|^2
+ \ll_{\nu_0}\varepsilon_Dt^2+t^3/D+q_0^2
+ \ll_{\nu_0}\varepsilon_Dt^2.
+\end{equation}
+The final inequality uses $t/D\le(\log D)^{-10}$ and
+$q_0/t\ll(\log D)^{30}/\sqrt D$.
+
+Abel summation inserts $\e(\beta j)$ into the window.
+At each $t\ge t_0$, average first in $(r,v)$ and use
+\eqref{eq:windowvariance}; the mean absolute value is
+$O_{\nu_0}(\sqrt{\varepsilon_D}\,t)$.
+For $t<t_0$ use $|U_{r,v}(t)|\le t$.
+The mean absolute value of the full $\theta$ window is consequently
+$O_{\nu_0}(h\sqrt{\varepsilon_D}+h(\log D)^{-40})$.
+
+For any 1-bounded sequence $(z_k)$ the deterministic identity
+\[
+ \frac1h\sum_{v=0}^{K_D-1}\sum_{j=1}^h z_{v+j}
+ =\sum_{k=0}^{K_D-1}z_k+O(h+1)
+\]
+follows by counting the multiplicity of each index: the sum of the
+absolute differences of the coefficients is exactly $h+1$.
+Use it with $z_k=\lambda(Nk+r)\e(k\theta)$ and average in $r$.
+The resulting bound is
+$O_{\nu_0}(D\sqrt{\varepsilon_D}+h+1)$, which is
+$O_{\nu_0}(D(\log D)^{-1/2000})$ and implies \eqref{eq:fourier}.
+The frequency is fixed throughout each average, so the supremum remains
+outside the $r$ average.
+\end{proof}
+
+\section{Finite graph inputs and their parameters}
+Throughout this section the prefix of a family 007 Lean name is
+\path{OAI.TwoPointCorrelations}. Thus the names printed below specify
+fully qualified declarations in that namespace.
+
+\begin{definition}[Arithmetic word data]\label{def:words}
+A prime family consists of disjoint finite prime sets $\mathcal P,
+\mathcal Q$ and a finite supply $\mathcal S$ of pairs $(d,q)$, where $d,q$
+are squarefree, $d$ has $J$ prime factors in $\mathcal P$, and $q$ has at
+most $m_Q$ prime factors in $\mathcal Q$. At multiplier $h\ge1$, every
+$p\in\mathcal P$ is required not to divide $h$.
+This is the mathematical data of \leanname{ProhibitedPrimeFamily}.
+For a signed step $a=(\epsilon,d,q)$, $\epsilon\in\{-1,1\}$, put
+$\Delta_h(a)=\epsilon hqd$ and
+$\Delta_h(w)=\sum_{a\in w}\Delta_h(a)$ for a word $w$.
+A word is positive at $x\in\Z$ when, for each successive step, its whole
+divisor $qd$ divides the departure integer $x+\Delta_h(w_{<i})$.
+\end{definition}
+
+For completeness we specify the prohibited predicate used in the graph.
+A word $w=(a_0,\ldots,a_{R-1})$ is forward-prohibited if
+$3\le R\le s$, all its pairs belong to $\mathcal S$, consecutive tuple
+labels differ, and each tuple prime occurs on an interval of indices.
+There must also be a prime $p$ in the first tuple but not in the last,
+and an index $0<a<R-1$, such that
+$p\mid\Delta_h(w_{\ge a})$.
+A forward-prohibited word is minimal if none of its shorter contiguous
+subwords, in either orientation, is forward-prohibited. Reversal changes
+the order of the steps and reverses every direction.
+An integer is prohibited if some minimal forward-prohibited word is
+positive there. This is exactly \leanname{ProhibitedSite}, built from
+\leanname{PositiveWord}, \leanname{ForwardProhibited}, and
+\leanname{MinimalWord}. Positivity here is a divisibility condition for
+integers of either sign.
+
+The residue model assigns independent uniform variables
+$R_p\in\Z/p\Z$ for $p\in\mathcal P\cup\mathcal Q$.
+Integer divisibility at $x+u$ is replaced by $R_p+x+u=0\pmod p$.
+A common CRT lift of these variables defines every word predicate; the
+choice of lift has no effect. All expectations in the remainder of this
+section are with respect to this finite probability space.
+
+\begin{inputthm}[Closed-word column bound]\label{input:trace}
+Fix $h\ge1$, $C\ge0$ and $W\ge1$. For all sufficiently large $L$, the
+following holds for every prime family of Definition~\ref{def:words}.
+Suppose its center set is the union of pairwise disjoint bands
+$\mathcal P_1,\ldots,\mathcal P_J$, with masses
+$V_i=\sum_{p\in\mathcal P_i}p^{-1}$, and suppose
+\begin{gather}
+ J\ge1,\quad J+m_Q\le C\log L,\quad m_Q\le100\log L,
+ \quad1\le V_i\le\min(2W,L^2),\label{eq:tracehyp1}\\
+ 1\le\sum_{p\in\mathcal P}p^{-1}\le L^2,
+ \qquad\sum_{p\in\mathcal Q}p^{-1}\le L^2,\label{eq:tracehyp2}\\
+ \exp(L^{199/200})\le H\le p\le Y\le\exp L
+       \quad(p\in\mathcal P),\qquad
+ p\le B\le\exp L\quad(p\in\mathcal P\cup\mathcal Q),\label{eq:tracehyp3}\\
+ q\le Q_{\max}\le\exp(100L+1)\quad((d,q)\in\mathcal S),
+ \qquad\prod_{i\ne j}p_i\le D_{\max}\le\exp(2L)
+       \quad(p_i\in\mathcal P_i).\label{eq:tracehyp4}
+\end{gather}
+Set $k=\lfloor L\rfloor$, $s=\lfloor L^{1/10}\rfloor$, and
+$D_b=2k+\lfloor L^{1/12}\rfloor s$.
+Let $\mathcal D$ be the tuple products, and take any finite squarefree
+padding-divisor set supported on $\mathcal Q$.
+Use a nonnegative padding coefficient $u(q)\le4^{\omega(q)}$, a
+positive Q-residue-dependent vertex weight $g$ with $g^2\ge1$, a row cap
+$K\ge1$, and Q-residue-dependent extra cuts. Retain precisely the
+eligible edges, the row-density cap, these extra cuts, and the
+nonprohibited vertices. Center each tuple by
+$\prod_{p\mid d}(\ind_{p\mid x}-1/p)$.
+
+For any finite state set mapped into tuple labels times integer sites,
+any deterministic edge gates, any fixed initial state and any prescribed
+sequence of $2k$ directions, let $\mathcal F$ be the numerical closed-word
+catalog obtained from pairs of $k$-step paths with distinct consecutive
+tuple labels in each half. No extra condition is imposed at the seams.
+If $Z_w$ is the actual signed masked scalar word weight, then
+\begin{equation}\label{eq:wordmajorant}
+ \exp(108L)\sum_{w\in\mathcal F}\abs{\E Z_w}
+ \le\{K(2\exp(150)\sqrt W)^J\}^{2k}.
+\end{equation}
+The state-to-site map need not be injective in this column statement.
+\end{inputthm}
+
+The exact name is \leanname{eventually_actual_column_trace}.
+The numerical catalog is its \leanname{actualClosedPairCatalog}, with
+\leanname{closedTraceFiber} fixing the direction sequence.
+The theorem takes the threshold in $L$ after $h,C,W$ are fixed and
+before all prime families, numerical words, gates and state maps.
+The more general theorem \leanname{eventually_prohibited_column_trace_total}
+is the source of this column bound.
+The correspondence between the signed masked word and the centered
+residue expectation is
+\leanname{maskedClosedWord_residue_average}: for a closed word of
+positive length $R\le D_b$, the residue average of the actual masked
+word equals the centered product times its attached-catalog avoidance
+factor and retained departure weight. Its hypotheses are disjoint prime
+bands, the matching label assignment and a nowhere-zero $g$.
+On a closed walk the square-root vertex denominators combine into the
+departure squares; the idempotent vertex masks combine into the attached
+avoidance condition. This equality retains the signs before taking the
+absolute values in \eqref{eq:wordmajorant}.
+
+\begin{inputthm}[Finite comparisons]\label{input:comparison}
+There is an absolute integer $A_f\ge1000$ such that, for all sufficiently
+large $L$, the following comparisons are uniform after $L$ is fixed.
+The coordinate moduli are positive and pairwise coprime, number at most
+$\exp L+1$, and are at most $\exp L$.
+A Boolean test can be any unary test of a specified residue coordinate.
+A depth-at-most-20 circuit of size at most $\exp(L^6)$ has empirical
+versus independent-residue error at most $\exp(-L^{10})$ on any integer
+interval of length $U\ge\exp(L^{A_f}/2)$.
+
+In the following actual-word and positive-cost comparisons we use
+$u(q)=4^{\omega(q)}$ and $g(n)^2=5^{\omega_{\mathcal Q}(n)}$,
+with the Q-degree cut $\omega_{\mathcal Q}(n)\le400\log L$.
+These comparisons concern these arithmetic weights and the positive
+deletion atoms defined in Section~4.
+For an actual closed masked word the error is at most $\exp(-L^9)$.
+Its word length $R$ satisfies $0<R$, $R+1\le4L$, $RJ\le L^2$;
+$s\le L$, $J+m_Q\le L^2$, the supply has size at most $\exp(101L)$,
+and every padding choice has at most $100\log L$ prime factors.
+The Q-degree cut is at $\lfloor400\log L\rfloor$.
+The comparison holds on $a+\ell\{0,\ldots,U-1\}$ for arbitrary
+$a,\ell\ge0$ with $(\ell,p)=1$ for every pool prime.
+
+Positive deletion atoms satisfy an error of at most
+$2\exp(-L^9)$, uniformly in the prime family and any integer offset.
+The average degree-truncated padding weight is at most its product-law
+normalizer plus $\exp(-L^9)$, and at most twice that normalizer.
+Sums of atoms incur the sum of the individual absolute errors.
+Bin-dependent interval lengths may be used, provided each is at least
+$\exp(L^{A_f}/2)$.
+\end{inputthm}
+
+The first statement is
+\leanname{BravermanDepth22Input.eventually_residue_comparison}, obtained
+from \leanname{BravermanDepth22Input.finite_residue_comparison}.
+The actual-word statement is
+\leanname{BravermanDepth22Input.eventually_actual_affine_word_comparison}.
+The last statements are the specializations of
+\begin{quote}\small
+\path{BravermanDepth22Input.eventually_variable_padding_comparison},\\
+\path{BravermanDepth22Input.eventually_prohibited_row_comparison},\\
+\path{BravermanDepth22Input.eventually_variable_tuple_degree_deletion},\\
+\path{BravermanDepth22Input.eventually_actual_padding_weight}.
+\end{quote}
+The first, unweighted comparison is stated for consecutive origins.
+Its arbitrary unary tests can be precomposed with
+$z\mapsto a+\ell z$; multiplication by an invertible $\ell$ preserves
+the independent uniform law. The named affine word theorem performs
+this precomposition for the full weighted word.
+There is no upper bound on $a,\ell$, nor a requirement that the product
+of all pool primes be small. The proved premise
+\leanname{bravermanDepth22Input} supplies the circuit comparison.
+
+The weighted comparison expands at most $4L$ active-state slots, each
+with at most $\exp L$ coordinates and at most $400\log L$ active bits,
+and at most $L^2$ center bits. The coefficient table is bounded by
+$\exp(L^4)$, and the surviving-site circuit has depth at most 19 and
+size at most $\exp(L^3)$. This is the exact budget in
+\leanname{BravermanDepth22Input.eventually_affine_weighted_word_comparison}.
+It gives the actual-word and positive-atom versions above. Arbitrary
+offsets change the unary residue tests and preserve these budgets.
+
+\begin{inputthm}[Prohibited sites and spectral transfer]\label{input:bad-spectral}
+For every fixed $C\ge0$, for all sufficiently large $L$, uniformly in
+the multiplier $h$, the prime family and its supply,
+\begin{equation}\label{eq:badprob}
+ \Prob(\text{a residue-model site is prohibited})
+ \le\exp(-\tfrac12 L^{199/200})
+\end{equation}
+if $1\le s\le L^{1/10}$, $J+m_Q\le C\log L$, the pool masses are
+at most $L^2$, the center mass is at least 1, and all center primes
+are at least $\exp(L^{199/200})$, with all pool primes at most $\exp L$.
+
+For any finite-dimensional complex Hilbert space, finite self-adjoint
+family $(B_d)$, orthogonal projection $E$, and nonnegative real
+numbers $a,b$, suppose
+\[
+ \norm{B_d}\le a,\qquad
+ \sum_d\norm{B_dv}^2\le b^2\norm v^2\quad(Ev=v).
+\]
+If $\mathcal H$ is its nonbacktracking operator, then
+\begin{equation}\label{eq:spectralinput}
+ \norm{E\sum_d B_d E}\le3\max\{a,b,\rad(\mathcal H)\}.
+\end{equation}
+\end{inputthm}
+The exact names are \leanname{eventually_prohibited_density} and
+\leanname{noncommuting_spectral_transfer_max}; the common-bound version
+is \leanname{noncommuting_spectral_transfer}.
+The probability bound follows from the finite theorem
+\leanname{ProhibitedPrimeFamily.probability_bound}, which includes the
+whole prohibited catalog. This probability bound concerns a single site. In Lemma~\ref{lem:rare}
+it is combined by Cauchy--Schwarz with second moments of the positive
+weights, and sums over many sites are compared with the residue model
+by Input~\ref{input:comparison}.
+The nonbacktracking operator uses distinct successive tuple labels;
+different $B_d$ need not commute, and $E$ need not commute with them.
+
+\begin{lemma}[A numerical finite-comparison exponent]\label{lem:explicitA}
+Every finite comparison used here may be run with $A_f=1000000$.
+\end{lemma}
+\begin{proof}
+We record the exponent extraction from the explicit circuit budgets in
+\cite{OpenAIMath}. Write $\mathcal G(f,c)$ for
+$\exists K\ \forall j\ge0:\ f(j)\le K(j+1)^c$.
+The proof of \leanname{bravermanDegree_polynomial} uses the rules
+\[
+ \mathcal G(f,c),\mathcal G(g,d)
+ \Longrightarrow\mathcal G(f+g,c+d),\quad
+ \mathcal G(fg,c+d),\quad\mathcal G(f^r,rc).
+\]
+Constants have exponent 0 and $j$ has exponent 1.
+Applying these rules in the order of the source definitions gives
+\begin{center}
+\begin{tabular}{@{}p{.56\textwidth}p{.40\textwidth}@{}}
+\toprule
+Budget & Polynomial exponent in $j+1$\\
+\midrule
+\leanname{bravermanBase} & 2\\
+\leanname{bravermanNormExponent} & 45\\
+\leanname{bravermanErrorExponent} & 1\\
+\leanname{bravermanSwitches} & 47\\
+\leanname{switchingDenominator} at that switch count & 94\\
+\leanname{switchingDegree} at depth 89 & $47+89\cdot94=8413$\\
+\leanname{bravermanDegree} & $44+8413=8457$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Increasing the positive-growth exponent by one, as in
+\leanname{bravermanDegree_polynomial_positive}, gives a fixed bound
+$K(j+1)^{8458}$ for some absolute $K>0$.
+The theorem
+\path{ReflectedLiouville.braverman_degree_positive_explicit_exponent}
+in the ancillary file \texttt{ExplicitBudget.lean} proves this numerical exponent
+for the source's literal degree function.
+The dyadic comparison
+\leanname{AC0Circuit.dyadic_comparison} requires independence degree
+at least this explicit \leanname{bravermanDegree}.
+The logarithmic-budget conversion changes $K$, not 8458.
+
+In the finite-residue comparison take bit depth
+$b_L=\lceil L^{15}\rceil$, accuracy $\varepsilon_L=\exp(-L^{11})$,
+and independence order
+$t_L=\lceil L^{17\cdot8458+1}\rceil=\lceil L^{143787}\rceil$.
+The encoded size is at most $\exp(L^{17})$; hence, for large $L$,
+its required independence order is at most $t_L$.
+The total number of encoded bits is at most $\exp(2L)$.
+The low-order CRT/Fourier error is bounded by
+\[
+ \frac{(\exp L)^{t_L}}{U}(t_L+1)(\exp(2L))^{t_L}
+ \le\exp(-L^{11})
+ \quad\text{if }U\ge\exp(L^{1000000}/2).
+\]
+The two decoder errors total at most
+$2\exp(3L)2^{-b_L}$, so the finite formula gives error at most
+$\exp(-L^{10})$.
+The signed-state expansions and all positive costs have total
+coefficient mass at most $\exp(C L^5)$ for a fixed $C$; this changes the
+error to at most $\exp(-L^9)$ and does not change the required interval
+exponent. In the source,
+\leanname{BravermanDepth22Input.eventually_residue_comparison} takes
+$T:=17C+1$ and $A:=T+1002$, where $C$ is the exponent of
+\leanname{bravermanDepth22Input}. Here $C=8458$, so
+$A=17\cdot8458+1003=144789$.
+The comparisons
+\leanname{eventually_scalar_residue_comparison},
+\leanname{eventually_active_state_comparison},
+\leanname{eventually_weighted_word_comparison},
+\leanname{eventually_affine_weighted_word_comparison},
+\leanname{eventually_actual_affine_word_comparison},
+\leanname{eventually_positive_weight_comparison},
+\leanname{eventually_positive_prime_cost_comparison},
+\leanname{eventually_prohibited_cost_comparison},
+\leanname{eventually_prohibited_row_comparison},
+\leanname{eventually_degree_cost_comparison},
+\leanname{eventually_integer_degree_cost},
+\leanname{eventually_integer_degree_sum},
+\leanname{eventually_variable_tuple_degree_deletion},
+\leanname{eventually_state_cost_comparison},
+\leanname{eventually_density_cost_comparison}, via the state-cost comparison,
+and \leanname{eventually_actual_padding_weight}, the last via
+\leanname{eventually_prime_state_weight}, each retain the exponent of
+their predecessor. The theorem
+\leanname{eventually_padding_atom_comparison}, whose exponents $A_1,A_2$
+come from \leanname{eventually_degree_cost_comparison} and
+\leanname{eventually_density_cost_comparison}, and hence
+\leanname{eventually_variable_padding_comparison}, takes
+$A_1+A_2=2\cdot144789=289578$.
+All are at most $10^6$. Enlarging $A$ strengthens the hypothesis
+$U\ge\exp(L^A/2)$, proving the stated common choice.
+\end{proof}
+
+\section{Positive budgets and a rough-number multiplier}
+
+Fix, for the rest of Part I,
+\begin{equation}\label{eq:fixedparameters}
+ A=1000000,\qquad W=10^{180},\qquad
+ \delta=10^{-5},\quad\gamma=1-2\delta,\quad s_0=10^{-5}.
+\end{equation}
+These constants precede every sufficiently-large threshold.
+For an integer $N$ put
+\begin{equation}\label{eq:variableparameters}
+ L=(\log N)^{1/A},\quad
+ J=\left\lfloor\frac{\delta\log L}{6W}\right\rfloor,
+ \quad\eta=\exp(-J),\quad K=\exp(4J),\quad
+ Y_i=L^{1-\delta}\exp(6Wi).
+\end{equation}
+We henceforth take $N$ large enough that $J\ge1$.
+For $1\le i\le J$ let
+\[
+ \mathcal P_i=\{p:\ p\text{ prime},\ p\equiv1\pmod5,
+             \ p\nmid N,\ Y_{i-1}\le\log p<Y_i\},
+ \qquad\mathcal P=\bigcup_i\mathcal P_i,
+\]
+and put
+\[
+ H_0=\exp(L^{1-\delta}),\quad
+ \mathcal Q_0=\{p\le\exp L:\ p\text{ prime},\ p\not\equiv1\pmod5\},
+ \qquad\mathcal Q=\{p\in\mathcal Q_0:p\nmid N\}.
+\]
+The fixed-modulus prime number theorem and partial summation give,
+uniformly in $i$, the full band mass $3W/2+o(1)$.
+Deleting prime factors of $N$ from all center bands costs at most
+\begin{equation}\label{eq:centerholes}
+ \sum_{p\mid N,\ p\ge H_0}\frac1p
+ \le\frac{\log N}{H_0\log H_0}=o(1).
+\end{equation}
+Thus $W\le V_i\le2W$ for all $i$ once $N$ is large.
+The estimate is uniform in $N$, because $\log N=L^A$ and
+$H_0=\exp(L^{1-\delta})$.
+
+Let $\mathcal D$ consist of products $d=\prod_{i=1}^J p_i$,
+$p_i\in\mathcal P_i$, and let $V_*=\prod_iV_i$.
+The bands are disjoint, so the tuple is determined by $d$, and
+\begin{equation}\label{eq:tuplegeometry}
+ \log d<\sum_{i=1}^J Y_i<2L,\qquad
+ \sum_{d\in\mathcal D}\frac1d=V_*.
+\end{equation}
+Every pool prime is at most $\exp L$.
+For squarefree products $q$ of primes in $\mathcal Q$ put
+\[
+ u(q)=4^{\omega(q)},\qquad
+ w(x)=5^{\omega_{\mathcal Q}(x)},\qquad
+ S=\prod_{p\in\mathcal Q}(1+4/p).
+\]
+For arbitrary integers $x$, $\omega_{\mathcal Q}(x)$ counts divisibility
+by this finite prime set. In particular this definition also applies
+at negative integers and at zero.
+
+Retain pairs $(d,q)$ with $\omega(q)\le100\log L$ and
+$\log(qd)\le100L+\eta$. Define disjoint bins
+\begin{equation}\label{eq:bins}
+ \mathcal S_j=\{(d,q)\text{ retained}:j\eta\le\log(qd)<(j+1)\eta\},
+ \qquad D_j=\exp(j\eta),\quad T_j=ND_j.
+\end{equation}
+Only nonempty bins are used; their number is $O(L\exp J)$.
+The union $\mathcal S$ of all bins is the word supply in
+Definition~\ref{def:words}.
+For each $d$ the retained divisor set is denoted by $\mathcal Q_d$.
+The whole-product cutoff is included in $\mathcal Q_d$ before binning.
+
+\begin{lemma}[Retained mass]\label{lem:mass}
+For all sufficiently large $N$,
+\begin{equation}\label{eq:mass}
+ S_0:=\sum_j\sum_{(d,q)\in\mathcal S_j}\frac{u(q)}{qd}
+ \ge\frac12SV_*.
+\end{equation}
+Moreover, $\#\mathcal S<\exp(101L)$ and
+$m_Q:=\lfloor100\log L\rfloor$ is a valid padding-factor cap.
+\end{lemma}
+\begin{proof}
+The probability law proportional to $u(q)/q$ independently selects each
+padding prime with probability $4/(p+4)$.
+Its mean $\log q$ is at most $4L+O(1)$, by
+$\sum_{p\le\exp L}\log p/p=L+O(1)$.
+For every $d$, \eqref{eq:tuplegeometry} and Markov give
+$\Prob(\log(qd)>100L+\eta)<1/10$ for large $L$.
+Also
+\[
+ \E\exp(\omega(q))
+ \le\exp\bigl(4(\exp(1)-1)\sum_{p\le\exp L}1/p\bigr)
+ \ll L^{4(\exp(1)-1)},
+\]
+so $\Prob(\omega(q)>100\log L)=o(1)$.
+At least half of the padding mass is retained for each $d$; summing
+$1/d$ proves \eqref{eq:mass}. These upper-tail estimates remain valid
+after deleting any prime factors of $N$.
+Finally, $dq$ determines its P-part $d$ and Q-part $q$, and every retained
+product is at most $\exp(100L+\eta)<\exp(101L)$.
+\end{proof}
+
+For $d\in\mathcal D$ define the positive center envelope
+\[
+ a_d^+(x)=\prod_{p\mid d}(\ind_{p\mid x}+1/p),\qquad
+ \rho_{j,d}(x)=\frac1{w(x)}
+       \sum_{q:\,(d,q)\in\mathcal S_j}u(q)\ind_{q\mid x}.
+\]
+The densities sum to at most 1 over all bins, since
+$\sum_{q\mid x,\ q\text{ squarefree on }\mathcal Q}u(q)=w(x)$.
+Let
+\[
+ F_d(x)=w(x)\sum_j\rho_{j,d}(x)
+      \ind_{\{\rho_{j,d}(x)>K/L\ \text{or}\
+                         \omega_{\mathcal Q}(x)>400\log L\}}.
+\]
+The corresponding definitions for $\mathcal Q_0$ use the same
+$\mathcal Q_d$ and bins, replacing only the vertex weight and degree
+by their full-pool versions.
+
+\begin{inputthm}[Full-pool padding cost]\label{input:paddingcost}
+There is an absolute $C_p>0$ such that, for all sufficiently large $L$,
+for every prime family with Q-pool $\mathcal Q_0$, every retained
+squarefree divisor subset, every finite bin set, every
+$0<\eta\le1$, every $K>0$, and every integer offset,
+\begin{equation}\label{eq:fullpadding}
+ \frac{\E\{a_d^+(x)F_{d,0}(x)\}}{S_{\rm full}}
+ \le\frac{2^J}{d}\{C_p/K+L^{-100}\},
+ \qquad S_{\rm full}=\prod_{p\in\mathcal Q_0}(1+4/p).
+\end{equation}
+The center primes in $d$ belong to the disjoint P-pool.
+\end{inputthm}
+This is the squarefree-tuple specialization of
+\path{ModFiveThetaInput.eventually_positive_padding_cut_cost}, with
+its fixed excluded set $E=\varnothing$; the proved input is
+\path{modFiveThetaInput}.
+The hypothesis on its divisor subset is just containment in the
+squarefree products of the Q-pool. In particular it permits
+$\mathcal Q_d$ rather than a complete divisor set.
+In the source the excluded set is fixed before the threshold in $L$;
+all the displayed prime families, subsets, bins and offsets follow
+that threshold.
+
+\begin{lemma}[Padding holes]\label{lem:paddingholes}
+Uniformly in $N$ and in the bins and retained sets just defined,
+\begin{equation}\label{eq:paddingholes}
+ \frac1{SV_*}\sum_{d\in\mathcal D}\E\{a_d^+(x)F_d(x)\}
+ \ll 2^J\{K^{-1}(\log L)^{10}+L^{-90}\}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+By translation invariance of the independent uniform residue law, take
+the single site to be zero. At a fixed site $x$, the equivalent
+condition is $R_p+x\ne0\pmod p$ for every removed prime.
+Put $E=\mathcal Q_0\setminus\mathcal Q$ and let
+$A_E=\{R_p\ne0\text{ for every }p\in E\}$ in the full product model.
+Then $\Prob(A_E)=\prod_{p\in E}(1-1/p)$.
+Conditioned on $A_E$, the remaining coordinates have exactly the
+reduced-pool law; at this one site the full and reduced weights,
+degrees and retained-bin densities agree. The retained set
+$\mathcal Q_d$ is identical on the two sides.
+The center envelope uses disjoint coordinates. Nonnegativity gives
+\[
+ \frac{\E\{a_d^+F_d\}}S
+ \le\frac{\E\{a_d^+F_{d,0}\}}{S_{\rm full}}
+           \prod_{p\in E}\frac{p+4}{p-1}.
+\]
+The sum of reciprocals of the prime divisors of $N$ is at most
+$\log\log\log N+O(1)$: use Mertens up to $\log N$ and the bound
+$\omega(N)\le\log N/\log2$ above it.
+Consequently the last product is
+$O((\log\log N)^{10})=O_A((\log L)^{10})$.
+Apply \eqref{eq:fullpadding} and sum $1/d=V_*$.
+The extra logarithmic factor on $L^{-100}$ is absorbed by $L^{-90}$.
+Only single-site padding costs have been conditioned in this argument.
+\end{proof}
+
+\begin{lemma}[Center and prohibited costs]\label{lem:rare}
+Uniformly in all the parameters above and in any residue translation,
+the positive center-degree cost, summed over all bins, is at most
+\begin{equation}\label{eq:centertail}
+ S2^JV_*\exp(-2WJ)
+\end{equation}
+when vertices with $\omega_{\mathcal P}(x)>6WJ$ are deleted.
+The positive prohibited-site cost is at most
+\begin{equation}\label{eq:prohibitedcost}
+ SV_*\exp(-L^{0.9}).
+\end{equation}
+These costs have the same bounds for integer intervals of the bin
+lengths, up to an error $\exp(-\tfrac12L^9)$.
+\end{lemma}
+\begin{proof}
+For a fixed $d$, the mean of $a_d^+$ is $2^J/d$.
+Tilting by this envelope makes a selected tuple prime active with
+probability $(p+1)/(2p)$; all other center primes retain probability
+$1/p$. The coordinates remain independent.
+Their exponential moment is bounded by
+$\exp((\exp(1)-1)(2W+1)J)$.
+Since $W\ge10$,
+\[
+ \Prob_{a_d^+}(\omega_{\mathcal P}>6WJ)
+ \le\exp(((\exp(1)-1)(2W+1)-6W)J)
+ \le\exp(-2WJ).
+\]
+Multiply by $2^J/d$, sum over $d$, and use independence of the Q-pool
+and $\sum_j\rho_{j,d}\le1$. This gives \eqref{eq:centertail}.
+
+For prohibited sites the positive row envelope is
+\[
+ A_+(x)=w(x)\prod_{i=1}^J
+             (\omega_{\mathcal P_i}(x)+V_i).
+\]
+Mertens and independence give
+\[
+ \E w^2=\prod_{p\in\mathcal Q}(1+24/p)\ll L^{24},\qquad
+ \E A_+^2\le C L^{24}\prod_i(V_i+4V_i^2)
+                  \le C L^{24}5^J V_*^2.
+\]
+The prohibited probability is bounded by \eqref{eq:badprob}, with
+$h=N$, $s=\lfloor L^{1/10}\rfloor$, and the full retained supply
+$\mathcal S$. Its hypotheses hold because
+$J+m_Q\le101\log L$, both pool masses are at most $L^2$, and
+$H_0\ge\exp(L^{199/200})$.
+Cauchy--Schwarz bounds the positive rare-row mean by
+$C L^{12}5^{J/2}V_*\exp(-\tfrac14L^{199/200})$.
+Since $J=O(\log L)$ and $S\ge1$, this is at most the right side of
+\eqref{eq:prohibitedcost}, even after multiplying by the number of bins.
+
+For the integer statements use the positive-atom comparisons in
+Input~\ref{input:comparison}, individually before summing.
+There are at most $\exp(O(L))$ atoms and polynomially many bins.
+The selected-prime count is at most $L^2$, each selected padding divisor
+has at most $100\log L$ prime factors, each whole divisor has at most
+$J+100\log L\le L^2$ prime factors, the supply has at most
+$\exp(101L)$ pairs, $W\ge10$ and
+$6WJ\le\delta\log L\le400\log L$. These are the hypotheses of
+\leanname{eventually_prohibited_row_comparison},
+\leanname{eventually_variable_tuple_degree_deletion} and
+\leanname{eventually_variable_padding_comparison}.
+Every interval length $\lfloor T_j\rfloor$ is at least $N$, and hence
+at least $\exp(L^A/2)$.
+The total comparison error is thus $\exp(-\tfrac12L^9)$ for large $L$.
+Arbitrary offsets are included in the comparison. Product-law
+translation invariance supplies the target-site versions.
+\end{proof}
+
+\begin{lemma}[Rough multiplier]\label{lem:rough}
+Fix $0<\gamma_1<\kappa_1<1$.
+For all sufficiently large $L$, let $y=\exp(L^{\gamma_1})$ and
+$D\ge\frac12\exp(L^{\kappa_1})$.
+If $Z\subset[D,2D)\cap\Z$ consists of $y$-rough integers and
+$|c_n|\le1$, then
+\begin{equation}\label{eq:rough}
+ \norm{\sum_{n\in Z}\frac{c_n}{n}\e(n\theta)}_\infty\ll L^{-\gamma_1},
+ \qquad
+ \int_0^1\abs{\sum_{n\in Z}\frac{c_n}{n}\e(n\theta)}^4d\theta
+             \ll D^{-1}L^{-4\gamma_1}.
+\end{equation}
+The constants may be taken absolute; the threshold may depend on
+$\gamma_1,\kappa_1$.
+\end{lemma}
+\begin{proof}
+We bound both one rough integer and the four forms $a,b,c,a+b-c$ in
+the three-dimensional box $[D,2D)^3$.
+For a prime $p$ their simultaneous nonvanishing density is exactly
+\[
+ \frac{(p-1)^3-(p-1)(p-2)}{p^3}
+ =1-4/p+6/p^2-3/p^3.
+\]
+Indeed there are $(p-1)(p-2)$ nonzero pairs $a,b$ with $a+b\ne0$,
+each excluding one nonzero value $c=a+b$.
+The bad-event density $\nu_p$ is at most $4/p$.
+Take the even Bonferroni order $r_0=2\lceil500\log L\rceil$.
+The independent truncation error is at most
+\[
+ \frac{(\sum_{p\le y}\nu_p)^{r_0+1}}{(r_0+1)!}
+ \le\frac{(5\log L)^{r_0+1}}{(r_0+1)!}\ll L^{-100}.
+\]
+Each truncated subset has CRT modulus $q\le y^{r_0}$.
+The count in a fixed residue triple is
+$(D/q)^3+O((D/q)^2+D/q+1)$.
+Summing over its at most $q^3$ residue triples gives normalized error
+$O(q/D)$, since $q\le D$ for large $L$.
+There are at most $(r_0+1)(y+1)^{r_0}$ subsets, so the total error is
+\[
+ D^{-1}\exp(O(L^{\gamma_1}\log L))\ll L^{-100}.
+\]
+The one-dimensional CRT estimate has the same or smaller error.
+Mertens' theorem bounds the independent good densities by
+$C L^{-\gamma_1}$ and $C L^{-4\gamma_1}$, respectively; the ratio
+of the four-form product to $\prod_{p\le y}(1-1/p)^4$ is bounded
+because the remaining logarithmic terms are $O(p^{-2})$.
+Consequently
+\[
+ |Z|\ll D L^{-\gamma_1},\qquad
+ \#\{a,b,c,d\in Z:a+b=c+d\}\ll D^3L^{-4\gamma_1}.
+\]
+The first inequality proves the sup norm bound.
+Expanding the fourth moment and integrating leaves precisely the
+additive quadruples; each coefficient has absolute value at most
+$D^{-4}$. The second inequality gives the remaining assertion.
+\end{proof}
+
+\section{The reflection graph and proof of the main theorem}
+
+Extend $\lambda$ by zero to nonpositive integers only in the test functions
+of this section. For a bin set
+\begin{align}
+ R_j&=\frac1{T_j}\sum_{1\le x\le T_j}
+       \sum_{(d,q)\in\mathcal S_j}u(q)\ind_{qd\mid x}
+                                  \lambda(x)\lambda(Nqd-x),\label{eq:raw}\\
+ C_j&=\frac1{T_j}\sum_{1\le x\le T_j}
+       \sum_{(d,q)\in\mathcal S_j}u(q)\ind_{q\mid x}
+       \prod_{p\mid d}(\ind_{p\mid x}-1/p)
+                                  \lambda(x)\lambda(Nqd-x).
+                                                    \label{eq:centered}
+\end{align}
+Every real cutoff in these sums means its integer floor; the displayed
+normalizing denominator remains the real number $T_j$.
+
+\begin{lemma}[Dilation identity]\label{lem:dilation}
+\begin{equation}\label{eq:dilation}
+ \sum_jR_j=S_0\frac{C(N)}N+O(SV_*(\eta+N^{-1})).
+\end{equation}
+\end{lemma}
+\begin{proof}
+For each pair in \eqref{eq:raw}, put $x=qd\,m$.
+Complete multiplicativity cancels $\lambda(qd)^2=1$, and the cutoff
+$T_j/(qd)$ lies in $(N\exp(-\eta),N]$.
+The lost tail of a 1-bounded sum is at most $N\eta+1$.
+Also $T_j/(Nqd)\in(\exp(-\eta),1]$.
+Thus that summand equals
+$u(q)(qd)^{-1}C(N)/N+O(u(q)(qd)^{-1}(\eta+N^{-1}))$.
+Summing proves the assertion, since $S_0\le SV_*$.
+No total $N$ has been averaged.
+\end{proof}
+
+\begin{lemma}[CRT transfer]\label{lem:crt}
+Let $P_*=\prod_{p\in\mathcal P\cup\mathcal Q}p$.
+Choose a positive integer $\ell$ with $N\ell\equiv1\pmod{P_*}$.
+For every $r,k,\xi\in\Z$ and every pool prime,
+\begin{equation}\label{eq:crt}
+ p\mid Nk+r+N\xi\quad\Longleftrightarrow\quad
+ p\mid k+\ell r+\xi.
+\end{equation}
+All word divisibility, centered factors, Q-weights and Q-degree tests
+therefore transfer from physical multiplier $N$ to quotient multiplier
+1. The full prohibited predicate satisfies
+\begin{equation}\label{eq:crtprohibited}
+ \mathrm{Prohibited}_N(Nk+r)
+ \quad\Longleftrightarrow\quad
+ \mathrm{Prohibited}_1(k+\ell r).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Every pool prime is coprime to $N$, and multiplication by $\ell$
+proves \eqref{eq:crt}. The squarefree whole divisors $qd$ consequently
+have the same divisibility at every departure point of a numerical word.
+Its displacements scale by $N$. The suffix condition in a
+forward-prohibited word becomes
+$p\mid N\Delta_1(w_{\ge a})\iff p\mid\Delta_1(w_{\ge a})$,
+since its $p$ belongs to the center pool.
+The tuple intervals, unequal successive labels, length bounds and supply
+membership do not change. Hence the forward-prohibited condition agrees
+for every word, as does its minimality over oriented contiguous subwords.
+Together with positivity this proves \eqref{eq:crtprohibited}.
+\end{proof}
+The corresponding finite identity is also supplied by
+\path{ReflectedLiouville.prohibited_CRT} in the ancillary file
+\texttt{CRTTransport.lean}; its hypotheses are precisely the
+coprimality of every $qd$ with $N$ and the displayed inverses at pool
+primes. The Liouville arguments are still the physical integers.
+
+Fix a bin and write each integer uniquely as $x=Nk+r$, $1\le r\le N$.
+Let $M_B=\lceil\exp(103L)\rceil$ and take two copies of
+$[-M_B,M_B]\cap\Z$.
+For every $d\in\mathcal D$ connect the left $k$ to the right
+$t=k-qd$ whenever $(d,q)\in\mathcal S_j$, and include the transpose
+edge. Put
+\[
+ c_d(x)=\prod_{p\mid d}(\ind_{p\mid x}-1/p),\quad
+ \tau_{j,d}(x)=
+ \ind_{\{\rho_{j,d}(x)\le K/L,\ \omega_{\mathcal Q}(x)\le400\log L,
+                              \ x\text{ nonprohibited at multiplier }N\}}.
+\]
+The left-to-right entry of the resulting self-adjoint matrix is
+\begin{equation}\label{eq:matrix}
+ (B_{d,r})_{k,t}=
+ \frac{L u(q)\tau_{j,d}(Nk+r)\tau_{j,d}(Nt+r)}
+            {\sqrt{w(Nk+r)w(Nt+r)}}
+       \ind_{q\mid Nk+r}c_d(Nk+r),\qquad t=k-qd.
+\end{equation}
+Every other left-to-right entry is zero. Let $E_r$ be the diagonal
+projection onto center degree at most $6WJ$ in both layers.
+Its values use the physical sites $Nk+r$, including negative sites.
+
+\begin{proposition}[Compression]\label{prop:compression}
+With the absolute choice $C_3=3^{170}$, for all sufficiently large
+$N$, all but at most $N\exp(-2\lfloor L\rfloor)$ values of $r$ satisfy
+\begin{equation}\label{eq:compression}
+ \norm{E_r\sum_{d\in\mathcal D}B_{d,r}E_r}
+ \le K(C_3\sqrt W)^J.
+\end{equation}
+The exceptional set may depend on the bin.
+\end{proposition}
+\begin{proof}
+Let $g_r(k)=\sqrt{w(Nk+r)}$ and $a_d(k)=|c_d(Nk+r)|$.
+For a fixed label, different $q$ give different neighbors in each layer.
+The center factor and the test $q\mid Nk+r$ agree at the two endpoints
+because $qd$ divides their physical difference $Nqd$.
+From the density cap,
+\[
+ \sum_t|(B_{d,r})_{k,t}|\frac{g_r(t)}{g_r(k)}
+ \le L a_d(k)\rho_{j,d}(Nk+r)
+             \ind_{\{\rho_{j,d}(Nk+r)\le K/L\}}
+ \le K a_d(k).
+\]
+The same calculation holds for a row in the right layer.
+Weighted Cauchy--Schwarz and self-adjointness give
+\begin{equation}\label{eq:squarefunction}
+ \norm{B_{d,r}v}^2
+ \le K^2\sum_k a_d(k)^2|v(k)|^2,
+ \qquad\norm{B_{d,r}}\le K.
+\end{equation}
+To see the first inequality, bound each row square by
+$K a_d(k)\sum_t|B_{k,t}|g_r(k)g_r(t)^{-1}|v(t)|^2$,
+sum in $k$, and use $a_d(k)=a_d(t)$ on every nonzero entry.
+The finite lemma \path{ReflectedLiouville.two_layer_localized_square} in
+the ancillary file \texttt{TwoLayerRows.lean} has exactly this weighted-row
+specialization and permits the duplicated site projection.
+On $E_rv=v$, the factorization over the disjoint bands gives
+\[
+ \sum_d a_d(k)^2
+ \le\prod_i(\omega_{\mathcal P_i}(Nk+r)+V_i)
+ \le(8W)^J.
+\]
+The last inequality is AM--GM, because the sum of these $J$ factors
+is at most $6WJ+2WJ$.
+Thus \eqref{eq:spectralinput} applies to the self-adjoint family
+$(B_{d,r})_{d\in\mathcal D}$ and the projection $E_r$ with the
+nonnegative reals $a=K$ and $b=K(8W)^{J/2}$, by
+\eqref{eq:squarefunction} and the last display.
+
+Let $\mathcal H_r$ be the nonbacktracking operator on the direct sum of
+one copy of the two-layer space for each $d$:
+$(\mathcal H_r v)_d=\sum_{e\ne d}B_{e,r}v_e$.
+All $B_{e,r}$ are real symmetric, so
+$(\mathcal H_r^*v)_d=B_{d,r}\sum_{e\ne d}v_e$,
+$\norm{\mathcal H_r^k}_{\HS}=\norm{(\mathcal H_r^*)^k}_{\HS}$ and
+$\rad(\mathcal H_r^*)=\rad(\mathcal H_r)$.
+Set $k_*=\lfloor L\rfloor$ and $B_0=K(2\exp(150)\sqrt W)^J$,
+and expand $\norm{(\mathcal H_r^*)^{k_*}}_{\HS}^2$.
+At each step the factor is $B_{d,r}$, where $d$ is the tag of the
+arrival state. This is the convention of the source's
+\leanname{shiftMatrix} and \leanname{integerShiftNext}: the new state
+is the pair consisting of the step tag and the shifted site.
+An entry from $(e_0,x_0)$ to $(d_{k_*},x_{k_*})$ sums paths with labels
+$d_1,\ldots,d_{k_*}$ satisfying $d_1\ne e_0$ and
+$d_i\ne d_{i+1}$. The squared Hilbert--Schmidt norm sums pairs of
+such paths with the same initial and terminal states.
+The initial tag $e_0$ is the fixed root tag, counted among the
+$\le\exp(106L)$ states below; the common terminal tag is the common
+last step label $d_{k_*}=d'_{k_*}$.
+Reversing the second path gives a closed numerical word of length
+$2k_*$, nonbacktracking in each half, with unconstrained seams.
+The pair belongs to \leanname{actualClosedPairCatalog} for
+$(e_0,x_0)$, since \leanname{closedPairNumericalTest} compares the
+full end states: last label and integer site.
+For each numerical word and initial layer the lifted path is unique.
+Thus there are at most two lifts of each projected word.
+The layer and finite-block gates are deterministic and independent of
+the residue variables. The scalar masked weight of each lift equals the
+projected weight. Taking the expectation of each signed word first, then
+its absolute value, therefore puts these words within the majorant of
+Input~\ref{input:trace}.
+
+Its hypotheses hold with $h=1$, $C=101$,
+$H=\lceil H_0\rceil$, $Y=B=\lfloor\exp L\rfloor$,
+$Q_{\max}=\lfloor\exp(100L+1)\rfloor$ and
+$D_{\max}=\lfloor\exp(2L)\rfloor$.
+In particular $H_0\ge\exp(L^{199/200})$, the partial tuple products
+are at most $\exp(2L)$, and $J+m_Q\le101\log L$.
+The nonbacktracking state count is at most
+\[
+ 2(2M_B+1)\#\mathcal D\le\exp(106L).
+\]
+The at most $2^{2k_*}$ direction choices, and the factor two for the
+lift, are absorbed by the $\exp(108L)$ margin in
+\eqref{eq:wordmajorant}, since
+$\exp(106L)2^{2k_*}\cdot2\le\exp(108L)$ for large $L$.
+
+For the integer-origin average use Lemma~\ref{lem:crt}.
+Increase $\ell$ by a multiple of $P_*$ so that $\ell>M_B$.
+At any initial quotient coordinate $k_0\in[-M_B,M_B]$, the origins
+$\ell r+k_0$, $1\le r\le N$, have nonnegative initial origin
+$a=\ell+k_0$ and step $\ell$.
+Input~\ref{input:comparison} applies with length $N=\exp(L^A)$;
+there is no bound on $\ell$.
+All actual-word hypotheses hold: $2k_*+1\le4L$, $2k_*J\le L^2$,
+$s\le L$, $J+m_Q\le L^2$, and $\#\mathcal S\le\exp(101L)$.
+Each step has at most $2\#\mathcal S\le\exp(102L)$ numerical choices.
+The total word and state comparison error is at most
+\[
+ \exp(106L+204L^2-L^9)=o(1).
+\]
+Combining it with the product-model majorant yields
+\[
+ \frac1N\sum_r\norm{\mathcal H_r^{k_*}}_{\HS}^2
+ \le3B_0^{2k_*}.
+\]
+For a finite matrix, $\rad(\mathcal H_r)^{2k_*}$ is at most this
+squared Hilbert--Schmidt norm. Markov therefore shows that
+$\rad(\mathcal H_r)>\exp(3)B_0$ on at most
+$3N\exp(-6k_*)\le N\exp(-2k_*)$ origins.
+At every other origin apply \eqref{eq:spectralinput} with $a=K$,
+$b=K(8W)^{J/2}$ and $\rad(\mathcal H_r)\le\exp(3)B_0$.
+Since $a,b\le B_0$, it gives
+$3\exp(3)B_0=3\exp(3)K(2\exp(150)\sqrt W)^J$, which for $J\ge1$
+is at most $K(6\exp(153)\sqrt W)^J\le K(3^{170}\sqrt W)^J$.
+This is \eqref{eq:compression}.
+\end{proof}
+
+Let $C_j^\circ$ denote \eqref{eq:centered} after keeping both endpoints
+according to $\tau_{j,d}$ and $E_r$.
+
+\begin{proposition}[The kept and deleted bilinear forms]\label{prop:bilinear}
+For all sufficiently large $N$,
+\begin{align}
+ |C_j^\circ|&\ll\frac{SK(C_3\sqrt W)^J}{L}+\exp(-L),
+                                                 \label{eq:kept}\\
+ \frac{\sum_j|C_j-C_j^\circ|}{SV_*}
+ &\ll2^J\{K^{-1}(\log L)^{10}+L^{-90}+\exp(-2WJ)\}
+          +\exp(-L^{0.9}).\label{eq:deleted}
+\end{align}
+\end{proposition}
+\begin{proof}
+At origin $r$ use the unweighted tests
+\[
+ F_r(k)=\lambda(Nk+r)\ind_{\{0<Nk+r\le T_j\}},\quad
+ G_r(t)=\lambda(-Nt-r)\ind_{\{0<-Nt-r\le N\exp(\eta)D_j\}}.
+\]
+Multiply each by its square-root weight, Q-degree cut and center
+projection; put $f_r$ in the left layer and $g_r$ in the right layer.
+All their supports lie in the block because
+$D_j\le\exp(100L+\eta)$.
+Each has $O(D_j)$ supported coordinates.
+Input~\ref{input:comparison}, applied to the truncated weights on the
+positive and negative physical intervals, gives
+\[
+ \sum_r(\norm{f_r}^2+\norm{g_r}^2)\ll ND_jS.
+\]
+Cancellation of the square-root weights gives the exact identity
+\begin{equation}\label{eq:pairing}
+ \sum_r\left\langle f_r,
+             \bigl(E_r\sum_dB_{d,r}E_r\bigr)g_r\right\rangle
+       =LT_j C_j^\circ.
+\end{equation}
+Here $t=k-qd$ corresponds to the physical graph site
+$Nt+r=x-Nqd$. The test reads $Nqd-x=-Nt-r$.
+All deletion predicates continue to be read at $Nt+r$.
+
+For good origins use \eqref{eq:compression} and Cauchy--Schwarz in $r$.
+At a bad origin bound the pairing row by row on the support of $F_r$.
+The weighted absolute row bound is at most
+$K w(Nk+r)\sum_d|c_d(Nk+r)|$.
+On the kept test support,
+$w(Nk+r)\le L^{400\log5}$ and
+$\sum_d|c_d(Nk+r)|\le(8W)^J$.
+The bad-origin cost is at most
+$CND_j\exp(-2k_*)K L^{400\log5}(8W)^J$.
+After division by $LT_j=LND_j$ it is $O(\exp(-L))$.
+This counts only $O(D_j)$ source points per bad origin, and proves
+\eqref{eq:kept}.
+
+To bound the deletions replace $|c_d(x)|$ by $a_d^+(x)$ and use
+$|\lambda|\le1$. At the source endpoint, the padding/Q-degree,
+center-degree and prohibited costs are respectively bounded by
+Lemma~\ref{lem:paddingholes} and Lemma~\ref{lem:rare}.
+For the target endpoint, first translate each individual $(d,q)$ atom
+by $-Nqd$. The test $q\mid x$ and envelope $a_d^+(x)$ are unchanged
+by that translation, since $qd$ divides the shift.
+The resulting atom is the same positive source cost on a translated
+interval. The finite comparisons permit this arbitrary offset.
+Sum the two endpoint bounds only after these individual translations.
+The real normalization $T_j$ differs from the integer length
+$\lfloor T_j\rfloor\ge N$ by less than $1$. With $\exp(O(L))$ atoms,
+each bounded by a fixed power of $L$, this adds at most
+$\exp(O(L))/N\ll\exp(-L^9)$ in addition to the comparison errors.
+This proves \eqref{eq:deleted}.
+\end{proof}
+
+\begin{proposition}[Centering]\label{prop:centering}
+\begin{equation}\label{eq:centering}
+ \frac{\sum_j|R_j-C_j|}{SV_*}
+ \ll\exp(J)2^J L^{-s_0}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Expand the centered product in \eqref{eq:centered}.
+For every nonempty subset of mean-prime bands, let $v$ be the product
+of its selected primes and $d'$ the product from the other bands.
+After putting $x=qd'm$, complete multiplicativity cancels
+$\lambda(qd')^2$. For each fixed $q,d'$ and bin, the remaining sum,
+apart from its external factor $u(q)/(qd')$, has the form
+\begin{equation}\label{eq:convolution}
+ \frac1Y\sum_{m\le Y}\sum_{v\in Z}\frac{c_v}{v}
+                                \lambda(m)\lambda(Nv-m),\qquad |c_v|\le1.
+\end{equation}
+The bin restrictions are included in $Z$ and $c_v$.
+At most two dyadic pieces suffice to arrange
+$Z\subset[D,2D)$, $Y\asymp ND$, and
+$H_0/2\le D\le\exp(2L)$.
+Every $v$ is $\exp(L^\gamma)$-rough.
+The factor outside \eqref{eq:convolution} is exact, because
+$Y=T_j/(qd')$.
+
+Write $m=Nk+r$ and define
+\begin{align*}
+ F_r(\xi)&=\sum_{k\ge0,\ Nk+r\le Y}\lambda(Nk+r)\e(k\xi),\\
+ G_r(\xi)&=\sum_{1\le t\le\lceil2D\rceil}\lambda(Nt-r)\e(t\xi),\\
+ B(\xi)&=\sum_{v\in Z}(c_v/v)\e(-v\xi).
+\end{align*}
+The integral of $F_rG_rB$ forces $k+t=v$, so
+\eqref{eq:convolution} is exactly
+$Y^{-1}\sum_r\int_0^1F_rG_rB$.
+One has $|G_r|\ll D$ and
+$\norm{F_r}_2\norm{G_r}_2\ll D$ by Parseval.
+Lemma~\ref{lem:fourier} with $\nu_0=\gamma/A$ gives
+\[
+ \frac1N\sum_r|F_r(\xi)|\ll D L^{-1/4000}.
+\]
+The prefix lengths for different $r$ differ by at most one term; a
+single common prefix and that error justify this application.
+Its lower-size condition follows from
+$\log D\ge\tfrac12L^{1-\delta}\ge L^\gamma$ for large $L$, and
+$(1-\delta)/3000>1/4000$.
+Also $D\le\exp(2L)\le N$.
+Lemma~\ref{lem:rough}, with $\gamma_1=\gamma$,
+$\kappa_1=1-\delta$, gives
+\[
+ \norm B_\infty\ll L^{-\gamma},\qquad
+ \int_0^1|B|^4\ll D^{-1}L^{-4\gamma}.
+\]
+On $|B|\le L^{-1-s_0}$, Parseval bounds the convolution by
+$O(L^{-1-s_0})$.
+The complementary set has measure at most
+$C D^{-1}L^{4(1+s_0)-4\gamma}$.
+There use the $r$-averaged $F_r$ bound, $|G_r|\ll D$ and the sup norm
+of $B$. Since $Y\asymp ND$, its contribution is
+\[
+ O\bigl(L^{4(1+s_0)-5\gamma-1/4000}\bigr)
+       =O(L^{-1-s_0}),
+\]
+because
+\begin{equation}\label{eq:margin}
+ 5\gamma+1/4000-(5+5s_0)=1/10000>0.
+\end{equation}
+For each mean-prime subset, the sum of the external positive factors
+$u(q)/(qd')$ is at most $S\prod_{i\notin I}V_i\le SV_*$.
+There are fewer than $2^J$ such subsets and $O(L\exp J)$ bins.
+Multiply these counts by $L^{-1-s_0}$ to obtain \eqref{eq:centering}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Sum \eqref{eq:kept} over the $O(L\exp J)$ bins and divide by $SV_*$.
+Since $V_*\ge W^J$, the spectral contribution is at most
+\[
+ C\exp(5J)(C_3/\sqrt W)^J\le C\exp(-J),
+\]
+since $\exp(6)C_3<3^{176}<10^{88}<\sqrt W$.
+All terms of \eqref{eq:deleted} are $O(\exp(-J))$:
+\[
+ 2^JK^{-1}(\log L)^{10}=\exp(-(4-\log2)J)(\log L)^{10},
+\]
+and $J=\delta\log L/(6W)+O(1)$ with its positive coefficient fixed.
+The terms $2^JL^{-90}$, $2^J\exp(-2WJ)$ and $\exp(-L^{0.9})$ are
+smaller. Moreover
+\[
+ \exp(J)2^JL^{-s_0}=O(\exp(-J)),
+ \qquad \frac{(2+\log2)\delta}{6W}<s_0,
+\]
+so \eqref{eq:centering} has the same bound.
+Use \eqref{eq:mass} and \eqref{eq:dilation} to conclude
+\[
+ \frac{|C(N)|}{N}\ll\exp(-J)
+ \le\exp(1)(\log N)^{-c_*},\qquad
+ c_*:=\frac{\delta}{6WA}.
+\]
+The constants $A,W$ are exactly \eqref{eq:fixedparameters}.
+With the numerical choices in \eqref{eq:fixedparameters},
+\[
+ c_*=(6\cdot10^{191})^{-1}>10^{-192}>10^{-200}.
+\]
+This proves \eqref{eq:correlation}.
+Lemma~\ref{lem:realmean}, with the modulus-one character, bounds the
+linear sum in \eqref{eq:indicator} by
+$O(N(\log N)^{-1/40})$.
+Insert that estimate and the correlation bound in
+Lemma~\ref{lem:indicators}; the difference between $(N-1)/4$ and $N/4$
+is absorbed by the error. This proves \eqref{eq:main}.
+Choose $N_0$ so large that, for $N\ge N_0$, one has $J\ge1$;
+$L=(\log N)^{1/A}$ exceeds the thresholds of
+Inputs~\ref{input:trace}--\ref{input:bad-spectral} and
+\ref{input:paddingcost}, with $h=1$ or $h=N$ as indicated,
+$C=101$, $W=10^{180}$ and $E=\varnothing$;
+of Lemma~\ref{lem:rough}, with $\gamma_1=\gamma$ and
+$\kappa_1=1-\delta$; and of the finitely many inequalities for large $L$.
+Also require $N$ to exceed the thresholds of
+Lemmas~\ref{lem:realmean} and \ref{lem:fourier}, the latter with
+$\nu_0=\gamma/A$, and of Lemma~\ref{lem:variance} with $\nu=\nu_0/2$.
+The input thresholds precede the quantification of $h$ and the prime
+families. All thresholds depend only on $A,W,\delta,\gamma,s_0,C_3$;
+\eqref{eq:centerholes} and \eqref{eq:paddingholes} are uniform in the
+prime factorisation of $N$. Thus one absolute $N_0$ works for both
+parities and all four signs. The condition $J\ge1$ alone requires
+$\log\log N\ge6\cdot10^{191}$.
+\end{proof}
+
+\part{Consequences of the zero-free half-plane}
+\section{Theorem substitutions}
+Besides the Lean declaration transcribed in Input~\ref{input:zf},
+this part uses Pintz's explicit formula \cite{PintzI}, the zero-density
+estimate of Chen--Gupta--Li \cite{CGL}, a preprint at the time of writing,
+Montgomery--Vaughan's Theorem~13.12 \cite{MV}, and Martin's
+Proposition~3 \cite{Martin1997}. Their applications here are written
+mathematics, independent of the graph argument in Part I.
+The exponents are tracked explicitly; implied constants retain the
+dependencies indicated by their subscripts.
+Theorems~\ref{thm:goldbach} and \ref{thm:leastprime} need some fixed
+zero-free half-plane $\Rea s>1-\delta_0$, with $\delta_0>0$;
+the exponents $8$ in Theorems~\ref{thm:nonresidue} and
+\ref{thm:primitive}, and consequently $24$ for primitive roots,
+use the specific value $7/8$.
+
+\subsection{The binary Goldbach exceptional set}
+Let $E(X)$ count the even integers $4\le m\le X$ which are not a sum
+of two primes.
+
+\begin{theorem}\label{thm:goldbach}
+For every $\varepsilon>0$,
+\begin{equation}\label{eq:goldbach}
+ E(X)\ll_\varepsilon X^{3/5+\varepsilon}.
+\end{equation}
+\end{theorem}
+
+Here is the exact major-arc input used. In Pintz,
+\emph{A new explicit formula in the additive theory of primes with
+applications I}, Theorem 1 and equation (2.10) of version 1
+\cite{PintzI}, use its notation
+\[
+ X_1=X^{1-\varepsilon_0},\quad
+ S_X(\alpha)=\sum_{X_1<p\le X}\log p\,\e(p\alpha),\quad
+ Q=X/P,
+\]
+with the disjoint major arcs $|\alpha-a/q|\le1/(qQ)$, $q\le P$,
+$(a,q)=1$. Write
+\[
+ R_1(m)=\int_{\mathfrak M}S_X(\alpha)^2\e(-m\alpha)\,d\alpha.
+\]
+Let $\mathfrak m=[1/Q,1+1/Q)\setminus\mathfrak M$ and put
+$R_2(m)=\int_{\mathfrak m}S_X(\alpha)^2\e(-m\alpha)\,d\alpha$.
+Orthogonality gives
+$R_1(m)+R_2(m)=\sum_{p+p'=m,\ p,p'\in(X_1,X]}\log p\log p'$.
+We use \eqref{eq:pintzminor} for even $m\in[X/2,X]$.
+For a small fixed $\eta>0$, $P_0\le X^{4/9-\eta}$, a sufficiently
+large fixed $H$ and sufficiently large $X$, it gives a single
+$P\in[P_0X^{-\eta},P_0]$ such that, for all $m\le X$,
+\begin{equation}\label{eq:pintz}
+ \begin{split}
+ R_1(m)={}&\sum_{(\rho_i,\chi_i),(\rho_j,\chi_j)\in\mathcal E}
+ A(\rho_i)A(\rho_j)\mathfrak S(\chi_i,\chi_j,m)
+ \frac{\Gamma(\rho_i)\Gamma(\rho_j)}{\Gamma(\rho_i+\rho_j)}
+ m^{\rho_i+\rho_j-1}\\
+ &+O_\eta(\mathfrak S(m)X\exp(-c_\eta H))
+       +O_\eta(X^{1-\varepsilon_0}).
+ \end{split}
+\end{equation}
+The set $\mathcal E$ in its equation (2.8) consists of the pole
+$(1,\chi_0\pmod1)$ with $A(1)=1$, and nontrivial zeros of primitive
+characters of conductor at most $P$, with
+$\beta\ge1-H/\log X$, $|\gamma|\le\sqrt X$, and $A(\rho)=-1$.
+All small constants, including $\varepsilon_0>0$, are fixed according
+to the major-arc range; the allowed major-arc parameters also satisfy
+$(\log X)^C\le P\le\sqrt X$.
+The minor-arc input is \cite[(5.2)]{PintzI}, obtained from Parseval's
+identity and Vaughan's estimate:
+\begin{equation}\label{eq:pintzminor}
+ |R_2(m)|\le X/\sqrt{\log X}
+\end{equation}
+for all $m\le X$ except
+$\ll(\log X)^{10}\max(X/P,X^{3/5})$ values.
+For $P\le X^{2/5}$ this is the estimate quoted as (2.6) in
+\cite{PintzII}.
+
+\begin{proof}
+Fix $0<\eta<\min(\varepsilon/2,2/45)$ and take $P_0=X^{2/5}$.
+Choose $H\ge H_0(\eta)$ first so that the first implied constant in \eqref{eq:pintz}
+times $\exp(-c_\eta H)$ is less than $1/8$.
+Then take $X$ sufficiently large for the theorem and $\log X>8H$.
+Input~\ref{input:zf} leaves only the pole in $\mathcal E$, and hence
+\[
+ R_1(m)=\mathfrak S(m)m
+   +O_\eta(\mathfrak S(m)X\exp(-c_\eta H))
+   +O_\eta(X^{1-\varepsilon_0}).
+\]
+For even $m$,
+$\mathfrak S(m)\ge2\prod_{p\ge3}(1-(p-1)^{-2})>0$.
+Thus $\Rea R_1(m)\ge\mathfrak S(m)X/4\gg X$ for $X/2\le m\le X$.
+Outside the exceptional set in \eqref{eq:pintzminor},
+$R_1(m)+R_2(m)>0$, which counts two actual primes with positive
+logarithmic weights. Since $P\ge X^{2/5-\eta}$, the exceptions in this
+dyadic interval number at most
+$C_\eta X^{3/5+\eta}(\log X)^{10}$.
+Absorb the logarithms into $X^{\varepsilon-\eta}$ and sum the dyadic
+intervals to prove \eqref{eq:goldbach}.
+\end{proof}
+
+The exponent $3/5$ is Pintz's: \cite[Theorem~2, (2.13)--(2.14)]{PintzI}
+obtains it under the stated Siegel-zero hypothesis, and
+\cite[Theorem~3, (2.16)]{PintzI} under a zero-free box adjacent to
+$\sigma=1$. Its value comes from the minor-arc estimate
+\cite[\S5]{PintzI}. Input~\ref{input:zf} makes this conditional exponent
+unconditional by leaving only the pole in \eqref{eq:pintz}.
+The argument uses only a fixed zero-free half-plane.
+For the preceding unconditional bounds, Pintz
+\cite[Theorem~1]{PintzII} obtained $0.72$, and Zhao's preprint
+\cite[Theorem~1.1, version~2]{Zhao2026} states $0.7$.
+The generalized-zero cutoff in \eqref{eq:pintz} is scaled by $\log X$.
+
+\subsection{The least prime in a reduced progression}
+For $(a,q)=1$ let $p(a,q)$ be the least prime congruent to $a\pmod q$.
+
+\begin{theorem}\label{thm:leastprime}
+For every $\varepsilon>0$, uniformly for positive integers $q$ and all
+reduced residue classes $a\pmod q$,
+\begin{equation}\label{eq:leastprime}
+ p(a,q)\ll_\varepsilon q^{7/3+\varepsilon}.
+\end{equation}
+\end{theorem}
+
+The proof uses Proposition~\ref{prop:ap-smooth}, which derives the needed
+case directly from Chen--Gupta--Li's Theorem~1.2.
+For comparison, Corollary~1.4, general-modulus clause in version~2 of
+\emph{Large Value Estimates for Dirichlet Polynomials with Characters
+and Zero Density of Dirichlet $L$-Functions} \cite{CGL}, assumes
+$h\le x$, $q_1\mid q$, $q_1\ge\sqrt q$, $(a,q)=1$, and a common zero-free
+region $\sigma\ge1-\eta(q,T)$, $|\Im s|\le T$ for
+$\prod_{\chi\bmod q}L(s,\chi)$, with
+\[
+ \eta(q,x^{\epsilon/3}T_0)\log x\longrightarrow\infty
+ \quad\text{uniformly for }q<h/x^{17/30-\epsilon},\qquad
+ T_0=(x/h)^{1+o(1)}.
+\]
+With the usual meromorphic interpretation at the principal pole, its
+conclusion is
+\[
+ \psi(x+h;q,a)-\psi(x;q,a)=(1+o_{\eta,\epsilon}(1))h/\ph(q)
+\]
+provided
+\[
+ h/\ph(q)\ge x^{1/2+\epsilon}q^{1/6}+x^{17/30+\epsilon}.
+\]
+The paper states this corollary with a reference to a smoothed explicit
+formula. Proposition~\ref{prop:ap-smooth} supplies that deduction from
+Theorem~1.2 for the case used here.
+Input~\ref{input:zf} supplies its zero-free hypothesis at every modulus
+and height with $\eta(q,T)=1/9$; thus
+$\eta(q,x^{\epsilon/3}T_0)\log x\to\infty$ uniformly in $q$.
+\begin{proof}
+Given $\varepsilon>0$, take $\delta=\min(1/200,\varepsilon/100)$
+and fix a nonzero nonnegative $\Phi\in C_c^\infty((1,2))$.
+For $q\le x^{3/7-\delta}$, Proposition~\ref{prop:ap-smooth} gives
+a prime $x<p<2x$ in every reduced class for $x\ge x_0(\delta,\Phi)$.
+Set $x=q^{1/(3/7-\delta)}$. Since
+\[
+ \frac1{3/7-\delta}-\frac73
+ =\frac{49\delta}{9-21\delta}\le6\delta<\varepsilon,
+\]
+we obtain \eqref{eq:leastprime}; the finitely many smaller moduli,
+including $q=1$, are absorbed in its constant.
+\end{proof}
+
+The previous published exponent is $5$, due to Xylouris
+\cite[Theorem~2.1]{Xylouris2011}, with an effective constant;
+\cite[Theorem~1]{Xylouris2018} is a published condensed version
+and states $p(a,q)<Cq^5$. Zhao \cite[Theorem~1.4]{Zhao2026} also
+states $5$. Naslund's computer-assisted preprint \cite{Naslund2026}
+states $p(a,q)<q^{3.99}$ for all sufficiently large $q$, uniformly in $a$.
+
+\subsection{The least quadratic non-residue}
+For an odd prime $p$ let $n(p)$ be its least positive quadratic
+non-residue.
+
+\begin{theorem}\label{thm:nonresidue}
+Uniformly for all odd primes,
+\begin{equation}\label{eq:nonresidue}
+ n(p)\ll(\log p)^8.
+\end{equation}
+\end{theorem}
+
+The input is Montgomery--Vaughan, \emph{Multiplicative Number Theory I},
+Theorem 13.12 \cite{MV}, pages 428--430.
+For a nonprincipal character $\chi\pmod q$ it assumes
+$1/\log q\le\delta\le1/2$ and
+\[
+ L(s,\chi)\ne0\quad\text{for }1-\delta<\sigma<1,
+                      \quad0<|t|\le\delta^2\log q.
+\]
+Its conclusion is
+$n(\chi)<(A_{\rm MV}\delta\log q)^{1/\delta}$ for an absolute constant
+$A_{\rm MV}$, where $n(\chi)$ is the least $n$ with
+$\chi(n)\notin\{0,1\}$.
+\begin{proof}
+Take $\chi$ to be the Legendre character modulo $p$ and
+$\delta=1/8$. For $p\ge\exp(8)$ the parameter range holds, and
+Input~\ref{input:zf} supplies the stated zero-free rectangle.
+Thus $n(p)<(A_{\rm MV}/8)^8(\log p)^8$; the remaining odd primes
+are covered by $n(p)<p$ and an absolute enlargement of the constant.
+\end{proof}
+The classical unconditional comparison is Burgess
+\cite[Theorem 2]{Burgess1957}:
+$n(p)\ll_\varepsilon p^{1/(4\sqrt{\exp(1)})+\varepsilon}$.
+OpenAI's accompanying manuscript already gives
+$n(p)\le C(\log p)^A$, with $A=32$ as an example in
+\cite[Corollary~1.2]{OpenAIQ78}, via Bhargava--Ivanyos--Mittal--Saxena.
+The companion \cite{OpenAIQ1112} uses Montgomery--Vaughan's
+Theorem~13.12 for a fixed power of $\log p$.
+Equation~\eqref{eq:nonresidue} gives its explicit exponent
+$1/\delta=8$ at $\delta=1/8$.
+
+
+\subsection{Primitive roots and generators}
+For a modulus $q$ whose unit group is cyclic, let $g(q)$ and $g^*(q)$
+be the least positive integer and least prime primitive roots, respectively.
+
+\begin{theorem}\label{thm:primitive}
+For every odd prime $p$, with $r=\omega(p-1)$,
+\begin{equation}\label{eq:primitive}
+ g(p)\le g^*(p)\ll
+ r^{16}(1+\log r)^{16}(\log p)^8\ll(\log p)^{24}.
+\end{equation}
+For every $q\ge3$ with cyclic unit group the same assertions hold with
+$r=\omega(\ph(q))$ and $p$ replaced by $q$, with absolute constants.
+These moduli are $4$, odd prime powers, and twice odd prime powers.
+For $q=2$ one has $g(2)=1$ and $g^*(2)=3$.
+\end{theorem}
+
+The input is Martin, \emph{The least prime primitive root and the
+shifted sieve}, Proposition~3 \cite{Martin1997}.
+Write $E(q)$ for the exponent of the unit group, $s(m)$ for the
+largest squarefree divisor of $m$, and
+$\Phi^*(q)=\{\chi^{E(q)/s(\ph(q))}:\chi\pmod q\}$.
+Let $c_0$ be the proportion of unit classes having order $E(q)$ and
+$\log_1 u=\max(\log u,1)$.
+The printed conditions of Proposition~3 are $q\ge2$ and
+$1/2\le\sigma<1$. We use it for $q\ge3$, so
+$\omega(\ph(q))\ge1$, and put
+\[
+ f(q,\sigma)=
+ \{\omega(\ph(q))^2\log_1\omega(\ph(q))\,c_0^{-1}\log q\}^{1/(1-\sigma)}.
+\]
+Martin's hypothesis is that every nonprincipal $\chi\in\Phi^*(q)$
+has no zero with $\Rea s>\sigma$ and $|\Im s|<f(q,\sigma)$.
+His conclusion is $g^*(q)\ll_\sigma f(q,\sigma)$, where for general
+$q$ his $g^*(q)$ denotes the least prime of maximal order.
+His Lemma~6 gives the smoothed estimate
+\[
+ \sum_{n<x}\Lambda(n)\chi(n)(1-n/x)\ll x^\sigma\log q
+\]
+for those nonprincipal characters when $1\le x\ll T\ll q$ and
+their $L$-functions have no zero with $\Rea s>\sigma$, $|\Im s|<T$.
+At the polylogarithmic search length below one may take $T=x\ll q$.
+
+\begin{proof}
+Input~\ref{input:zf} supplies Martin's hypothesis with $\sigma=7/8$
+at every height. For a cyclic group,
+$c_0=\ph(\ph(q))/\ph(q)$. Put $n=\ph(q)$ and let $p_i$ be the
+$i$th prime. Mertens' theorem and $p_r\ll r\log(2r)$ give
+\[
+ c_0^{-1}=\frac n{\ph(n)}
+ \le\prod_{1\le i\le\omega(n)}(1-1/p_i)^{-1}
+ \ll\log_1\omega(n),
+\]
+as in Martin's remark after Proposition~3. Thus
+$f(q,7/8)\ll r^{16}(1+\log r)^{16}(\log q)^8$.
+If $r\ge2$, the product of $r$ distinct prime divisors of $\ph(q)$
+is at least $r!$, so $r(1+\log r)\ll\log q$ by the factorial bound;
+the case $r=1$ follows since $q\ge3$.
+Substitution yields $(\log q)^{24}$, and $g(q)\le g^*(q)$ is immediate.
+\end{proof}
+
+\begin{corollary}\label{cor:generators}
+There is an absolute $C>0$ such that for every $q\ge2$ and every
+nonprincipal character $\chi\pmod q$ there is a prime
+$\ell\nmid q$, $\ell<C(\log q)^8$, with $\chi(\ell)\ne1$.
+The unit group modulo $q$ is generated by the primes in this range.
+For every $k\ge2$ whose $k$th-power subgroup is proper, the least
+positive unit outside it is prime and less than $C(\log q)^8$,
+with the same constant independent of $k$.
+\end{corollary}
+\begin{proof}
+Apply Montgomery--Vaughan's Theorem~13.12, as stated above, with
+$\delta=1/8$ to any nonprincipal $\chi$. It gives
+$n(\chi)<C(\log q)^8$ for $q\ge\exp(8)$; finitely many smaller
+moduli are included by enlarging $C$.
+The least such unit $n(\chi)$ is prime: if it were composite,
+all its prime factors would be smaller units on which $\chi$ equals $1$.
+If the indicated primes generated a proper subgroup, the quotient
+would have a nontrivial character, contradicting this conclusion.
+A proper $k$th-power subgroup also has a nontrivial annihilating
+character. Hence a prime in the stated range lies outside it;
+the least positive unit outside a subgroup is prime by the same
+factorisation argument.
+\end{proof}
+
+The classical unconditional bound
+$g(p)\ll_\varepsilon p^{1/4+\varepsilon}$ is due to Wang in 1959,
+using Burgess's character-sum estimate, as credited in
+\cite[\S1]{Bach1997} and \cite[\S1]{FGG2026}; the same exponent
+follows from Burgess \cite[Theorem~1]{Burgess1962}.
+Indeed that theorem gives a power saving for nonprincipal character
+sums of length $H=\lceil p^{1/4+\varepsilon}\rceil$ on choosing its integer parameter
+larger than $1/(4\varepsilon)$; the primitive-root character expansion
+then uses $2^{\omega(p-1)}=p^{o(1)}$ to give the stated bound.
+Carella \cite[Theorem~1.1]{Carella2025} claims the unconditional bound
+$g(p)\ll_\varepsilon(\log p)^{1+\varepsilon}$ for fixed small
+$\varepsilon>0$ and sufficiently large primes.
+For the least prime primitive root, Ha's publisher abstract
+\cite{Ha2013} reports the unconditional exponent $3.1$.
+Martin \cite[Theorem~1]{Martin1997} obtains a fixed power of $\log p$
+for all but $O_{\varepsilon,\eta}(Y^{\varepsilon})$ odd prime powers
+$p^t\le Y$, with $0<\varepsilon\le20/21$ and $\eta>0$.
+Under GRH, Wang's bound, as recorded in \cite[\S1]{Shoup1992}, is
+$g(p)\ll r^6(\log p)^2$. Shoup \cite[Theorem~3]{Shoup1992} obtains
+$g(p)\ll r^4(1+\log r)^4(\log p)^2\ll(\log p)^6$;
+Martin \cite[Corollary~3.1]{Martin1997} states the prime version and
+extends it to composite moduli as an estimate for primes of maximal order.
+Bach \cite[Theorem~3.2]{Bach1997}, under GRH and for odd primes $p$,
+constructs a set of $O((\log p)^4/(\log\log p)^3)$ residue classes
+containing a primitive root, using
+$O((\log p)^7/(\log\log p)^3)$ bit operations with ordinary arithmetic.
+The bound is for the number of candidate classes.
+
+\appendix
+\section{A uniform density deduction for progressions}
+\begin{proposition}\label{prop:ap-smooth}
+Fix $0<\delta<1/100$ and a nonzero nonnegative
+$\Phi\in C_c^\infty((1,2))$. Uniformly for
+$q\le x^{3/7-\delta}$ and $(a,q)=1$, as $x\to\infty$,
+\[
+ \sum_{n\equiv a\ (q)}\Lambda(n)\Phi(n/x)
+   =(c_\Phi+o_{\delta,\Phi}(1))\frac{x}{\ph(q)},\qquad
+ c_\Phi=\int_1^2\Phi(u)\,du>0.
+\]
+Every such class contains a prime at most $2x$ once $x$ is sufficiently
+large in terms of $\delta,\Phi$.
+\end{proposition}
+The input is Chen--Gupta--Li,
+\emph{Large Value Estimates for Dirichlet Polynomials with Characters
+and Zero Density of Dirichlet $L$-Functions}, Theorem 1.2, last
+universal estimate in version 2 \cite{CGL}.
+For $q\ge1$ and $1/2<\sigma<1$, with $N(\sigma,T,\chi)$ counting
+zeros $\beta+i\gamma$ with $\sigma\le\beta\le1$, $|\gamma|\le T$,
+the final ``in all cases'' display of Theorem~1.2 states, with
+the paper's convention $qT\to\infty$ for $o(1)$
+(we use $T=x^\tau\to\infty$),
+\begin{equation}\label{eq:cgl}
+ \sum_{\chi\bmod q}N(\sigma,T,\chi)
+ \le(qT)^{o(1)}
+  \{(q^{7/3}T^2)^{1-\sigma}+(qT)^{(30/13)(1-\sigma)}\}.
+\end{equation}
+This clause has no smoothness condition on $q$.
+Its $o(1)$ means that any fixed positive power of $qT$ is an admissible
+loss with a corresponding fixed implied constant.
+\begin{proof}
+Fix $0<\delta<1/100$ and suppose $q\le x^{3/7-\delta}$.
+Take $\tau=\delta/8$, $T=x^\tau$, and density loss
+$\alpha=\delta/100$ in \eqref{eq:cgl}.
+Then
+\[
+ q^{7/3}T^2\le x^{1-25\delta/12}\le x^{1-\delta},\qquad
+ (qT)^{30/13}\le
+ x^{90/91-105\delta/52}\le x^{1-\delta}.
+\]
+Fix a nonzero nonnegative $\Phi\in C_c^\infty((1,2))$, with Mellin
+transform $\widetilde\Phi$ and $c_\Phi=\widetilde\Phi(1)>0$.
+The smoothed explicit formula, from
+\cite[Theorem 12.10 and the zeta formula in Chapter 12]{MV}, and
+character orthogonality give
+\[
+ \sum_{n\equiv a\ (q)}\Lambda(n)\Phi(n/x)
+ =\frac{c_\Phi x}{\ph(q)}
+ +O_\Phi\left(\frac{x}{\ph(q)}
+     \sum_{\chi\bmod q}\sum_\rho x^{\beta-1}
+                   |\widetilde\Phi(\rho)|+\log^2(qx)\right).
+\]
+For primitive $\chi$, \cite[Theorem~12.10]{MV} and its zeta analogue,
+integrated by parts against $\Phi'(u/x)/x$, give
+\[
+ \sum_n\Lambda(n)\chi(n)\Phi(n/x)
+ =\ind_{\chi=\chi_0}\widetilde\Phi(1)x
+   -\sum_\rho x^\rho\widetilde\Phi(\rho)+O_\Phi(1).
+\]
+The constant $C(\chi)$ in that theorem's (12.6) is independent of
+$u$ and integrates to zero against $\Phi'$.
+For fixed $x,q$, its remainder tends to zero after integration as the
+truncation height tends to infinity: the printed remainder bound
+gives pointwise convergence away from integers and an integrable
+bound on this compact interval. The zero series converges absolutely
+by $\widetilde\Phi(\beta+i\gamma)\ll_{\Phi,B}(1+|\gamma|)^{-B}$.
+The induced Euler factors cost $O_\Phi(\log^2(qx))$ after orthogonality;
+the principal pole supplies the main term.
+
+All nontrivial zeros have $\beta\le7/8$.
+For $|\gamma|\le T$ and $\beta\le1/2+\alpha$, the unit-height count
+\cite[Theorem 10.17]{MV} bounds the normalized zero cost by
+$O_\Phi(qT\log(qT)x^{-1/2+\alpha})=o(1)$.
+Partition $[1/2+\alpha,7/8]$ into intervals of width at most $\alpha$.
+For each lower endpoint $\sigma$, \eqref{eq:cgl} bounds its cost by
+\[
+ C_{\delta,\Phi}x^{\sigma+\alpha-1}
+       x^\alpha x^{(1-\delta)(1-\sigma)}
+ \le C_{\delta,\Phi}x^{-\delta/8+2\alpha}=o(1).
+\]
+This uses only finitely many fixed values of $\sigma$.
+For $|\gamma|>T$, choose $B=\lceil10/\tau\rceil$ in the rapid decay
+$\widetilde\Phi(\beta+i\gamma)\ll_{\Phi,B}(1+|\gamma|)^{-B}$.
+The aggregate tail is
+$O_{\delta,\Phi}(q x^{-1/8}T^{1-B}\log(qT))=o(1)$.
+Thus the weighted progression sum is
+$(c_\Phi+o(1))x/\ph(q)$, uniformly in the stated range and in $a$.
+Prime powers of exponent at least two cost
+$O(\sqrt x\log^2x)=o(x/\ph(q))$, since
+$x/\ph(q)\ge x/q\ge x^{4/7+\delta}$.
+There is therefore a prime at most $2x$ in every such class.
+This proves the uniform asymptotic and the prime assertion.
+\end{proof}
+The same progression range follows from any fixed zero-free half-plane
+$\Rea s>1-\delta_0$, with $0<\delta_0\le1/2$.
+Take $\alpha=\min(\delta/100,\delta\delta_0/10)$, partition up to
+$1-\delta_0$, and replace the grid cost by
+$x^{-\delta\delta_0+2\alpha}=o(1)$ and the tail factor by
+$x^{-\delta_0}$. The other bounds above are unchanged.
+
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+\section*{Use of AI}
+AI systems, including GPT-6 Astra, GPT-6.1 Sol and Claude Opus 5.5, were used in developing the proofs and preparing the manuscript.
+The author takes responsibility for the content.
+\end{document}

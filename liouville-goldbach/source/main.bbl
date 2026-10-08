@@ -1,0 +1,264 @@
+\begin{thebibliography}{31}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bach(1997)]{Bach1997}
+Eric Bach.
+\newblock Comments on search procedures for primitive roots.
+\newblock \emph{Mathematics of Computation}, 66\penalty0 (220):\penalty0
+  1719--1727, 1997.
+\newblock \doi{10.1090/S0025-5718-97-00890-9}.
+\newblock Theorem 3.2.
+
+\bibitem[Burgess(1957)]{Burgess1957}
+D.~A. Burgess.
+\newblock The distribution of quadratic residues and non-residues.
+\newblock \emph{Mathematika}, 4\penalty0 (2):\penalty0 106--112, 1957.
+\newblock \doi{10.1112/S0025579300001157}.
+\newblock URL \url{https://www.cs.umd.edu/~gasarch/TOPICS/res/burgess.pdf}.
+\newblock Theorem 2.
+
+\bibitem[Burgess(1962)]{Burgess1962}
+D.~A. Burgess.
+\newblock On character sums and primitive roots.
+\newblock \emph{Proceedings of the London Mathematical Society}, 12:\penalty0
+  179--192, 1962.
+\newblock \doi{10.1112/plms/s3-12.1.179}.
+\newblock Theorem 1.
+
+\bibitem[{CaptainSude}(2026)]{CaptainSude}
+{CaptainSude}.
+\newblock A {Goldbach} theorem for the {Liouville} function: Two commuting
+  symmetries and a descent, 2026.
+\newblock URL
+  \url{https://github.com/CaptainSude/Liouville-Goldbach/blob/v1.0.0/paper/liouville-goldbach.pdf}.
+\newblock Release v1.0.0, 16 September 2026.
+
+\bibitem[Carella(2025)]{Carella2025}
+Nelson Carella.
+\newblock The least primitive roots mod {$p$}.
+\newblock \emph{Journal of Mathematical Cryptology}, 19\penalty0 (1):\penalty0
+  20240017, 2025.
+\newblock \doi{10.1515/jmc-2024-0017}.
+\newblock Theorem 1.1.
+
+\bibitem[Chen et~al.(2026)Chen, Gupta, and Li]{CGL}
+Bin Chen, Vishal Gupta, and Yung~Chi Li.
+\newblock Large value estimates for {Dirichlet} polynomials with characters and
+  zero density of {Dirichlet} {$L$}-functions, 2026.
+\newblock URL \url{https://arxiv.org/abs/2507.08296v2}.
+\newblock Version 2, 27 July 2026; Theorem 1.2 and Corollary 1.4.
+
+\bibitem[Corr{\'a}di and K{\'a}tai(1969)]{CK69}
+C.~A. Corr{\'a}di and I.~K{\'a}tai.
+\newblock Some problems concerning the convolutions of number-theoretical
+  functions.
+\newblock \emph{Archiv der Mathematik (Basel)}, 20:\penalty0 24--29, 1969.
+\newblock \doi{10.1007/BF01898987}.
+
+\bibitem[De~Koninck et~al.(2015)De~Koninck, Germ{\'a}n, and K{\'a}tai]{DGK15}
+Jean-Marie De~Koninck, L.~Germ{\'a}n, and I.~K{\'a}tai.
+\newblock On the convolution of the {Liouville} function under the existence of
+  {Siegel} zeros.
+\newblock \emph{Lithuanian Mathematical Journal}, 55\penalty0 (3):\penalty0
+  331--342, 2015.
+\newblock \doi{10.1007/s10986-015-9284-x}.
+
+\bibitem[Ford et~al.(2026)Ford, Gabdullin, and Granville]{FGG2026}
+Kevin Ford, Mikhail~R. Gabdullin, and Andrew Granville.
+\newblock Primes with small primitive roots.
+\newblock \emph{Journal de Th{\'e}orie des Nombres de Bordeaux}, 38\penalty0
+  (1):\penalty0 71--89, 2026.
+\newblock \doi{10.5802/jtnb.1355}.
+\newblock URL
+  \url{https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1355/}.
+\newblock Section 1.
+
+\bibitem[Ha(2013)]{Ha2013}
+Junsoo Ha.
+\newblock On the least prime primitive root.
+\newblock \emph{Journal of Number Theory}, 133\penalty0 (11):\penalty0
+  3645--3669, 2013.
+\newblock \doi{10.1016/j.jnt.2013.05.007}.
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/S0022314X13001595}.
+\newblock Publisher's abstract.
+
+\bibitem[Klurman et~al.(2023)Klurman, Mangerel, and Ter{\"a}v{\"a}inen]{KMT}
+Oleksiy Klurman, Alexander~P. Mangerel, and Joni Ter{\"a}v{\"a}inen.
+\newblock Multiplicative functions in short arithmetic progressions.
+\newblock \emph{Proceedings of the London Mathematical Society}, 127\penalty0
+  (2):\penalty0 366--446, 2023.
+\newblock \doi{10.1112/plms.12546}.
+\newblock URL \url{https://arxiv.org/abs/1909.12280v5}.
+\newblock Theorem and equation numbering follows arXiv:1909.12280v5, 19 June
+  2023.
+
+\bibitem[Krishnamoorthy(2026)]{Krishnamoorthy2026}
+Krishnarjun Krishnamoorthy.
+\newblock On a conjecture of {Corr{\'a}di} and {K{\'a}tai}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2608.13266v1}.
+\newblock Version 1, 13 August 2026.
+
+\bibitem[Mangerel(2024{\natexlab{a}})]{Mangerel2024}
+Alexander~P. Mangerel.
+\newblock On a {Goldbach}-type problem for the {Liouville} function.
+\newblock \emph{International Mathematics Research Notices}, 2024\penalty0
+  (16):\penalty0 11865--11877, 2024{\natexlab{a}}.
+\newblock \doi{10.1093/imrn/rnae149}.
+\newblock URL \url{https://doi.org/10.1093/imrn/rnae149}.
+\newblock Theorem 1.2 of the published version.
+
+\bibitem[Mangerel(2024{\natexlab{b}})]{MangerelGRH}
+Alexander~P. Mangerel.
+\newblock On {Shusterman}'s {Goldbach}-type problem for sign patterns of the
+  {Liouville} function, 2024{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2412.17199v1}.
+\newblock Version 1, 23 December 2024.
+
+\bibitem[Martin(1997)]{Martin1997}
+Greg Martin.
+\newblock The least prime primitive root and the shifted sieve.
+\newblock \emph{Acta Arithmetica}, 80\penalty0 (3):\penalty0 277--288, 1997.
+\newblock \doi{10.4064/aa-80-3-277-288}.
+\newblock URL \url{https://arxiv.org/abs/math/9807104}.
+\newblock Proposition 3, Lemma 6 and Corollary 3.1.
+
+\bibitem[Matom{\"a}ki and Radziwi{\l}{\l}(2016)]{MR2016}
+Kaisa Matom{\"a}ki and Maksym Radziwi{\l}{\l}.
+\newblock Multiplicative functions in short intervals.
+\newblock \emph{Annals of Mathematics}, 183\penalty0 (3):\penalty0 1015--1056,
+  2016.
+\newblock \doi{10.4007/annals.2016.183.3.6}.
+\newblock URL \url{https://annals.math.princeton.edu/2016/183-3/p06}.
+\newblock Lemma 14.
+
+\bibitem[Matom{\"a}ki et~al.(2015)Matom{\"a}ki, Radziwi{\l}{\l}, and Tao]{MRT}
+Kaisa Matom{\"a}ki, Maksym Radziwi{\l}{\l}, and Terence Tao.
+\newblock An averaged form of {Chowla}'s conjecture.
+\newblock \emph{Algebra \& Number Theory}, 9:\penalty0 2167--2196, 2015.
+\newblock \doi{10.2140/ant.2015.9.2167}.
+\newblock URL \url{https://arxiv.org/abs/1503.05121v3}.
+\newblock Corrected version arXiv:1503.05121v3, 1 March 2022; Appendix C, Lemma
+  C.1.
+
+\bibitem[Meng(2026)]{Meng2026}
+Lingsen Meng.
+\newblock All four {Liouville} sign patterns occur in the binary decompositions
+  of every integer {$N\ge11$}, 2026.
+\newblock URL
+  \url{https://lsmeng.github.io/pdf/Meng_Liouville_sign_patterns.pdf}.
+\newblock Author manuscript, Theorem A.
+
+\bibitem[Montgomery and Vaughan(2007)]{MV}
+Hugh~L. Montgomery and Robert~C. Vaughan.
+\newblock \emph{Multiplicative Number Theory {I}: Classical Theory}, volume~97
+  of \emph{Cambridge Studies in Advanced Mathematics}.
+\newblock Cambridge University Press, 2007.
+\newblock URL \url{https://websites.umich.edu/~hlm/mnt1.html}.
+
+\bibitem[Naslund(2026)]{Naslund2026}
+Eric Naslund.
+\newblock {Linnik}'s constant is at most 3.99, 2026.
+\newblock URL
+  \url{https://github.com/enaslund/linniks-constant-3.99/blob/0400629d89408c41c545f1fa8b7265051aa079c7/paper/linnik399.pdf}.
+\newblock Computer-assisted preprint dated 30 September 2026; Hexagon
+  2610.00018v1, posted 2 October 2026; Theorem 1.1. PDF at repository commit
+  0400629d89408c41c545f1fa8b7265051aa079c7.
+
+\bibitem[{OpenAI}(2026{\natexlab{a}})]{OpenAI007}
+{OpenAI}.
+\newblock Ordinary two-point correlations of multiplicative functions,
+  2026{\natexlab{a}}.
+\newblock URL
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Ordinary-two-point-correlations-of-multiplicative-functions-September-24-2026/final.pdf}.
+\newblock OpenAI Math Release preprint, 24 September 2026.
+
+\bibitem[{OpenAI}(2026{\natexlab{b}})]{OpenAIMath}
+{OpenAI}.
+\newblock Mathematical developments: families 003 and 007, {Lean} 4 library.
+\newblock GitHub repository, 2026{\natexlab{b}}.
+\newblock URL
+  \url{https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/lean}.
+\newblock Commit adc7f1241b42e322a6451854ab7e4b4c146bf78a. Family 003:
+  Dirichlet seven-eighths nonvanishing; family 007: two-point correlations.
+
+\bibitem[{OpenAI}(2026{\natexlab{c}})]{OpenAIQ1112}
+{OpenAI}.
+\newblock The {Quasi-Riemann} hypothesis, 2026{\natexlab{c}}.
+\newblock URL
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-October-5-2026/paper2.pdf}.
+\newblock OpenAI Math Release preprint, 5 October 2026; zero-free half-plane
+  $\Re s>11/12$, companion to the seven-eighths paper.
+
+\bibitem[{OpenAI}(2026{\natexlab{d}})]{OpenAIQ78}
+{OpenAI}.
+\newblock {The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $\Re s>7/8$},
+  September 2026{\natexlab{d}}.
+\newblock URL
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf}.
+\newblock Family 003 accompanying manuscript, 30 September 2026; Theorem 1.1
+  and Corollary 1.2.
+
+\bibitem[Pablo(2018)]{MO}
+Pablo.
+\newblock {Goldbach}'s conjecture for the {Liouville} function.
+\newblock MathOverflow, question 307479, 2018.
+\newblock URL
+  \url{https://mathoverflow.net/questions/307479/goldbachs-conjecture-for-the-liouville-function}.
+\newblock 3 August 2018.
+
+\bibitem[Pintz(2018)]{PintzII}
+J{\'a}nos Pintz.
+\newblock A new explicit formula in the additive theory of primes with
+  applications {II}. the exceptional set in {Goldbach}'s problem, 2018.
+\newblock URL \url{https://arxiv.org/abs/1804.09084v2}.
+\newblock Version 2, 30 April 2018; Theorem 1 and equation (2.6).
+
+\bibitem[Pintz(2023)]{PintzI}
+J{\'a}nos Pintz.
+\newblock A new explicit formula in the additive theory of primes with
+  applications {I}. the explicit formula for the {Goldbach} and generalized
+  twin prime problems.
+\newblock \emph{Acta Arithmetica}, 210:\penalty0 53--94, 2023.
+\newblock \doi{10.4064/aa220728-31-3}.
+\newblock URL \url{https://arxiv.org/abs/1804.05561v1}.
+\newblock All numbered references in this note follow arXiv:1804.05561v1, 16
+  April 2018.
+
+\bibitem[Shoup(1992)]{Shoup1992}
+Victor Shoup.
+\newblock Searching for primitive roots in finite fields.
+\newblock \emph{Mathematics of Computation}, 58\penalty0 (197):\penalty0
+  369--380, 1992.
+\newblock \doi{10.1090/S0025-5718-1992-1106981-9}.
+\newblock URL \url{https://www.shoup.net/papers/primroots.pdf}.
+\newblock Theorem 3 as numbered in the author's version.
+
+\bibitem[Xylouris(2011)]{Xylouris2011}
+Triantafyllos Xylouris.
+\newblock \emph{{{\"U}ber die Nullstellen der Dirichletschen $L$-Funktionen und
+  die kleinste Primzahl in einer arithmetischen Progression}}.
+\newblock PhD thesis, Rheinische Friedrich-Wilhelms-Universit{\"a}t Bonn, 2011.
+\newblock URL \url{https://d-nb.info/1017437416/34}.
+\newblock Bonner Mathematische Schriften 404; Theorem 2.1.
+
+\bibitem[Xylouris(2018)]{Xylouris2018}
+Triantafyllos Xylouris.
+\newblock {Linniks Konstante ist kleiner als 5}.
+\newblock \emph{Chebyshevskii Sbornik}, 19\penalty0 (3):\penalty0 80--94, 2018.
+\newblock \doi{10.22405/2226-8383-2018-19-3-80-94}.
+\newblock URL \url{https://www.mathnet.ru/eng/cheb681}.
+\newblock Theorem 1.
+
+\bibitem[Zhao(2026)]{Zhao2026}
+Genheng Zhao.
+\newblock The exceptional set of {Goldbach} problem and {Linnik}'s constant,
+  2026.
+\newblock URL \url{https://arxiv.org/abs/2511.05631v2}.
+\newblock Version 2, 23 January 2026; Theorem 1.1.
+
+\end{thebibliography}

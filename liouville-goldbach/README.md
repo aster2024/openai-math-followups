@@ -1,0 +1,60 @@
+# Goldbach-type representations with prescribed Liouville signs
+
+Jizhou Guo — Dots Studio, Rednote — mitsuha2021b@gmail.com — 8 October 2026
+
+[**Paper (PDF, 28 pages)**](paper.pdf) · [LaTeX source](source/) · [Lean ancillary files](anc/)
+
+## Result
+
+Let $\lambda$ be the Liouville function. For every sufficiently large integer $N$, each ordered sign pattern
+$(\lambda(a),\lambda(b))\in\{-1,1\}^2$, with $a,b\ge1$ and $a+b=N$, occurs
+
+$$N/4+O\bigl(N(\log N)^{-c}\bigr),\qquad c=10^{-200},$$
+
+times. Equivalently,
+
+$$\sum_{1\le n<N}\lambda(n)\lambda(N-n)=O\bigl(N(\log N)^{-c}\bigr).$$
+
+This proves, for the Liouville function, the conjecture of Corrádi and Kátai that the sum is $o(N)$, in the form
+stated in Mangerel (IMRN 2024, §1.1) and Krishnamoorthy (arXiv:2608.13266, Conjecture 1).
+
+Part II inserts the zero-free half-plane $\operatorname{Re}s>7/8$ for Dirichlet $L$-functions into results of Pintz,
+Chen–Gupta–Li, Montgomery–Vaughan and Martin:
+
+- Pintz's conditional exponent $3/5$ for the exceptional set in the binary Goldbach problem holds unconditionally;
+- the least prime in a reduced residue class modulo $q$ is $O_\varepsilon(q^{7/3+\varepsilon})$;
+- the least non-residue of a non-principal character modulo $q$ is $O((\log q)^8)$;
+- the least primitive root and the least prime primitive root modulo $p$ are $O((\log p)^{24})$.
+
+## What the proof uses
+
+The [OpenAI library](https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/lean), pinned to
+commit `adc7f1241b42e322a6451854ab7e4b4c146bf78a`:
+
+- Family 003: `OAI.DirichletCharacter.LFunction_ne_zero_of_seven_eighths_lt_re` — every Dirichlet $L$-function is
+  zero-free in $\operatorname{Re}s>7/8$ (principal pole excluded).
+- Family 007 (two-point correlations): the closed-word column bound, the finite residue and affine-word
+  comparisons, the positive deletion and prohibited-row comparisons, the prohibited-site probability bound, the
+  full-pool padding cost, and the noncommuting spectral transfer. Sections 3–4 of the paper transcribe the named
+  declarations with their quantifier orders.
+
+Published analysis: Matomäki–Radziwiłł–Tao; Klurman–Mangerel–Teräväinen (arXiv:1909.12280v5); and, for Part II, Pintz,
+Chen–Gupta–Li (preprint), Montgomery–Vaughan and Martin.
+
+The inputs printed in the paper are mathematical transcriptions of compiled Lean declarations. The reflected
+asymptotic, the bound $A_f\le10^6$ on the comparison exponent, the resulting value of $c$, and the classical
+deductions of Part II are written mathematics. The ancillary Lean files read back the types and axioms of the
+inputs and prove the finite CRT, matrix and degree lemmas used in the paper; see [`anc/README.md`](anc/README.md)
+for the toolchain and how to check them.
+
+## Files
+
+| Path | Content |
+|---|---|
+| `paper.pdf` | The paper |
+| `source/main.tex`, `source/main.bbl`, `source/references.bib` | LaTeX source (pdfLaTeX or Tectonic) |
+| `anc/CRTTransport.lean` | Transport of the prohibited predicates under scaling and CRT |
+| `anc/TwoLayerRows.lean` | Weighted square bound for the two-layer lift |
+| `anc/ExplicitBudget.lean` | Degree exponents 8457 and 8458 |
+| `anc/Interfaces.lean`, `anc/InputStatements.lean` | Types and axioms of the input declarations |
+| `SHA256SUMS` | Checksums of the files above |
