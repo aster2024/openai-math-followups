@@ -66,3 +66,16 @@ for the toolchain and how to check them.
 | `anc/ExplicitBudget.lean` | Degree exponents 8457 and 8458 |
 | `anc/Interfaces.lean`, `anc/InputStatements.lean` | Types and axioms of the input declarations |
 | `SHA256SUMS` | Checksums of the files above |
+
+## Citation
+
+```bibtex
+@misc{Guo2026LiouvilleSigns,
+  author = {Guo, Jizhou},
+  title = {Goldbach-type representations with prescribed {L}iouville signs},
+  year = {2026},
+  month = oct,
+  howpublished = {\url{https://github.com/aster2024/openai-math-followups/tree/main/liouville-goldbach}},
+  note = {Preprint, 8 October 2026}
+}
+```

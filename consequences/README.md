@@ -224,6 +224,19 @@ Hence, for a ≥ b > 0 and d > 1, weak recovery is possible exactly when (a − 
 
 **Scope.** The statement concerns constant error, K ≤ N/4 and polynomially many sequential queries; it is consistent with the one-query results of LMW (Theorem 1.4 and Theorem 1.2/5.2), and LMW's Definition 3.16 (error 2^(−Ω(n))) and the setting K = N/2 are not part of it. Conjecture 1.5 is thereby unavailable as a route to security of the single-copy pseudorandom state family {|ψ_{R_k}⟩} of LMW Theorem 5.2, with n(λ) ≥ λ + 2 qubits, against polynomial-query oracle adversaries: that family is distinguished from a maximally mixed state with advantage at least 1/4 by a polynomial-query algorithm with an R-dependent oracle.
 
+## Citation
+
+```bibtex
+@misc{Guo2026Consequences,
+  author = {Guo, Jizhou},
+  title = {Consequences of results in the {O}pen{AI} mathematics release},
+  year = {2026},
+  month = oct,
+  howpublished = {\url{https://github.com/aster2024/openai-math-followups/tree/main/consequences}},
+  note = {8 October 2026}
+}
+```
+
 ## Use of AI
 
 AI systems, including Claude Opus 5.5 and Claude Sonnet 5.5, were used in compiling this list. The author takes responsibility for the content.

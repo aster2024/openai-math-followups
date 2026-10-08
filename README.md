@@ -67,6 +67,16 @@ Every statement is conditional on the release theorem named in its entry.
 Each paper directory contains the PDF, the LaTeX source, and any ancillary files, with a README stating exactly which
 statements are taken from the release and which deductions are new.
 
+## Citation
+
+Each paper directory has a BibTeX block in its README; please cite the individual paper. The repository as a whole can be cited through
+[`CITATION.cff`](CITATION.cff) (the "Cite this repository" button on GitHub). The repository is archived by
+[Software Heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/aster2024/openai-math-followups);
+the snapshot of 8 October 2026 is `swh:1:snp:b1621de1100454c3ee01cb5132e7508e92c6b7be`.
+
+Results of the OpenAI release are cited in each paper by manuscript, pinned to the commit of
+[github.com/openai/math](https://github.com/openai/math) at which they were read.
+
 ## Use of AI
 
 AI systems, including GPT-6 Astra, GPT-6.1 Sol and Claude Opus 5.5, were used in developing the proofs and preparing the manuscripts.

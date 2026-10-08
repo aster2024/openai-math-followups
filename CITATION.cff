@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "To cite an individual paper, use the BibTeX block in the README of its directory. To cite the repository, use the entry below."
+title: "Follow-ups to the OpenAI mathematics release"
+type: software
+authors:
+  - family-names: Guo
+    given-names: Jizhou
+    affiliation: "Dots Studio, Rednote"
+date-released: 2026-10-08
+url: "https://github.com/aster2024/openai-math-followups"
+repository-code: "https://github.com/aster2024/openai-math-followups"
+identifiers:
+  - type: swh
+    value: "swh:1:snp:b1621de1100454c3ee01cb5132e7508e92c6b7be"
+    description: "Software Heritage snapshot of 8 October 2026"

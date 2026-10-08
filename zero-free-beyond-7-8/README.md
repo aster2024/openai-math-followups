@@ -36,3 +36,16 @@ From this directory, rerun the exact-arithmetic certificates with Python 3.9 or 
     python3 anc/run_all.py
 
 Only the standard library is required. The runner executes the scripts serially in one process and writes their outputs in anc/. The scripts verify algebra and rational intervals; the analytic proofs are in the paper. SHA256SUMS records the distributed files.
+
+## Citation
+
+```bibtex
+@misc{Guo2026ZeroFree,
+  author = {Guo, Jizhou},
+  title = {A zero-free half-plane beyond seven eighths for {D}irichlet {$L$}-functions and finite-order {H}ecke {$L$}-functions over {$\mathbb{Q}(\sqrt{-3})$}},
+  year = {2026},
+  month = oct,
+  howpublished = {\url{https://github.com/aster2024/openai-math-followups/tree/main/zero-free-beyond-7-8}},
+  note = {Preprint, 8 October 2026}
+}
+```
