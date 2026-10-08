@@ -1,6 +1,6 @@
 # A zero-free half-plane beyond seven eighths for Dirichlet L-functions and finite-order Hecke L-functions over Q(sqrt(-3))
 
-Jizhou Guo — Dots Studio, Rednote  
+Jizhou Guo  
 mitsuha2021b@gmail.com
 
 Taking the written statements of OpenAI's September 30, 2026 paper as input, the paper proves that every Dirichlet L-function (all moduli), every finite-order Hecke L-function over Q(sqrt(-3)), and the Riemann zeta function have no zeros with Re(s) > sigma_dagger. Here sigma_dagger is the unique root in (0.8749570194, 0.8749570195) of

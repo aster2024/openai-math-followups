@@ -1,6 +1,6 @@
 # A zero-free half-plane for Hecke L-functions of infinite order over Q(√−3) and for the elliptic curves y² = x³ + D
 
-Jizhou Guo — Dots Studio, Rednote — mitsuha2021b@gmail.com — 8 October 2026
+Jizhou Guo — mitsuha2021b@gmail.com — 8 October 2026
 
 [**Paper (PDF, 35 pages)**](paper.pdf) · [LaTeX source](source/) · [Checks of explicit identities](anc/)
 

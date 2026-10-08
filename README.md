@@ -1,6 +1,6 @@
 # Follow-ups to the OpenAI mathematics release
 
-Notes and papers by Jizhou Guo (Dots Studio, Rednote; mitsuha2021b@gmail.com) that build on results of the
+Notes and papers by Jizhou Guo (mitsuha2021b@gmail.com) that build on results of the
 [OpenAI mathematics release](https://github.com/openai/math) of October 2026, pinned throughout to commit
 `adc7f1241b42e322a6451854ab7e4b4c146bf78a`.
 

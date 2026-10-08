@@ -1,6 +1,6 @@
 # Consequences of results in the OpenAI mathematics release
 
-Jizhou Guo — Dots Studio, Rednote — mitsuha2021b@gmail.com — 8 October 2026
+Jizhou Guo — mitsuha2021b@gmail.com — 8 October 2026
 
 Each entry of this list combines one theorem of the OpenAI mathematics release (github.com/openai/math) with results already in the literature. Every statement is conditional on the release theorem named in its entry and, where stated, on a named preprint. Release statements were read at commit adc7f1241b42e322a6451854ab7e4b4c146bf78a of github.com/openai/math, and none of the cited release papers is among those withdrawn in the repository revision at commit fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb (history entry of October 7, 2026). Each entry gives the statement, the release input, the bridging results and the deduction.
 

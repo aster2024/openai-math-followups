@@ -1,6 +1,6 @@
 # Goldbach-type representations with prescribed Liouville signs
 
-Jizhou Guo — Dots Studio, Rednote — mitsuha2021b@gmail.com — 8 October 2026
+Jizhou Guo — mitsuha2021b@gmail.com — 8 October 2026
 
 [**Paper (PDF, 28 pages)**](paper.pdf) · [LaTeX source](source/) · [Lean ancillary files](anc/)
 
