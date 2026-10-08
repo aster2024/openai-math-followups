@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "exact_good_prime_checks": 581,
+  "rational_prime_bound": 199,
+  "D_values": [
+    1,
+    2,
+    -2,
+    3,
+    5,
+    16,
+    -7,
+    10,
+    -432
+  ],
+  "E16_good_2_points": 3,
+  "eta6_pi3": [
+    19,
+    18
+  ],
+  "eta6_pi6": [
+    37,
+    360
+  ],
+  "eta6_trace_numerator": -286,
+  "scope": "exact finite traces; no zero-free inference; no wild-conductor table"
+}

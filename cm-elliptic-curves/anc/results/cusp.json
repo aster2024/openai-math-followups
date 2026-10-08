@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "exact": true,
+  "records": [
+    {
+      "mode": 1,
+      "generic_monomials": 4
+    },
+    {
+      "mode": 2,
+      "generic_monomials": 10
+    },
+    {
+      "mode": 3,
+      "generic_monomials": 20
+    },
+    {
+      "mode": 4,
+      "generic_monomials": 35
+    },
+    {
+      "mode": 5,
+      "generic_monomials": 56
+    },
+    {
+      "mode": 6,
+      "generic_monomials": 84
+    }
+  ],
+  "mixed_height_derivative": "-1/(c*cb*v**3)",
+  "denominator_classes": [
+    {
+      "lambda_valuation": 0,
+      "c": "26"
+    },
+    {
+      "lambda_valuation": 1,
+      "c": "26*lambda"
+    },
+    {
+      "lambda_valuation": 2,
+      "c": "26*lambda^2"
+    }
+  ],
+  "scope": "generic smooth pure jet, not numerical certification of an infinite theta expansion"
+}

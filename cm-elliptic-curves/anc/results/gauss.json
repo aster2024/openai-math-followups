@@ -1,0 +1,103 @@
+{
+  "status": "PASS",
+  "precision": 75,
+  "scope": "six small split/inert primes; all j and x; sigma=epsilon=1",
+  "records": [
+    {
+      "pi": [
+        -2,
+        -3
+      ],
+      "norm": 7,
+      "jacobi_22": [
+        2,
+        3
+      ],
+      "jacobi_23": [
+        1,
+        -2
+      ],
+      "max_error": "3.68852366513e-75"
+    },
+    {
+      "pi": [
+        1,
+        3
+      ],
+      "norm": 7,
+      "jacobi_22": [
+        -1,
+        -3
+      ],
+      "jacobi_23": [
+        3,
+        2
+      ],
+      "max_error": "3.54600702277e-75"
+    },
+    {
+      "pi": [
+        4,
+        3
+      ],
+      "norm": 13,
+      "jacobi_22": [
+        -4,
+        -3
+      ],
+      "jacobi_23": [
+        1,
+        4
+      ],
+      "max_error": "4.03566964554e-75"
+    },
+    {
+      "pi": [
+        -5,
+        -6
+      ],
+      "norm": 31,
+      "jacobi_22": [
+        5,
+        6
+      ],
+      "jacobi_23": [
+        5,
+        6
+      ],
+      "max_error": "1.42665740533e-74"
+    },
+    {
+      "pi": [
+        -5,
+        0
+      ],
+      "norm": 25,
+      "jacobi_22": [
+        5,
+        0
+      ],
+      "jacobi_23": [
+        5,
+        0
+      ],
+      "max_error": "3.60918947327e-76"
+    },
+    {
+      "pi": [
+        -11,
+        0
+      ],
+      "norm": 121,
+      "jacobi_22": [
+        11,
+        0
+      ],
+      "jacobi_23": [
+        11,
+        0
+      ],
+      "max_error": "6.90893484408e-76"
+    }
+  ]
+}

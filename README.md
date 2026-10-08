@@ -6,6 +6,27 @@ Notes and papers by Jizhou Guo (Dots Studio, Rednote; mitsuha2021b@gmail.com) th
 
 ## Contents
 
+### [`cm-elliptic-curves/`](cm-elliptic-curves/) — A zero-free half-plane for Hecke L-functions of infinite order and for the curves y² = x³ + D
+
+Paper (30 pages), 8 October 2026: [PDF](cm-elliptic-curves/paper.pdf). Programs checking the explicit identities are in [`cm-elliptic-curves/anc/`](cm-elliptic-curves/anc/).
+
+Let K = Q(√−3). Every unitary Hecke character η of K of finite conductor and non-zero angular type (these are the
+characters of infinite order) satisfies L_K(s, η) ≠ 0 for Re s > 11/12, with the same half-plane for every conductor
+and every angular type. Consequently, for every non-zero rational D the elliptic curve E_D : y² = x³ + D satisfies
+
+```math
+L(E_D,s)\neq 0\qquad\text{for }\ \mathrm{Re}\,s\gt \frac{17}{12},
+```
+
+where the critical strip is 1/2 < Re s < 3/2. The paper also gives the distribution of Eisenstein primes in sectors
+and the Sato–Tate distribution of E_D with error term O(x^(11/12+ε)), and zero-free half-planes for all symmetric
+powers of E_D and for all newforms with complex multiplication by K.
+
+The proof extends the cubic-theta method of OpenAI's paper
+[The Quasi-Riemann Hypothesis](https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-October-5-2026)
+(5 October 2026) from finite-order characters to characters of non-zero angular type: the higher angular modes are
+obtained from pure Wirtinger derivatives of the cubic theta function at the cusps.
+
 ### [`liouville-goldbach/`](liouville-goldbach/) — Goldbach-type representations with prescribed Liouville signs
 
 Paper (28 pages), 8 October 2026: [PDF](liouville-goldbach/paper.pdf).

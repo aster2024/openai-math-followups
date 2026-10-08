@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "precision": "ordinary double precision; supplementary smoke check",
+  "checks": [
+    {
+      "X": 20.0,
+      "mode": 1,
+      "error": 1.0227395319532216e-10,
+      "wrong_minus": 0.2257871005100471,
+      "wrong_plus": 0.3015832594471196
+    },
+    {
+      "X": 20.0,
+      "mode": 2,
+      "error": 7.247005773297883e-11,
+      "wrong_minus": 0.0716035563394287,
+      "wrong_plus": 0.32812826803748807
+    },
+    {
+      "X": 20.0,
+      "mode": 3,
+      "error": 1.232838275936572e-10,
+      "wrong_minus": 1.2036315867628173,
+      "wrong_plus": 0.44109722208721647
+    },
+    {
+      "X": 20.0,
+      "mode": 4,
+      "error": 1.2857492856930498e-12,
+      "wrong_minus": 0.09364445943344868,
+      "wrong_plus": 0.007743834661784077
+    }
+  ],
+  "elapsed_seconds": 12.146,
+  "scope": "level-one primary mask; three actual cusp Fourier expansions; truncated sums and quadrature; no rigorous error enclosure"
+}

@@ -1,0 +1,148 @@
+\begin{thebibliography}{10}
+
+\bibitem{CPS}
+Evan Chen, Peter~S. Park, and Ashvin~A. Swaminathan.
+\newblock Linnik's theorem for {S}ato--{T}ate laws on elliptic curves with
+  complex multiplication.
+\newblock \url{https://arxiv.org/abs/1506.09170}, 2015.
+\newblock arXiv:1506.09170, version 3; Lemma 2.1.
+
+\bibitem{ColemanPrimes}
+M.~D. Coleman.
+\newblock The distribution of points at which binary quadratic forms are prime.
+\newblock {\em Proceedings of the London Mathematical Society}, 61:433--456,
+  1990.
+
+\bibitem{Coleman}
+M.~D. Coleman.
+\newblock A zero-free region for the {H}ecke {$L$}-functions.
+\newblock {\em Mathematika}, 37(2):287--304, 1990.
+\newblock Theorem 2; the statement is also reproduced as Theorem 2.5 of Khale
+  et al.
+
+\bibitem{Cossaboom}
+Catherine~H. Cossaboom.
+\newblock Zero density estimates for {$\mathrm{GL}_2$} automorphic
+  {$L$}-functions.
+\newblock \url{https://arxiv.org/abs/2609.27715}, 2026.
+\newblock arXiv:2609.27715, version 1.
+
+\bibitem{DR}
+Alexander Dunn and Maksym Radziwi{\l}{\l}.
+\newblock Bias in cubic {G}auss sums: {P}atterson's conjecture.
+\newblock {\em Annals of Mathematics}, 200(3):967--1057, 2024.
+\newblock \url{https://arxiv.org/abs/2109.07463}; unconditional cusp formulas
+  in Section 5 and Appendix A.
+
+\bibitem{GL}
+Leo Goldmakher and Beno{\^i}t Louvel.
+\newblock A quadratic large sieve inequality over number fields.
+\newblock {\em Mathematical Proceedings of the Cambridge Philosophical
+  Society}, 154(2):193--212, 2013.
+\newblock \url{https://arxiv.org/abs/1112.1642}; Definition 1 and Theorem 1.1.
+
+\bibitem{Hecke}
+Erich Hecke.
+\newblock {Eine neue Art von Zetafunktionen und ihre Beziehungen zur Verteilung
+  der Primzahlen}.
+\newblock {\em Mathematische Zeitschrift}, 6:11--51, 1920.
+
+\bibitem{IK}
+Henryk Iwaniec and Emmanuel Kowalski.
+\newblock {\em Analytic Number Theory}, volume~53 of {\em American Mathematical
+  Society Colloquium Publications}.
+\newblock American Mathematical Society, Providence, RI, 2004.
+
+\bibitem{Khale}
+Tanmay Khale, Cooper O'Kuhn, Apoorva Panidapu, Alec Sun, and Shengtong Zhang.
+\newblock A {B}ombieri--{V}inogradov theorem for primes in short intervals and
+  small sectors.
+\newblock \url{https://arxiv.org/abs/2008.09677}, 2022.
+\newblock arXiv:2008.09677, version 3; Theorem 2.5 and Introduction.
+
+\bibitem{Kubota}
+Tomio Kubota.
+\newblock {\em On automorphic functions and the reciprocity law in a number
+  field}.
+\newblock Number~2 in Lectures in Mathematics, Department of Mathematics, Kyoto
+  University. Kinokuniya Book-Store, Tokyo, 1969.
+\newblock \url{https://hdl.handle.net/2433/84907}.
+
+\bibitem{DLMF}
+{NIST}.
+\newblock Digital library of mathematical functions.
+\newblock \url{https://dlmf.nist.gov/10.43.E19}.
+\newblock Equation 10.43.19, Mellin transform of the modified Bessel function.
+
+\bibitem{PrimitiveRoots}
+{OpenAI}.
+\newblock Primitive roots for every admissible integer base.
+\newblock
+  \href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/primitive-roots-all-integer-bases.pdf}{Manuscript
+  at commit adc7f124}, October 2026.
+\newblock October 4, 2026; Theorem 1.2.
+
+\bibitem{QRH12}
+{OpenAI}.
+\newblock The quasi-{R}iemann hypothesis.
+\newblock
+  \href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-October-5-2026/build/paper2.tex}{Source
+  manuscript at commit adc7f124}, October 2026.
+\newblock October 5, 2026. The $11/12$ paper, denoted p2.
+
+\bibitem{QRH78}
+{OpenAI}.
+\newblock The quasi-{R}iemann hypothesis: A zero-free half-plane {$\Re s>7/8$}.
+\newblock
+  \href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf}{Manuscript
+  at commit adc7f124}, September 2026.
+\newblock September 30, 2026; Theorem 1.1.
+
+\bibitem{PT}
+Apoorva Panidapu and Jesse Thorner.
+\newblock Short-interval sector problems for {CM} elliptic curves.
+\newblock \url{https://arxiv.org/abs/2105.11093}, 2022.
+\newblock arXiv:2105.11093, version 2; Theorems 1.1, 2.2, 2.3 and Lemma 3.3.
+
+\bibitem{Patterson}
+S.~J. Patterson.
+\newblock A cubic analogue of the theta series.
+\newblock {\em Journal f{\"u}r die reine und angewandte Mathematik},
+  296:125--161, 1977.
+
+\bibitem{Followup}
+{Rogerhu12}.
+\newblock A common zero-free strip for {H}ecke {$L$}-functions.
+\newblock
+  \href{https://github.com/Rogerhu12/openai-math-extensions/blob/f8a2bb24c83a80f0026018e3577dd4ca29d2fc60/papers/029-artin-primitive-roots/hecke_zero_free_strip.tex}{Repository
+  Rogerhu12/openai-math-extensions at commit f8a2bb24}, October 2026.
+\newblock Draft dated 8 October 2026. The statement is conditional on its
+  theta, reflection, and fixed-order large-sieve inputs.
+
+\bibitem{Silverman}
+Joseph~H. Silverman.
+\newblock {\em Advanced Topics in the Arithmetic of Elliptic Curves}, volume
+  151 of {\em Graduate Texts in Mathematics}.
+\newblock Springer, 1994.
+
+\bibitem{Tate}
+John~T. Tate.
+\newblock Fourier analysis in number fields and {H}ecke's zeta-functions.
+\newblock In J.~W.~S. Cassels and A.~Fr{\"o}hlich, editors, {\em Algebraic
+  Number Theory}, pages 305--347. Academic Press, 1967.
+
+\bibitem{Watkins}
+Mark Watkins.
+\newblock Computing with {H}ecke {G}r{\"o}ssencharacters.
+\newblock {\em Publications math{\'e}matiques de Besan{\c c}on. Alg{\`e}bre et
+  th{\'e}orie des nombres}, pages 119--135, 2011.
+\newblock Section 5.3.
+
+\bibitem{Zhang}
+Shou-Wu Zhang.
+\newblock Elliptic curves, {$L$}-functions, and {CM}-points.
+\newblock \url{https://web.math.princeton.edu/~shouwu/publications/elc.pdf},
+  2002.
+\newblock July 11, 2002; Theorems 4.4--4.5, pp. 26--27.
+
+\end{thebibliography}

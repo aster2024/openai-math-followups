@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "precision": 60,
+  "case": 0,
+  "mode": 1,
+  "c": "(5.0 + 5.19615242270663188058233902451761710082841576143114188416742j)",
+  "ell": "(0.277777777777777777777777777777777777777777777777777777777778 + 0.288675134594812882254574390250978727823800875635063438009301j)",
+  "bessel_relative_error": "1.67152126831e-61",
+  "cusp_reflection_relative_error": "1.65716581597e-61",
+  "scalar_error": "0.0",
+  "kernel_nearest_numerator_pole": "-0.833333333333333333333333333333333333333333333333333333333333",
+  "elapsed_seconds": 2.948,
+  "scope": "high-precision single-mode Mellin and reflection; not interval arithmetic or infinite-sum verification"
+}
