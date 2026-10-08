@@ -44,7 +44,27 @@ from κ ∈ [3/4, 1] to κ ∈ [37/50, 1] gives σ†. The intermediate rational
 skew parameter kept at 1/8, was obtained independently by Z. Gao
 ([A quantitative refinement of the seven-eighths zero-free half-plane](https://github.com/Gaozhongpai/seven-eighths-refinement-certificates), 7–8 October 2026).
 
-Each directory contains the PDF, the LaTeX source, and any ancillary Lean files, with a README stating exactly which
+### [`consequences/`](consequences/) — Consequences of results in the release
+
+Twelve statements, each obtained by combining one theorem of the release with results in the literature, with the
+release input, the bridging results and the deduction written out:
+
+- deterministic construction of irreducible polynomials of every degree over prime fields;
+- lower bounds for the number of Carmichael numbers and of Novak–Carmichael numbers;
+- the Tate, Beilinson–Parshin and Lichtenbaum conjectures for varieties of abelian type over finite fields;
+- failure of Tachikawa's first conjecture;
+- Wall's question for hyperbolic groups, the torsion-free Kapovich–Kleiner conjecture and the toral relative Cannon conjecture;
+- C\*-simplicity of Thompson's group T;
+- surface group factors are isomorphic to the free group factor L(F₂);
+- rank r Donaldson–Thomas invariants of Calabi–Yau threefolds from rank 0;
+- ground configurations of the planar disordered Ising ferromagnet;
+- the weak recovery threshold of the four-community stochastic block model;
+- the quantum Fourier transform is not in QAC⁰;
+- the Strong Non-Synthesis Conjecture of Lombardi–Ma–Wright.
+
+Every statement is conditional on the release theorem named in its entry.
+
+Each paper directory contains the PDF, the LaTeX source, and any ancillary files, with a README stating exactly which
 statements are taken from the release and which deductions are new.
 
 ## Use of AI
