@@ -2,7 +2,7 @@
 
 Jizhou Guo — Dots Studio, Rednote — mitsuha2021b@gmail.com — 8 October 2026
 
-[**Paper (PDF, 34 pages)**](paper.pdf) · [LaTeX source](source/) · [Checks of explicit identities](anc/)
+[**Paper (PDF, 35 pages)**](paper.pdf) · [LaTeX source](source/) · [Checks of explicit identities](anc/)
 
 ## Results
 

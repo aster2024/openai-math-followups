@@ -8,7 +8,7 @@ Notes and papers by Jizhou Guo (Dots Studio, Rednote; mitsuha2021b@gmail.com) th
 
 ### [`cm-elliptic-curves/`](cm-elliptic-curves/) — A zero-free half-plane for Hecke L-functions of infinite order and for the curves y² = x³ + D
 
-Paper (34 pages), 8 October 2026: [PDF](cm-elliptic-curves/paper.pdf). Programs checking the explicit identities are in [`cm-elliptic-curves/anc/`](cm-elliptic-curves/anc/).
+Paper (35 pages), 8 October 2026: [PDF](cm-elliptic-curves/paper.pdf). Programs checking the explicit identities are in [`cm-elliptic-curves/anc/`](cm-elliptic-curves/anc/).
 
 Let K = Q(√−3). Every unitary Hecke character η of K of finite conductor and non-zero angular type (these are the
 characters of infinite order) satisfies L_K(s, η) ≠ 0 for Re s > 11/12, with the same half-plane for every conductor

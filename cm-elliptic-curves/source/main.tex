@@ -42,7 +42,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-We extend the cubic-theta method of OpenAI's paper \emph{The Quasi-Riemann Hypothesis} of October 5, 2026 to Hecke characters of nonzero angular type over $K=\Q(\sqrt{-3})$. Every such unitary character, of arbitrary finite conductor, has a zero-free half-plane $\Rea s>11/12$. The half-plane is independent of the conductor and angular type. Pure horizontal jets at the cusps produce the required higher angular modes, while the two Poisson transformations preserve a fixed angular coset. Deuring's theorem gives $L(E_D,s)\ne0$ for $\Rea s>17/12$ for every $E_D:y^2=x^3+D$, $D\in\Q^\times$, in arithmetic normalization. The applications include power-saving sector and CM distribution estimates, polylogarithmic bounds for the least good prime in a fixed interval of positive CM Sato--Tate measure, and zero-free half-planes for all symmetric powers. The proof uses classical cubic-theta, reciprocity, quadratic large-sieve and Hecke theory, together with explicitly specified finite arithmetic and smooth-kernel statements of the source paper; all modifications of the source paper's cubic-theta argument involving angular type are derived here.
+We extend the cubic-theta method of OpenAI's paper \emph{The Quasi-Riemann Hypothesis} of October 5, 2026 to Hecke characters of nonzero angular type over $K=\Q(\sqrt{-3})$. Every such unitary character, of arbitrary finite conductor, has a zero-free half-plane $\Rea s>11/12$. The half-plane is independent of the conductor and angular type. Pure horizontal jets at the cusps produce the required higher angular modes, while the two Poisson transformations preserve a fixed angular coset. Deuring's theorem gives $L(E_D,s)\ne0$ for $\Rea s>17/12$ for every $E_D:y^2=x^3+D$, $D\in\Q^\times$, in arithmetic normalization. The applications include power-saving sector and CM distribution estimates, polylogarithmic bounds for the least good prime in a fixed interval of positive CM Sato--Tate measure, and zero-free half-planes for all symmetric powers. The symmetric-power statement and the zero-frequency terms also use the finite-order $7/8$ theorem of the companion paper of September 30, 2026. The proof uses classical cubic-theta, reciprocity, quadratic large-sieve and Hecke theory, together with explicitly specified finite arithmetic and smooth-kernel statements of the source paper; all modifications of the source paper's cubic-theta argument involving angular type are derived here.
 \end{abstract}
 \tableofcontents
 
@@ -256,7 +256,7 @@ Termwise integration in an absolutely convergent range gives
  \sum_{\ell\ne0}d(\ell)\alpha(\ell)^{-m}\N(\ell)^{-s}.
 \end{equation}
 For $J_m^+$ replace $\alpha^{-m}$ by $\alpha^m$.
-For a finite multiplicative periodic mask $F(A)$, zero-extended at the whole index, define
+For a finite periodic mask $F(A)$, zero-extended at the whole index, define
 \[
  \mathcal T_m(s;F)=\sum_{n\ \mathrm{sf},b}\gamma_2(n)F(nb^3)\alpha(nb^3)^{-m}
  \N(n)^{-s}\N(b)^{-3s+1/2}.
@@ -330,10 +330,14 @@ For the fixed factor $F_0$ in the masks below put
 \[
  \phi_0(A)=\ind_{A\equiv1(3),(A,S)=1}\chi_A(\lambda)^2F_0(A),
 \]
-extended by zero outside the indicated set. Choose $L$ once, with support in $S$, divisible by all fixed conductor and exclusion primes in $S$ and high enough powers at $2,3$ to make $\phi_0$ periodic. It may be enlarged to be divisible by $18$. Put $M=\lambda^{12}L^4$. Neither $L$ nor $M$ changes with the good-prime masks.
+extended by zero outside the indicated set. Choose $L$ once, with support in $S$, divisible by all fixed conductor and exclusion primes in $S$ and high enough powers at $2,3$ to make $\phi_0$ periodic. It may be enlarged to be divisible by $18$. Put $M=\lambda^{12}L^4$. Neither $L$ nor $M$ changes with the good-prime masks. The normalized finite Fourier coefficient is
+\[
+ \wt\phi_0(h)=\N(L)^{-1}\sum_{A\bmod L}\phi_0(A)e(-hA/L),
+ \qquad |\wt\phi_0(h)|\le\|F_0\|_\infty\le1.
+\]
 
 \begin{lemma}[Cusp reduction and multiplier]\label{lem:cusps}
-Let $\mathcal P$ be a finite set of good primes, $j_p\in\{0,\ldots,5\}$, and
+Let $\mathcal P$ be a finite set of good primary primes, $j_p\in\{0,\ldots,5\}$, and
 \[
  F(A)=F_0(A)\prod_{p\in\mathcal P}\chi_p^{j_p}(A).
 \]
@@ -357,7 +361,7 @@ For the active set $\mathcal A=\{p:h_p\ne0\}$, set $r=\prod_{p\in\mathcal A}p$. 
  \ve(-\delta'\ell/c)&=\psi(x)\prod_{p\mid r}e(\epsilon_ph_p^{-1}x/p),\qquad
  \epsilon_p=-\bigl((\lambda^3c/p)\sigma_p\bigr)^{-1},\quad \sigma_p=\lambda^2c/p.\notag
 \end{align}
-The normalization unit in $c$ depends only on $(h_0,r\bmod3)$.
+The normalization unit in $c$ depends only on $(h_0,r\bmod3)$. Since the active primes are primary, $r\equiv1\pmod3$, so here this unit depends only on $h_0$.
 \end{lemma}
 \begin{proof}
 Define $C_{p,j}(h)=q^{-1}\sum_{x\bmod p}\chi_p^j(x)e(-hx/p)$. Character orthogonality at $h=0$, and $x=h^{-1}y$ at $h\ne0$, prove \eqref{eq:finiteFourier}. Finite Fourier inversion of $\phi_0$ and these masks gives the stated translates. Their constant terms sum to zero, because $\phi_0(0)=0$. This construction never Fourier-expands $\alpha^{-m}$.
@@ -468,7 +472,7 @@ When the moving squarefree row $k_0$ has exponent $j_p=1$ at its primes, every s
 \[
  B_{p,1}(\lambda^4\ell)=\chi_p(\lambda^4\ell)^3.
 \]
-Fix a modulus $\mathfrak c_*$ supported on $S$, divisible by $(M^2)$, $24\OO$ and the reciprocity modulus. Partition the moving squarefree rows into classes modulo $\mathfrak c_*$ and apply Lemma~\ref{lem:GLfamily} class by class. The angular phase separates exactly as $\alpha(c_*k_0)^{-2m}=\alpha(c_*)^{-2m}\alpha(k_0)^{-2m}$ within each class. The second factor is row-only; $\alpha(\ell)^m$ is column-only. This separation is the interface to the quadratic large sieve.
+Fix a modulus $\mathfrak m_*$ supported on $S$, divisible by $(M^2)$, $24\OO$ and the modulus of the ray group in Input~\ref{inp:gauss}. Partition the moving squarefree rows into classes modulo $\mathfrak m_*$ and apply Lemma~\ref{lem:GLfamily} class by class. Write the active product as $r=r_{\mathrm{fixed}}k_0$, where $r_{\mathrm{fixed}}$ is the product of the other active prime generators, and define $c_*=c/k_0=c_0r_{\mathrm{fixed}}$. This element is fixed for $h_0$ and the fixed active part. The angular phase separates exactly as $\alpha(c_*k_0)^{-2m}=\alpha(c_*)^{-2m}\alpha(k_0)^{-2m}$ within each class. The second factor is row-only; $\alpha(\ell)^m$ is column-only. This separation is the interface to the quadratic large sieve.
 
 \section{The completed mean square}\label{sec:completed}
 \begin{lemma}[The quadratic family and its three properties]\label{lem:GLfamily}
@@ -486,7 +490,7 @@ The columns may have a fixed $S$-part.
 \begin{proof}
 The quadratic symbol of $\omega$ is $1$, since $\omega$ is a square in $\mu_6$. Its value at $-1$ is $(-1)^{e_{k_0}}$. The corresponding values of $\kappa_\lambda$ are $1$ and $-1$. Their product is therefore trivial on all six units and defines an ideal character of trivial infinity type and order dividing $2$: this verifies condition (1), including the ideal rather than element interpretation. Each prime of $k_0$ has a nontrivial residue-field quadratic character, and $\kappa_\lambda$ is nontrivial precisely when $e_{k_0}=1$; CRT shows the conductor is exactly the one claimed.
 
-Partition the primary generators into classes modulo the fixed $\mathfrak c_*$ specified above. On primary arguments the $\lambda$ factor is $1$, so Input~\ref{inp:gauss} gives
+Partition the primary generators into classes modulo the fixed $\mathfrak m_*$ specified above. On primary arguments the $\lambda$ factor is $1$, so Input~\ref{inp:gauss} gives
 \[
  \rho_{k_0}(n)=\chi_{k_0}(n)^3=\mathcal R(k_0,n)\rho_n(k_0).
 \]
@@ -519,7 +523,7 @@ We give the squarefree-row argument with an arbitrary nonzero auxiliary element 
 \]
 At $p\mid k_0$, this is $1$. Other exponents are fixed on $tg$; exponent zero still means the nonunit exclusion. The remaining $S$ factor comes from a fixed finite list. The angular mode is $m=k+1$ throughout, so Proposition~\ref{prop:reflection} applies.
 
-Within each fixed class of $k_0$ modulo $\mathfrak c_*$, write $\ell=u\lambda^hnb^3$, $h\ge-4$. The coefficients satisfy \eqref{eq:d_bound}; $n,b$ need not be prime to $S$. The new column coefficient before fixed local factors is
+Within each fixed class of $k_0$ modulo $\mathfrak m_*$, write $\ell=u\lambda^hnb^3$, $h\ge-4$. The coefficients satisfy \eqref{eq:d_bound}; $n,b$ need not be prime to $S$. The new column coefficient before fixed local factors is
 \[
  A_0(n,b)=\frac{d(u\lambda^hnb^3)\alpha(u\lambda^hnb^3)^m\psi(u\lambda^{h+4}nb^3)}{3^{h/6}\sqrt{\N(b)}},
  \qquad |A_0|\le27.
@@ -943,7 +947,7 @@ Let $f$ be a newform of weight $w\ge2$ with complex multiplication by $K=\Q(\sqr
 The same assertion, with the indicated norm shift, holds for every Hecke character of $K$ covered by Theorem~\ref{thm:A}.
 \end{corollary}
 \begin{proof}
-The arithmetic induction identity is $L(s,f)=L_K(s,\psi)$, with level $N_f=3\N\mathfrak f_\psi$; see \cite[Section 12.3, Theorem 12.5 and its following remark, pp.~211--214]{Iwaniec}. That theorem uses the unitary character $\psi\N^{-(w-1)/2}$ and its Fourier coefficients weighted by $\N(\mathfrak a)^{(w-1)/2}$; the primitive convention supplies the newform and all arithmetic local factors. Thus
+The arithmetic induction identity is $L(s,f)=L_K(s,\psi)$, with level $N_f=3\N\mathfrak f_\psi$; see \cite[Section 12.3, Theorem 12.5 and its following remark, pp.~211--214]{Iwaniec}. That theorem uses the unitary character $\psi\N^{-(w-1)/2}$ and its Fourier coefficients weighted by $\N(\mathfrak a)^{(w-1)/2}$; primitivity of $\psi$ gives the newform of level $3\N\mathfrak f_\psi$ and all arithmetic local factors. Define $L_{\mathrm{unit}}(s,f)=L(s+(w-1)/2,f)$. Thus
 \[
  L_{\mathrm{unit}}(s,f)=L_K(s,\psi\N^{-(w-1)/2}).
 \]
@@ -1001,8 +1005,21 @@ At $2,3$ and primes dividing $d$, use the all-place Deuring character, equivalen
 where $c_p(E_d)$ denotes the exponent of $p$ in the elliptic conductor. These identities include primitive conductor cancellation at the wild places. For example $4\cdot16=2^6$ makes the good primary formula for $\psi_{16}$ simply $n\mapsto n$. This character extends to all ideals prime to $3$ and has conductor $\lambda^2$: the modulus $\lambda$ cannot suffice, since $\omega\equiv1\pmod\lambda$ but its type value is $\omega\ne1$. Hence $E_{16}$ has conductor $27$. The model $y^2+y=x^3$, obtained from $E_{16}$ by $x=4X$, $y=8Y+4$, has discriminant $-27$ and is good at $2$, with factor $(1+2^{1-2s})^{-1}$. Deuring's local definition proves \eqref{eq:ellipticshift} also at these places. Finally division by $\N^{1/2}$ makes the character unitary and changes the variable by $1/2$; $\GC((s-1/2)+1/2)=\GC(s)$ checks the gamma normalization. The unitary reflection $s\mapsto1-s$ becomes the arithmetic reflection $s\mapsto2-s$.
 \end{proof}
 
+For every $D=dr^6\in\Q^\times$ as in Lemma~\ref{lem:CM}, write
+\[
+ \mathfrak f_D=\operatorname{cond}(\psi_D)
+ =\operatorname{cond}(\eta_D)=\mathfrak f_d,\qquad
+ N_D=N(E_D)=3\N\mathfrak f_D.
+\]
+
 \begin{proof}[Proof of Theorem~\ref{thm:B}]
-Apply Theorem~\ref{thm:A} to \eqref{eq:ellipticshift}: $1/2+11/12=17/12$. Euler convergence and the functional equation place nontrivial zeros in $[1/2,3/2]$; reflection $s\mapsto2-s$ sends any zero with $\Rea s<7/12$ to one with $\Rea s>17/12$, giving the stated confinement. Alternatively, the good-prime identity already suffices. Removing the finite bad set and putting its factors back changes the elliptic function only by rational local factors whose Frobenius roots have modulus at most $p^{1/2}$, and changes the unitary Hecke function by factors with roots of modulus at most $1$. They have no zero or pole in the claimed region. Thus finitely many bad Euler factors cannot affect the conclusion.
+Apply Theorem~\ref{thm:A} to \eqref{eq:ellipticshift}: $1/2+11/12=17/12$. Alternatively, the good-prime identity suffices for this zero-free half-plane. Removing the finite bad set and putting its factors back changes the elliptic function only by rational local factors whose Frobenius roots have modulus at most $p^{1/2}$, and changes the unitary Hecke function by factors with roots of modulus at most $1$. They have no zero or pole in the claimed region. Thus finitely many bad Euler factors cannot affect the conclusion.
+
+The completed function
+\[
+ \Lambda_D(s)=N_D^{s/2}(2\pi)^{-s}\Gamma(s)L(E_D,s)
+\]
+is entire and satisfies $\Lambda_D(s)=w_D\Lambda_D(2-s)$, $w_D\in\{\pm1\}$, by \cite[Chapter II, Corollary 10.5.1]{Silverman}. Nontrivial zeros are the zeros of $\Lambda_D$, equivalently the zeros of $L(E_D,s)$ other than $s=0,-1,-2,\ldots$, where the poles of $\Gamma(s)$ are cancelled. The Euler product is absolutely convergent and nonzero for $\Rea s>3/2$, so a nontrivial zero has real part at most $3/2$ and, by reflection, at least $1/2$. The zero-free half-plane just proved and the same reflection therefore confine these zeros to $7/12\le\Rea s\le17/12$. The boundary lines remain permitted because the zero-free half-planes are open.
 \end{proof}
 
 \section{Power-saving applications}\label{sec:applications}
@@ -1023,20 +1040,20 @@ The constant is independent of $k$ and $\mathfrak f$. For $x\ge2$,
  \ll_\delta x^{11/12+\delta}
  \log\bigl(3\N\mathfrak f\,(|k|+x+3)^2\bigr)\log(2x).
 \end{equation}
-For nonprincipal finite-order characters covered by the $7/8$ theorem, the same bounds hold with $11/12$ replaced by $7/8$ and $k=0$, uniformly in the primitive conductor. For the primitive principal character the logarithmic-derivative assertion is
+For the finite-order cases below take $0<\delta<1/8$ and $b=7/8+\delta$. For nonprincipal characters covered by the $7/8$ theorem, the same bounds hold with $11/12$ replaced by $7/8$ and $k=0$, uniformly in the primitive conductor, on $b\le\sigma\le2$. For the primitive principal character the logarithmic-derivative assertion is
 \begin{equation}\label{eq:principalderivative}
  \left|-\frac{\zeta_K'}{\zeta_K}(s)-\frac1{s-1}\right|
  \ll_\delta\log\bigl(3(|t|+3)^2\bigr),
  \qquad 7/8+\delta\le\Rea s\le2,
 \end{equation}
-with removable continuation of the difference at $s=1$; the prime sum is $x$ plus the corresponding $7/8$ error. Here $0<\delta<1/8$. The degree-one variants use the degree-one analytic conductor and the same pole subtraction. Deleted Euler factors add at most $C_\delta\log\N\mathfrak m$ for a presentation modulus $\mathfrak m$.
+with removable continuation of the difference at $s=1$; the prime sum is $x$ plus the corresponding $7/8$ error. The degree-one variants use the degree-one analytic conductor and the same pole subtraction; they are used here only for the fixed functions $\zeta(s)$ and $L(s,\chi_{-3})$. Deleted Euler factors add at most $C_\delta\log\N\mathfrak m$ for a presentation modulus $\mathfrak m$.
 \end{lemma}
 \begin{proof}
 Euler convergence on $\sigma=2$ gives an absolute bound for $\log L(2+it)$, with the logarithm fixed by its Euler series. Write $q=3\N\mathfrak f$. On $\sigma=-1$, the functional equation gives
 \[
  |L_K(-1+it,\eta)|\ll q^{3/2}(|k|+|t|+3)^3.
 \]
-This is uniform in $k$: the gamma quotient has modulus $(2\pi)^{-3}|z(z+1)(z+2)|$, where $z=-1+|k|/2+it$, by $\Gamma(z+3)/\Gamma(z)=z(z+1)(z+2)$. The dual Euler series is on $\sigma=2$ and is bounded by $\zeta_K(2)$. On $\sigma=4$, Euler convergence bounds $L$ absolutely. Divide by $(s+|k|+3)^3$ and apply Phragm\'en--Lindel\"of on $[-1,4]$; the denominator has no zero there, and the order-one growth supplied by Hecke theory permits the usual $e^{\epsilon s^2}$ argument. Both boundary bounds are $Cq^{3/2}$, independently of $k$. Consequently
+This is uniform in $k$: the gamma quotient has modulus $(2\pi)^{-3}|z(z+1)(z+2)|$, where $z=-1+|k|/2+it$, by $\Gamma(z+3)/\Gamma(z)=z(z+1)(z+2)$. The dual Euler series is on $\sigma=2$ and is bounded by $\zeta_K(2)$. On $\sigma=4$, Euler convergence bounds $L$ absolutely. Divide by $(s+|k|+3)^3$ and apply Phragm\'en--Lindel\"of on $[-1,4]$; the denominator has no zero there, and the order-one growth supplied by Hecke theory permits this strip argument. Both boundary bounds are $Cq^{3/2}$, independently of $k$. Consequently
 \[
  |L_K(\sigma+it,\eta)|\ll q^{3/2}(|k|+|t|+3)^3,
  \qquad -1\le\sigma\le4,
@@ -1047,14 +1064,14 @@ At center $2+it$ take a disk of radius $2-11/12-\delta/2$. It lies in the zero-f
 
 For the principal case apply the strip-growth argument to the entire function $(s-1)L(s)$, dividing by $(s+3)^4$ and increasing the polynomial degree to four. Thus the function $H(s)=(s-1)L(s)/(s+1)$ has polynomial-conductor growth on the positive disks used here; its center logarithm is bounded because $(1+it)/(3+it)$ has modulus between $1/3$ and $1$. Cancel the pole in this way before taking the logarithm. The same argument gives $-L'/L(s)=1/(s-1)+O_\delta(\log\mathcal C)$ in the $7/8+\delta$ strip, with bounded elementary corrections. For a nonprincipal finite-order character use the same gamma quotient with $k=0$: its modulus is $(2\pi)^{-3}|(-1+it)it(1+it)|$, interpreted by continuity when $t=0$. The entire strip-growth argument and the zero-free disks with left boundary $7/8+\delta/2$ therefore give constants independent of the primitive conductor. For primitive Dirichlet characters, the gamma shift is one of the two fixed parities; the functional equation gives a polynomial bound with logarithm $O(\log(q(|t|+3)))$, uniformly in the conductor $q$, and the coefficient bound is $|b(n)|\le\Lambda(n)$. The same disks and principal regularization prove the degree-one assertions.
 
-Here are the details of the sharp prime sum. The Dirichlet coefficients $b(n)$ of $-L_K'/L_K$ satisfy $|b(n)|\le2\Lambda(n)$: at a split prime there are two terms, and at an inert prime one term of norm $p^2$ and weight $2\log p$. Take $x$ to be a half-integer, $c=1+1/\log x$ and $T=x$. Truncated Perron gives
+Here are the details of the sharp prime sum. The Dirichlet coefficients $b(n)$ of $-L_K'/L_K$ satisfy $|b(n)|\le2\Lambda(n)$: at a split prime there are two terms, and at an inert prime one term of norm $p^2$ and weight $2\log p$. Take a half-integer $x\ge e$, with $c=1+1/\log x\le2$ and $T=x$; the range $2\le x<e$ is trivial. Truncated Perron gives
 \[
  \sum_{n\le x}b(n)=\frac1{2\pi i}\int_{c-iT}^{c+iT}-\frac{L'}L(s)\frac{x^s}s\dd s+O(\log^2(2x)).
 \]
 For clarity the error follows from $|b(n)|\le2\log n$ and
 $\min(1,(T|\log(x/n)|)^{-1})$: split $n$ into $[x/2,2x]$ and its complement; the near sum is $O(x\log^2x/T)$ because $|x-n|\ge1/2$, and the complementary sum is bounded using Euler convergence at $c$.
 
-Shift to $b=11/12+\delta$. There are no zeros or poles in the rectangle. The new vertical side is
+Shift to $b=11/12+\delta$ for nonzero angular type and to $b=7/8+\delta$ for the finite-order cases. There are no zeros in the rectangle; its only possible pole is at $1$ in the principal case. The new vertical side is
 \[
  O_\delta\bigl(x^b\log\mathcal C(\eta,T)\log(2T)\bigr),
 \]
@@ -1139,7 +1156,7 @@ for a unit $u$ in the left side, apply $v(f(1))>2v(f'(1))$ to $f(X)=X^6-u$. A ch
  \prod_{\substack{\mathfrak p\mid d\\\mathfrak p\nmid6}}\mathfrak p,
  \qquad \N\mathfrak f_d\le2^6\,3^5|d|^2.
 \]
-The primes above a rational $p\ge5$ have product of norms $p^2$, both in the split and inert cases. The conductor identity $N_D=3\N\mathfrak f_d$ proves the result. For later use, at a rational prime $p\ge5$ the curve $E_d$ is good exactly when $p\nmid d$: the displayed discriminant $-432d^2$ has valuation zero in that case, and otherwise its valuation $2v_p(d)\in\{2,4,6,8,10\}$ cannot become zero under a Weierstrass change, which changes discriminant valuations by multiples of twelve.
+The primes above a rational $p\ge5$ have product of norms $p^2$, both in the split and inert cases. The conductor identity $N_D=3\N\mathfrak f_d$ proves the result. For later use, at a rational prime $p\ge5$ the curve $E_d$ is good exactly when $p\nmid d$: the discriminant $\Delta(E_d)=-432d^2$ of the model $y^2=x^3+d$ has valuation zero in that case, and otherwise its valuation $2v_p(d)\in\{2,4,6,8,10\}$ cannot become zero under a Weierstrass change, which changes discriminant valuations by multiples of twelve.
 \end{proof}
 
 \begin{corollary}[The least prime in a CM interval]\label{cor:least}
@@ -1156,13 +1173,17 @@ The constant is independent of $D$. In particular this bounds the least good pri
 If $0\in I$, the stronger bound $p\ll\log(N(E_D)+3)$ holds with an absolute constant.
 \end{corollary}
 \begin{proof}
-Put $L_D=\log(N_D+3)\ge1$, and let $S_D$ consist of the prime ideals over $2,3$ and the bad rational primes. Their total logarithmic norm is $O(L_D)$. The primitive conductors of the powers of $\eta_D$ divide $\mathfrak f_D$. In applying Lemma~\ref{lem:uniform}, delete $S_D$ even when a power becomes unramified there, so that the remaining values are exactly the powers of the original good-prime character.
+Put $L_D=\log(N_D+3)\ge1$, and let $S_D$ consist of the prime ideals over $2,3$ and the bad rational primes. Every prime of bad reduction divides $N_D$, so
+\[
+ \sum_{\mathfrak p\in S_D}\log\N\mathfrak p
+ \le\log12+2\log N_D=O(L_D).
+\] The primitive conductors of the powers of $\eta_D$ divide $\mathfrak f_D$. In applying Lemma~\ref{lem:uniform}, delete $S_D$ even when a power becomes unramified there, so that the remaining values are exactly the powers of the original good-prime character.
 
 Suppose $0\notin I$. Positive CM measure then gives a positive-length closed subinterval $I_0\subset I\cap(-1,1)$ separated from zero. The set
 \[
  \mathcal J=\{\theta\in\R/2\pi\Z:\cos\theta\in I_0\}
 \]
-is a union of two arcs of positive Haar measure $v_I$. Sum the Selberg minorants for these arcs used in Theorem~\ref{thm:sectors}. For a sufficiently large fixed degree $M=M_I$ their sum is a real polynomial
+is a union of two arcs of positive normalized Haar measure $v_I=|\mathcal J|/(2\pi)$. Sum the Selberg minorants for these arcs used in Theorem~\ref{thm:sectors}. For a sufficiently large fixed degree $M=M_I$ their sum is a real polynomial
 \[
  P(\theta)=c_0+\sum_{1\le|j|\le M}c_j e^{ij\theta}
  \le\ind_{\mathcal J}(\theta),\qquad c_0\ge v_I/2>0.
@@ -1202,10 +1223,10 @@ If $0\in I$, use good inert primes, whose traces are zero. The classical prime n
 \[
  \sum_{\substack{3<p\le x\\p\equiv2(3)}}\log p=x/2+o(x).
 \]
-Its error is at most $x/4$ for $x\ge x_0$ with absolute $x_0$. Deleting the bad rational primes costs at most $\log N_D\le L_D$. Taking $x=C L_D$ with absolute $C\ge\max(x_0,8)$ leaves a positive sum. This also treats the singleton $\{0\}$. Take $I=[-1,0)$ for the negative-trace assertion. Finally Lemma~\ref{lem:height} gives the integer and rational-height formulations.
+Its error is at most $x/4$ for $x\ge x_0$ with absolute $x_0$. Every bad prime divides $N_D$, so deleting the bad rational primes costs at most $\sum_{p\ {\rm bad}}\log p\le\log N_D\le L_D$. Taking $x=C L_D$ with absolute $C\ge\max(x_0,8)$ leaves a positive sum. This also treats the singleton $\{0\}$. Take $I=[-1,0)$ for the negative-trace assertion. Finally Lemma~\ref{lem:height} gives the integer and rational-height formulations.
 \end{proof}
 
-For comparison, \cite[Theorem 1.1]{CPS} gives the unconditional Linnik bound $p\ll(N_D/(\beta-\alpha))^{A_0}$ for a prescribed positive-length angle interval $[\alpha,\beta]$, with an absolute effectively computable exponent $A_0>2$. Corollary~\ref{cor:least} replaces polynomial conductor dependence by polylogarithmic dependence for each fixed interval of positive CM measure.
+For comparison, \cite[Theorem 1.1]{CPS} gives the unconditional Linnik bound $p\ll(N_D/(\beta-\alpha))^{A_0}$ for a prescribed positive-length angle interval $[\alpha,\beta]$, with an absolute effectively computable exponent $A_0>2$. For the family $y^2=x^3+D$ and a fixed interval $I$ of positive CM measure, Corollary~\ref{cor:least} replaces polynomial conductor dependence by polylogarithmic dependence.
 
 \begin{remark}[Distinguishing two sextic twists]\label{rem:distinguish}
 The finite-order $7/8$ theorem of \cite[Theorem 1.1]{QRH78}, together with classical CM theory, implies the following separate consequence. If $E_D$ and $E_{D'}$ are not isogenous over $\Q$, then for every fixed $A>8$ some prime good for both satisfies
@@ -1219,7 +1240,7 @@ Here is the proof and its dependence. The primitive character
 $\xi=\eta_D\eta_{D'}^{-1}=\psi_D\psi_{D'}^{-1}$
 has finite order $h\mid6$ and conductor dividing $\mathfrak f_D\mathfrak f_{D'}$.
 Deuring's isogeny correspondence \cite[Theorem 4.5]{Zhang} shows that $\xi=1$ would make the curves isogenous over $\Q$; their positive-type characters cannot be interchanged with a conjugate of type $(0,1)$. Thus $2\le h\le6$.
-Put $L=\log(N_DN_{D'}+3)$ and remove primes over $2,3$ and bad primes for either curve, at logarithmic cost $O(L)$. On the remaining prime ideals, character orthogonality gives
+Put $L=\log(N_DN_{D'}+3)$ and remove primes over $2,3$ and bad primes for either curve. Every such bad rational prime divides $N_DN_{D'}$, so the logarithmic cost is at most $\log12+2\log(N_DN_{D'})=O(L)$. On the remaining prime ideals, character orthogonality gives
 \[
  \ind_{\xi(\mathfrak p)\ne1}
    =1-\frac1h\sum_{j=0}^{h-1}\xi(\mathfrak p)^j.
@@ -1292,7 +1313,7 @@ $z=\eta(\mathfrak p)\N\mathfrak p^{-s}$.
 At a prime in $\mathcal P_\eta$ the displayed factor cancels the newly restored primitive-square Euler factor; at primes where both characters are ramified all factors are $1$.
 Thus \eqref{eq:Liouville} follows for $\Rea s>1$ by Euler products and everywhere by meromorphic continuation.
 For $\Rea s>1/2$ its numerator is nonzero by absolute Euler convergence, every finite factor is nonzero, and the denominator is entire. The meromorphic twist has no zeros there and can have poles at denominator zeros.
-The obstruction exemplified by $\lambda_K$ itself is the zero-frequency scalar situation.
+For $\lambda_K$ the zero at $s=1$ comes from the pole of $\zeta_K(s)$; for nonzero angular type the denominator $L_K(s,\eta)$ is entire, which is why the preceding argument applies.
 
 An integer circle frequency supplies both a multiplicative angular character and a pure derivative of integral order. The Euler product identifies the M\"obius Mellin transform with the reciprocal of the Hecke function.
 
