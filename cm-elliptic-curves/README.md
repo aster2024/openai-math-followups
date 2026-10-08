@@ -2,7 +2,7 @@
 
 Jizhou Guo — mitsuha2021b@gmail.com — 8 October 2026
 
-[**Paper (PDF, 35 pages)**](paper.pdf) · [LaTeX source](source/) · [Checks of explicit identities](anc/)
+[**Paper (PDF, 36 pages)**](paper.pdf) · [LaTeX source](source/) · [Checks of explicit identities](anc/)
 
 ## Results
 
@@ -61,12 +61,23 @@ the Mellin reflection in an arbitrary positive mode, and carries the angular fac
 square, the two Poisson transformations, the cube inversion and the descent; all steps involving the angular type
 are derived in the paper.
 
+## Related work
+
+Brandon Yates, [*Zero-free half-planes for Hecke L-functions of nonzero infinity type over Q(√−3)*](https://doi.org/10.5281/zenodo.23207672)
+(Zenodo, version 1 of 7 October 2026, version 2 of 8 October 2026), proves, assuming that the argument of OpenAI's
+11/12 paper is correct, the half-plane Re s > 11/12 for every unitary Hecke character of Q(√−3) of nonzero infinity
+type, the half-plane Re s > 17/12 for every elliptic curve over Q with complex multiplication by an order of Q(√−3)
+(j = 0, 54000, −12288000), and the corresponding statements for CM newforms and for symmetric powers; its proof also
+raises the order of the cusp derivative of the cubic theta function to |k| + 1. That note precedes this paper, which
+was prepared independently of it: Theorems A and B and the CM-newform statement above are stated there. The
+sector, Sato–Tate and least-prime estimates are not.
+
 A draft dated 8 October 2026 in the repository
 [Rogerhu12/openai-math-extensions](https://github.com/Rogerhu12/openai-math-extensions/blob/a4a1eb9e45b38d50c39afb9c35f582e8786ce262/papers/029-artin-primitive-roots/hecke_seven_eighths_all_characters.pdf),
 *A seven-eighths theorem for Hecke characters over arbitrary number fields*, states the half-plane Re s > 7/8 for every
 unitary Hecke character, of finite or infinite order, over every number field, under a source hypothesis on the
 constructions and analytic arguments of the two OpenAI papers; it passes from a field F to F(ζ₁₂) and works with
-finite-order twists of one fixed character. The present paper treats Q(√−3) directly from the 11/12 paper, obtaining
+finite-order twists of a fixed character and of its conjugate. The present paper treats Q(√−3) directly from the 11/12 paper, obtaining
 the angular modes from jets of the cubic theta function.
 
 ## Files

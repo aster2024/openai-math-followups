@@ -157,6 +157,15 @@ Mark Watkins.
   th{\'e}orie des nombres}, pages 119--135, 2011.
 \newblock Section 5.3.
 
+\bibitem{Yates}
+Brandon Yates.
+\newblock Zero-free half-planes for {H}ecke {$L$}-functions of nonzero infinity
+  type over {$\mathbb{Q}(\sqrt{-3})$}.
+\newblock
+  \href{https://doi.org/10.5281/zenodo.23207672}{doi:10.5281/zenodo.23207672},
+  October 2026.
+\newblock Zenodo; version 1 of 7 October 2026, version 2 of 8 October 2026.
+
 \bibitem{Zhang}
 Shou-Wu Zhang.
 \newblock Elliptic curves, {$L$}-functions, and {CM}-points.
