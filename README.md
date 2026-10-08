@@ -98,6 +98,10 @@ the snapshot of 8 October 2026 is `swh:1:snp:b1621de1100454c3ee01cb5132e7508e92c
 Results of the OpenAI release are cited in each paper by manuscript, pinned to the commit of
 [github.com/openai/math](https://github.com/openai/math) at which they were read.
 
+## Licence
+
+The papers and text are under CC BY 4.0 (see [`LICENSE-papers.md`](LICENSE-papers.md)); the programs and Lean files in the `anc/` directories are under the MIT licence (see [`LICENSE`](LICENSE)).
+
 ## Use of AI
 
 AI systems, including GPT-6 Astra, GPT-6.1 Sol and Claude Opus 5.5, were used in developing the proofs and preparing the manuscripts.
