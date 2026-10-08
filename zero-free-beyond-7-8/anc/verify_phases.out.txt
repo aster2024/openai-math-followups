@@ -1,0 +1,76 @@
+PASS physical replacement (1, 0),Q=7
+PASS principal cancellation (1, 0),Q=7
+PASS physical replacement (1, 0),Q=13
+PASS principal cancellation (1, 0),Q=13
+PASS physical replacement (-1, 0),Q=7
+PASS principal cancellation (-1, 0),Q=7
+PASS physical replacement (-1, 0),Q=13
+PASS principal cancellation (-1, 0),Q=13
+PASS physical replacement (0, 1),Q=7
+PASS principal cancellation (0, 1),Q=7
+PASS missing conjugation rejected (0, 1),Q=7
+PASS physical replacement (0, 1),Q=13
+PASS principal cancellation (0, 1),Q=13
+PASS missing conjugation rejected (0, 1),Q=13
+PASS physical replacement (0, -1),Q=7
+PASS principal cancellation (0, -1),Q=7
+PASS missing conjugation rejected (0, -1),Q=7
+PASS physical replacement (0, -1),Q=13
+PASS principal cancellation (0, -1),Q=13
+PASS missing conjugation rejected (0, -1),Q=13
+PASS six-case replacement Q=7,eta=(1, 0),j=0
+PASS six-case replacement Q=7,eta=(1, 0),j=1
+PASS six-case replacement Q=7,eta=(1, 0),j=2
+PASS strict ramified term retained Q=7,eta=(1, 0),j=2
+PASS six-case replacement Q=7,eta=(1, 0),j=3
+PASS strict ramified term retained Q=7,eta=(1, 0),j=3
+PASS six-case replacement Q=7,eta=(1, 0),j=4
+PASS strict ramified term retained Q=7,eta=(1, 0),j=4
+PASS six-case replacement Q=7,eta=(1, 0),j=5
+PASS strict ramified term retained Q=7,eta=(1, 0),j=5
+PASS six-case replacement Q=7,eta=(-1, 0),j=0
+PASS six-case replacement Q=7,eta=(-1, 0),j=1
+PASS six-case replacement Q=7,eta=(-1, 0),j=2
+PASS strict ramified term retained Q=7,eta=(-1, 0),j=2
+PASS six-case replacement Q=7,eta=(-1, 0),j=3
+PASS strict ramified term retained Q=7,eta=(-1, 0),j=3
+PASS six-case replacement Q=7,eta=(-1, 0),j=4
+PASS strict ramified term retained Q=7,eta=(-1, 0),j=4
+PASS six-case replacement Q=7,eta=(-1, 0),j=5
+PASS strict ramified term retained Q=7,eta=(-1, 0),j=5
+PASS six-case replacement Q=13,eta=(1, 0),j=0
+PASS six-case replacement Q=13,eta=(1, 0),j=1
+PASS six-case replacement Q=13,eta=(1, 0),j=2
+PASS strict ramified term retained Q=13,eta=(1, 0),j=2
+PASS six-case replacement Q=13,eta=(1, 0),j=3
+PASS strict ramified term retained Q=13,eta=(1, 0),j=3
+PASS six-case replacement Q=13,eta=(1, 0),j=4
+PASS strict ramified term retained Q=13,eta=(1, 0),j=4
+PASS six-case replacement Q=13,eta=(1, 0),j=5
+PASS strict ramified term retained Q=13,eta=(1, 0),j=5
+PASS six-case replacement Q=13,eta=(-1, 0),j=0
+PASS six-case replacement Q=13,eta=(-1, 0),j=1
+PASS six-case replacement Q=13,eta=(-1, 0),j=2
+PASS strict ramified term retained Q=13,eta=(-1, 0),j=2
+PASS six-case replacement Q=13,eta=(-1, 0),j=3
+PASS strict ramified term retained Q=13,eta=(-1, 0),j=3
+PASS six-case replacement Q=13,eta=(-1, 0),j=4
+PASS strict ramified term retained Q=13,eta=(-1, 0),j=4
+PASS six-case replacement Q=13,eta=(-1, 0),j=5
+PASS strict ramified term retained Q=13,eta=(-1, 0),j=5
+PASS amplifier unique split n=[],a=[]
+PASS amplifier unique split n=[],a=[2]
+PASS amplifier unique split n=[],a=[2, 3]
+PASS amplifier unique split n=[2],a=[]
+PASS amplifier unique split n=[2],a=[2]
+PASS amplifier unique split n=[2],a=[2, 3]
+PASS amplifier unique split n=[3],a=[]
+PASS amplifier unique split n=[3],a=[2]
+PASS amplifier unique split n=[3],a=[2, 3]
+PASS amplifier unique split n=[2, 3],a=[]
+PASS amplifier unique split n=[2, 3],a=[2]
+PASS amplifier unique split n=[2, 3],a=[2, 3]
+PASS amplifier unique split n=[2, 5],a=[]
+PASS amplifier unique split n=[2, 5],a=[2]
+PASS amplifier unique split n=[2, 5],a=[2, 3]
+Exact phase and zero-preserving divisor checks passed.

@@ -1,0 +1,68 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{booktabs,longtable,array}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+ pdftitle={A zero-free half-plane beyond seven eighths for Dirichlet L-functions and finite-order Hecke L-functions over Q(sqrt(-3))},pdfauthor={Jizhou Guo}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\OO}{\mathcal O}
+\newcommand{\F}{{F_0}}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\newcommand{\N}{\operatorname{N}}
+\newcommand{\rad}{\operatorname{rad}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\sfv}{\mathrm{sf}}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\p}{\mathfrak p}
+\newcommand{\bset}{\mathcal B}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\He}{\mathcal H}
+\newcommand{\src}[1]{\cite[\textnormal{#1}]{openai2026q}}
+\newcommand{\pos}[1]{\left(#1\right)_+}
+\allowdisplaybreaks[2]
+\setlength{\emergencystretch}{2em}
+\title{A zero-free half-plane beyond seven eighths\protect\\for Dirichlet $L$-functions and finite-order\protect\\Hecke $L$-functions over $\Q(\sqrt{-3})$}
+\author{Jizhou Guo\\Dots Studio, Rednote\\\texttt{mitsuha2021b@gmail.com}}
+\date{8 October 2026}
+\begin{document}
+\maketitle
+\input{sections/01_introduction.tex}
+\input{sections/02_inputs.tex}
+\input{sections/03_low.tex}
+\input{sections/04_euler.tex}
+\input{sections/05_count.tex}
+\input{sections/06_geometry.tex}
+\input{sections/07_rational.tex}
+\input{sections/08_quadratic.tex}
+\input{sections/09_fourth.tex}
+\input{sections/10_cubic.tex}
+\input{sections/11_limits.tex}
+\appendix
+\input{sections/12_partii.tex}
+\input{sections/13_inputs_table.tex}
+\begingroup\raggedright
+\bibliographystyle{unsrt}
+\bibliography{references}
+\endgroup
+\section*{Use of AI}
+AI systems, including GPT-6 Astra, GPT-6.1 Sol and Claude Opus 5.5, were used in developing the proofs and preparing the manuscript.
+The author takes responsibility for the content.
+\end{document}

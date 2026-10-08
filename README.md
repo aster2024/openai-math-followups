@@ -23,9 +23,9 @@ Part II gives consequences of the zero-free half-plane Re s > 7/8 for Dirichlet 
 in the binary Goldbach problem, the least prime in an arithmetic progression, least non-residues, and least
 primitive roots.
 
-### `zero-free-beyond-7-8/` — A zero-free half-plane beyond 7/8
+### [`zero-free-beyond-7-8/`](zero-free-beyond-7-8/) — A zero-free half-plane beyond 7/8
 
-Statement, 8 October 2026 (the 42-page paper is added to this directory in the next commit).
+Paper (44 pages), 8 October 2026: [PDF](zero-free-beyond-7-8/paper.pdf). Exact-arithmetic certificates are in [`zero-free-beyond-7-8/anc/`](zero-free-beyond-7-8/anc/).
 
 The Riemann zeta function, every Dirichlet L-function, and every finite-order Hecke L-function over Q(√−3) have no
 zeros with Re s > σ†, where σ† = 0.8749570194… is the root in (0.8749570194, 0.8749570195) of

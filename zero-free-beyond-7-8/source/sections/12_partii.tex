@@ -1,0 +1,99 @@
+\section{Auxiliary results independent of the Part II supposition}\label{app:partii}
+The first paragraph of \src{Part II, p.85} supposes $\beta^*>7/8$ and defines its dynamic parameter $\kappa=2\beta^*-1$. Our uses of its auxiliary results require versions with this supposition removed. The following proposition specifies those versions and proves the removal by their mathematical dependencies.
+
+\begin{proposition}\label{prop:partii}
+The local statements in the following list remain valid with their original coefficient classes, zero extensions, bounded parameter ranges, masks, and uniformity, without the standing supposition $\beta^*>7/8$:
+\[
+\begin{gathered}
+ \text{Lemmas 13.1--13.4; Corollary 14.1; Lemmas 14.2--14.3;}\\
+ \text{Proposition 15.2; Proposition 16.1;}\\
+ \text{Lemmas 17.1--17.3; Corollary 17.4; Lemmas 17.5--17.6;}\\
+ \text{Lemma 18.1 in its printed range, Lemmas 18.2--18.3; Lemma 19.1.}
+\end{gathered}
+\]
+For positive slots, Lemma~18.1 retains its explicit premise $\beta^*\le(1+\kappa)/2$ when $\kappa<1$. Proposition~16.1 retains the explicit primitive conjugate-numerator bound \eqref{eq:correctnumerator}. Lemma~19.1 retains its buffered and cumulative-frequency hypotheses. All other results in this list need no assertion about the location of Hecke zeros.
+\end{proposition}
+\begin{proof}
+\emph{Finite correlations and marked reflection.}
+Lemma~13.1 is the prime ideal asymptotic in a fixed ray quotient, with a fixed annular test and fixed finite deletions. Its proof uses the prime ideal theorem in a fixed Frobenius class \src{\S13.2} and Stieltjes integration by parts; neither the quotient nor the deletion set moves with the prime scale. Its proof does not use the family supremum.
+Lemma~13.2 evaluates prime-power Fourier sums. Lemma~13.3 is finite Fourier inversion of two complete Gauss sums, retaining their common factors and the original principal zero convention. Lemma~13.4 is its CRT factorization after the complete shared prime support is extracted; the residual factors are genuinely coprime there. These are finite identities. They apply to the whole products and exact masks retained in Sections~\ref{sec:low} and \ref{sec:fourth}.
+
+Corollary~14.1 applies the Part~I completed cubic reflection, \src{Proposition 5.1}, to the product-form whole-index mark. Its conditions are a fixed finite ray family, disjoint fixed prime lists, coefficients independent of the row and fourth-power label, and the original puncture. Expand each local $1-\chi_\p^0$. The inactive coefficient difference is $q_\p^{-1}$, an active mark has exponent zero, and the row exponent is one. CRT gives the row-slot cubic exponent $1+0+2=3$, whose phase is one. The remaining two zero-preserving symbols are those of \src{(14.16)}. This reasoning contains no reciprocal of a Hecke function and no geometry.
+
+Lemma~14.2 uses the squarefree indices $k,n,P$, positive norm scales $K,N,B,L\ge1$, and two coefficient-independence conditions: $a(P)$ is independent of $k,n,b$ and $\beta(n,b)$ is independent of $k,P$. The indices $k,P$ avoid $S$; the source $n,b$ may contain primes of $S$ other than $\lambda$. Expand the full $(P,k)$ mask, write $P=DP'$, $k=Dk'$, and freeze the other divisor and row labels before applying the quadratic reduction \src{(5.27)} and the cubic norm \src{(14.6)}. In the cubic step the squarefree column $j=c'm=n/r$ may contain primes of $S$ other than $\lambda$; \src{p.96} passes it to \src{(14.6)} after cubic reciprocity and conjugation, since (14.6) excludes no primes. Its output is
+\[
+ (K+NB)B\{N+L+(NL)^{2/3}\},
+\]
+up to small powers. The residual divisor factors only improve this expression. There is no zero-location premise.
+
+Lemma~14.3 combines these two facts with the common kernel and lattice tails of \src{Lemmas 5.3--5.4}. It is applied on actual residual-row dyads, with bounded lengths, fixed characters and punctures, disjoint product-form slots, and row restrictions independent of active slots and dual variables except for their explicit coprimality mask. The exact joint kernel is \src{(14.15)}, including every dual and slot norm. Its squared scalar saving is $(T_d-v-3\ell_b-e_\lambda)_+/2$. The hybrid norm gives \eqref{eq:Eref}; summing the fixed powerful and supported row parts adds $O/2$ once. The kernel contours are those of the completed theta reflection, not reciprocal Hecke contours. Thus neither the standing supposition nor the geometry \src{(12.4)} enters this proof.
+
+\emph{The additive norm and local errors.}
+Proposition~15.2 assumes fixed $S,T,b_{\rm aux},\xi,W_1,c_T$, polynomial $Q,Y'\ge1$, $P_a=Y'^2/Q\ge1$, a fixed row ball, and precisely its finite ray-coefficient class. Expanding its square and applying Lemma~13.3 gives the full common-factor correlation. Freeze the fixed ray parts before periodicizing the joint coefficient. On nonexceptional frequencies a nontrivial good-prime character has zero complete mean. Four-dimensional lattice Poisson gives the bound in \src{(15.5)}, and summing the exact divisor and row counts yields $(Q/Y')(P_a^2/Y')$. Exceptional frequencies have $(k)=a_1^6e$, with $e$ supported on the extracted factor and fixed set; elementary counting gives $(Q/Y')P_a^{1/6}$. The zero frequency is the original diagonal and contributes $Q/Y'$. These are exactly the three terms in \src{(15.4)}. No use is made of the geometry-dependent Proposition~15.3.
+
+Proposition~16.1 assumes its displayed real strip, sixth-power-free physical rows outside $S$, nonprincipal primitive numerator, nonzero central selected local factors, and \eqref{eq:correctnumerator}. Its proof uses the six-case table \eqref{eq:localtable} and one conductor allocation to the entire set of strict ramified primes. The functional-equation conductor exponent is $a-1/2+6e$; its validity requires $51/100\le a\le1$, not $a>7/8$. Section~\ref{sec:geometry} establishes its explicit conjugate premise by the common buffer. Lemma~\ref{lem:cutoff} supplies its cutoff without a target-dependent choice. The separate principal-factor paragraph \src{(16.12)--(16.14)} is excluded; Proposition~\ref{prop:correction} proves its replacement on $\mathcal D'_2$.
+
+\emph{Finite propagation and masked Poisson.}
+Lemma~17.3 and Corollary~17.4 are finite backward propagation on an acyclic graph. Their hypotheses are fixed real terminal and edge exponents, finite weighted moments of one common coefficient measure, fixed-dimensional smooth profile bounds, and fixed linear height maps. Normalizing by the prescribed norm exponent makes every label measure have bounded small-power mass. Backward induction raises finite seminorm and height orders but leaves the real norm powers fixed. All these statements concern nonnegative integrals and finite graph depth; no zero-location assertion occurs.
+
+Lemma~17.5 is masked primitive Poisson. With a primitive finite character $\psi$ modulo $\mathfrak m$, an ideal $R$, a radial Schwartz test, and $K>0$, its formula is
+\[
+ \sum_k\psi(k)\1_{(k,R)=1}\Phi(q_k/K)
+ =\frac{K\gamma(\psi;\mathfrak m)}{\sqrt{q_{\mathfrak m}}}
+   \sum_{d\mid\rad R}\frac{\mu(d)\psi(d)}{q_d}
+   \sum_h\overline{\psi(h)}
+          \mathcal F\Phi\!\left(\frac{Kq_h}{q_dq_{\mathfrak m}}\right).
+\]
+Expand the complete mask, substitute $k=dk'$, and use finite Fourier inversion modulo $\mathfrak m$. The finite transform is $\sqrt{q_{\mathfrak m}}\gamma(\psi;\mathfrak m)\overline{\psi(h)}$. Primitivity kills nonunit frequencies; Parseval gives $|\gamma|=1$ for a nonprincipal primitive character. For the primitive principal modulus use $\mathfrak m=1$, $\gamma=1$, and value one at zero. At each use here the row scale is at least one. Its principal nonzero-frequency restoration costs $O(KZ^\eps)$ by lattice counting and Schwartz decay, with the complete outer mask retained. This is a finite-arithmetic and lattice statement.
+
+\emph{Canonical marked estimate and its initialization.}
+For precision the canonical family of Lemma~17.2 has fixed puncture $\rho(n)=\1_{(n,r_\rho)=1}$, fixed finite-ray $\nu$, disjoint product-form prime mark $d(n)$ of total length at most $z_0$, and squarefree labels $q_f\asymp Z^V$ with a nonnegative divisor-bounded weight $w(f)$ depending only on $f$. Put $E=N+V$. Its two local premises are
+\[
+ q_{r_\rho}\le Z^{E-M-z_0-c_*},\qquad
+ 3M+6z_0+c_*\le4E,\qquad c_*>0.
+\]
+The normalized family is
+\[
+ Z^{-V}\sum_f w(f)\sum_{0<q_k\ll Z^M}
+ \left|Z^{-N/2}\sum_{n\ \sfv}
+       \overline{\alpha(n)}\gamma_2(n)\nu(n)\rho(n)
+       \chi_n(k)\chi_n(f)^4d(n)W(q_n/Z^N)\right|^2.
+\]
+No additional arbitrary column coefficient is allowed.
+
+Its terminal proof uses the exact cube-Möbius completion \src{(17.10)} and the assumption-free Lemma~14.3. The node invariants are
+\[
+ E-M-Q-z_0\ge c_{\rm node},\qquad4E-3M-6z_0\ge c_{\rm node},
+ \quad Q=\log_Zq_{r_\rho}.
+\]
+For step $d\le c_*/200$, $c_{\rm node}\ge c_*/2$, and support and local losses at most $c_*/1000$, the three reflected branches \src{(17.13)--(17.14)} are strictly below $E$:
+\[
+ E-c_{\rm node}+5\eta/3,\quad
+ E-2c_{\rm node}+5d+17\eta/3+\tau_{\rm ref},\quad
+ E-M/4-3c_{\rm node}/4+5d/2+19\eta/6+\tau_{\rm ref}/2.
+\]
+The complete weight in the $f$-sum cancels its outside $Z^{-V}$; no extra label count is inserted into the hybrid norm.
+
+The remaining canonical terms are reduced by the two finite masked Poisson transforms \src{(17.15)--(17.65)}. Priority slot allocation is an exact partition even at shared primes. The first transform is used on genuine coprime columns, its raw tail is removed before full mutual-gcd Möbius extension, and its kernel is one joint profile with all norm roots retained. The old $f$ label is removed once by the divisor-fiber count \src{(17.32)}. The second transform reconstructs a canonical squarefree label $f_{\rm new}=JCd_2v'$; its squarefreeness follows from the retained coefficient zeros, not a new mask. Its puncture is fixed within that child, independent of its varying row and label. The child margins in \src{(17.51)} lose at most $5\eta$ and $7\eta$, and its row width drops at least $2d-8\eta$. The exact normalization \src{(17.64)} is
+\[
+ \kappa_i+\lambda_c+C_c+2F_c=E,
+\]
+where $\kappa_i$ is a normalization exponent, not a moment parameter. With $\eta\le d/16$, the per-edge loss is $40\eta+\tau+\pi$. Choose the finite depth and then $\eta,\tau,\pi$ so that the sum of these losses is below the requested $\eps$, as in \src{(17.66)}. All raw tail orders are chosen after the crude count, and the finite propagation rule fixes internal orders before an external cutoff. These invariants and transformations contain neither $\beta^*$ nor a dynamic-bin inequality.
+
+Lemma~17.1 follows by its single masked-Poisson initialization \src{(17.67)--(17.86)}. The exact overlap split is $n=jn_0$, $P=jP_0$; the scalar $Z^{-G}$ pays the assigned prime count. The resulting canonical label is squarefree and its full puncture remains within its local premise. For prescribed inverse margins $c_1,c_2>0$, the child margins are at least $c_1-9\eta-\tau_{\rm init}$ and $c_2-22\eta-3\tau_{\rm init}$, so $c_*=\min(c_1,c_2)/2$ is allowed after small losses. The energy on each side is $m+11\eta+\pi_{\rm init}+\eps_c$. Cauchy averages rather than doubles these costs. This derives the marked inverse estimate under its stated strict margins with no family-boundary input.
+
+Finally \src{(17.87)--(17.90)} use its zero-slot specialization, scale Sobolev, and the exact zero-preserving divisor identity. On sixth-power-free rows the map $(u,a)\mapsto ua^6$ is injective. This proves Lemma~17.6 under its printed $H=\max(2U,D^{1+c})$ and bounded profile ranges, again without a zero-location hypothesis.
+
+\emph{The fourth moment and prime amplitudes.}
+For Lemma~18.1, simultaneous mask deletion and primitive reflection \src{(18.4)--(18.10)} use only the general smooth calculus, functional equation, and deleted-factor estimates. Its sole zero-location input is \src{(18.11)} on $s_\kappa=(1+\kappa)/2\ge\beta^*$. It is absent for zero slots and replaced by absolute prime counting at $\kappa=1$. The terminal widths, same-band comparison, two complete finite transforms, paired clipping, and exceptional cancellation \src{(18.13)--(18.50)} use only the local length inequalities and $\kappa$. The finite-depth choices \src{(18.51)--(18.52)} close the estimates. Section~\ref{sec:fourth} rederives every inequality affected by extending that parameter below $3/4$.
+
+Lemma~18.2 is preservation of the complete common coefficient under those transforms and full Möbius allocations; Lemma~18.3 is lattice Poisson with one fixed character, one common polynomial-norm squarefree mask, one norm power per side, and the four original formal scales. Their equal-product leading terms cancel, and their absolute-volume fallback is valid at every positive scale. These results have no zero-location premise.
+
+Lemma~19.1 is a buffered prime-annulus consequence of Part~I Lemma~8.2 and Lemma~4.9. The prime-annulus frequency is within the same cumulative allowance, and the main slot retains its original identity-ray restriction and zero extension. Its logarithmic derivative is controlled only on that buffer; its exterior tails stay on the absolute line. Thus its only analytic premise is the stated buffer, not the standing contradiction.
+
+This establishes each item of the list with exactly the retained local hypotheses.
+\end{proof}
+
+The fixed-geometry conclusion of \src{Proposition 15.3}, the positive-gap capacity replacement in \src{Proposition 19.2}, and \src{Proposition 20.3} are not inputs here. Nor are the fixed-boundary conclusions of \src{Lemmas 10.3--10.6} or \src{Lemma 16.2} used outside their printed ranges. Their needed parameter-dependent estimates were derived in Sections~\ref{sec:low}--\ref{sec:cubic}. The pure identity in \src{Lemma 20.2} was reproduced in \eqref{eq:oldpoly}--\eqref{eq:oldsquare}.
+
+The paragraph \emph{The principal local factor} of \src{\S16.2}, namely \src{(16.12)--(16.14)}, is not an input either: it is stated on the second Euler region \src{(7.15)} ($\Rea s\ge7/8$) and is replaced by Proposition~\ref{prop:correction} on $\mathcal D'_2$.

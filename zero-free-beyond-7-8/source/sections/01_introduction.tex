@@ -1,0 +1,36 @@
+\begin{abstract}
+Using the written statements of OpenAI's \emph{The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $\Rea s>7/8$} (30 September 2026) as input, we refine its compensated-probe argument. Every Dirichlet $L$-function, every finite-order Hecke $L$-function over $\Q(\sqrt{-3})$, and the Riemann zeta function have no zeros in $\Rea s>\sigma_\dagger$, where $\sigma_\dagger=0.8749570194\ldots$ is the root in $(0.8749570194,0.8749570195)$ of $7884s^3-18819s^2+14643s-3686$. In particular, $\Rea s>43747851/50000000$ is zero-free; principal poles at $s=1$ are allowed. Optimising the skew parameter gives the quadratic endpoint $(1507-2\sqrt{921})/1653$. Extending the plain fourth-moment range from $[3/4,1]$ to $[37/50,1]$ gives the cubic endpoint $\sigma_\dagger$. Exact algebraic certificates are included as ancillary files. One mean-value hypothesis, stated in Section~\ref{sec:limits} and not proved here, would give the boundary $328/375$.
+\end{abstract}
+
+\section{Introduction}
+OpenAI's paper \cite{openai2026q} proves a common zero-free half-plane for the finite-order Hecke family over the Eisenstein field and transfers it to all Dirichlet $L$-functions. Its completed cubic reflection, compensated probe, marked inverse moment, and plain fourth moment provide the analytic structure used here. We retain that structure and enlarge its geometric and moment parameters.
+
+Taking the written statements of \cite{openai2026q} as input, with the hypotheses specified below, we prove:
+
+\begin{theorem}\label{thm:main}
+Let $\sigma_\dagger$ be the unique root in
+\[
+ \frac{8749570194}{10^{10}}<\sigma_\dagger<\frac{8749570195}{10^{10}}
+\]
+of
+\begin{equation}\label{eq:G}
+ G(s)=7884s^3-18819s^2+14643s-3686.
+\end{equation}
+Every finite-order Hecke $L$-function over $\F=\Q(\sqrt{-3})$ and every Dirichlet $L$-function, of every modulus, have no zeros in $\Rea s>\sigma_\dagger$. This includes $\zeta(s)$. The pole of a principal character at $s=1$ is allowed.
+\end{theorem}
+
+\begin{corollary}\label{cor:main}
+The same functions have no zeros in
+\[
+ \Rea s>\frac{43747851}{50000000}
+ =\frac78-\frac{2149}{50000000}.
+\]
+\end{corollary}
+
+The boundary $20999/24000=7/8-1/24000$ of Theorem~\ref{thm:rational2} was obtained independently by Z.~Gao in a draft dated 7 October 2026 \cite{gao2026}, with the same parameters $\ell=1001/6000$ and $b=1/8$. Gao also identifies the fixed-skew envelope's limiting boundary as approximately $0.8749572006$. Here we optimise the skew parameter $b$, obtaining the endpoint $\sigma_*=(1507-2\sqrt{921})/1653$ in Theorem~\ref{thm:quadratic}, and extend the plain fourth-moment range to $37/50\le\kappa\le1$, obtaining $\sigma_\dagger$ in Theorem~\ref{thm:cubic}.
+
+The input is OpenAI's paper \cite{openai2026q}, dated 30 September 2026; references to that paper use repository \nolinkurl{openai/math} at commit \nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}. Its final theorems---the $7/8$ half-plane for $\zeta$, all Dirichlet $L$-functions and all finite-order Hecke $L$-functions over $\Q(\sqrt{-3})$---are covered by the Lean formalization described in \cite{openai2026lean}, with principal poles excluded. Nothing in the present paper is formalized, and the intermediate statements of \cite{openai2026q} used here are taken as written, with their hypotheses listed in Appendix~\ref{app:inputs}. In particular, its Theorem~1.1 supplies $\beta^*\le7/8$. Part~II of \cite{openai2026q} is written under the standing supposition $\beta^*>7/8$; Appendix~\ref{app:partii} proves that the auxiliary results used here do not depend on that supposition, retaining their local hypotheses. We change the geometry of the compensated probe and re-derive the completed norm and low estimate, Euler-factor domain, row count, contours and heights that depend on it. Theorem~\ref{thm:fourth} extends the plain fourth-moment estimate of \src{Lemma 18.1}, and the subsequent parameter optimisation gives an improvement of $4.298\ldots\times10^{-5}$ over $7/8$ within OpenAI's method.
+
+Each stage is a separate theorem: the geometric criterion (Theorem~\ref{thm:geometry}), the general row count (Theorem~\ref{thm:count}), the rational stages (Theorems~\ref{thm:rational1} and \ref{thm:rational2}), the quadratic boundary (Theorem~\ref{thm:quadratic}), the extended fourth moment (Theorem~\ref{thm:fourth}), and the cubic boundary (Theorem~\ref{thm:cubic}). Section~\ref{sec:limits} states the limit of the specified envelope model and states one unproved mean-value hypothesis under which the method would give $328/375$.
+
+All half-planes in this paper are strict. Their boundaries are common to the entire character family. Constants, smooth orders, excluded prime sets, and lower thresholds for a fixed target may depend on that target.

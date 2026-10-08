@@ -1,0 +1,174 @@
+\section{Self-consistency and the cubic endpoint}\label{sec:cubic}
+\begin{theorem}[Self-consistent geometric criterion]\label{thm:bootstrap}
+Use \eqref{eq:geobox}--\eqref{eq:geometry}, and set
+\[
+ \kappa_b=2\sigma_g-1=5/6-\ell/2,\qquad c_b=1/(3\kappa_b).
+\]
+Define $E_b$ by \eqref{eq:endpoint}, replacing $T$ with $T_{\kappa_b}$ from \eqref{eq:balanced}. If $E_b\le0$ on $[0,3/4]\times[0,1/2]$, then the entire Hecke and Dirichlet families are zero-free in $\Rea s>\sigma_g$.
+\end{theorem}
+\begin{proof}
+The box gives $449/600\le\kappa_b\le3/4$. Suppose $\Delta=\beta^*-\sigma_g>0$. The actual parameter used in Theorem~\ref{thm:fourth} is
+\begin{equation}\label{eq:actualkappa}
+ \kappa_a=2\beta^*-1=\kappa_b+2\Delta\in(\kappa_b,3/4].
+\end{equation}
+Its zero-free premise holds by equality. The baseline $\kappa_b$ is only an algebraic comparison parameter; no moment is invoked with it under this supposition.
+
+Choose the branch and $t$ by the baseline crossing \eqref{eq:crossing}. On the inverse branch the count is unchanged. On the plain branch the plain-witness length satisfies $m\ge1/3-O(\eps)$, and replacing the baseline capacity by the actual admissible capacity increases the exponent by
+\begin{align}
+ 2q(1-2m)\left(\frac1{6\kappa_b}-\frac1{6\kappa_a}\right)
+ &=\frac{(2q)(1-2m)\Delta}{3\kappa_b\kappa_a}\notag\\
+ &\le\frac{\Delta}{9\kappa_b\kappa_a}+O(\eps)
+ <\Delta/4+O(\eps).\label{eq:capacitypenalty}
+\end{align}
+Here $2q\le1$ and $9(37/50)^2=12321/2500>4$. Near zero capacities use the unselected fallback from Theorem~\ref{thm:count}; all losses remain arbitrary small powers. Thus the actual count is bounded by $R_{\kappa_b}+\Delta/4+\eps$.
+
+At $d=h$, the exponent relative to the true signal is at most
+\begin{equation}\label{eq:actualgap}
+ E_b+h\Delta/4-\Delta\le-(1-h/4)\Delta
+                         \le-159\Delta/200.
+\end{equation}
+The floor, intermediate, small, and principal estimates of Theorem~\ref{thm:geometry} are unchanged, since they were proved on the entire geometry box. Take
+\[
+ \lambda_0=\min\{159\Delta/200,1/2000\},\qquad
+ 0<\zeta_0<\min\{(5\ell-h)/4,(1-h)/4,\lambda_0/100\}.
+\]
+The actual slope in the selected range remains less than two, including \eqref{eq:capacitypenalty}; indeed $\Delta\le1/1200$, $T\le5/12$, and $\delta\le3/4$ give $R_{\kappa_b}+\Delta/4+\delta/2-z_0\le323/300+1/4800<2$. Its extension costs at most $2\zeta_0$. Use the uniform mesh of Theorem~\ref{thm:fourth}, then the even slot count, disjoint bumps, remaining real losses, $e$, and pretarget cutoff exactly in the order proved in Section~\ref{sec:geometry}. Only afterwards choose the target, internal orders, height, external order, and threshold. This gives positive common high saving, low loss $\Delta/2$, and the same nonvanishing $H_\eta$ and physical $J_\eta$. Proposition~\ref{prop:continuation} and the transfer prove the assertion.
+\end{proof}
+
+\begin{theorem}[Cubic stage]\label{thm:cubic}
+Let $\sigma_\dagger$ be as in Theorem~\ref{thm:main}. Every function there is zero-free in $\Rea s>\sigma_\dagger$.
+\end{theorem}
+\begin{proof}
+Define
+\begin{equation}\label{eq:F}
+ F(u)=1188u^3-2160u^2+171u+190
+\end{equation}
+Its values modulo $7$ at $u=0,\ldots,6$ are $1,5,3,4,3,2,3$. Since $7$ does not divide $1188$ and $F$ has no root modulo $7$, this cubic is irreducible modulo $7$, hence its primitive polynomial is irreducible over $\Q$, and the exact calculations below take place in the cubic field it defines.
+Let $d_\dagger$ be its root in
+\begin{equation}\label{eq:cubicisolation}
+ I=\left[\frac{3885833}{10^7},\frac{3885834}{10^7}\right].
+\end{equation}
+This root is in the interior and is unique there, since
+\begin{align*}
+ F(3885833/10^7)&=\frac{13153091803447489}{250000000000000000000}>0,\\
+ F(3885834/10^7)&=-\frac{1385634440463739}{31250000000000000000}<0,
+\end{align*}
+and on $(19/50,2/5)$
+\[
+ F'(u)=3564u^2-4320u+171
+ \le3564(2/5)^2-4320(19/50)+171=-22509/25<-900.
+\]
+Put $d=d_\dagger$ and define
+\begin{gather}\label{eq:cubicparameters}
+ \ell_\dagger=\frac{5-6d}{9+18d},\qquad
+ \sigma_\dagger=\frac{7+18d}{9+18d},\qquad
+ \kappa_b=\frac{5+18d}{9+18d},\qquad
+ c=\frac{3+6d}{5+18d},\\
+ b_\dagger=-\frac{8(216d^2+18d-13)}
+                  {3(2d+1)(792d^2-618d-203)}.\notag
+\end{gather}
+All denominators are nonzero on $I$; in particular
+$-324<792u^2-618u-203<-323$ and
+$-176<288u^2-318u-95<-175$ there.
+These formulas give $\sigma_\dagger=11/12-\ell_\dagger/4$ and $\kappa_b=2\sigma_\dagger-1$.
+
+Here is the derivation. At $x=1/2$, forcing $R_\kappa(d,1/2)=2/3$ removes the endpoint's coefficient of $b$. Setting that endpoint to zero gives $\ell=(5-6d)/(9+18d)$. Substitution of the self-consistency $\kappa=5/6-\ell/2$ gives the rational identity
+\begin{equation}\label{eq:Rcriticalidentity}
+ R_\kappa(u,1/2)-2/3
+       =-\frac{F(u)}{6(288u^2-318u-95)}.
+\end{equation}
+It can be checked without rational-function division: with
+$J_{\rm num}=(5/6-u)(19+78u)+u(7+30u)$, the polynomial identity is
+\[
+ 2J_{\rm num}(1/3-u)+(5/6-u)u(7+30u)=F(u)/18.
+\]
+With $c=(3+6u)/(5+18u)$ and $x=1/2$, the definitions give
+\[
+ J_\kappa=\frac{J_{\rm num}}{2(5+18u)},\qquad
+ J_{\rm num}=-\frac{288u^2-318u-95}{6}.
+\]
+Consequently,
+\[
+ R_\kappa(u,1/2)-2/3
+ =\frac{2J_{\rm num}(1/3-u)+(5/6-u)u(7+30u)}{2J_{\rm num}}
+ =\frac{F(u)}{36J_{\rm num}}.
+\]
+Finally, at fixed $\ell,c$, the stationary equation for the endpoint numerator is
+\[
+ (4752d^3-1332d^2-3072d-609)b+1728d^2+144d-104=0.
+\]
+The left side is $-(4/3)(2d+1)(18d+5)$ times $Q_0'(d)$, with $\ell=\ell_\dagger$ and $c=(3+6d)/(5+18d)$ held fixed in the derivative. Since its coefficient of $b$ is $3(2d+1)(792d^2-618d-203)$, its solution is precisely $b_\dagger$.
+
+We now certify the full rectangle. Let $y=1/2-x$ and $N=-108J_{\kappa_b}E_b$. With $\ell=\ell_\dagger$, $b=b_\dagger$,
+\begin{equation}\label{eq:cubicpoly}
+ N=Q_0(\delta)+yQ_1(\delta)+y^2Q_2(\delta)+y^3Q_3(\delta),
+ \qquad Q_0=A_0(\delta-d)^2,
+\end{equation}
+where $Q_1,Q_2,Q_3$ and $A_0$ are the general coefficients of Section~\ref{sec:coefficients} evaluated at these $\ell,b,c$.
+Equations~\eqref{eq:Rcriticalidentity} and the two parameter equations give $Q_0(d)=Q_0'(d)=0$, proving its squared form exactly in $\Q[d]/(F(d))$.
+
+The following are explicit rational interval certificates. In the table, the entry $(L,U)$ means $L/10^6<v<U/10^6$ (weak inequalities at these enlarged endpoints would also suffice). They follow by direct interval operations on the displayed rational functions over $I$: add endpoints, take the four endpoint products for multiplication, and take the reciprocal of a denominator interval excluding zero. No reduction by $F$ is needed for these bounds. The intervals for $\ell,b,c$ are computed directly from $I$ before rounding; the table rows are then rounded outward to $10^{-6}$. Using the rounded $\ell,b,c$ rows in the coefficient formulas gives wider intervals that still imply every inequality used below.
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+$v$&$L$&$U$\\
+\midrule
+$\ell$&166838&166839\\
+$b$&123405&123406\\
+$\kappa_b$&749913&749915\\
+$c$&444495&444496\\
+$A_0$&25586402&25586420\\
+$A_1$&65408233&65408261\\
+$A_2$&46902947&46902976\\
+$4A_1(C_1+1/4)-B_1^2$&3865168&3874292\\
+$4A_2/25-B_2^2$&3039850&3039951\\
+$Q_1'(3/10)$&7773263&7773309\\
+$Q_1(3/10)$&$-4279$&$-4241$\\
+$Q_1(1/3)$&327505&327545\\
+$(3/10)A_2+B_2$&11957919&11957951\\
+\bottomrule
+\end{tabular}
+\end{center}
+In particular \eqref{eq:geobox} holds and $37/50<\kappa_b<3/4$. The completed-square inequalities give $Q_1\ge-1/4$ and $Q_2\ge-1/25$. Also $A_0>25$, $d>777/2000$, and $Q_3\ge0$.
+
+For $0\le\delta\le3/10$,
+\[
+ Q_0>19/100,\qquad
+ N>19/100-(1/4)/2-(1/25)/4=11/200>0.
+\]
+For $3/10\le\delta\le1/3$, $Q_0>3/40$. The derivative guard and value at $3/10$ give $Q_1>-1/100$, and the last table entry gives $Q_2\ge0$. Hence
+\[
+ N>3/40-(1/100)/2=7/100>0.
+\]
+For $1/3\le\delta\le3/4$, $Q_1>0$, $Q_2,Q_3\ge0$, and $Q_0\ge0$, so $N\ge0$. Equality occurs only at $\delta=d,y=0$. Since $J_{\kappa_b}\ge215/333>0$, the entire endpoint rectangle has $E_b\le0$. Theorem~\ref{thm:bootstrap} applies using the actual \eqref{eq:actualkappa}, with its capacity loss paid by the global gap.
+
+It remains to identify the stated boundary exactly. The polynomial identity
+\begin{equation}\label{eq:elimination}
+ G\!\left(\frac{7+18u}{9+18u}\right)=\frac{108F(u)}{(9+18u)^3}
+\end{equation}
+gives $G(\sigma_\dagger)=0$. With $s_-=8749570194/10^{10}$ and $s_+=8749570195/10^{10}$,
+\[
+ G(s_-)=\frac{114217765008034223483}{31250000000000000000000000000}>0,
+\]
+\[
+ G(s_+)=-\frac{29059815501716960251}{2000000000000000000000000000}<0.
+\]
+On $[8749/10000,7/8]$,
+\[
+ G'(s)\le23652(7/8)^2-37638(8749/10000)+14643
+        =-1779237/10000<-170.
+\]
+The parameter interval above puts $\sigma_\dagger$ in that interval, so it is exactly the unique root in $(s_-,s_+)$. This proves Theorem~\ref{thm:main}.
+Since $s_+<43747851/50000000=7/8-2149/50000000$, Corollary~\ref{cor:main} follows.
+
+The cubic boundary is strictly smaller than the quadratic one. An integer-square certificate is
+\[
+ \left(\frac{3034798181098703}{10^{14}}\right)^2<921<
+ \left(\frac{3034798181098704}{10^{14}}\right)^2.
+\]
+Using the upper root endpoint and $s_+$ gives
+\[
+ \sigma_*-\sigma_\dagger>
+ \frac{27350173}{543750000000000}>\frac1{20000000}.
+\]
+\end{proof}

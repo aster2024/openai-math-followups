@@ -1,0 +1,38 @@
+\begin{thebibliography}{1}
+
+\bibitem{openai2026q}
+{OpenAI}.
+\newblock {The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane
+  {$\operatorname{Re}s>7/8$}}, September 2026.
+\newblock OpenAI Math Release preprint, 30 September 2026, 199 pages.
+  Repository \url{https://github.com/openai/math}, commit
+  \nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}. Version:
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf}.
+
+\bibitem{gao2026}
+Zhongpai Gao.
+\newblock {A quantitative refinement of the seven-eighths zero-free
+  half-plane}, 2026.
+\newblock Draft dated 7 October 2026. Repository
+  \url{https://github.com/Gaozhongpai/seven-eighths-refinement-certificates},
+  commit \nolinkurl{309a757ea539e2bf11558d8b5539e1269b792386}.
+  \url{https://github.com/Gaozhongpai/seven-eighths-refinement-certificates/blob/309a757ea539e2bf11558d8b5539e1269b792386/report.pdf}.
+
+\bibitem{openai2026lean}
+{OpenAI}.
+\newblock {The quasi-Riemann hypothesis: scope of the Lean formalization},
+  2026.
+\newblock Scope document \nolinkurl{lean/docs/003.md}, repository
+  \url{https://github.com/openai/math}, commit
+  \nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/lean/docs/003.md}.
+
+\bibitem{openai2026lm}
+{OpenAI}.
+\newblock {The Quasi-Riemann Hypothesis}, October 2026.
+\newblock OpenAI Math Release preprint, 5 October 2026 (zero-free half-plane
+  $\operatorname{Re}s>11/12$). Repository \url{https://github.com/openai/math},
+  commit \nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}. Version:
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-October-5-2026/paper2.pdf}.
+
+\end{thebibliography}

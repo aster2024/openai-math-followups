@@ -1,0 +1,115 @@
+\section{Two rational stages}\label{sec:rational}
+\begin{theorem}[First rational improvement]\label{thm:rational1}
+Every function in Theorem~\ref{thm:main} is zero-free in
+\[
+ \Rea s>\frac{349999}{400000}=\frac78-\frac1{400000}.
+\]
+\end{theorem}
+\begin{proof}
+Set $\eta_0=1/100000$ and
+\[
+ \ell=\frac16+\eta_0,\quad b=\frac18,\quad
+ l_x=\frac{17}{48}-\frac{\eta_0}2,\quad
+ l_y=\frac{23}{48}-\frac{\eta_0}2,\quad
+ h=\frac{13}{16}+\frac{3\eta_0}2.
+\]
+The geometry belongs to \eqref{eq:geobox} and $\sigma_g=349999/400000$.
+The exact positive margins are
+\[
+ l_x-\ell=\frac{37497}{200000},\quad
+ l_y-\ell-\frac{11b}6=\frac{49991}{600000},\quad
+ 1-3\ell=\frac{49997}{100000},\quad
+ 5\ell-h=\frac{12521}{600000}.
+\]
+We reproduce the pure algebra of \src{Lemma 20.2}, using it only for its original numerical function. Write $E_0$ for \eqref{eq:endpoint} at $\ell=1/6,b=1/8$, $y=1/2-x$, $v=51+41y$, and
+\[
+ p_y=7+18y+8y^2,\quad
+ j_y=185+170y+(-138+12y+96y^2)\delta.
+\]
+Then $D_x=(37+34y)/18$, $P_x=p_y/9$, $J=j_y/108$, and the explicit identities are
+\begin{align}
+ 10368J(-E_0)
+ &=10(37+34y)-8(237+377y+26y^2)\delta
+       +48(51+131y+94y^2+32y^3)\delta^2,\label{eq:oldpoly}\\
+ 10368vJ(-E_0)
+ &=(3+5y)\{(4v\delta-79)^2+49\}\notag\\
+ &\quad+4y\{4v\delta[(1+3y)(15+32y)\delta+9-13y]+265+3485y\}.
+ \label{eq:oldsquare}
+\end{align}
+For $0\le\delta\le3/4$, $0\le y\le1/2$, every term on the last line is nonnegative, since $9-13y\ge5/2$. Moreover $v\le17(3+5y)$ and $J\le5/2$. Consequently $E_0\le-49/440640$.
+The exact increment for our new geometry is
+\[
+ E_g-E_0=\eta_0\{5/4-y\delta+3T/2\}
+ \le15\eta_0/8,
+\]
+since $0\le T\le(5/6-\delta)/2\le5/12$. Thus
+\[
+ E_g\le-\frac{49}{440640}+\frac{15}{800000}
+       =-\frac{20369}{220320000}<-\frac9{100000}.
+\]
+Theorem~\ref{thm:geometry} applies. Its proof already supplies all nonendpoint ranges and contours for this geometry.
+\end{proof}
+
+\begin{theorem}[Second rational improvement, independently obtained by Gao \cite{gao2026}]\label{thm:rational2}
+Every function in Theorem~\ref{thm:main} is zero-free in
+\[
+ \Rea s>\frac{20999}{24000}=\frac78-\frac1{24000}.
+\]
+\end{theorem}
+\begin{proof}
+Take
+\[
+ \ell=\frac{1001}{6000},\quad b=\frac18,\quad
+ l_x=\frac{4249}{12000},\quad l_y=\frac{5749}{12000},\quad
+ h=\frac{3251}{4000}.
+\]
+These lie in \eqref{eq:geobox} and give the stated $\sigma_g$.
+Let $y=1/2-x$. Here
+\[
+ D_x=(37+34y)/18,\quad P_x=(7+18y+8y^2)/9,\quad35/54\le J\le5/2.
+\]
+Multiplication of the complete endpoint by its positive denominator gives the polynomial identity
+\begin{equation}\label{eq:rationalpoly}
+ \mathscr P:=24000(-108JE_g)=Q_0(\delta)+yQ_1(\delta)+y^2Q_2(\delta)+y^3Q_3(\delta),
+\end{equation}
+where
+\begin{align*}
+ Q_0&=612252\delta^2-473520\delta+91575,\\
+ Q_1&=1572096\delta^2-753860\delta+84150,\\
+ Q_2&=1128336\delta^2-52040\delta,\qquad Q_3=384384\delta^2.
+\end{align*}
+The general coefficients in Section~\ref{sec:coefficients} give this identity at $c=4/9$; \nolinkurl{anc/verify_rational.py} also checks it with exact rational arithmetic. Equivalently, expand
+\[
+ -108J\{-1/4+b/6+5\ell/4-(b/2+\ell y)\delta\}
+ -54h(5/6-\delta)\delta P_x.
+\]
+The discriminant of $Q_0$ is $-46717200$ and its vertex is $19730/51021>1/3$. Its minimum is $324425/17007>19$. The exact completed-square remainders
+\[
+ 4(1572096)(84150+6500)-753860^2=1737110000>0,
+\]
+\[
+ 4(1128336)(1000)-52040^2=1805182400>0
+\]
+prove $Q_1\ge-6500$ and $Q_2\ge-1000$ on the whole real axis.
+
+Cover the closed rectangle by three intervals in $\delta$. If $0\le\delta\le3/10$, $Q_0$ is decreasing and
+\[
+ \mathscr P\ge Q_0(3/10)-6500/2-1000/4
+              =28042/25>19.
+\]
+If $3/10\le\delta\le1/3$, then $Q_0\ge Q_0(1/3)=1763$, $Q_1$ is increasing and $Q_1(3/10)=-12984/25$, while $Q_2,Q_3\ge0$. Thus
+\[
+ \mathscr P\ge1763-6492/25=37583/25>19.
+\]
+For $\delta\ge1/3$, put $v_0=\delta-1/3$. The exact expansions
+\begin{align*}
+ Q_1&=1572096v_0^2+294204v_0+22622/3,\\
+ Q_2&=1128336v_0^2+700184v_0+108024,\\
+ Q_3&=384384v_0^2+256256v_0+128128/3
+\end{align*}
+are nonnegative, so $\mathscr P\ge Q_0>19$. Since $J\le5/2$,
+\[
+ E_g\le-\frac{19}{6480000}<-\frac1{350000}<0
+\]
+on the entire rectangle. Theorem~\ref{thm:geometry} proves this stage without using the first rational theorem.
+\end{proof}

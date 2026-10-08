@@ -1,0 +1,88 @@
+\section{Conventions and analytic inputs}\label{sec:inputs}
+\subsection{Characters, coefficients, and uniformity}
+Put $\omega=e^{2\pi i/3}$, $\OO=\mathbb Z[\omega]$, and $\lambda=\sqrt{-3}$. For an element or ideal $a$, write $q_a=\N a$; for a nonzero element put $\alpha(a)=a/|a|$. Ideal indices outside the excluded set use their primary generators, congruent to one modulo $3$. Element rows retain all their units and prime powers. These are the conventions of \src{\S4.1}.
+The additive kernel is $e(z)=\exp(2\pi i\,\operatorname{Tr}_{\F/\Q}(z/\lambda))$, extended to $\C$ as $\exp(4\pi i\,\Ima z/\sqrt3)$; with $d\mu(z)=(2/\sqrt3)\,dx\,dy$ the Eisenstein lattice is self-dual.
+
+For a good prime $\p$, $\chi_\p(u)$ is the sextic residue symbol, with value zero if $\p\mid u$. Every integer power, including a zeroth or negative power, retains that zero. Thus $\chi_\p(u)^0=\1_{\p\nmid u}$. A character presentation includes its defining modulus and every prescribed zero, even at a redundant prime. A fixed character is fixed as a presentation, not merely as a primitive inducing character. When a displayed product cancels its unit phases, its natural zeros are still retained.
+
+At a base $Z>1$, define
+\begin{align}
+ S_\psi(n;W)&=Z^{-n/2}\sum_l\psi(l)W(q_l/Z^n),\label{eq:plain}\\
+ M_\psi(r;W)&=Z^{-r/2}\sum_l\mu(l)\psi(l)W(q_l/Z^r).\label{eq:inverse}
+\end{align}
+The inverse sum has squarefree ideal indices through $\mu$. The plain sum has all ideal indices. Both retain the same presentation and any specified masks. The functions $W$ are smooth, supported in fixed compact subintervals of $(0,\infty)$. A pure norm twist and a bounded real norm power are part of the smooth profile. All arithmetic coefficients stay independent of the row unless an input explicitly permits otherwise.
+
+The finite group $T$ presenting the fixed supplementary phases is chosen once, before the target. For a fixed primitive target $\eta$, the excluded set $S$ contains the primes over $6$, the complete defining-modulus supports of the target and the fixed ray characters, and a specified finite initial segment of primes. Enlarging $S$ does not change $T$. Write $\Theta=\langle\eta,\widehat T\rangle$, enlarged to include the supplementary characters appearing in the finite transformations; these already factor through the fixed ray convention. On a physical sixth-power-free row,
+\begin{equation}\label{eq:Xfamily}
+ \mathcal X_u=\{\nu(n)\chi_n(u)^\varsigma:\nu\in\Theta,\ \varsigma\in\{-1,1\}\}.
+\end{equation}
+This family is closed under conjugation. Its primitive conductors and deletion radicals have norms $\ll_{\mathcal A}q_u$ by \src{\S8.1}. If $u$ has a prime outside $S$ with valuation $1,\ldots,5$, each presentation is ramified at that prime and cannot induce a character in $\Theta$. The finitely many rows supported on $S$ are treated by the small-row estimate.
+
+Here and below, $\mathcal A$ denotes fixed arithmetic data. All logarithmic lengths lie in prescribed bounded sets. An estimate with loss $\eps$ allows every specified $\eps>0$. Real exponent losses and, when stated, the slot mesh are chosen before the slot count and the arithmetic datum. After those are fixed, finite seminorm orders, height orders, constants, and thresholds may depend on them, but remain uniform over the declared moving labels. No moving puncture is absorbed into $\mathcal A$.
+
+\subsection{The global boundary and buffered witnesses}
+We use exactly the family supremum in \src{(2.1)}:
+\begin{equation}\label{eq:betastar}
+ \beta^*=\sup\bigl(\{1/2\}\cup\{\Rea\rho:1/2\le\Rea\rho\le1,
+ L_\F(\rho,\eta)=0\text{ for some primitive finite-order }\eta\}\bigr).
+\end{equation}
+The input \src{Theorem 1.1} gives $\beta^*\le7/8$. A pole is not included in this supremum. Euler convergence excludes zeros to the right of one.
+
+For retained rows with $q_u\asymp U=Z^d$, use \src{Lemma 8.1}. Its hypotheses are a fixed family \eqref{eq:Xfamily}, $0<d_{\min}\le d\le d_{\max}$, $T_1=Z^\tau>2$, $0<\tau\le d_{\min}/100$, and $0<e<10^{-3}$. It gives finitely many bins $(i,a)$, with $a\ge51/100$. On each nonfloor bin,
+\begin{equation}\label{eq:binrange}
+ a\le\beta^*,\qquad \delta=2a-1\in(1/50,3/4],
+\end{equation}
+and there is an actual zero of a member of $\mathcal X_u$. On the common buffered rectangle,
+\begin{align}
+ |L_{\rm orig}(v,\psi)|+|L_{\rm orig}(v,\psi)^{-1}|&\ll U^\eps,
+ &&\Rea v\ge a+6e,\quad |\Ima v|\le(3i+2)T_1,\label{eq:buffer}\\
+ |L_{\rm orig}(1-a-6e+it,\psi)|&\ll U^{a-1/2+12e+\eps}(3+T_1)^C,
+ &&|t|\le(3i+2)T_1.\label{eq:reflectedbuffer}
+\end{align}
+Every original presentation here induces a nonprincipal primitive character; its finite deleted factors are retained in $L_{\rm orig}$. The floor $a=51/100$ uses the trivial row count.
+
+The pointwise input \src{Lemma 8.2} requires bounded nonnegative length ranges, uniformly smooth untwisted annular profiles, pure twist height at most $(3i+1)T_1$, and a single total additional-frequency allowance $T_1/2$ in each $L$-argument. Its further condition is $(1+T_1)^{A_{\mathcal A}}\le U^{\eps/10}$ with $e<e_0(\eps)$. Under these conditions it gives
+\[
+ |M_\psi(r;W)|^2\ll U^{\delta r+\eps},\qquad
+ |S_\psi(m;W)|^2\ll U^{\delta\min(m,1-m)+\eps}.
+\]
+We impose its height condition only after its fixed height order is known. The pre-saturation ranges may be taken as $0\le r,m\le22$, as in \src{\S11.1}.
+
+Then \src{Proposition 8.3}, whose hypotheses are exactly the nonfloor bin and those of Lemma~8.2, gives for every $t\in[1,3/2]$ a common presentation, common pure twist, and two saturated witnesses with
+\begin{equation}\label{eq:witness}
+ r\le t+O(\eps),\quad r+m\ge t-O(\eps),\quad
+ m\le\tfrac12+O(\eps),\quad
+ |M_r|^2\gg U^{\delta r-\eps},\quad |S_m|^2\gg U^{\delta m-\eps}.
+\end{equation}
+Presentation labels lie in a fixed finite set; dyadic pairs have logarithmic cardinality. Rowwise choices of smooth parameters are controlled by \src{Lemma 4.5}, not by changing prime arithmetic coefficients. All its support boxes are fixed logarithmically, and one joint Fourier measure is used for each row Hilbert space. Sections~\ref{sec:count} and \ref{sec:geometry} verify the character, supply, and height conditions for our applications.
+
+\subsection{Continuation and transfer}
+\begin{proposition}[Common-signal continuation]\label{prop:continuation}
+Fix $\sigma\in(1/2,1)$ and suppose $\Delta=\beta^*-\sigma>0$. Let $C(s)=s+c$ with $c\in\R$. Suppose there are target-independent $0<\omega_0<\Delta$ and $m_0>0$ such that, for each primitive target $\eta$, there exist a finite $S$, a holomorphic $H_\eta$ on $\Rea s>\sigma$ with $|H_\eta-1|\le1/2$, and one function $J_\eta$ satisfying
+\begin{align*}
+ |J_\eta(Z)|&\ll_\eta Z^{C(\sigma)+\omega_0},\\
+ |J_\eta(Z)-f_\eta(Z)|&\ll_\eta Z^{C(\beta^*)-m_0},\\
+ f_\eta(Z)&=\frac1{2\pi i}\int_{(2)} Z^{C(s)}e^{(s-5/6)^2}
+             \frac{H_\eta(s)}{L_\F^S(s,\eta)}\,ds.
+\end{align*}
+Then these assumptions contradict $\beta^*>\sigma$.
+\end{proposition}
+\begin{proof}
+This is \src{Proposition 2.1}; we include its argument to specify the family quantifier. Put $\eps_* =\min(\Delta-\omega_0,m_0)>0$. The triangle inequality bounds $f_\eta(Z)$ by $Z^{C(\beta^*)-\eps_*}$ at infinity. At zero, move its contour from $2$ to any fixed $B>2$. The reciprocal Euler product is bounded there, $H_\eta$ is bounded, and the Gaussian makes horizontal joins tend to zero. Thus $f_\eta(Z)\ll_{\eta,B}Z^{B+c}$ for $0<Z\le1$.
+
+Consequently
+\[
+ F_\eta(s)=\int_0^\infty f_\eta(Z)Z^{-C(s)}\frac{dZ}{Z}
+\]
+converges absolutely and locally uniformly on $\Rea s>\beta^*-\eps_*$ and is holomorphic there. On the line $2+it$, substituting $Z=e^u$ gives an ordinary Fourier transform. The two endpoint bounds make its inverse integrable. Fourier inversion and the identity theorem therefore identify $F_\eta(s)$ with $e^{(s-5/6)^2}H_\eta(s)/L_\F^S(s,\eta)$ for $\Rea s>1$. Since $\beta^*-\eps_*>\sigma$ and $|H_\eta|\ge1/2$, this continues the reciprocal holomorphically to $\Rea s>\beta^*-\eps_*$. The number $\eps_*$ is common to all targets. The supremum \eqref{eq:betastar} supplies a target with a zero to its right; attainment of the supremum is unnecessary. Its reciprocal has a pole there. Deleted Euler factors are nonzero for positive real part, so they cannot remove that pole. This is a contradiction.
+\end{proof}
+
+Once the primitive Hecke family has a strict zero-free half-plane with boundary in $[1/2,1)$, \src{Proposition 11.3} transfers it to all finite-order Hecke and Dirichlet characters. Its hypotheses are just this family assertion and the indicated range of the boundary. For clarity, the norm lift of a Dirichlet character $\chi$ gives, after a common finite deletion,
+\[
+ L_\F^S(s,\chi\circ\N)=L^S(s,\chi)L^S(s,\chi\chi_{-3}).
+\]
+The two factors have no poles in $0<\Rea s<1$, so a zero gives a Hecke zero. The argument also applies on the line $\Rea s=1$ away from $s=1$. At $1$, possible principal pole cancellation is excluded by
+\[
+ L(1,\chi_{-3})=\int_0^1\frac{dx}{1+x+x^2}=\frac\pi{3\sqrt3}>0.
+\]
+All imprimitive functions differ by finite factors $1-a_\p q_\p^{-s}$, $|a_\p|\le1$, nonzero on $\Rea s>0$. This covers every modulus and the principal character giving $\zeta$.

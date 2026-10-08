@@ -1,0 +1,278 @@
+\section{Extending the plain fourth moment}\label{sec:fourth}
+\begin{theorem}[Extended fourth moment]\label{thm:fourth}
+Retain the arithmetic and coefficient class of \src{Lemma 18.1} as follows. Rows are $0<q_k\ll Z^m$ and $\psi_k(n)=\tau(n)\chi_n(k)$, with $\tau$ fixed within this row sum. Let $q_{\rm union}$ bound the logarithmic norm of the complete union of its displayed moving supports, before cancellation, and put $M=m+q_{\rm union}$. Any additional squarefree polynomial-norm coprimality mask is fixed within the row sum and acts simultaneously on both plain factors and every slot. All natural zeros remain.
+
+Let $\Theta$ be a fixed finite ray-character group containing the fixed twists, reciprocity phases, and $n\mapsto\chi_n(-1)$. Each positive-length slot has a coefficient which is a fixed finite linear combination of members of $\Theta$, independent of $Z$ and the row. The underlying prime windows are disjoint before masks. Let $\mathcal R_0$ consist of rows with nonprincipal primitive inducing character and, for $z>0$, let $\mathcal R_z$ consist of rows whose inducing character is outside $\Theta$.
+
+For prescribed bounded nonnegative length ranges, every $\eps>0$, and
+\[
+ 37/50\le\kappa\le1,
+\]
+there is a mesh $\eta_{\rm mesh}>0$, uniform in this interval and chosen before the slot count and arithmetic datum, such that, if $z_i\le\eta_{\rm mesh}$ and $z=\sum_i z_i>0$,
+\begin{equation}\label{eq:extendedmoment}
+ \sum_{k\in\mathcal R_z}
+ |S_{\psi_k}(n_1;W_1)S_{\psi_k}(n_2;W_2)Q_k|^2
+ \ll Z^{M+\eps}
+\end{equation}
+provided
+\begin{equation}\label{eq:momentboundary}
+ n_1+n_2+6\kappa z\le M,
+ \qquad \kappa<1\ \Longrightarrow\ \beta^*\le(1+\kappa)/2.
+\end{equation}
+For a fixed system and datum, finite seminorm and height orders may depend on them but are uniform in all moving labels and admissible masks. The zero-slot conclusion for $\mathcal R_0$ holds for arbitrary bounded nonnegative $n_1,n_2$, without a zero-free premise.
+\end{theorem}
+\begin{proof}
+We reconstruct the finite induction of \src{\S18}, replacing all inequalities that used its lower bound $\kappa\ge3/4$. Its zero-slot case at $\kappa=1$ is already available without the Part~II standing supposition, as proved in Appendix~\ref{app:partii}. All positive-slot recursive calls below refer to the new assertion at smaller effective width.
+
+\emph{Masks, reflection, and the prime bound.}
+Let $T_k(X)$ be a natural centrally normalized plain sum. For an additional fixed mask $R$, the exact identities \src{(18.4)--(18.6)} are
+\begin{align*}
+ S_{k,R}(X)&=\sum_{d\mid R}\mu(d)\psi_k^0(d)q_d^{-1/2}T_k(X/q_d),\\
+ Q_{k,i,R}&=Q_{k,i}^0-P_i^{-1/2}
+       \sum_{\substack{\p\mid R\\\p\ {\rm prime}}}
+       \psi_k^0(\p)\nu_i(\p)W_i^{\rm slot}(q_\p/P_i).
+\end{align*}
+Apply these simultaneously to both plains and all slots. The complete divisor mass costs an arbitrary small power; extracted scalars retain their zeros. This operation only decreases $n_1+n_2+6\kappa z$ for $\kappa>0$.
+
+The primitive functional equation and restoration of the redundant radical give the reflection scale bound of \src{(18.7)--(18.9)}:
+\[
+ C_kq_{R_{0,k}}\ll_{\mathcal A} Z^M,\qquad
+ Y=C_kq_{d_0}/(Xq_{h_0})\ll_{\mathcal A} Z^M/X,
+ \quad d_0\mid R_{0,k},\ \rad(h_0)\mid R_{0,k}.
+\]
+The product of conductor and redundant radical is bounded by the complete row and moving-support union. The gamma quotient maps the original annular test to a test bounded at zero and rapidly decreasing at infinity, with fixed finite seminorm and polynomial height costs. Partition it into whole annuli, discard upper tails at $Z^{\xi/2}$ with fixed orders, and clip retained subunit scales using their fixed support endpoints. After a threshold each retained reflected length satisfies
+\begin{equation}\label{eq:newreflection}
+ n_{\rm ref}\le M-n+\xi.
+\end{equation}
+Reflection first gives the conjugate character; conjugating that whole factor inside its absolute value restores the common character and conjugates its profile. Natural zeros are unchanged. No reciprocal contour is used in this reflection.
+
+Set $s_\kappa=(1+\kappa)/2\in[87/100,1]$. When $\kappa<1$, \eqref{eq:momentboundary} allows the global logarithmic-derivative bound of \src{Lemma 4.9} on $s_\kappa+e$. For each coefficient character $\vartheta\in\Theta$, the inducing character of $\psi_k\vartheta$ is nonprincipal, since otherwise $\psi_k$ would induce a member of $\Theta$. The smoothed von Mangoldt Mellin shift has no pole. Removing prime powers and the original finite deletions by \src{Lemma 4.10}, with conductor and radicals in their polynomial ranges, gives for the whole slot product
+\begin{equation}\label{eq:slotpointwise}
+ |Q_k|^2\ll Z^{\kappa z+\eps_1}p_j(\boldsymbol W)^b
+                   (1+|\boldsymbol\omega|)^h.
+\end{equation}
+The exponent is $2s_\kappa-1=\kappa$, and the total displacement cost is $2ez$. Derivatives and heights are not charged in that exponent. For $\kappa=1$, absolute prime counting gives the same estimate. All real losses are uniform on $[37/50,1]$, since the logarithmic bound allows the entire $s_\kappa$ range, not just $s_\kappa\ge7/8$.
+
+\emph{Terminal widths and same-width comparison.}
+Write $A=n_1+n_2+z$. The new interval gives the exact inequalities
+\begin{equation}\label{eq:kappaguards}
+ 86/25\le6\kappa-1\le5,\qquad
+ z\le25M/111<M/4,\qquad \kappa z\le M/6.
+\end{equation}
+The original terminal bound $z\le2M/9$ is replaced by $25M/111$; its actual squared cost remains at most $M/6$ by \eqref{eq:slotpointwise}. At width $M\le\rho$, the positive-slot case follows from the completed zero-slot case and \eqref{eq:slotpointwise}: since $A\ge z$, \eqref{eq:momentboundary} gives $6\kappa z\le M$, so the extra exponent is $\kappa z\le M/6\le\rho/6$, the term $\rho/6$ in $T_{\rm term}$ below.
+
+If $A>5M/6$, then $(6\kappa-1)z\le M-A<M/6$, so
+\[
+ z<25M/516<M/20.
+\]
+Put $L=M/4$. The equal-product comparison has lengths $L,A-z-L$, both at least $L$. If an original plain length is below $L$, reflect the other one. Otherwise introduce the comparison with the same two profiles, and reflect its longer factor only when bounding that comparison. Equation~\eqref{eq:newreflection} gives
+\begin{align}
+ A_{\rm comp}&\le3M/2-A+2z+\xi\le23M/30+\xi,\label{eq:comparison1}\\
+ A_{\rm comp}+(6\kappa-1)z
+ &\le5M/2-2A+2z+\xi\le14M/15+\xi.\label{eq:comparison2}
+\end{align}
+Each boundary has at least $M/15$ margin before $\xi$. For $M>\rho$ take $\xi\le\rho/30$. Thus this comparison belongs to the already completed uncentered part of its width band.
+
+\emph{The common coefficient and genuine transforms.}
+For allocated plain powers $\boldsymbol b=(b_1,b_2)$ preserve
+\[
+ D_{\boldsymbol b}(l_1,l_2)=\prod_{i=1}^2W_i(q_{b_i}q_{l_i}/X_i)
+                         -\prod_{i=1}^2W_i(q_{b_i}q_{l_i}/Y_i),
+ \qquad X_1X_2=Y_1Y_2,
+\]
+or its first rectangle for an uncentered input. The coefficient on the full product $u=\Pi l_1l_2$ is
+\[
+ \left(\prod_i\nu_i(\p_i)W_i^{\rm slot}(q_{\p_i}/P_i)\right)
+ D_{\boldsymbol b}(l_1,l_2)\tau_1(u)q_u^{it}
+ \1_{(u,R)=1}\1_{s\mid u}.
+\]
+It is exactly the class of \src{(18.17)--(18.18)}: slots may share primes with either plain, and the mask, character, norm power, and allocated powers are common to both rectangles. No zero scalar is removed by division.
+
+Let $\theta_{\rm slots}=H_{\rm slots}/\log Z$ bound all fixed support-ratio errors for every subset, as in \src{(18.19)}. One fixed $H_{\rm slots}$ is selected after the datum and slot count. Whole-dyad tail removal is performed on genuine sums before an off-coprime extension. The retained full kernel, inverse roots, normalized row norm, and two whole-product norms are then separated by one common Fourier measure. The source finite identities \src{Lemmas 13.2--13.4, (18.21), (18.30)} apply to these exact full characters and supports. CRT is used on the genuine coprime locus; its extension is multiplied by the complete finite Möbius indicator before independent factors are bounded. None of these identities contains $\kappa$.
+
+Here are the normalization ledgers, with the local log-norm labels of \src{(18.22)--(18.44)}. Let $c,d$ be the full common-support powers in the first pair, $p$ their common radical, $R_1$ the net nonprincipal support, $E_1$ the complementary row-mask divisor, and $s_0=\log_Z q_s$ the full mutual-gcd Möbius label. Put $\widetilde q=q_{\rm union}+R_1+E_1$ and
+\[
+ K_0=2A-c-d+R_1+E_1-m,\qquad K\le K_0+\delta_{{\rm fr},1},
+ \quad0\le\delta_{{\rm fr},1}<\xi.
+\]
+The first Poisson zero term is $O(Z^{m+\eps_1})$. On a nonzero side it suffices to bound
+\[
+ \mathcal N_C\ll Z^{A-c+\widetilde q+B_c-s_0+\eps_G},
+ \qquad B_c=\pos{3c-5d-R_1}/6
+\]
+and the corresponding expression $B_d=\pos{3d-5c-R_1}/6$. Including the outside factor, common-support count, and both sides of Cauchy, the exact exponent is
+\begin{align}
+ &(m-A-R_1/2-E_1)+(p+s_0)\notag\\
+ &\quad+\tfrac12\{A-c+\widetilde q+B_c-s_0+
+                         A-d+\widetilde q+B_d-s_0\}\notag\\
+ &=M+\tfrac12\{B_c+B_d-(c+d-2p-R_1)\}\le M.\label{eq:firstledger}
+\end{align}
+For completeness, the last inequality is the primewise integer inequality in \src{(18.24)}. At a common prime with multiplicities $i\ge j\ge1$, let $r=\1_{6\nmid i-j}$. The positive contribution is at most $(3i-5j-r)_+/6$ and the available length is $i+j-2-r\ge0$. When the former is positive, six times the difference is $3i+11j-12-5r\ge0$: for $r=0$ it is at least $2$; for $r=1$, $i\ge j+1$ gives at least $0$. The positive part of a sum is bounded by the sum of positive parts. Summing with the prime log-norm weights proves \eqref{eq:firstledger}.
+
+For Gauss-row enlargement choose width step $\sigma_{\rm width}>0$, pool length $\ell_p^*=\sigma_{\rm width}/3$, and mesh below $\sigma_{\rm width}/6$. The pool is disjoint from all live windows after a threshold. Enlarge each Gauss norm once. The three extracted valuations are $1,6,7$. If $\ell_p=\log_Zq_\p\in[\sigma_{\rm width}/6,\sigma_{\rm width}/3]$, their removal and new-support pairs are
+\[
+ (w,w_o)=(\ell_p,\ell_p),\ (6\ell_p,0),\ (7\ell_p,\ell_p),
+ \qquad0\le w_o\le w\le7\sigma_{\rm width}/3.
+\]
+The squared extraction coefficients are respectively $q_\p^{-1}$, $(1-q_\p^{-1})^2$, $q_\p^{-1}$. The row phases and punctures multiply both rectangles. Errors are not amplified again. The original averaging loses one pool density, and a fixed output row has boundedly many representations; there is no extra prime-count factor.
+
+Put
+\[
+ a_0=A-c-w,\qquad
+ J_0=d-c+(K_0-K)-2w+w_o.
+\]
+The smooth ball uses $g=(J_0)_++2\sigma_{\rm width}$ and $\ell_{\rm stage}=\sigma_{\rm width}/3$ for the main amplifier; errors and zero-slot norms use $g=(J_0)_++\sigma_{\rm width}$ and $\ell_{\rm stage}=0$. Add the row zero only at this final ball. The local \src{(13.5)} makes $G(u,0)$ vanish unless $u$ is a sixth power. With $s\mid u$, its squared contribution is at most
+\[
+ Z^{a_0/3+4\theta_{\rm slots}/3+\eps_1}
+ \le Z^{a_0-s_0+2\theta_{\rm slots}+\eps_1},
+\]
+since $a_0\ge-\theta_{\rm slots}$ and $s_0\le(a_0+\theta_{\rm slots})/6$. Zero is never multiplied by a pool prime.
+
+In the second complete extraction let $c_2,d_2$ be the common-support powers, $b_2=(c_2+d_2)/2$, $p_2$ their radical, $g_2$ the smaller multiplicity sum, $t_2$ its unit/nonprincipal radical contribution, and $V_2$ its nonunit radical. Its nominal child widths are
+\begin{align}
+ m'&=2a_0-K-g-g_2-V_2,\quad
+ q'=\widetilde q+w_o+t_2+V_2,\notag\\
+ M'&=m'+q'=M+J_0-g-g_2+t_2\le M-\sigma_{\rm width}.\label{eq:childwidth}
+\end{align}
+This uses $g-J_0\ge\sigma_{\rm width}$ and $g_2\ge t_2$. The outside exponent is
+\[
+ K+g-\ell_{\rm stage}-a_0+p_2-s_0+g_2-t_2-b_2.
+\]
+Subtracting it from the first-side allowance $a_0+\widetilde q+w_o+w+B_c-s_0$ leaves precisely
+\begin{equation}\label{eq:childallowance}
+ M'+\Delta_{\rm child},\qquad
+ \Delta_{\rm child}=b_2-p_2+w+B_c+\ell_{\rm stage}\ge w+\ell_{\rm stage}.
+\end{equation}
+The radical count is $Z^{p_2-s_0+\eps_1}$, because $s$ divides that radical. The second enclosing width satisfies $0\le M'_{\rm act}-M'<\delta_{{\rm fr},2}<\xi$. All local correlation bounds are applied on their exact unit/nonunit partitions, extended by zero off the retained support.
+
+\emph{Actual child normalization and whole-slot removal.}
+The coefficient result \src{Lemma 18.2} applies: both transforms, common-support extraction, and the full Möbius allocation preserve one character, one mask, one norm power, and equal-product rectangles on each separated side. Quotients after a divisor extraction are not repunctured at that divisor. The two sides' characters differ by a member of $\Theta$.
+
+We display the clipping calculation to preserve the actual normalization. For one side and rectangle let $x_i$ be the pre-extraction formal plain lengths, $a_i\ge0$ the extracted divisor lengths, and $y_i=x_i-a_i$. Let $e_j$ be the total frozen-slot ratio error, $\omega_j$ the newly frozen-slot ratio error, and $e_{r,j}$ the sum of its two divisor lengths and frozen slot lengths. Retained nonempty profiles have
+\[
+ \pi_{0,j}=\sum_i(-x_i)_+,\quad \pi_j=\sum_i(-y_i)_+,\quad
+ 0\le\pi_{0,j}\le\pi_j\le\theta_{\rm slots},\quad
+ r_{{\rm clip},j}=e_{r,j}-(\pi_j-\pi_{0,j})\ge0.
+\]
+Writing $\alpha_j=a_0-c_2$ or $a_0-d_2$, their exact clipped total is
+\[
+ A_{{\rm clip},j}=\alpha_j+e_j+\pi_{0,j}-r_{{\rm clip},j}.
+\]
+A divisor dyad of lower length $t^-$ has $e_{r,j}+\omega_j\ge t^-$ and $|e_j+\omega_j|\le\theta_{\rm slots}$. Thus its paired count and extraction factors satisfy
+\[
+ t^- -\frac{r_{{\rm clip},1}+r_{{\rm clip},2}}2
+       +\frac{e_1+\pi_{0,1}+e_2+\pi_{0,2}}2\le2\theta_{\rm slots}.
+\]
+Nonexceptional centered children are first bounded by their two rectangles and then legally clipped. Empty rectangles are tested by fixed support endpoints; retained arithmetic and profile zeros stay. Exceptional rectangles remain formal and are not clipped.
+
+For a nonexceptional actual child put
+\[
+ F_{\rm act}=\pos{A_{\rm act}-M'_{\rm act}+(6\kappa-1)z_{\rm act}}.
+\]
+The parent inequality, $z_{\rm act}\le z$, and \src{(18.38)} give
+\begin{equation}\label{eq:actualdefect}
+ F_{\rm act}\le6(w+\ell_{\rm stage})+\delta_{{\rm fr},1}+2\theta_{\rm slots}.
+\end{equation}
+To verify the only nontrivial stage comparison, before clipping
+\[
+ (A'-M')-(A-M)
+ =g+w-d-c_2-(K_0-K)-w_o+g_2-t_2.
+\]
+Use $g_2-t_2\le c_2$. For the main amplifier the remainder is at most $6\ell_{\rm stage}+\delta_{{\rm fr},1}$. For an error it is at most $w-w_o+\sigma_{\rm width}+\delta_{{\rm fr},1}$, and the three displayed valuation pairs give $w-w_o+\sigma_{\rm width}\le6w$. The clipped and enclosed corrections add at most $2\theta_{\rm slots}$. This proves \eqref{eq:actualdefect} for the whole new $\kappa$ interval, using only $6\kappa-1\ge0$.
+
+If necessary, remove whole slots with \eqref{eq:slotpointwise}. A slot of length $d_z$ lowers the constraint by $6\kappa d_z$ and costs $\kappa d_z$ in the squared exponent. The first greedy prefix reaching $F_{\rm act}/(6\kappa)$ overshoots by at most one mesh slot, so
+\begin{align}
+ d_z&\le\min\{z_{\rm act},F_{\rm act}/(6\kappa)+\eta_{\rm mesh}\},\notag\\
+ \kappa d_z&\le F_{\rm act}/6+\eta_{\rm mesh}
+ \le\Delta_{\rm child}+\delta_{{\rm fr},1}/6
+                        +\theta_{\rm slots}/3+\eta_{\rm mesh}.\label{eq:greedynew}
+\end{align}
+The ratio is exactly $1/6$, independent of $\kappa$. If all slots disappear before the constraint is met, use the already completed unrestricted zero-slot assertion. Otherwise the remaining product satisfies the new positive-slot condition at smaller width. Cauchy averages the two sides' costs and does not double them. The per-edge loss beyond the child envelope is at most
+\begin{equation}\label{eq:edgeloss}
+ \delta_{{\rm fr},2}+\delta_{{\rm fr},1}/6+\eta_{\rm mesh}
+                          +7\theta_{\rm slots}/3.
+\end{equation}
+
+\emph{Exceptional rows and the diagonal.}
+For a child inducing in $\Theta$, fix its unit and $S$-valuation sectors. Let $v_1$ be the radical length of the nonunit primes counted in $V_2$ whose two common multiplicities are one, and put $f=2v_1$. The retained common-support zeros exclude an old moving character at these primes. The fixed factor of the new row has valuation two, so an exceptional inducing character forces the varying row valuation to be four modulo six. At every other good prime its valuation is likewise fixed modulo six by the frozen character. Thus $(h')=h_0a^6$, with $h_0$ fixed and sixth-power-free, and $q_{h_0}\ge Z^{2f}$. Ideal counting gives the stronger exponent $(m'_{\rm act}-2f)/6$ on a nonempty ball. We use only the weaker count from \src{(18.41)}:
+\[
+ Z^{(m'-f)/6+O(\xi)+\eps_1},
+\]
+including rows added after a partition scalar is bounded on a positive norm. No extra forcing saving is assumed from its unit-prime partition. Define
+\begin{align*}
+ F_1&=c/6+5\{d+(K_0-K)\}/6+w/3+\widetilde q/6+w_o+B_c
+                       -5g/6+\ell_{\rm stage},\\
+ F_2&=2b_2-5g_2/6-p_2+t_2+V_2/6+f/6.
+\end{align*}
+The exact remaining normalization identity is
+\[
+ (m'-f)/6+a_0-b_2-(M'+\Delta_{\rm child})
+       =A-5M/6-F_1-F_2.
+\]
+Its lower bounds are
+\[
+ F_1\ge2(c+w)/3-3\sigma_{\rm width}-5\delta_{{\rm fr},1}/6,\quad
+ F_2\ge2b_2/3.
+\]
+For the first bound, temporarily set $g=(J_0)_+$ and $\ell_{\rm stage}=0$, and put $D_0=d+K_0-K$. If $J_0\ge0$, substitution gives
+$F_1=c+2w+\widetilde q/6+w_o/6+B_c\ge c+2w$.
+If $J_0<0$, use $\widetilde q\ge R_1$ and $D_0\ge d-\delta_{{\rm fr},1}$ to obtain
+\[
+ B_c+\widetilde q/6\ge(3c-5D_0)_+/6-5\delta_{{\rm fr},1}/6.
+\]
+Hence $F_1\ge2(c+w)/3-w/3-5\delta_{{\rm fr},1}/6$. Restoring $g\le(J_0)_++2\sigma_{\rm width}$ costs at most $5\sigma_{\rm width}/3$, and $w/3\le7\sigma_{\rm width}/9$. Their sum is $22\sigma_{\rm width}/9<3\sigma_{\rm width}$.
+
+For the second bound, the primewise contributions, in units of the prime log-norm, are
+\[
+\begin{array}{c|c|c}
+\text{common case}&F_2&b_2\\ \hline
+i=i,\ 6\nmid i,\ \text{unit}&7i/6&i\\
+i=i,\ 6\nmid i,\ \text{nonunit}&(7i-5)/6+\frac13\1_{i=1}&i\\
+i=i,\ 6\mid i,\ \text{either}&7i/6-1&i\\
+i>j_0,\ 6\mid j_0,\ \text{unit}&i+j_0/6-1&(i+j_0)/2
+\end{array}
+\]
+The difference from $2b_2/3$ is nonnegative: in the second row it is zero at $i=1$ and $(3i-5)/6$ for $i\ge2$; in the third it is $(i-2)/2$ with $i\ge6$; in the last it is $(4i-j_0-6)/6$ with $j_0\ge6$, $i\ge j_0+1$. Summing proves the bound. Thus for $A\le5M/6$ the uncentered excess costs only $3\sigma_{\rm width}+O(\xi)$.
+
+For centered exceptional children, Lemma~18.2 leaves the same fixed character, mask, and norm power in both rectangles. Use the assumption-free \src{Lemma 18.3} when all four formal scales have a positive lower length; otherwise use its absolute-volume fallback at every positive scale, including subunit scales. Its main coefficient is independent of scale and norm twist, so equal products cancel exactly. The gain from \src{(18.48)--(18.49)} is $(L-v)_+$, where $v=c+w+\min(c_2,d_2)$ and $L=M/4$. The remaining deficit is bounded by
+\[
+ A-5M/6-2v/3-(L-v)_+\le A-M\le0.
+\]
+For $v\le L$ its maximum occurs at $L$, and for $v\ge L$ it again occurs at $L$. The parent condition gives $A\le M$, because $6\kappa-1>0$. The second Poisson diagonal of \src{(18.31)} uses this same inequality and costs at most $5\sigma_{\rm width}/3+O(\xi)$. Neither argument uses the former lower endpoint $3/4$.
+
+\emph{Finite depth and choices.}
+Complete zero-slot widths first. Then process positive-slot width bands in increasing order, proving the uncentered $A\le5M/6$ assertion before the centered remainder. The comparison \eqref{eq:comparison1}--\eqref{eq:comparison2} invokes only that already completed uncentered region at the same width. True recursive calls decrease actual width by at least $\sigma_{\rm width}/2$ after frequency enclosures. If $M_{\max}$ bounds initial widths, take
+\[
+ D_{\rm depth}=2+\lceil2M_{\max}/\sigma_{\rm width}\rceil.
+\]
+A branch has at most $D_{\rm depth}-2$ strict calls.
+
+Let $C_*\ge1$ bound the finitely many aggregate affine coefficients and positive-part Lipschitz constants in the displayed stage ledgers, including the local errors in \src{(18.42)--(18.50)}. This bound is independent of slot count: its aggregate list is
+\[
+ A,z,c,d,p,R_1,E_1,s_0,K,w,w_o,g,\ell_{\rm stage},
+ c_2,d_2,p_2,g_2,t_2,V_2.
+\]
+Uniformity on the new interval follows from $0\le6\kappa-1\le5$ and the ratio $1/6$ in \eqref{eq:greedynew}. This derives the propagation constant anew rather than applying the old moment theorem outside its range.
+
+For $0<\eps\le1$, choose
+\[
+ \rho=\eps/100,\quad \sigma_{\rm width}=\eps/1000,\quad
+ \delta_{\rm pad}=\eps^2/10^6.
+\]
+The terminal reserve is
+\[
+ T_{\rm term}=\rho+\delta_{\rm pad}+\rho/6+
+                3\sigma_{\rm width}+5\sigma_{\rm width}/3<\eps/4.
+\]
+Before slot count or datum, take
+\begin{align*}
+ \xi&<\min\{\delta_{\rm pad}/4,\rho/60,\sigma_{\rm width}/(8C_*),
+                             \eps/(32C_*D_{\rm depth})\},\\
+ \eta_{\rm mesh}&<\min\{\sigma_{\rm width}/6,\eps/(32C_*D_{\rm depth})\},\\
+ \eps_0&<\eps/(32C_*D_{\rm depth}).
+\end{align*}
+These choices also preserve the comparison margin. Use the envelope
+$T_{\rm term}+(d+1)C_*(\eta_{\rm mesh}+\xi+\eps_0)$ at depth $d$. Each branch pays one terminal reserve; triangle takes a maximum and Cauchy averages. The total loss is less than $\eps$.
+
+Now fix the slot count, datum, and profiles, form the finite-depth support boxes, and take $Z$ large enough that the single $\theta_{\rm slots}$ and all fixed support factors fit the tolerances. Whole raw tails were removed by \src{Lemma 4.7} on the genuine sums; fixed weighted Fourier moments propagate by \src{Lemma 17.3 and Corollary 17.4}. Choose internal prime, reflection, and exceptional-mask orders backwards through the finite graph. They are finite and introduce no factor $Z^{J\xi}$. Any later external tail order differentiates only external profiles. Finally restore the masks by simultaneous deletion, using the preallocated arbitrary small power. This proves \eqref{eq:extendedmoment}; losses larger than one follow by using a smaller loss.
+\end{proof}

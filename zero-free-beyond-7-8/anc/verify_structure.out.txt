@@ -1,0 +1,29 @@
+PASS general endpoint coefficients including B0 and C0
+PASS J numerator explicit polynomial
+PASS J numerator from row definitions
+PASS critical count numerator
+PASS stationary derivative factor without cubic reduction
+PASS selected slope lower and upper
+PASS actual selected slope upper
+PASS floor affine majorant and slope
+PASS small-row exponent calculation
+PASS fractional slot reserve
+PASS complete retained exponent from raw outside factor
+PASS signal geometry
+PASS endpoint at d=h
+PASS first-stage exact increment
+PASS completed normalization identity
+PASS new completed penalty
+PASS first transform total ledger
+PASS second transform child width
+PASS second transform child allowance
+PASS exceptional normalization identity
+PASS crossing equality inverse/plain
+PASS weighted crossing value
+PASS crossing polynomial identity
+PASS model derivative in c
+PASS model derivative of q(u)
+PASS model left endpoint identity
+PASS model right endpoint identity
+PASS model endpoint signs
+All symbolic geometry and normalization certificates verified.

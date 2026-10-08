@@ -1,0 +1,49 @@
+{
+  "completed_utc": "2026-10-08T05:01:51.789453+00:00",
+  "arithmetic": "Fraction; quadratic and cubic quotient fields; rational intervals",
+  "execution": "one process; run with nice -n 19",
+  "total_checks": 214,
+  "library_sha256": "d3d8e731ee2d12ad057957c1f9b57cf14f0496410598a8ea9eab9faf35593987",
+  "results": [
+    {
+      "script": "verify_rational.py",
+      "output": "verify_rational.out.txt",
+      "checks": 46,
+      "script_sha256": "00e5da3536e0c205db892c6aa951a63fcaa35bdc7f0ea3c21d3d2955faec8927",
+      "output_sha256": "81dd60faac66662b9320684ff33c833aadeee5b952cae6befc2e92c49706fc26",
+      "status": "PASS"
+    },
+    {
+      "script": "verify_quadratic.py",
+      "output": "verify_quadratic.out.txt",
+      "checks": 28,
+      "script_sha256": "1f4aae256016bc42d1129fc6a036ffe754e2d5bbd56a08f5e8ea7777029d298c",
+      "output_sha256": "2ae01c764763341e0a6aebafcbb0116b4beb4779c6d91a771ab7d6497b59766f",
+      "status": "PASS"
+    },
+    {
+      "script": "verify_cubic.py",
+      "output": "verify_cubic.out.txt",
+      "checks": 37,
+      "script_sha256": "b31d75af4ebc3d0ad27494890f6d1260db1e01c767918bdd30e3e1ddb8a754d7",
+      "output_sha256": "fb31c32ec19e1dd38f8de3232f34713de416375aaf79c4399df90db2b5e3a9b0",
+      "status": "PASS"
+    },
+    {
+      "script": "verify_structure.py",
+      "output": "verify_structure.out.txt",
+      "checks": 28,
+      "script_sha256": "f6c29ff8b27ee4652558466f0e8ee36b1967a49ff1a7fe98b7ef7742441455dc",
+      "output_sha256": "ee4c1ae7b221236500cca2b4eeb492d947780eace75f73e2d3f10b4004e42e6c",
+      "status": "PASS"
+    },
+    {
+      "script": "verify_phases.py",
+      "output": "verify_phases.out.txt",
+      "checks": 75,
+      "script_sha256": "28c0579fb54bc3a7df4b4fc3d4555b30399c2ec93e3029c4e3d579707d543564",
+      "output_sha256": "df4f022be6d15c3a015052cb634ef7fc87e5b90c0b91b2aa13facff908aee7c9",
+      "status": "PASS"
+    }
+  ]
+}

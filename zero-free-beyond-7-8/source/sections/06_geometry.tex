@@ -1,0 +1,258 @@
+\section{A general geometric criterion}\label{sec:geometry}
+Fix the box
+\begin{equation}\label{eq:geobox}
+ \frac16\le\ell\le\frac{17}{100},\qquad
+ \frac1{10}\le b\le\frac{13}{100},
+\end{equation}
+and define
+\begin{gather}\label{eq:geometry}
+ l_x=(1-b-\ell)/2,\quad l_y=(1+b-\ell)/2,\quad
+ h=(1+b+3\ell)/2,\quad M=1-\ell,\\
+ \sigma_g=11/12-\ell/4,\qquad C_g(s)=s-2/3-b/6.\notag
+\end{gather}
+In \eqref{eq:balanced} set $\kappa=3/4$ and write $J,T,R_*$ for its functions. Define the endpoint
+\begin{equation}\label{eq:endpoint}
+ E_g(\delta,x)=-1/4+b/6+5\ell/4-b\delta/2
+               -\ell(1/2-x)\delta+hT.
+\end{equation}
+
+\begin{theorem}[Geometric criterion, including contact]\label{thm:geometry}
+If \eqref{eq:geobox} holds and
+\begin{equation}\label{eq:criterion}
+ E_g(\delta,x)\le0\qquad(0\le\delta\le3/4,\ 0\le x\le1/2),
+\end{equation}
+then every finite-order Hecke $L$-function over $\F$ and every Dirichlet $L$-function is zero-free in $\Rea s>\sigma_g$, with the principal pole allowed. Equality at an endpoint of \eqref{eq:criterion} is permitted.
+\end{theorem}
+\begin{proof}
+\emph{Geometry and common gap.}
+Direct affine bounds on the four corners of the box give
+\begin{gather}\label{eq:geomargins}
+ l_x-\ell\ge9/50,\quad l_y-\ell-11b/6\ge43/600,\quad
+ 1-3\ell\ge49/100,\\
+ 4/5\le h\le41/50,\quad 5\ell-h\ge11/600,\quad
+ \sigma_g\ge1049/1200>87/100.\notag
+\end{gather}
+Thus Theorem~\ref{thm:low} applies. Also
+\begin{equation}\label{eq:signalgeometry}
+ h=1-l_x+\ell,\quad C_g(s)=l_x/2+s-1+h/6,\quad
+ l_x/2+b/12=C_g(\sigma_g).
+\end{equation}
+Suppose $\Delta=\beta^*-\sigma_g>0$. This is one global number, chosen before any target. The moment parameter is $\kappa=3/4$, with premise supplied by the input $\beta^*\le7/8$.
+
+\emph{The full high identity and its contours.}
+In the high representation from Proposition~\ref{prop:correction}, the scalar quotient is
+\[
+ \frac{\zeta_\F^S(6z)L_\F^S(w,\chi_\bullet(u))}
+      {L_\F^S(s,\eta\overline{\chi_\bullet(u)})},
+\]
+with $q_u^{-z}\overline{\xi(u)}$ and the common Mellin weight
+\[
+ X^{1/2-z}Z^{s+z-1}Y^{w-1}
+ e^{(s+z-1)^2}M_0(z)\widehat W_1(w).
+\]
+Here $M_0$ is the scalar Mellin factor denoted $M$ in \src{(7.2)}; it is holomorphic for $\Rea z>0$ and positive on $(0,1)$. The reciprocal denominator retains its presentation and all deletions. The principal numerator row is $u=1$ by \src{\S10.1}; the other bounded unit rows remain in the small range.
+
+For a nonprincipal original bin, first move $z$ from $2$ to $z_0=17/50$ with $w=3$, then move $s$ from $3$ to $\beta^*+20e$. All reciprocals are on global zero-free lines. Next move $w$ to $1-a-6e$. Along the latter path
+\[
+ \Rea(s+w)\ge1+(\beta^*-a)+14e\ge1+14e,
+\]
+so it lies in $\mathcal D_1(10e)$; $6\Rea z>1$ and the numerator is nonprincipal. Truncate the physical heights within their assigned boxes while keeping the discarded pieces on the global $s$ line. Only then move the retained $s$ segment to $a+16e$. Its reciprocal argument has real part at least $a+6e$ and lies in the same rectangle \eqref{eq:buffer}. Hence no zero is crossed. This derives the contour move for $\sigma_g<7/8$; it does not invoke the fixed-range conclusion of \src{Lemma 10.3}.
+
+All discarded vertical pieces and joins have
+\begin{equation}\label{eq:externaltail}
+ O_{\eta,N}(Z^{B_\eta}T_1^{-N}),
+\end{equation}
+with a scale degree fixed before $N$. This is the direct input \src{Lemma 10.2}: real boxes are compact, the common kernel has pointwise rapid decay on horizontal slices as well as integrated decay, and the arithmetic integrand has a fixed scale and polynomial height bound. The latter follows from the global Hecke bounds \src{Lemmas 4.8--4.10} and Proposition~\ref{prop:correction}. A coordinate whose reciprocal is only buffered remains in its assigned box. Internal Fourier measures with only a fixed weighted $L^1$ bound remain in the integrated row factor; no horizontal trace estimate is asserted for those measures. The external densities come from the original smooth profiles and have the pointwise bounds of \src{Lemma 4.5} at every fixed order.
+
+For principal extraction keep $s_r=\beta^*+e$ and use
+\[
+ 19/20\le w_r\le1+e,\qquad33/200\le z_r\le1/6+e.
+\]
+These paths lie in $\mathcal D'_2$. First cross the numerator pole at $w=1$, then in its residue cross $6z=1$. There are only these two scalar poles; $M_0$ is holomorphic. Bound the full correction by \eqref{eq:principalabsolute} before approximating the double residue. Including its scale power, the combined exponent is
+\begin{equation}\label{eq:principalpower}
+ l_x/2+s_r-1+hz_r+l_y(w_r-1).
+\end{equation}
+Thus the two leftover contours have margins
+\begin{equation}\label{eq:principalmargins}
+ m_w=l_y/20\ge93/4000,\qquad m_z=h/600\ge1/750,
+\end{equation}
+with small displacement costs $(1+h)e$ and $e$. Take $\mu=2\ell/(5K)>0$, admissible in \eqref{eq:residuecorrection}. The approximation remainder has exponent $C_g(\beta^*)+e-\mu+\eps$. The double residue scalar is
+\begin{equation}\label{eq:scalar}
+ c_S=\widehat W_1(1)M_0(1/6)
+       \bigl(\Res_{v=1}\zeta_\F^S(v)\bigr)^2/6>0.
+\end{equation}
+Its sign follows from the nonnegative nonzero test and $M_0(1/6)>0$; the finite deletion changes the positive zeta residue by $\prod_{\p\in S}(1-q_\p^{-1})>0$. The factor $1/6$ is the Jacobian of $6z$. The main scale is
+\[
+ X^{1/3}Z^{s-5/6}Z^{\ell/6}=Z^{C_g(s)}.
+\]
+Move only this main integral right to $\Rea s=2$; the reciprocal is global, and Gaussian decay removes joins. Define
+\begin{equation}\label{eq:Jf}
+ J_{\eta,g}=I_{\eta,{\rm mod}}/(c_SA_T),\qquad
+ f_{\eta,g}(Z)=\frac1{2\pi i}\int_{(2)}Z^{C_g(s)}e^{(s-5/6)^2}
+                    \frac{H_\eta(s)}{L_\F^S(s,\eta)}\,ds.
+\end{equation}
+Neither function involves the analysis cutoff $T_1$. This derives the principal extraction for the new geometry, including its new additive constant in $C_g$.
+
+\emph{Joint local errors and the retained exponent.}
+On the central contour use the assumption-free \src{Proposition 16.1}, whose local range is $51/100\le a\le1$, $0<e\le10^{-3}$. Let $\psi_u^*$ induce the numerator $\chi_\bullet(u)$. Its analytic hypothesis is
+\begin{equation}\label{eq:correctnumerator}
+ |L_\F(1-w,\overline{\psi_u^*})|\ll U^\eps
+ \quad(w_r=1-a-6e,\ |\Ima w|\le T_1).
+\end{equation}
+The conjugate original presentation belongs to \eqref{eq:Xfamily}. Its argument has real part $a+6e$ and is in the buffered rectangle. Request $U^{\eps/2}$ in \eqref{eq:buffer}, and use the inverse-deletion bound of \src{Lemma 4.10}, with deletion radical $\ll_{\mathcal A}U$, for the remaining $U^{\eps/2}$. This proves \eqref{eq:correctnumerator} for the primitive conjugate function. The pretarget cutoff \eqref{eq:precutoff} gives the other hypothesis, nonzero central selected $H_\p$.
+
+Proposition~16.1 separates each central selected multiplier into its original main factor and error. For each fixed error subset it bounds the numerator times all errors jointly by
+\[
+ U^{a-1/2+O(e)+\eps}(3+T_1)^{A_\eta}
+ \prod_{i\ {
+m error}}P_i^{z_0-1/2+O(e)+\eps}.
+\]
+Its conductor saving is applied once to the complete set of strict ramified primes:
+\[
+ \N\mathfrak f_u\ll_S q_u
+ \prod_{\p\in J_0}q_\p^{-(v_\p(u)-1)}.
+\]
+The main factors retain the amplitude $q$ of Section~\ref{sec:count}. After the row count, the resulting aggregate integrand, before $q_u^{-z_0}$, is bounded by
+\begin{equation}\label{eq:aggregate}
+ U^{R+\delta/2+\eps_c}Z^{\ell(z_0-1/2)+q\ell+\eps_c}(1+T_1)^{A_\eta}.
+\end{equation}
+There is one numerator allowance for the whole error subset.
+
+For $e=0$, the raw outside scale power is
+\[
+ l_x/2+a-1+(1-l_x)z_0-a l_y.
+\]
+Add \eqref{eq:aggregate}, including $U^{-z_0}$, and subtract $C_g(\sigma_g)$. The exact relative exponent is
+\begin{equation}\label{eq:Ed}
+ E(d)=a-\sigma_g+h(z_0-1/6)-a l_y-\ell/2+q\ell
+                   +d(R+\delta/2-z_0).
+\end{equation}
+The adjustable costs are $(16-6l_y)e+(1+d)\eps_c+d\eps_d+\eps_p$, where $\eps_p$ pays logarithmic subdivisions. In particular the correction's $Z^{\ell z_0}$ is counted once. Bins are moved as original holomorphic integrals; pointwise amplitude subdivisions are made after this move and only used for bounds.
+
+List once all external coordinates $v_1,\ldots,v_r$ entering any buffered $L$-value, reciprocal, or logarithmic derivative, including the three original physical Mellin heights. After pure-twist translations write each such argument as $\gamma_j+\sum_k a_{jk}v_k$, with $|\gamma_j|\le(3i+1)T_1$ and one fixed finite coefficient matrix. Allocate once
+\begin{equation}\label{eq:heightallocation}
+ |v_k|\le\frac{T_1}{2r(1+\max_j|a_{jk}|)}.
+\end{equation}
+The total addition from all original and additional coordinates is at most $T_1/2$, and is never reset at a later transform. The original physical box constants are the corresponding entries of this same allocation. Internal seminorms are fixed before external tail orders.
+
+\emph{All row ranges.}
+For $R=R_*$ and $d=h$, using $a=(1+\delta)/2$ and $q=x\delta$ in \eqref{eq:Ed} gives exactly \eqref{eq:endpoint}. Its slope in $d$ is positive and less than two:
+\[
+ R_*+\delta/2-z_0=1-\delta/2+T-17/50,
+\]
+and, since $0\le T\le(5/6-\delta)/2\le5/12$,
+\[
+ 33/50-\delta/2\ge57/200>0,\qquad
+ R_*+\delta/2-z_0\le1+5/12-17/50=323/300<2.
+\]
+The true signal has exponent $C_g(\beta^*)=C_g(\sigma_g)+\Delta$. Thus \eqref{eq:criterion}, even at equality, gives margin $\Delta$ at $h$.
+
+The floor $a=51/100$ has $R=1$ and $q\le1/100$. Direct substitution gives
+\begin{equation}\label{eq:floor}
+ E_{\rm floor}(h)\le-6/25+(32/25)\ell+b/6\le-11/15000<-1/2000.
+\end{equation}
+For $d\le1/2$, the no-slot bound \eqref{eq:noslotcount}, with the floor included, is $R=76/75-2\delta/3$. This affine majorant has slope $-2/3$, equals the floor value $1$ at $\delta=1/50$, and exceeds the no-slot exponent $1-2\delta/3$ by $1/75$. Its slope in $d$ is $101/150-\delta/6>0$, and
+\begin{equation}\label{eq:middle}
+ E(1/2)\le-2/25-49(1+b)/300+13\ell/50
+               +\delta(1/6-b/4+3\ell/4)
+ \le-1631/120000<-1/100.
+\end{equation}
+The $\delta$ coefficient is positive, and the right side increases with $\ell$ and decreases with $b$; its maximum is at $\delta=3/4,\ell=17/100,b=1/10$.
+
+Take $d_{\min}=1/100$. On small rows move to $s_r=\beta^*+e,w_r=1/2,z_r=z_0$, in $\mathcal D_1(1/3)$. The numerator is nonprincipal; a bounded unit denominator may be principal, whose reciprocal has no pole on this global line. Lemma~\ref{lem:cutoff} supplies the absolute tuple bound. The strip estimate \src{Lemma 4.8, (4.14)} gives numerator power $U^{3/5+\eps}$, the element count is $O(U)$, and $q_u^{-z_0}$ contributes $U^{-17/50}$. Their combined row power is $63/50$. The outside scale exponent $l_x/2+s-1+hz+l_y(w-1)$ at $(s_r,w_r,z_r)=(\beta^*+e,1/2,17/50)$ exceeds $C_g(\beta^*)=l_x/2+\beta^*-1+h/6$ by
+\[
+ h(17/50-1/6)-l_y/2+e=13h/75-l_y/2+e.
+\]
+For $d\le d_{\min}$ the row power is $(63/50)d\le(63/50)d_{\min}\le2d_{\min}$. Using this larger budget, the exponent relative to $C_g(\beta^*)$ is at most
+\begin{equation}\label{eq:small}
+ h(13/75)-l_y/2+2d_{\min}
+ \le(41/50)(13/75)-93/400+1/50
+ =-2111/30000<-7/100,
+\end{equation}
+before arbitrarily small displacement losses.
+
+Set
+\begin{equation}\label{eq:zeta}
+ \lambda_0=\min\{\Delta,1/2000\},\qquad
+ \zeta_0=\min\{(5\ell-h)/4,(1-h)/4,\lambda_0/100\}>0.
+\end{equation}
+Then $h+\zeta_0<1$, $\ell/(h+\zeta_0)>1/5>7/37$, and extending the selected interval to $h+\zeta_0$ costs at most $2\zeta_0\le\lambda_0/50$. Its margin relative to the true signal is at least $49\lambda_0/50$.
+
+For $q_u\ge Z^{h+\zeta_0}$ use the absolute lines $s_r=w_r=2$, with
+\[
+ z_\infty=\lceil10/\zeta_0\rceil+1>2.
+\]
+Lemma~\ref{lem:cutoff} and the same outside weight give the summed exponent
+\[
+ B_0+(h+\zeta_0)(1+\eps)-\zeta_0 z_\infty+\eps<-6,
+ \qquad B_0=l_x/2+1+l_y<2,
+\]
+for $\eps\le10^{-3}$. This uses a fixed absolute line before the target. Also $C_g(\sigma_g)\ge223/1200>0$, so these rows have sufficient saving.
+
+\emph{Order of choices and final height.}
+Put $c_*=\lambda_0/100$. First request moment, witness, capacity, and rounding losses with total cost less than $c_*/10$. Obtain the target-independent fourth-moment mesh $\eta_{\rm mesh}$. Choose a fixed even $K$ with
+\begin{equation}\label{eq:Kchoice}
+ 2\ell/K<\min\{\eta_{\rm mesh},c_*/1000,1/185\},\qquad\ell_i=\ell/K.
+\end{equation}
+The bound $1/185$ ensures
+$1/5-1/185=36/185>7/37=35/185$ after one fractional slot is removed.
+Use nonnegative, nonzero bumps in the disjoint intervals
+\[
+ I_i=\left(1+\frac{2i-1}{2K+1},\ 1+\frac{2i}{2K+1}\right).
+\]
+At selected base $U$, $w_i=\ell_i/d\le2\ell/K$, and the supply exceeds $1/5$ by a fixed amount. The internal centered amplifier of the fourth-moment proof has pool length $\sigma_{\rm width}/3$ and mesh below $\sigma_{\rm width}/6$. A live physical slot is at most $2U^{\eta_{\rm mesh}}$, whereas its auxiliary pool starts at $U^{\sigma_{\rm width}/3}/2$. Their fixed exponent gap makes these underlying windows disjoint after a threshold, uniformly in selected $d$.
+
+After fixing $K$, let $\mu=2\ell/(5K)$. Choose amplitude width, $e$, and remaining component powers to fit the displayed finite budgets and to make principal costs less than $m_w/4,m_z/4,\mu/4$. Impose all $e_0$ conditions of Lemma~8.2 on the enclosing pre-saturation range $[0,22]$. Fix $P_{\rm pre}(e)$ at this stage. A common pre-height saving may be taken as
+\[
+ m=\tfrac14\min\{c_*,m_w,m_z,\mu\}>0.
+\]
+All these choices, including the geometric gap, precede the target.
+
+Now fix $\eta$, its complete presentations and $S$ (including its defining supports and primes below $P_{\rm pre}$), and all internal transform, Sobolev, and seminorm orders. The previous bounds give finite $A_\eta,B_\eta$ and a detector ceiling $\tau_{0,\eta}>0$, independent of an external order $N$. For example, if $\eps_{\rm ht}$ is the smallest requested detector allowance and $A_{{\rm ht},\eta}$ bounds its orders, take
+\[
+ \tau_{0,\eta}=d_{\min}\eps_{\rm ht}/[20(1+A_{{\rm ht},\eta})].
+\]
+Thus for every $N$ and every $0<\tau\le\min(d_{\min}/100,\tau_{0,\eta})$, after a threshold depending on $\eta,N,\tau$,
+\begin{equation}\label{eq:highquantified}
+ |J_{\eta,g}-f_{\eta,g}|\ll_{\eta,N}
+ Z^{C_g(\beta^*)-m}(1+T_1)^{A_\eta}+Z^{B_\eta}T_1^{-N}.
+\end{equation}
+The external order raises only external profile derivatives; it does not reenter an internal moment. Constants in auxiliary tails can be absorbed in a threshold using a separately reserved positive power gap. This is exactly the order required by the direct input \src{Lemma 11.1}, whose boundary range is $(1/2,1)$.
+
+Choose
+\[
+ 0<\tau_\eta\le\min\{d_{\min}/100,\tau_{0,\eta},m/[4(1+A_\eta)]\},
+\]
+then choose $N_\eta$ so that $B_\eta-N_\eta\tau_\eta<C_g(\beta^*)-m/2$, and finally take the threshold. Equation~\eqref{eq:highquantified} gives a saving $m/2$. Theorem~\ref{thm:low} and $A_T^{-1}=Z^{o(1)}$ give $|J_{\eta,g}|\ll Z^{C_g(\sigma_g)+\Delta/2}$. Lemma~\ref{lem:euler} gives a holomorphic $H_\eta$ with $|H_\eta-1|\le1/31$ on $\Rea s>\sigma_g$. Proposition~\ref{prop:continuation} applies with common losses $\Delta/2,m/2$ and contradicts $\Delta>0$. The transfer in Section~\ref{sec:inputs} completes the theorem.
+\end{proof}
+
+\subsection{Coefficients for the endpoint certificates}\label{sec:coefficients}
+For general $c=1/(3\kappa)$, put $y=1/2-x$ and use $J_\kappa,T_\kappa$ from \eqref{eq:balanced} in \eqref{eq:endpoint}. Direct multiplication gives
+\[
+ -108J_\kappa E_g
+ =Q_0(\delta)+yQ_1(\delta)+y^2Q_2(\delta)+y^3Q_3(\delta),
+\]
+where $Q_0=A_0\delta^2+B_0\delta+C_0$,
+$Q_1=A_1\delta^2+B_1\delta+C_1$, $Q_2=A_2\delta^2+B_2\delta$ and
+$Q_3=216c\ell\delta^2$. Write $e_0=-1/4+b/6+5\ell/4$ and $h=(1+b+3\ell)/2$. The coefficients are
+\begin{align*}
+ A_0&=27bc/2-54b-81c\ell/2-27c/2+81\ell+27,\\
+ B_0&=-54(c-3)e_0+45b(5-2c)/2-45h(2-c)/2,\\
+ C_0&=-45(5-2c)e_0,\\
+ A_1&=-108bc+108b+54c\ell+54,\\
+ B_1&=126bc-18b+180c\ell-54c-45\ell-18,\\
+ C_1&=-30bc-15b-225c\ell+45c-225\ell/2+45/2,\\
+ A_2&=162bc-54c\ell+54c+108\ell,\\
+ B_2&=-81bc-225c\ell+9c+90\ell.
+\end{align*}
+These follow by expanding
+$-108J_\kappa\{e_0-(b/2+\ell y)\delta\}
+-54h(5/6-\delta)\delta P_x$.
+At $c=4/9$ they give
+\begin{align*}
+ A_0&=-48b+63\ell+21,&B_0&=98b+120\ell-52,\\
+ C_0&=-185b/6-925\ell/4+185/4,\\
+ A_1&=60b+24\ell+54,&B_1&=38b+35\ell-42,\\
+ C_1&=-85b/3-425\ell/2+85/2,\\
+ A_2&=72b+84\ell+24,&B_2&=-36b-10\ell+4,\qquad Q_3=96\ell\delta^2.
+\end{align*}

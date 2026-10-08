@@ -1,0 +1,94 @@
+\section{The quadratic endpoint of the original envelope}\label{sec:quadratic}
+\begin{theorem}\label{thm:quadratic}
+Every function in Theorem~\ref{thm:main} is zero-free in
+\[
+ \Rea s>\sigma_*:=\frac{1507-2\sqrt{921}}{1653}.
+\]
+\end{theorem}
+\begin{proof}
+Put $r_0=\sqrt{921}$ and
+\begin{equation}\label{eq:quadraticparameters}
+ d_*=\frac{49-r_0}{48},\quad
+ \ell_*=\frac{33+8r_0}{1653},\quad
+ b_*=-\frac4{29}+\frac{230r_0}{26709}.
+\end{equation}
+We first derive these parameters. At $y=1/2-x=0$, the numerator $N=-108JE_g$ is
+\[
+ Q_0(\delta)=(-48b+63\ell+21)\delta^2
+ +(98b+120\ell-52)\delta-185b/6-925\ell/4+185/4.
+\]
+The coefficient of $b$ vanishes when
+\[
+ 288\delta^2-588\delta+185=0.
+\]
+The root in $[0,3/4]$ is $d_*$. Substitution in \eqref{eq:balanced} gives $R_*(d_*,1/2)=2/3$, equivalently $T=d_*-1/3$. Setting the endpoint to zero yields
+\[
+ \ell_*=\frac{5-6d_*}{9+18d_*}.
+\]
+The stationary equation $Q_0'(d_*)=0$ then gives
+\[
+ b_*=\frac{52-(126d_*+120)\ell_*-42d_*}{98-96d_*},
+\]
+which reduces to \eqref{eq:quadraticparameters}. Also $\sigma_*=11/12-\ell_*/4$.
+
+The rational isolation
+\begin{equation}\label{eq:sqrtisolation}
+ \frac{30347}{1000}<r_0<\frac{30348}{1000}
+\end{equation}
+follows from
+\[
+ 921-(30347/1000)^2=59591/10^6>0,\qquad
+ (30348/1000)^2-921=1104/10^6>0.
+\]
+It implies $1/6<\ell_*<17/100$, $1/10<b_*<13/100$, and $d_*>777/2000$.
+
+For the complete rectangle numerator, set
+\begin{align*}
+ A_0&=-48b_*+63\ell_*+21,\\
+ A_1&=60b_*+24\ell_*+54,&B_1&=38b_*+35\ell_*-42,\\
+ C_1&=-85b_*/3-425\ell_*/2+85/2,\\
+ A_2&=72b_*+84\ell_*+24,&B_2&=-36b_*-10\ell_*+4.
+\end{align*}
+Expansion gives the identity
+\begin{equation}\label{eq:quadraticpoly}
+ N=A_0(\delta-d_*)^2+y(A_1\delta^2+B_1\delta+C_1)
+                  +y^2(A_2\delta^2+B_2\delta)+96\ell_*y^3\delta^2.
+\end{equation}
+The double root in the constant coefficient is a consequence of the two displayed elimination equations, not a numerical approximation.
+
+All sign comparisons are in $\Q(r_0)$. Reduce a field expression to $A+Br_0$ using $r_0^2=921$, and use the appropriate endpoint of \eqref{eq:sqrtisolation}. This gives
+\[
+ A_0>25,\qquad A_1>65,\qquad A_2>46.
+\]
+For the closest comparisons, the exact field expressions are
+\begin{align}
+ 4A_1(C_1+6/25)-B_1^2
+ &=\frac{17317418985607-570341476744r_0}{6990413025}>1,\label{eq:qguard1}\\
+ 4A_2(3/125)-B_2^2
+ &=\frac{-6767947591748+223064581728r_0}{34952065125}>1/30,\label{eq:qguard2}\\
+ Q_1'(3/10)&=-2729/145+117028r_0/133545>7,\notag\\
+ Q_1(3/10)+1/200&=2140057/66120-40590578r_0/38060325>0,\notag\\
+ Q_1(1/3)&=52541/1653-1578082r_0/1522413>3/10,\notag\\
+ (3/10)A_2+B_2&=1956/145-6736r_0/133545>11.\notag
+\end{align}
+Here $Q_1=A_1\delta^2+B_1\delta+C_1$, $Q_2=A_2\delta^2+B_2\delta$, and $Q_3=96\ell_*\delta^2$. Equations~\eqref{eq:qguard1}--\eqref{eq:qguard2} give $Q_1\ge-6/25$, $Q_2\ge-3/125$ by completing squares.
+
+If $0\le\delta\le3/10$, then
+\[
+ Q_0>25(777/2000-3/10)^2>19/100,\qquad
+ N>19/100-3/25-3/500=8/125>0.
+\]
+If $3/10\le\delta\le1/3$, then
+\[
+ Q_0>25(777/2000-1/3)^2>3/40.
+\]
+The derivative guard makes $Q_1$ increasing there, so $Q_1>-1/200$, and the $Q_2$ guard makes $Q_2\ge0$. Thus $N>3/40-1/400=29/400>0$.
+If $1/3\le\delta\le3/4$, then $Q_1>0$ and $Q_2,Q_3\ge0$. Hence $N\ge0$, with equality only at $y=0,\delta=d_*$. Since $J>0$, this proves $E_g\le0$ on the entire closed rectangle. Theorem~\ref{thm:geometry} includes the contact point and proves the claimed half-plane.
+
+For comparison,
+\[
+ \frac78-\sigma_*=\frac{16r_0-485}{13224}>0,\qquad
+ \ell_*-\frac{1001}{6000}>\frac1{3306000}>0.
+\]
+The second strict bound follows by evaluating at the lower endpoint in \eqref{eq:sqrtisolation} and using the strict root inequality. Thus this stage improves both rational stages.
+\end{proof}

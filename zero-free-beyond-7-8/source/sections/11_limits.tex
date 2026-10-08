@@ -1,0 +1,101 @@
+\section{The envelope limit and one further mean-value hypothesis}\label{sec:limits}
+\subsection{The scope of the endpoints}
+The following concerns only the optimisation of $(\ell,b)$ inside the fixed set of estimates listed here; it says nothing about the true value of $\beta^*$ or about other methods. The endpoints just proved concern a specified envelope: $M+\ell=1$, the low exponent $l_x/2+b/12$, the signal $C_g$, the marked inverse and plain moments, the unmarked sixth-power amplification, and an absolute high comparison on every allowed bin. They impose no lower bound on actual row contributions.
+
+For the original $\kappa=3/4$ envelope, the critical bin of Section~\ref{sec:quadratic} satisfies
+\[
+ E_g(d_*,1/2)=(3/4+3d_*/2)(\ell-\ell_*),
+\]
+independently of $b$. Thus requiring every raw endpoint to be nonpositive forces $\ell\le\ell_*$; Theorem~\ref{thm:quadratic} attains that bound.
+
+For the extended, self-consistent envelope the same obstruction occurs at $\sigma_\dagger$. Here is the precise local range of this assertion. If $8749/10000\le\beta\le\sigma_\dagger$, use the smallest legal plain-moment parameter $\kappa=2\beta-1$ and let $c=1/(3\kappa)$. At $x=1/2$, for $0\le u<5/6$, $R_c(u)$ is strictly decreasing and crosses $2/3$ at one $d_c\in(19/50,2/5)$. Indeed, with $v=P_x/D_x$,
+\[
+ R_c(u)=1-u+\frac u2\,\frac{v(5/6-u)}{5/6-u+uv},\qquad
+ \frac d{du}\frac{v(5/6-u)}{5/6-u+uv}
+ =-\frac{(5/6)v^2}{(5/6-u+uv)^2}<0,
+\]
+so $R_c'(u)<-1/2$. The endpoint signs are
+\[
+ R_c(19/50)-2/3=\frac{587c-698}{150(193c-454)}>0,\qquad
+ R_c(2/5)-2/3=\frac{c+11}{15(38c-89)}<0
+\]
+for $4/9\le c\le5000/11247$. Increasing $\kappa$ cannot improve this count, since
+\[
+ \partial_cR_c(u)=-\frac{u(6u-5)^2}{2(6cu-10c-18u+25)^2}\le0.
+\]
+Put $\ell_\beta=4(11/12-\beta)$ and $d_\beta=(9\beta-7)/(18(1-\beta))$. The map $u\mapsto(7+18u)/(9+18u)$ increases. Equation~\eqref{eq:Rcriticalidentity}, together with $F'<0$, gives $d_c\ge d_\beta$, hence $\ell_c=(5-6d_c)/(9+18d_c)\le\ell_\beta$. At this legal critical bin, the high exponent relative to the true signal is
+\[
+ (3/4+3d_c/2)(\ell-\ell_c)-(\beta-\sigma_g).
+\]
+Strict low saving requires $\ell>\ell_\beta$. At $\ell=\ell_\beta$ this expression is nonnegative, and its derivative in $\ell$ is $1/2+3d_c/2>0$. It therefore cannot give a strict high saving. This proves the stated envelope limitation, including geometry allowed to depend on $\beta$. A different mean value, correlation, signed cancellation, or low-side estimate lies outside this model.
+
+\subsection{A single unproved estimate}
+The family and central normalization are those of \cite[(2.2), Proposition~3.1]{openai2026lm}, which proves the mean-square bound on the nonzero row ball for $H=D^{1+\vartheta}$, $0<\vartheta\le1/10$; the hypothesis below asks for its smooth-majorant form for $D^{99/100}\le H\le D^{101/100}$. Fix a finite-order ray character $\nu$ with its entire zero-extended presentation, a finite $S$ containing its defining-modulus support and the primes over $6$, a compact annular interval $I=[a,b]\subset(0,\infty)$, and a fixed nonnegative radial Schwartz majorant $\Phi(q_u/H)$ with $\Phi\ge1$ on $[0,1]$ and compactly supported radial Fourier transform. Use the self-dual Eisenstein lattice measure $d\mu(z)=(2/\sqrt3)\,dx\,dy$. Thus $\widehat\Phi(0)=\int_{\C}\Phi(|z|^2)\,d\mu(z)$. Define
+\begin{align}
+ A_u(D)&=\sum_{(n,S)=1}\mu(n)\nu(n)\chi_n(u)W(q_n/D),\notag\\
+ \mathcal M(D,H)&=\frac1D\sum_{u\in\OO}\Phi(q_u/H)|A_u(D)|^2.\label{eq:meanvaluefamily}
+\end{align}
+
+\begin{hypothesis}[Mean-square estimate for $H\ge D^{99/100}$; unproved]\label{hyp:shortrows}
+For every fixed datum $\nu,S,I,\Phi$ just specified and every $\eps>0$, there are a finite integer $J$ and a constant $C_{\nu,S,I,\Phi,\eps}$ such that
+\begin{equation}\label{eq:shortrowestimate}
+ \mathcal M(D,H)
+ \le C_{\nu,S,I,\Phi,\eps}\,H D^\eps\|W\|_{C^J(I)}^2
+\end{equation}
+for all $D\ge2$, $D^{99/100}\le H\le D^{101/100}$, and $W\in C_c^\infty(I)$, with every original natural zero retained. The exponent $99/100$ is common to all fixed data; $J$ and $C$ may depend on the displayed datum and $\eps$.
+\end{hypothesis}
+
+This is one mean-square estimate. It is not proved in this paper and is not an input to Theorem~\ref{thm:main}.
+
+\begin{proposition}[Conditional $328/375$ boundary]\label{prop:conditional}
+Hypothesis~\ref{hyp:shortrows} implies that all the functions of Theorem~\ref{thm:main} are zero-free in $\Rea s>328/375$.
+\end{proposition}
+\begin{proof}
+By \eqref{eq:shortrowestimate}, $\mathcal M\ll HD^\eps\|W\|_{C^J}^2$. Since $\Phi\ge1$ on the unit row ball, this bounds the unweighted ball when $H\ge D^{99/100}$. For larger $H$ the existing unmarked bound \src{(17.87)} covers the range, with a small fixed positive length loss. Apply the same assumption to the finitely many scale derivatives and then the profile Sobolev estimate of \src{Lemma 4.5}.
+
+For completeness, sixth-power-free amplification changes its long-row threshold as follows. Put $M_u(D;W)=D^{-1/2}A_u(D;W)$. The original zero extensions give the exact divisor identity
+\[
+ M_u(D;W)=\sum_{d\mid\rad a}\mu(d)\psi_u(d)q_d^{-1/2}
+                       M_{ua^6}(D/q_d;W),\qquad \psi_u(n)=\nu(n)\chi_n(u).
+\]
+To check it, split each original squarefree column uniquely as $n=dl$ with $d\mid\rad a$ and $(l,a)=1$. Multiplicativity retains every zero, including when $u,a$ share primes; the factor $q_d^{-1/2}$ is its exact central normalization. Average this identity over good primary ideals $a$ of norm at most $P=(H'/U)^{1/6}$, where $H'=\max(2U,D^{99/100})$, and apply weighted Cauchy and the scale supremum just established. The map $(u,a)\mapsto ua^6$ is injective when $u$ is sixth-power-free. The good-ideal count is $\asymp_{\mathcal A}P$ (the bounded-ratio case is handled directly), so the resulting bound is $H'/P$ times arbitrary small powers. Divisor multiplicities cost arbitrary small powers and no coprimality of $u,a$ is imposed. The normalized unmarked moment therefore has exponent
+\[
+ e_{99}(r)=\max\{1,\ 1/6+33r/40\}\qquad(D=U^r),
+\]
+up to the requested loss and a fixed height cost. The long count for $r\ge1$ is
+\[
+ \max\{1-\delta,\ 1/6+(33/40-\delta)t\}+O(\eps).
+\]
+This includes the new kink at $r=100/99$.
+
+Use $\kappa=3/4$ for the marked counts. Set
+\[
+ J_{99}=(33/40-\delta)D_x+\delta P_x,\quad
+ t_{99}=1+\frac{D_x/120+\delta P_x/2}{J_{99}},\quad
+ T_{99}=\frac{(97/120-\delta)\delta P_x}{2J_{99}}.
+\]
+Then $1\le t_{99}<3/2$, since $97/120>3/4$, and substitution balances the short count with the second long branch at $R_{99}=1-\delta+T_{99}\ge1-\delta$. The same inverse margins, supply, zero-capacity, and coefficient arguments of Theorem~\ref{thm:count} apply.
+
+Choose
+\[
+ \ell=21/125,\quad b=11/100,\quad
+ l_x=361/1000,\quad l_y=471/1000,\quad h=807/1000.
+\]
+This is in \eqref{eq:geobox} and gives $\sigma_g=328/375$. Replace $T$ in \eqref{eq:endpoint} by $T_{99}$ to define $E_{99}$. For $y=1/2-x$, the full polynomial identity is
+\begin{align*}
+ 20000(-108J_{99}E_{99})={}&526080\delta^2-406288\delta+79365\\
+ &+y(1292640\delta^2-603308\delta+72930)\\
+ &+y^2(920640\delta^2-19144\delta)+322560y^3\delta^2.
+\end{align*}
+The three exact completed-square remainders are
+\begin{align*}
+ 4(526080)(79365-900)-406288^2&=45529856>0,\\
+ 4(1292640)(72930)-603308^2&=13108397936>0,\\
+ 4(920640)(100)-19144^2&=1763264>0.
+\end{align*}
+Thus the four coefficients have lower bounds $900,0,-100,0$, respectively, on $\delta\ge0$. For $0\le y\le1/2$ the numerator is at least $875$. Since $77/120\le J_{99}\le99/40$,
+\[
+ E_{99}\le-7/42768<0.
+\]
+All other ranges, contours, normalizer, and choice order were proved uniformly on the geometry box. The count just derived replaces the selected envelope there; its slope is positive and less than two. The common-signal contradiction and transfer therefore prove the conditional boundary. No second unproved estimate is used.
+\end{proof}

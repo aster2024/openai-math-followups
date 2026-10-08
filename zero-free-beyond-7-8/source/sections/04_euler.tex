@@ -1,0 +1,210 @@
+\section{Euler factors, compensation, and the enlarged domain}\label{sec:euler}
+\subsection{The six local cases}
+We use the exact rational identities of \src{Lemma 7.1, (7.6), (7.11)--(7.13), (7.17)}. Their hypotheses are a nonzero sixth-power-free physical row $u$, $(u,S)=1$, and a prime $\p\notin S$. Write $Q=q_\p$, $j=v_\p(u)\in\{0,\ldots,5\}$, $t_\p=\eta(\p)$, and
+\begin{gather*}
+ \rho=\chi_\p(u/\p^j),\quad
+ a_\p=\overline{\alpha(\p)}^{3}t_\p^3,\quad
+ b_\p=\overline{\alpha(\p)}^{2}t_\p^2\overline{\chi_\p(4)},\quad b_\p^3=a_\p^2,\\
+ V=Q^{-6z},\quad R=a_\p^2Q^{4-6s-6z},\quad W_{\rm loc}=\rho Q^{-w},\\
+ W=\chi_\p(u)Q^{-w},\qquad D=t_\p\overline{\chi_\p(u)}Q^{-s}.
+\end{gather*}
+The values $\rho,a_\p,b_\p,t_\p$ have absolute value one; this is explicit in \src{(7.6)}. The original zero extension makes $D=W=0$ when $\p\mid u$, while $W_{\rm loc}$ still has its unit phase. Put
+\begin{equation}\label{eq:localtable}
+ P_\p^*=\frac1{1-R}\left\{
+ \frac{R(1-Q^{-1})-t_\p(Q-1)Q^{-s-w}V^{\1_{j\le1}}}{1-V}+J_j\right\},
+\end{equation}
+where the six values are
+\[
+\begin{array}{c|l}
+ j&J_j\\ \hline
+ 0&-t_\p\rho^{-1}Q^{-s}+W_{\rm loc}R\\
+ 1&t_\p Q^{-s-w}\\
+ 2&a_\p\rho^{-3}Q^{3/2-3s}\\
+ 3&-t_\p b_\p\rho^{-2}Q^{2-3s-w}+b_\p^2\rho^{-4}Q^{2-4s}\\
+ 4&-t_\p a_\p\rho^{-3}Q^{5/2-4s-w}\\
+ 5&-a_\p^2Q^{3-6s}.
+\end{array}
+\]
+The unmarked and scalar-corrected factors are
+\begin{equation}\label{eq:HP}
+ P_\p=\frac{1-VW}{(1-V)(1-W)}+P_\p^*,\qquad
+ H_\p=\frac{1-VW+(1-V)(1-W)P_\p^*}{1-D}.
+\end{equation}
+These identities retain all phases and zeros.
+
+\begin{lemma}[Enlarged Euler domain]\label{lem:euler}
+On
+\begin{equation}\label{eq:D2}
+ \mathcal D'_2=\{\Rea s\ge87/100,\ \Rea w\ge19/20,\ \Rea z\ge33/200\},
+\end{equation}
+$H_{\eta,u}=\prod_{\p\notin S}H_\p$ is holomorphic in a neighborhood of every point and $|H_{\eta,u}|\ll_\eps q_u^\eps$, uniformly in all imaginary parts and unit phases. More explicitly,
+\[
+ |H_\p-1|\le210Q^{-181/100}\quad(\p\nmid u),\qquad
+ |H_\p-1|\le32Q^{-82/100}\quad(\p\mid u).
+\]
+If $S$ contains all primes of norm at most $P_0=2^{20}$, then
+\begin{equation}\label{eq:contraction}
+ \sup_{\mathcal D'_2}|H_{\eta,1}-1|\le1/31.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Here $|R|\le Q^{-221/100}$, $|V|\le Q^{-99/100}$, $|D|\le Q^{-87/100}$, and $|W|\le Q^{-19/20}$. Hence $|1-R|^{-1}\le2$ and $|1-V|^{-1},|1-D|^{-1}\le3$. For $j=0$, put $E_\p=P_\p^*+D$. The exact table gives
+\begin{equation}\label{eq:Eprime}
+ E_\p=\frac{R\{(1-Q^{-1})/(1-V)+W-D\}
+       -t_\p(Q-1)Q^{-s-w}V/(1-V)}{1-R}.
+\end{equation}
+Thus $|E_\p|\le10Q^{-221/100}+6Q^{-181/100}\le16Q^{-181/100}$. Substituting $P_\p^*=-D+E_\p$ in \eqref{eq:HP} gives
+\[
+ H_\p-1=\frac{D(V+W-VW)-VW+(1-V)(1-W)E_\p}{1-D}.
+\]
+The three numerator bounds and their combined defect estimate are
+\[
+ 3Q^{-182/100},\quad Q^{-194/100},\quad64Q^{-181/100},
+ \qquad |H_\p-1|\le204Q^{-181/100}<210Q^{-181/100}.
+\]
+
+For $j>0$, $H_\p-1=(1-V)P_\p^*$. The strict second-family term, with $V^{\1_{j\le1}}=1$ for $j\ge2$, has exponent at most $-82/100$. The boundary terms for $j=1,2,3,4,5$ have exponents at most
+\[
+ -182/100,\quad-111/100,\quad(-156/100,-148/100),\quad-193/100,\quad-222/100.
+\]
+Their coefficients have modulus one, and the $R$ term is $O(Q^{-221/100})$. The denominator bounds yield
+\[
+ |P_\p^*|\le2(3+3+2)Q^{-82/100}=16Q^{-82/100},\qquad
+ |H_\p-1|\le32Q^{-82/100}.
+\]
+
+Lemma~\ref{lem:countlattice} proves normal convergence of the unramified product. The strict exponent margin remains valid in a neighborhood of each boundary point. The finite ramified product satisfies
+\[
+ \prod_{\p\mid u}(1+32Q^{-82/100})\le C_\eps q_u^\eps.
+\]
+For example take $R_\eps=\max\{3,(32/\eps)^{50/41}\}$ and $C_\eps=33^{3R_\eps}$; above $R_\eps$, $32Q^{-82/100}\le\eps\log Q$.
+
+For $u=1$, partial summation with the ideal count $A(t)\le3t$ gives
+\[
+ \sum_{q_\p>P_0}q_\p^{-181/100}\le\frac{181}{27}P_0^{-81/100}.
+\]
+The defect sum is at most $210(181/27)2^{-81/5}<1408\cdot2^{-16}<1/32$. Since $e^x\le(1-x)^{-1}$ for $0\le x<1$, the product differs from one by at most $1/31$. An enlargement of $S$ decreases this positive majorant.
+\end{proof}
+
+\subsection{The full correction and principal normalizer}
+Define the local replacement, with the marked conjugation as printed in \src{(16.2)},
+\begin{equation}\label{eq:Gprime}
+ G_\p=\frac{(\overline{t_\p}Q^s-Q^{-w})(1-V)(1-W)P_\p^*
+                     -Q^{-w}(1-VW)}{1-D}.
+\end{equation}
+Direct substitution in \eqref{eq:HP} proves
+\begin{equation}\label{eq:localidentity}
+ \overline{t_\p}Q^{s+z-1}P_\p^*-Q^{z-w-1}P_\p
+ =\frac{1-D}{(1-V)(1-W)}Q^{z-1}G_\p.
+\end{equation}
+In particular, $\overline{t_\p}Q^sD=\overline{\chi_\p(u)}$. The full correction is the quotient-free expression
+\begin{equation}\label{eq:fullcorrection}
+ \He_{\eta,u,Z}(s,w,z)=\sum_{(\p_i)}
+ \prod_i[W_i(q_{\p_i}/P_i)q_{\p_i}^{z-1}G_{\p_i}]
+ \prod_{\p\notin S\cup\{\p_i\}}H_\p.
+\end{equation}
+We never divide by a selected $P_\p$ or $H_\p$ in this definition.
+
+\begin{proposition}[Correction identity and normalization]\label{prop:correction}
+For every positive geometry and fixed disjoint slot system used here, the exact high representation of \eqref{eq:physical} is \src{(16.7)} with correction \eqref{eq:fullcorrection}. This correction is holomorphic in neighborhoods of $\mathcal D'_2$ and of the original domains
+\[
+ \mathcal D_1(\eps_0)=\{s_r\ge51/100,\ z_r\ge17/50,\ w_r\ge-1/100,
+                       \ s_r+w_r\ge1+\eps_0\},\quad\eps_0>0.
+\]
+It has a fixed scale-power bound on each fixed real box, uniform in imaginary parts, for $q_u$ in a fixed polynomial range. Its scale degree is independent of later external derivative orders.
+
+For $u=1$ and $Q>P_0$, on $\mathcal D'_2$,
+\[
+ B_\p:=G_\p/H_\p=-1+O(1400Q^{-87/100}),\qquad |G_\p|\le3.
+\]
+If $K$ is even and
+\begin{equation}\label{eq:normalizer}
+ S_i(Z)=\sum_{\p\in\mathcal P_i(Z)}W_i(q_\p/P_i)q_\p^{-5/6},\qquad
+ A_T(Z)=Z^{-\ell/6}\prod_i S_i(Z),
+\end{equation}
+then $A_T(Z)\asymp(\log Z)^{-K}>0$ eventually, and for $0<\mu<(87/100)\min_i\ell_i$,
+\begin{equation}\label{eq:residuecorrection}
+ \He_{\eta,1,Z}(s,1,1/6)
+ =H_\eta(s)Z^{\ell/6}A_T(Z)(1+R_{\eta,Z}(s)),\qquad
+ |R_{\eta,Z}(s)|\ll Z^{-\mu},
+\end{equation}
+uniformly on the principal line $\Rea s=\beta^*+e$, where $H_\eta(s)=H_{\eta,1}(s,1,1/6)$. Also
+\begin{equation}\label{eq:principalabsolute}
+ |\He_{\eta,1,Z}(s,w,z)|\ll Z^{\ell\Rea z+\eps}
+ \qquad ((s,w,z)\in\mathcal D'_2\text{ in a fixed real box}).
+\end{equation}
+\end{proposition}
+\begin{proof}
+The denominators of \eqref{eq:Gprime} are only $1-R,1-V,1-D$ and do not vanish in these domains. On a fixed real box bounded by $M_0\ge1$, the finite local monomials and geometric denominators give $|G_\p|\le C Q^{20M_0+20}$, independent of imaginary parts. The finite tuple count is a fixed scale power. Unselected products are bounded by Lemma~\ref{lem:euler} and the first-domain bound of \src{Lemma 7.1, (7.14)}, whose stated real inequalities are exactly those displayed above. This proves the holomorphy and all-height assertion.
+
+On $s=w=3,z=2$, the source identity \src{(7.5)} and all local sums converge absolutely. Apply \eqref{eq:localidentity} once at each distinct selected prime and sum the finite tuples and subsets. This proves the high representation for the same expression \eqref{eq:physical}. No relation among the positive scales enters this finite identity.
+
+For $u=1$, substituting $P_\p^*=-D+E_\p$ gives
+\[
+ B_\p+1=\frac{(1-V)(1-W)}{(1-D)H_\p}
+ \left\{(1-W)\left(\frac V{1-V}-D\right)
+       +\overline{t_\p}Q^sE_\p+(1-W)E_\p\right\}.
+\]
+The prefactor is at most $24$. The first bracketed term is at most $8Q^{-87/100}$. Keep the two terms of \eqref{eq:Eprime} separate when multiplying by $Q^{s_r}$:
+\[
+ Q^{s_r}|E_\p|\le10Q^{4-5s_r-6z_r}+6Q^{1-w_r-6z_r}
+ \le16Q^{-87/100}.
+\]
+The last term is at most $32Q^{-87/100}$. Thus the error is at most $1344Q^{-87/100}<1400Q^{-87/100}$. For $Q>2^{20}$ this is less than one; indeed $1400^{100}<2^{1740}$. The unramified factor also has modulus at most $3/2$, giving $|G_\p|\le3$.
+
+The assumption-free fixed-ray prime normalizer \src{Lemma 13.1} applies: $T$ is fixed, $W_i$ is annular and nonnegative, and only a fixed finite set $S$ is removed. It gives
+\[
+ S_i(Z)\sim\frac{P_i^{1/6}}{|T|\log P_i}
+                 \int_0^\infty W_i(t)t^{-5/6}\,dt>0.
+\]
+Factoring $H_{\eta,1}$ from \eqref{eq:fullcorrection} is legitimate here since each principal local factor is nonzero. Summing $B_\p=-1+O(Q^{-87/100})$ in each slot proves \eqref{eq:residuecorrection}; even $K$ removes the sign. The bound $|G_\p|\le3$, the positive unselected-product majorant, and the ideal count give \eqref{eq:principalabsolute}, including the whole residue rectangle. This last absolute bound is used before the residue approximation.
+\end{proof}
+
+\subsection{Central cutoff and outer contours}
+\begin{lemma}[Pretarget cutoff and absolute tuple bounds]\label{lem:cutoff}
+For $51/100\le a\le7/8$, $0<e<10^{-3}$, set
+\[
+ s_r=a+16e,\quad w_r=1-a-6e,\quad z_r=17/50.
+\]
+Then
+\[
+ |H_\p-1|\le256Q^{-1-10e}\ (\p\nmid u),\qquad
+ |H_\p-1|\le256Q^{-10e}\ (\p\mid u).
+\]
+Consequently the target-independent cutoff
+\begin{equation}\label{eq:precutoff}
+ P_{\rm pre}(e)=\max\{2^{20},2^{1/e}\}
+\end{equation}
+makes every central selected $H_\p$ nonzero, with $|H_\p|>3/4$.
+
+On $s_r\ge87/100,w_r=1/2,z_r=17/50$, one has $G_\p=O(1)$ for $\p\nmid u$ and $G_\p=O(Q^{1/2})$ for $\p\mid u$. On $s_r=w_r=2,z_r=z_\infty>2$, one has $G_\p=O_{z_\infty}(1)$ for every selected prime. On both types of contour,
+\begin{equation}\label{eq:tupleabsolute}
+ \sum_{(\p_i)}\prod_i[|W_i(q_{\p_i}/P_i)|q_{\p_i}^{z_r-1}|G_{\p_i}|]
+ \prod_{\p\notin S\cup\{\p_i\}}|H_\p|
+ \ll_\eps q_u^\eps Z^{\ell z_r}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+On the central line $w_r\ge119/1000$. The inverse denominators $1-R,1-V,1-D$ are bounded by $2,2,4$. For $j=0$, \eqref{eq:Eprime} gives
+\[
+ |E_\p|\le8Q^{-11/10-96e}+4Q^{-51/25-10e}\le12Q^{-1-10e}.
+\]
+The $DW$ exponent is exactly $-1-10e$ and the other terms in \eqref{eq:HP} are smaller, giving $208Q^{-1-10e}$. For $j>0$, the strict term is bounded by $Q^{-10e}$; the five boundary cases give respectively
+\[
+ -1-10e,\quad-3/100-48e,\quad(-1/50-42e,-1/25-64e),\quad
+ -3/100-58e,\quad-3/50-96e.
+\]
+They are at most $-10e$. Thus $|P_\p^*|\le12Q^{-10e}$ and $|H_\p-1|\le24Q^{-10e}$. The common constant $256$ suffices. For $Q>2^{1/e}$, $256Q^{-10e}<256\cdot2^{-10}=1/4$.
+
+The small contour lies in $\mathcal D_1(1/3)$ since $87/100+1/2>4/3$. In the unramified formula for $G_\p$, its four error exponents are at most
+\[
+ -87/100,\quad-51/25,\quad-239/100,\quad-77/50.
+\]
+In the ramified cases, multiplication by $Q^{s_r}$ makes the strict exponent $1/2$, while the boundary exponents are at most
+\[
+ -1/2,\quad-24/100,\quad(-24/100,-61/100),\quad-61/100,\quad-135/100.
+\]
+The $R$ exponent is at most $-239/100$ and the rescaled term is $O(Q^{-1/2})$. This proves the stated local bounds. At $s_r=w_r=2,z_r>2$ all those exponents are negative; the strict one is at most $-1$.
+
+In each slot the unramified prime count contributes $O(P_i^{z_r})$. The ramified primes are divisor-many, contributing $O_\eps(q_u^\eps P_i^{z_r-1/2})$. Allocate the arbitrary small loss among the fixed slots and multiply the positive unselected-product bound. This proves \eqref{eq:tupleabsolute} without dividing by possibly zero local factors.
+\end{proof}

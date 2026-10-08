@@ -1,0 +1,47 @@
+PASS old endpoint polynomial completion, 10368 v J (-E)
+PASS old positive remainder guard
+PASS old denominator majorant
+PASS first rational boundary
+PASS first geometry lx margin
+PASS first geometry additive margin
+PASS first geometry effective width
+PASS first geometry supply margin
+PASS first endpoint margin
+PASS first endpoint strict bound
+PASS second rational full numerator
+PASS second rational boundary
+PASS Q0 discriminant
+PASS Q0 minimum
+PASS Q1 completed-square remainder
+PASS Q2 completed-square remainder
+PASS first cover bound
+PASS second cover bound
+PASS shift Q1
+PASS shift Q2
+PASS rational endpoint bound
+PASS geometry 1/6,1/10
+PASS floor 1/6,1/10
+PASS middle 1/6,1/10
+PASS geometry 1/6,13/100
+PASS floor 1/6,13/100
+PASS middle 1/6,13/100
+PASS geometry 17/100,1/10
+PASS floor 17/100,1/10
+PASS middle 17/100,1/10
+PASS geometry 17/100,13/100
+PASS floor 17/100,13/100
+PASS middle 17/100,13/100
+PASS small rows
+PASS lattice count elementary bound
+PASS Euler tail rational guard
+PASS Euler principal local guard
+PASS extended capacity strict guard
+PASS bootstrap gap fraction
+PASS fourth moment terminal width
+PASS fourth moment terminal reserve
+PASS conditional full numerator
+PASS conditional square Q0
+PASS conditional square Q1
+PASS conditional square Q2
+PASS conditional endpoint bound
+All rational certificates verified; no mean-value hypothesis was checked.

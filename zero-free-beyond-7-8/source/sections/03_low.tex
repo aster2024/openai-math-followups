@@ -1,0 +1,164 @@
+\section{The compensated probe and its low estimate}\label{sec:low}
+\subsection{One finite physical expression}
+Use the datum $T,S,b_{\rm aux},\xi,\tau_\xi,\Xi,W_0,W_1$ of \src{\S6.1}, with the original zero-extended coefficients. Here $b_{\rm aux}$ generates the squarefree product of the primes in $S$; it is unrelated to the real geometric parameter $b$ below. The annular $W_0,W_1$ are nonnegative and nonzero. Let $I_{\eta;D}(X,Y,Z)$ be \src{(6.1)} with $\1_{D\mid cn^3}$ inserted in the completed index $A=cn^3$. The scales $X,Y,Z$ in that identity are arbitrary positive numbers.
+
+Fix positive slot lengths $\ell_i$ of sum $\ell$, put $P_i=Z^{\ell_i}$, and take nonnegative, nonzero smooth $W_i$ on fixed annuli. Their underlying prime windows are disjoint before any ray restriction or deletion. Put
+\[
+ \mathcal P_i(Z)=\{\p\notin S:\p\in1_T,\ q_\p/P_i\in\supp W_i\}.
+\]
+For a tuple write $p_J=\prod_{i\in J}\p_i$. The physical expression is
+\begin{equation}\label{eq:physical}
+\begin{split}
+ I_{\eta,{\rm mod}}(Z)=\sum_{(\p_i)\in\prod_i\mathcal P_i(Z)}
+ \prod_i W_i(q_{\p_i}/P_i)
+ \sum_{J\subseteq\{1,\ldots,K\}}(-1)^{|J|}q_{p_J}^{-3/2}
+ \overline{\eta(p_{J^c})}\,
+ I_{\eta;p_{J^c}}(X/q_{p_J},Y/q_{p_J},Zq_{p_{J^c}}).
+\end{split}
+\end{equation}
+This is the operation in \src{(12.5)} for the new scales. In particular, the marked coefficient is $\overline{\eta(\p)}$, as printed in \src{(12.5)}. The selected primes are distinct, so each local operation is composed once. Both estimates of this paper concern \eqref{eq:physical}.
+
+\begin{lemma}[Elementary norm count]\label{lem:countlattice}
+For $R>0$, the number of nonzero element rows with $q_u\le R$ is at most $16R$, and the number of nonzero integral ideals with norm at most $R$ is at most $3R$.
+\end{lemma}
+\begin{proof}
+If $u=x+y\omega$, then $q_u=x^2-xy+y^2\ge(x^2+y^2)/2$. For $R\ge1$ the number of lattice points is at most $(2\sqrt{2R}+1)^2<16R$, since $9+4\sqrt2<16$. The Euclidean ring $\OO$ has six units, and each nonzero ideal has six generators of its norm. Divide by six. For $R<1$ both nonzero counts vanish.
+\end{proof}
+
+\begin{theorem}[Completed-row and low estimates]\label{thm:low}
+Suppose
+\begin{gather}\label{eq:lowhyp}
+ 0\le\ell\le1/5,\quad M=l_x+l_y=1-\ell,\quad b=l_y-l_x>0,\\
+ l_x-\ell>0,\qquad l_y-\ell-11b/6>0.\notag
+\end{gather}
+Fix any finite slot system as above. For a rescaled subset $J$ put
+\[
+ d_J=\sum_{i\in J}\ell_i,\qquad M'=M-2d_J,\qquad\ell'=\ell-d_J.
+\]
+Let $B^J_{m,c_T}$ be the marked completed-row factor in the exact separation of \eqref{eq:physical}, for a fixed ray class $c_T\in T$. For every $\eps>0$,
+\begin{align}
+ \sum_{0<q_m\ll Z^{M'}}|B^J_{m,c_T}(Z)|^2
+ &\ll Z^{M'+\pos{5\ell+d_J-1}/4+\eps},\label{eq:completed}\\
+ |I_{\eta,{\rm mod}}(Z)|&\ll Z^{l_x/2+b/12+\eps}.
+ \label{eq:low}
+\end{align}
+The first bound is uniform in the rescaled tuple and the moving labels. Constants and thresholds may depend on the fixed datum, slot system, support boxes, and finite seminorms.
+\end{theorem}
+\begin{proof}
+We rederive the completed norm rather than use the fixed-$\ell$ conclusion of \src{Lemma 15.1}. The marked completed series is
+\[
+ T_D(s_0,\psi)=\sum_{c\ \sfv,n}
+ \gamma_2(c)\overline{\alpha(cn^3)}\psi(cn^3)
+ \1_{D\mid cn^3}q_c^{-s_0}q_n^{-3s_0+1/2}.
+\]
+The $c,n$ are the original indices outside $S$ and may share primes. Mellin inversion at $s_0=t+1/2$ leaves the central coefficient
+\begin{equation}\label{eq:centralcoefficient}
+ \frac{\gamma_2(c)\overline{\alpha(cn^3)}\psi(cn^3)}{q_c^{1/2}q_n}
+ \1_{p_{J^c}\mid cn^3}\prod_{i\notin J}\overline{\eta(\p_i)}W_i(\varrho_i),
+ \qquad\varrho_i=q_{\p_i}/P_i.
+\end{equation}
+Its Gaussian profile has argument
+\[
+ \frac{q_{cn^3}}{Zq_{p_{J^c}}}=\frac{r}{\prod_{i\notin J}\varrho_i},
+ \qquad r=q_{cn^3}/Z^{1+\ell'}.
+\]
+Write $W_G(y)=(2\sqrt\pi)^{-1}\exp(-\log^2y/4)$. On a whole annulus $r=e^kx$, take the single joint profile
+\[
+ w_{k,J}(x,\boldsymbol\varrho)=\chi(\log x)
+ W_G\!\left(\frac{e^kx}{\prod_{i\notin J}\varrho_i}\right)
+ \prod_{i\notin J}W_i(\varrho_i),
+\]
+where $\chi$ is a fixed logarithmic partition function. The central coefficient \eqref{eq:centralcoefficient} is unchanged by the annular center. There is no additional $e^{k/2}$ or $Z^{\ell'/2}$ factor. A separated annular profile $V_*(y)$ is written $y^{1/2}W(y)$, with $W=y^{-1/2}V_*$, to match the normalization in \src{(14.2)}.
+
+The decomposition of \src{Lemma 4.6} applies because all slot supports are fixed and the Gaussian annular seminorms have summable exponential weights. Choose its truncation width as $\eps_0/2$. Retain whole annuli meeting that strip, and enlarge a fixed support constant $C_{\rm supp}\ge3^4$ to contain the partition radius and all support-comparison constants. Set $\eps_Z=\log C_{\rm supp}/\log Z$. Once $\eps_Z\le\eps_0/2$, every retained annulus has completed length
+\[
+ N_*=1+\ell'+\theta_N,\qquad |\theta_N|\le\eps_0.
+\]
+The removed whole annuli have arbitrarily small total norm. Apply \src{Lemma 4.5} to the single joint profile and then Minkowski. The row-sector reduction \src{Lemma 5.2} uses $f=1$ and puncture one; it retains all nonzero element rows, including rows meeting $S$. The row ball depends only on the already frozen rescaled tuple, and hence is independent of surviving slots and dual variables.
+
+We may therefore apply the assumption-free reflected-energy statement of \src{Lemma 14.3}, justified in Appendix~\ref{app:partii}. Adopt its local logarithmic labels $O,H,A_0,N_0,S_0,B_0,z_a,v,\ell_b,e_\lambda$. Their meaning is, respectively: powerful row part (the supported squarefree part is frozen separately); residual row; active non-slot support; squarefree assignment; small Ramanujan or zero-mask terms; cube-only assignment; active slot length; squarefree dual length; cube dual length; and the supported $\lambda$-length. Actual supports give
+\begin{gather}\label{eq:supportlow}
+ H\le M'-O+\eps_Z,\quad \Delta_H:=M'-O-H\ge-\eps_Z,\quad
+ O\ge-\eps_Z,\\
+ 2A_0\le O+\eps_Z,\quad N_0\le A_0,\quad z_a\le\ell',\quad
+ A_0,N_0,S_0,B_0,z_a\ge0.\notag
+\end{gather}
+The dual cutoff and retained support are
+\begin{align*}
+ T_d&=2H+2A_0+2z_a-1-\ell'-\theta_N-N_0-3B_0,\\
+ y_0:=v+3\ell_b+e_\lambda&\le T_d+\eps_0,
+ \qquad v,\ell_b,e_\lambda\ge-\eps_Z.
+\end{align*}
+Since $M'+\ell'-1=-3d_J$,
+\[
+ T_d-(H-3d_J)=H-M'+2A_0+2(z_a-\ell')-N_0-3B_0-\theta_N
+ \le2\eps_Z+|\theta_N|.
+\]
+It follows that $\max(H,v+\ell_b)\le H+2\eps_0+5\eps_Z$.
+
+The aggregate exponent of \src{(14.14)}, already including the count of the fixed row parts, is
+\begin{equation}\label{eq:Eref}
+ \begin{split}
+ E_{\rm ref}&=O/2+\max(H,v+\ell_b)-S_0-B_0+z_a-u_0-\ell_b-2e_\lambda/3\\
+ &\quad-\pos{T_d-y_0}/2,\qquad
+ u_0=\min\{v,z_a,(v+z_a)/3\}.
+ \end{split}
+\end{equation}
+In particular its $O/2$ is counted once. If $u_0=z_a$, \eqref{eq:supportlow} gives
+\[
+ E_{\rm ref}\le O/2+H+2\eps_0+\tfrac{20}{3}\eps_Z
+ \le M'-\Delta_H+2\eps_0+\tfrac{43}{6}\eps_Z
+ \le M'+2\eps_0+\tfrac{49}{6}\eps_Z.
+\]
+If $u_0\ne z_a$, then $u_0\ge v/2-\eps_Z/2$, and
+\begin{align*}
+ u_0+\ell_b+2e_\lambda/3+\pos{T_d-y_0}/2
+ &\ge y_0/4+\pos{T_d-y_0}/2-\tfrac{17}{12}\eps_Z\\
+ &\ge T_d/4-\tfrac{17}{12}\eps_Z.
+\end{align*}
+The last inequality holds on both sides of $y_0=T_d$. The exact remaining normalization is
+\[
+ O/2+\Delta_H+S_0+B_0+T_d/4
+ =\frac{2M'+2z_a-1-\ell'+2\Delta_H-\theta_N}{4}
+  +\frac{2A_0-N_0+B_0+4S_0}{4}.
+\]
+Its second numerator is nonnegative. Hence
+\begin{align*}
+ E_{\rm ref}
+ &\le M'+\frac{1+3\ell'-2M'-2\Delta_H+\theta_N}{4}
+          +2\eps_0+\tfrac{77}{12}\eps_Z\\
+ &\le M'+\frac{1+3\ell'-2M'}4
+          +\tfrac94\eps_0+\tfrac{83}{12}\eps_Z.
+\end{align*}
+Both branches decrease with $\Delta_H$, so its lower bound can be used on every actual dyad. Since
+\[
+ 1+3\ell'-2M'=5\ell+d_J-1,
+\]
+their maximum is at most $M'+\pos{5\ell+d_J-1}/4+9(\eps_0+\eps_Z)$. Choose $\eps_0\le\min(1/100,\eps/100)$ and then the fixed-data threshold so that $\eps_Z\le\min(\eps/100,\eps_0/2)$. Allocate the remaining losses to Lemma~14.3, sectors, common Fourier measures, and logarithmic dyad counts. This proves \eqref{eq:completed}, with no assumption that a formal endpoint dyad occurs.
+
+For the low bound, the whole-index indicator may be retained term by term in the absolutely convergent completed series. The fixed-ray decomposition and both linear separations in \src{(6.2)} therefore give its marked version, with exactly $B^J$ above. For a fixed rescaled tuple put $r_J=q_{p_J}/Z^{d_J}$; this lies in a fixed positive compact interval. Its actual scales are
+\[
+ X'=Z^{l_x-d_J}/r_J,\quad Y'=Z^{l_y-d_J}/r_J,\quad
+ Q=q_{b_{\rm aux}}Z^{M'}/r_J^2,\quad
+ P_a=Y'^2/Q=q_{b_{\rm aux}}^{-1}Z^b.
+\]
+They are at least one after a fixed threshold. Moreover
+\[
+ l_y-d_J-11b/6\ge l_y-\ell-11b/6>0,
+ \qquad P_a^2/Y'\ll P_a^{1/6}.
+\]
+The additive factor is the original $A_{m,c_T,v}(Y')$ of \src{\S6.1}; its fixed ray coefficient has not changed. Thus every hypothesis of the assumption-free \src{Proposition 15.2} holds: polynomial $Q,Y'\ge1$, $P_a\ge1$, fixed row ball, and its stated ray-coefficient class. Its norm is
+\[
+ \sum_{q_m\ll Q}|A_{m,c_T,v}(Y')|^2
+ \ll (1+|v|)^{J_{\rm Gr}}(Q/Y')P_a^{1/6}Z^\eps.
+\]
+Cauchy--Schwarz in the same marked separation, keeping the outside $Q^{-1/2}$, gives for this tuple
+\[
+ Z^{(l_x-d_J)/2+b/12+\pos{5\ell+d_J-1}/8+\eps}.
+\]
+The fixed Mellin test absorbs its polynomial height factor. Lemma~\ref{lem:countlattice} bounds the number of rescaled tuples by $O(Z^{d_J+\eps})$, while the outside coefficient in \eqref{eq:physical} is $O(Z^{-3d_J/2})$. The additional exponent is
+\[
+ -d_J+\pos{5\ell+d_J-1}/8\le-7d_J/8\le0,
+\]
+because $\ell\le1/5$. Allocate the finitely many small losses before summing the subsets. This proves \eqref{eq:low}.
+\end{proof}

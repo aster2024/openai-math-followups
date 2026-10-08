@@ -1,0 +1,125 @@
+\section{Row counts for the general family supremum}\label{sec:count}
+Set $\alpha_0=5/6$. A main physical prime factor on the central contour is
+\[
+ \mathcal Q_i(u;z)=P_i^{-1/2}\sum_{\p\in\mathcal P_i(Z)}
+ \overline{\chi_\p(u)}W_i(q_\p/P_i)(q_\p/P_i)^{z-1}.
+\]
+The assumption-free \src{Lemma 19.1} applies under the buffered hypotheses of Lemma~8.2, with the prime-annulus frequency in the same cumulative allowance. It bounds $|\mathcal Q_i|$ by $U^\eps P_i^{a-1/2+O(e)}$. After the lengths are fixed, choose small $e$ and a fixed amplitude width $\vartheta$ to obtain bins with
+\[
+ 0\le g_i\le\delta/2,\qquad
+ |\mathcal Q_i|\le P_i^{g_i+\vartheta},\qquad
+ g_i>0\ \Longrightarrow\ |\mathcal Q_i|\ge P_i^{g_i}.
+\]
+Set $g_i=0$ on error slots, and put $q=\sum_i\ell_i g_i/\ell$, $x=q/\delta\in[0,1/2]$. The letter $q$ here denotes amplitude, not the moving-support exponent in the fourth moment.
+
+\begin{theorem}[General row count]\label{thm:count}
+Assume $51/100<\beta^*\le7/8$. Use a fixed nonfloor dynamic and amplitude bin of the retained physical family, with its original masks, presentations, and cumulative height allocation. Suppose
+\[
+ 37/50\le\kappa\le3/4,\qquad \beta^*\le(1+\kappa)/2.
+\]
+Write
+\begin{equation}\label{eq:countparameters}
+ c_\kappa=\frac1{3\kappa},\quad A_x=2-2c_\kappa x,\quad
+ B_x=1-x,\quad D_x=A_x+B_x,\quad P_x=A_xB_x.
+\end{equation}
+If the total available prime length at base $U$ exceeds $7/37$ by a fixed positive amount, then for every $t\in[1,3/2]$ and every $\eps>0$,
+\begin{equation}\label{eq:rowcount}
+ \#\bset\ll U^{\max\{R_{{\rm short},\kappa}(t),L(t)\}+\eps}(1+T_1)^{A_{\mathcal A}},
+\end{equation}
+where
+\begin{align}
+ R_{{\rm short},\kappa}(t)&=1-\delta+\frac{\delta P_x}{D_x}(3/2-t),\label{eq:shortcount}\\
+ L(t)&=1-\delta+(5/6-\delta)(t-1).\label{eq:longcount}
+\end{align}
+The output loss, capacity decrement, and mesh may be chosen using only the loss and bounded real ranges, before the target and slot count. After the fixed system and datum are chosen, $A_{\mathcal A}$ and all internal seminorm orders are finite and independent of any later external tail order. At $\kappa=3/4$ the displayed hypothesis follows from the input $\beta^*\le7/8$.
+
+Without selected slots, no supply condition is needed and
+\begin{equation}\label{eq:noslotcount}
+ \#\bset\ll U^{1-2\delta/3+\eps}(1+T_1)^{A_{\mathcal A}}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+The marked inverse moment used here is the assumption-free \src{Lemma 17.1}. At row width one it requires
+\[
+ r+2z\le1-c_1,\qquad 2r+8z\le3-c_2,\qquad c_1,c_2>0.
+\]
+Its coefficients are one common fixed finite-ray twist times either common orientation of the sextic symbol, with row-independent bounded prime coefficients and disjoint supports. The fourth moment is the assumption-free \src{Lemma 18.1} when $\kappa=3/4$ and Theorem~\ref{thm:fourth} when $\kappa<3/4$. Its positive-slot premise is exactly the displayed bound on $\beta^*$. Theorem~\ref{thm:fourth} is proved without this row-count theorem, so this forward reference introduces no circular dependence.
+
+Subdivide \eqref{eq:witness} by presentation and dyadic pair. If needed, conjugate both witnesses and their profiles to write their common character as $\psi_u^-(n)=\nu(n)\overline{\chi_n(u)}$. Relative to it a physical slot has coefficient
+\[
+ \overline{\nu(\p)}\1_{\p\in1_T}
+   =|T|^{-1}\sum_{\theta\in\widehat T}(\overline\nu\theta)(\p),
+\]
+which is fixed across rows and belongs to the required finite character span. The inverse moment permits this negative orientation. For the plain moment conjugate the whole product of two plain copies and all selected slots. Its character becomes $\overline\nu(n)\chi_n(u)$ and its slot coefficient becomes $\nu(\p)\1_{\p\in1_T}$. Its absolute square, masks, and disjoint windows are unchanged. Every retained nonunit good row induces outside $\Theta$, by the local ramification discussed in Section~\ref{sec:inputs}. The finite-parameter Sobolev assertion of \src{Lemma 4.5} handles the rowwise smooth witnesses with a fixed height cost.
+
+At base $U$ let $w_i=\ell_i/d$. Order positive $g_i$ decreasingly and fill a requested length $z$ fractionally. The average gain is at least $qz$. If positive slots do not fill $z$, retaining all of them gives at least $q\ell/d\ge qz$. Remove the one possible fractional slot, and first reduce the requested length by a fixed $\nu_0>0$. The squared gain is at least
+\[
+ 2qz-2q\nu_0-\delta\max_i w_i.
+\]
+These two losses can be made smaller than any prescribed positive power.
+
+For $r<1,m<1/2$, the ideal capacities are
+\[
+ z_I=(1-r)/2,\qquad z_P=(1-2m)/(6\kappa).
+\]
+Dividing the moment bounds by the saturated spikes and the slot gain gives the affine counts
+\begin{align*}
+ I(r)&=1-\delta\{x+(1-x)r\},\\
+ P_t(r)&=1-\delta\{c_\kappa x+(2-2c_\kappa x)(t-r)\}.
+\end{align*}
+The second uses two copies of $S_m$ and hence divides by $|S_m|^4$; replacing $m$ by $t-r-O(\eps)$ is legitimate because its exponent decreases with $m$.
+
+The two lines intersect at
+\begin{equation}\label{eq:crossing}
+ r_\kappa(t)=\frac{(2-2c_\kappa x)t+(c_\kappa-1)x}{D_x}.
+\end{equation}
+For $4/9\le c_\kappa\le50/111$,
+\begin{equation}\label{eq:lengthbounds}
+ 23/37\le r_\kappa(t)\le1,\qquad 1/3\le t-r_\kappa(t)\le1/2.
+\end{equation}
+To verify these bounds, at $t=1$,
+\[
+ r_\kappa(1)=\frac{2-(1+c_\kappa)x}{3-(1+2c_\kappa)x},\quad
+ \partial_{c_\kappa}r_\kappa(1)=\frac{x(1-x)}{D_x^2}\ge0,
+\]
+and $r_{3/4}(1)\ge23/37$. Also
+\[
+ 1-r_\kappa(1)-1/3=\frac{x(1-c_\kappa)}{3D_x}\ge0.
+\]
+At $t=3/2$ the two lengths are $1,1/2$; their affine dependence on $t$ proves the remaining bounds.
+
+For $r\le r_\kappa(t)$ select the plain count; for $r\ge r_\kappa(t)$ select the inverse count. On the latter side, after the decrement,
+\[
+ 1-r-2z\ge2\nu_0,\qquad
+ 3-2r-8z=4(1-r-2z)+(2r-1)\ge8\nu_0+9/37.
+\]
+These are fixed positive inverse margins. The maximum inverse capacity is $7/37$. The plain capacity on its selected side is at most
+\[
+ 1/(18\kappa)\le25/333<7/37,
+\]
+apart from the arbitrarily small witness loss. Thus the supply and mesh hypotheses hold.
+
+The decreasing $I$ and increasing $P_t$ are bounded by their crossing value. The identity
+\[
+ x(A_x+c_\kappa B_x)=D_x-3P_x/2
+\]
+shows that this value is \eqref{eq:shortcount}. If $r\ge1$, the assumption-free \src{Lemma 17.6} gives unmarked exponent $1/6+5r/6$. Dividing by the inverse spike gives $1/6+(5/6-\delta)r\le L(t)+O(\eps)$, since $\delta\le3/4<5/6$ and $r\le t+O(\eps)$. If $m\ge1/2$, the zero-slot fourth moment gives $1-2\delta m\le1-\delta+O(\eps)$.
+
+No shrinking strict margin is sent into a marked moment. If $z_I\le\nu_0$, the unmarked amplification gives $1-\delta r\le1-\delta+2\delta\nu_0$ for $r\le1$. If $z_P\le\nu_0$, the zero-slot moment gives $1-2\delta m\le1-\delta+6\delta\nu_0$. Both losses are within the requested output budget. The unmarked amplification is uniform through $r=1$: its auxiliary row ball is $H=\max(2U,D^{1+c})$, $D=U^r$, with any prechosen small $c>0$.
+
+All subdivisions are finite or logarithmic. The ranges have $\delta\ge1/50$ and $D_x\ge455/222$, so their losses are uniformly bounded and can be allocated before the target. This proves \eqref{eq:rowcount}. For no selected slots, use $q=0$ in the same calculation and $t=1$: the crossing is $r=2/3,m=1/3$ and yields \eqref{eq:noslotcount}. No positive capacity is requested in that case.
+\end{proof}
+
+Define the balanced envelope
+\begin{equation}\label{eq:balanced}
+ J_\kappa=(5/6-\delta)D_x+\delta P_x,\quad
+ t_\kappa=1+\frac{\delta P_x}{2J_\kappa},\quad
+ T_\kappa=\frac{(5/6-\delta)\delta P_x}{2J_\kappa},\quad
+ R_\kappa=1-\delta+T_\kappa.
+\end{equation}
+For $0\le\delta\le3/4$, $0\le x\le1/2$,
+\[
+ D_x\ge455/222,\qquad P_x\ge86/111,\qquad
+ 215/333\le J_\kappa\le5/2.
+\]
+Indeed $D_x\ge P_x$, whence $J_\kappa\ge(5/6)P_x$ and $J_\kappa\le(5/6)D_x\le5/2$. Thus $1\le t_\kappa<3/2$, and substitution proves $R_{{\rm short},\kappa}(t_\kappa)=L(t_\kappa)=R_\kappa$. At $\kappa=3/4$ the sharper source bounds are $D_x\ge37/18$, $P_x\ge7/9$, and $J\ge35/54$.
