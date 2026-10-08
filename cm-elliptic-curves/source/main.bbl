@@ -9,6 +9,17 @@
 \newblock Draft dated 8 October 2026; repository owner Rogerhu12. The statement
   is conditional on its theta, reflection, and fixed-order large-sieve inputs.
 
+\bibitem{FollowupSevenEighths}
+{AI-assisted research draft}.
+\newblock A seven-eighths theorem for {H}ecke characters over arbitrary number
+  fields.
+\newblock
+  \href{https://github.com/Rogerhu12/openai-math-extensions/blob/a4a1eb9e45b38d50c39afb9c35f582e8786ce262/papers/029-artin-primitive-roots/hecke_seven_eighths_all_characters.tex}{Repository
+  Rogerhu12/openai-math-extensions at commit a4a1eb9e}, October 2026.
+\newblock Draft dated 8 October 2026; repository owner Rogerhu12. The theorem
+  is stated under its source hypothesis on the constructions and analytic
+  arguments of the two OpenAI papers.
+
 \bibitem{CPS}
 Evan Chen, Peter~S. Park, and Ashvin~A. Swaminathan.
 \newblock Linnik's theorem for {S}ato--{T}ate laws on elliptic curves with

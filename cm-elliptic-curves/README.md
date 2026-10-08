@@ -61,6 +61,14 @@ the Mellin reflection in an arbitrary positive mode, and carries the angular fac
 square, the two Poisson transformations, the cube inversion and the descent; all steps involving the angular type
 are derived in the paper.
 
+A draft dated 8 October 2026 in the repository
+[Rogerhu12/openai-math-extensions](https://github.com/Rogerhu12/openai-math-extensions/blob/a4a1eb9e45b38d50c39afb9c35f582e8786ce262/papers/029-artin-primitive-roots/hecke_seven_eighths_all_characters.pdf),
+*A seven-eighths theorem for Hecke characters over arbitrary number fields*, states the half-plane Re s > 7/8 for every
+unitary Hecke character, of finite or infinite order, over every number field, under a source hypothesis on the
+constructions and analytic arguments of the two OpenAI papers; it passes from a field F to F(ζ₁₂) and works with
+finite-order twists of one fixed character. The present paper treats Q(√−3) directly from the 11/12 paper, obtaining
+the angular modes from jets of the cubic theta function.
+
 ## Files
 
 | Path | Content |
