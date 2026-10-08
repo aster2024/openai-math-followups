@@ -17,6 +17,8 @@ The analytic construction and the unchanged arithmetic inputs are due to OpenAI.
 
 Z. Gao independently obtained the boundary 20999/24000 with the same parameters ell=1001/6000 and b=1/8 in [A quantitative refinement of the seven-eighths zero-free half-plane](https://github.com/Gaozhongpai/seven-eighths-refinement-certificates/blob/309a757ea539e2bf11558d8b5539e1269b792386/report.pdf), a draft dated October 7, 2026. The cited repository version is commit 309a757ea539e2bf11558d8b5539e1269b792386. Gao's fixed-skew envelope has the limiting boundary approximately 0.8749572006. The present paper adds the optimisation of the skew and the extension of the plain fourth-moment range described above.
 
+A model computation in [tomoto0/quasi-riemann-hypothesis-7-8-verification](https://github.com/tomoto0/quasi-riemann-hypothesis-7-8-verification/tree/b83a73c6cb626a391e551baafdb7d0cceafaa55a), dated October 7, 2026, applies the exponent formulas of the OpenAI paper outside their stated ranges and indicates a boundary near 0.87496 from a change of geometry alone.
+
 Read [paper.pdf](paper.pdf). The complete LaTeX source is in source/. With Tectonic installed, compile from that directory:
 
     cd source

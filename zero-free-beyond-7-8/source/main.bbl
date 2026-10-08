@@ -18,6 +18,14 @@ Zhongpai Gao.
   commit \nolinkurl{309a757ea539e2bf11558d8b5539e1269b792386}.
   \url{https://github.com/Gaozhongpai/seven-eighths-refinement-certificates/blob/309a757ea539e2bf11558d8b5539e1269b792386/report.pdf}.
 
+\bibitem{tomoto2026}
+{tomoto0}.
+\newblock {Independent verification of OpenAI's preprint ``The Quasi-Riemann
+  Hypothesis: A Zero-Free Half-Plane $\mathrm{Re}\, s>7/8$''}, 2026.
+\newblock Repository
+  \url{https://github.com/tomoto0/quasi-riemann-hypothesis-7-8-verification},
+  commit \nolinkurl{b83a73c6cb626a391e551baafdb7d0cceafaa55a}, 7 October 2026.
+
 \bibitem{openai2026lean}
 {OpenAI}.
 \newblock {The quasi-Riemann hypothesis: scope of the Lean formalization},
