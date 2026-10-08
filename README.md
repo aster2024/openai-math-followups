@@ -23,6 +23,27 @@ Part II gives consequences of the zero-free half-plane Re s > 7/8 for Dirichlet 
 in the binary Goldbach problem, the least prime in an arithmetic progression, least non-residues, and least
 primitive roots.
 
+### `zero-free-beyond-7-8/` — A zero-free half-plane beyond 7/8
+
+Statement, 8 October 2026 (the 42-page paper is added to this directory in the next commit).
+
+The Riemann zeta function, every Dirichlet L-function, and every finite-order Hecke L-function over Q(√−3) have no
+zeros with Re s > σ†, where σ† = 0.8749570194… is the root in (0.8749570194, 0.8749570195) of
+
+```math
+7884\,s^3-18819\,s^2+14643\,s-3686=0 .
+```
+
+In particular there are no zeros with Re s > 43747851/50000000 = 7/8 − 2149/50000000.
+
+The proof re-runs the argument of OpenAI's paper
+[The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane Re s > 7/8](https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf)
+with changed parameters, taking the statements of that paper as input. Freeing the skew parameter of the geometry
+gives the endpoint σ\* = (1507 − 2√921)/1653 = 0.8749570698…; extending the range of the plain fourth-moment estimate
+from κ ∈ [3/4, 1] to κ ∈ [37/50, 1] gives σ†. The intermediate rational value 20999/24000 = 7/8 − 1/24000, with the
+skew parameter kept at 1/8, was obtained independently by Z. Gao
+([A quantitative refinement of the seven-eighths zero-free half-plane](https://github.com/Gaozhongpai/seven-eighths-refinement-certificates), 7–8 October 2026).
+
 Each directory contains the PDF, the LaTeX source, and any ancillary Lean files, with a README stating exactly which
 statements are taken from the release and which deductions are new.
 
