@@ -9,6 +9,6 @@
   "cusp_reflection_relative_error": "6.3691035851e-61",
   "scalar_error": "0.0",
   "kernel_nearest_numerator_pole": "-2.33333333333333333333333333333333333333333333333333333333333",
-  "elapsed_seconds": 3.81,
+  "elapsed_seconds": 3.825,
   "scope": "high-precision single-mode Mellin and reflection; not interval arithmetic or infinite-sum verification"
 }

@@ -1,6 +1,10 @@
 {
   "status": "PASS",
   "exact_good_prime_checks": 581,
+  "split_rational_pairs": 188,
+  "inert_rational_pairs": 205,
+  "distinct_rational_pairs": 393,
+  "extra_good_2_checks": 1,
   "rational_prime_bound": 199,
   "D_values": [
     1,

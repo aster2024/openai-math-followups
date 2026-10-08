@@ -1,8 +1,8 @@
-# A zero-free half-plane for Hecke L-functions of infinite order over Q(√−3) and for cubic CM elliptic curves
+# A zero-free half-plane for Hecke L-functions of infinite order over Q(√−3) and for the elliptic curves y² = x³ + D
 
 Jizhou Guo — Dots Studio, Rednote — mitsuha2021b@gmail.com — 8 October 2026
 
-[**Paper (PDF, 30 pages)**](paper.pdf) · [LaTeX source](source/) · [Checks of explicit identities](anc/)
+[**Paper (PDF, 34 pages)**](paper.pdf) · [LaTeX source](source/) · [Checks of explicit identities](anc/)
 
 ## Results
 
@@ -24,14 +24,20 @@ infinity type (a, b) with a ≠ b the corresponding half-plane is Re s > (a + b)
 
     L(E_D, s) ≠ 0    for Re s > 17/12
 
-in the arithmetic normalization, in which the critical strip is 1/2 < Re s < 3/2 and the centre is s = 1.
+in the arithmetic normalization, in which the functional equation has centre s = 1. Consequently the non-trivial
+zeros of L(E_D, s), which lie in 1/2 ≤ Re s ≤ 3/2, are confined to the strip 7/12 ≤ Re s ≤ 17/12. The curves E_D are
+the sextic twists of y² = x³ + 1, that is, the elliptic curves over Q with j-invariant 0.
 
-**Applications**, each with error term O(x^(11/12+ε)):
+**Applications.**
 
 - *Eisenstein primes in sectors.* The number of prime ideals of norm at most x whose primary generator has argument
   in an arc J is (|J|/2π)·Li(x) + O(x^(11/12+ε)), uniformly in J.
 - *Sato–Tate distribution for E_D.* For fixed D, the number of good primes p ≤ x with a_p(E_D)/(2√p) in an interval I
   is μ(I)·Li(x) + O(x^(11/12+ε)), uniformly in I, where μ is half the point mass at 0 plus dt/(2π√(1 − t²)) on [−1, 1].
+- *Least prime.* For a fixed interval I of positive measure μ(I) and every fixed A > 12, the least good prime p with
+  a_p(E_D)/(2√p) in I satisfies p ≪ (log(N(E_D) + 3))^A, where N(E_D) is the conductor and the implied constant
+  depends only on I and A; in particular this bounds the least good prime with a_p(E_D) < 0. For integer D the
+  bound is ≪ (log(|D| + 2))^A.
 - *Symmetric powers.* For every n ≥ 1, L(Symⁿ E_D, s) ≠ 0 for Re s > n/2 + 11/12.
 
 *CM newforms.* Every newform of weight w ≥ 2 with complex multiplication by Q(√−3), of any level, has L-function
@@ -69,7 +75,7 @@ are derived in the paper.
 ```bibtex
 @misc{Guo2026HeckeInfiniteOrder,
   author = {Guo, Jizhou},
-  title = {A zero-free half-plane for {H}ecke {$L$}-functions of infinite order over {$\mathbb{Q}(\sqrt{-3})$} and for cubic {CM} elliptic curves},
+  title = {A zero-free half-plane for {H}ecke {$L$}-functions of infinite order over {$\mathbb{Q}(\sqrt{-3})$} and for the elliptic curves {$y^2=x^3+D$}},
   year = {2026},
   month = oct,
   howpublished = {\url{https://github.com/aster2024/openai-math-followups/tree/main/cm-elliptic-curves}},

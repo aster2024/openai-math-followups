@@ -1,11 +1,20 @@
 \begin{thebibliography}{10}
 
+\bibitem{Followup}
+{AI-assisted research draft}.
+\newblock A common zero-free strip for {H}ecke {$L$}-functions.
+\newblock
+  \href{https://github.com/Rogerhu12/openai-math-extensions/blob/f8a2bb24c83a80f0026018e3577dd4ca29d2fc60/papers/029-artin-primitive-roots/hecke_zero_free_strip.tex}{Repository
+  Rogerhu12/openai-math-extensions at commit f8a2bb24}, October 2026.
+\newblock Draft dated 8 October 2026; repository owner Rogerhu12. The statement
+  is conditional on its theta, reflection, and fixed-order large-sieve inputs.
+
 \bibitem{CPS}
 Evan Chen, Peter~S. Park, and Ashvin~A. Swaminathan.
 \newblock Linnik's theorem for {S}ato--{T}ate laws on elliptic curves with
   complex multiplication.
 \newblock \url{https://arxiv.org/abs/1506.09170}, 2015.
-\newblock arXiv:1506.09170, version 3; Lemma 2.1.
+\newblock arXiv:1506.09170, version 3; Theorem 1.1 and Lemma 2.1.
 
 \bibitem{ColemanPrimes}
 M.~D. Coleman.
@@ -47,6 +56,13 @@ Erich Hecke.
   der Primzahlen}.
 \newblock {\em Mathematische Zeitschrift}, 6:11--51, 1920.
 
+\bibitem{Iwaniec}
+Henryk Iwaniec.
+\newblock {\em Topics in Classical Automorphic Forms}, volume~17 of {\em
+  Graduate Studies in Mathematics}.
+\newblock American Mathematical Society, Providence, RI, 1997.
+\newblock Section 12.3, Theorem 12.5 and the following remark, pp. 211--214.
+
 \bibitem{IK}
 Henryk Iwaniec and Emmanuel Kowalski.
 \newblock {\em Analytic Number Theory}, volume~53 of {\em American Mathematical
@@ -77,7 +93,7 @@ Tomio Kubota.
 \bibitem{PrimitiveRoots}
 {OpenAI}.
 \newblock Primitive roots for every admissible integer base.
-\newblock
+\newblock OpenAI Math Release preprint,
   \href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/primitive-roots-all-integer-bases.pdf}{Manuscript
   at commit adc7f124}, October 2026.
 \newblock October 4, 2026; Theorem 1.2.
@@ -85,7 +101,7 @@ Tomio Kubota.
 \bibitem{QRH12}
 {OpenAI}.
 \newblock The quasi-{R}iemann hypothesis.
-\newblock
+\newblock OpenAI Math Release preprint,
   \href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-October-5-2026/build/paper2.tex}{Source
   manuscript at commit adc7f124}, October 2026.
 \newblock October 5, 2026. The $11/12$ paper, denoted p2.
@@ -93,7 +109,7 @@ Tomio Kubota.
 \bibitem{QRH78}
 {OpenAI}.
 \newblock The quasi-{R}iemann hypothesis: A zero-free half-plane {$\Re s>7/8$}.
-\newblock
+\newblock OpenAI Math Release preprint,
   \href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf}{Manuscript
   at commit adc7f124}, September 2026.
 \newblock September 30, 2026; Theorem 1.1.
@@ -101,23 +117,15 @@ Tomio Kubota.
 \bibitem{PT}
 Apoorva Panidapu and Jesse Thorner.
 \newblock Short-interval sector problems for {CM} elliptic curves.
-\newblock \url{https://arxiv.org/abs/2105.11093}, 2022.
-\newblock arXiv:2105.11093, version 2; Theorems 1.1, 2.2, 2.3 and Lemma 3.3.
+\newblock {\em Involve}, 16(1):1--12, 2023.
+\newblock \url{https://arxiv.org/abs/2105.11093}; Theorems 1.1, 2.2, 2.3 and
+  Lemma 3.3.
 
 \bibitem{Patterson}
 S.~J. Patterson.
 \newblock A cubic analogue of the theta series.
 \newblock {\em Journal f{\"u}r die reine und angewandte Mathematik},
   296:125--161, 1977.
-
-\bibitem{Followup}
-{Rogerhu12}.
-\newblock A common zero-free strip for {H}ecke {$L$}-functions.
-\newblock
-  \href{https://github.com/Rogerhu12/openai-math-extensions/blob/f8a2bb24c83a80f0026018e3577dd4ca29d2fc60/papers/029-artin-primitive-roots/hecke_zero_free_strip.tex}{Repository
-  Rogerhu12/openai-math-extensions at commit f8a2bb24}, October 2026.
-\newblock Draft dated 8 October 2026. The statement is conditional on its
-  theta, reflection, and fixed-order large-sieve inputs.
 
 \bibitem{Silverman}
 Joseph~H. Silverman.

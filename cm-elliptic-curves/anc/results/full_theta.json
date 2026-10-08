@@ -31,6 +31,6 @@
       "wrong_plus": 0.007743834661784077
     }
   ],
-  "elapsed_seconds": 12.146,
+  "elapsed_seconds": 12.425,
   "scope": "level-one primary mask; three actual cusp Fourier expansions; truncated sums and quadrature; no rigorous error enclosure"
 }
