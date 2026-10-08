@@ -43,7 +43,11 @@ commit `adc7f1241b42e322a6451854ab7e4b4c146bf78a`:
   declarations with their quantifier orders.
 
 Published analysis: Matomäki–Radziwiłł–Tao; Klurman–Mangerel–Teräväinen (arXiv:1909.12280v5); and, for Part II, Pintz,
-Chen–Gupta–Li (preprint), Montgomery–Vaughan and Martin.
+Chen–Gupta–Li (preprint), Bach, Montgomery–Vaughan and Martin.
+
+B. Sandlund's research memo of 7 October 2026
+([brycesandlund/quasi-riemann-algorithms](https://github.com/brycesandlund/quasi-riemann-algorithms)) also derives
+proper-subgroup bounds and least prime primitive-root bounds from a fixed Dirichlet zero-free half-plane.
 
 The inputs printed in the paper are mathematical transcriptions of compiled Lean declarations. The reflected
 asymptotic, the bound on the comparison exponent (at most 10^6), the resulting value of c, and the classical
