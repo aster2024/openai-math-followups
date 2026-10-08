@@ -1,4 +1,4 @@
-\begin{thebibliography}{33}
+\begin{thebibliography}{34}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -256,6 +256,17 @@ Victor Shoup.
 \newblock \doi{10.1090/S0025-5718-1992-1106981-9}.
 \newblock URL \url{https://www.shoup.net/papers/primroots.pdf}.
 \newblock Theorem 3 as numbered in the author's version.
+
+\bibitem[{teal-sea}(2026)]{ZetaLab2026}
+{teal-sea}.
+\newblock zeta-lab, {Hunts} 123 and 125: {Linnik}'s exponent and small
+  witnesses from the 7/8 half-plane.
+\newblock Repository notes, October 2026.
+\newblock URL \url{https://github.com/teal-sea/zeta-lab}.
+\newblock 8 October 2026. Files hunts/qrh\_linnik/RESULTS.md (commit
+  ce5fcb0cbb54a07b3454f2f196acbf50ebf4b7fb) and
+  hunts/qrh\_nonresidue/RESULTS.md (commit
+  a37ce18d294d91f21f53e5a706f612e0a192345a).
 
 \bibitem[Xylouris(2011)]{Xylouris2011}
 Triantafyllos Xylouris.

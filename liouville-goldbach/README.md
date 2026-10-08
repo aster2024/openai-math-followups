@@ -46,8 +46,11 @@ Published analysis: Matomäki–Radziwiłł–Tao; Klurman–Mangerel–Terävä
 Chen–Gupta–Li (preprint), Bach, Montgomery–Vaughan and Martin.
 
 B. Sandlund's research memo of 7 October 2026
-([brycesandlund/quasi-riemann-algorithms](https://github.com/brycesandlund/quasi-riemann-algorithms)) also derives
-proper-subgroup bounds and least prime primitive-root bounds from a fixed Dirichlet zero-free half-plane.
+([brycesandlund/quasi-riemann-algorithms](https://github.com/brycesandlund/quasi-riemann-algorithms)) derives, from a
+fixed Dirichlet zero-free half-plane and Shoup's sieve, the same bounds (exponents 8 and 24) for a unit prime outside a
+proper subgroup and for the least prime primitive root; it precedes this paper. Two notes of 8 October 2026 in
+[teal-sea/zeta-lab](https://github.com/teal-sea/zeta-lab) state the Linnik exponent 7/3 + ε with an effective constant
+and the bound n(χ) ≤ (log q)^8 for every non-principal character modulo q ≥ 3.
 
 The inputs printed in the paper are mathematical transcriptions of compiled Lean declarations. The reflected
 asymptotic, the bound on the comparison exponent (at most 10^6), the resulting value of c, and the classical

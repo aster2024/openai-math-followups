@@ -1852,10 +1852,23 @@ the least positive unit outside a subgroup is prime by the same
 factorisation argument.
 \end{proof}
 
-Sandlund \cite{Sandlund2026}, in his research memo dated 7 October 2026,
-also derives proper-subgroup bounds and, via Shoup's sieve, least prime
-primitive-root bounds from a fixed Dirichlet zero-free half-plane, and
-constructs primitive roots when the factorisation of $p-1$ is supplied.
+Sandlund \cite{Sandlund2026}, in a research memo dated 7 October 2026,
+derives from a Dirichlet zero-free half-plane $\Rea s>1-\delta$ the
+bound $K_\delta(\log 2m)^{1/\delta}$ for a unit prime outside a proper
+subgroup of the units modulo $m$ and, via Shoup's sieve, the bound
+$C_\delta\{k^2(1+\log k)^2\log 2p\}^{1/\delta}$, $k=\omega(p-1)$, for
+the least prime primitive root, and constructs primitive roots when the
+factorisation of $p-1$ is supplied.
+With $\delta=1/8$ these are the bounds of
+Corollary~\ref{cor:generators} and, for prime moduli, of
+Theorem~\ref{thm:primitive}; that memo precedes the present paper.
+The proof of Theorem~\ref{thm:primitive} given here goes through
+Martin's shifted sieve.
+Two notes of 8 October 2026 in the zeta-lab repository
+\cite{ZetaLab2026} state the exponent $7/3+\varepsilon$ of
+Theorem~\ref{thm:leastprime} with an effective constant, and the bound
+$n(\chi)\le(\log q)^8$ for every nonprincipal character modulo
+$q\ge3$.
 
 The classical unconditional bound
 $g(p)\ll_\varepsilon p^{1/4+\varepsilon}$ is due to Wang in 1959,
