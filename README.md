@@ -8,7 +8,7 @@ Notes and papers by Jizhou Guo (mitsuha2021b@gmail.com) that build on results of
 
 ### [`cm-elliptic-curves/`](cm-elliptic-curves/) — A zero-free half-plane for Hecke L-functions of nonzero angular type and for the curves y² = x³ + D
 
-Paper (35 pages), 8 October 2026: [PDF](cm-elliptic-curves/paper.pdf). Programs checking the explicit identities are in [`cm-elliptic-curves/anc/`](cm-elliptic-curves/anc/).
+Paper (36 pages), 8 October 2026: [PDF](cm-elliptic-curves/paper.pdf). Programs checking the explicit identities are in [`cm-elliptic-curves/anc/`](cm-elliptic-curves/anc/).
 
 Let K = Q(√−3). Every unitary Hecke character η of K of finite conductor and non-zero angular type (such
 characters have infinite order) satisfies L_K(s, η) ≠ 0 for Re s > 11/12, with the same half-plane for every conductor
@@ -22,6 +22,11 @@ so that the non-trivial zeros of L(E_D, s) lie in 7/12 ≤ Re s ≤ 17/12. The p
 Eisenstein primes in sectors and the Sato–Tate distribution of E_D with error term O(x^(11/12+ε)), a bound
 (log N(E_D))^A, for every A > 12, for the least good prime at which a_p(E_D) lies in a prescribed range, and zero-free
 half-planes for all symmetric powers of E_D and for all newforms with complex multiplication by K.
+
+The two zero-free statements above, and those for CM newforms and symmetric powers, are also stated in an earlier
+note of B. Yates ([Zenodo, 7 October 2026](https://doi.org/10.5281/zenodo.23207672)), conditional on the correctness
+of OpenAI's 11/12 argument and with the same raising of the cusp-derivative order; this paper was prepared
+independently of it. The distribution estimates and the least-prime bound are not in that note.
 
 The proof extends the cubic-theta method of OpenAI's paper
 [The Quasi-Riemann Hypothesis](https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-October-5-2026)
@@ -64,7 +69,8 @@ with changed parameters, taking the statements of that paper as input. Freeing t
 gives the endpoint σ\* = (1507 − 2√921)/1653 = 0.8749570698…; extending the range of the plain fourth-moment estimate
 from κ ∈ [3/4, 1] to κ ∈ [37/50, 1] gives σ†. The intermediate rational value 20999/24000 = 7/8 − 1/24000, with the
 skew parameter kept at 1/8, was obtained independently by Z. Gao
-([A quantitative refinement of the seven-eighths zero-free half-plane](https://github.com/Gaozhongpai/seven-eighths-refinement-certificates), 7–8 October 2026).
+([A quantitative refinement of the seven-eighths zero-free half-plane](https://github.com/Gaozhongpai/seven-eighths-refinement-certificates), 7–8 October 2026). The endpoint σ\* was obtained
+independently by B. Liu ([note with Lean files](https://github.com/liubaiying101/Slightly-improved-zero-free-half-planes-for-the-quasi-Riemann-hypothesis), 8 October 2026).
 
 ### [`consequences/`](consequences/) — Consequences of results in the release
 

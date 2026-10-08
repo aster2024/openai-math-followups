@@ -18,6 +18,29 @@ Zhongpai Gao.
   commit \nolinkurl{309a757ea539e2bf11558d8b5539e1269b792386}.
   \url{https://github.com/Gaozhongpai/seven-eighths-refinement-certificates/blob/309a757ea539e2bf11558d8b5539e1269b792386/report.pdf}.
 
+\bibitem{liu2026}
+Baiying Liu.
+\newblock {Slightly improved zero-free half-planes for the quasi-Riemann
+  hypothesis}, 2026.
+\newblock Note dated 8 October 2026, with Lean 4 files. Repository
+  \url{https://github.com/liubaiying101/Slightly-improved-zero-free-half-planes-for-the-quasi-Riemann-hypothesis},
+  commit \nolinkurl{7d10420de90efa2f082a06a342fc7accbd57ab37}.
+
+\bibitem{argonaut2026}
+{Argonaut Math}.
+\newblock {Beyond the seven-eighths barrier: a sharper quasi-Riemann boundary},
+  2026.
+\newblock Preprint with Lean 4 files, 8 October 2026. Repository
+  \url{https://github.com/Argonaut-Math/argonaut-math-quasi-riemann-boundary},
+  commit \nolinkurl{5971383edcb0b1cf863927eed3b359d2d3ba346e}.
+
+\bibitem{lw2026}
+{LW56e2}.
+\newblock {Quasi-Riemann boundary refinement in Lean}, 2026.
+\newblock Lean 4 formalization, 8 October 2026. Repository
+  \url{https://github.com/LW56e2/quasi-riemann-improved}, commit
+  \nolinkurl{b83dbbd914c5751acf9bc3389cde58970437278f}.
+
 \bibitem{tomoto2026}
 {tomoto0}.
 \newblock {Independent verification of OpenAI's preprint ``The Quasi-Riemann
