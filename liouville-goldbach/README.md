@@ -25,7 +25,7 @@ stated in Mangerel (IMRN 2024, §1.1) and Krishnamoorthy (arXiv:2608.13266, Conj
 Part II inserts the zero-free half-plane Re s > 7/8 for Dirichlet L-functions into results of Pintz,
 Chen–Gupta–Li, Montgomery–Vaughan and Martin:
 
-- Pintz's conditional exponent 3/5 for the exceptional set in the binary Goldbach problem holds unconditionally;
+- the exponent 3/5 for the exceptional set in the binary Goldbach problem, which Pintz proved under such a zero-free hypothesis;
 - the least prime in a reduced residue class modulo q is O(q^(7/3+ε)) for every ε > 0;
 - the least non-residue of a non-principal character modulo q is O((log q)^8);
 - the least primitive root and the least prime primitive root modulo p are O((log p)^24).

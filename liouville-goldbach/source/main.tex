@@ -60,16 +60,17 @@ The proof combines the finite graph and residue-comparison estimates
 of OpenAI's Lean~4 development of two-point correlations, the
 Dirichlet zero-free half-plane $\Rea s>7/8$ from family~003 of the
 same library, and the short-progression
-variance bounds of Klurman--Mangerel--Ter\"av\"ainen. A quotient-coordinate
+variance bounds of Klurman--Mangerel--Ter\"av\"ainen; the deduction from
+these inputs is carried out in the paper. A quotient-coordinate
 construction fixes the graph multiplier while the total $N$ remains
-in the progression modulus. With the same half-plane and
-results of Pintz, Chen--Gupta--Li, Montgomery--Vaughan and Martin,
-Pintz's conditional exponent $3/5$ for the binary Goldbach exceptional
-set holds unconditionally, the least prime in a reduced class modulo
-$q$ is $O_\varepsilon(q^{7/3+\varepsilon})$, the
-polylogarithmic bound for the least quadratic non-residue holds with
-exponent $8$,
-and the least prime primitive root modulo $p$ is $O((\log p)^{24})$.
+in the progression modulus. Inserting the same half-plane into published
+results of Pintz, Chen--Gupta--Li, Montgomery--Vaughan and Martin gives
+further consequences: the exponent $3/5$ for the exceptional set in the
+binary Goldbach problem, which Pintz proved under such a zero-free
+hypothesis; the bound $O_\varepsilon(q^{7/3+\varepsilon})$ for the least
+prime in a reduced class modulo $q$; the exponent $8$ in the
+polylogarithmic bound for the least quadratic non-residue; and the bound
+$O((\log p)^{24})$ for the least prime primitive root modulo $p$.
 \end{abstract}
 
 \section{Statement and context}
@@ -1989,6 +1990,5 @@ $x^{-\delta_0}$. The other bounds above are unchanged.
 \bibliographystyle{plainnat}
 \bibliography{references}
 \section*{Use of AI}
-AI systems, including GPT-6 Astra, GPT-6.1 Sol and Claude Opus 5.5, were used in developing the proofs and preparing the manuscript.
-The author takes responsibility for the content.
+The proofs and the text of this paper were produced with AI systems (GPT-6 Astra, GPT-6.1 Sol and Claude Opus~5.5) under the author's direction. They were checked by independent reviews with AI models; the inputs from the OpenAI library are Lean theorems, and the finite lemmas in the ancillary files are checked in Lean. The author takes responsibility for the content.
 \end{document}

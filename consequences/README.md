@@ -239,4 +239,4 @@ Hence, for a ≥ b > 0 and d > 1, weak recovery is possible exactly when (a − 
 
 ## Use of AI
 
-AI systems, including Claude Opus 5.5 and Claude Sonnet 5.5, were used in compiling this list. The author takes responsibility for the content.
+This list was compiled with AI systems (Claude Opus 5.5 and Claude Sonnet 5.5) under the author's direction; the same systems checked each entry against the cited sources. The author takes responsibility for the content.

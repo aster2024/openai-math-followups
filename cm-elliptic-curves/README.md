@@ -1,4 +1,4 @@
-# A zero-free half-plane for Hecke L-functions of infinite order over Q(√−3) and for the elliptic curves y² = x³ + D
+# A zero-free half-plane for Hecke L-functions of nonzero angular type over Q(√−3) and for the elliptic curves y² = x³ + D
 
 Jizhou Guo — mitsuha2021b@gmail.com — 8 October 2026
 
@@ -83,7 +83,7 @@ the angular modes from jets of the cubic theta function.
 ```bibtex
 @misc{Guo2026HeckeInfiniteOrder,
   author = {Guo, Jizhou},
-  title = {A zero-free half-plane for {H}ecke {$L$}-functions of infinite order over {$\mathbb{Q}(\sqrt{-3})$} and for the elliptic curves {$y^2=x^3+D$}},
+  title = {A zero-free half-plane for {H}ecke {$L$}-functions of nonzero angular type over {$\mathbb{Q}(\sqrt{-3})$} and for the elliptic curves {$y^2=x^3+D$}},
   year = {2026},
   month = oct,
   howpublished = {\url{https://github.com/aster2024/openai-math-followups/tree/main/cm-elliptic-curves}},

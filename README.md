@@ -6,12 +6,12 @@ Notes and papers by Jizhou Guo (mitsuha2021b@gmail.com) that build on results of
 
 ## Contents
 
-### [`cm-elliptic-curves/`](cm-elliptic-curves/) — A zero-free half-plane for Hecke L-functions of infinite order and for the curves y² = x³ + D
+### [`cm-elliptic-curves/`](cm-elliptic-curves/) — A zero-free half-plane for Hecke L-functions of nonzero angular type and for the curves y² = x³ + D
 
 Paper (35 pages), 8 October 2026: [PDF](cm-elliptic-curves/paper.pdf). Programs checking the explicit identities are in [`cm-elliptic-curves/anc/`](cm-elliptic-curves/anc/).
 
-Let K = Q(√−3). Every unitary Hecke character η of K of finite conductor and non-zero angular type (these are the
-characters of infinite order) satisfies L_K(s, η) ≠ 0 for Re s > 11/12, with the same half-plane for every conductor
+Let K = Q(√−3). Every unitary Hecke character η of K of finite conductor and non-zero angular type (such
+characters have infinite order) satisfies L_K(s, η) ≠ 0 for Re s > 11/12, with the same half-plane for every conductor
 and every angular type. Consequently, for every non-zero rational D the elliptic curve E_D : y² = x³ + D satisfies
 
 ```math
@@ -105,5 +105,6 @@ The papers and text are under CC BY 4.0 (see [`LICENSE-papers.md`](LICENSE-paper
 
 ## Use of AI
 
-AI systems, including GPT-6 Astra, GPT-6.1 Sol and Claude Opus 5.5, were used in developing the proofs and preparing the manuscripts.
-The author takes responsibility for the content.
+The proofs and the texts in this repository were produced with AI systems (GPT-6 Astra, GPT-6.1 Sol, Claude Opus 5.5 and
+Claude Sonnet 5.5) under the author's direction. They were checked by independent reviews with AI models, by Lean where a
+part is formalized, and by the computations in the ancillary directories. The author takes responsibility for the content.

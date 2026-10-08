@@ -35,8 +35,8 @@
 \newcommand{\wt}{\widehat}
 \newcommand{\ve}{\breve e}
 \newcommand{\tauD}{\tau_{\mathrm{div}}}
-\hypersetup{pdftitle={\detokenize{A zero-free half-plane for Hecke L-functions of infinite order over Q(sqrt(-3)) and for the elliptic curves y^2 = x^3 + D}},pdfauthor={Jizhou Guo}}
-\title{A zero-free half-plane for Hecke $L$-functions of infinite order over $\Q(\sqrt{-3})$ and for the elliptic curves $y^2=x^3+D$}
+\hypersetup{pdftitle={\detokenize{A zero-free half-plane for Hecke L-functions of nonzero angular type over Q(sqrt(-3)) and for the elliptic curves y^2 = x^3 + D}},pdfauthor={Jizhou Guo}}
+\title{A zero-free half-plane for Hecke $L$-functions of nonzero angular type over $\Q(\sqrt{-3})$ and for the elliptic curves $y^2=x^3+D$}
 \author{Jizhou Guo\\\texttt{mitsuha2021b@gmail.com}}
 \date{October 8, 2026}
 \begin{document}
@@ -81,7 +81,7 @@ Hecke developed the analytic theory of Gr\"ossencharacter $L$-functions and the 
  \sigma\ge1-\frac{c_K}{\max\{\log\N\mathfrak f,(\log V)^{2/3}(\log\log V)^{1/3}\}},
  \qquad V=\max\{|k|,|t|\},
 \end{equation}
-for sufficiently large $V$, with the possible exception confined to $k=0$ and real finite character. For fixed nonzero type these widths tend to zero as the height increases. Prior unconditional zero-free regions for these degree-two functions did not give a fixed half-plane inside the critical strip. Cossaboom's short-interval consequences of $\mathrm{GL}_2$ zero-density estimates use Coleman's region in the dihedral case \cite[Corollaries 1.3--1.4 and Section 9]{Cossaboom}.
+for sufficiently large $V$, with the possible exception confined to $k=0$ and real finite character. For fixed nonzero type these widths tend to zero as the height increases, so these classical regions give no fixed half-plane inside the critical strip. Cossaboom's short-interval consequences of $\mathrm{GL}_2$ zero-density estimates use Coleman's region in the dihedral case \cite[Corollaries 1.3--1.4 and Section 9]{Cossaboom}.
 
 The October 5, 2026 paper \cite{QRH12}, denoted \emph{p2} below, states $11/12$ for finite-order characters. The companion release states $7/8$ for finite-order Hecke characters of $K$ and for Dirichlet characters \cite[Theorem 1.1]{QRH78}. Other recent papers concern finite-order characters: \cite[Theorem 1.2]{PrimitiveRoots} states a width $10^{-6}$ over cyclotomic fields containing $\mu_{12}$, and \cite{Followup}, a draft in the public GitHub repository \nolinkurl{Rogerhu12/openai-math-extensions}, states a width $25/258$ over arbitrary number fields conditional on its theta, reflection and large-sieve inputs. These four statements concern finite-order characters. A second draft in that repository, dated 8 October 2026 \cite{FollowupSevenEighths}, states the half-plane $\Rea s>7/8$ for every unitary Hecke character, of finite or infinite order, over every number field, under a source hypothesis retaining the theta construction of \cite{PrimitiveRoots} and the estimates and moment arguments of \cite{QRH78}; its argument passes from a field $F$ to $F(\zeta_{12})$ and works with the finite-order twists of one fixed character. The present paper treats $K=\Q(\sqrt{-3})$ directly from p2: the angular modes are produced by pure jets of the cubic theta function, and the modifications of p2's argument involving the angular type are written out in full.
 
@@ -1388,5 +1388,5 @@ The algebraic character $z^6$ has arithmetic boundary $3+11/12=47/12$. These exa
 \bibliographystyle{plain}
 \bibliography{references}
 \section*{Use of AI}
-AI systems, including GPT-6 Astra, GPT-6.1 Sol and Claude Opus 5.5, were used in developing the proofs and preparing the manuscript. The author takes responsibility for the content.
+The proofs and the text of this paper were produced with AI systems (GPT-6 Astra, GPT-6.1 Sol and Claude Opus~5.5) under the author's direction. They were checked by independent reviews with AI models and, for the explicit identities, by the exact and high-precision computations in the ancillary files. The author takes responsibility for the content.
 \end{document}
