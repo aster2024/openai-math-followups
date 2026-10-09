@@ -51,6 +51,27 @@ Part II gives consequences of the zero-free half-plane Re s > 7/8 for Dirichlet 
 in the binary Goldbach problem, the least prime in an arithmetic progression, least non-residues, and least
 primitive roots.
 
+### [`rough-goldbach-parity/`](rough-goldbach-parity/) — Sums of two rough numbers with prescribed Liouville signs
+
+Paper (23 pages), 9 October 2026: [PDF](rough-goldbach-parity/paper.pdf). Programs checking finite instances of the algebraic identities are in [`rough-goldbach-parity/anc/`](rough-goldbach-parity/anc/).
+
+Let λ be the Liouville function and P⁻(n) the least prime factor of n. For every sufficiently large even integer N
+and each pair of signs (σ, τ),
+
+```math
+\#\{\,n:\ N/3\le n\le 2N/3,\ \ P^-(n)\gt z,\ \ P^-(N-n)\gt z,\ \ \lambda(n)=\sigma,\ \ \lambda(N-n)=\tau\,\}\ \ge\ c\,\frac{N}{(\log N)^{1/4}},
+\qquad z=\exp\bigl((\log N)^{1/10}\bigr),
+```
+
+and n, N − n may also be taken squarefree with at most ⌈2 log log N⌉ prime factors.
+
+The proof combines the zero-free half-plane Re s > 7/8 for Dirichlet L-functions with the weighted dilation graphs
+of OpenAI's paper
+[Weighted dilation graphs, smooth shifted primes and totient fibers](https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Weighted-Dilation-Graphs-Smooth-Shifted-Primes-and-Totient-Fibers-September-24-2026/paper.pdf)
+(24 September 2026). Two of the graph estimates are needed for displacements that are multiples of N and for prime
+groups with the prime factors of N removed; the paper obtains these from the proofs given there, going through
+every place where the displacement and the interval structure of the groups enter.
+
 ### [`shifted-prime-parity/`](shifted-prime-parity/) — Shifted primes with a prescribed parity of the number of prime factors
 
 Paper (31 pages), 9 October 2026: [PDF](shifted-prime-parity/paper.pdf). Programs checking the algebraic identities on finite ranges are in [`shifted-prime-parity/anc/`](shifted-prime-parity/anc/).

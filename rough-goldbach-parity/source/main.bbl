@@ -1,0 +1,93 @@
+\begin{thebibliography}{11}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{CaptainSude}(2026)]{CaptainSude}
+{CaptainSude}.
+\newblock A {Goldbach} theorem for the {Liouville} function: Two commuting
+  symmetries and a descent, 2026.
+\newblock URL
+  \url{https://github.com/CaptainSude/Liouville-Goldbach/blob/v1.0.0/paper/liouville-goldbach.pdf}.
+\newblock Release v1.0.0, 16 September 2026.
+
+\bibitem[Guo(2026)]{GuoEarlier}
+Jizhou Guo.
+\newblock Goldbach-type representations with prescribed {Liouville} signs,
+  October 2026.
+\newblock URL
+  \url{https://github.com/aster2024/openai-math-followups/tree/main/liouville-goldbach}.
+\newblock Preprint, 8 October 2026.
+
+\bibitem[Krishnamoorthy(2026)]{Krishnamoorthy2026}
+Krishnarjun Krishnamoorthy.
+\newblock On a conjecture of {Corr{\'a}di} and {K{\'a}tai}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2608.13266v1}.
+\newblock Version 1, 13 August 2026.
+
+\bibitem[Li and Liu(2026)]{LiLiu}
+Jiamin Li and Jianya Liu.
+\newblock Theorem {$(1+1.9)$} on the {Goldbach} conjecture, 2026.
+\newblock URL \url{https://arxiv.org/abs/2606.05224v2}.
+\newblock Version 2, 8 August 2026.
+
+\bibitem[Mangerel(2024)]{MangerelGRH}
+Alexander~P. Mangerel.
+\newblock On {Shusterman}'s {Goldbach}-type problem for sign patterns of the
+  {Liouville} function, 2024.
+\newblock URL \url{https://arxiv.org/abs/2412.17199v1}.
+\newblock Version 1, 23 December 2024.
+
+\bibitem[Meng(2026)]{Meng2026}
+Lingsen Meng.
+\newblock All four {Liouville} sign patterns occur in the binary decompositions
+  of every integer {$N\ge11$}, 2026.
+\newblock URL
+  \url{https://lsmeng.github.io/pdf/Meng_Liouville_sign_patterns.pdf}.
+\newblock Author manuscript, Theorem A.
+
+\bibitem[Montgomery and Vaughan(2007)]{MV}
+Hugh~L. Montgomery and Robert~C. Vaughan.
+\newblock \emph{Multiplicative Number Theory {I}: Classical Theory}, volume~97
+  of \emph{Cambridge Studies in Advanced Mathematics}.
+\newblock Cambridge University Press, 2007.
+\newblock \doi{10.1017/CBO9780511618314}.
+\newblock URL \url{https://websites.umich.edu/~hlm/mnt1.html}.
+
+\bibitem[{OpenAI}(2026{\natexlab{a}})]{EvenParity}
+{OpenAI}.
+\newblock Prime predecessors with an even number of prime factors, September
+  2026{\natexlab{a}}.
+\newblock URL
+  \url{https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Prime-Predecessors-with-an-Even-Number-of-Prime-Factors-September-17-2026}.
+\newblock 17 September 2026. Repository commit
+  adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+
+\bibitem[{OpenAI}(2026{\natexlab{b}})]{OpenAIQ78}
+{OpenAI}.
+\newblock {The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $\Re s>7/8$},
+  September 2026{\natexlab{b}}.
+\newblock URL
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf}.
+\newblock Family 003 accompanying manuscript, 30 September 2026; Theorem 1.1
+  and Corollary 1.2.
+
+\bibitem[{OpenAI}(2026{\natexlab{c}})]{WeightedGraphs}
+{OpenAI}.
+\newblock Weighted dilation graphs, smooth shifted primes and totient fibers,
+  September 2026{\natexlab{c}}.
+\newblock URL
+  \url{https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Weighted-Dilation-Graphs-Smooth-Shifted-Primes-and-Totient-Fibers-September-24-2026}.
+\newblock 24 September 2026, 68 pages. Repository commit
+  adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+
+\bibitem[Pouly(2026)]{Pouly2026}
+Brice Pouly.
+\newblock Reflected sign patterns of the {Liouville} function at every large
+  total, 2026.
+\newblock URL \url{https://doi.org/10.5281/zenodo.22959603}.
+\newblock Zenodo, 25 September 2026.
+
+\end{thebibliography}

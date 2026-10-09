@@ -1,0 +1,1700 @@
+\documentclass[11pt]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+  pdftitle={Sums of two rough numbers with prescribed Liouville signs},
+  pdfauthor={Jizhou Guo}}
+\Urlmuskip=0mu plus 1mu
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{inputthm}[theorem]{Input}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\e}{\mathrm e}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\Dpret}{\mathbb D}
+\newcommand{\ph}{\varphi}
+\newcommand{\leanname}[1]{\nolinkurl{#1}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\HS}{HS}
+\DeclareMathOperator{\Rea}{Re}
+\DeclareMathOperator{\cond}{cond}
+\title{Sums of two rough numbers with prescribed Liouville signs}
+\author{Jizhou Guo\\
+  \href{mailto:mitsuha2021b@gmail.com}{\texttt{mitsuha2021b@gmail.com}}}
+\date{October 2026}
+
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\Pset}{\mathcal P}
+\newcommand{\Sset}{\mathcal S}
+\newcommand{\Rz}{R_z}
+\newcommand{\wt}{W_{\mathbf t}}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $\lambda$ be the Liouville function. We show that for every sufficiently large even integer $N$ and
+each pair of signs $(\sigma,\tau)$ there are at least $cN/(\log N)^{1/4}$ integers $n\in[N/3,2N/3]$
+such that $n$ and $N-n$ have no prime factor below $\exp((\log N)^{1/10})$, $\lambda(n)=\sigma$ and
+$\lambda(N-n)=\tau$; moreover $n$ and $N-n$ may be taken squarefree with at most
+$\lceil 2\log\log N\rceil$ prime factors. The proof combines the zero-free half-plane
+$\operatorname{Re}s>7/8$ for Dirichlet $L$-functions, proved by OpenAI, with the weighted dilation
+graphs of a second OpenAI paper. The graph estimates are needed for displacements that are multiples of
+$N$ and for prime groups with the prime factors of $N$ removed, and we show that the proofs given
+there apply to both.
+\end{abstract}
+\noindent\textit{2020 Mathematics Subject Classification.} Primary 11P32; Secondary 11N36, 11N25.
+
+\section{Introduction}\label{sec:intro}
+All logarithms are natural. For a positive integer $n$ put
+$\lambda(n)=(-1)^{\Omega(n)}$, where $\Omega$ counts prime factors with
+multiplicity. Write $P^-(n)$ for its least prime factor, with
+$P^-(1)=\infty$, and $P^+(n)$ for its largest prime factor, with
+$P^+(1)=1$. A number is $z$-rough if $P^-(n)>z$.
+
+\begin{theorem}\label{thm:main}
+There are absolute constants $c>0$ and $N_0$ such that, for every even
+integer $N\ge N_0$ and every $(\sigma,\tau)\in\{-1,+1\}^2$,
+\begin{equation}\label{eq:main}
+\begin{split}
+\#\{n:\ &N/3\le n\le 2N/3,\quad P^-(n)>z,\quad P^-(N-n)>z,\\
+       &\lambda(n)=\sigma,\quad\lambda(N-n)=\tau\}
+       \ge cN/(\log N)^{1/4},\qquad z=\exp((\log N)^{1/10}).
+\end{split}
+\end{equation}
+\end{theorem}
+
+\begin{theorem}\label{thm:postselection}
+The representations in Theorem~\ref{thm:main} may also be required to have
+$n$ and $N-n$ squarefree and
+\begin{equation}\label{eq:factor-cutoff}
+\Omega(n),\Omega(N-n)\le K(N):=\lceil2\log\log N\rceil.
+\end{equation}
+The lower bound is $cN/(\log N)^{1/4}$ with a possibly smaller absolute
+constant $c>0$.
+\end{theorem}
+
+For even $N$ the number of $n\in[N/3,2N/3]$ satisfying just the two
+roughness conditions has order
+\begin{equation}\label{eq:rough-scale}
+\mathfrak S(N)\frac{N}{(\log z)^2}
+=\mathfrak S(N)\frac{N}{(\log N)^{1/5}},
+\qquad
+\mathfrak S(N)=2\prod_{p>2}\left(1-\frac1{(p-1)^2}\right)
+                 \prod_{\substack{p\mid N\\p>2}}\frac{p-1}{p-2}.
+\end{equation}
+For completeness, the finite-residue argument in
+Section~\ref{sec:weight}, applied just to the roughness product, gives its
+Euler product with an error smaller than any fixed logarithmic power.
+Mertens' theorem \cite[Section~2.2]{MV} identifies that product with
+$\mathfrak S(N)(\log z)^{-2}$ up to absolute constant factors.
+The factors of $N$ above $z$ change this comparison by
+$1+O(L/(z\log z))$, where $L=\log N$.
+The positive weight used below has mass at least
+$cN/(\log N)^{59/250}$; we state the theorems with the exponent $1/4$.
+
+In the author's earlier paper \cite{GuoEarlier}, all four sign patterns
+of $(\lambda(n),\lambda(N-n))$ occur
+$N/4+O(N/(\log N)^c)$ times for every sufficiently large $N$,
+without a roughness restriction. Chen-type representations bound the
+number of prime factors in the summands without prescribing both
+parities. For example, Li and Liu \cite{LiLiu} prove that every sufficiently
+large even $N$ is $p+rq$, where $p,q$ are primes, $r$ is $1$ or a prime,
+and $r\le q^{0.9}$; the second summand can have either one or two
+prime factors. Without roughness conditions, Mangerel
+\cite{MangerelGRH} proves under GRH the $(-1,-1)$ pattern for every
+sufficiently large even total and quantitative lower bounds for all
+four patterns at sufficiently large prime totals.
+CaptainSude \cite{CaptainSude} proves the $(-1,-1)$ pattern for every
+even $N>2$. Meng \cite[Theorem~A]{Meng2026} proves that all four
+patterns occur for every $N\ge2$ outside $\{2,3,4,5,6,9,10\}$, and
+Pouly \cite[Theorem~1.1]{Pouly2026} proves that, for every fixed
+$\varepsilon>0$, each pattern occurs at least
+$c_\varepsilon N^{1-\varepsilon}$ times for every sufficiently large $N$.
+Krishnamoorthy \cite{Krishnamoorthy2026} gives cancellation
+for the binary Liouville convolution outside a small set of totals
+and arbitrary logarithmic savings for its fixed higher convolutions.
+The sign-pattern results of
+\cite{MangerelGRH,CaptainSude,Meng2026,Pouly2026,Krishnamoorthy2026} impose no roughness
+condition on the summands. The bound $K(N)$ here grows with $N$.
+
+We use the following inputs. The zero-free assertion is
+Input~\ref{input:zf}; it is \cite[Theorem~1.1]{OpenAIQ78}, the theorem
+of family~003 of the repository \url{https://github.com/openai/math},
+and it is used with exactly that scope. Write [S] for
+\cite{WeightedGraphs} and [E] for \cite{EvenParity}; both are taken
+from the same repository at commit
+\begin{center}\small
+\nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+\end{center}
+From [S] we use Definitions~3.1--3.3; Lemmas~3.4 and~3.6 together
+with their proofs; Theorem~3.5 and the residue-model moment estimate
+established in its proof (Sections~3.3--3.8, including
+Lemmas~3.7--3.10); Corollary~3.11 and its proof; Theorem~4.1 and its
+proof, including Lemma~4.3 and the Siegel--Walfisz estimate
+[S, Theorem~2.2] used for (4.9); and Lemma~4.2.
+Section~\ref{sec:graphs} states the graph inputs and their
+order of choices. Proposition~\ref{prop:dilation} for dilated
+displacements and Proposition~\ref{prop:punctures} for punctured prime
+groups are obtained from the \emph{proofs} in [S], rather than its
+statements. Their proofs verify, respectively, every use of the
+displacement in Section~3 and every use of interval prime groups in
+Section~4. Section~\ref{sec:cancellation} carries out, for the
+reflected operator, the physical lift and shared-label normalization
+of [S, Section~5.2] and the comparison reduction of [S, Section~5.3,
+pp.~38--39], using the sign cancellation modeled on [E, Section~4].
+We do not use the arithmetic endpoint theorem [S, Theorem~5.1].
+
+The method retains the shared prime labels in a weighted graph and
+then removes them using complete multiplicativity:
+$\lambda(D_Rw)\lambda(D_Rw')=\lambda(w)\lambda(w')$.
+Reflection is the identity $B_N=A_{-N}J_0$.
+The two independent free products in each comparison term produce
+rational frequency grids with denominators $Nr$. Character
+orthogonality retains the factor $1/Q$ at $Q=Nr$; the zero-free input
+bounds the short nonprincipal prime sum, and a small-prime modification
+bounds the principal residual mean. The residual length exceeds $Q$
+in the comparisons. At the raw scale $H'=1$ this inequality fails, so
+the grid estimate is used only for comparison terms.
+
+The exponent $1/10$ is not the limit of these estimates. The rough
+cutoff must lie below the group primes, and the group exponents satisfy
+$d<0.47$ in [S]. This bound keeps the residue moduli of moment length
+$L^{0.52}$ equal to $\exp(o(L))$, and it prevents the argument from
+reaching $z=N^\delta$ for fixed $\delta>0$.
+The threshold $N_0$ is not effective with the Siegel--Walfisz input
+used in [S, Section~4]. We make no assertion for a fixed number of
+prime factors or for prime summands.
+
+Section~\ref{sec:graphs} gives the graph inputs, dilation and reflection.
+Section~\ref{sec:characters} establishes the character estimates.
+Section~\ref{sec:grids} proves the grid energy estimate, including
+a partial-summation verification of the smooth weights.
+Section~\ref{sec:cancellation} proves reflected cancellation.
+Section~\ref{sec:weight} constructs the positive weight and its mass.
+Section~\ref{sec:theorems} deduces the two theorems.
+
+\section{Graph inputs, dilation and reflection}\label{sec:graphs}
+We use $L=\log x$ and $T=\log L$ in this section.
+
+\begin{definition}[Prime groups and patterns, {\cite[Definitions~3.1--3.3]{WeightedGraphs}}]
+\label{def:graphs}
+Fix the data
+\begin{equation}\label{eq:fixed-data}
+0<a<b<c<d<0.47,\quad c_0,C_0,v_-,v_+>0,\quad
+0<q_0<1,\quad \ell\in\N_{>0}.
+\end{equation}
+Let $\Pset_g$ be finite pairwise disjoint prime sets indexed by disjoint
+small and big families $\mathcal G_{\rm small},\mathcal G_{\rm big}$.
+Each family has between $c_0T$ and $C_0T$ groups. Put
+\begin{equation}\label{eq:groups}
+\begin{gathered}
+\exp(L^a)\le p\le\exp(L^b)\quad(g\in\mathcal G_{\rm small}),\qquad
+\exp(L^c)\le p\le\exp(L^d)\quad(g\in\mathcal G_{\rm big}),\\
+v_-\le V_g:=\sum_{p\in\Pset_g}\frac1p\le v_+,\qquad
+\mu_g(p)=\frac1{pV_g},\qquad
+\omega_g(n)=\sum_{p\in\Pset_g}\ind_{p\mid n},\\
+\Pset=\bigcup_g\Pset_g,\qquad s=|\mathcal G_{\rm small}|+
+|\mathcal G_{\rm big}|,\qquad\omega_{\Pset}(n)=\sum_g\omega_g(n).
+\end{gathered}
+\end{equation}
+Divisibility at every $n\in\Z$, including $0$, has its usual meaning.
+For a fixed positive integer $J$ set $M=J+\ell$.
+A pattern $\nu$ chooses $C_g\subset\{1,\ldots,J\}$, empty in small
+groups and of size at most a fixed $m$ in big groups. Put
+$t_g=\ell+|C_g|$. The slots in $\{1,\ldots,J\}\setminus C_g$
+are shared between the ordered source and target lists.
+The other $t_g$ endpoint slots are unshared. Independent auxiliary
+labels with laws $\mu_g$ fill the $C_g$ slots in the edge product $D$,
+which uses $J$ prime factors in each group.
+Write $D=D_{\rm small}D_{\rm big}$.
+The coefficients depend only on ordered big source, big target and
+auxiliary big labels, and satisfy
+\begin{equation}\label{eq:pattern-cost}
+\sum_\nu\sup|K_\nu|\le L^{C_1},
+\end{equation}
+where $m,C_1$ are independent of $J$. Every operator is symmetrized
+on both sides by averaging the $M!$ slot permutations independently
+in each group.
+\end{definition}
+
+\begin{definition}[Ideal and physical operators]\label{def:operators}
+The ideal Hilbert space is the product probability space of $M$
+big-group labels with law $\mu_g$ in every big group; numerical
+repetitions are allowed. A row retains shared labels, independently
+draws unshared target and auxiliary free labels, and multiplies by
+\begin{equation}\label{eq:ideal-multiplier}
+K_\nu D_{\rm big}^{i\zeta}\e(\Theta D_{\rm big}),
+\qquad \Theta,\zeta\in\R,\qquad \e(t)=\exp(2\pi it).
+\end{equation}
+Sum and symmetrize to obtain $T_\zeta(\Theta)$.
+A physical state is $(n,\mathbf p)$, with $n\in\Z$ and $M$ ordered
+distinct labels from each group, all dividing $n$. Its mass is
+$\prod_g V_g^{-M}$, with counting measure in $n$.
+For an integer $0<|k|\le L^{C_2}$ the row moves to $n+kD$,
+sums compatible target lists with coefficient $\prod_gV_g^{-t_g}$,
+and draws free labels with their $\mu_g$ laws. Each auxiliary free
+label is forbidden from both endpoint lists, although free labels may
+repeat one another. Its multiplier is
+\begin{equation}\label{eq:physical-multiplier}
+K_\nu D^{i\zeta}
+q_0^{(\omega_{\Pset}(n)-Ms)/2}
+q_0^{(\omega_{\Pset}(n+kD)-Ms)/2}.
+\end{equation}
+Call the symmetrized sum $A$.
+Its adjoint reverses the displacement and interchanges the endpoint
+labels, conjugating the multiplier. The joint list normalization is
+$V_g^{-M-t_g}$ in either direction.
+The vector $u_n$ equals $1$ on all lists at position $n$ and $0$
+elsewhere; it is not normalized.
+\end{definition}
+
+\begin{inputthm}[Absolute bounds and transference, {\cite[Lemma~3.4,
+Theorem~3.5, Corollary~3.11]{WeightedGraphs}}]\label{input:gt}
+The absolute row and column sums of $A$ are bounded by $L^{C_{\rm abs}}$,
+with $C_{\rm abs}$ independent of $J$ (it may depend on $m$, $C_1$ and the common fixed data); this also holds on the
+independent-residue position space.
+For each fixed $E>0$ there is $E_{\rm id}>0$, depending only on $E$
+and the common fixed data, such that
+\begin{equation}\label{eq:ideal-hypothesis}
+\sup_\Theta\|T_\zeta(\Theta)\|\le L^{-E_{\rm id}}
+\end{equation}
+implies, for every sufficiently large fixed $J$, with
+$R=\lceil L^{0.52}\rceil$, every fixed $\gamma>0$ and every positive dyad $I=[Y,2Y)$,
+$x^\gamma\le Y\le x^{1/\gamma}$,
+\begin{equation}\label{eq:source-moment}
+\frac1{|I\cap\Z|}\sum_{n\in I\cap\Z}
+\langle u_n,(AA^*)^Ru_n\rangle\le L^{-2RE}.
+\end{equation}
+The lower bound on $J$ may depend on $m,C_1$; the threshold in $x$
+may depend on all fixed parameters, including $J,C_2,\gamma$.
+Subject to these data and \eqref{eq:ideal-hypothesis}, the estimate
+is uniform in groups, patterns, $k$ and $\zeta$.
+There is no further bound on $\zeta$ when the ideal hypothesis holds.
+If $f$ is supported on $I$, is independent of its list of marks,
+$\sup|f_n|\le\exp(C_f\sqrt L)$, and
+$\|f\|,\|g\|\le\sqrt Y L^{C_3}$, then
+\begin{equation}\label{eq:source-pairing}
+|\langle f,Ag\rangle|\ll YL^{-E+2C_3}.
+\end{equation}
+Only the first endpoint must be independent of its mark list.
+\end{inputthm}
+
+\begin{inputthm}[Residual ideal kernels, {\cite[Theorem~4.1, with (4.7)--(4.8) and the last two paragraphs of its proof, p.~34]{WeightedGraphs}}]
+\label{input:ik}
+Suppose initially that each big group is the set of all primes in an
+interval in its permitted range. For each fixed $E_{\rm id}>0$ and
+$C_4\ge0$ there are fixed $m,J_{\min},C_1$ and kernel parameters, independent
+of $J$, such that every fixed $J\ge J_{\min}$ admits one raw pattern
+$C_g=\varnothing,K_0=1$ and signed comparison patterns satisfying
+\begin{equation}\label{eq:ik-bound}
+\sup_{\Theta\in\R,\ |\zeta|\le L^{C_4}}
+\|T_\zeta(\Theta)\|\le L^{-E_{\rm id}}.
+\end{equation}
+The family and coefficients are independent of the particular
+$\Theta,\zeta$. Split the big groups into two blocks and designate $m$
+of the first $J$ slots in each big group as probes. Each comparison frees
+nonempty probe sets $\mathcal A,\mathcal B$ in the two blocks, with
+coefficient
+\begin{equation}\label{eq:ik-coefficient}
+-(-1)^{|\mathcal A|+|\mathcal B|}
+ K_{\mathcal A}(D_{\mathcal A},X_{\mathcal A})
+ K_{\mathcal B}(D_{\mathcal B},X_{\mathcal B}).
+\end{equation}
+Here $D_{\mathcal A},D_{\mathcal B}$ are independent free-label
+products; $X_{\mathcal A}$ uses target labels and $X_{\mathcal B}$
+source labels. No shared label or final $\ell$ label enters these
+coefficients. For a slot set $\Lambda$,
+\begin{equation}\label{eq:cell-kernel}
+K_\Lambda(D,X)=
+\sum_{j:\nu_j\ge\xi}
+\frac{\ind_{\log D\in I_j}\ind_{\log X\in I_j}}{\nu_j}
+\sum_{\substack{\chi\ {\rm primitive}\\\cond(\chi)\le Q_0}}
+\overline{\chi(D)}\chi(X),
+\end{equation}
+where $I_j$ has width $\mathfrak h$, $\nu_j$ is the product-law cell
+probability, and $\mathfrak h^{-1},\xi^{-1},Q_0$ are fixed powers of $L$.
+The conductor-$1$ character is included. The number and total coefficient
+mass of the expanded terms are fixed powers of $L$, independent of $J$.
+Every free product contains a big prime.
+\end{inputthm}
+
+The order in these inputs is substantive.
+In [S, (3.37), p.~23] one fixes
+$G>E+C_v+3$ and $E_{\rm id}>G+C_s+2$ before increasing $J$.
+In [S, pp.~33--34] one fixes the probe count $m$, then the comparison
+accuracy, then the kernel parameters in (4.20) and their coefficient
+exponent $C_1$, and only then imposes a lower bound on $J$.
+Thus $J$ may subsequently be increased to satisfy transference
+without changing any kernel precision. We will keep this order.
+
+\begin{proposition}[Coprime integer dilation]\label{prop:dilation}
+Keep Definitions~\ref{def:graphs}--\ref{def:operators} and the fixed
+bound $0<|k|\le L^{C_2}$. Let $h\ne0$ be any integer coprime to every
+group prime, and replace every physical displacement $kD$ by $hkD$,
+leaving the coefficients and all mark rules unchanged. Call this
+operator $A_h$. Under \eqref{eq:ideal-hypothesis}, with the same order
+of fixed parameters, one has, for every positive dyad $[Y,2Y)$ with $x^\gamma\le Y\le x^{1/\gamma}$,
+\begin{equation}\label{eq:dilated-moment}
+\sum_{Y\le n<2Y}\langle u_n,(A_hA_h^*)^Ru_n\rangle
+\ll YL^{-2RE}
+\end{equation}
+and, under the endpoint hypotheses of Input~\ref{input:gt},
+\begin{equation}\label{eq:dilated-pairing}
+|\langle f,A_hg\rangle|\ll YL^{-E+2C_3}.
+\end{equation}
+The absolute row and column bounds of Input~\ref{input:gt} hold for
+$A_h$ with the same $C_{\rm abs}$, also on the independent-residue
+position space. The constants and threshold are independent of $h$
+and its size. This proposition is deduced from the proofs of
+Lemmas~3.4 and~3.6, the residue-model moment estimate in the proof of
+Theorem~3.5, and the proof of Corollary~3.11 of [S].
+\end{proposition}
+\begin{proof}
+We spell out the dependence on the displacement in [S, Section~3]; in this proof, Definition, Lemma, Theorem and Corollary numbers and equation numbers of the form (3.$n$) are those of [S].
+Definition~3.3 and the adjoint computation (3.3)--(3.4), pp.~11--12,
+replace $n+kD$ by $n+hkD$; reversal still keeps $D$ fixed and the
+joint normalization unchanged. The absolute estimate (3.5) in
+Lemma~3.4, p.~12, counts target marks and uses only divisibility and
+translation of the position; its row and column bounds therefore hold
+for $A_h$, also on the independent-residue position space.
+The range of $k$ in Theorem~3.5, p.~12, is the restriction being extended;
+its residue proof uses that restriction only in the ways checked below.
+
+In the root-path expansion, (3.8), p.~13, the offsets become $hb_i$,
+where $b_0=0$ and $b_{i+1}-b_i=\pm kD_i$. Return is
+$hb_{2R}=0$, equivalent to $b_{2R}=0$. Thus the closed numerical paths
+and scalar coefficients are exactly those for $h=1$.
+Lemma~3.6 and (3.9)--(3.10), pp.~13--14, specify congruences
+$n+hb_i\equiv0\pmod p$. Their active and Bonferroni moduli use
+the same primes, have size $\exp(o(L))$, and each CRT count on
+$[Y,2Y)$ has rounding error $O(1)$ independently of the representatives
+$hb_i$. The closure phase (3.11), p.~14, can be kept as
+$\e(\theta b_{2R})$, since the return indicators coincide.
+
+In the independent-residue law the measure-preserving map
+$n_p\mapsto h^{-1}n_p$ changes every predicate
+$n_p+hb_i=0$ to $n_p+b_i=0$. It preserves active visits,
+repeated residues and all damping. Hence every numerical-path
+expectation, including the absolute sum that controls replacement
+error, is exactly the $h=1$ expectation. Consequently the signed
+residue-model path sum for $A_h$, with the return condition
+$b_{2R}=0$, equals the one for $h=1$, which the proof of
+[S, Theorem~3.5] bounds by $o(L^{-2RE})$ (Sections~3.3--3.8 and the
+completion on p.~25). The remainder of this paragraph and the next
+two paragraphs record that each step of that proof also applies
+directly to the displacement $hkD$. The lifespan tests
+(3.13)--(3.14), pp.~14--15, are preserved as well.
+The assertion on p.~15 that every group prime exceeds $|k|$
+is used to infer $p\mid kD\Rightarrow p\mid D$.
+For the enlarged displacement, $p>|k|$ and $p\nmid h$ give
+$p\mid hkD\Rightarrow p\mid D$. Its converse exclusion for
+unshared entry and exit labels is therefore unchanged.
+
+In the edge-memory operations on p.~16, the translation
+$\Delta=\pm kD$ becomes $\Delta=\pm hkD$, while the phase remains
+$\e(\pm\theta kD)$ when the closure phase is kept as
+$\e(\theta b_{2R})$.
+Translations remain measure preserving. The exact memory identity
+(3.17), p.~17, uses only these congruences and the just-verified
+active/shared implication. The reversed memory measures
+(3.23)--(3.25), p.~19, remain unchanged under any translation $\Delta$;
+their absolute bounds, (3.26)--(3.28), p.~20, have no size dependence.
+For rare transfers, (3.31) and Lemma~3.9, pp.~20--21, the congruence
+is $r+\sigma_i hkD_{\rm big}F/U=0\pmod p$.
+The omitted small-label products satisfy
+$U\le\exp(\ell|\mathcal G_{\rm small}|L^b)<\exp(L^c)\le p$;
+they are distinct modulo $p$, and $h,k,F,D_{\rm big}$ are invertible
+there whenever $p\nmid D$. At most one omission choice is allowed,
+exactly as in the source.
+
+The clean-edge Fourier reduction (3.36) and Lemma~3.10, pp.~21--22,
+only change the real frequency $\Theta$ in $\e(\sigma_i\Theta
+D_{\rm big})$. The ideal hypothesis is uniform in every real $\Theta$.
+The equality-rank expansion (3.39)--(3.47), pp.~23--25, changes no
+birth labels, point masses or equality phases; its unaffected edges
+retain this same clean estimate. The completion on p.~25 thus gives
+the same residue-model moment. Restoring the uniform residue error
+with a slightly stronger fixed precision proves
+\eqref{eq:dilated-moment}. This is a full-root CRT average, with no
+assertion of residue independence along a short progression modulo $h$.
+
+It remains to adapt the physical interval bound $H$ in [S, (3.49),
+p.~26]. Choose
+\begin{equation}\label{eq:quotient-radius}
+H_0\ge\max|kD|,\qquad \log H_0=O_J(TL^d).
+\end{equation}
+For each residue class modulo $|h|$, partition its integer quotient
+coordinate into blocks of $\lceil H_0\rceil$ consecutive positions.
+Write ${\rm block}_j$ for the part of one such block in $[Y,2Y)$, let
+$f_j$ be the restriction of $f$ to ${\rm block}_j$, and let $g_j$ be
+the restriction of $g$ to the full quotient block containing
+${\rm block}_j$ and its two neighbors in that same residue class,
+without intersecting them with $[Y,2Y)$. Every edge stays in the
+class and moves at most $H_0$ quotient positions. Therefore
+\begin{equation}\label{eq:quotient-blocks}
+\langle f,A_hg\rangle=\sum_j\langle f_j,A_hg_j\rangle,
+\qquad \sum_j\|g_j\|^2\le3\|g\|^2.
+\end{equation}
+The positive semidefinite matrix
+$(\langle u_n,(A_hA_h^*)^Ru_m\rangle)_{n,m\in{\rm block}_j}$
+has largest eigenvalue at most its trace $d_j$. Mark independence gives
+\begin{equation}\label{eq:block-trace}
+\langle f_j,(A_hA_h^*)^Rf_j\rangle
+\le\left(\sum_{n\in{\rm block}_j}|f_n|^2\right)d_j
+\le\lceil H_0\rceil\sup|f_n|^2d_j.
+\end{equation}
+Spectral H\"older and H\"older in $j$, with exponents
+$2,2R/(R-1),2R$, give
+\begin{equation}\label{eq:block-holder}
+|\langle f,A_hg\rangle|
+\le\sqrt3\,\|g\|\|f\|^{1-1/R}
+(\lceil H_0\rceil\sup|f_n|^2)^{1/(2R)}
+\left(\sum_jd_j\right)^{1/(2R)}.
+\end{equation}
+The middle factor is bounded, since $d<0.47<0.52$ and $0.5<0.52$.
+The blocks partition the support dyad, so their traces sum to
+\eqref{eq:dilated-moment}. The norm hypotheses prove
+\eqref{eq:dilated-pairing}. Empty blocks, including the case
+$|h|>2Y$, cause no change.
+\end{proof}
+
+\begin{proposition}[Reflection]\label{prop:reflection}
+Let $(J_0g)(n,\mathbf p)=g(-n,\mathbf p)$. For $h\ne0$ coprime to
+the group primes, let $B_h$ have the source mark transitions with
+physical target $hkD-n$. Then
+\begin{equation}\label{eq:reflection}
+B_h=A_{-h}J_0,\qquad B_hB_h^*=A_{-h}A_{-h}^*.
+\end{equation}
+Consequently \eqref{eq:dilated-pairing} and the absolute row and column
+bounds of Proposition~\ref{prop:dilation} hold with $B_h$ in place of
+$A_h$.
+\end{proposition}
+\begin{proof}
+Reflection preserves divisibility, state measure and degree damping,
+so $J_0$ is a unitary permutation of the states and leaves absolute
+row and column sums unchanged. The translation target $n-hkD$ becomes $hkD-n$
+after applying $J_0$, with exactly the same admissible lists.
+The squared-operator identity follows from $J_0J_0^*=1$.
+The second endpoint in the translation interface may be supported
+at negative integers, since the physical space is all of $\Z$.
+We only use Liouville values at the positive endpoints before applying
+$J_0$.
+\end{proof}
+
+\begin{proposition}[Punctured prime intervals]\label{prop:punctures}
+Set $x=N$. Remove the primes dividing $N$ from each prime interval
+used for a big group. If the resulting groups satisfy
+\eqref{eq:groups}, the conclusion and parameter order of
+Input~\ref{input:ik} hold for them.
+The transference inputs already allow arbitrary finite groups.
+\end{proposition}
+\begin{proof}
+For any fixed $\alpha>0$, deletion has reciprocal mass at most
+\begin{equation}\label{eq:deleted-mass}
+\sum_{\substack{p\mid N\\p\ge\exp(L^\alpha)}}\frac1p
+\le\frac{L}{L^\alpha\exp(L^\alpha)}.
+\end{equation}
+Indeed at most $L/L^\alpha$ distinct prime factors can lie above this
+threshold. This is smaller than every fixed negative power of $L$,
+also after any further interval intersection. For big groups take
+$\alpha=c$; $\alpha=a$ controls both kinds of groups.
+
+Here is the full check of the interval uses in [S, Section~4]; in this proof, Theorem, Lemma and equation numbers of the form (4.$n$) are those of [S].
+Its opening assumption on p.~27 says that intersecting a big group
+with another interval is still an interval of primes. After deletion
+it is that interval with only primes dividing $N$ missing.
+For a selected slot set $\Lambda$, write $P_\Lambda$ for its label
+product, $k_g$ for its number of slots in group $g$, and $a_p$ for
+the multiplicity of $p$ in a supported product $n$.
+Let $\rho_\Lambda(n)=\Prob(P_\Lambda=n)$, zero outside the support.
+In (4.3), p.~28, unique factorization gives, on this support, the mass
+\begin{equation}\label{eq:product-collapse}
+\rho_\Lambda(n)
+=\frac1n\prod_g\frac{k_g!}{V_g^{k_g}\prod_{p\in\Pset_g}a_p!}
+\le \frac{L^\kappa}{n},\qquad
+\kappa=C_0\{\log(m!)+m\log\max(1,v_-^{-1})\},
+\end{equation}
+for at most $m$ selected slots per big group. This uses no interval
+distribution and is unchanged, including repeated labels.
+The fiber Cauchy bound (4.4), p.~28, is
+\begin{equation}\label{eq:fiber-collapse}
+\sum_n|\E[f\ind_{P_\Lambda=n}]|^2
+\le \frac{L^\kappa}{c_1U}\|f\|_2^2
+\quad(c_1U\le P_\Lambda\le c_2U);
+\end{equation}
+it follows from the same mass bound for arbitrary tuple tests.
+
+The log-cell definitions (4.7) and bounds (4.8), p.~29, become
+\begin{equation}\label{eq:cell-bounds}
+N_\Lambda\ll_m1+TL^d/\mathfrak h,\qquad
+\sup|K_\Lambda|\le Q_0^2\xi^{-1},\qquad
+\sup_X\E_D|K_\Lambda(D,X)|\le Q_0^2.
+\end{equation}
+Support size, retained cell mass and the cancellation of $\nu_j$
+give these inequalities for the new product law.
+
+The only distribution estimate is (4.9), pp.~29--30:
+\begin{equation}\label{eq:cell-offdiagonal}
+\left|\E\left[\ind_{\log D\in I_j}
+                  \overline{\chi(D)}\chi'(D)\right]\right|
+\ll_{D_*} L^{-D_*}\quad(\chi\ne\chi').
+\end{equation}
+Fix all but one selected label. The remaining prime lies in the
+intersection of its original interval and a cell-imposed interval.
+The character $\overline\chi\chi'$ is nonprincipal on a modulus
+at most $Q_0^2$, by uniqueness of primitive induction.
+The reciprocal prime sum used in [S, (4.9)] is valid on the full
+intersection by [S, Theorem~2.2]; removing $p\mid N$ changes it
+by at most \eqref{eq:deleted-mass}. Division by $V_g\ge v_-$
+and averaging the other labels preserve arbitrary precision.
+Every remaining prime exceeds $Q_0^2$, so all conditional diagonal
+Gram entries in (4.10), p.~30, are exactly $1$.
+Thus (4.11), p.~30, retains the bound
+\begin{equation}\label{eq:gram-bound}
+1+O_{D_*}(Q_0^2\xi^{-1}L^{-D_*})\le2.
+\end{equation}
+The character-reproduction formula (4.18), p.~32, remains
+\begin{equation}\label{eq:character-reproduction}
+\E_D K_\Lambda(D,X)\psi(D)
+=\psi(X)+O_{D_*}(Q_0^2\xi^{-1}L^{-D_*})
+\end{equation}
+on retained cells: its diagonal term is exact and the others use
+\eqref{eq:cell-offdiagonal}. Applying it twice with the rational
+character expansion (4.15) preserves (4.19), p.~32, whose error is
+\begin{equation}\label{eq:rational-reproduction}
+O_{D_*}(Q_0^{5/2}\xi^{-1}L^{-D_*}).
+\end{equation}
+
+For the remaining displays, the integer bilinear estimate (4.5)--(4.6),
+pp.~28--29, permits coefficients vanishing on any subset of containing
+intervals. The cell support comparison and derivative error
+(4.13)--(4.17), pp.~30--31, use only product sizes,
+$\mathfrak h$, and the new cell probabilities; discarded cells still
+have total mass at most $(N_{\mathcal A}+N_{\mathcal B})\xi$.
+The parameter inequalities (4.20), p.~32, absorb
+\eqref{eq:deleted-mass} at any fixed precision before $J$.
+The symmetric-probe fractions and cancellations
+(4.21)--(4.26), pp.~32--34, use a product probability law and
+within-group permutation invariance, both of which persist.
+These are all the interval dependencies: none asserts distribution
+for an arbitrary subset of a prime interval. The proof of [S,
+Theorem~4.1] therefore gives the proposition, uniformly in $N$.
+\end{proof}
+
+\section{Zero-free input and character estimates}\label{sec:characters}
+
+\begin{inputthm}[Family 003, {\cite[Theorem~1.1]{OpenAIQ78}}]\label{input:zf}
+For every positive integer $q$, every Dirichlet character $\chi\pmod q$
+and every $s\in\C$ with $\Rea s>7/8$, one has $L(s,\chi)\ne0$,
+apart from the principal character's pole at $s=1$.
+\end{inputthm}
+The Lean declaration is
+\begin{center}\small
+\path{OAI.DirichletCharacter.LFunction_ne_zero_of_seven_eighths_lt_re}.
+\end{center}
+The companion declaration
+\path{OAI.riemannZeta_ne_zero_of_seven_eighths_lt_re}
+gives the zeta assertion away from its pole.
+
+\begin{lemma}[Liouville character power bound]\label{lem:power}
+For fixed $C_1>0$ and every fixed $\alpha>7/8$,
+\begin{equation}\label{eq:power-bound}
+\sum_{n\le X}\lambda(n)\chi(n)n^{it}\ll_{C_1,\alpha}X^\alpha
+\qquad(q,|t|\le X^{C_1}),
+\end{equation}
+uniformly in all characters modulo $q$, including principal and
+imprimitive characters.
+\end{lemma}
+\begin{proof}
+We give the analytic details, using the classical Borel--Carath\'eodory and three-lines inequalities
+and the Dirichlet-series and contour tools of \cite[Chapters~5, 10--13]{MV}.
+For primitive nonprincipal $\chi$, Input~\ref{input:zf} permits a
+holomorphic branch $F(s)=\log L(s,\chi)$ on $\Rea s>7/8$,
+agreeing with the Euler logarithm on $\Rea s>1$.
+Partial summation of the character sum, bounded by $q$, gives
+$|L(s,\chi)|\le q|s|/\Rea s$ for $\Rea s>0$.
+Borel--Carath\'eodory on discs centered at $2+it$, staying a fixed
+distance to the right of $7/8$, bounds
+$|F(7/8+\delta/2+it)|\ll_\delta\log(q(|t|+3))$.
+On $\Rea s=1+\delta/2$ the Euler logarithm is $O_\delta(1)$.
+Apply three-lines to
+$F(s)\exp((s-it_0)^2/\mathcal R^2)$, where
+$\mathcal R=q+|t_0|+3$. The Gaussian gives finite boundary suprema.
+At $s=\sigma+it_0$, $\sigma\ge7/8+\delta$, this yields
+\begin{equation}\label{eq:logarithm-bound}
+|F(s)|\ll_\delta
+[\log(q(|t_0|+3))]^{1-\eta_\delta},
+\qquad \eta_\delta>0,
+\end{equation}
+and hence, for every $\varepsilon>0$,
+\begin{equation}\label{eq:reciprocal-growth}
+L(s,\chi)^{-1}\ll_{\delta,\varepsilon}
+(q(|t|+3))^\varepsilon\qquad(\Rea s\ge7/8+\delta).
+\end{equation}
+For the primitive principal character use the nonvanishing analytic
+function $Z(s)=\zeta(s)(s-1)/(s+1)$, whose canceled value at $1$ is
+nonzero. Its logarithm has the same bounds; the factor
+$(s-1)/(s+1)$ in $1/\zeta(s)$ is bounded by $1$ on $\Rea s\ge0$.
+For imprimitive characters, the inverse local-factor logarithm is
+$O_\delta(\sum_{p\mid q}p^{-7/8-\delta})=o(\log q)$.
+To see uniformity of the last assertion, fix a large prime threshold:
+the finitely many smaller primes cost $O(1)$, and the contribution of
+larger primes, divided by $\log q$, is arbitrarily small.
+It is absorbed by another arbitrarily small conductor power.
+
+The twisted series is
+\begin{equation}\label{eq:liouville-series}
+\sum_{n\ge1}\frac{\lambda(n)\chi(n)n^{it}}{n^s}
+=\frac{L(2s-2it,\chi^2)}{L(s-it,\chi)}.
+\end{equation}
+The numerator is absolutely bounded on a fixed line right of $7/8$.
+Truncated Perron at a half-integer cutoff and height $\mathcal T$
+has error $O(X\log^2X/\mathcal T+1)$.
+Move to $\Rea s=7/8+\delta<\alpha$; the vertical term is
+\begin{equation}\label{eq:perron-vertical}
+O\left(X^{7/8+\delta}
+       (q(\mathcal T+|t|+3))^\varepsilon\log\mathcal T\right),
+\end{equation}
+and the horizontal integrals are smaller after a sufficiently large
+fixed-power height is chosen. There is no principal pole in the ratio:
+the pole of $L(s-it,\chi)$ becomes a zero of its inverse.
+Choose the reciprocal-growth exponent $\varepsilon$ after $C_1$,
+the height exponent and the margin $\alpha-7/8-\delta$.
+This proves \eqref{eq:power-bound}. The same reasoning applies when
+$q,|t|\le N^C$ and $N^\eta\le X\le N^{1/\eta}$ by enlarging $C_1$.
+\end{proof}
+
+\begin{lemma}[Small-prime modifications]\label{lem:modifications}
+Fix $C>0$, $0<d<1$, and $L=\log N$.
+Let $Z_0\le\exp(L^d)$ and let $f$ be real and completely
+multiplicative, possibly depending on $N$, with
+$f(p)\in[-1,0]$ for $p\le Z_0$ and $f(p)=-1$ otherwise.
+For every fixed $\eta,A>0$,
+\begin{equation}\label{eq:modified-mean}
+\sup_{N^\eta\le X\le N^{1/\eta}}
+\sup_{\substack{q\le N^C\\|t|\le N^C}}
+\sup_{\chi\bmod q}
+\left|\sum_{n\le X}f(n)\chi(n)n^{it}\right|
+\ll_{C,d,\eta,A}XL^{-A}.
+\end{equation}
+This includes every character and real $t$; the same bound holds on
+any subinterval of $[X,2X]$.
+\end{lemma}
+\begin{proof}
+Write $f(p)=-u_p$, $0\le u_p\le1$. The exact convolution $f=\lambda*g$
+has local coefficients
+\begin{equation}\label{eq:modified-euler}
+\sum_{j\ge0}g(p^j)v^j=\frac{1+v}{1+u_pv},\qquad
+g(p^j)=(1-u_p)(-u_p)^{j-1}\quad(j\ge1)
+\end{equation}
+at modified primes, and $g(p^j)=0$ at all others. For $0<v<1$,
+\begin{equation}\label{eq:modified-local-bound}
+\sum_{j\ge1}|g(p^j)|v^j
+=\frac{(1-u_p)v}{1-u_pv}\le v.
+\end{equation}
+Mertens' estimates give
+$\sum_n|g(n)|/n\ll\log(2Z_0)$.
+For large $Z_0$, take $\delta=1/\log Z_0$ and apply Rankin:
+\begin{equation}\label{eq:modified-tail}
+\sum_{n>\sqrt X}\frac{|g(n)|}{n}
+\le X^{-\delta/2}\prod_{p\le Z_0}(1+p^{-1+\delta})
+\ll X^{-1/(2\log Z_0)}(\log(2Z_0))^{\mathrm e}.
+\end{equation}
+The last estimate uses $p^\delta\le\mathrm e$ and the harmonic
+prime form of Mertens' theorem.
+For $n\le\sqrt X$, Lemma~\ref{lem:power} with $\alpha=15/16$ gives
+\[
+X^{15/16}\sum_{n\le\sqrt X}|g(n)|n^{-15/16}
+\le X^{31/32}\sum_n|g(n)|/n.
+\]
+Thus the complete sum is
+\begin{equation}\label{eq:modified-total}
+\ll X^{31/32}\log(2Z_0)
++X\exp\left(-\frac{\log X}{2\log Z_0}\right)
+                        (\log(2Z_0))^{\mathrm e}.
+\end{equation}
+Both terms are $O_A(XL^{-A})$, uniformly in $u_p,\chi,t$.
+Bounded $Z_0$ uses a fixed Rankin exponent; no modifications gives
+$f=\lambda$ directly. Differences of prefixes give subintervals.
+\end{proof}
+
+\begin{corollary}[Rough one-factor means]\label{cor:rough-mean}
+Put $\Rz(n)=\ind_{P^-(n)>z}$. For fixed $C_0>0$,
+$0<\rho_0<1$ and $H>0$, uniformly for
+$2\le z\le\exp((\log X)^{\rho_0})$, $q,|t|\le X^{C_0}$ and all
+characters modulo $q$,
+\begin{equation}\label{eq:rough-mean}
+\sum_{n\le X}\lambda(n)\Rz(n)\chi(n)n^{it}
+\ll_{C_0,\rho_0,H}X(\log X)^{-H}.
+\end{equation}
+\end{corollary}
+\begin{proof}
+Let $\mu$ be the M\"obius function, equal to $0$ on nonsquarefree
+integers and to $(-1)^{\omega(n)}$ on squarefree integers, where
+$\omega(n)$ counts distinct prime factors.
+The coefficient identity, including prime powers, is
+\begin{equation}\label{eq:rough-convolution}
+\lambda\Rz=\lambda*g_z,\qquad
+g_z(d)=\mu^2(d)\ind_{P^+(d)\le z}.
+\end{equation}
+At $p\le z$ the factor $1+p^{-s}$ cancels the Liouville Euler
+factor; at other primes it is $1$.
+Writing $\alpha=15/16$ and taking the conductor exponent
+$C_1=2C_0$ on the short convolution gives
+\begin{equation}\label{eq:rough-small-part}
+\sum_{d\le\sqrt X}g_z(d)(X/d)^\alpha
+\le X^{(1+\alpha)/2}\sum_dg_z(d)/d
+\ll X^{31/32}\log(2z).
+\end{equation}
+With $\varepsilon_z=1/\log z$ the other part satisfies
+\begin{equation}\label{eq:rough-tail}
+\sum_{d>\sqrt X}\frac{g_z(d)}d
+\le X^{-1/(2\log z)}
+ \prod_{p\le z}(1+p^{-1+1/\log z})
+\ll X^{-1/(2\log z)}(\log(2z))^{\mathrm e}.
+\end{equation}
+The finite product is valid even if $\varepsilon_z>1$ for small
+fixed $z$. The total bound is
+\begin{equation}\label{eq:rough-total}
+C\left\{X^{31/32}\log(2z)
++X\exp\left[-\frac{\log X}{2\log z}\right]
+ (\log(2z))^{\mathrm e}\right\},
+\end{equation}
+Since $\log z\le(\log X)^{\rho_0}$ with $\rho_0<1$ fixed, both terms are $O_H(X(\log X)^{-H})$, which proves \eqref{eq:rough-mean}.
+\end{proof}
+
+\begin{lemma}[Short prime character sums]\label{lem:prime}
+For fixed $C>0$, $0<a<b<1$, and
+$\exp(L^a)\le P\le\exp(L^b)$, every nonprincipal character modulo
+$q\le N^C$, every real $|t|\le N^C$, and every interval
+$I\subset[P,2P]$ satisfy
+\begin{equation}\label{eq:prime-bound}
+\left|\sum_{p\in I}\chi(p)p^{it}\right|
+\ll_C P^{15/16}L^{C_1},
+\end{equation}
+where $C_1$ is fixed (with the fixed exponent ranges understood).
+The same estimate holds after omitting primes dividing $N$.
+For a principal character we use only $O(P)$.
+\end{lemma}
+\begin{proof}
+Cauchy's formula for the analytic logarithm in
+Lemma~\ref{lem:power}, or its standard zero partial-fraction expansion,
+gives $-L'/L(s,\chi)=O(\log^2(q(|\Im s|+3)))$ on
+$\Rea s=15/16$ and the horizontal segments, for nonprincipal
+characters. Apply truncated Perron to
+$-L'/L(s-it,\chi)$, initially with height $N^{C+10}$, increasing its
+fixed exponent if required. Shift to $\Rea s=15/16$.
+The pole at $1+it$ is absent precisely for nonprincipal $\chi$.
+The zero-free input gives a fixed distance from all zeros.
+The remaining line contributes $O(P^{15/16}L^{C_1})$.
+Truncation and horizontal errors are polynomially small after the
+height is enlarged, even for $P=\exp(L^a)$.
+Proper prime powers cost $O(P^{1/2}L^{C_1})$.
+Partial summation removes $\log p$; differences of prefixes treat $I$.
+Imprimitive Euler factors and deletion of $p\mid N$ contribute at
+most a fixed power of $L$, absorbed in \eqref{eq:prime-bound}.
+Thus the modulus need only be polynomial in $N$, not in $P$.
+A principal pole would supply a main term and is never discarded.
+\end{proof}
+
+\section{Fourier energy on rational grids}\label{sec:grids}
+From now on $L=\log N$. Fix the separated ranges
+\begin{equation}\label{eq:separated-ranges}
+\begin{gathered}
+z=\exp(L^{1/10}),\qquad
+\Pset\subset[\exp(L^{0.12}),\exp(L^{0.18})]
+       \cup[\exp(L^{0.35}),\exp(L^{0.40})],\\
+\Sset=\{p:\exp(L^{0.22})<p\le\exp(L^{0.28}),\ p\nmid N\}.
+\end{gathered}
+\end{equation}
+Assume $\Pset$ contains no prime factor of $N$ and
+$\sum_{p\in\Pset}1/p=O(\log L)$. Write $n=n_{\Pset}n_*$,
+where $n_{\Pset}$ is the full $\Pset$-part, including prime powers.
+Use $\omega_{\Sset}$ for the number of distinct $\Sset$-prime
+divisors and $\Omega_{\Sset}$ for their number with multiplicity.
+
+\begin{lemma}[Grid energy]\label{lem:grid}
+Let $c(g)$ be a complex function supported on $\Pset$-smooth integers,
+that is, integers all of whose prime factors lie in $\Pset$,
+and bounded by $L^C$. It may depend on $N$ and all fixed comparison
+parameters. Define
+\begin{equation}\label{eq:grid-sequence}
+a(n)=\psi(n/Y)n^{iv}\lambda(n_*)\Rz(n_*)
+ \ind_{(n,N)=1}\ind_{\omega_{\Sset}(n_*)>0}\,c(n_{\Pset}),
+\end{equation}
+where $\psi$ is supported on a fixed compact subinterval of
+$(0,\infty)$,
+$\|\psi^{(j)}\|_\infty=O_j(L^{C(j+1)})$, and $v\in\R$, $|v|\le L^C$.
+Fix $C_0,C_2>0$. Uniformly for
+\begin{equation}\label{eq:grid-scales}
+Y=NH',\qquad
+\exp(2L^{0.35})/4\le H'\le\exp(C_2L^{0.40}\log L),
+\qquad r\in\N_{>0},\ r\le L^{C_0},\quad Q=Nr,
+\end{equation}
+and every $A>0$,
+\begin{equation}\label{eq:grid-energy}
+\int_{|\beta|\le L^{C_0}/Y}
+ \sum_{b\bmod Q}|\widehat a(b/Q+\beta)|^2\,d\beta
+\ll_{A,C,C_0,C_2} YL^{-A},
+\qquad \widehat a(\theta)=\sum_na(n)\e(\theta n).
+\end{equation}
+Consequently the energy on the union of these arcs for all
+$r\le L^{C_0}$ is $O_A(YL^{-A})$, after increasing intermediate precision.
+\end{lemma}
+\begin{proof}
+We begin with a prime extraction that does not assume squarefreeness.
+For $\omega_{\Sset}(n_*)>0$ one has the exact identity
+\begin{equation}\label{eq:reserved-extraction}
+-\int_0^1\sum_{\substack{p\in\Sset\\p\mid n_*}}
+\lambda(n_*/p)\Rz(n_*/p)
+ u^{\Omega_{\Sset}(n_*/p)}\,du
+=\lambda(n_*)\Rz(n_*)
+ \frac{\omega_{\Sset}(n_*)}{\Omega_{\Sset}(n_*)}.
+\end{equation}
+Each integral is $1/\Omega_{\Sset}(n_*)$, and $\lambda(p)=-1$.
+The ratio is $1$ unless the square of an $\Sset$-prime divides $n_*$;
+in that case the difference from the desired value has absolute value
+at most $1$.
+The resulting error after all bounded factors has squared norm
+\begin{equation}\label{eq:square-error}
+\ll YL^{C'}\sum_{p>\exp(L^{0.22})}p^{-2}
+\ll YL^{C'}\exp(-L^{0.22}).
+\end{equation}
+For counts with floors,
+$\sum_{p^2\le O(Y)}(Y/p^2+1)
+ \ll Y\exp(-L^{0.22})+\sqrt Y$, with the latter term absorbed.
+Remove this error globally by Parseval before estimating the arc
+union. For the grid integral at fixed $Q$, arcs have spacing $1/Q$
+and width $O(L^{C_0}/Y)$. Since $Y/Q=H'/r$ exceeds every fixed
+power of $L$, they are disjoint for large $N$. The same norm bound
+therefore handles this integral; summing in $r$ costs a fixed power.
+
+After extraction the residual coefficient, for $w=n/p$, is
+\begin{equation}\label{eq:residual-coefficient}
+b_u(w)=\lambda(w_*)\Rz(w_*)u^{\Omega_{\Sset}(w_*)}
+       \ind_{(w,N)=1}c(w_{\Pset}),\qquad |b_u(w)|\le L^C.
+\end{equation}
+Here $p\notin\Pset$, $p\nmid N$; no condition $p\nmid w$ is imposed.
+Its discrepancy is exactly the square error already removed.
+
+We need the principal residual mean. If $\log R\asymp L$, $\chi_0$
+is principal modulo $Q=Nr$, and $I\subset[R,2R]$, then for every
+fixed $B$ and $|t|\le L^B$,
+\begin{equation}\label{eq:principal-residual}
+\sum_{w\in I}b_u(w)\chi_0(w)w^{it}\ll_A RL^{-A}
+\end{equation}
+uniformly in $u\in[0,1]$ and $c$.
+Write $w=gm$ with $g$ $\Pset$-smooth.
+The function of $m$ is completely multiplicative: it is $0$ on
+$\Pset$ and primes at most $z$, $-u$ on $\Sset$, and $-1$ elsewhere.
+Lemma~\ref{lem:modifications} applies with $d=0.40$.
+The mask $(m,N)=1$ is supplied by $\chi_0$.
+For $g\le\sqrt R$ the residual length $R/g$ is a positive power of
+$N$, and errors sum using
+\begin{equation}\label{eq:smooth-harmonic}
+\sum_{\substack{g\ {\Pset\text{-smooth}}}}\frac{|c(g)|}g
+\le L^C\prod_{p\in\Pset}(1-1/p)^{-1}\le L^{C'}.
+\end{equation}
+For $g>\sqrt R$ use the trivial count and Rankin with
+$\delta=L^{-0.40}$. Since all group primes are at most $\exp(L^{0.40})$,
+the Euler product at $1-\delta$ is a fixed power of $L$.
+The tail is $O(RL^{C'}\exp(-c_1L^{0.60}))$. If $\Pset$ is empty
+the tail is zero. Differences of prefixes prove the assertion for
+all interval endpoints. No multiplicativity of $c$ is needed.
+
+Decompose $p$ and $w$ into dyadic intervals $p\asymp P$,
+$w\asymp R$, with $PR\asymp Y$. There are $O(L^{C'})$ pieces and
+\begin{equation}\label{eq:residual-length}
+P\le\exp(L^{0.28}),\qquad
+R/Q\gg H'/(Pr)\longrightarrow\infty
+\end{equation}
+faster than every fixed power of $L$. A factor $2$ in a prime dyad
+endpoint is harmless by using a slightly wider fixed exponent range
+in Lemma~\ref{lem:prime}.
+For a separated power twist put
+\begin{equation}\label{eq:character-polynomials}
+P_\chi(t)=\sum_{p\in I_P\cap\Sset}\chi(p)p^{it},
+\qquad R_\chi(t)=\sum_{w\in I_R}b_u(w)\chi(w)w^{it}.
+\end{equation}
+Orthogonality and the number of points in each residue class give,
+for every real $t$,
+\begin{equation}\label{eq:residual-energy}
+\begin{split}
+\frac1{\varphi(Q)}\sum_{\chi\bmod Q}|R_\chi(t)|^2
+&=\sum_{a\in(\Z/Q\Z)^*}
+  \left|\sum_{\substack{w\in I_R\\w\equiv a\ (Q)}}
+                 b_u(w)w^{it}\right|^2\\
+&\le(2R/Q+1)\sum_{w\in I_R}|b_u(w)|^2
+ \ll R^2L^{C'}/Q.
+\end{split}
+\end{equation}
+For $|t|$ bounded by any fixed power of $L$, Lemma~\ref{lem:prime}
+and \eqref{eq:residual-energy} imply
+\begin{equation}\label{eq:nonprincipal-energy}
+\frac1{\varphi(Q)}\sum_{\chi\ne\chi_0}|P_\chi(t)R_\chi(t)|^2
+\ll \frac{Y^2}{Q}P^{-1/8}L^{C'}.
+\end{equation}
+For $\chi_0$ use $|P_{\chi_0}|\le2P$,
+\eqref{eq:principal-residual} and
+$Q/\varphi(Q)\ll\log\log(3Q)$.
+The full character energy is consequently
+$O_A(Y^2L^{-A}/Q)$, without a triangle sum over $Q$ characters.
+
+On a fixed product dyad, the factor
+$\psi(pw/Y)(pw)^{iv}\e(\beta pw)$ is smooth in $\log(pw/Y)$.
+For $|\beta|Y\le L^{C_0}$ its Mellin transform has integral norm
+bounded by a fixed power of $L$.
+Truncate at $|t|\le L^B$ with $B$ larger than the derivative exponents.
+Repeated integration by parts gives any fixed logarithmic saving
+in the tail. For every real $t$, the trivial $|P_\chi|\le2P$
+and \eqref{eq:residual-energy} retain the baseline
+$Y^2L^{C'}/Q$, so the tail loses no factor $Q$.
+Minkowski in the normalized character Hilbert space, the $u$ integral
+and the dyadic sum gives, for the extracted sequence $a_0$,
+\begin{equation}\label{eq:full-character-energy}
+\frac1{\varphi(Q)}\sum_{\chi\bmod Q}
+ \left|\sum_na_0(n)\chi(n)\e(\beta n)\right|^2
+\ll_A Y^2L^{-A}/Q.
+\end{equation}
+The supports are units modulo $Q$: every prime factor of $r$
+is at most $L^{C_0}<z$, removed by roughness, and the $N$-unit mask
+removes the others. Finite additive Parseval and character
+orthogonality therefore give
+\begin{equation}\label{eq:additive-character-parseval}
+\begin{split}
+\sum_{b\bmod Q}|\widehat a_0(b/Q+\beta)|^2
+&=Q\sum_{a\bmod Q}
+  \left|\sum_{n\equiv a\ (Q)}a_0(n)\e(\beta n)\right|^2\\
+&=\frac Q{\varphi(Q)}
+  \sum_{\chi\bmod Q}
+  \left|\sum_na_0(n)\chi(n)\e(\beta n)\right|^2
+ \ll_A Y^2L^{-A}.
+\end{split}
+\end{equation}
+Integrate over length $2L^{C_0}/Y$, increasing the preceding precision,
+and restore \eqref{eq:square-error}. This proves
+\eqref{eq:grid-energy} for each fixed $N$.
+\end{proof}
+
+\begin{lemma}[Two-dimensional partial summation]\label{lem:abel}
+The smooth-factor estimate \eqref{eq:full-character-energy} also
+follows directly by Abel summation, with the same assumptions.
+\end{lemma}
+\begin{proof}
+On a prime/residual rectangle $PR\asymp Y$ define
+\begin{equation}\label{eq:abel-prefixes}
+A_\chi(x)=\sum_{\substack{p\in I_P\cap\Sset\\p\le x}}\chi(p),
+\qquad
+B_\chi(y)=\sum_{\substack{w\in I_R\\w\le y}}b_u(w)\chi(w).
+\end{equation}
+Lemma~\ref{lem:prime} at $t=0$, \eqref{eq:principal-residual}
+and \eqref{eq:residual-energy} hold uniformly in these prefixes.
+Consequently
+\begin{equation}\label{eq:prefix-energy}
+\|(A_\chi(x)B_\chi(y))_\chi\|_{\ell^2(d\chi/\varphi(Q))}
+\ll_A \frac{Y}{\sqrt Q}L^{-A}.
+\end{equation}
+The nonprincipal part has the stronger factor
+$P^{-1/16}$ times a fixed power of $L$; the principal coordinate
+uses any prescribed preceding precision.
+Set
+\begin{equation}\label{eq:abel-factor}
+F(p,w)=\psi(pw/Y)(pw)^{iv}\e(\beta pw).
+\end{equation}
+Its two-variable variation satisfies
+\begin{equation}\label{eq:abel-variation}
+\begin{split}
+|F(2P,2R)|&
++\int_P^{2P}|F_p(x,2R)|\,dx
++\int_R^{2R}|F_w(2P,y)|\,dy\\
+&+\int_P^{2P}\int_R^{2R}|F_{pw}(x,y)|\,dy\,dx
+\ll L^{C'}.
+\end{split}
+\end{equation}
+Indeed rescale $p=Ps,w=Rt$. On $[1,2]^2$, $PR/Y$ is in a fixed
+compact subset of $(0,\infty)$; derivatives through order two are
+bounded by a fixed polynomial in the derivative norms of $\psi$,
+$|v|$ and $|\beta|Y$. The factor $(PR)^{iv}$ has modulus $1$.
+
+With prefixes zero at the lower endpoints, two-dimensional partial
+summation is the exact identity
+\begin{equation}\label{eq:abel-identity}
+\begin{split}
+S_\chi={}&F(2P,2R)A_\chi(2P)B_\chi(2R)\\
+&-\int_P^{2P}F_p(x,2R)A_\chi(x)B_\chi(2R)\,dx\\
+&-\int_R^{2R}F_w(2P,y)A_\chi(2P)B_\chi(y)\,dy\\
+&+\int_P^{2P}\int_R^{2R}
+       F_{pw}(x,y)A_\chi(x)B_\chi(y)\,dy\,dx,
+\end{split}
+\end{equation}
+where $S_\chi$ is the weighted double character sum.
+Half-open dyads can be handled by displaced real endpoints.
+Minkowski, \eqref{eq:prefix-energy} and \eqref{eq:abel-variation}
+retain $Y/\sqrt Q$ while costing only a fixed power of $L$.
+Integrating $u$ and summing the polynomially many dyads proves
+\eqref{eq:full-character-energy} uniformly in $\beta$.
+\end{proof}
+
+\begin{remark}\label{rem:raw-scale}
+The condition $R=Y/P\gg Q$ is essential. At $H'=1$, the
+orthogonality bound contains $1+Q/R$; with $Q\asymp N$ and $Y=N$
+the nonprincipal saving becomes
+$P^{-1/8}(1+Q/R)\asymp P^{7/8}$.
+The grid lemma is used only for comparisons with two nonempty
+free products, never for the raw correlation.
+The narrow displacement $|\beta|Y\le L^{C_0}$ is precisely what
+makes \eqref{eq:abel-variation} polynomial in $L$.
+\end{remark}
+
+\section{Reflected weighted cancellation}\label{sec:cancellation}
+
+\begin{definition}[Marked weights]\label{def:weights}
+For nonnegative integers $\mathbf t=(t_g)_g$ let $(y)_t$
+denote the falling factorial and put
+\begin{equation}\label{eq:marked-weight}
+\wt(n)=q_0^{\omega_{\Pset}(n)-\sum_gt_g}
+            \prod_g\frac{(\omega_g(n))_{t_g}}{V_g^{t_g}}.
+\end{equation}
+More generally, replace the product of falling factorials by the sum
+of a mark function $b$ over the ordered distinct unshared divisor
+lists, retaining the same normalization and damping; write
+$W_{\mathbf t}^{b}(n)$.
+An empty admissible list set gives weight zero. If $\max t_g\le t_{\max}$
+is fixed, then
+\begin{equation}\label{eq:marked-bound}
+\sup_n|W_{\mathbf t}^{b}(n)|\le\|b\|_\infty L^{C(t_{\max})}.
+\end{equation}
+Indeed $\sup_{y\ge t}q_0^{y-t}(y)_t/V_g^t$ is a fixed constant
+for $t\le t_{\max}$, and there are $O(\log L)$ groups.
+For $\ell=1$ write
+\begin{equation}\label{eq:raw-weight}
+W_1(n)=q_0^{\omega_{\Pset}(n)-s}\prod_g\frac{\omega_g(n)}{V_g},
+\qquad
+H(n)=\Rz(n)\ind_{(n,N)=1}\ind_{\omega_{\Sset}(n)>0}W_1(n).
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Reflected cancellation]\label{prop:cancellation}
+Use the ranges \eqref{eq:separated-ranges}, with $O(\log L)$ disjoint
+groups, reciprocal masses in a fixed compact subset of $(0,\infty)$,
+and at least $c_0\log L$ groups in each of the small and big ranges.
+No group prime divides $N$. Assume every big group is a prime
+interval with the primes dividing $N$ removed. Fix $0<q_0<1$ and
+$\ell=1$. For every fixed smooth $\psi_0$ supported in $[1/3,2/3]$
+and every fixed $A>0$,
+\begin{equation}\label{eq:reflected-cancellation}
+\left|\sum_{1\le n<N}\psi_0(n/N)H(n)H(N-n)
+                       \lambda(n)\lambda(N-n)\right|
+\ll_A NL^{-A}.
+\end{equation}
+The threshold is uniform over $N$ and the indicated group construction; no average over $N$ is taken.
+For odd $N$ the rough support is empty.
+\end{proposition}
+\begin{proof}
+Set $x=N$, take $k=1$, and choose the residual family of
+Input~\ref{input:ik}, using Proposition~\ref{prop:punctures}.
+Use $B_N$ from Proposition~\ref{prop:reflection}.
+We verify the lift, the individual patterns, and then their comparison
+terms.
+
+At a positive physical position use, at the source and at the target,
+the mark-independent endpoint function
+\begin{equation}\label{eq:physical-endpoint}
+f(n)=\lambda(n)F_0(n)q_0^{(\omega_{\Pset}(n)-Ms)/2},
+\qquad
+F_0(n)=\Rz(n_*)\ind_{(n,N)=1}
+                         \ind_{\omega_{\Sset}(n_*)>0}.
+\end{equation}
+Both endpoints are zero outside their positive cutoffs.
+Every group prime exceeds $z$, is outside $\Sset$, and is coprime
+to $N$, so $F_0$ is invariant under multiplication by
+$\Pset$-integers. On a physical state $\omega_{\Pset}(n)\ge Ms$,
+and therefore $|f(n)|\le1$.
+
+For a positive dyad, summing first over ordered lists, then over
+multiples of their product $P_{\rm list}$, gives
+\begin{equation}\label{eq:physical-norm}
+\begin{split}
+\sum_{n\asymp Y}\sum_{\text{lists at }n}\prod_gV_g^{-M}
+&\le CY\prod_g
+  \left(\sum_{p\in\Pset_g}\frac1{pV_g}\right)^M+N^{o(1)}
+\ll Y,\\
+\log P_{\rm list}&=O_J(L^{0.40}\log L)=o(L).
+\end{split}
+\end{equation}
+The rounding term is $N^{o(1)}$, since $J$ is fixed.
+Thus both endpoint norms are $O(\sqrt Y)$, with the logarithmic
+exponent independent of $J$ and the probe count.
+Bounded smooth cutoffs and modulus-one power twists preserve this.
+
+Insert the edge factor $\Psi(n/(ND))/n$, where
+\begin{equation}\label{eq:lift-cutoff}
+\Psi(t)=t\psi_0(t).
+\end{equation}
+Its support makes $n'=ND-n$ positive and comparable to $n$.
+Since $D=\exp(O_J(L^{0.40}\log L))$, only a fixed power of $L$
+many size dyads are needed, and all their lengths lie between
+$N^\gamma$ and $N^{1/\gamma}$ for a fixed $\gamma>0$.
+
+Choose a smooth dyadic partition of unity and smooth target cutoffs
+equal to $1$ on the corresponding comparable positive target ranges.
+If the source scale is $Y$, the source and target cutoff derivatives
+of order $j$ are $O_j(Y^{-j}L^{C(j+1)})$.
+They may be obtained by rescaling fixed smooth functions; the
+logarithmic derivative exponents are fixed before the graph parameters.
+Overlapping size intervals may each be split into finitely many
+support dyads for transference. The smooth partition and target
+cutoffs sum back to the original expression on the support of $\Psi$
+before any individual pattern is evaluated. All subsequent cutoffs
+used for Lemmas~\ref{lem:grid} and~\ref{lem:abel} have these same
+derivative bounds.
+
+For $\Phi(u)=\Psi(\exp u)$ and
+$\widehat\Phi(t)=\int_\R\Phi(u)\exp(-itu)\,du$, logarithmic Fourier inversion is
+\begin{equation}\label{eq:lift-mellin}
+\Psi(n/(ND))=\frac1{2\pi}\int_\R
+ \widehat\Phi(t)(n/N)^{it}D^{-it}\,dt.
+\end{equation}
+On a source dyad place $Y/n$ and the conjugated source twist in
+the first endpoint, and divide the pairing by $Y$.
+The allowed ideal frequency is $\zeta=-t$.
+The transform has bounded or fixed-log-power integral norm.
+If its logarithmic derivative exponent is $C_\psi$, fix
+$F>C_\psi+2$ in advance and take $C_4=F$ in Input~\ref{input:ik}, so
+that every frequency $\zeta=-t$ with $|t|\le L^F$ is admissible there.
+Integration by parts gives
+\begin{equation}\label{eq:lift-tail}
+\int_{|t|>L^F}|\widehat\Phi(t)|\,dt
+\ll_j L^{C_\psi(j+1)-F(j-1)}.
+\end{equation}
+Arbitrarily strong saving follows by increasing $j$ without changing
+$F$ or $C_4$. By Propositions~\ref{prop:dilation}
+and~\ref{prop:reflection}, the absolute row and column sums of $B_N$ are
+at most $L^{C_{\rm abs}}$ for every $\zeta$, so each pairing is
+$O(YL^{C_{\rm abs}})$ by the endpoint norms; together with
+\eqref{eq:lift-tail} this disposes of the tails.
+Choose the residual precision, then $E_{\rm id}$, then the probes and
+kernel precisions, then sufficiently large fixed $J$, and finally $N$.
+Propositions~\ref{prop:dilation}--\ref{prop:punctures} and
+Input~\ref{input:ik} make the entire normalized signed residual
+pairing $O(L^{-B})$ for any prescribed $B$.
+
+We now compute its individual patterns. This uses the normalization
+of [S, Section~5.2, pp.~36--38] and the shared-sign identity of
+[E, (4.18)--(4.19), p.~16], with reflection included explicitly.
+In group $g$ put $c_g=|C_g|$, $s_{R,g}=J-c_g$,
+$t_g=1+c_g$, so $M=s_{R,g}+t_g$.
+Write $D=D_RD_C$ for shared and auxiliary free products.
+Shared labels divide both endpoints; hence
+\begin{equation}\label{eq:shared-reflection}
+n=D_Rw,\qquad
+n'=ND-n=D_Rw',\qquad
+w+w'=ND_C.
+\end{equation}
+The cutoff and harmonic normalization become exactly
+\begin{equation}\label{eq:shared-cutoff}
+\frac{\Psi(n/(ND))}{n}
+=\frac{\psi_0(w/(ND_C))}{ND_RD_C}.
+\end{equation}
+The state and target-list normalizations satisfy
+\begin{equation}\label{eq:shared-normalization}
+V_g^{-M-t_g}=V_g^{-s_{R,g}-2t_g}
+=V_g^{-s_{R,g}}V_g^{-t_g}V_g^{-t_g}.
+\end{equation}
+The factor $1/D_R$ converts every shared-label sum with normalization
+$V_g^{-1}$ into a probability draw $1/(pV_g)=\mu_g(p)$, leaving
+$V_g^{-t_g}$ at each endpoint.
+
+Away from shared overlaps,
+\begin{equation}\label{eq:shared-degrees}
+\omega_g(D_Rw)-M=\omega_g(w)-t_g,\qquad
+\omega_g(D_Rw')-M=\omega_g(w')-t_g.
+\end{equation}
+At each endpoint the graph half-damping in
+\eqref{eq:physical-multiplier} and the endpoint half-damping in
+\eqref{eq:physical-endpoint} give
+$q_0^{\omega_{\Pset}(n)-Ms}$.
+By \eqref{eq:shared-degrees} these are exactly the full powers
+$q_0^{\omega_{\Pset}(w)-\sum_gt_g}$ and
+$q_0^{\omega_{\Pset}(w')-\sum_gt_g}$ in the two marked weights.
+The sign identity, valid even on overlaps, is
+\begin{equation}\label{eq:shared-sign}
+\lambda(D_Rw)\lambda(D_Rw')
+=\lambda(D_R)^2\lambda(w)\lambda(w')
+=\lambda(w)\lambda(w').
+\end{equation}
+Also $F_0(D_Rw)=F_0(w)$ and $F_0(D_Rw')=F_0(w')$.
+Comparison coefficients use free and designated unshared big labels,
+never shared labels, so they are unchanged by summing the shared draws.
+The endpoint vectors are mark-independent, so symmetrization is an
+average that does not alter this calculation.
+
+We justify replacement by unrestricted shared draws in absolute
+value. Given $w,w',D_C$ and preceding shared draws, at most
+$O_J(L)$ primes are forbidden: the prime divisors of the two endpoints,
+free labels and preceding shared labels.
+Every draw has atom $O(\exp(-L^{0.12}))$; there are $O_J(\log L)$
+draws. For distinct shared values, the exact overlap identity is
+\begin{equation}\label{eq:overlap-degree}
+\omega_{\Pset}(D_Rw)-Ms
+=\omega_{\Pset}(w)-\sum_gt_g
+-\#\{p:p\mid D_R,\ p\mid w\}.
+\end{equation}
+Ignoring the overlap damping loses at most
+$q_0^{-2Ms}=L^{O_J(1)}$ across the two endpoints.
+Unshared divisor lists still divide $w,w'$.
+Their bounded marked weights in \eqref{eq:marked-bound}, $|F_0|\le1$,
+and harmonic normalization bound the remaining absolute sum by a
+fixed power of $L$.
+The total shared-exclusion error is
+\begin{equation}\label{eq:shared-error}
+L^{O_J(1)}\exp(-L^{0.12}).
+\end{equation}
+If a banned free prime $p$ divides an endpoint, then $p\mid D_C$
+and \eqref{eq:shared-reflection} imply it divides both $w,w'$.
+At scale $Y\asymp ND_C$, summing these multiples costs
+$O(YL^C/p)$, or $O(L^C/p)$ after normalization.
+Indeed $w=pv$, $w'=p(ND_C/p-v)$; both ranges are positive and
+have length $O(Y/p)$, with $Y/p=N^{1+o(1)}$.
+There are only $O(\log L)$ free slots with fixed probe count and
+$p\ge\exp(L^{0.35})$, so this error is also smaller than every
+fixed negative power of $L$. No cancellation is used for deleted terms.
+
+After these replacements the pattern is
+\begin{equation}\label{eq:factored-pattern}
+\frac1N\E_{\rm free}\frac1{D_C}
+\sum_{\substack{w>0\\w'=ND_C-w>0}}
+ \psi_0(w/(ND_C))F_0(w)F_0(w')
+ \lambda(w)\lambda(w')\wt(w)\wt(w')
+ \E_{\rm marks}K_\nu .
+\end{equation}
+The inner expectation averages independent uniform ordered unshared
+divisor lists, giving zero if either list set is empty.
+The raw pattern has $D_C=1$, $t_g=1$, $K_0=1$, and gives exactly
+\begin{equation}\label{eq:primitive-pattern}
+\frac1N\sum_{1\le w<N}\psi_0(w/N)
+H(w)H(N-w)\lambda(w)\lambda(N-w).
+\end{equation}
+
+For each comparison expand the two cell/character kernels in
+\eqref{eq:cell-kernel} and separate the smooth factors logarithmically.
+Up to a total fixed power of $L$ in coefficients and integral norms,
+a term indexed by a pair of cells $(j,j')$ is
+\begin{equation}\label{eq:comparison-term}
+\frac1Y\E_{D_{\mathcal A},D_{\mathcal B}}
+ b_{\mathcal A}(D_{\mathcal A})b_{\mathcal B}(D_{\mathcal B})
+ \sum_w U(w)V(ND_{\mathcal A}D_{\mathcal B}-w),
+\quad |b_{\mathcal A}|,|b_{\mathcal B}|\le1.
+\end{equation}
+For this term let $U_{\mathcal A},U_{\mathcal B}$ be the lower
+multiplicative size endpoints of the two cells, and put
+$H'=U_{\mathcal A}U_{\mathcal B}$, $Y=NH'$.
+Explicitly, the term belongs to primitive characters $\chi,\chi'$ of
+conductor at most $Q_0$ and to a real frequency $\tau$, $|\tau|\le L^F$,
+of the expansion \eqref{eq:lift-mellin} applied to $\psi_0$ in place of
+$\Psi$, and
+\begin{equation}\label{eq:comparison-data}
+\begin{gathered}
+b_{\mathcal A}(D)=\ind_{\log D\in I_j}\overline{\chi(D)}\,
+ \frac{U_{\mathcal A}}{D}\,D^{-i\tau},\qquad
+b_{\mathcal B}(D)=\ind_{\log D\in I_{j'}}\overline{\chi'(D)}\,
+ \frac{U_{\mathcal B}}{D}\,D^{-i\tau},\\
+U(w)=\Xi(w/Y)(w/N)^{i\tau}\lambda(w)F_0(w)W_{\mathbf t}^{b_{\rm s}}(w),\qquad
+V(w')=\Xi(w'/Y)\lambda(w')F_0(w')W_{\mathbf t}^{b_{\rm t}}(w').
+\end{gathered}
+\end{equation}
+Here $\Xi$ is a fixed smooth function with compact support in
+$(0,\infty)$ and $\Xi=1$ on $[1/3,2\mathrm e^2/3]$, the source mark
+function is
+$b_{\rm s}=\ind_{\log X_{\mathcal B}\in I_{j'}}\chi'(X_{\mathcal B})$, and
+the target mark function is
+$b_{\rm t}=\ind_{\log X_{\mathcal A}\in I_j}\chi(X_{\mathcal A})$.
+On the two cells $D_{\mathcal A}D_{\mathcal B}\in[H',\mathrm e^2H')$, so
+both cutoffs equal $1$ on the support of
+$\psi_0(w/(ND_{\mathcal A}D_{\mathcal B}))$, and
+$1/(ND_{\mathcal A}D_{\mathcal B})
+ =Y^{-1}(U_{\mathcal A}/D_{\mathcal A})(U_{\mathcal B}/D_{\mathcal B})$.
+The term carries the coefficient
+$-(-1)^{|\mathcal A|+|\mathcal B|}\widehat{\Phi_0}(\tau)/(2\pi\nu_j\nu_{j'})$,
+where $\Phi_0(u)=\psi_0(\exp u)$ and $\nu_j,\nu_{j'}\ge\xi$ are the two
+cell probabilities; the frequencies $|\tau|>L^F$ are discarded as in
+\eqref{eq:lift-tail}, using $\|U\|_2\|V\|_2\ll YL^C$.
+The free products are independent, nonempty, and each contains a big
+prime. Thus
+\begin{equation}\label{eq:comparison-scales}
+\exp(2L^{0.35})/4\le H'\le
+             \exp(C_2L^{0.40}\log L),\qquad
+\rho_{\mathcal A}(d),\rho_{\mathcal B}(d)\ll L^C/d.
+\end{equation}
+The harmless factor $1/4$ covers endpoint conventions.
+The mass bounds are \eqref{eq:product-collapse}, with at most the
+fixed probe count per group.
+Both endpoint sequences have squared norm $O(YL^C)$.
+They have exactly the form \eqref{eq:grid-sequence}: the group
+coefficient is $\lambda(g)$ times its bounded marked weight and
+big-mark kernel factors. These depend only on $g=n_{\Pset}$.
+The first endpoint retains a reserved $\Sset$-prime.
+
+Handle the major arcs separately for this particular $(j,j')$ and
+these $U,V,Y$. Fourier inversion supplies
+\begin{equation}\label{eq:comparison-multiplier}
+\mathcal M_{j,j'}(\theta)=
+\E b_{\mathcal A}(D_{\mathcal A})b_{\mathcal B}(D_{\mathcal B})
+       \e(-N\theta D_{\mathcal A}D_{\mathcal B}).
+\end{equation}
+Apply Dirichlet approximation to $N\theta$ with maximum denominator
+$\lfloor H'/L^B\rfloor$.
+For its reduced fraction $u/r$ the error is
+$O(L^B/(rH'))$ and at most $r^{-2}$.
+If $r>L^B$, the bilinear estimate [S, Lemma~4.2, (4.5)--(4.6),
+pp.~28--29] and \eqref{eq:comparison-scales} give arbitrary fixed
+logarithmic saving. More explicitly, its squared normalized bound
+is a fixed power of $L$ times
+\[
+\frac1{U_{\mathcal B}}+\frac1r
++\frac{\log(2r)}{U_{\mathcal A}}
++\frac{r\log(2r)}{H'}.
+\]
+Both product sizes exceed $\exp(L^{0.35})/2$; the log factor is a
+fixed power of $L$, and $r\le H'/L^B$. Increasing $B$ therefore gives
+$|\mathcal M_{j,j'}|\ll L^{-D}$ for any prescribed $D$.
+For $r\le L^B$ one has
+\begin{equation}\label{eq:comparison-arcs}
+\theta=\frac b{Nr}
+ +O\left(\frac{L^B}{NrH'}\right),
+\end{equation}
+so the major set $\mathfrak M_{j,j'}$ is contained in the grids of
+Lemma~\ref{lem:grid} with width at most $L^B/Y$.
+Its many rational centers are retained in that lemma.
+
+On the complement of $\mathfrak M_{j,j'}$, Parseval bounds
+\eqref{eq:comparison-term} by $L^{-D+C}$.
+On $\mathfrak M_{j,j'}$ use $|\mathcal M_{j,j'}|\le1$,
+Lemma~\ref{lem:grid} for $U$, and global Parseval for $V$:
+\begin{equation}\label{eq:major-cauchy}
+\frac1Y\int_{\mathfrak M_{j,j'}}
+          |\widehat U(\theta)\widehat V(\theta)|\,d\theta
+\ll_A L^{-A/2+C}.
+\end{equation}
+Reflection only changes the Fourier conjugation convention, not this
+absolute bound. Choose the grid precision after all fixed comparison
+costs, and sum these estimates term by term over the cell pairs,
+characters and separated smooth integrals.
+Subtract the comparisons from the small residual pairing and restore
+the two exclusion errors and Fourier tails.
+The raw expression \eqref{eq:primitive-pattern} proves
+\eqref{eq:reflected-cancellation}.
+
+Finally, $H$ depends only on the fixed groups, $q_0$ and $\ell=1$,
+not on $J$. Increasing accuracy changes the auxiliary graph and
+threshold but leaves this weight fixed.
+The comparison coefficient exponents, set by the probes, are paid
+afterward by the arbitrary-precision grid lemma.
+No choice of $J$ feeds back into the ideal norm target.
+\end{proof}
+
+\section{A bounded weight with positive rough-pair mass}\label{sec:weight}
+
+\begin{proposition}[Weight construction and moments]\label{prop:mass}
+In each range
+$[\exp(L^{0.12}),\exp(L^{0.18})]$ and
+$[\exp(L^{0.35}),\exp(L^{0.40})]$, list the primes not dividing $N$
+in increasing order and close a group when its reciprocal mass reaches
+$10$. Discard the last incomplete group in each range. Then
+\begin{equation}\label{eq:constructed-groups}
+\begin{gathered}
+10\le V_g\le10+\exp(-L^{0.12}),\\
+|\mathcal G_{\rm small}|=0.006\log L+O(1),\qquad
+|\mathcal G_{\rm big}|=0.005\log L+O(1).
+\end{gathered}
+\end{equation}
+Use $q_0=9/10$, $\ell=1$ and \eqref{eq:raw-weight}.
+Fix a smooth $0\le\psi_0\le1$ supported inside $[1/3,2/3]$ with
+$I_\psi=\int\psi_0(t)\,dt>0$.
+For sufficiently large even $N$,
+\begin{equation}\label{eq:positive-mass}
+\sum_{1\le n<N}\psi_0(n/N)H(n)H(N-n)
+\ge cNL^{-59/250},\qquad 59/250=0.236.
+\end{equation}
+For every fixed $A>0$ the two one-sign moments satisfy
+\begin{equation}\label{eq:one-sign-moments}
+\begin{split}
+\sum_{1\le n<N}\psi_0(n/N)H(n)H(N-n)\lambda(n)&=O_A(NL^{-A}),\\
+\sum_{1\le n<N}\psi_0(n/N)H(n)H(N-n)\lambda(N-n)&=O_A(NL^{-A}).
+\end{split}
+\end{equation}
+Moreover $0\le H(n)\le1$ for every $n$.
+\end{proposition}
+\begin{proof}
+Mertens' harmonic prime estimate and \eqref{eq:deleted-mass} give
+\eqref{eq:constructed-groups} uniformly in $N$.
+The overshoot at closing a group is at most the largest reciprocal
+prime in its range, and the total overshoot is $o(1)$.
+For large $N$, $s\le0.012\log L$ and each family contains at least
+$0.004\log L$ groups.
+Thus all graph inputs hold with the fixed choices
+\begin{equation}\label{eq:numerical-graph-data}
+\begin{gathered}
+a=0.12,\quad b=0.18,\quad c=0.35,\quad d=0.40,\\
+c_0=0.004,\quad C_0=0.02,\quad v_-=10,\quad v_+=11,\quad
+q_0=0.9,\quad\ell=1.
+\end{gathered}
+\end{equation}
+Every big group is an interval with the primes dividing $N$ removed.
+All these data are fixed before $N$; only allowed prime sets,
+group counts and the source moment length grow.
+
+For $k\ge1$,
+\begin{equation}\label{eq:pointwise-local}
+kq_0^{k-1}\le1+q_0+\cdots+q_0^{k-1}
+\le(1-q_0)^{-1}=10\le V_g.
+\end{equation}
+Each local factor in $W_1$ is at most $1$, and a missing group
+gives $0$. The remaining factors of $H$ are indicators.
+
+Temporarily omit the $N$-unit masks and use independent uniform
+residues at each prime. The rough factor is
+\begin{equation}\label{eq:rough-euler}
+V_N(z)=\prod_{p\le z}(1-\nu_N(p)/p),\qquad
+\nu_N(p)=
+\begin{cases}1,&p\mid N,\\2,&p\nmid N.\end{cases}
+\end{equation}
+For even $N$ the factor at $2$ is $1/2$. For $p\ge3$, use
+$1-2/p$ as a lower bound. Its ratio to $(1-1/p)^2$ has a positive
+convergent product, so
+$V_N(z)\ge c/(\log z)^2=cL^{-1/5}$ uniformly in $N$.
+
+At a group prime $p\nmid N$, the two endpoint divisibility indicators
+cannot both be $1$. The degree generating function is
+\begin{equation}\label{eq:group-generating}
+J_g(u,v)=\prod_{p\in\Pset_g}
+            \left(1+\frac{u-1}{p}+\frac{v-1}{p}\right).
+\end{equation}
+The local expectation of the two $W_1$ factors is exactly
+\begin{equation}\label{eq:group-local-mass}
+\begin{split}
+h_g&=V_g^{-2}\partial_u\partial_vJ_g(q_0,q_0)\\
+&=\frac{J_g(q_0,q_0)}{V_g^2}
+ \left\{\left(\sum_{p\in\Pset_g}\frac1{p+2q_0-2}\right)^2
+       -\sum_{p\in\Pset_g}\frac1{(p+2q_0-2)^2}\right\}.
+\end{split}
+\end{equation}
+Since $V_g=10+o(1)$ uniformly and the smallest group prime tends
+to infinity,
+\begin{equation}\label{eq:group-mass-asymptotic}
+h_g=\exp(2(q_0-1)V_g)(1+o(1))
+=\mathrm e^{-2}(1+o(1))\ge\mathrm e^{-3}
+\end{equation}
+for all groups at sufficiently large $N$.
+The error is $O(\sum_{p\in\Pset_g}p^{-2})$, with constants uniform
+for $V_g\in[10,11]$.
+
+The reserved-prime condition at both endpoints has factor
+\begin{equation}\label{eq:reserved-mass}
+B_{\Sset}=1-2\prod_{p\in\Sset}(1-1/p)+\prod_{p\in\Sset}(1-2/p)
+\ge1-2\prod_{p\in\Sset}(1-1/p)\ge\frac12.
+\end{equation}
+Here $\sum_{p\in\Sset}1/p=0.06\log L+O(1)$.
+The rough primes, graph groups and reserved primes are disjoint.
+Their independent mean is consequently
+\begin{equation}\label{eq:independent-mass}
+\mathfrak M_N=V_N(z)B_{\Sset}\prod_gh_g
+\ge cL^{-1/5}\mathrm e^{-3s}
+\ge cL^{-1/5-0.036}=cL^{-59/250}.
+\end{equation}
+
+We now justify a finite residue comparison strong enough to multiply
+by signs. Each endpoint group factor expands exactly as
+\begin{equation}\label{eq:local-residue-expansion}
+\frac1{V_g}\sum_{p\in\Pset_g}\ind_{p\mid n}
+ \prod_{\substack{p'\in\Pset_g\\p'\ne p}}
+       (1-(1-q_0)\ind_{p'\mid n}),
+\end{equation}
+and likewise for $N-n$. The selected mark primes at the two
+endpoints must be distinct because $p\nmid N$.
+There are $2s$ selected primes in every nonzero term, with product
+at most $\exp(O(L^{0.40}\log L))$.
+The sum of their normalized independent congruence densities is at
+most $\prod_g(V_g/V_g)^2=1$.
+
+Write each reserved-prime indicator as $1$ minus its absence product
+and expand into four terms. Conditional on any selected mark tuple,
+each resulting unsigned avoidance product has factors $1-X_p$,
+where $0\le X_p\le1$, and independent expected sum
+$\sum_p\E X_p=O(\log L)$ uniformly in that tuple.
+At group primes the two endpoint predicates are disjoint.
+At a rough prime dividing $N$ the coincident predicates are counted
+only once. Evaluate selected-prime factors before expanding.
+Bonferroni truncations at consecutive orders $h,h+1$, with $h$ an
+even integer exceeding $C_A\log L$, sandwich these products.
+The independent expected gap is at most
+\begin{equation}\label{eq:bonferroni-gap}
+\frac{(C\log L)^{h+1}}{(h+1)!}\le L^{-A}
+\end{equation}
+after $C_A$ is fixed sufficiently large.
+
+Every retained term is a residue class, or a union expanded into at
+most $2^{h+1}$ residue classes, modulo a squarefree product of at most
+$2s+h+1$ primes at most $\exp(L^{0.40})$.
+The total absolute coefficient mass, including selected marks and
+residue choices, is
+\begin{equation}\label{eq:residue-cost}
+\exp(O_A(L^{0.40}\log L))=N^{o(1)}.
+\end{equation}
+For each residue class modulo $d$, smooth counting gives
+$NI_\psi/d+O(1)$, uniformly in the residue and $d$.
+One way to see the $O(1)$ is to integrate the bounded discrepancy
+of a progression against the fixed function $\psi_0$.
+The finite polynomial average therefore equals its independent
+average with error $N^{-1+o(1)}$.
+Combining the sandwich bounds and \eqref{eq:bonferroni-gap}
+gives average error $O_A(L^{-A})+N^{-1+o(1)}$.
+More strongly, choose one sandwich polynomial for each of the four
+unsigned pieces. The nonnegative gap controls its absolute error.
+Hence the exact nonnegative weighted product, without the $N$-unit
+masks, has a finite residue polynomial approximation whose $L^1$
+error against $\psi_0(n/N)$ is $O_A(NL^{-A})$.
+The four pieces cost only a factor four.
+
+Restoring the $N$-unit masks changes the bounded weighted sum only
+if a prime $p\mid N$, $p>z$, divides an endpoint.
+Its total contribution is at most
+\begin{equation}\label{eq:unit-mask-error}
+2\sum_{\substack{p\mid N\\p>z}}(N/p+1)
+\ll \frac{NL}{z\log z}+\frac L{\log z},
+\end{equation}
+smaller than every $NL^{-A}$.
+Thus the unsigned moment is
+$NI_\psi\mathfrak M_N+O_A(NL^{-A})$,
+which proves \eqref{eq:positive-mass}.
+
+For a one-sign moment, remove the unit masks from the exact bounded
+weight using \eqref{eq:unit-mask-error}, before passing to the residue
+polynomial. Multiply its $L^1$ approximation by $\lambda(n)$.
+All retained moduli are $N^{o(1)}$.
+For a class $n\equiv a\pmod d$, put $g=(a,d)$.
+Writing $n=gu$ leaves a reduced class modulo $d/g$ and
+$\lambda(gu)=\lambda(g)\lambda(u)$.
+Character orthogonality in the reduced class and
+Lemma~\ref{lem:power}, with a fixed margin and partial summation for
+$\psi_0$, give $O(N^{15/16+o(1)})$ per retained class.
+The total coefficient mass \eqref{eq:residue-cost} makes the
+aggregate $O(N^{0.99})$ for sufficiently large $N$.
+Add the approximation error at arbitrary fixed precision.
+The second one-sign moment follows by reflection and the cutoff
+$\psi_0(1-t)$. This proves \eqref{eq:one-sign-moments}.
+\end{proof}
+
+\section{Proof of the two theorems}\label{sec:theorems}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Take $H,\psi_0$ from Proposition~\ref{prop:mass} and set
+\begin{equation}\label{eq:signed-weight-count}
+T_{\sigma,\tau}=\sum_{1\le n<N}\psi_0(n/N)H(n)H(N-n)
+ \frac{1+\sigma\lambda(n)}2\frac{1+\tau\lambda(N-n)}2.
+\end{equation}
+Each summand is nonnegative, at most $1$, and supported on the set
+in \eqref{eq:main}. Expanding the sign indicators gives one quarter
+of the unsigned moment and the two one-sign moments in
+Proposition~\ref{prop:mass}, and one quarter of the double-sign
+moment in Proposition~\ref{prop:cancellation}.
+For example, use precision $A=2$. Uniformly in all four signs,
+\begin{equation}\label{eq:signed-lower}
+T_{\sigma,\tau}\ge c_1NL^{-59/250}-C_1NL^{-2}
+\ge c_2NL^{-59/250}.
+\end{equation}
+Since $59/250<1/4$, the unweighted count is at least the bound in
+\eqref{eq:main}. All constants and the threshold are uniform in
+even $N$ and the sign pair.
+\end{proof}
+
+\begin{remark}\label{rem:parity}
+The parity information uses the graph residual estimate, complete
+multiplicativity in \eqref{eq:shared-sign}, and the prime and
+all-character estimates behind the grid lemma.
+Unsigned residue data alone do not bound the double-sign moment.
+Replacing every sign by $+1$ would fail
+\eqref{eq:principal-residual}.
+For a completely multiplicative sign with
+$f(p)=(p/q)$ for $p\ne q$, $f(q)=-1$, and $q\equiv3\pmod4$ prime,
+where $(\cdot/q)$ is the Legendre symbol,
+a unit pair at an even total divisible by $q$ satisfies
+\begin{equation}\label{eq:character-model}
+f(n)f(N-n)=(n/q)(-n/q)=-1.
+\end{equation} The shared-factor identity still holds, but the
+reserved prime values are not constantly $-1$ and twisting by the
+character modulo $q$ violates \eqref{eq:modified-mean}.
+Thus the general sign function fails at the prime extraction and
+principal residual step. The all-modulus zero-free input also
+excludes any real zero above $7/8$ that would obstruct the character
+contours. No character at the grid modulus is suppressed.
+\end{remark}
+
+Roughness alone gives, for either represented $a\in\{n,N-n\}$,
+\begin{equation}\label{eq:rough-omega}
+\Omega(a)\log z<\log a<\log N,\qquad
+\Omega(a)<(\log N)^{9/10}.
+\end{equation}
+Thus $\lceil(\log N)^{9/10}\rceil$ already bounds both factor
+counts with each prescribed parity. The next argument gives the
+smaller growing bound \eqref{eq:factor-cutoff}.
+
+\begin{proof}[Proof of Theorem~\ref{thm:postselection}]
+The number of $z$-rough nonsquarefree integers $a\le N$ is at most
+\begin{equation}\label{eq:nonsquarefree-count}
+\sum_{p>z}\left\lfloor\frac N{p^2}\right\rfloor
+\le N\sum_{m>z}m^{-2}\le\frac N{z-1}.
+\end{equation}
+For squarefree $a$, the divisor function satisfies
+$d(a)=2^{\Omega(a)}$. The elementary divisor identity gives
+\begin{equation}\label{eq:divisor-sum}
+\sum_{a\le N}d(a)=\sum_{m\le N}\lfloor N/m\rfloor
+\le N(1+\log N).
+\end{equation}
+The number of squarefree $a\le N$ with $\Omega(a)>K(N)$ is at most
+\begin{equation}\label{eq:omega-tail}
+2^{-K(N)}N(1+\log N)\ll NL^{1-2\log2}.
+\end{equation}
+Apply both bounds to each endpoint via $a\mapsto N-a$.
+The total number of discarded representations, irrespective of sign,
+is
+\begin{equation}\label{eq:postselection-error}
+\ll N/(z-1)+NL^{1-2\log2}=o(NL^{-1/4}),
+\end{equation}
+since $\log2>2/3$ and $1-2\log2<-1/3$.
+Subtract this unsigned error separately from each of the four lower
+bounds in Theorem~\ref{thm:main}. At least half its stated mass remains
+for large $N$, giving the asserted possibly smaller constant.
+\end{proof}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+\section*{Use of AI}
+The proofs and the text of this paper were produced with AI systems (GPT-6 Astra, GPT-6.1 Sol and Claude
+Opus~5.5) under the author's direction. They were checked by independent reviews with AI models; the
+zero-free input is a Lean theorem of the OpenAI library. The author takes responsibility for the
+content.
+\end{document}
