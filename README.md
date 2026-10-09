@@ -71,7 +71,7 @@ gives the endpoint σ\* = (1507 − 2√921)/1653 = 0.8749570698…; extending t
 from κ ∈ [3/4, 1] to κ ∈ [37/50, 1] gives σ†. The intermediate rational value 20999/24000 = 7/8 − 1/24000, with the
 skew parameter kept at 1/8, was obtained independently by Z. Gao
 ([A quantitative refinement of the seven-eighths zero-free half-plane](https://github.com/Gaozhongpai/seven-eighths-refinement-certificates), 7–8 October 2026). The endpoint σ\* was obtained
-independently by B. Liu ([note with Lean files](https://github.com/liubaiying101/Slightly-improved-zero-free-half-planes-for-the-quasi-Riemann-hypothesis), 8 October 2026).
+independently by B. Liu ([arXiv:2610.12234](https://arxiv.org/abs/2610.12234), 8 October 2026, with Lean files).
 
 ### [`consequences/`](consequences/) — Consequences of results in the release
 
