@@ -22,6 +22,12 @@ times. Equivalently,
 This proves, for the Liouville function, the conjecture of Corrádi and Kátai that the sum is o(N), in the form
 stated in Mangerel (IMRN 2024, §1.1) and Krishnamoorthy (arXiv:2608.13266, Conjecture 1).
 
+Earlier results on the four patterns, cited in the paper: the pattern (−1, −1) for every even N > 2
+(CaptainSude, with a Lean formalization) and, under GRH, for all large even N (Mangerel, arXiv:2412.17199); all four
+patterns for every N ≥ 11 (Meng); and, for every fixed ε > 0, at least c_ε N^(1−ε) representations of each pattern
+for every sufficiently large N (Pouly, [doi:10.5281/zenodo.22959603](https://doi.org/10.5281/zenodo.22959603),
+25 September 2026).
+
 Part II inserts the zero-free half-plane Re s > 7/8 for Dirichlet L-functions into results of Pintz,
 Chen–Gupta–Li, Montgomery–Vaughan and Martin:
 

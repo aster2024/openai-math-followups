@@ -1,4 +1,4 @@
-\begin{thebibliography}{34}
+\begin{thebibliography}{35}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -238,6 +238,13 @@ J{\'a}nos Pintz.
 \newblock URL \url{https://arxiv.org/abs/1804.05561v1}.
 \newblock All numbered references in this note follow arXiv:1804.05561v1, 16
   April 2018.
+
+\bibitem[Pouly(2026)]{Pouly2026}
+Brice Pouly.
+\newblock Reflected sign patterns of the {Liouville} function at every large
+  total, 2026.
+\newblock URL \url{https://doi.org/10.5281/zenodo.22959603}.
+\newblock Zenodo, 25 September 2026.
 
 \bibitem[Sandlund(2026)]{Sandlund2026}
 Bryce Sandlund.
