@@ -1,23 +1,22 @@
 # Lean 4 formalization
 
 This directory contains a Lean 4 formalization of Theorem 1.1 of the paper, including the exponent 10⁻²⁰⁰, from the
-OpenAI library and two published analytic statements.
+OpenAI library and one published analytic statement.
 
 ## Statement
 
-`ReflectedLiouville/ExplicitMain.lean` proves
+`MRTRepulsion/Main.lean` proves
 
 ```lean
-theorem paper_theorem_1_1_explicit
-    (h_KMT : KMTInput) (h_MRT : MRTRealTwistRepulsionInput) : PaperMainStatement
+theorem paper_theorem_1_1_one_hypothesis
+    (h_KMT : ReflectedLiouville.KMTInput) : ReflectedLiouville.PaperMainStatement
 ```
 
-and `VerificationExplicit.lean` restates it with every definition unfolded:
+and `VerificationOneHypothesis.lean` restates it with every definition unfolded:
 
 ```lean
-theorem paper_theorem_1_1_explicit_literal
-    (h_KMT : ReflectedLiouville.KMTInput)
-    (h_MRT : ReflectedLiouville.MRTRealTwistRepulsionInput) :
+theorem paper_theorem_1_1_one_hypothesis_literal
+    (h_KMT : ReflectedLiouville.KMTInput) :
     ∃ C : ℝ, 0 < C ∧ ∃ N₀ : ℕ, 3 ≤ N₀ ∧ ∀ N : ℕ, N₀ ≤ N →
       (|∑ n ∈ Finset.Ico 1 N, (ArithmeticFunction.liouville n : ℝ) *
           (ArithmeticFunction.liouville (N-n) : ℝ)| ≤
@@ -38,29 +37,33 @@ exponent c (`reflected_liouville_log_saving`, `reflected_liouville_sign_patterns
 estimates of the library again with fixed exponents, obtain the bound 10⁶ for the common comparison exponent, as in
 Lemma 3.5 of the paper, and assemble the explicit theorem.
 
-## Hypotheses
+## Hypothesis
 
-The two arguments of the theorem are propositions defined in `ReflectedLiouville/PublishedInputs.lean`. They are
-hypotheses of the theorem, not axioms, and they are not proved here.
+The argument of the theorem is a proposition defined in `ReflectedLiouville/PublishedInputs.lean`. It is a
+hypothesis of the theorem, not an axiom, and it is not proved here.
 
-1. `KMTInput` has one field, `KMTRealProgressionVarianceInput`: the variance estimate of Corollary 1.6 of
-   Klurman–Mangerel–Teräväinen (arXiv:1909.12280v5) for real-valued 1-bounded multiplicative functions over the unit
-   residue classes of a typical modulus q. The statements of Theorem 1.5 and Corollary 1.6 assert the existence of a
-   set of good moduli; the hypothesis uses the explicit set (a zero-free box for the L-functions of characters of
-   large conductor) of Proposition 9.4, with the substitution of §9.2 and the proof of Corollary 1.6. It is stated on a
-   restricted range of parameters, each restriction corresponding to a step of the printed proof: the accuracy
-   threshold (log X)^(−1/50) of Corollary 8.4 and Lemma 8.2, the condition q·(H/Q)^(ε^1.1/100) ≤ Q used in the first
-   mean-value estimate of §9.3, and log(H/Q) ≤ (log X)^(2/5), under which the interval inequalities (52) are checked
-   in Section 2 of the paper.
-2. `MRTRealTwistRepulsionInput`: Lemma C.1 of Matomäki–Radziwiłł–Tao (arXiv:1503.05121v3), inequalities (C.1) and
-   (C.2), for the trivial character.
+`KMTInput` has one field, `KMTRealProgressionVarianceInput`: the variance estimate of Corollary 1.6 of
+Klurman–Mangerel–Teräväinen (arXiv:1909.12280v5) for real-valued 1-bounded multiplicative functions over the unit
+residue classes of a typical modulus q. The statements of Theorem 1.5 and Corollary 1.6 assert the existence of a
+set of good moduli; the hypothesis uses the explicit set (a zero-free box for the L-functions of characters of
+large conductor) of Proposition 9.4, with the substitution of §9.2 and the proof of Corollary 1.6. It is stated on a
+restricted range of parameters, each restriction corresponding to a step of the printed proof: the accuracy
+threshold (log X)^(−1/50) of Corollary 8.4 and Lemma 8.2, the condition q·(H/Q)^(ε^1.1/100) ≤ Q used in the first
+mean-value estimate of §9.3, and log(H/Q) ≤ (log X)^(2/5), under which the interval inequalities (52) are checked
+in Section 2 of the paper.
+
+The second analytic input of the paper, Lemma C.1 of Matomäki–Radziwiłł–Tao (arXiv:1503.05121v3) for the trivial
+character, is the proposition `MRTRealTwistRepulsionInput` of the same file. It is proved without hypotheses in
+`MRTRepulsion/` (`mrt_real_twist_repulsion`) from the library's growth bound for the zeta function and its prime number
+theorem with phases. The theorems `paper_theorem_1_1_explicit` (`ReflectedLiouville/ExplicitMain.lean`) and
+`reflected_liouville_log_saving` (`ReflectedLiouville/Main.lean`) take both propositions as arguments.
 
 Everything else is proved from Mathlib and from the OpenAI library
 ([github.com/openai/math](https://github.com/openai/math) at commit `adc7f1241b42e322a6451854ab7e4b4c146bf78a`), in
 particular from its theorems on two-point correlations (family 007) and from
 `DirichletCharacter.LFunction_ne_zero_of_seven_eighths_lt_re` (family 003). The proofs contain no `sorry` and
-declare no axiom. For `paper_theorem_1_1_explicit`, its unfolded statement and the three theorems of `Main.lean`,
-`#print axioms` reports
+declare no axiom. For `paper_theorem_1_1_one_hypothesis`, its unfolded statement, `mrt_real_twist_repulsion`,
+`paper_theorem_1_1_explicit` and the three theorems of `ReflectedLiouville/Main.lean`, `#print axioms` reports
 
 ```text
 [propext, Classical.choice, Quot.sound]
@@ -68,7 +71,7 @@ declare no axiom. For `paper_theorem_1_1_explicit`, its unfolded statement and t
 
 ## What is not formalized
 
-- The two published statements listed above.
+- The published statement listed above.
 - Numerical values of the constants C and N₀.
 - Part II of the paper (consequences of the 7/8 theorem for Goldbach numbers, the least prime in a progression,
   nonresidues and primitive roots).
@@ -96,7 +99,7 @@ in `oai_imports.txt` have been built (`lake build` in its `lean/` directory with
 python3 build.py --oai /path/to/openai-math/lean --lean /path/to/lean --jobs 3
 ```
 
-compiles the modules in the import closure of `VerificationExplicit.lean` in dependency order with `lean -o` and
-prints the axiom reports (`--target Verification` builds the version with an unspecified exponent). The formalization
-consists of 231 files (about 18,700 lines): `ReflectedLiouville/` (213 files), `RealCharacterTail/` (16 files),
-`Verification.lean` and `VerificationExplicit.lean`. `SHA256SUMS` lists the files.
+compiles the modules in the import closure of `VerificationOneHypothesis.lean` in dependency order with `lean -o` and
+prints the axiom reports (`--target VerificationExplicit` and `--target Verification` build the versions with two
+hypotheses). The formalization consists of 239 files (about 19,200 lines): `ReflectedLiouville/` (213 files),
+`RealCharacterTail/` (16 files), `MRTRepulsion/` (7 files) and three verification files. `SHA256SUMS` lists the files.

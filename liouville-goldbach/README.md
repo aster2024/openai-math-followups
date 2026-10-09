@@ -63,16 +63,16 @@ for the toolchain and how to check them.
 The directory [`lean/`](lean/) contains a Lean 4 formalization of the main theorem, including the exponent 10⁻²⁰⁰:
 
 ```lean
-theorem paper_theorem_1_1_explicit
-    (h_KMT : KMTInput) (h_MRT : MRTRealTwistRepulsionInput) : PaperMainStatement
+theorem paper_theorem_1_1_one_hypothesis
+    (h_KMT : ReflectedLiouville.KMTInput) : ReflectedLiouville.PaperMainStatement
 ```
 
 that is, there are C and N₀ with |Σ_{1 ≤ n < N} λ(n) λ(N − n)| ≤ C·N/(log N)^c, c = 10⁻²⁰⁰, for all N ≥ N₀, together
-with the corresponding bound for each of the four sign patterns. The two hypotheses are published statements that are
-not formalized: the short-progression variance estimate of Klurman–Mangerel–Teräväinen on the range of parameters used
-in the paper, and Lemma C.1 of Matomäki–Radziwiłł–Tao. Everything else is proved from Mathlib and the OpenAI library
-at the commit above, with the axioms `propext`, `Classical.choice` and `Quot.sound` (231 files, about 18,700 lines).
-Part II is not formalized. See [`lean/README.md`](lean/README.md) for the exact statements of the hypotheses, the
+with the corresponding bound for each of the four sign patterns. The hypothesis is a published statement that is not
+formalized: the short-progression variance estimate of Klurman–Mangerel–Teräväinen on the range of parameters used in
+the paper. Everything else, including Lemma C.1 of Matomäki–Radziwiłł–Tao, is proved from Mathlib and the OpenAI
+library at the commit above, with the axioms `propext`, `Classical.choice` and `Quot.sound` (239 files, about 19,200
+lines). Part II is not formalized. See [`lean/README.md`](lean/README.md) for the exact statement of the hypothesis, the
 differences from the written proof and the build instructions.
 
 ## Files

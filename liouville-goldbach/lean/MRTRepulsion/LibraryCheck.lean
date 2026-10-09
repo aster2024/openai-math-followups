@@ -1,0 +1,13 @@
+import ReflectedLiouville.PublishedInputs
+import OAI.NumberTheory.TwoPoint.Halasz.HalaszWeakHurwitzTheorem
+import OAI.NumberTheory.TwoPoint.ShortIntervals.MRTWeakVKApplications
+import OAI.NumberTheory.TwoPoint.Fourier.ModFivePrimeNumberTheorem
+
+set_option autoImplicit false
+#print axioms OAI.TwoPointCorrelations.mrt_weak_hurwitz_growth
+#print axioms OAI.TwoPointCorrelations.MRTWeakHurwitzGrowthInput.power_prime_tail
+#print axioms OAI.TwoPointCorrelations.modFiveThetaInput
+#check intervalIntegral.integral_comp_mul_left
+#check intervalIntegral.integral_comp_mul_deriv'
+#check Real.cos_two_mul
+#check ReflectedLiouville.MRTRealTwistRepulsionInput

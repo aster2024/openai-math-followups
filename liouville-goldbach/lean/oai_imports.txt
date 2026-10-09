@@ -58,11 +58,16 @@ OAI.NumberTheory.TwoPoint.Circuits.CircuitLogarithmicBudget
 OAI.NumberTheory.TwoPoint.Circuits.CircuitPolynomialGrowth
 OAI.NumberTheory.TwoPointCorrelations.FinalMain
 OAI.NumberTheory.TwoPoint.Fourier.MajorArcPerturbation
+OAI.NumberTheory.TwoPoint.Fourier.ModFivePrimeNumberTheorem
 OAI.NumberTheory.TwoPoint.Fourier.ModFiveSmoothedContour
 OAI.NumberTheory.TwoPoint.Fourier.ModFiveSmoothedPsi
 OAI.NumberTheory.TwoPoint.Halasz.HalaszMeanValue
+OAI.NumberTheory.TwoPoint.Halasz.HalaszWeakHurwitzTheorem
 OAI.NumberTheory.TwoPoint.PretentiousDistance
 OAI.NumberTheory.TwoPoint.PublishedInputs
+OAI.NumberTheory.TwoPoint.ShortIntervals.MRTCosineLower
+OAI.NumberTheory.TwoPoint.ShortIntervals.MRTPrincipalSmallHeight
+OAI.NumberTheory.TwoPoint.ShortIntervals.MRTWeakVKApplications
 OAI.NumberTheory.TwoPoint.Walks.ProhibitedCostComparison
 OAI.NumberTheory.TwoPoint.Walks.ProhibitedRowComparison
 OAI.NumberTheory.TwoPoint.Walks.WeightedWordComparison
