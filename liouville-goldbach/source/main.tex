@@ -61,7 +61,9 @@ of OpenAI's Lean~4 development of two-point correlations, the
 Dirichlet zero-free half-plane $\Rea s>7/8$ from family~003 of the
 same library, and the short-progression
 variance bounds of Klurman--Mangerel--Ter\"av\"ainen; the deduction from
-these inputs is carried out in the paper. A quotient-coordinate
+these inputs is carried out in the paper and, for an unspecified positive
+exponent $c$, is formalized in Lean~4 with two published estimates as
+hypotheses. A quotient-coordinate
 construction fixes the graph multiplier while the total $N$ remains
 in the progression modulus. Inserting the same half-plane into published
 results of Pintz, Chen--Gupta--Li, Montgomery--Vaughan and Martin gives
@@ -110,6 +112,23 @@ Inputs~\ref{input:zf}, \ref{input:trace}--\ref{input:bad-spectral} and
 \ref{input:paddingcost} transcribe the named declarations into mathematical
 notation. The numerical exponent of Lemma~\ref{lem:explicitA}, the reductions
 to these inputs and the proof of Theorem~\ref{thm:main} are written mathematics.
+
+The bounds of Theorem~\ref{thm:main} with an unspecified positive exponent
+in place of $10^{-200}$ are also formalized in Lean~4; the files are in the
+directory \path{lean} of the repository of this paper.
+The theorem \path{reflected_liouville_log_saving} proved there has two
+hypotheses: the variance estimate of \cite{KMT} for real multiplicative
+functions, with the explicit set of moduli of its Proposition~9.4 and on
+the range of parameters used in Lemma~\ref{lem:variance}, and
+\cite[Lemma C.1]{MRT}.
+It compiles against the library at the commit above with the same three
+axioms.
+In that proof the prime-sum estimate in Lemma~\ref{lem:realmean} is derived
+from Input~\ref{input:zf} by a holomorphic logarithm and the
+Borel--Carath\'eodory inequality, and the Hal\'asz step is the library's
+theorem for completely multiplicative functions.
+The numerical exponent of Lemma~\ref{lem:explicitA} is not part of the
+formalization.
 In particular, the Lean comparison theorems assert only
 $\exists A_f\ge1000$; the bound $A_f\le10^6$ is read off from their
 source proofs, and the value $c=10^{-200}$ depends on it.
@@ -2003,5 +2022,5 @@ $x^{-\delta_0}$. The other bounds above are unchanged.
 \bibliographystyle{plainnat}
 \bibliography{references}
 \section*{Use of AI}
-The proofs and the text of this paper were produced with AI systems (GPT-6 Astra, GPT-6.1 Sol and Claude Opus~5.5) under the author's direction. They were checked by independent reviews with AI models; the inputs from the OpenAI library are Lean theorems, and the finite lemmas in the ancillary files are checked in Lean. The author takes responsibility for the content.
+The proofs and the text of this paper were produced with AI systems (GPT-6 Astra, GPT-6.1 Sol and Claude Opus~5.5) under the author's direction. They were checked by independent reviews with AI models; the inputs from the OpenAI library are Lean theorems, and the deduction of Theorem~\ref{thm:main} with an unspecified positive exponent is formalized in Lean~4 with two published estimates as hypotheses. The author takes responsibility for the content.
 \end{document}
