@@ -155,7 +155,7 @@ with their proofs; Theorem~3.5 and the residue-model moment estimate
 established in its proof (Sections~3.3--3.8, including
 Lemmas~3.7--3.10); Corollary~3.11 and its proof; Theorem~4.1 and its
 proof, including Lemma~4.3 and the Siegel--Walfisz estimate
-[S, Theorem~2.2] used for (4.9); and Lemma~4.2.
+[S, Theorem~2.2] used for (4.9); and Lemma~4.2 with (4.6).
 Section~\ref{sec:graphs} states the graph inputs and their
 order of choices. Proposition~\ref{prop:dilation} for dilated
 displacements and Proposition~\ref{prop:punctures} for punctured prime
@@ -335,8 +335,9 @@ K_\Lambda(D,X)=
 \sum_{\substack{\chi\ {\rm primitive}\\\cond(\chi)\le Q_0}}
 \overline{\chi(D)}\chi(X),
 \end{equation}
-where $I_j$ has width $\mathfrak h$, $\nu_j$ is the product-law cell
-probability, and $\mathfrak h^{-1},\xi^{-1},Q_0$ are fixed powers of $L$.
+where $I_j=[j\mathfrak h,(j+1)\mathfrak h)$ has width $\mathfrak h\le1$,
+$\nu_j$ is the product-law cell probability, and
+$\mathfrak h^{-1},\xi^{-1},Q_0$ are fixed powers of $L$.
 The conductor-$1$ character is included. The number and total coefficient
 mass of the expanded terms are fixed powers of $L$, independent of $J$.
 Every free product contains a big prime.
@@ -357,7 +358,7 @@ bound $0<|k|\le L^{C_2}$. Let $h\ne0$ be any integer coprime to every
 group prime, and replace every physical displacement $kD$ by $hkD$,
 leaving the coefficients and all mark rules unchanged. Call this
 operator $A_h$. Under \eqref{eq:ideal-hypothesis}, with the same order
-of fixed parameters, one has, for every positive dyad $[Y,2Y)$ with $x^\gamma\le Y\le x^{1/\gamma}$,
+of fixed parameters, one has, for every fixed $\gamma>0$ and every positive dyad $[Y,2Y)$ with $x^\gamma\le Y\le x^{1/\gamma}$,
 \begin{equation}\label{eq:dilated-moment}
 \sum_{Y\le n<2Y}\langle u_n,(A_hA_h^*)^Ru_n\rangle
 \ll YL^{-2RE}
@@ -451,9 +452,9 @@ For each residue class modulo $|h|$, partition its integer quotient
 coordinate into blocks of $\lceil H_0\rceil$ consecutive positions.
 Write ${\rm block}_j$ for the part of one such block in $[Y,2Y)$, let
 $f_j$ be the restriction of $f$ to ${\rm block}_j$, and let $g_j$ be
-the restriction of $g$ to the full quotient block containing
-${\rm block}_j$ and its two neighbors in that same residue class,
-without intersecting them with $[Y,2Y)$. Every edge stays in the
+the restriction of $g$ to the union of the full quotient block containing
+${\rm block}_j$ and the two adjacent full quotient blocks of that same
+residue class, without intersecting these blocks with $[Y,2Y)$. Every edge stays in the
 class and moves at most $H_0$ quotient positions. Therefore
 \begin{equation}\label{eq:quotient-blocks}
 \langle f,A_hg\rangle=\sum_j\langle f_j,A_hg_j\rangle,
@@ -782,7 +783,7 @@ fixed $z$. The total bound is
 \begin{equation}\label{eq:rough-total}
 C\left\{X^{31/32}\log(2z)
 +X\exp\left[-\frac{\log X}{2\log z}\right]
- (\log(2z))^{\mathrm e}\right\},
+ (\log(2z))^{\mathrm e}\right\}.
 \end{equation}
 Since $\log z\le(\log X)^{\rho_0}$ with $\rho_0<1$ fixed, both terms are $O_H(X(\log X)^{-H})$, which proves \eqref{eq:rough-mean}.
 \end{proof}
@@ -1333,9 +1334,11 @@ function is
 $b_{\rm s}=\ind_{\log X_{\mathcal B}\in I_{j'}}\chi'(X_{\mathcal B})$, and
 the target mark function is
 $b_{\rm t}=\ind_{\log X_{\mathcal A}\in I_j}\chi(X_{\mathcal A})$.
-On the two cells $D_{\mathcal A}D_{\mathcal B}\in[H',\mathrm e^2H')$, so
-both cutoffs equal $1$ on the support of
-$\psi_0(w/(ND_{\mathcal A}D_{\mathcal B}))$, and
+On the two cells $D_{\mathcal A}D_{\mathcal B}\in[H',\mathrm e^2H')$, since
+$\mathfrak h\le1$. As $\psi_0$ is supported in $[1/3,2/3]$, on the support of
+$\psi_0(w/(ND_{\mathcal A}D_{\mathcal B}))$ both $w$ and
+$w'=ND_{\mathcal A}D_{\mathcal B}-w$ lie in $[Y/3,2\mathrm e^2Y/3]$, so both
+cutoffs equal $1$ there. Moreover
 $1/(ND_{\mathcal A}D_{\mathcal B})
  =Y^{-1}(U_{\mathcal A}/D_{\mathcal A})(U_{\mathcal B}/D_{\mathcal B})$.
 The term carries the coefficient

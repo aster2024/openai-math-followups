@@ -454,7 +454,7 @@ is a positive integer. Substitution proves both equations \eqref{eq:2-1} and \(v
 
 \end{proof}
 \begin{lemma}[Character mask]\label{lem:mask}
-Let \(k\) be a nonzero integer, \(d=a|k|\) and \(Q=dR\), and let \(m,m'\) be integers coprime to \(Q\). With \(\mathcal T_{d,R}\) defined by \eqref{eq:2-4}, the equivalence \eqref{eq:2-5} and the expansion \eqref{eq:2-6} hold, and \(\sum_\chi|c_\chi|\le R\), independently of \(k\).
+With \(a\) and \(R=\operatorname{rad}(2a|b|)\) as in Lemma~\ref{lem:parametrization}, let \(k\) be a nonzero integer, \(d=a|k|\) and \(Q=dR\), and let \(m,m'\) be integers coprime to \(Q\). With \(\mathcal T_{d,R}\) defined by \eqref{eq:2-4}, the equivalence \eqref{eq:2-5} and the expansion \eqref{eq:2-6} hold, and \(\sum_\chi|c_\chi|\le R\), independently of \(k\).
 \end{lemma}
 \begin{proof}
 Assume additionally that \(m,m'\) are units modulo
@@ -477,7 +477,7 @@ The last condition is independent of the representative, since adding \(Q\) chan
  m'\overline m\bmod Q\in\mathcal T_{d,R}.                \tag{2.5}\label{eq:2-5}
 \end{equation}
 For clarity, after divisibility by \(d\), the quotient of
-\(m'-m\equiv m(r-1)\pmod{dR}\) by \(d\) is a congruence modulo \(R\). Its left side is \(\operatorname{sgn}(k)e\), and \(m\) is a unit modulo \(R\); thus the two gcd conditions agree.
+\(m'-m\equiv m(r-1)\pmod{dR}\) by \(d\) is a congruence modulo \(R\). Its left side is \((m'-m)/d=\operatorname{sgn}(k)e\) with \(e=(m'-m)/(ak)\), and \(m\) is a unit modulo \(R\); thus the two gcd conditions agree.
 
 Orthogonality on the finite group of units gives
 \stepcounter{equation}
