@@ -1,34 +1,42 @@
 # Lean 4 formalization
 
-This directory contains a Lean 4 formalization of the deduction of Theorem 1.1 of the paper, with an unspecified
-positive exponent in place of 10⁻²⁰⁰, from the OpenAI library and two published analytic statements.
+This directory contains a Lean 4 formalization of Theorem 1.1 of the paper, including the exponent 10⁻²⁰⁰, from the
+OpenAI library and two published analytic statements.
 
 ## Statement
 
-`ReflectedLiouville/Main.lean` proves
+`ReflectedLiouville/ExplicitMain.lean` proves
 
 ```lean
-theorem reflected_liouville_log_saving
-    (h_KMT : KMTInput) (h_MRT : MRTRealTwistRepulsionInput) : ReflectedLogSaving
+theorem paper_theorem_1_1_explicit
+    (h_KMT : KMTInput) (h_MRT : MRTRealTwistRepulsionInput) : PaperMainStatement
 ```
 
-and `Verification.lean` restates it with every definition unfolded:
+and `VerificationExplicit.lean` restates it with every definition unfolded:
 
 ```lean
-theorem reflected_liouville_log_saving_literal
+theorem paper_theorem_1_1_explicit_literal
     (h_KMT : ReflectedLiouville.KMTInput)
     (h_MRT : ReflectedLiouville.MRTRealTwistRepulsionInput) :
-    ∃ c : ℝ, 0 < c ∧ ∃ C : ℝ, 0 < C ∧ ∃ N₀ : ℕ, 3 ≤ N₀ ∧
-      ∀ N : ℕ, N₀ ≤ N →
-        |∑ n ∈ Finset.Ico 1 N, (ArithmeticFunction.liouville n : ℝ) *
+    ∃ C : ℝ, 0 < C ∧ ∃ N₀ : ℕ, 3 ≤ N₀ ∧ ∀ N : ℕ, N₀ ≤ N →
+      (|∑ n ∈ Finset.Ico 1 N, (ArithmeticFunction.liouville n : ℝ) *
           (ArithmeticFunction.liouville (N-n) : ℝ)| ≤
-            C*(N : ℝ)/Real.rpow (Real.log (N : ℝ)) c
+        C*(N : ℝ)/Real.rpow (Real.log (N : ℝ)) (1/(10 : ℝ)^(200 : ℕ))) ∧
+      (∀ e₁ e₂ : ℤ, (e₁ = -1 ∨ e₁ = 1) → (e₂ = -1 ∨ e₂ = 1) →
+        |((((Finset.Icc 1 N) ×ˢ (Finset.Icc 1 N)).filter (fun ab =>
+            ab.1+ab.2 = N ∧ ArithmeticFunction.liouville ab.1 = e₁ ∧
+              ArithmeticFunction.liouville ab.2 = e₂)).card : ℝ) - (N : ℝ)/4| ≤
+          C*(N : ℝ)/Real.rpow (Real.log (N : ℝ)) (1/(10 : ℝ)^(200 : ℕ)))
 ```
 
-Here `ArithmeticFunction.liouville` is Mathlib's Liouville function. The same file `Main.lean` proves
-`reflected_liouville_sign_patterns` (each of the four ordered sign patterns (λ(a), λ(b)), a + b = N, occurs
-N/4 + O(N/(log N)^c) times, with the count defined over ordered pairs of positive integers) and
-`reflected_liouville_main_and_sign_patterns` (both statements with the same c, C and N₀).
+Here `ArithmeticFunction.liouville` is Mathlib's Liouville function: the first bound is the correlation estimate and
+the second is the count of each of the four ordered sign patterns (λ(a), λ(b)), a + b = N.
+
+`ReflectedLiouville/Main.lean` and `Verification.lean` contain the same statements with an unspecified positive
+exponent c (`reflected_liouville_log_saving`, `reflected_liouville_sign_patterns`,
+`reflected_liouville_main_and_sign_patterns`). The files `ReflectedLiouville/Explicit*.lean` prove the comparison
+estimates of the library again with fixed exponents, obtain the bound 10⁶ for the common comparison exponent, as in
+Lemma 3.5 of the paper, and assemble the explicit theorem.
 
 ## Hypotheses
 
@@ -51,7 +59,8 @@ Everything else is proved from Mathlib and from the OpenAI library
 ([github.com/openai/math](https://github.com/openai/math) at commit `adc7f1241b42e322a6451854ab7e4b4c146bf78a`), in
 particular from its theorems on two-point correlations (family 007) and from
 `DirichletCharacter.LFunction_ne_zero_of_seven_eighths_lt_re` (family 003). The proofs contain no `sorry` and
-declare no axiom. For the three theorems of `Main.lean` and for the unfolded statement, `#print axioms` reports
+declare no axiom. For `paper_theorem_1_1_explicit`, its unfolded statement and the three theorems of `Main.lean`,
+`#print axioms` reports
 
 ```text
 [propext, Classical.choice, Quot.sound]
@@ -59,11 +68,8 @@ declare no axiom. For the three theorems of `Main.lean` and for the unfolded sta
 
 ## What is not formalized
 
-- The explicit exponent 10⁻²⁰⁰ of Theorem 1.1. The proposition `PaperMainStatement` of
-  `ReflectedLiouville/Definitions.lean` states it and is not proved: it requires a numerical upper bound for the
-  comparison exponent A of the library, whose theorem asserts the existence of A. The constants C and N₀ are not
-  explicit.
 - The two published statements listed above.
+- Numerical values of the constants C and N₀.
 - Part II of the paper (consequences of the 7/8 theorem for Goldbach numbers, the least prime in a progression,
   nonresidues and primitive roots).
 
@@ -90,6 +96,7 @@ in `oai_imports.txt` have been built (`lake build` in its `lean/` directory with
 python3 build.py --oai /path/to/openai-math/lean --lean /path/to/lean --jobs 3
 ```
 
-compiles the 201 modules in the import closure of `Verification.lean` in dependency order with `lean -o` and prints
-the axiom reports. The formalization consists of 212 files (about 14,300 lines): `ReflectedLiouville/` (195 files),
-`RealCharacterTail/` (16 files) and `Verification.lean`. `SHA256SUMS` lists the files.
+compiles the modules in the import closure of `VerificationExplicit.lean` in dependency order with `lean -o` and
+prints the axiom reports (`--target Verification` builds the version with an unspecified exponent). The formalization
+consists of 231 files (about 18,700 lines): `ReflectedLiouville/` (213 files), `RealCharacterTail/` (16 files),
+`Verification.lean` and `VerificationExplicit.lean`. `SHA256SUMS` lists the files.

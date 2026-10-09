@@ -3,7 +3,7 @@
 
 Usage:
     python3 build.py --oai /path/to/openai-math/lean [--lean /path/to/bin/lean]
-                     [--jobs 3] [--out _build] [--target Verification]
+                     [--jobs 3] [--out _build] [--target VerificationExplicit]
 
 `--oai` is the Lake project directory of github.com/openai/math (its `lean/`
 directory) at commit adc7f1241b42e322a6451854ab7e4b4c146bf78a, in which the
@@ -20,7 +20,8 @@ parser.add_argument('--oai', required=True)
 parser.add_argument('--lean', default='lean')
 parser.add_argument('--jobs', type=int, default=3)
 parser.add_argument('--out', default='_build')
-parser.add_argument('--target', default='Verification')
+parser.add_argument('--target', default='VerificationExplicit',
+                    help='VerificationExplicit (Theorem 1.1 with the exponent 10^-200) or Verification')
 parser.add_argument('--threads', default='2', help='LEAN_NUM_THREADS for each process')
 args = parser.parse_args()
 

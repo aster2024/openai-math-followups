@@ -35,8 +35,8 @@ obtained from pure Wirtinger derivatives of the cubic theta function at the cusp
 
 ### [`liouville-goldbach/`](liouville-goldbach/) — Goldbach-type representations with prescribed Liouville signs
 
-Paper (28 pages), 8 October 2026: [PDF](liouville-goldbach/paper.pdf). Lean 4 formalization of the main theorem with an
-unspecified positive exponent c, conditional on two published estimates: [`liouville-goldbach/lean/`](liouville-goldbach/lean/).
+Paper (28 pages), 8 October 2026: [PDF](liouville-goldbach/paper.pdf). Lean 4 formalization of the main theorem (with the
+exponent c = 10⁻²⁰⁰), conditional on two published estimates: [`liouville-goldbach/lean/`](liouville-goldbach/lean/).
 
 Let λ be the Liouville function. For every sufficiently large integer N, each of the four sign patterns
 (λ(a), λ(b)) with a + b = N occurs N/4 + O(N (log N)^(−c)) times. Equivalently,

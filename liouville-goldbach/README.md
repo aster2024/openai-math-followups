@@ -60,21 +60,20 @@ for the toolchain and how to check them.
 
 ## Lean formalization
 
-The directory [`lean/`](lean/) contains a Lean 4 formalization of the main theorem with an unspecified positive
-exponent c in place of 10⁻²⁰⁰:
+The directory [`lean/`](lean/) contains a Lean 4 formalization of the main theorem, including the exponent 10⁻²⁰⁰:
 
 ```lean
-theorem reflected_liouville_log_saving
-    (h_KMT : KMTInput) (h_MRT : MRTRealTwistRepulsionInput) : ReflectedLogSaving
+theorem paper_theorem_1_1_explicit
+    (h_KMT : KMTInput) (h_MRT : MRTRealTwistRepulsionInput) : PaperMainStatement
 ```
 
-that is, there are c > 0, C and N₀ with |Σ_{1 ≤ n < N} λ(n) λ(N − n)| ≤ C·N/(log N)^c for all N ≥ N₀, together with
-the corresponding statement for the four sign patterns. The two hypotheses are published statements that are not
-formalized: the short-progression variance estimate of Klurman–Mangerel–Teräväinen on the range of parameters used in
-the paper, and Lemma C.1 of Matomäki–Radziwiłł–Tao. Everything else is proved from Mathlib and the OpenAI library at
-the commit above, with the axioms `propext`, `Classical.choice` and `Quot.sound` (212 files, about 14,300 lines). The
-explicit exponent 10⁻²⁰⁰ and Part II are not formalized. See [`lean/README.md`](lean/README.md) for the exact
-statements of the hypotheses, the differences from the written proof and the build instructions.
+that is, there are C and N₀ with |Σ_{1 ≤ n < N} λ(n) λ(N − n)| ≤ C·N/(log N)^c, c = 10⁻²⁰⁰, for all N ≥ N₀, together
+with the corresponding bound for each of the four sign patterns. The two hypotheses are published statements that are
+not formalized: the short-progression variance estimate of Klurman–Mangerel–Teräväinen on the range of parameters used
+in the paper, and Lemma C.1 of Matomäki–Radziwiłł–Tao. Everything else is proved from Mathlib and the OpenAI library
+at the commit above, with the axioms `propext`, `Classical.choice` and `Quot.sound` (231 files, about 18,700 lines).
+Part II is not formalized. See [`lean/README.md`](lean/README.md) for the exact statements of the hypotheses, the
+differences from the written proof and the build instructions.
 
 ## Files
 
@@ -86,7 +85,7 @@ statements of the hypotheses, the differences from the written proof and the bui
 | `anc/TwoLayerRows.lean` | Weighted square bound for the two-layer lift |
 | `anc/ExplicitBudget.lean` | Degree exponents 8457 and 8458 |
 | `anc/Interfaces.lean`, `anc/InputStatements.lean` | Types and axioms of the input declarations |
-| `lean/` | Lean 4 formalization of the main theorem with an unspecified positive exponent; see `lean/README.md` |
+| `lean/` | Lean 4 formalization of the main theorem; see `lean/README.md` |
 | `SHA256SUMS` | Checksums of the files above |
 
 ## Citation
