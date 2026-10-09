@@ -51,6 +51,28 @@ Part II gives consequences of the zero-free half-plane Re s > 7/8 for Dirichlet 
 in the binary Goldbach problem, the least prime in an arithmetic progression, least non-residues, and least
 primitive roots.
 
+### [`shifted-prime-parity/`](shifted-prime-parity/) — Shifted primes with a prescribed parity of the number of prime factors
+
+Paper (31 pages), 9 October 2026: [PDF](shifted-prime-parity/paper.pdf). Programs checking the algebraic identities on finite ranges are in [`shifted-prime-parity/anc/`](shifted-prime-parity/anc/).
+
+Let λ be the Liouville function. For every X ≥ X\*, every integer h with 0 < |h| ≤ (log X)⁵ and each sign s,
+
+```math
+\#\{p\le X\ \text{prime}:\ p+h\gt 0,\ p+h\ \text{squarefree},\ \lambda(p+h)=s\}\ \ge\ c\,\frac{X}{(\log X)^{300}} .
+```
+
+Consequently, for every non-zero integer h, the number of prime factors of p + h is even for infinitely many primes p
+and odd for infinitely many primes p; for h = 2 this gives both parities of the number of prime factors of p + 2.
+
+For h = −1 and an even number of prime factors, the statement that there are infinitely many such primes is
+Theorem 1.1 of OpenAI's paper
+[Prime Predecessors with an Even Number of Prime Factors](https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Prime-Predecessors-with-an-Even-Number-of-Prime-Factors-September-17-2026/paper.pdf)
+(17 September 2026). The proof applies the prime-slot correlation theorem of that paper and the sieve lemmas of
+[Weighted dilation graphs, smooth shifted primes and totient fibers](https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Weighted-Dilation-Graphs-Smooth-Shifted-Primes-and-Totient-Fibers-September-24-2026/paper.pdf)
+(24 September 2026), and follows the argument of the first. For a general shift it adds a coprimality condition in
+the Type II sum, expanded into Dirichlet characters of the rough variable, and the local factors at the primes
+dividing 2h.
+
 ### [`zero-free-beyond-7-8/`](zero-free-beyond-7-8/) — A zero-free half-plane beyond 7/8
 
 Paper (44 pages), 8 October 2026: [PDF](zero-free-beyond-7-8/paper.pdf). Exact-arithmetic certificates are in [`zero-free-beyond-7-8/anc/`](zero-free-beyond-7-8/anc/).

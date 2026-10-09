@@ -1,0 +1,1452 @@
+\documentclass[11pt]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+  pdftitle={Shifted primes with a prescribed parity of the number of prime factors},
+  pdfauthor={Jizhou Guo}}
+\Urlmuskip=0mu plus 1mu
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{inputthm}[theorem]{Input}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\e}{\mathrm e}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\Dpret}{\mathbb D}
+\newcommand{\ph}{\varphi}
+\newcommand{\leanname}[1]{\nolinkurl{#1}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\HS}{HS}
+\DeclareMathOperator{\Rea}{Re}
+\DeclareMathOperator{\cond}{cond}
+\title{Shifted primes with a prescribed parity of the number of prime factors}
+\author{Jizhou Guo\\
+  \href{mailto:mitsuha2021b@gmail.com}{\texttt{mitsuha2021b@gmail.com}}}
+\date{October 2026}
+
+
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\defcitealias{OpenAIE}{E}
+\defcitealias{OpenAIS}{S}
+\newcommand{\sourcecite}[2]{[\citetalias{#1}, #2]}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $\lambda$ be the Liouville function and let $h$ be a non-zero integer. We show that each of
+$\lambda(p+h)=1$ and $\lambda(p+h)=-1$ holds for infinitely many primes $p$ with $p+h$ squarefree.
+More precisely, there are absolute constants $c>0$ and $X_*$ such that for every $X\ge X_*$, every
+integer $h$ with $0<|h|\le(\log X)^5$ and each sign $s$, at least $cX/(\log X)^{300}$ primes $p\le X$
+have $p+h$ positive and squarefree with $\lambda(p+h)=s$. The case $h=-1$, $s=1$ of the qualitative
+statement is a recent theorem of OpenAI. The proof applies the prime-slot correlation theorem and the
+sieve lemmas of two OpenAI papers on prime predecessors; the new steps are a coprimality condition in
+the Type~II sum, expanded into Dirichlet characters of the rough variable, and the local factors at the
+primes dividing $2h$.
+\end{abstract}
+\noindent\textit{2020 Mathematics Subject Classification.}
+Primary 11N36; Secondary 11N25, 11N05.
+
+\section{Introduction}\label{sec:intro}\label{sec:s0}\label{sec:s1}
+All logarithms are natural. For $n\ge1$, write
+$\lambda(n)=(-1)^{\Omega(n)}$, where $\Omega$ counts prime factors with
+multiplicity, and let $\mu$ be the M\"obius function. On squarefree positive
+integers these functions agree.
+
+\begin{theorem}\label{thm:main}
+There are absolute constants $c>0$ and $X_*$ such that for every real
+$X\ge X_*$, every integer $h$ with
+\[
+0<|h|\le(\log X)^5,
+\]
+and each $s\in\{-1,+1\}$,
+\begin{equation}\tag{G}\label{eq:G}
+\#\{p\le X\text{ prime}:p+h>0,\ p+h\text{ squarefree},\
+                         \lambda(p+h)=s\}
+\ge c\frac{X}{(\log X)^{300}}.
+\end{equation}
+\end{theorem}
+
+\begin{corollary}\label{cor:fixed-shift}
+For every non-zero integer $h$ there are infinitely many primes $p$ with
+$\mu(p+h)=1$ and infinitely many with $\mu(p+h)=-1$; equivalently,
+$p+h$ is squarefree with an even, respectively odd, number of prime factors.
+In particular, for $h=2$ both parities of the number of prime factors of
+$p+2$ occur infinitely often.
+\end{corollary}
+\begin{proof}
+For a fixed $h$, the range condition in Theorem~\ref{thm:main} holds for
+all sufficiently large $X$. Its lower bound tends to infinity, and
+$\mu=\lambda$ on squarefree positive integers.
+\end{proof}
+
+\paragraph{Background.}
+Chen's 1973 paper \cite{Chen1973} gives infinitely many primes $p$ for
+which $p+2$ is a prime or a product of two primes, without specifying
+the parity of the number of factors; this statement is also recorded in
+\cite[Section~1]{Pintz2010}.
+In their preprint of 18 March 2008, Goldston--Graham--Pintz--Y\i ld\i r\i m
+\cite[Section~1]{GGPY2008} recorded that the assertion that, for infinitely
+many primes $p$, $p+2$ (or $2p+1$) ``has an odd (or even) number of prime
+factors'' was open.
+Pintz's preprint of 7 April 2010 \cite[Theorem~1]{Pintz2010} proves that
+$\lambda(p+d)=-1$ for infinitely many primes $p$ for some even $d$ with
+$0<|d|\le16$. In Section~2 he writes that ``even assuming the
+Elliott--Halberstam conjecture we cannot prove the existence of infinitely
+many primes $p$ with $\lambda(p+d)=-1$ for even a single a priori
+given~$d$.''
+
+Lichtman's preprint of 18 September 2020, revised on 20 October 2021
+\cite{Lichtman2020}, proves cancellation of the M\"obius function on
+shifted primes on average over $h\le H$ when
+$\log H/\log\log X\to\infty$.
+Lichtman--Ter\"av\"ainen's preprint of 17 November 2021, revised on
+21 June 2022 \cite{LT2021}, proves averaged cancellation in mixed
+M\"obius--von Mangoldt correlations: for fixed $k,\ell\ge1$ and distinct
+shifts $h_2,\ldots,h_k,a_1,\ldots,a_\ell$, the sum
+$\sum_{n\le X}\mu(n+h_1)\cdots\mu(n+h_k)
+\Lambda(n+a_1)\cdots\Lambda(n+a_\ell)$ is $o(X)$ for all but $o(H)$
+values of $h_1\le H$, provided $H\ge(\log X)^{\ell+\varepsilon}$.
+They also extend their result to non-pretentious multiplicative functions.
+
+Richter--Ter\"av\"ainen's preprint of 2 October 2026
+\cite[Proposition~1.2]{RT2026} states that the existence of patterns
+$\{x,y,xy\}$ in $\mathbb P-1$ with $x,y$ arbitrarily large would imply
+infinitely many primes $p$ with $\lambda(p-1)=1$; their introduction
+states that finding patterns $\{x,y,xy\}$ in $\mathbb P-1$ with $x,y$ arbitrarily
+large is not to be hoped for ``without at the same time solving a major open
+problem about the Liouville function''.
+OpenAI's manuscript \cite{OpenAIE}, dated 17 September 2026 and public
+on 6 October 2026, proves in Theorem~1.1 that there are infinitely many
+primes $p$ with $p-1$ squarefree and $\Omega(p-1)$ even.
+
+\paragraph{What is used from [E] and [S].}
+We write [E] for \cite{OpenAIE}, \emph{Prime Predecessors with an Even
+Number of Prime Factors} (17 September 2026, 45 pages), and [S] for
+\cite{OpenAIS}, \emph{Weighted dilation graphs, smooth shifted primes
+and totient fibers} (24 September 2026, 68 pages).
+Theorem~\ref{thm:main} is deduced from
+\sourcecite{OpenAIE}{Theorem~4.1, pp.~12--14} (prime-slot correlations),
+\sourcecite{OpenAIE}{Lemma~5.1, p.~24},
+\sourcecite{OpenAIE}{Lemma~8.3, p.~39},
+\sourcecite{OpenAIE}{Lemma~2.4, p.~4},
+\sourcecite{OpenAIS}{Lemma~2.9, pp.~8--9}, and
+\sourcecite{OpenAIS}{Lemmas~7.3--7.4, pp.~57--60}, using the displayed
+ordinary-cell estimates (7.13) and (7.20) from their proofs, together with
+the classical estimates collected in
+\sourcecite{OpenAIE}{Propositions~2.1--2.2, pp.~2--3}.
+The sieve and proxy inputs are also stated as \sourcecite{OpenAIE}{Lemmas~8.1--8.2, pp.~36--38}.
+Inside [E] and [S], the correlation theorem rests on
+\sourcecite{OpenAIE}{Lemma~3.1, p.~4}, on the graph inputs
+\sourcecite{OpenAIS}{Lemma~3.4 and Theorem~3.5, pp.~12--13;
+Corollary~3.11, p.~26; Theorem~4.1, p.~27;
+Lemma~4.3, pp.~30--32}, formulated in
+\sourcecite{OpenAIE}{Propositions~4.2--4.3, pp.~13--14}, and on the
+bilinear estimate \sourcecite{OpenAIS}{Lemma~4.2, pp.~28--29}, cited in
+\sourcecite{OpenAIE}{Section~4.4, p.~17}.
+The zero-free half-plane theorem of the same release is not used.
+All page references to [E] and [S] refer to printed PDF pages.
+
+\paragraph{Relation to [E].}
+The weight, the parity projection, the Type~II argument and
+the prime extraction are those of [E], which uses the projection
+$A_0(1-E)/2$ in the notation of Definition~\ref{def:weights}. The proof of
+\sourcecite{OpenAIE}{Theorem~6.1, p.~26} treats the two terms $A_0$ and
+$A_0E$ of this projection separately, so it covers both projections
+$A_0(1\pm E)/2$; and \sourcecite{OpenAIE}{(5.4), p.~23},
+\sourcecite{OpenAIE}{Lemmas~5.2--5.3, pp.~24--26} and the estimates of
+\sourcecite{OpenAIE}{Section~8} give a lower bound of the shape
+$X/(\log X)^C$ for the sign in \sourcecite{OpenAIE}{Theorem~1.1}. For
+$h=\pm1$, the other sign and the shift $+1$ follow that argument with the
+sign of the projection and the unit in $p=2u+1$ changed.
+For the general shift we use $p=au+b$ with $a\in\{1,2\}$ and $b=-h$,
+retain $(e,R)=1$, $R=\rad(2a|b|)$, in the Cauchy--Schwarz majorant,
+and use the parametrization
+$m'-m=aek$, $v'-v=kn$, $mv'-m'v=bk$.
+An indicator of a set of units modulo $a|k|R$ is expanded into characters
+of the rough variable. The local factor
+$T_{a,b}=\prod_{\ell\mid ab,\ \ell\ge3}(\ell-1)/(\ell-2)$ occurs both
+in the sieve main term and in the balanced-pair bound and cancels when
+the parameter $\kappa$ of the balanced range is chosen in \eqref{eq:7-7}. We retain uniformity for $|h|\le(\log X)^5$ and
+pass from window counts to every sufficiently large $X$.
+The example $b=-6$ in Section~\ref{sec:s2} shows why the condition
+that $e$ is odd alone does not suffice.
+
+\paragraph{Scope and outline.}
+The exponent $300$ is not optimized. The threshold $X_*$ is not effective,
+because the cited estimates use Siegel--Walfisz. The shift $h=0$ is
+excluded, since $\lambda(p)=-1$ for every prime $p$. No equidistribution
+of the two signs or positive relative density among primes is asserted.
+The rest of this section defines the candidate weights and proves their
+mass and squarefree-loss estimates. Section~\ref{sec:s2} gives the
+bilinear parametrization and character mask. Section~\ref{sec:s3}
+states the correlation input, and Section~\ref{sec:s4} proves the
+Type~II distribution estimate. Sections~\ref{sec:s5}--\ref{sec:s6}
+give congruence distribution and the positive pair bound.
+Sections~\ref{sec:s7}--\ref{sec:s8} construct the ordinary-cell proxies
+and extract primes; Section~\ref{sec:s9} proves the cutoff count.
+Section~\ref{sec:s10} records the local conditions, and
+Appendix~\ref{sec:changes} records the changes relative to [E].
+
+\subsection{Prime forms and conventions}\label{sec:forms}
+The symbols $P^-(n)$ and $\tau(n)$ denote the least prime factor and
+divisor-counting function, with $P^-(1)=\infty$. Factorization variables
+are positive integers; characters vanish on nonunits, and
+$m\asymp M$ denotes a fixed constant enlargement of a dyad.
+Throughout, $x$ is a large real parameter, $L=\log x$, $T=\log L$ and
+$W=\exp(\sqrt L)$; $q_\chi$ denotes the modulus of a Dirichlet character
+$\chi$, and $\gamma_E$ denotes Euler's constant.
+For an integer \(h\ne0\), put
+\stepcounter{equation}
+\begin{equation}
+a=\begin{cases}2&h\text{ odd},\\1&h\text{ even},\end{cases}
+ \qquad b=-h,\qquad N(u)=au+b.
+                                                        \tag{0.1}\label{eq:0-1}
+\end{equation}
+Then \((a,b)=1\), \(a+b\) is odd, and an odd integer \(u\) gives an odd \(N(u)\). Also \(p=N(u)\) gives \(p+h=au\). The integer \(a\) is squarefree. If \(u\) is odd and squarefree, then \(au\) is squarefree, and
+\stepcounter{equation}
+\begin{equation}
+\lambda(au)=\lambda(a)\lambda(u).
+                                                        \tag{0.2}\label{eq:0-2}
+\end{equation}
+Thus to prescribe the sign \(s\), it is enough to produce the sign
+\(\rho=s\lambda(a)\) for \(u\). The proof below does this simultaneously for both \(\rho\).
+
+Most algebraic statements will allow any fixed integers \(a\ge1,b\ne0\) with \((a,b)=1\). For prime extraction from the odd \(u\) constructed here we additionally require \(a+b\) odd. Uniform estimates in the main application refer to the range
+\stepcounter{equation}
+\begin{equation}
+a\in\{1,2\},\quad 0<|b|\le L^6,\quad(a,b)=1,\quad a+b\text{ odd},
+ \qquad L=\log x,\quad T=\log L.                         \tag{U}\label{eq:U}
+\end{equation}
+All constants declared absolute are independent of \(a,b,x,\rho\) in \eqref{eq:U}. A statement for general fixed \(a,b\) may instead have constants depending on them. The weight geometry is always the same.
+
+\subsection{Candidate weights, their mass and squarefreeness}\label{sec:weights}
+
+\subsubsection{Prime bands}\label{sec:bands}
+
+\begin{definition}[Prime bands]\label{def:bands}
+Fix
+\begin{equation*}
+r_0=20,\quad c_1=1,\ c_2=6/5,\ c_3=3/2,\ c_4=9/5,\quad
+ \sigma=\frac1{r_0(c_1+c_2)},\quad s_j=\sigma2^{-j}L.
+\end{equation*}
+These constants satisfy \((r_0-1)c_1/2=19/2>c_2+1=11/5\) and \(c_2\sigma=3/110<1/4\), the numerical requirements on the ordinary bands in [\citetalias{OpenAIE}, (5.1), p.22].
+Let \(j_x\) be the largest integer with \(s_{j_x}\ge20T\). Let \(Q_j\) be the primes with \(c_1s_j\le\log p\le c_2s_j\), for \(0\le j\le j_x\). For every interval \([c_3s_j,c_4s_j]\) contained in either \([L^{1/10},L^{1/5}]\) or \([L^{3/10},L^{2/5}]\), use the full set of primes in that interval as one group \(P_g\). Write \(\mathcal P=\bigcup_gP_g\).
+
+\end{definition}
+\begin{lemma}[Band geometry]\label{lem:bands}
+The band and group geometry satisfies the separation, count and harmonic bounds below.
+\end{lemma}
+\begin{proof}
+These are disjoint because \(c_2<c_3<c_4<2c_1\) and \(c_4/2<c_1\). The number of groups in either logarithmic exponent range is
+\((1/10)T/\log2+O(1)\). In particular, each family has between fixed positive multiples of \(T\) groups, while the total number of groups is at most \(T\), for all sufficiently large \(x\). Also \(j_x+1\le2T\) eventually. Every ordinary-band prime is at least \(L^{20}\), and every group prime is at least \(\exp(L^{1/10})>L^{20}\) eventually.
+
+We use [\citetalias{OpenAIE}, Proposition 2.1, pp.2--3]. It gives the PNT with arbitrarily large fixed logarithmic accuracy and Mertens' estimates. All interval endpoints here tend to infinity; the smallest logarithmic endpoint is at least \(20T\), and the logarithmic ratio of the two endpoints is the same \(6/5\). Partial summation therefore gives, uniformly in the band/group indices,
+\stepcounter{equation}
+\begin{equation}
+V_{Q,j}=\sum_{p\in Q_j}p^{-1}=\log(6/5)+o(1),\qquad
+ V_g=\sum_{p\in P_g}p^{-1}=\log(6/5)+o(1).                \tag{1.1}\label{eq:1-1}
+\end{equation}
+In particular, we may and do impose \(1/10\le V_{Q,j},V_g\le1\). These are exactly the geometry in [\citetalias{OpenAIE}, (5.1)--(5.2), p.22]. We do not remove any primes from a group. In \eqref{eq:U}, all band/group primes already exceed every prime divisor of \(2ab\), once \(x\) exceeds an absolute threshold. For fixed general \(a,b\), the same assertion holds after an \(a,b\)-dependent threshold.
+
+\end{proof}
+
+\subsubsection{The two projections}\label{sec:projections}
+\begin{definition}[Candidate weights]\label{def:weights}
+For a positive integer \(n\), let \(n_*\) be its part outside \(\mathcal P\), and set
+\begin{equation*}
+E(n)=(-1)^{\sum_{p\in\mathcal P}v_p(n)},\qquad
+ W_1(n)=\prod_g\frac{\omega_g(n)\,2^{-(\omega_g(n)-1)}}{V_g},
+ \quad \omega_g(n)=\#\{p\in P_g:p\mid n\}.
+\end{equation*}
+A factor with \(\omega_g(n)=0\) is zero. Let \(a_0(v)\) be the number of ordered tuples with exactly \(r_0\) prime slots in every \(Q_j\) and product \(v\), divided by \((r_0!)^{j_x+1}\). Equivalently,
+\begin{equation*}
+a_0(v)=\prod_p\frac1{v_p(v)!}
+\end{equation*}
+if \(v\) has exactly \(r_0\) factors with multiplicity in each \(Q_j\), and is zero otherwise. Thus \(0\le a_0\le1\). Fix once and for all a smooth \(0\le\Psi\le1\), supported in \([1,2]\), which is bounded below positively on some \([\alpha,\beta]\subset(1,2)\). Define
+\stepcounter{equation}
+\begin{equation}
+\begin{aligned}
+A_0(u)&=W_1(u)a_0(u_*),\qquad
+ A_\rho(u)=A_0(u)\frac{1+\rho E(u)}2,\\
+ w_\rho(u)&=A_\rho(u)\Psi(u/x),\qquad
+ X_\rho=\sum_uw_\rho(u).
+\end{aligned}                                \tag{1.2}\label{eq:1-2}
+\end{equation}
+\end{definition}
+\begin{lemma}[Support and pointwise bound]\label{lem:support}
+The support and pointwise estimates \eqref{eq:1-3}--\eqref{eq:1-4} hold.
+\end{lemma}
+\begin{proof}
+These quantities are independent of \(a,b\). The support is odd and has no prime factor below \(L^{20}\). Since \(r_0(j_x+1)\) is even,
+\stepcounter{equation}
+\begin{equation}
+A_\rho(u)>0\quad\Longrightarrow\quad\lambda(u)=E(u)=\rho.
+                                                        \tag{1.3}\label{eq:1-3}
+\end{equation}
+This follows from complete multiplicativity and the exact values \(\lambda(p)=-1\). Moreover
+\(k2^{-(k-1)}\le1\) for every integer \(k\ge1\). Consequently
+\stepcounter{equation}
+\begin{equation}
+0\le w_\rho(u)\le A_\rho(u)\le A_0(u)
+ \le 10^{\#\{g\}}\le L^3.                               \tag{1.4}\label{eq:1-4}
+\end{equation}
+
+\end{proof}
+
+\subsubsection{Harmonic mass and the two parities}\label{sec:mass}
+\begin{lemma}[Harmonic mass and localization]\label{lem:mass}
+The identities and estimates \eqref{eq:1-5}--\eqref{eq:1-9} hold for both signs with absolute constants.
+\end{lemma}
+\begin{proof}
+Define
+\begin{equation*}
+H_Q=\prod_{j=0}^{j_x}\frac{V_{Q,j}^{20}}{20!},\qquad
+ Z_g(q)=\prod_{p\in P_g}(1+q/(p-1)),\quad
+ H_g=\frac{Z_g'(1/2)}{V_g},\quad H_P=\prod_gH_g.
+\end{equation*}
+Expansion of the finite Euler products and geometric series in prime powers gives
+\stepcounter{equation}
+\begin{equation}
+H_Q=\sum_v\frac{a_0(v)}v,\quad
+ H_P=\sum_{r:r_*=1}\frac{W_1(r)}r,\quad
+ H_g=\frac{Z_g(1/2)}{V_g}\sum_{p\in P_g}\frac1{p-1+1/2}.
+                                                        \tag{1.5}\label{eq:1-5}
+\end{equation}
+In particular \(1\le Z_g(1/2)\le H_g\le C\), with an absolute \(C\), by \eqref{eq:1-1}; hence \(1\le H_P\le L^{C'}\). Since \(20!\le20^{20}\) and \(j_x+1\le2T\),
+\stepcounter{equation}
+\begin{equation}
+H_Q\ge(200^{-20})^{2T}=L^{-40\log200}\ge L^{-220}.         \tag{1.6}\label{eq:1-6}
+\end{equation}
+The finitely many thresholds used here are absolute.
+
+Under the probability laws \(a_0(v)/(vH_Q)\) and \(W_1(r)/(rH_P)\), choose \(V,R\) independently. The ordinary slots are independent with probabilities \(1/(pV_{Q,j})\). The groups of \(R\) are independent with normalizers \(H_g\). In one group, total multiplicity one has unnormalized mass \(1\); multiplicity two coming from two distinct primes has mass
+\begin{equation*}
+\frac{1/2}{V_g}\left(V_g^2-\sum_{p\in P_g}p^{-2}\right).
+\end{equation*}
+Each is bounded below by an absolute positive constant for large \(x\), and \(H_g\le C\). Thus each group assigns probability at least \(\delta_0>0\) to each parity. Conditioning on all other groups proves
+\stepcounter{equation}
+\begin{equation}
+\mathbb P(E(R)=\rho)\ge\delta_0\quad(\rho=\pm1).           \tag{1.7}\label{eq:1-7}
+\end{equation}
+This is the parity bound needed for both projections.
+
+We use [\citetalias{OpenAIE}, Lemma 5.1, p.24]. Its weight is precisely \(W_1\) with the bands, damping \(1/2\) and groups just defined. Its hypotheses contain neither the projection nor the prime form. Therefore, for each fixed \(\eta>0\),
+\stepcounter{equation}
+\begin{equation}
+\sum_{\substack{r>x^\eta\\r_*=1}}\frac{W_1(r)}r
+ \le L^C\exp(-\eta L^{3/5}).                             \tag{1.8}\label{eq:1-8}
+\end{equation}
+It is uniform in \(a,b,\rho\), since those parameters do not occur in the sum.
+
+With \(U=VR\), the identity
+\begin{equation*}
+X_\rho=H_QH_P\,\mathbb E[U\Psi(U/x)1_{E(R)=\rho}]
+\end{equation*}
+is exact. Leave one ordinary slot in \(Q_0\) unconditioned. The support of \(\Psi\) restricts its logarithm to an interval of length \(\log2\); by the PNT in [\citetalias{OpenAIE}, Proposition 2.1], the harmonic probability of that interval is \(O(1/L)\), uniformly in its position inside \(Q_0\). Since \(U\le2x\) on that support, this proves the upper bound \(X_\rho\ll xH_QH_P/L\).
+
+For the lower bound put \(m_j=(c_1+c_2)s_j/2\) and \(\Delta=(c_2-c_1)\sigma L\). Then \(20\sum_{j\ge0}m_j=L\). One may take \(J_0=12\): the tail is \((6/11)2^{-12}L<L/5280=\Delta/24\). Restrict every slot in the first \(J_0+1\) bands, except the reserved slot, to a sufficiently small fixed relative neighborhood of its midpoint, so that the sum of their logarithmic deviations is below \(\Delta/24\). There are only finitely many restrictions. Each has harmonic probability bounded below independently of \(x\), by \eqref{eq:1-1} and the same PNT, and so their joint probability is positive independently of \(x\).
+
+Independently require \(E(R)=\rho\) and \(\log R\le\Delta/12\). The probability is at least \(\delta_0/2\) by \eqref{eq:1-7}--\eqref{eq:1-8}, because \(\Delta/(12L)\) is a fixed positive number and \(H_P\ge1\). The total logarithms of the remaining bands and their midpoint sum are each below \(\Delta/24\). Thus, on this event, the logarithm \(B_0\) of the product of all variables except the reserved prime satisfies
+\begin{equation*}
+|B_0-(L-m_0)|<\Delta/6.
+\end{equation*}
+The interval
+\([L+\log\alpha-B_0,L+\log\beta-B_0]\)
+for the reserved prime logarithm lies inside its band with distance \(\gg\Delta\) from the endpoints. It has fixed positive length and harmonic probability \(\gg1/L\), uniformly in the conditioned variables. It makes \(U\Psi(U/x)\gg x\). Therefore, with absolute constants, simultaneously for both signs,
+\stepcounter{equation}
+\begin{equation}
+X_\rho\asymp\frac{x}{L}H_QH_P,\qquad
+ X_\rho\ge c_0xL^{-221}.                                \tag{1.9}\label{eq:1-9}
+\end{equation}
+The localization construction is that of [\citetalias{OpenAIE}, Lemma 5.2, pp.24--25].
+
+\end{proof}
+
+\subsubsection{Squarefree loss}\label{sec:squares}
+\begin{lemma}[Squarefree loss]\label{lem:squares}
+The nonsquarefree contribution satisfies \eqref{eq:1-10}, uniformly in \eqref{eq:U}.
+\end{lemma}
+\begin{proof}
+In an ordinary band, two specified slots coincide with probability
+\(\sum p^{-2}/V_{Q,j}^2\ll L^{-20}\). There are \(O(T)\) pairs of slots, so their union has probability \(O(TL^{-20})\). For a group prime \(p\), let \(Z_{g,p}(q)=\prod_{\ell\in P_g,\ell\ne p}(1+q/(\ell-1))\). Its unnormalized occurrence mass is
+\begin{equation*}
+\frac{Z_{g,p}(1/2)+(1/2)Z'_{g,p}(1/2)}{V_g(p-1)}.
+\end{equation*}
+The product and derivative in the numerator are uniformly bounded, by \eqref{eq:1-1}, since \(\sum_{\ell\in P_g}1/(\ell-1)\ll1\). Dividing by \(H_g\ge1\) proves occurrence probability \(O(1/p)\). Conditional on its occurrence and on the set of distinct prime factors, its exponent has probability proportional to \(p^{-k}\), \(k\ge1\), so the probability of exponent at least two is \(1/p\). Thus the probability of any square in the group part is
+\begin{equation*}
+O\left(\sum_{p\in\mathcal P}p^{-2}\right)
+ \ll T\exp(-L^{1/10}).
+\end{equation*}
+All bands and groups are disjoint and use odd primes. Dropping the parity and localization conditions, and bounding \(U\Psi(U/x)\le2x\), gives
+\stepcounter{equation}
+\begin{equation}
+\sum_{u\ {\rm not\ squarefree}}w_\rho(u)
+ \ll xH_QH_P\,T L^{-20}
+ =O(TL^{-18})\,X_\rho/L
+ =o(X_\rho/L).                                         \tag{1.10}\label{eq:1-10}
+\end{equation}
+The bounds are absolute and uniform in \eqref{eq:U}. This is the same loss mechanism as [\citetalias{OpenAIE}, Lemma 5.3, pp.25--26], proved here for both projections.
+
+
+\end{proof}
+
+\section{The general bilinear parametrization}\label{sec:s2}
+
+\begin{lemma}[Bilinear parametrization]\label{lem:parametrization}
+Let \(a\ge1\), \(b\ne0\), \((a,b)=1\) and \(R=\operatorname{rad}(2a|b|)\). Every solution of \eqref{eq:2-1} in positive integers determines a unique nonzero integer \(k\) satisfying \eqref{eq:2-2}. Conversely, every nonzero integer \(k\) and positive integers \(m,m',v,v'\) with \(mv'-m'v=bk\), \((m,k)=1\) and \eqref{eq:2-3} arise in this way from exactly one solution of \eqref{eq:2-1}. Thus the two maps are mutually inverse bijections between the solutions of \eqref{eq:2-1} with \((m,k)=1\) and these tuples.
+\end{lemma}
+\begin{proof}
+Let \(a\ge1,b\ne0,(a,b)=1\), and let
+\begin{equation*}
+R=\operatorname{rad}(2a|b|).
+\end{equation*}
+Suppose positive integers \(m,m',n,e,v,v'\) satisfy
+\stepcounter{equation}
+\begin{equation}
+mn=aev+b,\qquad m'n=aev'+b,\qquad m\ne m',\qquad(e,R)=1.
+                                                        \tag{2.1}\label{eq:2-1}
+\end{equation}
+Then \((n,ae)=1\). Indeed, a prime dividing \(n,a\) would divide \(b\); and a prime dividing \(n,e\) would divide \(b\), contrary to \((e,b)=1\). Subtracting \eqref{eq:2-1} gives a unique nonzero integer \(k\) with
+\stepcounter{equation}
+\begin{equation}
+m'-m=aek,\quad v'-v=kn,\quad
+ z=m'v,\quad z+bk=mv'.                                 \tag{2.2}\label{eq:2-2}
+\end{equation}
+The last identity follows by subtracting \(m'v\) from \(mv'\) and using \(mn-aev=b\).
+
+Conversely, fix a nonzero integer \(k\), and positive factorizations
+\begin{equation*}
+z=m'v,\qquad z+bk=mv',\qquad (m,k)=1.
+\end{equation*}
+Suppose
+\stepcounter{equation}
+\begin{equation}
+e=(m'-m)/(ak)\ \text{is a positive integer},\quad(e,R)=1,
+ \qquad aev+b>0.                                       \tag{2.3}\label{eq:2-3}
+\end{equation}
+The determinant identity gives \(m(v'-v)=k(aev+b)\). Hence \(m\mid aev+b\), and
+\begin{equation*}
+n=(aev+b)/m
+\end{equation*}
+is a positive integer. Substitution proves both equations \eqref{eq:2-1} and \(v'-v=kn\). The reconstruction is unique. Any further restrictions on \(m,m',v,v',e,n\) may therefore be imposed on either side of this bijection. The general lemma permits either parity of \(k\).
+
+\end{proof}
+\begin{lemma}[Character mask]\label{lem:mask}
+Let \(k\) be a nonzero integer, \(d=a|k|\) and \(Q=dR\), and let \(m,m'\) be integers coprime to \(Q\). With \(\mathcal T_{d,R}\) defined by \eqref{eq:2-4}, the equivalence \eqref{eq:2-5} and the expansion \eqref{eq:2-6} hold, and \(\sum_\chi|c_\chi|\le R\), independently of \(k\).
+\end{lemma}
+\begin{proof}
+Assume additionally that \(m,m'\) are units modulo
+\begin{equation*}
+dR,\qquad d=a|k|,\quad Q=dR.
+\end{equation*}
+Define a subset of the group of units modulo \(Q\) by
+\stepcounter{equation}
+\begin{equation}
+\mathcal T_{d,R}=
+ \{r\bmod Q:(r,Q)=1,\ r\equiv1\pmod d,\
+                  ((r-1)/d,R)=1\}.                    \tag{2.4}\label{eq:2-4}
+\end{equation}
+The last condition is independent of the representative, since adding \(Q\) changes the quotient by \(R\). Multiplication by the unit \(m^{-1}\) modulo \(Q\) shows exactly that
+\stepcounter{equation}
+\begin{equation}
+\left[\,ak\mid m'-m,\quad
+             \left((m'-m)/(ak),R\right)=1\,\right]
+ \quad\Longleftrightarrow\quad
+ m'\overline m\bmod Q\in\mathcal T_{d,R}.                \tag{2.5}\label{eq:2-5}
+\end{equation}
+For clarity, after divisibility by \(d\), the quotient of
+\(m'-m\equiv m(r-1)\pmod{dR}\) by \(d\) is a congruence modulo \(R\). Its left side is \(\operatorname{sgn}(k)e\), and \(m\) is a unit modulo \(R\); thus the two gcd conditions agree.
+
+Orthogonality on the finite group of units gives
+\stepcounter{equation}
+\begin{equation}
+1_{\mathcal T_{d,R}}(m'\overline m)
+ =\sum_{\chi\bmod Q}c_\chi\,\chi(m')\overline{\chi(m)},
+ \qquad
+ c_\chi=\frac1{\varphi(Q)}
+          \sum_{r\in\mathcal T_{d,R}}\overline{\chi(r)}.
+                                                        \tag{2.6}\label{eq:2-6}
+\end{equation}
+Each possible \(r\) has the form \(1+dt\), \(t\bmod R\), so
+\stepcounter{equation}
+\begin{equation}
+\sum_\chi|c_\chi|\le|\mathcal T_{d,R}|\le R.             \tag{2.7}\label{eq:2-7}
+\end{equation}
+This bound is independent of \(k\). Empty sets simply give a zero mask. For fixed \(a,b\), the cost is a constant depending on them. In \eqref{eq:U}, \(R\le2a|b|\le4L^6\le L^7\) eventually. Thus \eqref{eq:2-6} has only a fixed logarithmic total coefficient cost, and its moduli are logarithmic whenever \(k\) is.
+
+The coprimality mask is inherited from the support of \(e\).
+
+\end{proof}
+\begin{remark}\label{rem:mask-mass}
+The coefficient mass in \eqref{eq:2-7} satisfies the sharper bound \(\sum_\chi|c_\chi|\le2^{\omega(R)}\); only the bound \(R\) is used below.
+Indeed, for \(r\equiv1\pmod d\) and a prime \(\ell\mid R\) one has \(\ell\mid(r-1)/d\) exactly when \(r\equiv1\pmod{d\ell}\), so inclusion--exclusion writes the mask as
+\(\sum_{S\subset\{\ell:\ell\mid R\}}(-1)^{|S|}
+1_{\{r\equiv1\pmod{d\prod_{\ell\in S}\ell}\}}\) on the units modulo \(Q\).
+Since \(R\) is squarefree, each modulus \(d\prod_{\ell\in S}\ell\) divides \(Q\), so each set in this sum is a subgroup \(H\) of the units modulo \(Q\). Its expansion \eqref{eq:2-6} has the coefficient \(|H|/\varphi(Q)\) at the \(\varphi(Q)/|H|\) characters that are trivial on \(H\) and the coefficient \(0\) at all others, hence total mass one; the triangle inequality
+therefore gives \(\sum_\chi|c_\chi|\le2^{\omega(R)}\).
+\end{remark}
+\begin{remark}[Oddness alone]\label{rem:oddness}
+Take \(a=1,b=-6,e=3,n=9,m=1,m'=5,v=5,v'=17\). Then
+\(mn=9=3\cdot5-6\) and \(m'n=45=3\cdot17-6\).
+All of \(e,v,v'\) are odd and \(v,v',m,m'\) are units modulo \(6\), but
+\((m'-m)/(ae)=4/3\) is not integral. Here the missing condition is \((e,3)=1\).
+These points are not in the constructed support; they illustrate why expanding a Cauchy majorant while retaining only oddness would not justify our displayed parametrization for a shift divisible by 3. The actual proof retains the full \((e,R)=1\). This does not exclude alternative gcd-stratified parametrizations of a larger sum.
+
+
+
+\end{remark}
+
+\section{The cited correlation theorem and its precise use}\label{sec:s3}
+
+\begin{inputthm}[Prime-slot correlations]\label{input:correlation}
+We use [\citetalias{OpenAIE}, Theorem 4.1, pp.12--14]. The following is its needed statement. The prime groups have fixed bounds
+\(0<a_0<b_0<c_0<d_0<0.47\), with logarithms of the small groups between \(L^{a_0},L^{b_0}\), and the big groups between \(L^{c_0},L^{d_0}\); group counts are between fixed positive multiples of \(T\), group harmonic masses are bounded above and below, and each big group is a full prime interval. Fix the damping \(q_0\in(0,1)\) and a fixed positive number \(\ell\) of marks in each group, and let \(W_\ell\) be the marked weight of [\citetalias{OpenAIE}, (4.2), p.12]; for \(q_0=1/2\) and \(\ell=1\) it is the weight \(W_1\) of Definition~\ref{def:weights}. Use the same \(\epsilon=1\) or \(E\) at the two endpoints. An endpoint core is
+\stepcounter{equation}
+\begin{equation}
+F(t)=\sum_{mpr=t_*}\alpha_m\chi_0(m)m^{i\sigma_0}
+             1_{p\in I,\ p\ {\rm prime}}p^{i\sigma_1}c_r, \tag{3.1}\label{eq:3-1}
+\end{equation}
+where \(I\subset[x^\tau,x^\eta]\), \(0<\tau<\eta<1/4\) are fixed, \(\alpha\) is supported on \(P^-(m)>W=\exp(\sqrt L)\), and coefficients, character moduli, and power frequencies have fixed logarithmic bounds. For any desired fixed \(D_0\), there is a fixed discrepancy exponent \(B_0\) such that
+\stepcounter{equation}
+\begin{equation}
+\left|\sum_{m\in J}\alpha_m\chi(m)m^{-1+it}\right|\le L^{-B_0}
+ \quad(J\subset[1,x^2]\text{ an interval},\
+                q_\chi,|t|\le L^{B_0})                 \tag{3.2}\label{eq:3-2}
+\end{equation}
+implies
+\stepcounter{equation}
+\begin{equation}
+\sum_{\substack{z>0\\z+\Delta>0}}
+ \frac{\psi(z/Z)}z z^{it_1}(z+\Delta)^{it_2}
+ \overline{F(z)}G(z+\Delta)W_\ell(z)W_\ell(z+\Delta)
+                     \epsilon(z)\epsilon(z+\Delta)
+ \ll L^{-D_0}.                                        \tag{3.3}\label{eq:3-3}
+\end{equation}
+Here \(G\) has the same type of core but needs no discrepancy. The estimate is uniform for nonzero integer \(|\Delta|\le L^C\), \(xL^{-C}\le Z\le xL^C\), \(|t_i|\le L^C\), and smooth cutoffs in a fixed compact subinterval of \((0,\infty)\) with
+\(\|\psi^{(j)}\|_\infty\ll_j L^{C(j+1)}\). Conjugating a core is allowed by conjugating its coefficients, characters and frequencies; \eqref{eq:3-2} is invariant under that operation. To estimate a product \(F(z)G(z+\Delta)\) with this convention, take the first input core to be \(F_E=\overline F\).
+
+\end{inputthm}
+\begin{lemma}[Fixed group hypotheses]\label{lem:group-input}
+The groups above satisfy the fixed hypotheses of Input~\ref{input:correlation}.
+\end{lemma}
+\begin{proof}
+Our groups in Section~\ref{sec:s1} have \((a_0,b_0,c_0,d_0)=(1/10,1/5,3/10,2/5)\); \(2/5<0.47\). Their disjointness, counts, full-interval property and harmonic bounds were proved in Section~\ref{sec:bands}. We use damping \(1/2\) and \(\ell=1\). These data do not depend on the shift. All group primes are below \(W\). Thus multiplying an argument by a \(\mathcal P\)-integer leaves its core \eqref{eq:3-1} unchanged. The function \(E\) is real, unit-valued and completely multiplicative, so the same-sign requirement and the exact common-dilation identity
+\(E(Dz)E(Dz')=E(z)E(z')\) hold. The remaining, variable core hypotheses will all be checked explicitly in Section~\ref{sec:s4.6}, where \eqref{eq:3-3} is actually invoked.
+
+The long-prime input to [\citetalias{OpenAIE}, Theorem 4.1] is [\citetalias{OpenAIE}, Lemma 3.1, p.4].
+
+
+
+\end{proof}
+
+\section{Type II distribution for \texorpdfstring{\(N(u)=au+b\)}{N(u)=au+b}}\label{sec:s4}
+
+\begin{theorem}[Type II distribution]\label{thm:typeii}
+Fix \(D_*>0\), \(0<b_*<1/2\), and \(C>0\). Let \(UV\asymp x\), \(x^{b_*}\le U,V\le x^{1-b_*}\), with fixed implied constants, and let \(K\subset[U,2U)\), \(J\subset[V,2V)\) be intervals. Let \(|\alpha_m|,|\beta_n|\le L^C\), with \(\alpha_m=0\) unless \(P^-(m)>W\). There is a fixed \(B_*\), depending only on these data and the geometry, such that
+\stepcounter{equation}
+\begin{equation}
+\left|\sum_{m\in I}\alpha_m1_K(m)\chi(m)m^{-1+it}\right|
+ \le L^{-B_*}\quad(I\subset[1,x^2]\text{ an interval},
+                         q_\chi,|t|\le L^{B_*})          \tag{4.1}\label{eq:4-1}
+\end{equation}
+implies
+\stepcounter{equation}
+\begin{equation}
+\sum_{\substack{m\in K,n\in J,u\ge1\\mn=au+b}}
+       \alpha_m\beta_nw_\rho(u)\ll xL^{-D_*}.             \tag{4.2}\label{eq:4-2}
+\end{equation}
+This is uniform in \eqref{eq:U} and \(\rho\). It also holds for general fixed coprime \(a\ge1,b\ne0\), with an \(a,b\)-dependent threshold and constant. No discrepancy, smoothness or multiplicativity is required of \(\beta\). The corresponding statement in [\citetalias{OpenAIE}, Theorem 6.1, p.26] concerns \(mn=2u+1\).
+
+\end{theorem}
+\begin{proof}
+The proof occupies Sections~\ref{sec:s4.1}--\ref{sec:s4.6}.
+\subsection{A reserved prime and a negligible tail}\label{sec:s4.1}
+
+Extend the actual restrictions in \(\alpha,\beta\) by zero. By \eqref{eq:1-2}, treat \(A_0(u)\epsilon(u)\Psi(u/x)\) separately for \(\epsilon=1,E\), before any squaring. Choose a fixed \(j_{**}\) with
+\begin{equation*}
+\tau=c_1\sigma2^{-j_{**}}>0,\qquad
+ \eta=c_2\sigma2^{-j_{**}}<\min(b_*/4,1/4),
+\end{equation*}
+and reserve one labelled prime slot in \(Q_{j_{**}}\). Discard \(u_{\mathcal P}=u/u_*>x^{b_*/4}\). The \(W\)-rough divisors of \(N(u)\asymp x\) are the divisors of its \(W\)-rough part. This part has \(O(\sqrt L)\) prime factors counted with multiplicity, since \(\Omega(m)\log W\le\log N(u)\) for each rough divisor \(m\); hence their number is at most \(2^{O(\sqrt L)}\).
+
+Use \eqref{eq:1-8} with the fixed parameter \(b_*/4\). Writing \(u=vr\asymp x\), bounding \(1\ll x/(vr)\), and dropping the product restriction bounds the discarded absolute sum by
+\stepcounter{equation}
+\begin{equation}
+xL^{O(1)}e^{O(\sqrt L)}
+ H_Q\sum_{\substack{r>x^{b_*/4}\\r_*=1}}\frac{W_1(r)}r
+ \ll xL^{O(1)}\exp(-b_*L^{3/5}/4+O(\sqrt L)).            \tag{4.3}\label{eq:4-3}
+\end{equation}
+It is \(O_H(xL^{-H})\) for every fixed \(H\). Constants are uniform in \eqref{eq:U}; for fixed general \(a,b\), the same proof uses \(N(u)\asymp_{a,b}x\).
+
+\subsection{Smooth allocation and separation}\label{sec:s4.2}
+
+Set \(\mathcal E=UL^{-K_0}\), with \(K_0\) to be chosen. Put the whole group part and the reserved prime in \(v\); on retained tuples their product is at most \(x^{b_*/2}\). Allocate all other ordinary slots to \(e\) or \(v\) in increasing band index, keeping \(ev=u\). Let \(0\le\gamma\le1\) be fixed smooth, zero on \((-\infty,0]\) and one on \([1,\infty)\). Begin with \(R_1=\log\mathcal E\). At a slot \(p_i\) in band \(j(i)\), assign it to \(e\) with weight \(\gamma((R_i-\log p_i)/s_{j(i)})\), otherwise to \(v\) with the complementary weight; subtract \(\log p_i\) from \(R_i\) exactly in the first case.
+
+The total available logarithm exceeds \(\log\mathcal E>0\) for large \(x\), since the available product is at least a fixed multiple of \(x^{1-b_*/2}\), whereas \(\mathcal E\le x^{1-b_*}\). On every positive-weight branch,
+\stepcounter{equation}
+\begin{equation}
+0\le R_i\le\sum_{t\ge i}\log p_t+(c_2+1)s_{j_x}.        \tag{4.4}\label{eq:4-4}
+\end{equation}
+Taking a slot preserves this by subtraction. Skipping in band \(j\) requires \(R_i<(c_2+1)s_j\). If \(j<j_x\), the next band has at least \(r_0-1\) unprocessed slots, with total logarithm at least
+\((r_0-1)c_1s_j/2\ge(c_2+1)s_j\); if \(j=j_x\), the terminal error in \eqref{eq:4-4} suffices. This proves the induction, and hence
+\stepcounter{equation}
+\begin{equation}
+\mathcal E L^{-C_s}\le e\le\mathcal E,\qquad
+ C_s>40(c_2+1)\ \text{fixed}.                            \tag{4.5}\label{eq:4-5}
+\end{equation}
+The sum of unprocessed band scales is \(O(s_{j(i)})\), so all arguments of \(\gamma\) lie in a fixed compact interval independent of \(K_0\).
+
+Choose a fixed smooth compactly supported \(0\le\zeta\le1\), one on that interval, and write \(f_1=\zeta\gamma,f_0=\zeta(1-\gamma)\). The retained allocation is unchanged. On every tuple, total branch weight is at most one because \(f_0+f_1\le1\) at each node. We may impose \eqref{eq:4-5} and reinstate discarded tuples with cost bounded by \eqref{eq:4-3}.
+
+There are \(N=20(j_x+1)-1=O(T)\) transitions. Let \(C_F\ge1\) bound the Fourier \(L^1\) masses of \(f_0,f_1\), in the convention \(f(t)=\int\widehat f(\xi)e^{i\xi t}\,d\xi/(2\pi)\). All branches and Fourier integrals have total variation at most \((2C_F)^N\le L^{C_f}\), with \(C_f\) independent of \(K_0\). Truncating each frequency at \(|\xi_i|\le L\) costs at most
+\stepcounter{equation}
+\begin{equation}
+2^NN C_H C_F^{N-1}L^{-H}                               \tag{4.6}\label{eq:4-6}
+\end{equation}
+for any fixed \(H\). This is a union bound on the tails: \(C_H\) occurs once in each term, so increasing \(H\) does not enlarge the exponent from \(C_F^N\).
+
+For a branch with indicators \(\delta_t\) of assignment to \(e\), the Fourier phase is
+\begin{equation*}
+\exp\!\left(i\log\mathcal E\sum_i\xi_i/s_{j(i)}\right)
+ \prod_t p_t^{i\sigma_t},\quad
+ \sigma_t=-\xi_t/s_{j(t)}
+              -\delta_t\sum_{i>t}\xi_i/s_{j(i)} .
+\end{equation*}
+Since \(\sum_i s_{j(i)}^{-1}=O(T^{-1})\), retained frequencies are \(O(L/T)\). Separate \(\Psi(ev/x)\) using the one-dimensional Fourier transform of \(t\mapsto\Psi(e^t)\); it has fixed \(L^1\) mass and arbitrarily small logarithmic tails at a fixed logarithmic frequency cutoff.
+
+For these errors, before Cauchy, the original \(m,n\) restrictions still give \(u=(mn-b)/a\asymp x\). By \eqref{eq:1-4} the absolute factorization mass is at most a fixed logarithmic power times \(\sum_{t\asymp x}\tau(t)\), which is \(O(xL^{C'})\) by [\citetalias{OpenAIE}, Proposition 2.2, p.3] with its fixed first divisor moment. The labelled sum has that same mass with its original factorial normalization. Thus \eqref{eq:4-6} and the cutoff tails give arbitrary \(O_H(xL^{-H})\) errors.
+
+We have reduced to a sum/integral of total variation \(L^{C_f}\) of
+\stepcounter{equation}
+\begin{equation}
+B'=\sum_{e,n}a_e(e)\beta_n\sum_{mn=aev+b}\alpha_ma_v(v),
+ \quad a_v(v)=v^{i\varrho}\epsilon(v)W_1(v)H(v_*),        \tag{4.7}\label{eq:4-7}
+\end{equation}
+\stepcounter{equation}
+\begin{equation}
+H(t)=\sum_{\substack{pr=t\\p\in Q_{j_{**}}}}
+                    p^{i\sigma}c_r.                    \tag{4.8}\label{eq:4-8}
+\end{equation}
+All power frequencies have fixed logarithmic bounds. The reserved slot remains prime. For a fixed branch and product, disjoint bands determine the prime multiset in each band, with at most \(20!\) assignments. Put the original factorial normalization entirely in \(c_r\), for example. Then
+\stepcounter{equation}
+\begin{equation}
+|a_e|,|c_r|\le(20!)^{j_x+1}\le L^{C_a},\qquad
+ |a_v(v)|\le L^{C_v}\tau(v_*),                            \tag{4.9}\label{eq:4-9}
+\end{equation}
+with exponents independent of \(K_0\) and tail precision. The range \eqref{eq:4-5} is included in \(a_e\). Since \(e\) has only ordinary-band primes, \(E(e)=1\), \(W_1(ev)=W_1(v)\), and \((e,R)=1\), where \(R=\operatorname{rad}(2a|b|)\).
+
+\subsection{Cauchy and its diagonal}\label{sec:s4.3}
+
+Choose smooth nonnegative majorants \(\eta_e,\eta_n\), equal to at least one on \([L^{-C_s},1]\) and \([1,2]\), supported respectively on \([\tfrac12L^{-C_s},2]\) and \([1/2,3]\). Their derivatives have fixed logarithmic bounds depending only on \(C_s\). Retain the exact condition \((e,R)=1\) in Cauchy's majorant. There are \(O(\mathcal E V)\) pairs \((e,n)\), so
+\stepcounter{equation}
+\begin{equation}
+|B'|^2\ll\mathcal E V L^{C_p}\mathcal N,\quad
+ \mathcal N=\sum_{\substack{e,n\\(e,R)=1}}
+ \eta_e(e/\mathcal E)\eta_n(n/V)
+ \left|\sum_{mn=aev+b}\alpha_ma_v(v)\right|^2.            \tag{4.10}\label{eq:4-10}
+\end{equation}
+Here \(C_p\) is independent of \(K_0\). The condition on \(e\) is legitimate because it holds on the actual support of \(a_e\).
+
+The diagonal \(m=m'\) forces \(v=v'\). Collecting by \(u=ev\), and dropping restrictions in an upper bound, gives
+\stepcounter{equation}
+\begin{equation}
+\mathcal N_{\rm diag}\ll
+ L^{C'}\sum_{u\asymp x}\tau(au+b)\tau(u)^3
+ \ll xL^{C_d}.                                         \tag{4.11}\label{eq:4-11}
+\end{equation}
+Indeed apply Cauchy and [\citetalias{OpenAIE}, Proposition 2.2, p.3] with fixed moments 2 and 6. The injective values \(au+b>0\) lie in \([1,O(x)]\) in \eqref{eq:U}, so their second divisor moment is bounded by the full sum there. For fixed general \(a,b\), that interval is \([1,O_{a,b}(x)]\), as allowed. Fix
+\stepcounter{equation}
+\begin{equation}
+K_0>2(D_*+C_f+1)+C_p+C_d+2.                            \tag{4.12}\label{eq:4-12}
+\end{equation}
+Since \(\mathcal E V\asymp xL^{-K_0}\), the diagonal now gives the required saving.
+
+\subsection{Off-diagonal bijection and mask}\label{sec:s4.4}
+
+Lemma~\ref{lem:parametrization} applies to the off-diagonal pairs in \eqref{eq:4-10}, and yields
+\stepcounter{equation}
+\begin{equation}
+m'-m=aek,\quad v'-v=kn,\quad z=m'v,\quad z+bk=mv',
+ \quad0<|k|\ll L^{K_0+C_s}.                             \tag{4.13}\label{eq:4-13}
+\end{equation}
+The last bound uses the lower support bound for \(e\). Enlarge a fixed exponent to write \(|k|\le L^{K_k}\). Every prime divisor of \(Q=a|k|R\) is below \(W\) for sufficiently large \(x\); hence both \(m,m'\) are units modulo \(Q\). Insert \eqref{eq:2-6}. Its total coefficient mass is at most \(R\le L^7\) in \eqref{eq:U}; for fixed general \(a,b\) it is a fixed constant. Its modulus is a fixed logarithmic power.
+
+The inverse in Section~\ref{sec:s2} proves exactness: the character mask imposes integral \(e\) coprime to \(R\), the \(\eta_e\) cutoff imposes \(e>0\), the determinant and \((m,k)=1\) make \(n\) integral, and \(\eta_n\) imposes \(n>0\). The supports of \(H,W_1\) supply the actual restrictions on \(v,v'\), including oddness. No extra residue condition on \(v,v'\) is inferred from the mask.
+
+\subsection{Pulled-back cutoffs and their separation}\label{sec:s4.5}
+
+We have \(v\asymp x/e\), \(m'\asymp U\), hence \(z\asymp xL^{K_0+O(C_s)}\). Use \(O(1+T)\) smooth dyadic pieces \(z\asymp Z\), retaining an outer cutoff \(\psi_Z(z/Z)\) in a fixed positive compact interval. Put \(t_1=\log(m/U)\), \(t_2=\log(m'/U)\), \(t_3=\log(z/Z)\). The exact inverse gives
+\stepcounter{equation}
+\begin{equation}
+\frac e{\mathcal E}=\frac{U}{ak\mathcal E}(e^{t_2}-e^{t_1}),
+ \qquad
+ \frac nV=\frac{Z}{kUV}e^{t_3}(e^{-t_1}-e^{-t_2})
+                         +\frac b{UV}e^{-t_1}.          \tag{4.14}\label{eq:4-14}
+\end{equation}
+On a fixed compact box, all derivatives have fixed logarithmic bounds: \(U/\mathcal E=L^{K_0}\), \(Z/(UV)\) is logarithmic, \(|k|\ge1,a\ge1\), and \(|b|/(UV)\ll L^6/x\) in \eqref{eq:U}. Use fixed smooth buffers equal to one on the original dyads and the outer \(z\)-support. These do not change \(\alpha\)'s interval restriction. The majorants vanish near nonpositive arguments, so extension by zero across \(e=0,n=0\) is smooth.
+
+We use [\citetalias{OpenAIE}, Lemma 2.4, p.4]. The pulled-back cutoff is supported in a fixed three-dimensional box and has derivatives of order \(j\) bounded by \(C_jL^{C'(j+1)}\). This verifies every hypothesis of that lemma with dimension 3. We therefore separate it into
+\(m^{i\xi_1}(m')^{i\xi_2}z^{i\xi_3}\), with fixed logarithmic total variation and a fixed logarithmic frequency cutoff, whose tails have arbitrary logarithmic accuracy. The growing number of allocation variables in Section~\ref{sec:s4.2} was handled by its explicit product argument, not by this fixed-dimension lemma.
+
+Each endpoint convolution is at most \(L^{C_1'}\tau(t_*)^2\), because the number of its three-factor representations is at most \(\tau_3(t_*)\le\tau(t_*)^2\). Including group weights only adds a fixed logarithmic factor. Therefore the absolute sum is bounded by
+\stepcounter{equation}
+\begin{equation}
+L^{C_2'}\sum_{z\asymp Z}\tau(z)^2\tau(z+bk)^2
+ \ll ZL^{C_3'}.                                        \tag{4.15}\label{eq:4-15}
+\end{equation}
+Use Cauchy and [\citetalias{OpenAIE}, Proposition 2.2, p.3] with moment 4; \(|bk|\le L^{K_k+6}=o(Z)\) makes both positive intervals lie in \([1,O(Z)]\), uniformly. Thus the Fourier tails can be summed over all \(k,Z\) and the mask coefficients with any prescribed saving.
+
+\subsection{Endpoint identification and the exact invocation of the correlation theorem}\label{sec:s4.6}
+
+Let \(\Delta=bk\). A character term and a separated Fourier term have coefficient
+\begin{equation*}
+\alpha_m\overline{\alpha_{m'}}\chi(m')\overline{\chi(m)}
+ m^{i\xi_1}(m')^{i\xi_2}z^{i\xi_3}v^{i\varrho}(v')^{-i\varrho}
+ H(v_*)\overline{H(v'_*)}W_1(v)W_1(v')\epsilon(v)\epsilon(v').
+\end{equation*}
+Define the cores
+{\small
+\stepcounter{equation}
+\begin{equation}
+\begin{split}
+ F(z)&=\sum_{m'pr=z_*}\overline{\alpha_{m'}}\chi(m')
+ (m')^{i(\xi_2-\varrho)}\,1_{p\in Q_{j_{**}}}p^{i\sigma}c_r,\\
+ G(t)&=\sum_{mpr=t_*}\alpha_m\overline{\chi(m)}
+ m^{i(\xi_1+\varrho)}1_{p\in Q_{j_{**}}}p^{-i\sigma}\overline{c_r}.
+ \end{split}                                           \tag{4.16}\label{eq:4-16}
+\end{equation}
+}
+Each indicated \(p\) is prime. Since \(m,m'\) are \(W\)-rough and group primes are below \(W\),
+\begin{equation*}
+\begin{aligned}
+z_*&=m'v_*,\qquad(z+\Delta)_*=mv'_*,\\
+ W_1(z)&=W_1(v),\qquad W_1(z+\Delta)=W_1(v'),\\
+ \epsilon(z)&=\epsilon(v),\qquad\epsilon(z+\Delta)=\epsilon(v').
+\end{aligned}
+\end{equation*}
+Also \(v=z/m'\), \(v'=(z+\Delta)/m\). Substituting these identities proves that the separated sum is exactly
+\stepcounter{equation}
+\begin{equation}
+\sum_{\substack{z>0\\z+\Delta>0}}\psi_Z(z/Z)
+ z^{i(\varrho+\xi_3)}(z+\Delta)^{-i\varrho}
+ F(z)G(z+\Delta)W_1(z)W_1(z+\Delta)
+                       \epsilon(z)\epsilon(z+\Delta).   \tag{4.17}\label{eq:4-17}
+\end{equation}
+
+We apply [\citetalias{OpenAIE}, Theorem 4.1, pp.12--14], with the following verification.
+
+\begingroup\small
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.67\textwidth}@{}}
+\toprule
+\textbf{Hypothesis} & \textbf{Verification for \eqref{eq:4-17}} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Hypothesis} & \textbf{Verification for \eqref{eq:4-17}} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Permitted fixed groups, marks and damping & Section~\ref{sec:bands} and Section~\ref{sec:s3}: exponents \((.1,.2,.3,.4)\), full big intervals, harmonic bounds, \(\ell=1,q_0=1/2\). \\[4pt]
+Invariant three-factor cores & \eqref{eq:4-16} has exactly \eqref{eq:3-1}, using \(z_*\), so is invariant under group-supported multiplication. \\[4pt]
+Positive-power prime slot, exponent below \(1/4\) & The reserved band lies in \([x^\tau,x^\eta]\), \(0<\tau<\eta<\min(b_*/4,1/4)\), fixed before \(x\). \\[4pt]
+Rough first coefficient & \(\alpha,\overline\alpha\) vanish unless \(P^-(m)>W\). \\[4pt]
+Coefficient size & The given \(L^C\) bound and \eqref{eq:4-9} are fixed logarithmic powers. \\[4pt]
+Character and power-frequency bounds & \(Q=a|k|R\) and all frequencies from \eqref{eq:4-14} and [\citetalias{OpenAIE}, Lemma 2.4, p.4] are fixed logarithmic powers. \\[4pt]
+Same allowed twist & The split was before Cauchy; \eqref{eq:4-17} contains the same \(\epsilon=1\) or \(E\) twice. \\[4pt]
+Nonzero integer shift & \(\Delta=bk\ne0\); its magnitude is a fixed logarithmic power, uniformly in \eqref{eq:U}. \\[4pt]
+Height & \(Z=xL^{O(1)}\) by Section~\ref{sec:s4.5}. \\[4pt]
+Smooth cutoff and Fourier phases & Replace \(\psi_Z(t)\) by \(t\psi_Z(t)\); support and derivative bounds remain permitted. Both outer power frequencies are logarithmic. \\[4pt]
+Discrepancy & Take \(F_E=\overline F\) in \eqref{eq:3-3}. Its coefficient is \(\alpha\,1_K\), its character is \(\overline\chi\), and its rough-variable frequency is \(-(\xi_2-\varrho)\); the prime frequency is also negated and \(c_r\) is conjugated. Thus \eqref{eq:4-1} supplies \eqref{eq:3-2}. Choose \(B_*\) at least the exponent provided by the theorem after all other data. \\[4pt]
+Second original coefficient & \(\beta\) was removed in Cauchy using only boundedness and does not occur in the cores. \\[4pt]
+\end{longtable}
+\endgroup
+
+Since \(\psi_Z(z/Z)=(Z/z)(z/Z)\psi_Z(z/Z)\), applying \eqref{eq:3-3} with \(F_E=\overline F\) bounds \eqref{eq:4-17} by \(O(ZL^{-D_0})\) for any fixed prescribed \(D_0\), after the corresponding choice of \(B_*\). All its displayed data have been bounded uniformly in \eqref{eq:U}, so its constant and threshold are uniform there.
+
+After \(D_*,b_*,C\) and the geometry, Section~\ref{sec:s4.2} fixes \(C_s,C_a,C_v,C_f,C_p,C_d\) independently of \(K_0\). Choose \(K_0\) by \eqref{eq:4-12}. This fixes \(K_k,K_z,C_{\rm sep}\) for the shift range, \(Z/x\), and all post-Cauchy separation costs. The mask adds at most \(L^7\). Choose \(A_{\rm off}>0\) so that
+\begin{equation*}
+-K_0+C_p-A_{\rm off}<-2(D_*+C_f+1),
+\end{equation*}
+then \(D_0>A_{\rm off}+K_k+K_z+C_{\rm sep}+10\), and Fourier tail orders giving the same accuracy. Finally [\citetalias{OpenAIE}, Theorem 4.1] supplies \(B_*\). Summation gives \(\mathcal N_{\rm off}=O(xL^{-A_{\rm off}})\). Equations \eqref{eq:4-10}--\eqref{eq:4-12} yield \(|B'|\ll xL^{-D_*-C_f-1}\). Paying the pre-Cauchy variation \(L^{C_f}\), \eqref{eq:4-3}, and the Fourier tails proves \eqref{eq:4-2}. No choice depends on a later proxy cell precision. 
+
+
+
+\end{proof}
+
+\section{Congruence distribution and the omitted local primes}\label{sec:s5}
+
+\begin{proposition}[Congruence distribution]\label{prop:congruence}
+Assume \(a+b\) odd, \((a,b)=1\), and \(b\ne0\). Put \(R=\operatorname{rad}(2a|b|)\). On the support of \(w_\rho\), \(u\) is coprime to \(R\). For a prime dividing \(a\), \(N(u)\equiv b\ne0\); for a prime dividing \(b\), \(N(u)\equiv au\ne0\); and \(N(u)\) is odd. Consequently
+\stepcounter{equation}
+\begin{equation}
+(N(u),R)=1.                                           \tag{5.1}\label{eq:5-1}
+\end{equation}
+For a squarefree integer \(d\) with \((d,R)=1\), define
+\begin{equation*}
+r(d)=\sum_{d\mid N(u)}w_\rho(u)-X_\rho/\varphi(d).
+\end{equation*}
+For any fixed \(0<\vartheta<1/2\) and \(D>0\),
+\stepcounter{equation}
+\begin{equation}
+\sum_{\substack{d\le x^\vartheta\\d\ {\rm squarefree}\\(d,R)=1}}
+ |r(d)|\ll xL^{-D}+X_\rho L^{-18}.                      \tag{5.2}\label{eq:5-2}
+\end{equation}
+The constant and threshold are uniform in \eqref{eq:U}. For fixed general \(a,b\) the threshold may depend on them. For divisors not coprime to \(R\), the exact local mass is zero; they will not be designated sieve divisors. 
+
+\end{proposition}
+\begin{proof}
+The argument of [\citetalias{OpenAIE}, Theorem 7.1, p.33] adapts to this root class. The root
+\begin{equation*}
+u\equiv-b\overline a\pmod d
+\end{equation*}
+is a unit. Character orthogonality expresses \(r(d)\) as the nonprincipal character sums with coefficients of modulus \(1/\varphi(d)\), minus
+\stepcounter{equation}
+\begin{equation}
+\varphi(d)^{-1}\sum_{(u,d)>1}w_\rho(u).                 \tag{5.3}\label{eq:5-3}
+\end{equation}
+For fixed supported \(u\le2x\), all its prime factors exceed \(L^{20}\), and
+\stepcounter{equation}
+\begin{equation}
+\sum_{\substack{d\le x^\vartheta\\d\ {\rm squarefree}\\(d,u)>1}}
+ \frac1{\varphi(d)}
+ \le \sum_{p\mid u}\frac1{p-1}
+       \sum_{q\le x^\vartheta}\frac{\mu^2(q)}{\varphi(q)}
+ \ll L\frac{\log(2x)}{20T}L^{-20}\ll L^{-18}.            \tag{5.4}\label{eq:5-4}
+\end{equation}
+The reciprocal sum is \(O(L)\): bound it by
+\(\prod_{p\le x^\vartheta}(1+1/(p-1))\), then use [\citetalias{OpenAIE}, Proposition 2.1, pp.2--3]. Nonnegativity of \(w_\rho\) proves that \eqref{eq:5-3} has total cost \(O(X_\rho L^{-18})\).
+
+Delete one designated ordered \(Q_0\)-slot in \(a_0\), retaining the original factorial denominator. The remaining coefficient is
+\begin{equation*}
+a^-(v)=\frac1{20}\prod_p1/v_p(v)!
+\end{equation*}
+on the support with 19 \(Q_0\)-factors and 20 in all other bands. Directly partitioning tuples by the deleted slot gives
+\(a_0(t)=\sum_{p\in Q_0,\ p\mid t}a^-(t/p)\), including repeated primes. Since \(Q_0\) is outside the groups,
+\stepcounter{equation}
+\begin{equation}
+A_\rho(u)=\sum_{\substack{pr=u\\p\in Q_0}}b_\rho(r),\quad
+ b_\rho(r)=W_1(r)\frac{1+\rho E(r)}2a^-(r_*),\quad
+ |b_\rho(r)|\le L^{B_1},                               \tag{5.5}\label{eq:5-5}
+\end{equation}
+for an absolute exponent \(B_1\). This factorization is independent of \(a,b\).
+
+Split \(p,r\) into \(O(L)\) dyadic pairs of sizes \(P,Q_1\) with \(PQ_1\asymp x\). Both \(P,Q_1\ge x^{c_1'}\) for some fixed \(c_1'>0\), because the \(Q_0\) exponent interval is a fixed subinterval of \((0,1)\). A character modulo the squarefree \(d\) is uniquely induced from a primitive character of conductor \(f\mid d\). Write \(d=fq\), \((f,q)=1\). The character sum uses the masks \((p,q)=(r,q)=1\). There is no multiplicity in this parametrization.
+
+We use [\citetalias{OpenAIE}, Proposition 2.2, p.3]. For \(f\asymp F\), the two coefficient sequences have squared norms at most \(P\) and \(Q_1L^{2B_1}\), regardless of the coprimality masks and of any Mellin power twists. Their supports lie in intervals of lengths \(O(P)\), \(O(Q_1)\), and the character sum is over primitive characters with conductor at most \(2F\). These are exactly the hypotheses of that proposition. Cauchy and \(1/\varphi(f)\le F^{-1}f/\varphi(f)\) give
+\stepcounter{equation}
+\begin{equation}
+\sum_{f\asymp F}\frac1{\varphi(f)}
+ \sum_{\chi_f}^{*}|P_q(\chi_f,t)Q_q(\chi_f,t)|
+ \ll xL^{B_1}
+ \left(F^{-1}+P^{-1/2}+Q_1^{-1/2}+F/\sqrt x\right).
+                                                        \tag{5.6}\label{eq:5-6}
+\end{equation}
+
+To separate \(\Psi(pr/x)\), use the full Fourier inversion of \(v\mapsto\Psi(e^v)\); its Fourier \(L^1\) norm is finite and fixed. The large-sieve estimate \eqref{eq:5-6} is uniform in that unrestricted real frequency because all added powers have modulus one. Integrate it, sum factor/conductor dyads, and use \(\sum_q\mu^2(q)/\varphi(q)\ll L\). For conductors \(f>L^K\), the result is at most
+\begin{equation*}
+xL^{B_2}(L^{-K}+x^{-c_1'/2}+x^{\vartheta-1/2}),
+\end{equation*}
+where \(B_2\) is fixed independently of \(K\). Choose \(K>B_2+D+2\).
+
+For \(1<f\le2L^K\), use [\citetalias{OpenAIE}, Proposition 2.1, pp.2--3], Siegel--Walfisz: the nonprincipal primitive modulus is a fixed power of \(L\), and the prime slot has \(p\ge x^{c_1'}\). Summing residue-class estimates against the character and choosing a sufficiently large initial accuracy, then partially summing against \(\Psi(pr/x)\), gives
+\begin{equation*}
+\sum_{\substack{p\in Q_0\\p\asymp P}}\chi_f(p)\Psi(pr/x)
+ \ll_{K,M}PL^{-M}
+\end{equation*}
+for any fixed \(M\). The supremum and total variation of this cutoff are uniformly bounded in the fixed \(r\)-dyad. Imposing \((p,q)=1\) deletes only \(O(1)\) primes, since \(q\le x^\vartheta\) and every deleted prime is at least \(x^{c_1'}\). Summing \(r,f,q\) and the dyads now costs at most
+\begin{equation*}
+xL^{B_3+K-M}+x^{1-c_1'}L^{B_3+K}.
+\end{equation*}
+Choose \(M>B_3+K+D+2\). This proves \eqref{eq:5-2}. The changed root class enters only through a unit-modulus character value; it does not affect any bound. Removing the restriction \((d,R)=1\) in these positive majorants increases them, so there is no factor depending on \(R\). 
+
+\end{proof}
+\begin{proposition}[Local product]\label{prop:local-product}
+With the definitions below, \eqref{eq:5-8} holds uniformly in \eqref{eq:U}.
+\end{proposition}
+\begin{proof}
+Let
+\begin{equation*}
+V(y)=\prod_{p\le y}(1-1/p),\quad
+ V_{a,b}(y)=\prod_{\substack{3\le p\le y\\p\nmid ab}}
+                     (1-1/(p-1)),
+\end{equation*}
+\stepcounter{equation}
+\begin{equation}
+\mathfrak S=2\prod_{p\ge3}\left(1-\frac1{(p-1)^2}\right)>0,\quad
+ T_{a,b}=\prod_{\substack{p\mid ab\\p\ge3}}\frac{p-1}{p-2},
+ \quad\mathfrak S_{a,b}=\mathfrak S T_{a,b}.              \tag{5.7}\label{eq:5-7}
+\end{equation}
+For \(y\) exceeding all prime divisors of \(ab\),
+\stepcounter{equation}
+\begin{equation}
+V_{a,b}(y)=T_{a,b}V_1(y)
+          =\mathfrak S_{a,b}V(y)(1+o(1)),
+ \qquad V_1(y)=\prod_{3\le p\le y}(1-1/(p-1)).            \tag{5.8}\label{eq:5-8}
+\end{equation}
+The first equality is exact. For the second, divide each good-prime factor by \((1-1/p)\); the quotient at an odd prime is
+\(1-1/(p-1)^2\), and omitting 2 supplies the factor 2. The convergent positive product proves the limit; Mertens gives \(V(y)\sim e^{-\gamma_E}/\log y\). In \eqref{eq:U}, all omitted primes are below \(L^6<W\), so \eqref{eq:5-8} is uniform at \(y=W\) and at all \(y=x^\delta\) with fixed \(\delta>0\). The error is the error of the single product \(V_1(y)/V(y)\), not an error multiplied separately at each prime divisor of \(b\). In particular \(T_{a,b}\ge1\); no vanishing local factor occurs at 3 or at any prime dividing the shift.
+
+
+\end{proof}
+
+\section{A positive pair bound with the correct local factor}\label{sec:s6}
+
+\subsection{Assignment majorant}\label{sec:s6.1}
+
+\begin{inputthm}[Assignment majorant]\label{input:assignment}
+We use [\citetalias{OpenAIE}, Lemma 8.3, p.39]. Take, for example, \(j'=20\) and \(\theta_0=(3/2)\sigma2^{-20}\). They satisfy
+\stepcounter{equation}
+\begin{equation}
+c_2\sigma2^{-j'}<\theta_0<c_1\sigma2^{-j'+1},\quad
+ 10\theta_0\le1/20,\quad
+ \sum_{j\ge j'}20c_2\sigma2^{-j}\le1/25.                 \tag{6.1}\label{eq:6-1}
+\end{equation}
+An assignment consists of all ordered ordinary slots in bands \(j\ge j'\), and one prime mark in each group. Its product \(D_1\) retains multiplicities, and its normalization is explicitly
+\begin{equation*}
+\eta_{\mathfrak a}=(20!)^{-(j_x-j'+1)}\prod_g V_g^{-1}.
+\end{equation*}
+That lemma gives
+\stepcounter{equation}
+\begin{equation}
+D_1\le x^{1/20},\qquad
+ \sum_{\mathfrak a}\eta_{\mathfrak a}/D_1\ll H_Q,\qquad
+ \sum_{\mathfrak a}\eta_{\mathfrak a}\ll x^{1/20}H_Q.     \tag{6.2}\label{eq:6-2}
+\end{equation}
+For each assignment, ban every odd non-group prime at most \(x^{\theta_0}\) not dividing \(D_1\), and independently ban each group prime not dividing \(D_1\) with probability \(1/2\). Its majorant is
+\stepcounter{equation}
+\begin{equation}
+A_\rho(u)\le A_0(u)\le
+ \sum_{\mathfrak a}\eta_{\mathfrak a}1_{D_1\mid u}
+       \mathbb E_{\rm mask}1_{u\text{ has no banned prime factor}}.
+                                                        \tag{6.3}\label{eq:6-3}
+\end{equation}
+\end{inputthm}
+The geometry, \(q_0=1/2\), and normalization are exactly Section~\ref{sec:s1}; \eqref{eq:6-1} is exactly its micro/macro gap condition; \(\rho\) enters only through \(A_\rho\le A_0\). Neither the prime form nor its leading coefficient occurs in this lemma. Thus it is applied unchanged. From \eqref{eq:6-2} and \(D_1\le x^{1/20}\) we additionally get
+\(\sum_{\mathfrak a}\eta_{\mathfrak a}D_1\ll x^{1/10}H_Q\).
+
+\subsection{Lattice count and local densities}\label{sec:s6.2}
+
+\begin{proposition}[Positive pair bound]\label{prop:pair}
+Let \(M_1M_2\asymp x\), \(M_i\ll x^{0.54}\), with fixed containing constants. Then
+\stepcounter{equation}
+\begin{equation}
+\sum_{\substack{m\asymp M_1,n\asymp M_2\\mn=au+b\\
+                         P^-(m),P^-(n)>W}}
+ w_\rho(u)\le C_{\rm box}\,T_{a,b}\,X_\rho V(W)^2.       \tag{6.4}\label{eq:6-4}
+\end{equation}
+In \eqref{eq:U}, \(C_{\rm box}\) and the threshold are absolute, after the fixed geometry. For fixed general \(a,b\), the containing box constants may depend on \(a\), so \(C_{\rm box}\) may also depend on \(a\); the factor \(T_{a,b}\) remains explicit.
+
+\end{proposition}
+\begin{proof}
+Use \eqref{eq:6-3}, fix one assignment and mask, and bound \(\Psi\le1\). Its original pairs satisfy \(mn\equiv b\pmod{D_1}\). Every prime of \(D_1\) exceeds those dividing \(ab\), so \((D_1,b)=1\); there are exactly \(\varphi(D_1)\) pairs of residues modulo \(D_1\) with this product. Indeed, a product congruent to the unit \(b\) forces the first coordinate to be a unit, and every unit first coordinate determines the unique second coordinate \(b\overline m\). This proves the count even when \(D_1\) has repeated prime factors.
+
+We enlarge the set of pairs by dropping the congruence modulo \(a\) that makes \((mn-b)/a\) integral, and dropping banned-prime conditions at primes dividing \(a\). This is an upper bound; no weight is evaluated at a noninteger \(u\). At every banned odd prime \(\ell\le x^{\theta_0}\) not dividing \(aD_1\), banning \(\ell\mid u\) is equivalent, on the original pairs, to banning \(mn\equiv b\pmod\ell\). Roughness additionally bans \(mn\equiv0\pmod\ell\) for \(\ell\le W\).
+
+If \(\ell\nmid ab\), the two residue sets are disjoint, with sizes \(2\ell-1\) and \(\ell-1\). If \(\ell\mid b\), they coincide, and have size \(2\ell-1\). If \(\ell\mid a\), only the roughness condition was retained. All prime divisors of \(ab\) are below \(W\) and are non-group primes, once the relevant threshold is imposed. Thus the local good-pair factor at such an odd prime is \((1-1/\ell)^2\), whereas the factor when a non-group \(\ell\nmid ab\) lies below \(W\) is
+\begin{equation*}
+1-3/\ell+2/\ell^2=(1-1/\ell)(1-2/\ell).
+\end{equation*}
+The ratio of these two factors is exactly
+\stepcounter{equation}
+\begin{equation}
+\frac{\ell-1}{\ell-2}.                                \tag{6.5}\label{eq:6-5}
+\end{equation}
+This exact ratio, rather than a bound depending arbitrarily on \(b\), is needed for the uniform growing-shift consequence.
+
+Let \(\nu(\ell)\) be the number of banned residue pairs and \(g(\ell)=\nu(\ell)/\ell^2\). We have \(g(\ell)\le7/9\), \(g(\ell)\le3/\ell\), uniformly in the assignment, mask and \(a,b\). For squarefree \(d\) built from these sieving primes, CRT gives precisely \(\varphi(D_1)\nu(d)\) residue pairs modulo \(D_1d\). Their number in the box is
+\stepcounter{equation}
+\begin{equation}
+\frac{M_1M_2\varphi(D_1)}{D_1^2}g(d)+r_{\mathfrak a}(d),
+ \qquad
+ |r_{\mathfrak a}(d)|\ll\tau(d)^2(M_1+M_2+D_1d).         \tag{6.6}\label{eq:6-6}
+\end{equation}
+To check the error, each residue pair contributes
+\(M_1M_2/(D_1d)^2+O(1+(M_1+M_2)/(D_1d))\);
+use \(\varphi(D_1)\le D_1\), \(\nu(d)\le d\,3^{\omega(d)}\le d\tau(d)^2\).
+
+We use [\citetalias{OpenAIS}, Lemma 2.9, pp.8--9]. The objects are the finitely many box pairs satisfying the root congruence modulo \(D_1\), with weight one. Equation \eqref{eq:6-6} supplies every squarefree intersection count, including \(d=1\). The function \(g\) is multiplicative by CRT; \(0\le g(\ell)\le7/9\), and \(\sum_{w<\ell\le w^2}g(\ell)\le3\sum_{w<\ell\le w^2}1/\ell\) is bounded by Mertens. Thus the density parameters are uniform. Its depth-2 upper bound applies at level
+\begin{equation*}
+D=(x^{\theta_0})^{10}\le x^{1/20}.
+\end{equation*}
+The coefficient bound is at most one. Summing \eqref{eq:6-6}, using the fixed divisor moment from [\citetalias{OpenAIE}, Proposition 2.2, p.3], gives
+\stepcounter{equation}
+\begin{equation}
+\sum_{d\le D}|r_{\mathfrak a}(d)|
+ \ll L^{C_0}\{(M_1+M_2)D+D_1D^2\}.                    \tag{6.7}\label{eq:6-7}
+\end{equation}
+
+\subsection{Sieve product and summed errors}\label{sec:s6.3}
+
+First pretend that all primes dividing \(ab\) instead had the non-group factor for a nonzero root. Formula \eqref{eq:6-5} shows that the actual product is exactly \(T_{a,b}\) times this base product. None of these primes divides \(D_1\) or belongs to a group. For the base product, the factors are:
+\((1-1/\ell)^2\) at allowed group primes below \(W\);
+\((1-1/\ell)(1-2/\ell)\) at banned primes below \(W\);
+and \(1-1/\ell+1/\ell^2\) above \(W\).
+Comparing them with \(V(W)^2V(x^{\theta_0})\), using the convergent product of \(1+O(\ell^{-2})\), gives the upper bound
+\stepcounter{equation}
+\begin{equation}
+C T_{a,b}V(W)^2V(x^{\theta_0})
+ \prod_{\ell\mid D_1}(1-1/\ell)^{-3}
+ \prod_{\substack{\ell\in\mathcal P,\ \ell\nmid D_1\\
+                                      \ell\ {\rm allowed}}}
+                            (1-1/\ell)^{-1}.            \tag{6.8}\label{eq:6-8}
+\end{equation}
+The missing prime 2 changes only an absolute constant. The \(D_1\) correction is bounded absolutely: its primes are at least \(L^{20}\) and \(\log D_1=O(L)\), so \(\sum_{\ell\mid D_1}1/\ell\ll L^{-19}/T\). Averaging the last product over the independent masks yields
+\begin{equation*}
+\prod_{\substack{\ell\in\mathcal P\\\ell\nmid D_1}}
+       (1+1/(2(\ell-1)))\le H_P
+\end{equation*}
+by \eqref{eq:1-5}. The base mass in \eqref{eq:6-6} is at most \(M_1M_2/D_1\). Use \eqref{eq:6-2}, Mertens at the fixed power \(x^{\theta_0}\), and \eqref{eq:1-9}. The summed main term is
+\begin{equation*}
+\ll T_{a,b}xH_QH_P V(W)^2/L
+ \ll T_{a,b}X_\rho V(W)^2.
+\end{equation*}
+
+The summed remainders \eqref{eq:6-7}, including all assignments, are
+\stepcounter{equation}
+\begin{equation}
+\ll H_Q L^{C_0}
+ \{x^{1/20}(M_1+M_2)D+x^{1/10}D^2\}
+ \ll H_Q L^{C_0}(x^{0.64}+x^{0.20}).                   \tag{6.9}\label{eq:6-9}
+\end{equation}
+By \eqref{eq:1-9}, \(H_P\ge1\) and \(V(W)^2\asymp L^{-1}\), this is
+\(o(X_\rho V(W)^2)\). All estimates are uniform in \eqref{eq:U}, and \(T_{a,b}\ge1\), so \eqref{eq:6-4} follows. For fixed \(a,b\) the same proof uses only fixed containing-box constants. 
+
+\end{proof}
+\begin{proposition}[Balanced box sum]\label{prop:balanced}
+In \eqref{eq:U}, the balanced-box estimate \eqref{eq:6-10} holds with an absolute \(C_1\), fixed before \(\kappa\) and the proxy parameters.
+\end{proposition}
+\begin{proof}
+For
+\begin{equation*}
+\mathcal B_\kappa=[x^{1/2-2\kappa},x^{1/2+2\kappa}],
+ \quad0<\kappa<1/50,
+\end{equation*}
+there are \(O(\kappa L+1)\) first-factor dyads and only \(O(1)\) compatible second-factor dyads when \(mn=N(u)\), \(u\in[x,2x]\). The latter constant is absolute in \eqref{eq:U}, since \(N(u)\in[x/2,5x]\) eventually. The dyad sides are \(O(x^{0.54})\). Enlarging cut boxes is legitimate by positivity, hence
+\stepcounter{equation}
+\begin{equation}
+\sum_{\substack{mn=N(u),\ m,n\in\mathcal B_\kappa\\
+                         P^-(m),P^-(n)>W}}w_\rho(u)
+ \le C_1T_{a,b}(\kappa L+1)X_\rho V(W)^2.                \tag{6.10}\label{eq:6-10}
+\end{equation}
+The constant \(C_1\) is chosen before \(\kappa\), the later bin endpoint \(b_1\), discrepancy precision and proxy precision. It is absolute in \eqref{eq:U}.
+
+
+
+\end{proof}
+
+\section{Ordinary-cell proxies and parameter choices}\label{sec:s7}
+
+\subsection{The precise quoted proxy inputs}\label{sec:s7.1}
+
+\begin{inputthm}[Ordinary-cell discrepancy]\label{input:proxy-discrepancy}
+We use [\citetalias{OpenAIS}, Lemma 7.3, pp.57--58], also stated in [\citetalias{OpenAIE}, Lemma 8.2, pp.37--38]. Fix \(0<\kappa<1/50\), \(0<b_1<1/2-\kappa\) and a finite partition of \((b_1,1/2-\kappa]\) into bins \((\gamma,\gamma']\). On the ambient interval \([x^{b_1/4},x^{1-b_1/4}]\), use
+\begin{equation*}
+I_{\rm pr}(m)=1_{m\ {\rm prime}},\qquad
+ I_\gamma(m)=1_{P^-(m)>x^\gamma}.
+\end{equation*}
+Partition the logarithmic axis into full cells \(C_Y=(Y,e^{L^{-S_1}}Y]\). Define
+\stepcounter{equation}
+\begin{equation}
+c_I(C_Y)=\frac{\sum_{m\in C_Y}I(m)}
+                    {\#\{m\in C_Y:P^-(m)>W\}},\qquad
+ B_I(m)=c_I(C_Y)1_{P^-(m)>W}\quad(m\in C_Y).              \tag{7.1}\label{eq:7-1}
+\end{equation}
+For every fixed discrepancy exponent \(B_*\), choosing \(S_1>2B_*+3\) makes
+\((I-B_I)1_K\) satisfy \eqref{eq:4-1} for every interval \(K\) inside a dyad in that ambient range. Also \(0\le c_I\le1\), with denominators positive, and the coefficient bound 1 is independent of \(S_1\).
+
+\end{inputthm}
+Hypotheses at this use: \(b_1,\kappa\) and the bin partition will be fixed before \(x\); the tests above are exactly the two types in the lemma; all cells are full cells even if a factor interval later truncates them. The lemma concerns ordinary integers, not a candidate weight or a shift, so no assumption about \(a,b,A_\rho\) is being changed. Its proof also supplies the numbered estimate [\citetalias{OpenAIS}, (7.13), p.58]:
+\begin{equation*}
+\#\{m\in C_Y:P^-(m)>W\}\sim L^{-S_1}YV(W).
+\end{equation*}
+The hypotheses there are our same full cells, fixed \(S_1\), \(W=\exp(\sqrt L)\), and \(Y\ge x^{b_1/4}\); hence its uniform denominator estimate is available when dividing the ordinary-cell numerator in the next citation. Its uniformity in the actual interval restriction is exactly what \eqref{eq:4-1} requires.
+
+\begin{inputthm}[Ordinary-cell densities]\label{input:proxy-density}
+We use [\citetalias{OpenAIS}, Lemma 7.4, pp.59--60]. The statement (7.17) of [\citetalias{OpenAIS}, Lemma 7.4] is written for \(N_u=2u+1\); in its place we use the displayed estimate (7.20) from its proof and the estimate (7.13) from the proof of [\citetalias{OpenAIS}, Lemma 7.3], which concern ordinary cells of integers and carry their own uniformity hypotheses. The assertions (7.16), (7.18) and (7.19) of [\citetalias{OpenAIS}, Lemma 7.4] concern ordinary integers and are used as stated. The prime proxy has
+\stepcounter{equation}
+\begin{equation}
+c_{\rm pr}(m)\le \frac{C_{\rm pr}}{LV(W)}
+       \quad(m\in\mathcal B_\kappa),                    \tag{7.2}\label{eq:7-2}
+\end{equation}
+with \(C_{\rm pr}\) absolute, independent of \(\kappa,S_1\). Define, for \(w>\gamma>0\),
+\stepcounter{equation}
+\begin{equation}
+D_\gamma(w)=\frac1w+
+ \sum_{j\ge2}\frac1{j!}
+ \int_{\substack{t_i\ge\gamma\ (i<j)\\
+                 \sum_{i<j}t_i\le w-\gamma}}
+ \frac{\prod_{i<j}(dt_i/t_i)}
+                  {w-\sum_{i<j}t_i}.                  \tag{7.3}\label{eq:7-3}
+\end{equation}
+It is a locally finite nonnegative sum, continuous on compact subsets of \(w>\gamma>0\), including its thresholds. The cited ordinary-cell estimate says that the number of \(x^\gamma\)-rough integers in \(C_Y\) is at most
+\((D_\gamma(w)+o(1))L^{-S_1}Y/L\), uniformly on compact sets with \(\gamma\ge b_1\), \(w-\gamma\) bounded below positively, and \(w=\log Y/L\) bounded above. Dividing by the rough denominator in \eqref{eq:7-1}, as in that lemma, gives \(c_\gamma\le(D_\gamma(w)+o(1))/(LV(W))\).
+It also gives
+\stepcounter{equation}
+\begin{equation}
+\int_{b_1}^{1/2}D_\alpha(1-\alpha)\frac{d\alpha}{\alpha}
+        =D_{b_1}(1)-1,\qquad
+ D_{b_1}(1)\le \frac{e^{-\gamma_E}}{b_1}
+                      (1+O(e^{-c/b_1})).               \tag{7.4}\label{eq:7-4}
+\end{equation}
+
+\end{inputthm}
+Hypotheses at this use: in a product \(mn=N(u)\), \(u\in[x,2x]\), and \(\log n/L\in(\gamma,\gamma']\), we have
+\stepcounter{equation}
+\begin{equation}
+\frac{\log m}{L}=1-\frac{\log n}{L}+O(1/L),\qquad
+ \frac{\log m}{L}-\gamma\ge2\kappa+O(1/L).               \tag{7.5}\label{eq:7-5}
+\end{equation}
+The \(O(1/L)\) constants are absolute in \eqref{eq:U}, because \(N(u)/x\in[1/2,5]\). The cell endpoint logarithm differs from \(\log m/L\) by \(O(L^{-S_1-1})\). Thus the compact-set hypotheses of the numbered ordinary-cell bound hold, uniformly. By continuity,
+\stepcounter{equation}
+\begin{equation}
+c_\gamma(m)\le
+ \frac{\sup_{\gamma\le t\le\gamma'}D_\gamma(1-t)+o(1)}
+                                      {LV(W)}.         \tag{7.6}\label{eq:7-6}
+\end{equation}
+This verifies the ordinary-cell estimate for the prime form \(N(u)=au+b\). For general fixed \(a,b\), \eqref{eq:7-5} has an allowed \(a,b\)-dependent constant. The prime range \(\mathcal B_\kappa\) lies in the cited \([.46,.54]\) logarithmic range because \(\kappa<1/50\). The identities \eqref{eq:7-4} are statements about ordinary densities alone, with no \(a,b\) hypothesis.
+
+\subsection{A noncircular choice of all precisions}\label{sec:s7.2}
+
+Let \(C_1\) be the absolute constant from \eqref{eq:6-10}, and \(C_{\rm bal}=C_{\rm pr}^2C_1\). These constants have been fixed before \(\kappa\). Choose \(0<\kappa<1/50\) with
+\stepcounter{equation}
+\begin{equation}
+C_{\rm bal}\kappa<\mathfrak S/4.                       \tag{7.7}\label{eq:7-7}
+\end{equation}
+Notice that the same factor \(T_{a,b}\) occurs in \eqref{eq:6-10} and in the sieve singular constant, so this choice is independent of \(b\), even when \(b\) grows as in \eqref{eq:U}.
+
+Next choose a sufficiently small fixed \(b_1<1/100\), with \(b_1<1/2-\kappa\), to meet the sieve and subtraction conditions in Section~\ref{sec:s8}. Put
+\begin{equation*}
+\vartheta=1/2-\kappa/2,\qquad b_*=b_1/3.
+\end{equation*}
+By the continuity in \eqref{eq:7-3}, a sufficiently fine fixed bin partition satisfies
+\stepcounter{equation}
+\begin{equation}
+\sum_{(\gamma,\gamma']}
+ \sup_{\gamma\le t\le\gamma'}D_\gamma(1-t)\log(\gamma'/\gamma)
+       \le D_{b_1}(1)-1+1/10.                          \tag{7.8}\label{eq:7-8}
+\end{equation}
+Indeed these sums converge to the integral up to \(1/2-\kappa\), which is at most the nonnegative integral in \eqref{eq:7-4}. The compact region stays a distance \(2\kappa\) from the singular boundary.
+
+Take \(D_*=D_{\rm cg}=230\) in Sections~\ref{sec:s4}--\ref{sec:s5}; these exceed \(221+4\). The Type II proof now fixes its reserved band, allocation, \(K_0\), all separation exponents, the correlation accuracy, and finally \(B_*\). Only afterwards choose \(S_1>2B_*+3\) and define \eqref{eq:7-1}. Their coefficient bound is 1, independently of \(S_1\), so none of the earlier Type II choices must be reopened. All these choices are independent of \(a,b\) in \eqref{eq:U}; hence a common sufficiently large \(x\) threshold exists for them. For a general fixed coprime pair \(a,b\) with \(a+b\) odd, repeat this order using the permitted constant \(C_1(a)\) in \eqref{eq:6-10}; first choose \(\kappa(a)\), then \(b_1(a)\), the fixed mesh and the distribution/discrepancy precisions, and finally \(S_1\). Every one of these is fixed before \(x\) tends to infinity. This establishes the auxiliary general-leading-coefficient version with constants and thresholds allowed to depend on that fixed pair; it makes no growing-\(a\) claim.
+
+\subsection{Replacement lemma for this prime form}\label{sec:s7.3}
+
+\begin{lemma}[Proxy replacement]\label{lem:replacement}
+In every factor sum used below, a test \(I\) on either factor of \(mn=N(u)\) can be replaced by \(B_I\), with total error \(o(X_\rho/L)\), when the other coefficient is bounded by one. This includes a second replacement after the other factor has become a nonsmooth proxy.
+
+\end{lemma}
+\begin{proof}
+For the unbalanced sums, \(n\in(x^{b_1},x^{1/2-\kappa}]\) and \(m=N(u)/n\) lies between fixed multiples of \(x^{1/2+\kappa}\) and \(x^{1-b_1}\). For balanced sums both factors lie in \(\mathcal B_\kappa\). Thus all actual dyads, with their interval restrictions, have scale between \(x^{b_1/3}\) and \(x^{1-b_1/3}\), and lie inside the ambient interval of Section~\ref{sec:s7.1}, for large \(x\). Fixed exponent slack absorbs the containing constants uniformly in \eqref{eq:U}.
+
+On each dyad apply \eqref{eq:4-2} to \(\alpha=(I-B_I)1_K\), where \(K\) is the actual restricted interval, and the other coefficient is \(\beta\). [\citetalias{OpenAIS}, Lemma 7.3, pp.57--58] verifies rough support, coefficient bound and discrepancy, as checked in Section~\ref{sec:s7.1}. Exchange factor names if needed. For each of finitely many test types there are \(O(L)\) dyadic pairs, so the error is \(O(xL^{-229})=o(X_\rho/L)\) by \eqref{eq:1-9}. The full-cell ratios \eqref{eq:7-1} are not redefined on cut cells. This proves all claimed replacements with constants uniform in \eqref{eq:U}. 
+
+
+\end{proof}
+
+\section{Prime extraction with all local conditions retained}\label{sec:s8}
+
+\begin{proposition}[Prime extraction]\label{prop:extraction}
+For all sufficiently large \(x\), the prime-mass lower bound \eqref{eq:8-5} holds uniformly in \eqref{eq:U} for both signs.
+\end{proposition}
+\begin{proof}
+The proof occupies Sections~\ref{sec:s8.1}--\ref{sec:s8.4}.
+\subsection{Initial presieve}\label{sec:s8.1}
+
+We use [\citetalias{OpenAIS}, Lemma 2.9, pp.8--9]. The objects are the finitely many \(u\) with nonnegative weights \(w_\rho(u)\). Designate the bad events \(p\mid N(u)\) only for odd primes \(p\le z=x^{b_1}\) with \(p\nmid ab\). The local function is \(g(p)=1/(p-1)\); it is multiplicative on squarefree products, satisfies \(0\le g(p)\le1/2\), and its sum over \((w,w^2]\) is uniformly bounded by Mertens. Equation \eqref{eq:5-2} supplies the intersection remainders at every squarefree product, including \(d=1\). Take the even depth
+\begin{equation*}
+H=2\left\lfloor\frac1{40b_1}\right\rfloor.
+\end{equation*}
+Choose \(b_1\) small enough that this is sufficiently large for the lemma. Its level exponent is
+\(b_1(4H+2)\le1/5+2b_1<\vartheta\).
+Thus \eqref{eq:5-2}, with \(D_{\rm cg}=230\), bounds the total remainder by \(o(X_\rho/L)\).
+
+By \eqref{eq:5-1}, omitted primes already cannot divide \(N(u)\), and \(N(u)\) is odd. Avoiding the designated primes is therefore exactly \(P^-(N(u))>x^{b_1}\), with the stated local conditions. The cited sieve, \eqref{eq:5-8} and Mertens give
+\stepcounter{equation}
+\begin{equation}
+\sum_{P^-(N(u))>x^{b_1}}w_\rho(u)
+ \ge \frac{\mathfrak S T_{a,b}X_\rho}{L}
+ \left\{\frac{e^{-\gamma_E}}{b_1}
+            (1-O(e^{-c/b_1}))+o(1)\right\}.             \tag{8.1}\label{eq:8-1}
+\end{equation}
+The relative \(o(1)\) is uniform in \eqref{eq:U}. In particular, the factor \(T_{a,b}\) is retained explicitly.
+
+\subsection{Sieve conditional on one large prime factor}\label{sec:s8.2}
+
+We use [\citetalias{OpenAIS}, Lemma 2.9, pp.8--9]. Fix a bin prime \(n\in(x^\gamma,x^{\gamma'}]\). It exceeds \(W\) and all primes dividing \(ab\) for large \(x\). On the objects with \(n\mid N(u)\), the base mass is \(X_\rho/(n-1)\), and for every squarefree \(d\) built from good primes at most \(W\) the actual mass is
+\begin{equation*}
+X_\rho/((n-1)\varphi(d))+r(nd).
+\end{equation*}
+Thus the same local densities and uniform bounds as in Section~\ref{sec:s8.1} apply. Take depth \(H=2\lceil T^2\rceil\), which is permitted because the cited constants are uniform when depth grows. Its level in \(d\) is
+\begin{equation*}
+D_W=W^{4H+2}=\exp(O(\sqrt L\,T^2))=x^{o(1)}.
+\end{equation*}
+Every \(nd\) used is at most \(x^{1/2-\kappa+o(1)}<x^\vartheta\), squarefree and coprime to \(R\).
+
+The map \((n,d)\mapsto nd\) is injective, since \(n\) is its unique prime factor exceeding \(W\). It remains injective over all disjoint bins. The cited sieve polynomials have coefficients of absolute value at most one. Consequently the sum of all remainders costs at most the single sum \eqref{eq:5-2}, with no divisor multiplicity. It is \(o(X_\rho/L)\), hence also \(o(X_\rho V_{a,b}(W))\). The depth error is exponentially smaller. The PNT in [\citetalias{OpenAIE}, Proposition 2.1, pp.2--3], by partial summation on the fixed positive-power interval, gives
+\(\sum_{x^\gamma<n\le x^{\gamma'},\,n\ {\rm prime}}1/(n-1)=\log(\gamma'/\gamma)+o(1)\).
+It follows that
+\stepcounter{equation}
+\begin{equation}
+\sum_{\substack{x^\gamma<n\le x^{\gamma'}\\n\ {\rm prime}}}
+ \ \sum_{\substack{n\mid N(u)\\P^-(N(u))>W}}w_\rho(u)
+ =X_\rho V_{a,b}(W)\{\log(\gamma'/\gamma)+o(1)\}.          \tag{8.2}\label{eq:8-2}
+\end{equation}
+This is uniform in \eqref{eq:U}, using \eqref{eq:5-8} and \(T_{a,b}\ge1\).
+
+\subsection{Subtracting composites away from balance}\label{sec:s8.3}
+
+A composite surviving \eqref{eq:8-1} whose least prime factor \(n\) belongs to a bin \((x^\gamma,x^{\gamma'}]\) has complementary factor \(m=N(u)/n\) with \(P^-(m)>x^\gamma\). This includes a repeated occurrence of \(n\). Its weight is bounded above by the factor sum with \(I_\gamma(m)1_{n\ {\rm prime}}\), restricted to that bin. Other prime divisors counted in this sum can only increase this upper bound.
+
+Replace \(I_\gamma\) by \(B_\gamma\) using Section~\ref{sec:s7.3}, with the other coefficient the bounded prime indicator. Apply \eqref{eq:7-6}. Since \(n>W\), roughness of \(m\) is equivalent to roughness of \(N(u)\); no coprimality between \(m\) and \(n\) is needed. Equation \eqref{eq:8-2} and the uniform ratio \(V_{a,b}(W)/V(W)=\mathfrak S T_{a,b}(1+o(1))\) show that the cost of this bin is at most
+\begin{equation*}
+\frac{\mathfrak S T_{a,b}X_\rho}{L}
+ \left\{\sup_{\gamma\le t\le\gamma'}D_\gamma(1-t)
+                          \log(\gamma'/\gamma)+o(1)\right\},
+\end{equation*}
+apart from a total \(o(X_\rho/L)\) replacement error. Sum over the fixed partition and use \eqref{eq:7-8}. Subtracting from \eqref{eq:8-1}, and applying \eqref{eq:7-4}, leaves a coefficient at least
+\begin{equation*}
+1-1/10-O(b_1^{-1}e^{-c/b_1})+o(1)>1/2
+\end{equation*}
+when \(b_1\) was chosen sufficiently small. Hence prime values, together with composites having \(P^-(N(u))>x^{1/2-\kappa}\), carry weight at least
+\stepcounter{equation}
+\begin{equation}
+\frac{\mathfrak S T_{a,b}X_\rho}{2L}.                  \tag{8.3}\label{eq:8-3}
+\end{equation}
+
+\subsection{Subtracting balanced composites}\label{sec:s8.4}
+
+A composite counted in \eqref{eq:8-3} has exactly two prime factors counted with multiplicity: three would give
+\(N(u)>x^{3(1/2-\kappa)}>5x\), contrary to \(N(u)\le5x\) in \eqref{eq:U}. Both factors belong to \(\mathcal B_\kappa\) for large \(x\), because the larger is at most \(5x^{1/2+\kappa}<x^{1/2+2\kappa}\). For fixed general \(a,b\), replace 5 by a fixed containing constant; the same conclusion holds eventually.
+
+Ordered prime pairs cover each such composite at least once. In their positive sum use the exact identity
+\begin{equation*}
+I_{\rm pr}(m)I_{\rm pr}(n)-B_{\rm pr}(m)B_{\rm pr}(n)
+ =(I_{\rm pr}-B_{\rm pr})(m)I_{\rm pr}(n)
+  +B_{\rm pr}(m)(I_{\rm pr}-B_{\rm pr})(n).
+\end{equation*}
+Apply Section~\ref{sec:s7.3} twice, exchanging factor roles in the second term. Each companion coefficient is bounded by one, independently of cell precision. The positive proxy sum is at most \(C_{\rm pr}^2/(L^2V(W)^2)\) times \eqref{eq:6-10}. Thus the balanced composites have total weight at most
+\stepcounter{equation}
+\begin{equation}
+C_{\rm bal}T_{a,b}(\kappa+1/L)\frac{X_\rho}{L}
+                                      +o(X_\rho/L).     \tag{8.4}\label{eq:8-4}
+\end{equation}
+Subtract \eqref{eq:8-4} from \eqref{eq:8-3} and use \eqref{eq:7-7}. For all sufficiently large \(x\), uniformly in \eqref{eq:U},
+\stepcounter{equation}
+\begin{equation}
+\sum_{N(u)\ {\rm prime}}w_\rho(u)
+ \ge T_{a,b}\left(\mathfrak S/2-C_{\rm bal}\kappa-o(1)\right)
+                 X_\rho/L
+ \ge (\mathfrak S/8)T_{a,b}X_\rho/L.                    \tag{8.5}\label{eq:8-5}
+\end{equation}
+The errors \(o(X_\rho/L)\) are also \(o(T_{a,b}X_\rho/L)\), because \(T_{a,b}\ge1\). Thus a growing singular factor has not spoiled the positive margin.
+
+
+\end{proof}
+
+\section{From weighted primes to the theorem for every large \texorpdfstring{\(X\)}{X}}\label{sec:s9}
+
+\begin{proposition}[Window count]\label{prop:window}
+The estimate \eqref{eq:9-1} holds for both signs, uniformly in \eqref{eq:U}, for every sufficiently large real \(x\).
+\end{proposition}
+\begin{proof}
+Deduct the nonsquarefree mass \eqref{eq:1-10} from \eqref{eq:8-5}. Since \(T_{a,b}\ge1\), for sufficiently large \(x\) the remaining mass is at least \((\mathfrak S/16)X_\rho/L\). Each individual weight is at most \(L^3\), by \eqref{eq:1-4}, and distinct \(u\) give distinct prime values \(N(u)\), since \(a>0\). Every \(u\) with \(w_\rho(u)>0\) lies in \([x,2x]\), because \(\Psi\) is supported in \([1,2]\); it is odd, as noted in the proof of Lemma~\ref{lem:support}, and it satisfies \(\lambda(u)=\rho\), by \eqref{eq:1-3}. By \eqref{eq:1-9},
+\stepcounter{equation}
+\begin{equation}
+\#\{u\in[x,2x]: u\ {\rm odd},\ au+b\ {\rm prime},\
+                 u\ {\rm squarefree},\ \lambda(u)=\rho\}
+ \ge c_9\,xL^{-225}.                                   \tag{9.1}\label{eq:9-1}
+\end{equation}
+Here \(c_9>0\) and the threshold are absolute in \eqref{eq:U}, and the estimate holds for both signs simultaneously. All arguments used real \(x\) and estimates valid for every sufficiently large \(x\). In the fixed general-\(a,b\) version, the same proof gives \eqref{eq:9-1} after allowed changes to the constant and threshold.
+
+\end{proof}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let \(X\) be sufficiently large and \(0<|h|\le(\log X)^5\). Choose \(a,b\) by \eqref{eq:0-1}, and set
+\stepcounter{equation}
+\begin{equation}
+x=\frac{X-|h|}{2a},\qquad \rho=s\lambda(a).             \tag{9.2}\label{eq:9-2}
+\end{equation}
+For an absolute sufficiently large \(X\), \(x\ge X/8\), \(\log x\asymp\log X\), and
+\begin{equation*}
+|b|\le(\log X)^5\le(\log x)^6.
+\end{equation*}
+Indeed \(x\in[X/8,X/2]\) implies \(\log x\ge\log X-\log8\), and the last inequality follows for all sufficiently large \(X\) by division by \((\log X)^5\). Thus \eqref{eq:U} holds. By further enlarging an absolute \(X_*\), \(x\) exceeds every uniform threshold in Sections~\ref{sec:s1}--\ref{sec:s8}.
+
+For each \(u\) counted in \eqref{eq:9-1}, the prime \(p=au+b\) satisfies
+\begin{equation*}
+p=au-h\le2ax+|h|=X,\qquad p+h=au>0.
+\end{equation*}
+Here \(u\) is odd and squarefree, while \(a=1\) or \(2\), so \(p+h=au\) is squarefree. Equation \eqref{eq:0-2} gives \(\lambda(p+h)=\lambda(a)\rho=s\). Distinct \(u\) give distinct primes \(p\). Therefore, since \(x\ge X/8\) and \(\log x\le\log X\),
+\begin{equation*}
+\#\{p\le X\text{ prime}:p+h>0,\ p+h\text{ squarefree},\ \lambda(p+h)=s\}
+ \ge \frac{c_9}{8}\frac{X}{(\log X)^{225}}
+ \ge \frac{c_9}{8}\frac{X}{(\log X)^{300}}.
+\end{equation*}
+This proves \eqref{eq:G}, with \(c=c_9/8\). 
+
+In particular, for every fixed nonzero integer \(h\) and each sign \(s\), the count in \eqref{eq:G} is at least \(c_hX/(\log X)^{C}\) for every real \(X\ge X_0(h)\), where
+\stepcounter{equation}
+\begin{equation}
+C=300,\qquad c_h=c,\qquad
+ X_0(h)=\max\{X_*,\exp(|h|^{1/5})\}.                    \tag{9.3}\label{eq:9-3}
+\end{equation}
+Indeed, for every \(X\ge X_0(h)\), condition \(|h|\le(\log X)^5\) holds, so Theorem~\ref{thm:main} applies to each sign. If integer thresholds are desired, round this maximum upward. The absolute threshold \(X_*\) is the only ineffective quantity here; its ineffectivity is inherited from the cited statements, including Siegel--Walfisz. The sign convention is summarized exactly by
+\begin{equation*}
+\begin{array}{c|c|c|c}
+ h & a & b & \rho\\ \hline
+ h\ {\rm even},\ h\ne0 &1&-h&s\\
+ h\ {\rm odd} &2&-h&-s
+ \end{array}
+\end{equation*}
+and is independent of the sign of \(h\). 
+
+
+\end{proof}
+
+\section{Local conditions and scope}\label{sec:s10}
+
+At 2, if \(h\) is even, \(p+h=u\) is odd. If \(h\) is odd, the construction chooses \(p+h=2u\) with \(u\) odd, so its 2-adic valuation is exactly one; the prime lies in the admissible odd class \(p\equiv2-h\pmod4\). There is no forced factor 4. At an odd prime \(\ell\mid h\), the construction has \(\ell\nmid p+h\) because \(u\) is coprime to \(\ell\) and \(a\) is a unit there; consequently \(p\not\equiv0\pmod\ell\) automatically. Such primes are omitted from the sieve and contribute the positive factor \((\ell-1)/(\ell-2)\). This includes \(\ell=3\), whose factor is 2. At odd \(\ell\nmid h\), the usual density \(1/(\ell-1)\le1/2\) is valid. Repeated prime factors of \(h\), including divisibility by 4 or by odd squares, do not force a square in \(p+h\); the construction only uses \(\operatorname{rad}(2h)\) for its masks. Squarefreeness follows from the separate loss estimate.
+
+For a general auxiliary prime form \(au+b\), the template on odd rough \(u\) requires \((a,b)=1\) and \(a+b\) odd. If \((a,b)>1\), all values share a fixed prime divisor and only finitely many can be prime. If both \(a,b\) are odd, all supported values are even, so this odd-\(u\) template cannot detect large primes; this is an obstruction to that template, not to every possible representation of a shifted-prime problem. If one wants \(au\) itself squarefree, \(a\) must be squarefree and coprime to \(u\). Our choice \(a=1,2\) always satisfies this. No supported group prime is forced to be a small prime dividing \(h\): the fixed possible factor 2 is placed outside \(u\), and all other such primes are automatically excluded by the band lower endpoint. These observations explain why every nonzero \(h\), without exceptions, is covered.
+
+For \(h=0\), every prime has \(\lambda(p)=-1\); the positive sign conclusion is false. In the proof, \(b=0\) makes the determinant shift \(\Delta=bk\) vanish, so [\citetalias{OpenAIE}, Theorem 4.1] is unavailable. Thus the proof does not yield the false zero-shift assertion.
+
+
+
+\section*{Finite checks}
+The ancillary programs \texttt{general\_parametrisation.py} and
+\texttt{general\_local\_conditions.py} enumerate finite ranges of
+leading coefficients, positive and negative shifts, factors and residue
+classes. They check the algebraic identities, inverse reconstruction and
+unit-ratio mask of Section~2, together with finite local-pair counts,
+the factor \eqref{eq:6-5}, and the squarefree and cutoff conversions.
+The ranges and commands are specified in the ancillary README.
+
+\appendix
+\section{Changes relative to [E, Sections 4--8]}\label{sec:changes}\label{sec:s11}
+
+The correlation input is [\citetalias{OpenAIE}, Theorem 4.1], with its hypotheses checked in Section~\ref{sec:s4.6}. The rows about Sections~3--4 of \citepalias{OpenAIS} describe the dependencies imported in [\citetalias{OpenAIE}, Propositions 4.2--4.3, pp.13--14] and, for [\citetalias{OpenAIS}, Lemma 4.2], in [\citetalias{OpenAIE}, Section 4.4, p.17]. The group and core conditions are checked in Sections \ref{sec:s1}, \ref{sec:s3}, \ref{sec:s4.6} and \ref{sec:s11.2}; the downstream arguments are given in Sections~\ref{sec:s4}--\ref{sec:s9}.
+
+\subsection{Changes in [E, Sections 4--8]}\label{sec:s11.1}
+
+\begingroup\small
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.23\textwidth}>{\raggedright\arraybackslash}p{0.31\textwidth}>{\raggedright\arraybackslash}p{0.37\textwidth}@{}}
+\toprule
+\textbf{Source location} & \textbf{Where a shift/sign/coefficient/unit condition enters} & \textbf{Present treatment and justification} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Source location} & \textbf{Where a shift/sign/coefficient/unit condition enters} & \textbf{Present treatment and justification} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\citepalias{OpenAIE} (4.1)--(4.5), p.12; Theorem 4.1, p.13 & Prime groups, same allowed \(\epsilon\), rough first factor, a prime long slot, logarithmic moduli/frequencies & Unchanged groups and \(\epsilon\), proved in Sections \ref{sec:s1} and \ref{sec:s3}. The mask creates a character only on \(m\), already allowed as \(\chi_0(m)\) in the core. Full check at Section~\ref{sec:s4.6}. \\[4pt]
+\citepalias{OpenAIE} Propositions 4.2--4.3, pp.13--14 & Nonzero integer graph shift, ideal norm, fixed parameters before \(J\), mark-independent first endpoint & The internal shift is \(\Delta=bk\ne0\), of logarithmic size. No graph coefficient or group is restricted by primes dividing \(h\); those primes are below all groups. See the \citepalias{OpenAIS} table in Section~\ref{sec:core-norms}. \\[4pt]
+\citepalias{OpenAIE} Section~4.3, (4.14)--(4.19), pp.15--17 & Endpoint bounds, common-dilation removal, \(\epsilon(D_R)^2=1\), overlaps & The exact same real completely multiplicative \(\epsilon\) is used twice. Character masks occur only in the invariant core. Leading \(a\) and original \(b\) do not enter this imported step except through the permitted \(\Delta,Z\). \\[4pt]
+\citepalias{OpenAIE} Section~4.4, (4.20)--(4.26), pp.17--18 & Multiplier frequency \(k\theta\), two independent free products, major-arc denominators & Replace that internal \(k\) by \(\Delta=bk\). The theorem is uniform for every integer \(|\Delta|\le L^C\). The extra at-most \(L^6\) factor only changes the fixed exponent \(C\), already supplied before the invocation. \\[4pt]
+\citepalias{OpenAIE} Section~4.5, (4.27)--(4.31), p.18 & Small-prime extraction, primes being units modulo the rational-center modulus, sign absorbed in coefficients & Our small group primes and reserved long prime eventually exceed every logarithmic modulus; \(m\) is \(W\)-rough. Residual factors may share the modulus, as allowed by the gcd split in that cited proof. No assumption \((v,k)=1\) is introduced. \\[4pt]
+\citepalias{OpenAIE} Lemma 4.4 and Section~4.6, pp.19--20 & Physical scale \(Y=x^{1+o(1)}\), short scale \(H=x^{o(1)}\), bounded coefficients & The cores in Section~\ref{sec:s4.6} have exactly the theorem's bounds. \(Z=xL^{O(1)}\) and group dilations are unchanged; fixed-logarithmic \(b,k\) do not change these scales. This step is part of the cited theorem. \\[4pt]
+\citepalias{OpenAIE} Section~4.7 and Remark 4.5, pp.20--22 & High-frequency long-prime bound and final discrepancy exponent & \citepalias{OpenAIE} Lemma 3.1 applies as already built into Theorem 4.1; \(\tau,\eta\) are fixed after \(b_*\), and moduli/frequencies have the prescribed logarithmic bounds. The discrepancy exponent is chosen last in Section~\ref{sec:s4.6}. \\[4pt]
+\citepalias{OpenAIE} (5.1)--(5.4), pp.22--23 & Even ordinary-slot count, bands, the negative parity projection & Geometry is identical; both projections are defined in \eqref{eq:1-2}. Their nonnegativity and pointwise bound, including the explicit \(L^3\) bound, are proved in Section~\ref{sec:projections}. \\[4pt]
+\citepalias{OpenAIE} (5.5), p.23 & Converting support to \(\lambda(2u)=+1\) & Replace by \(\lambda(u)=\rho\), then by \(\lambda(au)=\lambda(a)\rho\) only in the target representation. Here \(a=1\) or 2 is squarefree and coprime to \(u\). Equations \eqref{eq:0-2}, \eqref{eq:1-3}, \eqref{eq:9-2}. \\[4pt]
+\citepalias{OpenAIE} (5.6)--(5.9), pp.23--24; Lemma 5.1, p.24 & Harmonic laws, group parity and group-product tail & Euler/probability identities and the two-sign lower bound are proved in Section~\ref{sec:mass}. Lemma 5.1 is cited with its unchanged weight and fixed positive tail parameter. \\[4pt]
+\citepalias{OpenAIE} Lemma 5.2, pp.24--25 & Restriction to the negative group parity while localizing \(u\asymp x\) & Both signs are handled by the complete reserved-slot argument in Section~\ref{sec:mass}, using \eqref{eq:1-7}. No unchanged-sign invocation is used for the other sign. \\[4pt]
+\citepalias{OpenAIE} Lemma 5.3, pp.25--26 & Removing squares from \(2u\) & Proof in Section~\ref{sec:squares} gives the loss for \(u\); \(2u\) is squarefree exactly when odd \(u\) is. For general auxiliary \(a\), \(au\) is squarefree only if \(a\) is squarefree and coprime to \(u\). \\[4pt]
+\citepalias{OpenAIE} Theorem 6.1 start, p.26 & Splitting the negative projection before Cauchy & Same linear split for both projections, Section~\ref{sec:s4.1}; no mixed-\(\epsilon\) correlation is required. \\[4pt]
+\citepalias{OpenAIE} (6.3)--(6.12), pp.27--29 & Tail deletion, a long prime in the complementary factor, allocation and Fourier costs & Fully proved for \(au+b\) in Sections~\ref{sec:s4.1}--\ref{sec:s4.2}. \(au+b\asymp x\) has uniform constants in \eqref{eq:U}; \((e,R)=1\) comes from the actual ordinary-slot support. \\[4pt]
+\citepalias{OpenAIE} (6.13)--(6.15), pp.29--30 & Cauchy majorant and diagonal & Retain \((e,R)=1\) in the majorant; diagonal uses \(\tau(au+b)\tau(u)^3\). Proof and fixed divisor moments in Section~\ref{sec:s4.3}. \\[4pt]
+\citepalias{OpenAIE} (6.16)--(6.19), p.30 & \((n,2e)=1\), inverse transformation, a unit congruence on \(m,m'\) & Replaced by the full algebraic lemma Section~\ref{sec:s2}: \((n,ae)=1\), determinant \(bk\), ratio mask modulo \(a|k|R\), inverse and coefficient mass \(\le R\). The parity of \(k\) is not restricted. \\[4pt]
+\citepalias{OpenAIE} (6.20)--(6.23), p.31 & Pulled-back smooth cutoffs, positivity and absolute tails & Formula \eqref{eq:4-14} displays both \(a\) and \(b\). All derivatives and tails are proved/bounded in Section~\ref{sec:s4.5}; [\citetalias{OpenAIE}, Lemma 2.4] is used only at fixed dimension 3. \\[4pt]
+\citepalias{OpenAIE} (6.24)--(6.27), p.32; Remark 6.2, p.33 & Endpoint cores, their discrepancy, factor exchange and precision order & Exact cores \eqref{eq:4-16}, all hypotheses in Section~\ref{sec:s4.6}, parameter order at its end. Factor exchange and nonsmooth companion proxy justified in Section~\ref{sec:s7.3}. \\[4pt]
+\citepalias{OpenAIE} Theorem 7.1, (7.1)--(7.4), pp.33--34 & Unit root \(-1/2\bmod d\), principal correction, deleted ordinary prime slot & Unit root becomes \(-b/a\), but only for \((d,2ab)=1\); at other primes the actual mass is zero. Equations \eqref{eq:5-1}--\eqref{eq:5-5}; two projections do not affect the coefficient bound. \\[4pt]
+\citepalias{OpenAIE} (7.5)--(7.10), pp.34--36 & Character conductors, masks and prime-slot Siegel--Walfisz & Fully checked in Section~\ref{sec:s5}. The root contributes only a unit-modulus character value. Restricting divisors to be coprime to \(R\) can be dropped in positive majorants; no \(R\) loss occurs. \\[4pt]
+\citepalias{OpenAIE} Lemma 8.1, pp.36--37 & Sieve local density, level, nonnegativity and coefficient bounds & Cite [\citetalias{OpenAIS}, Lemma 2.9] at each of the three uses, with all hypotheses verified in Sections \ref{sec:s6.2}, \ref{sec:s8.1} and \ref{sec:s8.2}. \\[4pt]
+\citepalias{OpenAIE} (8.3)--(8.4), p.37 & Singular constant and the prime 2 & The exact local product is \eqref{eq:5-7}--\eqref{eq:5-8}, with positive multiplier \(T_{a,b}\); \(N(u)\) is odd by the stated parity condition. \\[4pt]
+\citepalias{OpenAIE} Lemma 8.2, pp.37--38 & Ordinary-cell proxies and \(w=1-\log n/L+O(1/L)\) & Cite [\citetalias{OpenAIS}, Lemmas 7.3--7.4] with explicit compact-set verification \eqref{eq:7-5}. No candidate-weight assumption is needed. \\[4pt]
+\citepalias{OpenAIE} (8.12), p.38; Lemma 8.3, p.39 & Micro/macro geometry and positive mask majorant & Unchanged citation with all definitions and gap hypotheses checked in Section~\ref{sec:s6.1}. It bounds \(A_0\), hence both projections. \\[4pt]
+\citepalias{OpenAIE} Lemma 8.4, (8.15)--(8.20), pp.39--41 & Unit product modulo \(D_1\), disjoint bad events, lattice remainders & The replacement argument is in Sections~\ref{sec:s6.2}--\ref{sec:s6.3}. At primes dividing \(b\) the bad events coincide, and at primes dividing \(a\) a condition is dropped in an upper bound. The precise product multiplier is \(T_{a,b}\), not an unspecified constant. \\[4pt]
+\citepalias{OpenAIE} (8.21)--(8.24), p.41 & Balanced-pair constant chosen before \(\kappa\) and mesh & The same \(T_{a,b}\) occurs in both relevant quantities, so it cancels in \eqref{eq:7-7}. All remaining constants are absolute in \eqref{eq:U}. This is essential to the growing-shift range. \\[4pt]
+\citepalias{OpenAIE} Lemma 8.5, p.42 & Proxy replacement on each factor & Section 7.3 applies the Type II theorem for \(au+b\). \\[4pt]
+\citepalias{OpenAIE} Lemma 8.6, pp.42--43 & Initial presieving, oddness, local root densities & Section~\ref{sec:s8.1} omits primes dividing \(2ab\), uses their exact absence \eqref{eq:5-1}, and verifies the level. The resulting main term is \(\mathfrak S T_{a,b}X_\rho/L\). \\[4pt]
+\citepalias{OpenAIE} Lemma 8.7, p.43 & Large prime divisor \(n\), injectivity of \((n,d)\mapsto nd\) & Section~\ref{sec:s8.2} proves this with \(n>W\), \(d\) supported at good primes below \(W\); every \(nd\) is squarefree, coprime to \(R\) and below the distribution level. \\[4pt]
+\citepalias{OpenAIE} Lemma 8.8, pp.43--44 & Least prime factor, rough cofactor, subtraction of ordinary densities & Section 8.3. No condition \((m,n)=1\) is imposed. The singular multiplier is preserved in every main term. \\[4pt]
+\citepalias{OpenAIE} Lemma 8.9, p.44 & Two prime factors counted with multiplicity, two proxy replacements & Section 8.4, with \(N(u)\le5x\) in \eqref{eq:U}; constants absorb this fixed containing range. \\[4pt]
+\citepalias{OpenAIE} proof of Theorem 1.1, pp.44--45 & Positive remaining mass, squares, parity, infinitude & Section~\ref{sec:s9} proves the point-count lower bound, both signs, injectivity, and the conversion to every \(p\le X\). \\[4pt]
+\end{longtable}
+\endgroup
+
+\subsection{Core norms and the cited [S] inputs}\label{sec:core-norms}\label{sec:s11.2}
+
+\begin{lemma}[Core norms]\label{lem:core-norms}
+The pointwise and physical norm bounds below hold for the cores in Input~\ref{input:correlation}.
+\end{lemma}
+\begin{proof}
+For a core \eqref{eq:3-1}, \(|F(n)|\le L^{C'}\tau(n_*)^2\). On physical positions \(n\asymp Y=x^{1+o(1)}\), its two \(W\)-rough factors \(m,p\) can receive only \(O(\sqrt L)\) prime factors with multiplicity. Assigning each such factor to \(m,p\) or the remaining factor proves \(\sup|F|\le\exp(O(\sqrt L))\). This bound is unchanged by any of the unit characters on \(m\).
+
+For a fixed admissible physical mark list of product \(P_0\), \(n_*\mid n/P_0\). The fourth divisor moment from [\citetalias{OpenAIE}, Proposition 2.2, p.3], applied at \(Y/P_0\), gives
+\begin{equation*}
+\sum_{\substack{n\asymp Y\\P_0\mid n}}|F(n)|^2
+ \ll(Y/P_0)L^{C''}.
+\end{equation*}
+Here \(P_0=\exp(O_J(TL^{2/5}))=x^{o(1)}\), with \(J\) fixed before \(x\), so \(Y/P_0\) remains of positive-power length. The normalized reciprocal sum of all distinct lists is at most
+\(\prod_g V_g^{-M}(\sum_{p\in P_g}1/p)^M=1\).
+The endpoint half-damping is at most one on physical states. Hence its physical norm is \(\ll\sqrt YL^{C_3}\), with \(C_3\) independent of the later \(J\). The endpoint depends on the integer and its full divisibility counts, but not on the chosen mark list. This verifies precisely the endpoint conditions of the cited transference consequence, for the stated transference input.
+
+\end{proof}
+\begingroup\small
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.23\textwidth}>{\raggedright\arraybackslash}p{0.31\textwidth}>{\raggedright\arraybackslash}p{0.37\textwidth}@{}}
+\toprule
+\textbf{Numbered source statement} & \textbf{Required hypotheses relevant here} & \textbf{Verification / what is and is not changed} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Numbered source statement} & \textbf{Required hypotheses relevant here} & \textbf{Verification / what is and is not changed} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\citepalias{OpenAIS} Lemma 3.4, p.12, via \citepalias{OpenAIE} Proposition 4.2, pp.13--14 & Allowed patterns, fixed maximum freed slots per group, total kernel coefficient mass \(L^{C_1}\), endpoint damping and joint list normalization & The residual family is the one supplied by the next cited theorem for the unchanged groups. The shift is merely the permitted integer \(\Delta\). Our ratio mask has already been expanded into core characters and is not a graph kernel. Thus the original absolute row/column bound applies with no modification. \\[4pt]
+\citepalias{OpenAIE} Proposition 4.2, pp.13--14, formulating \citepalias{OpenAIS} Theorem 3.5, pp.12--13 & Group exponents below .47, group count/mass bounds, nonzero \(|k_{\rm graph}|\le L^{C_2}\), ideal norm, fixed \(J\) chosen last, positive-power physical interval & Sections \ref{sec:s1} and \ref{sec:s3} give the geometry. \(k_{\rm graph}=\Delta=bk\ne0\) and is logarithmic. The threshold in [\citetalias{OpenAIE}, Proposition 4.2] may depend on the fixed exponent bounding \(|k|\), so this formulation is used for the logarithmic shift range. The ideal norm is supplied by \citepalias{OpenAIS} Theorem 4.1. Physical heights in the cited \citepalias{OpenAIE} lift are \(Z\) times group products, hence \(x^{1+o(1)}\), contained in \([x^{1/2},x^2]\). All group primes eventually exceed \(|\Delta|\), since \(\exp(L^{1/10})\) exceeds every fixed power of \(L\); thus any prime-unit condition in that source argument is also uniform. \\[4pt]
+\citepalias{OpenAIS} Corollary 3.11, p.26 & First endpoint mark-independent, supremum \(\exp(O(\sqrt L))\), both norms \(\sqrt Y L^{C_3}\) & Verified immediately above for our actual cores and their damping. Multiplication by the same \(E\) and by power factors preserves moduli and mark-independence. \\[4pt]
+\citepalias{OpenAIS} Theorem 4.1, p.27 & Big groups are full prime intervals; fixed ideal precision and fixed logarithmic frequency range; sufficiently large fixed \(J\) & Full-interval property is in Section~\ref{sec:bands}; no primes dividing \(h\) are removed from these groups. The needed exponents are fixed uniformly in \eqref{eq:U} before \citepalias{OpenAIE} Theorem 4.1 is invoked. The theorem supplies its \(m,J_0,C_1\) before a still larger \(J\), as required by transference. \\[4pt]
+\citepalias{OpenAIS} Lemma 4.2, pp.28--29 & Two integer intervals (holes allowed), square-summable coefficients, a rational approximation \(|\beta|\le r^{-2}\) & In the cited \citepalias{OpenAIE} comparison step, unique factorization collapses independent product tuples to coefficients with \(\sum|a_n|^2\ll L^C/U\), \(\sum|b_n|^2\ll L^C/V\). The Fourier phase is \(\Delta\theta\); the lemma is uniform in every such real phase and permits arbitrary missing coefficients. The original shift/leading coefficient imposes no additional restriction. \\[4pt]
+\citepalias{OpenAIS} Lemma 4.3, pp.30--32 & Nonempty freed product sets, bounded slots per group, four independent tuple spaces, arbitrary \(L^2\) tuple tests, fixed log-frequency bound, all real additive frequencies & These are exactly the residual family in the cited \citepalias{OpenAIE} proof. Our changes are in the allowed endpoint coefficients and the internal integer shift, not in the independent tuple laws. The uniformity for arbitrary tests and frequencies covers them. \\[4pt]
+\citepalias{OpenAIS} Lemma 2.9, pp.8--9 & Finite nonnegative weighted objects, multiplicative local density bounded below 1, bounded harmonic mass per multiplicative block, all squarefree intersection remainders; coefficients at most 1, growing-depth uniformity & Verified separately for the depth-2 lattice sieve in Section~\ref{sec:s6.2}, the initial sieve in Section~\ref{sec:s8.1}, and the conditional growing-depth sieve in Section~\ref{sec:s8.2}. Omitting primes dividing \(2ab\) preserves the uniform density bounds. \\[4pt]
+\citepalias{OpenAIS} Lemma 7.3, pp.57--58 & Fixed positive-power ambient interval, actual prime/rough tests, full-cell ratios, \(S_1>2B_*+3\), actual interval restriction & Checked in Sections~\ref{sec:s7.1}--\ref{sec:s7.3}. Both factor ranges have exponent slack inside the ambient interval, uniformly in \eqref{eq:U}. The bound 1 for each proxy does not depend on \(S_1\). \\[4pt]
+\citepalias{OpenAIS} Lemma 7.4, pp.59--60, especially (7.20) & Balanced prime range; ordinary rough-cell densities with \(\gamma\ge b_1\), \(w-\gamma\) bounded away from zero; fixed \(b_1\) for its integral identity and bound & Checked by \eqref{eq:7-5}, including the changed \(N(u)\asymp x\). The identities and inequalities are for ordinary integers; no parity or prime-form assumption is hidden in them. \\[4pt]
+\end{longtable}
+\endgroup
+
+[\citetalias{OpenAIE}, Lemma 3.1, p.4] applies in the proof of [\citetalias{OpenAIE}, Theorem 4.1] with the fixed \(0<\tau<\eta<1/4\) chosen in Section~\ref{sec:s4.1}. It covers every character of logarithmic modulus, every subinterval of a dyad \(x^\tau/2\le N\le x^\eta\), and \(L^{B_0}\le|t|\le x^2\). These are the ranges of the reserved prime slot and the high frequencies in that cited theorem. The additional fixed logarithmic exponents from \(\Delta\) and the mask merely alter the permitted fixed input \(C\). The zero-free half-plane theorem of the same release is not used.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+\section*{Use of AI}
+The proofs and the text of this paper were produced with AI systems (GPT-6 Astra, GPT-6.1 Sol and Claude Opus~5.5) under the author's direction. They were checked by independent reviews with AI models, and the algebraic identities of Section~2 by exhaustive computation on finite ranges (programs in the ancillary files). The author takes responsibility for the content.
+\end{document}

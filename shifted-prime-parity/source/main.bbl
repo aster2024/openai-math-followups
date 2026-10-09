@@ -1,0 +1,69 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Chen(1973)]{Chen1973}
+Jing~Run Chen.
+\newblock On the representation of a large even integer as the sum of a prime
+  and the product of at most two primes.
+\newblock \emph{Scientia Sinica}, 16:\penalty0 157--176, 1973.
+
+\bibitem[Goldston et~al.(2008)Goldston, Graham, Pintz, and
+  Y{\i}ld{\i}r{\i}m]{GGPY2008}
+D.~A. Goldston, S.~W. Graham, J.~Pintz, and C.~Y. Y{\i}ld{\i}r{\i}m.
+\newblock Small gaps between almost primes, the parity problem, and some
+  conjectures of {Erd{\H o}s} on consecutive integers, 2008.
+\newblock URL \url{https://arxiv.org/abs/0803.2636v1}.
+\newblock Preprint, 18 March 2008, arXiv:0803.2636v1.
+
+\bibitem[Lichtman(2020)]{Lichtman2020}
+Jared~Duker Lichtman.
+\newblock Averages of the {M{\"o}bius} function on shifted primes, 2020.
+\newblock URL \url{https://arxiv.org/abs/2009.08969v2}.
+\newblock Preprint, 18 September 2020; revised 20 October 2021,
+  arXiv:2009.08969v2.
+
+\bibitem[Lichtman and Ter{\"a}v{\"a}inen(2022)]{LT2021}
+Jared~Duker Lichtman and Joni Ter{\"a}v{\"a}inen.
+\newblock On the {Hardy--Littlewood--Chowla} conjecture on average.
+\newblock \emph{Forum of Mathematics, Sigma}, 10:\penalty0 e57, 2022.
+\newblock \doi{10.1017/fms.2022.54}.
+\newblock URL \url{https://arxiv.org/abs/2111.08912v3}.
+\newblock Preprint submitted 17 November 2021; revised 21 June 2022,
+  arXiv:2111.08912v3.
+
+\bibitem[{OpenAI}(2026{\natexlab{a}})]{OpenAIE}
+{OpenAI}.
+\newblock {Prime Predecessors with an Even Number of Prime Factors}.
+\newblock OpenAI Math Release preprint, September 2026{\natexlab{a}}.
+\newblock URL
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Prime-Predecessors-with-an-Even-Number-of-Prime-Factors-September-17-2026/paper.pdf}.
+\newblock 17 September 2026, 45 pages. Public 6 October 2026. Repository commit
+  adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+
+\bibitem[{OpenAI}(2026{\natexlab{b}})]{OpenAIS}
+{OpenAI}.
+\newblock {Weighted dilation graphs, smooth shifted primes and totient fibers}.
+\newblock OpenAI Math Release preprint, September 2026{\natexlab{b}}.
+\newblock URL
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Weighted-Dilation-Graphs-Smooth-Shifted-Primes-and-Totient-Fibers-September-24-2026/paper.pdf}.
+\newblock 24 September 2026, 68 pages. Repository commit
+  adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+
+\bibitem[Pintz(2010)]{Pintz2010}
+J{\'a}nos Pintz.
+\newblock An approximation to the twin prime conjecture and the parity
+  phenomenon, 2010.
+\newblock URL \url{https://arxiv.org/abs/1004.1065v1}.
+\newblock Preprint, 7 April 2010, arXiv:1004.1065v1.
+
+\bibitem[Richter and Ter{\"a}v{\"a}inen(2026)]{RT2026}
+Florian~K. Richter and Joni Ter{\"a}v{\"a}inen.
+\newblock Sum-product patterns in the shifted primes, 2026.
+\newblock URL \url{https://arxiv.org/abs/2610.03417v1}.
+\newblock Preprint, 2 October 2026, arXiv:2610.03417v1.
+
+\end{thebibliography}
