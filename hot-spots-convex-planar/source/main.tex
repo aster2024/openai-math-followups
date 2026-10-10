@@ -1,0 +1,1232 @@
+\documentclass[11pt]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+  pdftitle={First Neumann eigenfunctions of convex planar domains attain their extrema on the boundary},
+  pdfauthor={Jizhou Guo}}
+\Urlmuskip=0mu plus 1mu
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{inputthm}[theorem]{Input}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\e}{\mathrm e}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\Dpret}{\mathbb D}
+\newcommand{\ph}{\varphi}
+\newcommand{\leanname}[1]{\nolinkurl{#1}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\HS}{HS}
+\DeclareMathOperator{\Rea}{Re}
+\DeclareMathOperator{\cond}{cond}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\DeclareMathOperator{\supp}{supp}
+\defcitealias{OpenAI369}{O}
+\title{First Neumann eigenfunctions of convex planar domains attain their extrema on the boundary}
+\author{Jizhou Guo\\
+  \href{mailto:mitsuha2021b@gmail.com}{\texttt{mitsuha2021b@gmail.com}}}
+\date{October 10, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $D$ be a bounded convex domain in the plane, with no smoothness assumption on its boundary, and let $u$
+be a non-zero eigenfunction for the first positive Neumann eigenvalue of $D$. We show that the maximum and
+the minimum of $u$ over $\overline D$ are attained on $\partial D$, that $u$ has no strict or isolated local
+extremum in $D$, and that every isolated critical point of $u$ in $D$ has index zero. These statements are
+deduced from a theorem of OpenAI (September 2026), according to which, on bounded simply connected planar
+domains with smooth boundary, such eigenfunctions have no interior critical points. When the eigenvalue is
+simple, the deduction is an approximation argument with extension operators and H\"older bounds that are
+uniform on convex domains. When it is double, each member of the eigenspace is obtained as a limit of first
+eigenfunctions of smooth domains that need not be convex; this uses the surjectivity of the first-order
+shape perturbation of the eigenvalue onto traceless symmetric matrices, proved here for arbitrary convex
+domains. Independently of that theorem, we prove that the first positive Neumann eigenvalue of every
+bounded convex planar domain has multiplicity at most two and that the nodal set of each eigenfunction is a
+single arc joining two distinct boundary points; for simply connected domains with smooth boundary this
+multiplicity bound is due to Nadirashvili.
+\end{abstract}
+\noindent\textit{2020 Mathematics Subject Classification.} Primary 35P05; Secondary 35J05, 35B38, 58J50.
+
+\section{Introduction}\label{sec:intro}
+Throughout, $D$ is a non-empty bounded open convex subset of the plane, with no smoothness assumption on its
+boundary; $\mu$ is its first positive Neumann eigenvalue, and $u$ is any non-zero real eigenfunction for $\mu$,
+taken as its continuous representative on $\overline D$. The continuity follows from the estimates below.
+Theorems~1.1 and~1.2 are deduced from [O, Theorem~1.1].
+
+\begin{theorem}\label{thm:boundary}
+For every such $D$ and $u$,
+\begin{equation}\label{eq:src-12-06}
+\max_{\overline D}u=\max_{\partial D}u,\qquad
+\min_{\overline D}u=\min_{\partial D}u.
+\end{equation}
+The assertion holds both when $\mu$ is simple and when it is double, for every member of its eigenspace.
+\end{theorem}
+
+\begin{theorem}\label{thm:critical}
+The function $u$ has no strict local extremum and no isolated local extremum in $D$. Every isolated critical
+point of $u$ in $D$ has index zero. At every critical point in $D$ the Hessian has rank one, and the point is
+either isolated, with analytic local coordinates in which
+$u-u(p)=\sigma X^2+g(Y)$, $\sigma\in\{-1,1\}$, and the leading term of $g$ has odd degree $k\ge3$, or lies on a
+regular analytic curve of critical points, corresponding to $g\equiv0$. No compact closed curve of critical
+points is contained in $D$. Every nonisolated critical curve component approaches $\partial D$.
+\end{theorem}
+
+Here a local extremum is called isolated if it is an isolated point of the set of local extrema of the same kind (maxima, respectively minima), or an isolated critical point of $u$; both cases are excluded in Lemma~\ref{lem:index-stability}.
+
+\begin{theorem}\label{thm:nodal}
+The multiplicity of $\mu$ is at most two. The nodal set of $u$ in $D$ is a single analytic arc without
+critical points of $u$ on it, whose two ends converge to two distinct boundary points. The boundary trace of
+$u$ has exactly these two zeros and changes sign at each.
+\end{theorem}
+The proof of Theorem~\ref{thm:nodal} does not use [O].
+
+Rauch's hot spots conjecture concerns the large-time extrema of the heat equation with insulating boundary
+conditions \cite{Rauch}. Ba\~nuelos and Burdzy \cite[Section~1]{BB1999} distinguish three spectral forms.
+In their notation, HS1 requires, for every nonzero eigenfunction at the first positive Neumann eigenvalue
+and every interior point, strict inequalities between the boundary minimum and maximum. HS2 requires the
+weak inequalities for every such eigenfunction and every interior point. HS3 requires the weak inequalities
+for every interior point for at least one nonzero eigenfunction at that eigenvalue. Theorem~\ref{thm:boundary}
+is HS2 for all bounded convex planar domains, deduced from [O].
+
+The source [O] is OpenAI's paper of 24 September 2026 \cite{OpenAI369}. We quote its statement, including its
+domain hypotheses. Let $\Omega\subset\R^2$ be a nonempty bounded simply connected open set with $C^\infty$
+boundary. Let $\mu=\mu_1(\Omega)$ be its first positive Neumann eigenvalue and let $V$ be the real eigenspace.
+\begin{quote}
+\phantomsection\label{thm:source}
+\textbf{[O, Theorem~1.1].} For every $0\ne u\in V$,
+\begin{equation}\label{eq:source-gradient}
+\nabla u(x)\ne0\qquad(x\in\Omega).
+\end{equation}
+In particular,
+\begin{equation}\label{eq:source-strict}
+\min_{y\in\partial\Omega}u(y)<u(x)<\max_{y\in\partial\Omega}u(y)
+\qquad(x\in\Omega).
+\end{equation}
+\end{quote}
+The paper states that its theorem ``imposes no convexity or symmetry condition.'' The release contains a
+Lean formalization of this theorem.
+
+Ba\~nuelos--Burdzy (1999) \cite[Theorem~1.2]{BB1999} prove HS3 for obtuse triangles, with the extreme values
+at the two most distant vertices. Their Theorem~1.3 proves HS1 for sufficiently long convex planar domains with a reflection
+axis $S$ meeting the boundary at $x,y$, diameter-to-width ratio greater than $1.54$, and either a second
+reflection axis perpendicular to $S$, or the condition that, for every $r>0$, each of
+$D\cap\partial B(x,r)$ and $D\cap\partial B(y,r)$ is empty or a connected arc.
+Their Proposition~2.5, which they attribute to Nadirashvili and for which they give a proof, bounds by two the multiplicity of the first positive Neumann eigenvalue of a simply connected planar domain with smooth boundary.
+The precise source is Nadirashvili \cite[Theorem~3]{Nadirashvili}, for a smooth Riemannian surface
+diffeomorphic to the disc with nonpositive Gaussian curvature; smooth simply connected planar domains have
+zero Gaussian curvature. The English translation appeared in 1988, following the Russian original in 1987.
+
+Jerison--Nadirashvili (2000) \cite[Theorem~1.4]{JN2000} prove boundary extrema for every first positive
+Neumann eigenfunction on convex planar domains with two orthogonal axes of reflection symmetry, allowing
+multiple eigenvalues and without a smoothness assumption. Pascu (2002) \cite{Pascu} obtains monotonicity properties of
+antisymmetric first positive Neumann eigenfunctions of convex planar domains with one line of
+symmetry, and derives hot spots results from them for some classes of domains. Atar--Burdzy (2004) \cite[Theorem~1]{AB2004} treat every first positive eigenfunction
+on lip domains: bounded connected Lipschitz planar domains between two graphs of Lipschitz constant at
+most one, in suitable coordinates. They also prove simplicity except for squares.
+
+Judge--Mondal (2020), with their 2022 erratum \cite{JM2020,JM2022}, exclude interior critical points for every
+first positive Neumann eigenfunction of every Euclidean triangle. The erratum's Theorem~A treats acute
+triangles; its Theorem~4.1 supplies the obtuse and right cases. Chen--Gui--Yao (2026; preprint version of 8 December 2025)
+\cite[Theorem~1.2]{CGY} classify the nonvertex critical points on non-equilateral triangles: there is at most
+one, and when present it is a saddle on the interior of the shortest side; its existence is characterized
+by the acute, non-superequilateral case. The extrema occur at the endpoints of the longest side.
+
+Steinerberger (2019) \cite{SteinerTips} locates extrema on convex planar domains within a universal multiple
+of the inradius of diametral endpoints. Steinerberger (2021) \cite{SteinerConstant} proves that the ratio of
+the interior supremum to the boundary maximum is at most $60$ on bounded connected smooth domains, in all
+dimensions. Mariano--Panzo--Wang (2021) \cite{MPW} extend the hot spots constant to bounded Lipschitz domains
+and show that it leads to an if and only if condition for HS2. Rohleder's (2021; revised 2023)
+variational principle \cite{RohlederLip} gives directional monotonicity, and hence boundary extrema, on lip
+domains; Rohleder (2025; revised 2026) \cite{RohlederCenter} describes an explicit region near the center of a convex planar
+domain containing no critical points of a first positive Neumann eigenfunction.
+
+Deng--Jiang--Yang (2026) \cite[Theorem~1.3(E)]{DJY} prove, under their standing hypotheses of bounded convex
+planar domains with piecewise $C^{1,\alpha}$ boundary, an upper bound below $1.48$ for the hot spots constant.
+Deng--Gui--Jiang--Yang--Yao--Zou (2026) \cite{DGGJYZ} determine symmetry branches, their double crossings and
+nonvertex critical points on isosceles trapezoids and convex kites; their hot spots assertions cover the
+cases in which the first positive eigenvalue is simple.
+
+Hatcher (2024; revised 2025) \cite{HatcherPolygons} proves hot spots results for L-shaped domains and several classes tiled by
+them. Hatcher (2024; revised 2025) \cite{HatcherMixed} proves absence of interior critical points for first mixed eigenfunctions
+on convex domains when the Dirichlet region is connected and sufficiently small. Hatcher (2025)
+\cite{HatcherCurvature} treats non-acute geodesic triangles of negative constant curvature, and Hatcher (2026)
+\cite[Theorem~1.1]{HatcherHyperbolic} excludes interior critical points for first positive Neumann
+eigenfunctions on finite-area geodesically convex hyperbolic domains when that eigenvalue belongs to
+$(0,1/4]$. Krej\v ci\v r\'ik's survey \cite[Section~6.4]{Krejcirik}, dated 23 September 2026, discusses the
+hot spots problem and its geometric special cases.
+
+Outside the present class, Burdzy--Werner (1999) \cite{BW1999} construct a planar counterexample with two
+holes, and Burdzy (2005) \cite{Burdzy2005} constructs one with a single hole and both extreme values strictly
+in the interior. Kleefeld (2021) \cite{Kleefeld} gives numerical examples on domains with holes. De Dios Pont (2024)
+\cite{deDios} constructs convex counterexamples in all sufficiently large dimensions.
+De Dios Pont--Hsu--Taylor (2025) \cite[Definition~1 and Theorem~4]{DDHT} determine the sharp dimension-dependent
+extremal ratio over bounded connected Lipschitz domains.
+
+\paragraph{What is used from [O].}
+We use only [O, Theorem~1.1] as a statement on smooth bounded simply connected planar domains. For a simple
+first positive eigenvalue it is applied to smooth strictly convex approximations. For a double eigenvalue
+it is applied to smooth images of those approximations under diffeomorphisms close to the identity. These
+images need not be convex, so [O, Theorem~1.1] is applied to smooth simply connected domains that are not
+convex. The inequality $\mu<\lambda_D$ of [O, Lemma~2.1] is proved for convex domains in
+Section~\ref{sec:multiplicity}, by the argument of Filonov \cite{Filonov}, rather than quoted.
+
+\paragraph{Classical estimates and the arguments below.}
+The $H^2$, extension and spectral convergence estimates follow the classical route, in particular the one
+in B\'erard--Helffer \cite[Section~2]{BH2021}. For a simple eigenvalue, Theorem~\ref{thm:boundary} is an
+approximation corollary of [O]. We give the Hessian bound with constant one and explicit uniform H\"older
+extensions on convex domains and on slightly non-convex smooth images. To select an arbitrary member of a
+double eigenspace, we prove surjectivity of the traceless shape matrix using $H^{1/2}$ Cartesian derivative
+traces, quantify the perturbation and take the smoothing and deformation limits in the stated order.
+The multiplicity and nodal structure proof for non-smooth convex domains replaces smooth boundary nodal
+expansions by even reflection and the weak Harnack inequality. B\'erard--Helffer
+\cite[Remark~3.7(2)]{BH2021} discuss the use of smoothness for boundary nodal structure and the possibility of
+obtaining an analogous local result in the non-smooth case.
+
+Set convergence alone does not give Neumann spectral convergence: the thin-room and narrow-neck example
+in Section~\ref{subsec:neck} has closure, boundary and volume convergence to a square while its first
+positive eigenvalue tends to zero. Even with convexity and spectral convergence, a fixed sequence of
+rounded rectangles tending to the square reaches only one direction of its double eigenspace; see
+Section~\ref{subsec:8.2}. The uniform extension and the prescribed-direction selection address these two
+separate points.
+
+\paragraph{Scope and outline.}
+Theorem~\ref{thm:boundary} is the weak form: it does not assert that all extremal points are on the boundary,
+or that the gradient is nonzero in $D$. Theorem~\ref{thm:critical} lists the conclusions retained under the
+limit. The proof is planar and uses simple connectivity through [O] and the Jordan curve argument in
+Section~\ref{sec:multiplicity}. No assertion is made for non-convex Lipschitz domains. The first eigenfunction
+of a reentrant sector is not in $H^2$, as shown in Section~\ref{sec:sectors}.
+Sections~\ref{sec:prelim}--\ref{sec:spectral} give geometry, extensions and spectral convergence.
+Section~\ref{sec:simple} treats the simple case; Section~\ref{sec:multiplicity} proves
+Theorem~\ref{thm:nodal}; Section~\ref{sec:double} selects a prescribed double-eigenspace member.
+Section~\ref{sec:critical} proves Theorem~\ref{thm:critical}, and
+Sections~\ref{sec:symmetry}--\ref{sec:sectors} give explicit examples.
+
+
+\section{Preliminaries}\label{sec:prelim}
+A domain is a nonempty connected open subset of $\mathbb R^2$. “Bounded convex domain” has nonempty interior; a segment is not a domain. All eigenfunctions are real and nonzero. We use
+
+\begin{equation}\label{eq:src-0-01}
+0=\mu_0(D)<\mu_1(D)\leq\mu_2(D)\leq\cdots,
+\end{equation}
+
+counting multiplicity; $E_1(D)$ denotes the entire eigenspace at the first positive value. A weak eigenfunction satisfies
+
+\begin{equation}\label{eq:src-0-02}
+u\in H^1(D),\quad \int_D\nabla u\cdot\nabla v=\mu_1(D)\int_Duv\quad(\forall v\in H^1(D)).
+\end{equation}
+
+Testing by 1 gives $\int_Du=0$; testing by $u$ gives $\|\nabla u\|_2^2=\mu_1(D)\|u\|_2^2$. Unless otherwise stated, $\|u\|_2=1$. For $H^2$, the Hessian norm counts both mixed entries: $\|D^2u\|_2^2=\sum_{i,j=1}^2\|\partial_{ij}u\|_2^2$.
+
+The squared $H^2$ norm below is $\|u\|_2^2+\|\nabla u\|_2^2+\|D^2u\|_2^2$. A bounded convex domain with $B_r(0)\subset D\subset B_R(0)$, $0<r\le R$, is Lipschitz: at a boundary point $p$, choose the radial direction $e=p/|p|$. Every nearby supporting normal $\nu_q$ satisfies $\nu_q\cdot e\ge r/R-2|p-q|/r>r/(2R)$ when $|p-q|<r^2/(4R)$. The local boundary is consequently a graph in direction $e$ with slope at most $2R/r$; finite compact covering gives the needed Lipschitz charts. This checks the convex-domain trace hypotheses used later without assuming smooth boundary.
+
+
+Put $a_0(f,g)=\int_D\nabla f\cdot\nabla g$ and $b_0(f,g)=\int_Dfg$.
+Grisvard \cite[Theorem~3.2.1.3, pp.~149--150]{Grisvard} gives $H^2$ regularity on bounded convex open sets for symmetric uniformly elliptic Lipschitz coefficients, a positive shift, an $L^2$ right-hand side and homogeneous weak conormal data. The trace theorems \cite[Theorems~1.5.1.3 and 1.5.1.5, p.~38]{Grisvard}, at $p=2,s=1,k=0$, give $H^1$-to-$H^{1/2}$ traces on bounded Lipschitz domains and characterize $H^1_0$ by zero trace.
+
+
+\section{Smooth convex approximation}\label{sec:approx}
+\begin{lemma}\label{lem:approx}
+Every bounded convex planar domain has smooth strictly convex outer approximations with a common inner and outer ball, convergence of volume, closures and boundaries, and preservation of any fixed finite orthogonal symmetry group.
+\end{lemma}
+\begin{proof}
+Fix a convex $D$, translate an interior point to 0, and choose once and for all $0<r\le R_0<\infty$ with $B_r(0)\subset D$ and $\overline D\subset\overline B_{R_0}(0)$. The constants below may depend on $r,R_0$; they never depend on a boundary-curvature upper bound. A valid choice is any interior ball and any larger enclosing ball, not necessarily the optimal inradius/circumradius.
+
+Write $K=\overline D$, $e(\theta)=(\cos\theta,\sin\theta)$ and $h(\theta)=\max_{x\in K}x\cdot e(\theta)$. Then $r\le h\le R_0$ and $|h(\theta)-h(\phi)|\le R_0|\theta-\phi|$ for the shorter angular distance. Let $\eta$ be a fixed nonnegative even smooth mollifier supported in $(-1,1)$ with integral 1. For
+
+\begin{equation}\label{eq:src-1-01}
+0<\varepsilon<\min(1/2,r/(4R_0))
+\end{equation}
+
+periodize $\eta_\varepsilon(t)=\varepsilon^{-1}\eta(t/\varepsilon)$ and set
+
+\begin{equation}\label{eq:src-1-02}
+\begin{gathered}
+h_\varepsilon=h*\eta_\varepsilon+R_0\varepsilon,\qquad \\
+K_\varepsilon=\{x:x\cdot e(\theta)\le h_\varepsilon(\theta)\ (\forall\theta)\},\qquad D_\varepsilon=\operatorname{int}K_\varepsilon.
+\end{gathered}
+\end{equation}
+
+The distribution $h+h''$ is nonnegative: if $x_\theta$ is a supporting point at angle $\theta$, then $h(\theta+t)+h(\theta-t)\ge2\cos(t)h(\theta)$; integrate against a nonnegative smooth test and take the second-difference limit. Consequently $h_\varepsilon+h_\varepsilon''\ge R_0\varepsilon>0$. The curve
+
+\begin{equation}\label{eq:src-1-03}
+x_\varepsilon(\theta)=h_\varepsilon(\theta)e(\theta)+h_\varepsilon'(\theta)e'(\theta)
+\end{equation}
+
+has derivative $(h_\varepsilon+h_\varepsilon'')e'(\theta)$. Its tangent rotates once with strictly positive speed. Integrating the tangent projection from its supporting angle shows that $x_\varepsilon(\theta)\cdot e(\phi)\le h_\varepsilon(\phi)$, with equality only when $\theta=\phi$ modulo $2\pi$. If $z$ belongs to the support face with normal $e(\phi)$, then $z\cdot e(\phi)=h_\varepsilon(\phi)$. The support inequalities at $\phi\pm t$, divided by $t$ and passed to the limit, give $z\cdot e'(\phi)=h'_\varepsilon(\phi)$, hence $z=x_\varepsilon(\phi)$. Every support face is therefore a single point, and the curve covers the entire boundary. Thus it is the boundary of $K_\varepsilon$, is smooth and embedded, and its curvature is positive. This verifies that the displayed support function, rather than an arbitrary smooth approximation to it, defines a smooth strictly convex domain.
+
+The Lipschitz bound gives
+
+\begin{equation}\label{eq:src-1-04}
+h\le h_\varepsilon\le h+2R_0\varepsilon.
+\end{equation} 
+
+Support halfspaces therefore imply
+
+\begin{equation}\label{eq:src-1-05}
+\begin{gathered}
+K\subset K_\varepsilon\subset K+\delta_\varepsilon\overline B_1, \\
+\quad\delta_\varepsilon=2R_0\varepsilon, \\
+\quad B_r\subset D_\varepsilon\subset B_{2R_0}.
+\end{gathered}
+\end{equation}
+
+The inclusion on the right follows because $h_\varepsilon\le R_0+R_0\varepsilon<2R_0$. The support characterization of $K+\delta B_1$ follows by separation of a point outside that compact convex set. Hence $d_H(K_\varepsilon,K)\le\delta_\varepsilon$.
+
+For any two convex bodies $K,L$ with $B_r\subset K$, $d_H(K,L)\le\delta<r$ implies
+
+\begin{equation}\label{eq:src-1-06}
+(1-\delta/r)K\subset L\subset(1+\delta/r)K.
+\end{equation}
+
+Indeed their support functions differ by at most $\delta$ and $h_K\ge r$. In particular, using the outer inclusion in our construction,
+
+\begin{equation}\label{eq:src-1-07}
+|D_\varepsilon\setminus D|\le\pi R_0^2(2\delta_\varepsilon/r+(\delta_\varepsilon/r)^2).
+\end{equation}
+
+Let $\rho,\rho_\varepsilon$ be radial boundary functions around 0. They satisfy
+
+\begin{equation}\label{eq:src-1-08}
+\begin{gathered}
+0\le\rho_\varepsilon-\rho\le R_0\delta_\varepsilon/r, \\
+\qquad d_H(\partial D_\varepsilon,\partial D)\le R_0\delta_\varepsilon/r.
+\end{gathered}
+\end{equation}
+
+This last boundary estimate follows by pairing points on the same ray in both directions, and is the estimate actually used below.
+
+If $D$ is invariant under a finite group $G\subset O(2)$, use the even angular mollifier above: convolution commutes with rotations and reflections, and the added constant is invariant. Every $D_\varepsilon$ then has the same $G$ symmetry. No eigenvalue simplicity is used in this geometric construction.
+\end{proof}
+
+
+\section{Extension and uniform continuity}\label{sec:extension}
+\begin{lemma}\label{lem:extension}
+For $B_r\subset D\subset B_R$, the radial construction below gives a $W^{1,p}$ extension, $1<p<\infty$, with constants $A_p,B_p,D_p$ depending only on $r,R,p$. Normalized functions with gradient bound $\sqrt\Lambda$ and Hessian bound $\Lambda$ have extensions with exponent-$1/2$ H\"older constant $H(r,R,\Lambda)$ as displayed below.
+\end{lemma}
+\begin{proof}
+Here $D$ is any convex domain with $B_r\subset D\subset B_R$. It is applied below to the family $D_\varepsilon$ of Section~\ref{sec:approx}, for which $R=2R_0$. Let $p$ be the gauge of $D$, so $p(x)=\inf\{t>0:x\in tD\}$. Convexity gives subadditivity and
+
+\begin{equation}\label{eq:src-2-01}
+|p(x)-p(y)|\le |x-y|/r,\qquad |x|/R\le p(x)\le|x|/r.
+\end{equation}
+
+Thus $\rho(e)=1/p(e)$ lies in $[r,R]$ and has chordal Lipschitz constant $R^2/r$ on the unit circle. Define the homogeneous radial bijection
+
+\begin{equation}\label{eq:src-2-02}
+T(se)=s\rho(e)e\quad(s\ge0),\qquad T^{-1}\text{ denotes the inverse map}.
+\end{equation}
+
+For $x,y\ne0$, separating radial and angular differences gives
+
+\begin{equation}\label{eq:src-2-03}
+\operatorname{Lip}T\le L:=R+2R^2/r,\qquad\operatorname{Lip}T^{-1}\le l:=3/r.
+\end{equation}
+
+The second bound uses $T^{-1}(se)=s p(e)e$ and $p|_{S^1}$ Lipschitz constant $1/r$. At differentiability points, $\det DT=\rho^2$, and so $r^2\le\det DT\le R^2$. These statements are valid almost everywhere and suffice for Sobolev change of variables.
+
+For $f$ on the unit disk, extend by itself for $s\le1$, by $(3-2s)f((2-s)e)$ for $1<s<3/2$, and by zero for $s\ge3/2$. The reflection has derivative norm at most 1 and inverse area factor at most 3. Its traces agree at $s=1$, and the cutoff is zero at $s=3/2$. For $1<p<\infty$ its extension $\mathcal R f$ satisfies
+
+\begin{equation}\label{eq:src-2-04}
+\begin{gathered}
+\|\mathcal R f\|_p\le4^{1/p}\|f\|_p, \\
+\quad\|\nabla\mathcal R f\|_p\le(1+3^{1/p})\|\nabla f\|_p+2\,3^{1/p}\|f\|_p.
+\end{gathered}
+\end{equation}
+
+For a function $v$ on $D$ put $Ev=(\mathcal R(v\circ T))\circ T^{-1}$. It agrees with $v$ on $D$, is supported in $\overline B_{3R/2}$, and satisfies
+
+\begin{equation}\label{eq:src-2-05}
+\begin{gathered}
+\|Ev\|_p\le A_p\|v\|_p,\qquad \\
+\|\nabla Ev\|_p\le B_p\|\nabla v\|_p+D_p\|v\|_p,
+\end{gathered}
+\end{equation}
+
+where all constants have been defined:
+
+\begin{equation}\label{eq:src-2-06}
+\begin{gathered}
+A_p=4^{1/p}(R/r)^{2/p},\quad \\
+B_p=lL(1+3^{1/p})(R/r)^{2/p},\quad \\
+D_p=2l\,3^{1/p}(R/r)^{2/p}.
+\end{gathered}
+\end{equation}
+
+These estimates first hold for smooth functions. For Sobolev functions, inward dilation $v((1-s)x)$ is defined on the larger convex domain $(1-s)^{-1}D$; mollify within its collar and let $s$ decrease to zero. Strong continuity of dilations on $L^p$ applied to $v$ and its weak first derivatives proves density and the estimates for $W^{1,p}$. Equivalently the displayed bi-Lipschitz changes of variables may be justified by that same density argument. This gives global smooth restrictions dense in $H^1(D)$. For $H^2(D)$, apply strong $L^2$ continuity of dilations to the function and to every weak derivative of orders one and two. Each fixed dilation gives a positive collar in the larger domain; cut off there and mollify, taking the mollification error to zero before letting the dilation parameter tend to zero. Thus the same construction gives density in $H^2(D)$.
+
+A bounded family of these $H^1$ extensions is precompact in $L^2(\mathbb R^2)$. To verify compactness, $\|F(\cdot+h)-F\|_2\le|h|\|\nabla F\|_2$. Convolving with a fixed smooth mollifier at scale $a$ approximates every $F$ in $L^2$ by at most $a\|\nabla F\|_2$ times the mollifier's fixed first moment. For fixed $a$, the convolved functions have uniformly bounded values and gradients on a common bounded support, by Cauchy--Schwarz with the mollifier and its derivative. A finite grid and a diagonal subsequence give a uniformly convergent subsequence. First choose small $a$, then use this finite-grid compactness, to obtain the claimed $L^2$ compactness. No boundary smoothness enters this argument.
+
+For completeness, the two whole-plane inequalities used for boundary control have numerical constants:
+
+\begin{equation}\label{eq:src-2-07}
+\begin{gathered}
+\|F\|_4\le2^{1/4}\|F\|_2^{1/2}\|\nabla F\|_2^{1/2},\qquad \\
+|F(x)-F(y)|\le100\|\nabla F\|_4|x-y|^{1/2}.
+\end{gathered}
+\end{equation}
+
+For the first, bound $F(x,y)^2$ by $2\int|F F_x|(t,y)dt$ and by the analogous vertical integral, multiply, integrate, apply Cauchy--Schwarz, and use $2\|F_x\|_2\|F_y\|_2\le\|\nabla F\|_2^2$. For the second, average the absolute segment difference over $B_s(x)$. The resulting bound controls both the difference from the average and the average of the absolute differences, and gives
+
+\begin{equation}\label{eq:src-2-08}
+\begin{gathered}
+|F(x)-F_{B_s(x)}|\le\frac1{2\pi}\int_{B_s(x)}\frac{|\nabla F(z)|}{|x-z|}\,dz \\
+\le\frac{3^{3/4}}{2\pi^{1/4}}s^{1/2}\|\nabla F\|_4.
+\end{gathered}
+\end{equation}
+
+For $d=|x-y|$, compare both points to the average over $B_{2d}(x)$; for $y$ this ball is contained in $B_{3d}(y)$ and the ratio of areas is $9/4$. The resulting factor is $\frac{3^{3/4}}{2\pi^{1/4}}(\sqrt2+9\sqrt3/4)<100$. Mollification proves the inequalities and a continuous representative for all relevant Sobolev functions.
+
+Suppose now $\|u\|_2=1$, $\|\nabla u\|_2\le\sqrt\Lambda$, $\|D^2u\|_2\le\Lambda$, with $\Lambda>0$. Define
+
+\begin{equation}\label{eq:src-2-09}
+Q=2^{1/4}\big[A_2(B_2\sqrt\Lambda+D_2)\big]^{1/2},
+\end{equation}
+\begin{equation}\label{eq:src-2-10}
+G=2^{1/4}\big[A_2\sqrt\Lambda(B_2\Lambda+D_2\sqrt\Lambda)\big]^{1/2},
+\end{equation}
+\begin{equation}\label{eq:src-2-11}
+J=2B_4G+D_4Q,\qquad H=100J.
+\end{equation}
+
+Apply the first inequality to $Eu$ and to extensions of each Cartesian derivative of $u$, then restrict back to $D$. It gives $\|u\|_4\le Q$, $\|\nabla u\|_4\le2G$. Reapply the extension at $p=4$ and use Morrey to obtain
+
+\begin{equation}\label{eq:src-2-12}
+\begin{gathered}
+\relax[Eu]_{C^{0,1/2}(\mathbb R^2)}\le H, \\
+\qquad \|Eu\|_\infty\le H\sqrt{2R}.
+\end{gathered}
+\end{equation}
+
+For the supremum choose a point at radius $2R$ on the same ray as any point of the support; the extension is zero there and the distance is at most $2R$. The constants $Q,G,J,H$ depend only on $(r,R,\Lambda)$, not on the eigenvalue gap, eigenfunction sign, corners, curvature, or smoothing parameter. Amplitude $a$ multiplies these estimates by $|a|$. These formulas provide a fixed exponent $1/2$, which suffices; no endpoint Lipschitz estimate is asserted.
+
+\end{proof}
+\begin{lemma}\label{lem:boundary-traces}
+The trace of an $H^2$ function on a bounded convex planar domain belongs to $H^1$ in boundary arclength and
+is absolutely continuous. Its derivative is the tangential gradient trace.
+\end{lemma}
+\begin{proof}
+Use the $H^2$ density just proved and the $H^1$ trace theorem
+\cite[Theorem~1.5.1.3, p.~38]{Grisvard} for the Cartesian derivatives. In a Lipschitz chart $y=g(x)$, smooth
+restrictions satisfy $d(u(x,g(x)))/dx=u_x+g'u_y$. Their gradient traces converge in $H^{1/2}$, hence in $L^2$,
+and the bounded $g'$ gives convergence of these graph derivatives in $L^2$. The limiting trace is $H^1$ on
+the chart and satisfies this chain rule. Passing to arclength and covering the boundary proves the claim.
+\end{proof}
+
+
+\section{The Hessian estimate}\label{sec:hessian}
+\begin{proposition}\label{prop:hessian}
+For any positive Neumann eigenvalue $\mu$ of a bounded convex planar domain, every associated weak eigenfunction belongs to $H^2$ and satisfies $\|D^2u\|_2\le\mu\|u\|_2$ and $\|u\|_{H^2}^2\le(1+\mu+\mu^2)\|u\|_2^2$.
+\end{proposition}
+\begin{proof}
+For smooth convex $D$ and a smooth function $w$ satisfying $\partial_\nu w=0$, put
+
+\begin{equation}\label{eq:src-3-01}
+Z=(\Delta w)\nabla w-D^2w\,\nabla w.
+\end{equation}
+
+Differentiation gives $\operatorname{div}Z=(\Delta w)^2-|D^2w|^2$. Let $\tau$ be a unit tangent and let $\kappa\ge0$ be the curvature with convention $\partial_\tau\nu=\kappa\tau$. Differentiating the Neumann condition tangentially gives
+
+\begin{equation}\label{eq:src-3-02}
+D^2w(\tau,\nu)=-\kappa\partial_\tau w.
+\end{equation}
+
+Since $\nabla w=(\partial_\tau w)\tau$ on the boundary, $Z\cdot\nu=\kappa(\partial_\tau w)^2$. Thus
+
+\begin{equation}\label{eq:src-3-03}
+\begin{gathered}
+\int_D(\Delta w)^2-\int_D|D^2w|^2 \\
+=\int_{\partial D}\kappa(\partial_\tau w)^2\ge0.
+\end{gathered}
+\end{equation}
+
+For $H^2$ functions with homogeneous Neumann condition the same identity is valid by the $H^1$ vector-field integration identity in \cite[Theorem~3.1.1.1, p.~133]{Grisvard}; its hypotheses are a $C^2$ domain and $\nabla w\in H^1(D)^2$. Hence smooth convex eigenfunctions obey
+
+\begin{equation}\label{eq:src-3-04}
+\begin{gathered}
+\|D^2u\|_2\le\mu\|u\|_2,\qquad \\
+\|u\|_{H^2}^2\le(1+\mu+\mu^2)\|u\|_2^2.
+\end{gathered}
+\end{equation}
+
+This estimate is independent of curvature; the curvature upper bound is absent because only its nonnegative sign is used.
+
+The estimate and $H^2$ membership also hold for every weak eigenfunction on an arbitrary convex $D$, without selecting an eigenfunction direction. Let $D_n$ be the outer smooth approximation from Section~\ref{sec:approx}. Set $f=(1+\mu)u$ on $D$ and zero outside $D$. Solve
+
+\begin{equation}\label{eq:src-3-05}
+\int_{D_n}(\nabla w_n\cdot\nabla v+w_nv)=\int_{D_n}fv\quad(\forall v\in H^1(D_n)).
+\end{equation}
+
+Existence and uniqueness follow from the Hilbert representation theorem for the coercive inner product $a(w,v)=\int(\nabla w\nabla v+wv)$; testing by $w_n$ gives $\|w_n\|_{H^1(D_n)}\le\|f\|_{L^2(D)}$. Grisvard \cite[Theorem~3.2.1.3]{Grisvard} applies to the convex smooth $D_n$, shift 1 and $L^2$ datum, so $w_n\in H^2(D_n)$. The approximating domains are smooth, so the identity holds classically and extends to $H^2$ functions there. The non-smooth domain is reached by the following limit. The identity gives $\|D^2w_n\|_2\le\|w_n-f\|_2\le2\|f\|_2$.
+
+The extensions in Section~\ref{sec:extension} are uniformly $H^1$ bounded and thus converge weakly in $H^1$ and strongly in $L^2$ along a subsequence. Testing by global smooth restrictions and using $\mathbf1_{D_n}\to\mathbf1_D$ in $L^2$ passes the equation to $D$. Density of these restrictions identifies the unique limit as $u$. On every compact subdomain of $D$, second derivatives converge distributionally, and the uniform bound makes their limits $L^2$ derivatives on all of $D$. Therefore $u\in H^2(D)$.
+
+Moreover, strong $L^2$ convergence of extensions and convergence of indicators give
+
+\begin{equation}\label{eq:src-3-06}
+\|w_n-f\|_{L^2(D_n)}\longrightarrow\|u-f\|_{L^2(D)}=\mu\|u\|_2.
+\end{equation}
+
+Indeed $\mathbf1_{D_n}E_nw_n\to\mathbf1_Du$ strongly in $L^2$; multiplication of a fixed $L^2$ limit by the convergent indicators is justified by dominated convergence. Weak lower semicontinuity of Hessians on compact subdomains followed by exhaustion now gives $\|D^2u\|_2\le\mu\|u\|_2$. This also proves the boundary continuity required to define maxima and minima on $\overline D$ via Section~\ref{sec:extension}.
+\end{proof}
+
+
+\section{Spectral convergence}\label{sec:spectral}
+\begin{proposition}\label{prop:spectral}
+Under convex Hausdorff convergence with a common inner and outer ball, every fixed-index Neumann eigenvalue converges. Normalized eigenfunctions with bounded eigenvalue have subsequences with strong $L^2$, weak $H^1$, local $C^k$ and uniform extension convergence; complete isolated clusters converge as subspaces.
+\end{proposition}
+\begin{proof}
+Let $D_n,D$ be convex domains with common $B_r\subset D_n,D\subset B_R$ and $d_H(\overline D_n,\overline D)\to0$. For every fixed integer $j\ge0$,
+
+\begin{equation}\label{eq:src-4-01}
+\mu_j(D_n)\longrightarrow\mu_j(D).
+\end{equation}
+
+Every $L^2$-normalized eigenfunction with bounded eigenvalue has an extension subsequence converging in $L^2$, weakly in $H^1$, locally in $C^k$ for every fixed $k$, and uniformly on a common ball after extracting a further subsequence. Its restriction to $D$ is a normalized limit eigenfunction. The uniform H\"older and $H^2$ bounds are those in Sections~\ref{sec:extension}--\ref{sec:hessian}.
+
+We give the variational proof. Compactness of the $H^1$ embedding follows from Section~\ref{sec:extension}. Minimizing energy on the mean-zero unit sphere yields $\mu_1>0$; positivity follows because an energy-zero function is constant on each interior ball and hence on a connected domain. If a minimizing sequence had zero limit energy, compactness would give a nonzero mean-zero constant, a contradiction. Minimize successively on the orthogonal complements of previously obtained eigenfunctions. Weak lower semicontinuity and strong $L^2$ compactness give minimizers; differentiation of the constrained quotient gives the weak eigen-equation. An infinite orthonormal sequence with bounded energies would contradict compactness, so the eigenvalues diverge. 
+
+The resulting eigenfunctions are complete. If $f\in L^2(D)$ is orthogonal to all of them, solve $a_0(w,h)+b_0(w,h)=\int_Dfh$ by Hilbert representation. Testing against each eigenfunction gives the same orthogonality for $w$. The successive variational bounds imply $a_0(w,w)\ge\mu_j(D)b_0(w,w)$ for every $j$, hence $w=0$ since $\mu_j\to\infty$. Then $f$ annihilates the dense $H^1$ subspace of $L^2$, so $f=0$. For min--max, every $(j+1)$-dimensional test space meets the orthogonal complement of the first $j$ modes; their span gives the reverse bound. Thus
+
+\begin{equation}\label{eq:src-4-02}
+\mu_j(D)=\min_{\dim F=j+1}\max_{0\ne v\in F}\frac{\int_D|\nabla v|^2}{\int_Dv^2}.
+\end{equation}
+
+No eigenvalue monotonicity under domain inclusion is used. A numerical upper bound usable for all $n$ is
+
+\begin{equation}\label{eq:src-4-03}
+\mu_j(D_n)\le\Lambda_j:=\frac{\pi^2((j+1)^2+1)}{r^2}.
+\end{equation}
+
+Use the $j+1$ Dirichlet sine functions with modes $(m,1)$, $1\le m\le j+1$, on the square $(-r/2,r/2)^2\subset B_r$, extended by zero. Their gradient and mass forms are diagonal and the largest quotient is the displayed $\Lambda_j$.
+
+For the upper limit, approximate any fixed finite-dimensional eigenspace of $D$ by global smooth functions in $H^1(D)$, using Section~\ref{sec:extension}. On their finite span the gradient/mass matrices over $D_n$ converge entrywise to those over $D$, since the functions and gradients are bounded on the common ball and the indicators converge in measure. The limiting mass matrix is positive definite. Taking first $n\to\infty$, then arbitrarily accurate $H^1$ approximations, gives $\limsup\mu_j(D_n)\le\mu_j(D)$.
+
+For the lower limit, choose orthonormal eigenfunctions $u_{0,n},\ldots,u_{j,n}$ for the first $j+1$ eigenvalues. Their extensions are uniformly $H^1$ bounded by Section~\ref{sec:extension} and $\Lambda_j$. A diagonal subsequence converges weakly in $H^1$ and strongly in $L^2$; let $u_i$ be their restrictions to $D$ and $\ell_i$ the limits of eigenvalues along this subsequence. Indicators and strong $L^2$ convergence give $\int_Du_iu_a=\delta_{ia}$. For any global smooth test $\phi$,
+
+\begin{equation}\label{eq:src-4-04}
+\begin{gathered}
+\int \mathbf1_{D_n}\nabla E_nu_{i,n}\cdot\nabla\phi \\
+\to\int_D\nabla u_i\cdot\nabla\phi,
+\end{gathered}
+\end{equation}
+
+because $\mathbf1_{D_n}\nabla\phi\to\mathbf1_D\nabla\phi$ strongly in $L^2$. The mass term passes by strong convergence. Density gives the weak equation for eigenvalue $\ell_i$. On the span of $u_0,\ldots,u_j$ the Rayleigh quotient is at most $\ell_j$; hence $\mu_j(D)\le\ell_j$. This and the upper limit prove convergence without choosing eigenfunction directions in advance.
+
+The zero-extended gradients $\mathbf1_{D_n}\nabla u_{i,n}$ converge strongly in $L^2$ on this subsequence: their weak limit is $\mathbf1_D\nabla u_i$ and their squared norms converge from $\mu_i(D_n)$ to $\mu_i(D)$. Here zero extension is applied to the gradients.
+
+For a finite isolated cluster $\mu_a(D)=\cdots=\mu_b(D)=\lambda$, the $b-a+1$ normalized limit eigenfunctions above form an orthonormal basis of $E_\lambda(D)$, by the variational multiplicity definition. Linear combinations of the cluster can approximate any prescribed $u\in E_\lambda(D)$. When the cluster splits, these combinations need not be eigenfunctions or first eigenfunctions.
+
+Interior regularity and convergence can be quantified without a boundary theorem. If $0\le\lambda_n\le\Lambda$ and $-\Delta u_n=\lambda_nu_n$, lift to the harmonic function $W_n(x,t)=e^{\sqrt{\lambda_n}t}u_n(x)$ in three variables. On a three-dimensional ball of radius $a$ lying inside $D_n\times\mathbb R$, the Poisson formula and Cauchy--Schwarz give, for every fixed multiindex order $m$,
+
+\begin{equation}\label{eq:src-4-05}
+\sup_{B_{a/4}}|\partial_x^m u_n|\le C_m a^{-m-1}e^{\sqrt\Lambda a}\|u_n\|_{L^2(B_a^{(2)})}.
+\end{equation}
+
+Let $K_m$ be the maximum, for $|z|\le1/2$, of the $L^2(S^2)$ norm of all order-$m$ derivatives of the unit-ball Poisson kernel $(1-|z|^2)/(4\pi|z-\omega|^3)$. This is finite and depends only on $m$. Coarea gives a radius $\rho\in[a/2,3a/4]$ with $\int_{\partial B_\rho}|W_n|^2\le(4/a)\|W_n\|_{L^2(B_a)}^2$. Differentiating the Poisson formula at points of $B_{a/4}$ then gives $2^{m+2}K_ma^{-m-3/2}\|W_n\|_2$. Finally $\|W_n\|_{L^2(B_a^{(3)})}\le\sqrt{2a}e^{\sqrt\Lambda a}\|u_n\|_{L^2(B_a^{(2)})}$. Thus the displayed estimate holds with, for example, $C_m=10\,2^{m+4}K_m$. Weak harmonic lifts are covered by first mollifying locally and passing these same bounds to the limit. Choose $a=\operatorname{dist}(K,\partial D)/2$ for a given compact $K\subset D$ and take $n$ large enough for its balls to be contained in $D_n$. Harmonic lifts converge in $L^2$ on local cylinders; applying the same derivative estimate to their difference gives $C^k(K)$ convergence for every $k$. All local constants depend only on $(k,\Lambda,\operatorname{dist}(K,\partial D))$ and the normalized $L^2$ bound.
+
+Finally, Sections~\ref{sec:extension}--\ref{sec:hessian} give uniformly bounded $C^{0,1/2}$ extensions on $\overline B_{2R}$. A finite-grid diagonal argument yields a uniformly convergent subsequence $E_nu_n\to U$. Its restriction to $\overline D$ is the continuous representative of the $L^2$ limit. In particular, for any $y_n\in\partial D_n$ with $y_n\to y\in\partial D$,
+
+\begin{equation}\label{eq:src-4-06}
+u_n(y_n)\longrightarrow u(y).
+\end{equation}
+
+An explicit boundary error estimate is
+
+\begin{equation}\label{eq:src-4-07}
+|u_n(y_n)-u(y)|\le \|E_nu_n-U\|_{L^\infty(B_{2R})}+H|y_n-y|^{1/2},
+\end{equation}
+
+with $H=H(r,R,\Lambda)$ as in Section~\ref{sec:extension}. Uniform convergence of extensions here is subsequential; it does not depend on a particular choice of extension outside $D$ agreeing with another extension's outside values.
+\end{proof}
+
+\subsection{Set convergence and a thin neck}\label{subsec:neck}
+\begin{proposition}\label{prop:neck}
+Closure, boundary and volume convergence with a common inner and outer ball do not suffice for Neumann
+spectral convergence outside the convex class.
+\end{proposition}
+\begin{proof}
+Let $D=(0,1)^2$, $0<\varepsilon<1/10$, $a=\varepsilon^4$, and set
+\begin{equation}\label{eq:neck-domains}
+\begin{gathered}
+R_\varepsilon=(0,1)\times(1+\varepsilon,1+2\varepsilon),\\
+N_\varepsilon=(1/2-a,1/2+a)\times(9/10,1+3\varepsilon/2),\\
+\Omega_\varepsilon=D\cup R_\varepsilon\cup N_\varepsilon.
+\end{gathered}
+\end{equation}
+This is a bounded simply connected Lipschitz polygon with a fixed interior ball in $D$. New boundary points
+are within $2\varepsilon$ of $\partial D$; the removed neck-mouth segment has width $2a$, and its points are
+within $a$ of the remaining boundary. Closures and boundaries therefore converge in Hausdorff distance;
+every compact subset of $D$ remains contained, and $|\Omega_\varepsilon\setminus D|=\varepsilon+2a\varepsilon$.
+Take $v_\varepsilon=0$ on $D$, $1$ on $R_\varepsilon$, and $(y-1)/\varepsilon$ in the gap neck
+$1<y<1+\varepsilon$. Its traces match, so it belongs to $H^1(\Omega_\varepsilon)$. Direct integration gives
+\begin{equation}\label{eq:neck-integrals}
+\begin{gathered}
+\int|\nabla v_\varepsilon|^2=2a/\varepsilon=2\varepsilon^3,
+\quad |\Omega_\varepsilon|=1+\varepsilon+2a\varepsilon,\\
+\int v_\varepsilon=\varepsilon+a\varepsilon,
+\qquad \int v_\varepsilon^2=\varepsilon+(2/3)a\varepsilon.
+\end{gathered}
+\end{equation}
+For $w_\varepsilon=v_\varepsilon-|\Omega_\varepsilon|^{-1}\int v_\varepsilon$,
+\begin{equation}\label{eq:neck-rayleigh}
+\begin{gathered}
+\int w_\varepsilon^2=\varepsilon+(2/3)a\varepsilon-
+\frac{(\varepsilon+a\varepsilon)^2}{1+\varepsilon+2a\varepsilon}\ge\varepsilon/2,\\
+0<\mu_1(\Omega_\varepsilon)\le4\varepsilon^2\longrightarrow0,
+\qquad \mu_1(D)=\pi^2.
+\end{gathered}
+\end{equation}
+The negative term in the mass is at most $\varepsilon^2(1+a)^2\le0.101\varepsilon$. Uniform extension control
+fails in this family, while it holds for the convex approximations and their fixed near-identity images.
+\end{proof}
+
+
+\section{A simple first positive eigenvalue}\label{sec:simple}
+\begin{proposition}\label{prop:simple}
+Theorem~\ref{thm:boundary} holds when $\mu_1(D)<\mu_2(D)$. Every normalized prescribed first eigenfunction is the limit of suitably oriented exact first eigenfunctions on the smooth strictly convex approximations.
+\end{proposition}
+\begin{proof}
+Let $D$ be any bounded convex planar domain and suppose $\mu_1(D)<\mu_2(D)$. Then every $u\in E_1(D)\setminus\{0\}$ has a continuous representative on $\overline D$, and
+
+\begin{equation}\label{eq:src-5-01}
+\begin{gathered}
+\max_{\overline D}u=\max_{\partial D}u,\qquad \\
+\min_{\overline D}u=\min_{\partial D}u.
+\end{gathered}
+\end{equation}
+
+Choose $r,R_0$ once as in Section~\ref{sec:approx}, choose any sequence $\varepsilon_n\downarrow0$ in its stated range, and choose normalized first eigenfunctions $u_n$ on $D_{\varepsilon_n}$. These domains are smooth, bounded, nonempty and convex, hence simply connected, so [O, Theorem~1.1] applies to each $u_n$. The eigenvalues converge by Section~\ref{sec:spectral}; the common ceiling is $\Lambda_1=5\pi^2/r^2$. After a sign choice the limits of normalized $u_n$ are the prescribed normalized $u$, since the limiting eigenspace is one-dimensional. Concretely, require $\int_Du_nu>0$; along any convergent subsequence the integral tends to $\pm1$, so for all large $n$ it is nonzero and this orientation selects $+u$. Every subsequence has a further subsequence with this same interior and boundary limit, which proves convergence on $\overline D$ and locally in every $C^k$ without a subsequence. This gives convergence without a rate in terms of the spectral gap.
+
+Let $y_n\in\partial D_{\varepsilon_n}$ maximize $u_n$. Compactness gives a subsequence $y_n\to y$, and the boundary Hausdorff estimate puts $y\in\partial D$. The H\"older/extension estimate in Section~\ref{sec:spectral} gives $u_n(y_n)\to u(y)$. For each fixed $x\in D$, $x\in D_{\varepsilon_n}$ and [O, Theorem~1.1] gives $u_n(x)<u_n(y_n)$. Taking $n\to\infty$ gives $u(x)\le u(y)\le\max_{\partial D}u$. Continuity extends the inequality to $\overline D$. Applying the same argument to $-u$ gives the minimum assertion. Scaling removes normalization.
+
+Quantifier order: first fix $D,r,R_0,u$; then choose the smoothing sequence; then orient its eigenfunctions; then take a maximizing-point subsequence; finally apply the resulting limit inequality for each $x$. The common H\"older constant is precisely $H(r,2R_0,5\pi^2/r^2)$. The maximizing point subsequence does not depend on $x$.
+\end{proof}
+
+
+\subsection{Directions along a fixed approximation}\label{sec:reached}
+\begin{proposition}\label{prop:reached}
+The set $\mathcal R(D;\varepsilon_n)$ defined below is exactly the nonempty compact antipodally invariant set of normalized limits of exact first eigenfunctions along subsequences of the fixed smoothing. Theorems~\ref{thm:boundary} and~\ref{thm:critical} hold for its nonzero scalar multiples.
+\end{proposition}
+\begin{proof}
+Fix the explicit smoothing sequence $D_n=D_{\varepsilon_n}$ in Section~\ref{sec:approx} and write $E=E_1(D)$, of dimension $m\ge1$. Let $P_E$ be the $L^2(D)$ orthogonal projection. For each large $n$ define
+
+\begin{equation}\label{eq:src-7-01}
+\begin{gathered}
+S_n=\Bigl\{\frac{P_E(E_nv|_D)}{\|P_E(E_nv|_D)\|_{L^2(D)}}: \\
+v\in E_1(D_n),\ \|v\|_{L^2(D_n)}=1\Bigr\}\subset\{u\in E:\|u\|_2=1\}.
+\end{gathered}
+\end{equation}
+
+Here $E_n$ is the explicit extension in Section~\ref{sec:extension}. The denominator is bounded away from zero for all large $n$: otherwise compactness would give a normalized first eigenfunction limit in $E$ orthogonal to $E$. In fact it tends to 1 uniformly on normalized first eigenfunctions, by the same subsequence contradiction. Each $S_n$ is compact and antipodally invariant. Define
+
+\begin{equation}\label{eq:src-7-02}
+\mathcal R(D;\varepsilon_n)=\bigcap_{N\ge1}\overline{\bigcup_{n\ge N}S_n}.
+\end{equation}
+
+This is a nonempty compact antipodally invariant set, and it is exactly the set of normalized limits of exact first positive eigenfunctions along subsequences of this specified smoothing. The finite-dimensional sphere is compact, so the nested closures are nonempty. If $u$ lies in the intersection, choose $n_k\ge k$ and a first eigenfunction with projected direction within $1/k$ of $u$. The denominators tend to 1; Section~\ref{sec:spectral} shows every convergent subsequence has interior limit $u$, and the uniform H\"older bounds give convergence on $\overline D$ and of moving boundary values along a further subsequence. Conversely every such limit has projected direction converging to itself and belongs to the intersection.
+
+Theorems~\ref{thm:boundary} and~\ref{thm:critical} hold for every nonzero scalar multiple of an element of $\mathcal R(D;\varepsilon_n)$. The proof of Section~\ref{sec:simple} only used exact first eigenfunction convergence, not simplicity; apply it to the selected subsequence, and then use Section~\ref{sec:critical}. For $m=1$ this set is the entire normalized sphere $\{u,-u\}$. For a general multiple eigenvalue, Section~\ref{sec:spectral} alone does not identify it with the entire sphere.
+
+This set describes cluster points of projections of the lowest eigenspaces. It will be used to compare symmetry-preserving approximations of the square and equilateral triangle with the rounded-rectangle example.
+\end{proof}
+
+
+\section{Multiplicity and nodal structure}\label{sec:multiplicity}
+We prove Theorem~\ref{thm:nodal} using Gilbarg--Trudinger \cite[Theorem~8.18, p.~194, with conditions (8.5),(8.6), pp.~177--178]{GT}, in the 1998 edition reprinted in 2001, and Hatcher \cite[Proposition~2B.1(b), p.~169]{HatcherAT}, at $k=1,n=2$, for Jordan separation by an embedded circle in the sphere or plane. No smoothness of the embedded nodal crosscut at its boundary endpoints is assumed. Translate an interior point to $0$ and fix $B_r(0)\subset D\subset B_R(0)$ as before. The convex boundary is a Jordan circle by the radial parametrization in Section~\ref{sec:extension}.
+
+\subsection{Dirichlet separation and two nodal domains}\label{subsec:12.1}
+\begin{lemma}\label{lem:dirichlet-separation}
+One has $\mu_1(D)<\lambda_D$. Every nonzero first positive eigenfunction has exactly two nodal domains, so each of its positive and negative sets is connected.
+\end{lemma}
+\begin{proof}
+
+Let $\lambda_D$ be the first Dirichlet value on $D$. Zero extension and one-dimensional integration on the enclosing box give $\lambda_D\ge1/(4R^2)>0$. Compactness attains its Rayleigh infimum; taking the absolute value yields a nonzero nonnegative minimizer $\phi\in H^1_0(D)$, so $\int_D\phi>0$.
+
+For every $k\in\mathbb R^2$ with $|k|^2=\lambda_D$, put $e_k(x)=e^{ik\cdot x}$ and $w_k=e_k-(\int_De_k/\int_D\phi)\phi$. It has mean zero. The form $Q(f,g)=\int_D\nabla f\cdot\overline{\nabla g}-\lambda_D\int_Df\overline g$ vanishes on $(e_k,e_k)$ and $(\phi,\phi)$; its cross term vanishes because $e_k$ solves the Helmholtz equation and $\phi$ has zero trace. Thus $Q(w_k,w_k)=0$, giving $\mu_1(D)\le\lambda_D$. If equality held, all nonzero $w_k$ would be Neumann first eigenfunction minimizers. Distinct plane waves are linearly independent on an interior line segment with distinct projected frequencies; differentiating along the segment gives the Vandermonde proof. Subtracting multiples of one fixed function leaves an infinite-dimensional span, contradicting finite eigenspace dimension from Section~\ref{sec:spectral}. Hence
+
+\begin{equation}\label{eq:src-12-01}
+\mu_1(D)<\lambda_D.
+\end{equation}
+
+The inequality is the first case of the comparison between Dirichlet and Neumann eigenvalues of Friedlander \cite{Friedlander} and Filonov \cite{Filonov}. The proof above is Filonov's plane-wave argument, in the form given in [O, Lemma~2.1], written out on convex domains; no result of [O] is used.
+
+Every nonzero first eigenfunction has exactly two nodal domains. For a sign component $U$, its restriction $v_U=u\mathbf1_U$ belongs to $H^1(D)$ with gradient $\mathbf1_U\nabla u$: on interior balls it is locally Lipschitz, since switching across a component boundary crosses a zero of the smooth function $u$; the displayed gradients have finite global energy. Testing the weak equation by $v_U$ gives $a_0(v_U,v_U)=\mu_1\|v_U\|_2^2$. If at least three sign components existed, a nonzero mean-zero linear combination of two of these disjointly supported functions would still attain the first Rayleigh infimum but vanish on the third open component. Its weak eigen-equation and interior analyticity contradict unique continuation. Both signs exist by mean zero, so the positive and negative sets are individually connected.
+
+\end{proof}
+\subsection{Boundary zeros and nodal regularity}\label{subsec:12.2}
+\begin{lemma}\label{lem:boundary-zeros}
+The boundary trace has no zero arc; every boundary zero has both signs arbitrarily close inside the domain. There is no critical nodal point in $D$.
+\end{lemma}
+\begin{proof}
+
+A boundary arc on which $u=0$ is impossible. Zero extension across a smaller subarc is $H^1$: in a Lipschitz graph chart the trace is zero and one-dimensional integration by parts introduces no boundary jump. The weak Neumann identity then makes the extension solve $(\Delta+\mu_1)u=0$ on a full neighborhood. Its harmonic lift is analytic and vanishes on the outside open part, so $u$ would vanish throughout connected $D$.
+
+A boundary zero also cannot have a one-sign interior neighborhood. In a chart $y=g(x)$, $|g'|\le M$, flatten by $\Phi(x,t)=(x,g(x)+t)$, with the interior placed at $t>0$. The transformed weak equation has matrix $A=D\Phi^{-1}D\Phi^{-T}$, whose eigenvalues lie in $[(1+M)^{-2},(1+M)^2]$. Evenly reflect the function and reflect this matrix by $\operatorname{diag}(1,-1)$ below $t=0$. The Neumann weak equation allows tests meeting $t=0$, so on a full neighborhood the reflected $w\ge0$ obeys $-\operatorname{div}(A\nabla w)=\mu_1w\ge0$.
+
+Choose $a>0$ with $\overline B_{4a}$ contained in that neighborhood. Gilbarg--Trudinger \cite[Theorem~8.18]{GT}, with $n=2$, $q=4$, $p=1$, zero lower-order coefficients and zero RHS data as a supersolution inequality, gives
+
+\begin{equation}\label{eq:src-12-02}
+\begin{gathered}
+a^{-2}\|w\|_{L^1(B_{2a})}\le C_H\operatorname*{ess\,inf}_{B_a}w, \\
+\quad C_H=C(2,2(1+M)^4,0,4,1).
+\end{gathered}
+\end{equation}
+
+Every stated coefficient/integrability hypothesis is satisfied. Since $w$ is continuous and vanishes at the boundary point now inside the reflected ball, the essential infimum is zero. This forces an open zero set and contradicts analyticity of $u$ in $D$. The same argument applies to $-u$. No sphere condition, curvature bound, or Hopf lemma at a corner is used.
+
+There is no interior critical nodal point. At such a point the leading harmonic Taylor term has at least four alternating sign sectors. Take two positive radial segments to the point, separated on both sides by negative sectors. Connectedness of the positive set gives a polygonal positive path between their outer endpoints. Trim intersections to extract a simple closed curve consisting of this path and the two segments; it is positive except at the central nodal point. The two short rays form a V. Across either ray the winding number of this curve changes by one: straighten that ray locally while keeping the remaining compact part outside the neighborhood. Negative points in the two intervening sectors therefore lie in different components of the complement. Jordan separation, Hatcher \cite[Proposition~2B.1(b)]{HatcherAT}, makes it impossible for the connected negative set to join them. The trimming preserves the two short central segments because the compact positive path has positive distance from the central zero. This proves the claimed exclusion without assuming a boundary nodal expansion.
+
+\end{proof}
+\subsection{A single nodal crosscut}\label{subsec:12.3}
+\begin{proposition}\label{prop:crosscut}
+The interior nodal set is a single analytic arc whose ends converge to two distinct boundary points. The boundary trace has exactly these two zeros, with a sign change at each.
+\end{proposition}
+\begin{proof}
+
+The interior zero set $Z$ is now a regular analytic one-dimensional manifold. Its connected components are closed relative to $D$: the closure of a connected component in the closed level set is connected and hence remains that component. Each is consequently properly embedded in $D$. Following its unit tangent shows it is either a circle or an embedded open interval whose two ends escape every compact subset of $D$.
+
+A circle component is impossible. Its bounded inside region lies in $D$ by convexity. The signs differ across the circle, and the connected positive and negative sets cannot cross it. The sign set on its inner side is a nodal domain contained in the bounded disc, with closure in $D$; its restricted function has zero trace on $\partial D$. Its function $v_U$ belongs to $H^1_0(D)$ (Grisvard \cite[Theorem~1.5.1.5, p.~38]{Grisvard}, at $s=1,p=2,k=0$ identifies zero trace with this space), and has Rayleigh quotient $\mu_1<\lambda_D$, a contradiction.
+
+For an open-interval component, the cluster set of either end is a nonempty compact connected subset of $\partial D$: it is the nested intersection of closures of connected tails in compact $\overline D$, and properness excludes interior points. Continuity of $u$ puts it in the boundary zero set. Every connected subset of the boundary circle with more than one point contains an arc, which Section~\ref{subsec:12.2} excluded. Thus each end tends to a single boundary point. If both points were the same, adjoining that point would form an embedded circle. Its bounded inside lies in $D$ and touches $\partial D$ only at that zero point; a nodal component inside again has zero trace and the same forbidden Dirichlet Rayleigh quotient. The endpoints are therefore distinct.
+
+Close this compactified arc by an explicit exterior arc. Use the radial segments from its endpoints $q_1,q_2$ to $2q_1,2q_2$ and one of the arcs of $2\partial D$ between those latter points. Convexity and the radial parametrization put this simple exterior arc outside $D$ except at its endpoints; the radial segments meet the scaled boundary only at their other endpoints. Its union with the nodal arc is an embedded circle, so Hatcher \cite[Proposition~2B.1(b)]{HatcherAT} applies without an endpoint regularity requirement.
+
+Near a regular interior point of the nodal arc, its two local sides belong to different Jordan components. For precision, the winding number changes by one across a regular smooth segment: straighten that segment in a small ball, keep the rest of the compact loop outside the ball, and compute the argument change for the straight segment as the observation point crosses it. The remainder varies continuously and the integer winding difference is one. Thus the two sides cannot be in the same complementary component. This uses smoothness only at an interior regular nodal point, never at an endpoint.
+
+The connected positive and negative sets must each stay in one of these two Jordan components, and the local sign change puts them in opposite components. An additional interior nodal point not on this arc would have a small ball in one Jordan component containing both signs, contradicting that connectedness. Hence $Z$ consists of the single crosscut. Now $D\setminus Z$ has exactly two components directly from the already proved connectedness of its positive and negative sets. Every boundary zero apart from its endpoints has a neighborhood disjoint from the compactified crosscut and therefore a one-sign interior neighborhood, prohibited by Section~\ref{subsec:12.2}. There are exactly two boundary zeros.
+
+The boundary trace takes both signs. If it were nonnegative, $u^-\in H^1_0(D)$ and testing the weak equation by $u^-$ would give the forbidden quotient $\mu_1$ unless $u^-=0$. Then mean zero would force $u=0$. Apply this also to $-u$. Consequently the two boundary zeros are sign changes. All assertions in this subsection hold for every nonzero first eigenfunction, using the convex geometry and weak Neumann equation.
+
+\end{proof}
+\subsection{The multiplicity bound}\label{subsec:12.4}
+\begin{proposition}\label{prop:multiplicity}
+The dimension of the first positive Neumann eigenspace is at most two.
+\end{proposition}
+\begin{proof}
+
+Assume $\dim E_1(D)\ge3$ and fix any boundary point $p$. The kernel of evaluation at $p$ has dimension at least two; choose independent first eigenfunctions $F,G$ in it. At every other boundary point $q$, $(F(q),G(q))\ne(0,0)$. Otherwise both functions vanish at $p,q$, and a nonzero combination vanishing at any third boundary point would contradict the exactly-two-zero property. The map
+
+\begin{equation}\label{eq:src-12-03}
+q\longmapsto[F(q):G(q)]\in\mathbb{RP}^1,\qquad q\in\partial D\setminus\{p\},
+\end{equation}
+
+is continuous and injective: two equal projective images would give a nonzero combination with three distinct boundary zeros. It is surjective: for any projective direction $[a:b]$, the nonzero eigenfunction $bF-aG$ vanishes at $p$ and has exactly one other boundary zero, which supplies that direction.
+
+Such a map from an open interval to a projective circle is impossible. Parameterize $\partial D\setminus\{p\}$ by arclength $s\in(0,P)$. The traces $F,G$ are $H^1$ in arclength, by Proposition~\ref{prop:hessian} and Lemma~\ref{lem:boundary-traces}, and therefore absolutely continuous. On every compact subinterval they have a continuous argument with derivative
+
+\begin{equation}\label{eq:src-12-04}
+\theta'(s)=\frac{FG'-GF'}{F^2+G^2};
+\end{equation}
+
+fix its value at one point and integrate, obtaining a continuous argument on the full interval, defined projectively modulo $\pi$. Injectivity of the projective map makes $\theta$ injective as a real function and hence strictly monotone. Its range is an open interval of length at most $\pi$, since two values differing by $\pi$ would have the same projective image. This range misses at least its endpoint projective direction, contradicting surjectivity. Therefore
+
+\begin{equation}\label{eq:src-12-05}
+\dim E_1(D)\le2.
+\end{equation}
+\end{proof}
+
+
+\section{Selecting a prescribed direction in a double eigenspace}\label{sec:double}
+This section permits smooth approximating domains which are small smooth images of convex domains. They need not remain convex. [O, Theorem~1.1] applies because it requires smoothness and simple connectivity, not convexity. The convex sequence in Sections~\ref{sec:approx}--\ref{sec:spectral} is still used as the base, and uniform estimates for the images are proved below. The selection images need not be convex.
+
+\subsection{Surjectivity of the traceless shape matrix}\label{subsec:11.1}
+\begin{proposition}\label{prop:shape-surjective}
+For every orthonormal pair of Neumann eigenfunctions at a positive eigenvalue on a bounded convex planar domain, the traceless part of the shape matrix defined below is onto the space of traceless symmetric $2\times2$ matrices.
+\end{proposition}
+\begin{proof}
+
+Let $D$ be bounded convex, let $\lambda>0$ be a Neumann eigenvalue, and let $u_1,u_2\in H^2(D)$ be two $L^2$-orthonormal eigenfunctions at $\lambda$. For $V\in C_c^\infty(\mathbb R^2;\mathbb R^2)$ define the real symmetric matrix
+
+\begin{equation}\label{eq:src-11-01}
+\begin{gathered}
+M(V)_{ij}=\int_D\{\operatorname{div}V(\nabla u_i\cdot\nabla u_j-\lambda u_iu_j) \\
+-\nabla u_i\cdot(DV+DV^T)\nabla u_j\}.
+\end{gathered}
+\end{equation}
+
+Then $V\mapsto M(V)-\tfrac12\operatorname{tr}M(V)I$ maps onto the two-dimensional space of traceless symmetric $2\times2$ matrices.
+
+The $H^2$ hypothesis holds for every convex Neumann eigenfunction by Section~\ref{sec:hessian}, independent of reachability. Cartesian gradients have $H^{1/2}$ traces in each Lipschitz graph chart: this is Grisvard \cite[Theorem~1.5.1.3, p.~38]{Grisvard}, applied at $p=2$ to each $H^1$ Cartesian derivative. Traces of $u_i$ are continuous by Section~\ref{sec:extension} and are absolutely continuous in boundary arclength. Take global smooth restrictions converging to $u_i$ in $H^2(D)$ by inward dilation and collar mollification. In a chart $y=g(x)$ the Cartesian derivative traces converge in $H^{1/2}$ and hence in $L^2$. The bounded graph derivative gives convergence in $L^2$ of $u_{i,x}+g' u_{i,y}$. The boundary trace thus belongs to $H^1$ and is absolutely continuous in arclength, with this derivative. No $H^{1/2}$ multiplier property of a rough tangent is used. The weak Neumann equation and Green's identity give trace $\nabla u_i\cdot\nu=0$ almost everywhere.
+
+Taking the divergence of
+
+\begin{equation}\label{eq:src-11-02}
+\begin{gathered}
+V(\nabla u_i\cdot\nabla u_j-\lambda u_iu_j) \\
+-(V\cdot\nabla u_i)\nabla u_j-(V\cdot\nabla u_j)\nabla u_i
+\end{gathered}
+\end{equation}
+
+and using $\Delta u_i=-\lambda u_i$ gives the exact boundary representation
+
+\begin{equation}\label{eq:src-11-03}
+\begin{gathered}
+M(V)_{ij}=\int_{\partial D}(V\cdot\nu) \\
+\{\partial_\tau u_i\partial_\tau u_j-\lambda u_iu_j\}\,ds.
+\end{gathered}
+\end{equation}
+
+The vector field belongs to $W^{1,1}$. The $H^2$ approximations give strong $W^{1,1}$ convergence of stress products by Cauchy--Schwarz for each differentiated product. Cartesian gradient traces converge in $L^2$, so their products converge in $L^1$. Gauss--Green for the smooth restrictions on the Lipschitz graph charts therefore passes to the limit. The almost-everywhere zero normal traces remove the normal terms and give the displayed formula.
+
+Suppose the image were not onto. A nonzero traceless symmetric annihilator diagonalizes after rotating the orthonormal basis, giving independent eigenfunctions $v,w$ with $M(V)_{vv}=M(V)_{ww}$ for all $V$. The boundary formula implies $q_v=q_w$ almost everywhere, where $q_v=(\partial_\tau v)^2-\lambda v^2$. Indeed the vector measure $(q_v-q_w)\nu\,ds$ annihilates every smooth vector test, hence is zero; $|\nu|=1$ almost everywhere. Put $F=v+w$, $G=v-w$. Their boundary traces obey
+
+\begin{equation}\label{eq:src-11-04}
+\partial_\tau F\,\partial_\tau G=\lambda FG.
+\end{equation}
+
+We use the following trace fact.
+\begin{lemma}[Binary-valued traces]\label{lem:binary-half}
+A binary-valued $H^{1/2}$ function on an interval is constant almost everywhere.
+\end{lemma}
+\begin{proof}
+If it were nonconstant, choose a compactly supported smooth $\phi$ with $\int h\phi'\ne0$. For small positive $t$, the translation integral against $\phi$ is asymptotic to $-t\int h\phi'$, so $\int|h(x+t)-h(x)|dx\ge c t$ for some $c>0$. Because $h$ is binary, its squared difference equals its absolute difference. But its fractional seminorm is twice the integral of these squared differences against $t^{-2}dt$, which diverges like $\int_0 dt/t$. This contradicts $H^{1/2}$ membership. The constants here are local: one may take $c=|\int h\phi'|/(2\|\phi\|_\infty)$ after choosing a small enough translation range inside the interval.
+\end{proof}
+
+On a compact subarc where $FG\ne0$, choose an oriented graph chart $y=g(x)$ with $|g'|\le M_0$. Neumann tangency gives $F_y=g'F_x$, $G_y=g'G_x$, so
+
+\begin{equation}\label{eq:src-11-05}
+F_xG_x=\frac{\lambda FG}{1+(g')^2}.
+\end{equation}
+
+Here $F_x,G_x$ mean Cartesian gradient traces, not graph derivatives. Multiplying by the constant signs of $F,G$ gives $a,b\in H^{1/2}$ with $ab\ge c_0>0$, where $c_0=\lambda\min|FG|/(1+M_0^2)$. The indicator of $\{a>0\}$ belongs to $H^{1/2}$: if its values differ at two points, both $a$ and $b$ change sign and $|a(x)-a(y)|^2+|b(x)-b(y)|^2\ge4c_0$. The binary-valued fact forces their common sign to be constant. The graph derivatives of $|F|,|G|$ are $(1+(g')^2)a,(1+(g')^2)b$, so both magnitudes are strictly monotone in the same direction on that arc.
+
+Patch overlapping oriented charts on any connected component $J$ of $\{FG\ne0\}$ in the boundary circle. The monotonicity sign agrees on overlaps and is therefore constant on $J$. If $J$ is a proper arc, its two endpoints have product zero by continuity. Increasing magnitudes contradict the right endpoint, and decreasing magnitudes contradict the left endpoint. If $J$ is the entire circle, strict monotonicity contradicts periodicity. Hence $FG=0$ on all of $\partial D$.
+
+Neither $F$ nor $G$ can have identically zero trace: together with the homogeneous Neumann condition, zero extension would solve the Helmholtz equation across the boundary and vanish on an open set, forcing the solution to vanish. More locally, choose an open boundary arc where $F\ne0$. There $G=0$ and its normal trace is zero. Zero extension of $G$ across this arc lies in $H^1$ (flatten the graph and use the zero trace), and the weak Neumann identity makes it solve $(\Delta+\lambda)G=0$ on a full neighborhood. Its harmonic lift is analytic, and it is zero on the outside open part. Analytic continuation along interior balls of connected $D$ forces $G\equiv0$, contradicting independence. This proves surjectivity.
+
+For an explicit constant-dependence record, choose two smooth compactly supported fields $V_1,V_2$ whose traceless matrices form a basis. Let $\sigma>0$ be the smallest singular value of the linear map from their two coefficients to those matrices, using the Euclidean coefficient norm and Frobenius matrix norm. For any target traceless matrix $B$, solve that two-by-two system. The resulting field satisfies
+
+\begin{equation}\label{eq:src-11-06}
+\|V\|_{C^k}\le\sqrt2\,\sigma^{-1}\|B\|_F\max_i\|V_i\|_{C^k}\quad(k=0,1,2).
+\end{equation}
+
+These constants depend on the chosen eigenspace and fields, not only on inradius/diameter. No quantitative universal lower bound for $\sigma$ is claimed. For any prescribed orthonormal pair $u,v$ in an exactly double first eigenspace, select $B=\operatorname{diag}(-1,1)$ in that basis. Then $M(V)=cI+\operatorname{diag}(-1,1)$ for a real $c$, with spectral separation exactly 2.
+
+\end{proof}
+\subsection{Quantitative variational selection}\label{subsec:11.2}
+\begin{proposition}\label{prop:selection}
+If $\mu_1(D)=\mu_2(D)=\lambda<\mu_3(D)$, every prescribed normalized $u\in E_1(D)$ admits a fixed deformation field and $t_0>0$ as below such that $D_t$ has a simple first positive eigenvalue for $0<t<t_0$, and the oriented normalized pullback first eigenfunction satisfies $\|f_t-u\|_{H^1(D)}\le K_1t$.
+\end{proposition}
+\begin{proof}
+
+Assume now $\mu_1(D)=\mu_2(D)=\lambda<\mu_3(D)$, and fix a prescribed normalized $u$ and an orthonormal $v$ completing $E_1(D)$. Choose $V$ as in Section~\ref{subsec:11.1}, and put $F_t=\operatorname{Id}+tV$, $D_t=F_t(D)$. Set $M_i=\|D^iV\|_\infty$ for $i=0,1,2$, with operator norms on derivatives. For $tM_1<1/4$, $F_t$ is a global smooth diffeomorphism: the equation $x=y-tV(x)$ has a unique solution by contraction, and its derivative is invertible. The pullback forms on the fixed $H^1(D)$ are
+
+\begin{equation}\label{eq:src-11-07}
+\begin{gathered}
+a_t(f,g)=\int_D\nabla f\cdot A_t\nabla g,\quad \\
+b_t(f,g)=\int_Dfg J_t,
+\end{gathered}
+\end{equation}
+\begin{equation}\label{eq:src-11-08}
+J_t=\det(I+tDV),\qquad A_t=J_t(I+tDV)^{-1}(I+tDV)^{-T}.
+\end{equation}
+
+Their derivatives at 0 are $J'_0=\operatorname{div}V$ and $A'_0=\operatorname{div}V\,I-DV-DV^T$. The inverse geometric series and the two-dimensional determinant polynomial give, with $C=100(1+M_1)^2$, coefficient differences at most $Ct$, first derivative norms at most $C$, and first-order remainder norms at most $Ct^2$, for $0<t\le[4(1+M_1)]^{-1}$. These bounds apply to the gradient form and mass form using their respective $L^2$ norms; hence also to their $H^1$ form norms. In particular $(1-Ct)a_0\le a_t\le(1+Ct)a_0$, and the same inequalities hold for $b_t,b_0$.
+
+Define the exact finite constants
+
+\begin{equation}\label{eq:src-11-09}
+S_{\mathrm{gap}}=\max\{1,\lambda^{-1},(1+\mu_3(D))/(\mu_3(D)-\lambda)\},
+\end{equation}
+\begin{equation}\label{eq:src-11-10}
+Z=4S_{\mathrm{gap}}C(1+2\lambda)\sqrt{1+\lambda},
+\end{equation}
+\begin{equation}\label{eq:src-11-11}
+R_1=C(1+\lambda)^{3/2}Z+2C(1+2\lambda)(1+\lambda)+8C^2\lambda(1+\lambda),
+\end{equation}
+\begin{equation}\label{eq:src-11-12}
+T_1=100C^2(1+\lambda)^3.
+\end{equation}
+
+Choose $t_0>0$ so that
+
+\begin{equation}\label{eq:src-11-13}
+t_0\le\min\{[4(1+M_1)]^{-1},[8C(1+\lambda)]^{-1},[8S_{\mathrm{gap}}C\lambda]^{-1},(4Z)^{-1},(4T_1)^{-1},(8R_1)^{-1}\},
+\end{equation}
+
+and additionally $t_0(M_0+RM_1)\le r/4$, $t_0M_0\le R/4$, where $B_r\subset D\subset B_R$. Increase $R$ once, before this choice, so it also encloses all base approximants $D_n$ from Section~\ref{sec:approx}; $R=2R_0$ there suffices. All numbers are positive and finite, so such $t_0$ exists; no derivative of a nonsmooth boundary is used in this choice.
+
+For $0<t<t_0$, let $f_t$ be any first eigenfunction in pullback coordinates, normalized by $b_t(f_t,f_t)=1$, and let $\lambda_t=\mu_1(D_t)$. Min--max with the preceding coefficient inequalities gives
+
+\begin{equation}\label{eq:src-11-14}
+\begin{gathered}
+|\lambda_t-\lambda|\le4C\lambda t,\qquad \\
+\|f_t\|_{H^1(D)}\le2\sqrt{1+\lambda}.
+\end{gathered}
+\end{equation}
+
+Write $f_t=w_t+z_t$ with $w_t=P_Ef_t$ and $z_t$ $L^2$-orthogonal to $E=E_1(D)$. The same splitting is orthogonal for the $H^1$ inner product, since $a_0(v,h)=\lambda b_0(v,h)$ for $v\in E$. On $E^\perp$, the operator represented by $a_0-\lambda b_0$ in that inner product has eigenvalues $(\mu_j-\lambda)/(1+\mu_j)$ and inverse norm at most $S_{\mathrm{gap}}$. Testing the perturbed equation on $E^\perp$ gives
+
+\begin{equation}\label{eq:src-11-15}
+\begin{gathered}
+\|z_t\|_{H^1}\le S_{\mathrm{gap}}Ct(1+2\lambda)\|f_t\|_{H^1} \\
++S_{\mathrm{gap}}|\lambda_t-\lambda|\|z_t\|_{H^1}.
+\end{gathered}
+\end{equation}
+
+The chosen range makes the last coefficient at most $1/2$, hence $\|z_t\|_{H^1}\le Zt$. Also $\|f_t\|_2\ge(1+Ct)^{-1/2}$, so $\|w_t\|_2>1/2$ in this range.
+
+For $h\in E$, expand the equation to first order. Since the $a_0$ term is exactly $\lambda b_0$ against $E$, the remainders obey
+
+\begin{equation}\label{eq:src-11-16}
+\begin{gathered}
+\big| (\lambda_t-\lambda)\langle w_t,h\rangle \\
+-t M(V)(w_t,h)\big|\le R_1t^2\|h\|_2.
+\end{gathered}
+\end{equation}
+
+The three terms in $R_1$ respectively bound the $z_t$ first-order term, the coefficient Taylor remainders, and $(\lambda_t-\lambda)t b'_0(f_t,h)$. These estimates record the dependence on the fixed data.
+
+For the prescribed $u$, make the trial function $\widetilde u_t=u-k_te_0$, where $e_0=|D|^{-1/2}$ and $k_t=b_t(u,e_0)/b_t(e_0,e_0)$. It has $b_t$-mean zero. The mass denominator is $b_t(u,u)-b_t(u,e_0)^2/b_t(e_0,e_0)$; $|b_t(u,e_0)|\le Ct$, so it is positive and bounded below by $3/4$ in the chosen range. The quotient expansion gives
+
+\begin{equation}\label{eq:src-11-17}
+\lambda_t\le\lambda+t(c-1)+T_1t^2.
+\end{equation}
+
+To check the remainder bound, write numerator $\lambda+t\alpha+O(C\lambda t^2)$ and denominator $1+t\beta+O((C+2C^2)t^2)$, with $|\alpha|\le C\lambda$, $|\beta|\le C$. Subtract $\lambda+t(\alpha-\lambda\beta)$ and divide by the denominator; $T_1$ exceeds the resulting bounds term by term. Here $\alpha-\lambda\beta=M(V)(u,u)=c-1$.
+
+Let $s_t=(\lambda_t-\lambda)/t$ and write $w_t/\|w_t\|_2=\alpha_tu+\beta_tv$. The expanded equation gives
+
+\begin{equation}\label{eq:src-11-18}
+\big\|s_t\,w_t/\|w_t\|_2-M(V)w_t/\|w_t\|_2\big\|_2\le2R_1t.
+\end{equation}
+
+Since $s_t\le c-1+T_1t$, its distance below the other diagonal entry $c+1$ is at least $2-T_1t>1$. Thus $|\beta_t|\le2R_1t$. Orient $f_t$ by $\langle f_t,u\rangle>0$, which is possible in this range, so $\alpha_t>0$ and $\|w_t/\|w_t\|_2-u\|_2\le4R_1t$. Combining this with $\|z_t\|_{H^1}\le Zt$ and $|\|w_t\|_2-1|\le(2C+Z)t$ gives, for example,
+
+\begin{equation}\label{eq:src-11-19}
+\begin{gathered}
+\|f_t-u\|_{H^1(D)}\le K_1t,\quad \\
+K_1=Z+(8R_1+2C+Z)\sqrt{1+\lambda}.
+\end{gathered}
+\end{equation}
+
+The first eigenvalue on $D_t$ is simple. If its eigenspace had dimension at least two, choose a normalized first eigenfunction $f_t$ with $\langle f_t,u\rangle=0$. Its projected normalized direction would have $|\beta_t|=1$, contrary to $2R_1t<1/4$. This proves selection by variational estimates.
+
+The physical normalized first eigenfunction is $u_t=f_t\circ F_t^{-1}$ on $D_t$. It converges to the prescribed $u$ locally in every $C^k$ as $t\downarrow0$, by the weak equation, the $H^1$ convergence just proved, and the harmonic-lift estimates of Section~\ref{sec:spectral}. The boundary and uniform convergence will follow from the next subsection's estimates, not from this local assertion alone.
+
+\end{proof}
+\subsection{Uniform bounds on smooth images}\label{subsec:11.3}
+\begin{lemma}\label{lem:image-bounds}
+With the fixed deformation and $t_0$ chosen above, normalized first eigenfunctions of the smooth images $D_{t,n}$ have uniform $H^2$ and exponent-$1/2$ H\"older extension bounds. The constants are independent of the positive curvature upper bound of the convex base approximations.
+\end{lemma}
+\begin{proof}
+
+Let $D_n$ be the smooth convex base approximants with $B_r\subset D_n\subset B_R$ and let $D_{t,n}=F_t(D_n)$, $0<t<t_0$. They are smooth and simply connected, contain $B_{r/2}$, and lie in $B_{2R}$. The inball follows by applying $F_t^{-1}$ to a point of $B_{r/2}$ and using $|F_t^{-1}(y)-y|\le tM_0\le r/4$.
+
+For $p=2,4$ define extensions by pulling back to $D_n$, applying Section~\ref{sec:extension}'s extension, and composing with $F_t^{-1}$. The bounds $\|DF_t\|\le5/4$, $\|DF_t^{-1}\|\le4/3$ and $9/16\le J_t\le25/16$ give extension constants at most
+
+\begin{equation}\label{eq:src-11-20}
+\mathsf A_p=3A_p,\quad \mathsf B_p=3B_p,\quad \mathsf D_p=3D_p,
+\end{equation}
+
+with the $A_p,B_p,D_p$ of Section~\ref{sec:extension} at $(r,R)$. The extensions are supported in $B_{2R}$, uniformly in $n,t$.
+
+For a base boundary point $x$ and its outward normal $\nu$, convexity gives $x\cdot\nu\ge r$. Its image normal is $\nu_t=DF_t^{-T}\nu/|DF_t^{-T}\nu|$. The explicit estimate
+
+\begin{equation}\label{eq:src-11-21}
+F_t(x)\cdot\nu_t\ge\tfrac34r-t(M_0+RM_1)\ge c_0:=r/2
+\end{equation}
+
+uses $\|DF_t^{-1}-I\|\le(4/3)tM_1$. Parametrize the base boundary counterclockwise by arclength, and let $\tau$ be its unit tangent. If the base curvature is $\kappa_n\ge0$, differentiating the image curve by its base arclength shows that its curvature is
+
+\begin{equation}\label{eq:src-11-22}
+\kappa_{t,n}=\frac{\kappa_n\det DF_t+ \det(DF_t\tau,D^2F_t[\tau,\tau])}{|DF_t\tau|^3}.
+\end{equation}
+
+Thus $\kappa_{t,n}\ge-tM_2/(1-tM_1)^2\ge-\mathcal M$, with $\mathcal M=4t_0M_2$. This controls the negative curvature independently of the unbounded positive base curvature.
+
+For any physical $H^2$ function $w$, the divergence theorem with the vector field $x|\nabla w|^2$, Cauchy--Schwarz and $|x|\le R_{\rm out}=2R$ gives, for every $\eta>0$,
+
+\begin{equation}\label{eq:src-11-23}
+\begin{gathered}
+\int_{\partial D_{t,n}}|\nabla w|^2\le \\
+c_0^{-1}\{\eta\|D^2w\|_2^2+(2+R_{\rm out}^2/\eta)\|\nabla w\|_2^2\}.
+\end{gathered}
+\end{equation}
+
+For normalized Neumann eigenfunctions $w$ with eigenvalue at most $\Lambda=20\pi^2/r^2$, $H^2$ membership follows by pullback: pull back to convex $D_n$, whose conormal matrix $A_t$ is symmetric uniformly elliptic and smooth; apply Grisvard \cite[Theorem~3.2.1.3]{Grisvard} with shift 1 and datum $(1+\lambda J_t)(w\circ F_t)\in L^2$. Smooth composition then gives $w\in H^2(D_{t,n})$. On each smooth image the higher regularity follows by bootstrap with Grisvard \cite[Theorem~2.5.1.1, pp.~128--129]{Grisvard} (smooth boundary/coefficients, homogeneous Neumann data, volume RHS upgraded by the eigen-equation). No constants for this individual smooth bootstrap are used uniformly.
+
+On these smooth domains the identity of Section~\ref{sec:hessian} holds classically and extends to $H^2$ functions by Grisvard \cite[Theorem~3.1.1.1]{Grisvard}: the $C^2$ boundary and $H^1$ gradient hypotheses hold. Its curvature can have either sign. The non-smooth domain is reached through the two limits below. Use its lower bound $-\mathcal M$, then the trace inequality with $\eta=c_0/(2\mathcal M)$ when $\mathcal M>0$. Absorbing half the Hessian term gives
+
+\begin{equation}\label{eq:src-11-24}
+\begin{gathered}
+\|D^2w\|_2^2\le2\Lambda^2+ \\
+(4\mathcal M/c_0+4\mathcal M^2R_{\rm out}^2/c_0^2)\Lambda=:\Theta^2.
+\end{gathered}
+\end{equation}
+
+When $\mathcal M=0$ the sharper convex-sign bound $\Lambda^2$ applies and the displayed $\Theta$ is still an upper bound. Apply the derivation of Section~\ref{sec:extension} using the physical extension constants, gradient ceiling $\sqrt\Lambda$ and Hessian ceiling $\Theta$. Explicitly put
+
+\begin{equation}\label{eq:src-11-25}
+Q_*=2^{1/4}[\mathsf A_2(\mathsf B_2\sqrt\Lambda+\mathsf D_2)]^{1/2},
+\end{equation}
+\begin{equation}\label{eq:src-11-26}
+G_*=2^{1/4}[\mathsf A_2\sqrt\Lambda(\mathsf B_2\Theta+\mathsf D_2\sqrt\Lambda)]^{1/2},
+\end{equation}
+\begin{equation}\label{eq:src-11-27}
+H_*=100(2\mathsf B_4G_*+\mathsf D_4Q_*).
+\end{equation}
+
+Every such physical extension has H\"older seminorm at most $H_*$ and supremum at most $H_*\sqrt{3R}$. All parameters $(r,R,\Lambda,t_0,M_2)$ have been fixed before $n,t$ vary. The field choice and admissible $t_0$ also explicitly depend on $(M_0,M_1,\lambda,\mu_3-\lambda,\sigma,V_1,V_2)$ as above. There is no hidden dependence on an upper curvature bound of $D_n$.
+
+\end{proof}
+\subsection{The two limits}\label{subsec:11.4}
+\begin{proposition}\label{prop:double-limits}
+Every normalized first eigenfunction on an exactly double convex first eigenspace is a local $C^k$ and uniformly controlled boundary limit of exact first eigenfunctions on smooth bounded simply connected domains. Theorem~\ref{thm:boundary} holds in the double case.
+\end{proposition}
+\begin{proof}
+
+First fix $t\in(0,t_0)$. The images $D_{t,n}$ converge to $D_t$ in volume, closure and boundary Hausdorff distance; their common $H^1$ extensions satisfy the bounds just proved. Repeat the variational argument of Section~\ref{sec:spectral}, using density supplied by their pullback extension. Their fixed-index spectra therefore converge. By Section~\ref{subsec:11.2} the first eigenvalue on $D_t$ is simple; orient normalized first eigenfunctions $u_{t,n}$ to converge to $u_t$. Uniform $H_*$ and the local harmonic estimates give uniform convergence of the extensions on $\overline D_t$, moving-boundary convergence, and $C^k$ convergence on every compact subset of $D_t$.
+
+These estimates pass to $u_t$ by first taking $n\to\infty$. Their constants are uniform in $t$. Next let $t\downarrow0$. The $H^1$ pullback estimate of Section~\ref{subsec:11.2} identifies the local limit of $u_t$ as the prescribed $u$. The uniform H\"older bound identifies the limit on the closure and for moving boundary points; it supplies the information that local convergence alone cannot give.
+
+For a single sequence, let $K_j=\{x\in\overline D:\operatorname{dist}(x,\partial D)\ge1/j\}$ (empty sets cause no condition). Choose $t_j\downarrow0$ with $0<t_j<t_0/(j+1)$ and $t_jM_0<1/(4j)$ when $M_0>0$. Thus $K_j\Subset D_{t_j}$ for all relevant large $j$. After fixing $t_j$, choose $n_j\ge j$ large enough that the normalized oriented first eigenfunction on $D_{t_j,n_j}$ differs from $u_{t_j}$ by at most $1/j$ in $C^j(K_j)$ and in the extension supremum on $\overline D_{t_j}$, and their boundary/closure Hausdorff distances are at most $1/j^2$. Each choice exists by the fixed-$t$ convergence. Its threshold may depend on $t_j$, its actual positive spectral gap and the selected function; no uniform rate for $n_j$ is asserted.
+
+Put $\widehat D_j=D_{t_j,n_j}$, $\widehat u_j=u_{t_j,n_j}$. Then $\widehat D_j$ is smooth and simply connected, $\partial\widehat D_j\to\partial D$, and its exact first eigenfunction converges to the prescribed $u$ locally in every $C^k$, uniformly at paired closure points and with the common boundary H\"older control $H_*$. Each $\widehat D_j$ is nonempty and bounded, has smooth boundary and is simply connected as a diffeomorphic image of a convex domain. Hence [O, Theorem~1.1] applies. Let $y_j\in\partial\widehat D_j$ maximize $\widehat u_j$ and choose $y'_j\in\partial D_{t_j}$ with $|y_j-y'_j|\le1/j^2$. The common extension gives
+\begin{equation}\label{eq:paired-maxima}
+|\widehat E_j\widehat u_j(y_j)-\widehat E_j\widehat u_j(y'_j)|\le H_*/j.
+\end{equation}
+The supremum error on $\overline D_{t_j}$ is at most $1/j$. Along a subsequence $y'_j\to y\in\partial D$, and the uniform limit as $t\downarrow0$ gives $u_{t_j}(y'_j)\to u(y)$. Thus $\widehat u_j(y_j)\to u(y)$. For each fixed $x\in D$, [O, Theorem~1.1] gives $\widehat u_j(x)<\widehat u_j(y_j)$ for large $j$, so $u(x)\le u(y)$. Continuity and the argument for $-u$ give Theorem~\ref{thm:boundary} in the double case. The local convergence supplies the sequence for Section~\ref{sec:critical}.
+
+Theorem~\ref{thm:nodal} gives $\dim E_1(D)\in\{1,2\}$. Together with the simple case, this proves Theorem~\ref{thm:boundary} for every member of the first positive eigenspace on every bounded convex planar domain.
+\end{proof}
+
+
+\section{Critical points under approximation}\label{sec:critical}
+By Propositions~\ref{prop:simple} and~\ref{prop:double-limits} and Theorem~\ref{thm:nodal}, every nonzero first positive eigenfunction of a bounded convex planar domain is, up to a scalar multiple, a limit in $C^k_{\mathrm{loc}}(D)$, for every $k$, of first eigenfunctions of smooth bounded simply connected domains, and these have no interior critical points by [O, Theorem~1.1]. This section derives Theorem~\ref{thm:critical} from that fact.
+\subsection{Stability on interior discs}\label{subsec:6.1}
+\begin{lemma}\label{lem:index-stability}
+A local $C^1$ limit of functions with nonvanishing gradient has no strict or isolated local extremum, and every isolated critical point of its limit has index zero.
+\end{lemma}
+\begin{proof}
+
+Suppose $u_n\to u$ in $C^1_{\mathrm{loc}}(D)$ and $\nabla u_n$ has no zero in $D$ for all sufficiently large $n$ on each compact subset. If $p$ is an isolated zero of $\nabla u$, choose $a>0$ with $\overline B_a(p)\subset D$ and no other zero in this closed ball. Put $m=\min_{\partial B_a(p)}|\nabla u|>0$. For $n$ large enough, $\|\nabla u_n-\nabla u\|_{C^0(\partial B_a)}<m/2$. The straight homotopy between the two boundary vector fields then never vanishes. Their normalized maps to $S^1$ have the same winding number. The map $\nabla u_n/|\nabla u_n|$ extends over the disk, so its winding number is zero: contracting a parametrized boundary loop radially in the disk gives a null homotopy. Thus every isolated limit critical point has index zero.
+
+This uses only the elementary homotopy definition of winding number. The required threshold $n$ depends on $p,a,m$ and the local convergence; the assertion contains no uniform lower bound for gradients across domains or across the eigenspace.
+
+There is an even shorter proof excluding every strict local extremum. For a strict local maximum choose a small closed ball within its strict neighborhood; $d=u(p)-\max_{\partial B_a(p)}u>0$ by compactness. Uniform $C^0$ convergence with error less than $d/3$ makes a maximum of $u_n$ on $\overline B_a(p)$ occur in its interior, forcing $\nabla u_n=0$. A local maximum isolated among local maxima is strict after shrinking the neighborhood, since a nearby equal-value point would also be a local maximum. An isolated critical point which is a local maximum has the same property. The minimum case is obtained by replacing $u$ by $-u$.
+
+Apply these arguments to the approximating eigenfunctions of Sections~\ref{sec:simple} and~\ref{sec:double}. This proves the extremum and index assertions of Theorem~\ref{thm:critical}.
+
+\end{proof}
+\subsection{Analytic classification}\label{subsec:6.2}
+\begin{proposition}\label{prop:critical-form}
+For a first eigenfunction obtained by the approximations above, every interior critical point has nonzero value and rank-one Hessian. It is either an isolated odd-order degenerate point of index zero or belongs to a regular analytic critical curve.
+\end{proposition}
+\begin{proof}
+
+Assume $u$ is a nonzero solution of $-\Delta u=\lambda u$ near an interior point, with $\lambda>0$. It is real analytic by the harmonic lift/Poisson formula in Section~\ref{sec:spectral}. If $u(p)=0$ and $\nabla u(p)=0$, its first nonzero Taylor term $P_d$ has degree $d\ge2$ and satisfies $\Delta P_d=0$, by comparing lowest degrees in the equation. In two variables $P_d=\operatorname{Re}(c z^d)$ in coordinates centered at $p$, for some $c\ne0$. Its gradient is nonzero on the unit circle, with winding $1-d$. The remainder in the gradient is $O(|z|^d)$, whereas the leading gradient has size $d|c||z|^{d-1}$. For small enough radius the winding is still $1-d$, and $p$ is an isolated critical point. Thus Section~\ref{subsec:6.1} excludes critical zeros on the nodal set for every eigenfunction in Theorem~\ref{thm:critical}.
+
+An explicit radius for this step is available: fix $\rho>0$ with $\overline B_\rho(p)$ in the analytic neighborhood and let $C_d=\sup_{B_\rho(p)}\|D^{d+1}u\|/d!$. The gradient Taylor remainder is at most $C_d|z|^d$. Any $0<a<\min(\rho/2,d|c|/(2C_d))$ works, with the second restriction omitted if $C_d=0$. These are fixed local jet constants, not uniform domain-approximation constants.
+
+At a remaining critical point, $u(p)\ne0$ and $\operatorname{tr}D^2u(p)=-\lambda u(p)\ne0$. An invertible Hessian would have index $\operatorname{sign}\det D^2u(p)\in\{-1,1\}$, because the gradient is its invertible linear part plus a smaller remainder. Therefore every possible critical point of such an eigenfunction has rank-one Hessian.
+
+The local form can be made explicit. Choose an $x$ direction with $u_{xx}(p)\ne0$; the analytic implicit-function theorem solves $u_x(x,y)=0$ as $x=\xi(y)$. Taylor's formula in $x-\xi(y)$ gives
+
+\begin{equation}\label{eq:src-6-01}
+u(x,y)=u(p)+g(y)+(x-\xi(y))^2a(x,y),\quad a(p)\ne0.
+\end{equation}
+
+Replacing $x-\xi(y)$ by $X=(x-\xi(y))\sqrt{|a(x,y)|}$ is an analytic local coordinate change, and gives $u-u(p)=\sigma X^2+g(Y)$ with $\sigma=\pm1$. Rank one implies $g'(0)=g''(0)=0$. If $g$ is identically zero, the critical set is a smooth analytic curve. Otherwise its leading order is $k\ge3$. Even $k$ gives an isolated critical point of index $+1$ or $-1$ according to the relative signs of the two terms; odd $k$ gives index zero. Thus only an odd-order cusp or a critical curve survives the preceding argument. The coordinate change preserves the index: the two Jacobian orientation signs, in the domain and in the pulled gradient, cancel.
+
+The analytic implicit step can itself be checked by contraction. Translate $p$ to 0, set $F=u_x$, $a_0=F_x(0)\ne0$, and complexify its convergent Taylor series. Choose a small polydisc $|x|\le\rho,|y|\le\eta$ with $|1-F_x/a_0|\le1/2$ and $|F(0,y)/a_0|\le\rho/2$. Iterating $x\mapsto x-F(x,y)/a_0$ from 0 converges uniformly to a holomorphic $\xi(y)$ and is real for real $y$. Taylor's integral formula then defines $a(x,y)=\int_0^1(1-s)u_{xx}(\xi(y)+s(x-\xi(y)),y)ds$, with $a(0)=u_{xx}(0)/2\ne0$. Shrink until $|a-a(0)|<|a(0)|/2$, and use the convergent binomial square-root series. The inverse coordinate map follows from the same contraction with its nonzero $x$ derivative. Finally $g''(0)=u_{yy}(0)-u_{xy}(0)^2/u_{xx}(0)=0$ by rank one. If $g(Y)=bY^k+\cdots$, $b\ne0$, take a small $h$ with $|g'(Y)-kbY^{k-1}|\le|kb||Y|^{k-1}/2$ for $0<|Y|\le h$; Taylor's derivative bound supplies it as above. On a small rectangle the gradient is homotopic to $(2\sigma X,kbY^{k-1})$ without a boundary zero, giving the stated even/odd index values.
+
+\end{proof}
+\subsection{Local Helmholtz examples}\label{subsec:6.3}
+\begin{proposition}\label{prop:helmholtz-examples}
+Local analytic Helmholtz solutions with nonvanishing gradients can converge to a solution with an isolated index-zero critical point, or to one with a curve of critical points.
+\end{proposition}
+\begin{proof}
+
+On $U=(-1/10,1/10)^2$ put
+
+\begin{equation}\label{eq:src-6-02}
+\begin{gathered}
+v(x,y)=\sin y-2\sin(y/2)\cos(\sqrt3x/2),\quad \\
+w_\delta(x,y)=\cos x+v(x,y)+\delta\sin y.
+\end{gathered}
+\end{equation}
+
+Every $w_\delta$ solves $(\Delta+1)w_\delta=0$. On this box, $w_{\delta,x}=0$ implies $x=0$: for $x\ne0$,
+
+\begin{equation}\label{eq:src-6-03}
+\begin{gathered}
+\frac{w_{\delta,x}}x=-\frac{\sin x}x+\sqrt3\sin(y/2)\frac{\sin(\sqrt3x/2)}x \\
+\le-(1-1/600)+3/40<0.
+\end{gathered}
+\end{equation}
+
+At $x=0$, $w_{\delta,y}=\cos y-\cos(y/2)+\delta\cos y$. If $\delta<0$ this is negative throughout $U$, because $\cos y>0$ and $\cos y\le\cos(y/2)$. Therefore $w_{-1/n}$ has no critical point and converges analytically to $w_0$. The only critical point of $w_0$ in $U$ is $(0,0)$, its Hessian is $\operatorname{diag}(-1,0)$ and its reduced $y$ Taylor term is $-y^3/8$. Its index is zero and it is not a local extremum.
+
+Also $z_n(x,y)=\cos x+n^{-1}\sin y$ solves the same Helmholtz equation and has no critical point on $U$, whereas $z=\cos x$ has the entire interior line $x=0$ of critical points and non-strict local maxima.
+
+These examples exclude only arguments using gradient-free approximants, $C^1_{\rm loc}$ convergence and the local constant-coefficient Helmholtz equation. They concern local Helmholtz solutions and make no assertion about Neumann first eigenfunctions on convex domains.
+
+\end{proof}
+\subsection{Compact critical curves}\label{subsec:6.4}
+\begin{proposition}\label{prop:compact-critical}
+No compact closed curve of critical points is contained in $D$. Every nonisolated critical curve component approaches the boundary.
+\end{proposition}
+\begin{proof}
+
+Suppose an eigenfunction in Theorem~\ref{thm:critical} had a smooth embedded critical circle $C\Subset D$. Its value is constant $c\ne0$ on $C$ by Section~\ref{subsec:6.2}. The bounded region $U$ inside it has $\overline U\Subset D$ by convexity. Green's identity on this entirely interior smooth region gives
+
+\begin{equation}\label{eq:src-6-04}
+\lambda\int_Uu=-\int_C\partial_\nu u=0.
+\end{equation}
+
+If $c>0$, continuity supplies a positive-area collar where $u>0$; the zero integral forces an interior point where $u<0$. Its minimum over $\overline U$ is therefore less than the boundary value $c$. If $c<0$, the corresponding maximum is greater than 0 and the boundary value. Uniform $C^0$ convergence on $\overline U$ with error below one third of this positive boundary/interior gap makes an approximant attain a minimum or maximum in $U$, contradicting its gradient-free property. The required index threshold depends only on this fixed compact region and gap.
+
+Thus compact closed curves of critical points contained in $D$ are excluded. A connected nonisolated critical component is a regular analytic curve by the rank-one local form. It cannot accumulate at an isolated cusp, whose neighborhood has no other critical point; regular curve neighborhoods also prevent accumulation of distinct components. It is closed relative to $D$ and properly embedded, as in Section~\ref{subsec:12.3}. A compact component would be a circle, which was just excluded. Every such curve component consequently approaches the boundary of bounded $D$. Boundary-reaching curves and isolated odd-order cusps are still not eliminated by this argument.
+\end{proof}
+
+
+\section{Symmetry and explicit planar examples}\label{sec:symmetry}
+\subsection{Selection by symmetry}\label{subsec:8.1}
+\begin{proposition}\label{prop:symmetry-selection}
+If $D$ has a finite orthogonal symmetry group, $\dim E_1(D)=2$, and the real commutant of its action is scalar, symmetry-preserving smooth convex approximations select every prescribed member of $E_1(D)$.
+\end{proposition}
+\begin{proof}
+
+Suppose a bounded convex $D$ is invariant under a finite orthogonal group $G$, $\dim E_1(D)=2$, and every real linear endomorphism of $E_1(D)$ commuting with $G$ is scalar. Choose the $G$-preserving smoothing of Section~\ref{sec:approx}. Then for every normalized prescribed $u\in E_1(D)$ there are normalized exact first positive eigenfunctions $u_n$ on these smooth convex domains, converging to $u$ uniformly on $\overline D$, with moving-boundary control, and in $C^k_{\mathrm{loc}}(D)$ for every $k$.
+
+To prove it, let $C_n$ be the spectral subspace of the two eigenvalues converging to $\mu_1(D)$. The gap to $\mu_3(D)$ is positive; Section~\ref{sec:spectral} ensures $\dim C_n=2$ for large $n$. Let $P_n$ be the $L^2(D_n)$ orthogonal projection to $C_n$ and define $Q_nu=P_n(E_Du|_{D_n})$, using the fixed-domain radial extension. Convergence of complete cluster bases in Section~\ref{sec:spectral} shows $Q_nu\to u$ in $L^2$, uniformly on $\overline D$ after subsequences, and locally in every $C^k$. Every subsequence has this same further limit, because its limiting cluster basis is an orthonormal basis of $E_1(D)$ and the projection coefficients reconstruct $u$. The convergence is uniform on the finite-dimensional unit sphere by compactness of that sphere. Thus $Q_n$ is injective, and hence an isomorphism onto $C_n$, for large $n$.
+
+The extension is equivariant because its radial gauge and cutoff commute with $G$. The spectral projection is equivariant because the Neumann energy and mass are invariant. Therefore $Q_n^{-1}(-\Delta_{D_n}|_{C_n})Q_n$ commutes with $G$ and is scalar. The two eigenvalues in this cluster are consequently equal; since these are the first two positive eigenvalues, $C_n=E_1(D_n)$. Normalize $u_n=Q_nu/\|Q_nu\|_{L^2(D_n)}$. The denominator tends to 1. Sections~\ref{sec:extension}--\ref{sec:spectral} give the asserted convergence and the common H\"older constant with ceiling $5\pi^2/r^2$.
+
+[O, Theorem~1.1] applies to these exact first eigenfunctions. Theorem~\ref{thm:boundary} follows by the maximizing-point argument and Theorem~\ref{thm:critical} by local stability. For this symmetry-preserving sequence, $\mathcal R(D;\varepsilon_n)$ is the entire normalized eigensphere, not merely some basis directions.
+
+\end{proof}
+\subsection{Rectangles and the square}\label{subsec:8.2}
+\begin{proposition}\label{prop:rectangles}
+Every first positive Neumann eigenfunction on a rectangle, including a square, has nonvanishing interior gradient and boundary extrema. Symmetry-preserving smoothing of the square reaches its whole first eigensphere, whereas rounded elongated rectangles can reach only a signed coordinate direction.
+\end{proposition}
+\begin{proof}
+
+On $D=(0,a)\times(0,b)$, cosine series in each variable give Neumann eigenvalues $\pi^2(m^2/a^2+n^2/b^2)$, $m,n\in\{0,1,\ldots\}$. This follows by expanding in the complete cosine bases of the two intervals; integration of the weak equation against each basis product identifies its coefficient and eigenvalue. For $a>b$, the first positive eigenspace is $\mathbb R\cos(\pi x/a)$, with eigenvalue $\pi^2/a^2$; the derivative never vanishes in the interior and extrema lie on $x=0,a$. For $b>a$ exchange the coordinates.
+
+For $a=b$, every first eigenfunction is $u=A\cos(\pi x/a)+B\cos(\pi y/a)$ with $(A,B)\ne(0,0)$. Its gradient components are $-(\pi/a)A\sin(\pi x/a)$ and $-(\pi/a)B\sin(\pi y/a)$. Both sine factors are positive inside; therefore the gradient is nonzero. Max/min are $\pm(|A|+|B|)$ and occur at boundary vertices, or on an entire side if one coefficient is zero. No uniqueness of boundary extrema is asserted.
+
+Center the square at 0 and use basis $\sin(\pi x/a),\sin(\pi y/a)$. Rotation by $\pi/2$ acts as $J=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$ up to the basis convention; a reflection acts as $\operatorname{diag}(1,-1)$. A real matrix commuting with $J$ is $cI+dJ$; commuting also with that reflection forces $d=0$. Thus Section~\ref{subsec:8.1} applies and reaches every prescribed square eigenfunction by smooth convex D4-preserving domains.
+
+For contrast, let $R_n=(0,1+1/n)\times(0,1)$. Their simple first eigenfunctions converge, after normalization and radial identification, only to the $x$ mode of the limiting square. For each fixed $n$, Section~\ref{sec:spectral} allows a smooth convex rounding close enough to $R_n$ that the first eigenvalue is still simple and its eigenfunction direction differs from this $x$ mode by less than $1/n$ in $L^2$ after extension. Choose that rounding also within Hausdorff distance $1/n$ of $R_n$. This gives a smooth convex sequence tending to the square whose first eigenfunction limits are only the two signed $x$ directions. It proves that convergence of domains/eigenspaces does not make an arbitrary fixed sequence reach the entire limit eigenspace. It does not exclude deliberately symmetry-preserving sequences.
+
+\end{proof}
+\subsection{The equilateral triangle}\label{subsec:8.3}
+\begin{proposition}\label{prop:equilateral}
+The equilateral triangle of side $a$ has first positive Neumann eigenvalue $16\pi^2/(9a^2)$ and the two-dimensional eigenspace described below. Every nonzero member has nonvanishing interior gradient, and symmetry-preserving smooth convex approximations select every prescribed member.
+\end{proposition}
+\begin{proof}
+
+Take vertices $(0,0),(1,0),(1/2,\sqrt3/2)$. Put
+
+\begin{equation}\label{eq:src-8-01}
+f=\cos(4\pi x/3)+2\cos(2\pi x/3)\cos(2\pi y/\sqrt3),
+\end{equation}
+\begin{equation}\label{eq:src-8-02}
+g=\sin(4\pi x/3)-2\sin(2\pi x/3)\cos(2\pi y/\sqrt3).
+\end{equation}
+
+Direct differentiation shows $-\Delta f=(16\pi^2/9)f$ and the same equation for $g$. Their normal derivatives vanish on $y=0$, $y=\sqrt3x$ and $y=\sqrt3(1-x)$, using the normals proportional to $(0,-1)$, $(-\sqrt3,1)$ and $(\sqrt3,1)$. 
+
+To show that they span the first eigenspace, evenly reflect any weak Neumann eigenfunction across the three sides. Equilateral reflection tiles the plane; the angle $\pi/3$ makes the six reflections around each vertex consistent. The extended function is locally $H^1$ and solves the weak Helmholtz equation across each side. At a vertex the equation is removable: for $0<\varepsilon<1/2$ use the radial cutoff which is 0 up to $\varepsilon^2$, is $\log(r/\varepsilon^2)/\log(1/\varepsilon)$ between $\varepsilon^2$ and $\varepsilon$, and is 1 thereafter. Its gradient squared integral is exactly $2\pi/\log(1/\varepsilon)$. Testing and applying Cauchy--Schwarz makes the cutoff error vanish; the remaining volume terms vanish on the shrinking ball. Thus the extension solves the equation throughout the plane.
+
+Write $B,L,R$ for affine reflections across the base, left and right sides, with composition read right to left. The products $RBLB$ and $LRLB$ are translations by $a=(3/2,\sqrt3/2)$ and $b=(0,\sqrt3)$, respectively; the products follow by multiplying the affine reflection matrices. The extension is periodic under these translations. Fourier frequencies on their torus are
+
+\begin{equation}\label{eq:src-8-03}
+\begin{gathered}
+k_{m,n}=\big(\tfrac{4\pi}{3}(m-n/2),\tfrac{2\pi n}{\sqrt3}\big),\quad \\
+|k_{m,n}|^2=\tfrac{16\pi^2}{9}(m^2-mn+n^2),\quad m,n\in\mathbb Z.
+\end{gathered}
+\end{equation}
+
+Every nonzero integer pair has $m^2-mn+n^2\ge1$. Expansion of the periodic weak equation in Fourier modes therefore bounds the first positive eigenvalue below by $16\pi^2/9$; the displayed $f,g$ achieve that bound. At this value only the six shortest frequencies $\pm k_1,\pm k_2,\pm k_3$ occur, with $k_1=(4\pi/3,0)$ and $k_{2,3}=(2\pi/3,\pm2\pi/\sqrt3)$. Base reflection forces the coefficients of $k_2,k_3$ to agree. Left reflection sends $k_1$ to $-k_3$ and fixes $k_2$, so their common coefficient is the conjugate of the $k_1$ coefficient. There is thus at most one complex free coefficient, or two real dimensions. The independent $f,g$ span this eigenspace.
+
+In the triangle interior put $b_0=2\pi y/\sqrt3$. A direct calculation gives
+
+\begin{equation}\label{eq:src-8-04}
+\det(\nabla f,\nabla g)=\frac{16\pi^2}{3\sqrt3}\sin b_0\,[\cos(2\pi x)-\cos b_0]<0.
+\end{equation}
+
+Indeed $0<b_0<2\pi\min(x,1-x)\le\pi$, so $\sin b_0>0$ and strict decrease of cosine on $[0,\pi]$ gives $\cos b_0>\cos(2\pi x)$. Thus every nonzero linear combination has nonvanishing gradient in the interior. Compactness and the vanishing-gradient condition at an interior extremum put all global extrema on the boundary; in fact no interior point can equal a global extremal value. This follows from the displayed determinant.
+
+At the three vertices the value vectors of $f,g$ are $(3,-3/2,-3/2)$ and $(0,-3\sqrt3/2,3\sqrt3/2)$. Vertex evaluation therefore identifies the two-dimensional eigenspace with the zero-sum subspace of $\mathbb R^3$, with the triangle symmetry group permuting coordinates. Rotation and reflection have scalar real commutant, by the same matrix argument as in Section~\ref{subsec:8.2} with the rotation angle $2\pi/3$. After translating the centroid to 0, Section~\ref{subsec:8.1} provides smooth convex D3-preserving approximants whose exact first eigenspace reaches every prescribed combination of $f,g$.
+
+For side length $a>0$, dilation changes the eigenvalue to $16\pi^2/(9a^2)$ and multiplies gradients by $1/a$; the nonvanishing and selection statements are unchanged. These are explicit calculations for the whole eigenspaces.
+\end{proof}
+
+
+\section{Circular sectors}\label{sec:sectors}
+\begin{proposition}\label{prop:sectors}
+Every first positive Neumann eigenfunction on a convex circular sector has nonvanishing interior gradient and strict boundary extrema, including at the radial--angular double crossing. On a reentrant sector, $\pi<\alpha<2\pi$, its first eigenfunction does not belong to $H^2$.
+\end{proposition}
+\begin{proof}
+Let $D_{\alpha,R}=\{(r\cos\theta,r\sin\theta):0<r<R,\ 0<\theta<\alpha\}$, where $R>0$ and $0<\alpha\le\pi$. The apex is a boundary point. Angular cosine expansion for the two straight Neumann sides yields orders $\nu_m=m\pi/\alpha$, $m\ge0$. The regular radial solution is $J_{\nu_m}(kr)$, where
+
+\begin{equation}\label{eq:src-9-01}
+J_\nu(z)=\sum_{j=0}^\infty\frac{(-1)^j(z/2)^{2j+\nu}}{j!\,\Gamma(j+\nu+1)}\quad(z>0).
+\end{equation}
+
+This power series solves $z^2J''+zJ'+(z^2-\nu^2)J=0$, by substituting coefficients; the other local solution is excluded by finite radial energy when $\nu>0$, and by its logarithmic singularity when $\nu=0$. The arc Neumann condition is $J_\nu'(kR)=0$. For order 0 the zero eigenvalue is the constant function, and the first positive radial value is $(j_{1,1}/R)^2$, because termwise differentiation gives $J_0'=-J_1$. Here $j_{1,1}$ is the first positive zero of $J_1$; $j'_{\nu,1}$ denotes the first positive zero of $J_\nu'$. Zeros at the origin are never counted. The series and derivative identity are also given in \cite[Equations~10.2.2 and 10.6.3]{DLMF}.
+
+The first angular-sector value at order $\nu>0$ minimizes
+
+\begin{equation}\label{eq:src-9-02}
+\frac{\int_0^R[r(f')^2+\nu^2r^{-1}f^2]dr}{\int_0^Rrf^2dr}.
+\end{equation}
+
+The common form domain for all positive $\nu$ imposes finite numerator integrals. Replacing a minimizer by its absolute value does not increase the quotient; the ODE and uniqueness at every interior $r>0$ make the first radial minimizer strictly positive. Thus the first angular-sector eigenvalue is $(j'_{\nu,1}/R)^2$, and $J_\nu,J'_\nu$ are positive on $0<z<j'_{\nu,1}$. For $\nu_2>\nu_1>0$ the quotient difference is at least $(\nu_2^2-\nu_1^2)/R^2$, because $r^{-1}\ge r/R^2$. The first value is consequently strictly increasing in $\nu$; higher angular orders cannot give the first eigenvalue. Testing one order's minimizer in the nearby order and using $\nu^2\int r^{-1}f^2\le\lambda_\nu\int rf^2$ proves its continuity on every compact positive-order interval.
+
+There is exactly one crossing order $\nu_*>1$ with $j'_{\nu_*,1}=j_{1,1}$. At $\nu=1$, Rolle's theorem between $J_1(0)=0$ and its first positive zero gives $j'_{1,1}<j_{1,1}$. The radial quotient is at least $\nu^2/R^2$, so the first angular value tends to infinity as $\nu\to\infty$; continuity and strict increase give the unique crossing. Set $\alpha_*:=\pi/\nu_*\in(0,\pi)$. The complete first positive eigenspace is radial for $\alpha<\alpha_*$, angular for $\alpha>\alpha_*$, and double at equality. At the crossing it is spanned by
+
+\begin{equation}\label{eq:src-9-03}
+J_0(kr),\qquad J_{\nu_*}(kr)\cos(\nu_*\theta),\quad k=j_{1,1}/R.
+\end{equation}
+
+For every linear combination with nonzero angular coefficient $B$, its angular derivative is $-B\nu_*J_{\nu_*}(kr)\sin(\nu_*\theta)\ne0$ in the interior. If $B=0$, its radial derivative is a nonzero multiple of $-kJ_1(kr)$, which never vanishes for $0<r<R$. The same arguments apply to the single branches away from the crossing. Thus every first eigenfunction on every convex circular sector has nonvanishing interior gradient and strict boundary extrema. This follows directly from the displayed eigenfunctions; the apex and circular arc are boundary sets, not interior exceptions.
+
+For $\pi<\alpha<2\pi$, the sector is simply connected and Lipschitz but not convex. Its first eigenfunction is angular: $\nu=\pi/\alpha<1$ and the strict order comparison gives $j'_{\nu,1}<j'_{1,1}<j_{1,1}$. Its expansion at the apex is $c r^\nu\cos(\nu\theta)+O(r^{\nu+2})$ with $c\ne0$. Its Hessian has leading size $|c|\nu(1-\nu)r^{\nu-2}$; hence the squared integral contains a nonzero multiple of $\int_0^a r^{2\nu-3}dr=\infty$. It is not in $H^2$. Its continuity is consistent with H\"older exponent $\nu$ instead. Thus the $H^2$ route used for convex domains does not extend unchanged to reentrant sectors.
+
+For an explicit constant in this last obstruction, set $k=j'_{\nu,1}/R$, $a_j=(-1)^j(k/2)^{\nu+2j}/[j!\Gamma(j+\nu+1)]$, $c=a_0$, and fix any $b_0\in(0,R/2)$. Polar differentiation bounds the Hessian of $r^a\cos(\nu\theta)$ by $4(a+\nu+1)^2r^{a-2}$. Therefore the series remainder's Hessian is at most $Kr^\nu$ for $r\le b_0$, where
+
+\begin{equation}\label{eq:src-9-04}
+K=4\sum_{j\ge1}(2\nu+2j+1)^2|a_j|b_0^{2j-2}<\infty.
+\end{equation}
+
+The leading full-Hessian norm is exactly $\sqrt2|c|\nu(1-\nu)r^{\nu-2}$. Choose $0<a<\min\{b_0,[\sqrt2|c|\nu(1-\nu)/(2K)]^{1/2}\}$; then the norm is at least half this leading quantity, proving the divergent squared integral with constants depending only on $(\nu,k,b_0)$. No numerical root enclosure is used.
+\end{proof}
+
+
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\section*{Use of AI}
+The proofs and the text of this paper were produced with AI systems (GPT-6.1 Sol and Claude Opus~5.5) under
+the author's direction. They were checked by independent reviews with AI models. The author takes
+responsibility for the content.
+\end{document}

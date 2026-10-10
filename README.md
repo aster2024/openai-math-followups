@@ -33,6 +33,28 @@ The proof extends the cubic-theta method of OpenAI's paper
 (5 October 2026) from finite-order characters to characters of non-zero angular type: the higher angular modes are
 obtained from pure Wirtinger derivatives of the cubic theta function at the cusps.
 
+### [`hot-spots-convex-planar/`](hot-spots-convex-planar/) — First Neumann eigenfunctions of convex planar domains attain their extrema on the boundary
+
+Paper (32 pages), 10 October 2026: [PDF](hot-spots-convex-planar/paper.pdf).
+
+Let D be a bounded convex planar domain, with no smoothness assumption on its boundary, and u a non-zero
+eigenfunction for its first positive Neumann eigenvalue. Then
+
+```math
+\max_{\overline D}u=\max_{\partial D}u,\qquad \min_{\overline D}u=\min_{\partial D}u,
+```
+
+u has no strict or isolated local extremum in D, and every isolated critical point of u in D has index zero. This
+holds for every member of the eigenspace, also when the eigenvalue is double.
+
+These statements are deduced from OpenAI's paper
+[Strict hot spots and absence of interior critical points on smooth simply connected planar domains](https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Strict-hot-spots-and-absence-of-interior-critical-points-on-smooth-simply-connected-planar-domains-September-24-2026/main.pdf)
+(24 September 2026), whose theorem is for domains with smooth boundary. For a simple eigenvalue the deduction is an
+approximation argument. For a double eigenvalue each member of the eigenspace is obtained as a limit of first
+eigenfunctions of smooth domains that need not be convex. Independently of that paper, the first positive Neumann
+eigenvalue of every bounded convex planar domain has multiplicity at most two, and the nodal set of each
+eigenfunction is a single arc joining two distinct boundary points.
+
 ### [`liouville-goldbach/`](liouville-goldbach/) — Goldbach-type representations with prescribed Liouville signs
 
 Paper (28 pages), 8 October 2026: [PDF](liouville-goldbach/paper.pdf). Lean 4 formalization of the main theorem (with the

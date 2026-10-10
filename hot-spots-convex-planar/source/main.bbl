@@ -1,0 +1,238 @@
+\begin{thebibliography}{34}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Atar and Burdzy(2004)]{AB2004}
+Rami Atar and Krzysztof Burdzy.
+\newblock On {Neumann} eigenfunctions in lip domains.
+\newblock \emph{Journal of the American Mathematical Society}, 17\penalty0
+  (2):\penalty0 243--265, 2004.
+
+\bibitem[Ba\~nuelos and Burdzy(1999)]{BB1999}
+Rodrigo Ba\~nuelos and Krzysztof Burdzy.
+\newblock On the ``hot spots'' conjecture of {J. Rauch}.
+\newblock \emph{Journal of Functional Analysis}, 164\penalty0 (1):\penalty0
+  1--33, 1999.
+
+\bibitem[B\'erard and Helffer(2021)]{BH2021}
+Pierre B\'erard and Bernard Helffer.
+\newblock Level sets of certain {Neumann} eigenfunctions under deformation of
+  {Lipschitz} domains: Application to the {Extended Courant Property}.
+\newblock \emph{Annales de la Facult\'e des Sciences de Toulouse.
+  Math\'ematiques}, 30\penalty0 (3):\penalty0 429--462, 2021.
+
+\bibitem[Burdzy(2005)]{Burdzy2005}
+Krzysztof Burdzy.
+\newblock The hot spots problem in planar domains with one hole.
+\newblock \emph{Duke Mathematical Journal}, 129\penalty0 (3):\penalty0
+  481--502, 2005.
+
+\bibitem[Burdzy and Werner(1999)]{BW1999}
+Krzysztof Burdzy and Wendelin Werner.
+\newblock A counterexample to the ``hot spots'' conjecture.
+\newblock \emph{Annals of Mathematics}, 149\penalty0 (1):\penalty0 309--317,
+  1999.
+
+\bibitem[Chen et~al.(2026)Chen, Gui, and Yao]{CGY}
+Hongbin Chen, Changfeng Gui, and Ruofei Yao.
+\newblock Uniqueness of critical points of the second {Neumann} eigenfunctions
+  on triangles.
+\newblock \emph{Inventiones mathematicae}, 244:\penalty0 299--353, 2026.
+\newblock URL \url{https://arxiv.org/abs/2311.12659v2}.
+\newblock Preprint arXiv:2311.12659v2, 8 December 2025; theorem numbering
+  follows that version.
+
+\bibitem[{de Dios Pont}(2024)]{deDios}
+Jaume {de Dios Pont}.
+\newblock Convex sets can have interior hot spots, 2024.
+\newblock URL \url{https://arxiv.org/abs/2412.06344v1}.
+\newblock Version 1, 2024-12-09.
+
+\bibitem[{de Dios Pont} et~al.(2025){de Dios Pont}, Hsu, and Taylor]{DDHT}
+Jaume {de Dios Pont}, Alexander~W. Hsu, and Mitchell~A. Taylor.
+\newblock Sharp bounds on the failure of the hot spots conjecture, 2025.
+\newblock URL \url{https://arxiv.org/abs/2508.16321v1}.
+\newblock Version 1, 2025-08-22.
+
+\bibitem[Deng et~al.(2026{\natexlab{a}})Deng, Gui, Jiang, Yang, Yao, and
+  Zou]{DGGJYZ}
+Haiyun Deng, Changfeng Gui, Xuyong Jiang, Xiaoping Yang, Ruofei Yao, and Jun
+  Zou.
+\newblock Symmetry and critical points of second {N}eumann eigenfunctions on
+  isosceles trapezoids and kites, 2026{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2604.19003v3}.
+\newblock Version 3, 2026-09-03.
+
+\bibitem[Deng et~al.(2026{\natexlab{b}})Deng, Jiang, and Yang]{DJY}
+Haiyun Deng, Xuyong Jiang, and Xiaoping Yang.
+\newblock Quantitative characterization of deviations from the hot spots
+  conjecture on convex domains in two-dimensional space forms,
+  2026{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2607.17882v2}.
+\newblock Version 2, 2026-08-31.
+
+\bibitem[Filonov(2005)]{Filonov}
+N.~Filonov.
+\newblock On an inequality between {D}irichlet and {N}eumann eigenvalues for
+  the {L}aplace operator.
+\newblock \emph{St. Petersburg Mathematical Journal}, 16\penalty0 (2):\penalty0
+  413--416, 2005.
+\newblock Russian original: Algebra i Analiz 16 (2004), no. 2, 172--176.
+
+\bibitem[Friedlander(1991)]{Friedlander}
+Leonid Friedlander.
+\newblock Some inequalities between {D}irichlet and {N}eumann eigenvalues.
+\newblock \emph{Archive for Rational Mechanics and Analysis}, 116\penalty0
+  (2):\penalty0 153--160, 1991.
+
+\bibitem[Gilbarg and Trudinger(2001)]{GT}
+David Gilbarg and Neil~S. Trudinger.
+\newblock \emph{Elliptic Partial Differential Equations of Second Order}.
+\newblock Springer, second edition, 2001.
+\newblock \doi{10.1007/978-3-642-61798-0}.
+\newblock Reprint of the 1998 edition; Theorem 8.18, p. 194.
+
+\bibitem[Grisvard(1985)]{Grisvard}
+Pierre Grisvard.
+\newblock \emph{Elliptic Problems in Nonsmooth Domains}, volume~24 of
+  \emph{Monographs and Studies in Mathematics}.
+\newblock Pitman Advanced Publishing Program, 1985.
+
+\bibitem[Hatcher(2002)]{HatcherAT}
+Allen Hatcher.
+\newblock \emph{Algebraic Topology}.
+\newblock Cambridge University Press, 2002.
+\newblock URL \url{https://pi.math.cornell.edu/~hatcher/AT/ATpage.html}.
+
+\bibitem[Hatcher(2024{\natexlab{a}})]{HatcherMixed}
+Lawford Hatcher.
+\newblock A hot spots theorem for the mixed eigenvalue problem with small
+  {D}irichlet region, 2024{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2409.03908v3}.
+\newblock Version 3, 2025-05-28.
+
+\bibitem[Hatcher(2024{\natexlab{b}})]{HatcherPolygons}
+Lawford Hatcher.
+\newblock The hot spots conjecture for some non-convex polygons,
+  2024{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2405.19508v3}.
+\newblock Version 3, 2025-05-28.
+
+\bibitem[Hatcher(2025)]{HatcherCurvature}
+Lawford Hatcher.
+\newblock Hot spots in domains of constant curvature, 2025.
+\newblock URL \url{https://arxiv.org/abs/2508.13353v1}.
+\newblock Version 1, 2025-08-18.
+
+\bibitem[Hatcher(2026)]{HatcherHyperbolic}
+Lawford Hatcher.
+\newblock Hot spots in convex hyperbolic planar domains with small eigenvalues,
+  2026.
+\newblock URL \url{https://arxiv.org/abs/2605.21621v1}.
+\newblock Version 1, 2026-05-20.
+
+\bibitem[Jerison and Nadirashvili(2000)]{JN2000}
+David Jerison and Nikolai Nadirashvili.
+\newblock The ``hot spots'' conjecture for domains with two axes of symmetry.
+\newblock \emph{Journal of the American Mathematical Society}, 13\penalty0
+  (4):\penalty0 741--772, 2000.
+
+\bibitem[Judge and Mondal(2020)]{JM2020}
+Chris Judge and Sugata Mondal.
+\newblock Euclidean triangles have no hot spots.
+\newblock \emph{Annals of Mathematics}, 191\penalty0 (1):\penalty0 167--211,
+  2020.
+
+\bibitem[Judge and Mondal(2022)]{JM2022}
+Chris Judge and Sugata Mondal.
+\newblock Erratum: Euclidean triangles have no hot spots.
+\newblock \emph{Annals of Mathematics}, 195\penalty0 (1):\penalty0 337--362,
+  2022.
+
+\bibitem[Kleefeld(2021)]{Kleefeld}
+Andreas Kleefeld.
+\newblock The hot spots conjecture can be false: Some numerical examples, 2021.
+\newblock URL \url{https://arxiv.org/abs/2101.01210v1}.
+\newblock Version 1, 2021-01-04.
+
+\bibitem[Krej\v{c}i\v{r}\'{i}k(2026)]{Krejcirik}
+David Krej\v{c}i\v{r}\'{i}k.
+\newblock Spectral geometry: old questions and new answers, 2026.
+\newblock URL \url{https://arxiv.org/abs/2609.28602v1}.
+\newblock Version 1, 2026-09-23.
+
+\bibitem[Mariano et~al.(2021)Mariano, Panzo, and Wang]{MPW}
+Phanuel Mariano, Hugo Panzo, and Jing Wang.
+\newblock Improved upper bounds for the hot spots constant of {L}ipschitz
+  domains, 2021.
+\newblock URL \url{https://arxiv.org/abs/2110.03672v2}.
+\newblock Version 2, 2021-10-17.
+
+\bibitem[Nadirashvili(1988)]{Nadirashvili}
+N.~S. Nadirashvili.
+\newblock Multiple eigenvalues of the {Laplace} operator.
+\newblock \emph{Mathematics of the USSR-Sbornik}, 61\penalty0 (1):\penalty0
+  225--238, 1988.
+\newblock English translation of Mat. Sb. (N.S.) 133(175), no. 2(6) (1987),
+  223--237.
+
+\bibitem[{NIST Digital Library of Mathematical Functions}(2026)]{DLMF}
+{NIST Digital Library of Mathematical Functions}.
+\newblock {NIST Digital Library of Mathematical Functions}, 2026.
+\newblock URL \url{https://dlmf.nist.gov/}.
+\newblock Version 1.2.8, released 15 September 2026; equations 10.2.2 and
+  10.6.3; accessed 10 October 2026.
+
+\bibitem[{OpenAI}(2026)]{OpenAI369}
+{OpenAI}.
+\newblock Strict hot spots and absence of interior critical points on smooth
+  simply connected planar domains, 2026.
+\newblock URL
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Strict-hot-spots-and-absence-of-interior-critical-points-on-smooth-simply-connected-planar-domains-September-24-2026/main.pdf}.
+\newblock 24 September 2026, Theorem 1.1; repository commit
+  adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+
+\bibitem[Pascu(2002)]{Pascu}
+Mihai~N. Pascu.
+\newblock Scaling coupling of reflecting {Brownian} motions and the hot spots
+  problem.
+\newblock \emph{Transactions of the American Mathematical Society},
+  354\penalty0 (11):\penalty0 4681--4702, 2002.
+
+\bibitem[Rauch(1975)]{Rauch}
+Jeffrey Rauch.
+\newblock Lecture \#1. {F}ive problems: An introduction to the qualitative
+  theory of partial differential equations.
+\newblock In Jerome~A. Goldstein, editor, \emph{Partial Differential Equations
+  and Related Topics}, volume 446 of \emph{Lecture Notes in Mathematics}, pages
+  355--369. Springer, 1975.
+
+\bibitem[Rohleder(2021)]{RohlederLip}
+Jonathan Rohleder.
+\newblock A new approach to the hot spots conjecture, 2021.
+\newblock URL \url{https://arxiv.org/abs/2106.05224v4}.
+\newblock Version 4, 2023-03-14.
+
+\bibitem[Rohleder(2025)]{RohlederCenter}
+Jonathan Rohleder.
+\newblock A note on hot-spots free subregions of convex domains, 2025.
+\newblock URL \url{https://arxiv.org/abs/2506.22184v2}.
+\newblock Version 2, 2026-01-23.
+
+\bibitem[Steinerberger(2019)]{SteinerTips}
+Stefan Steinerberger.
+\newblock Hot spots in convex domains are in the tips (up to an inradius),
+  2019.
+\newblock URL \url{https://arxiv.org/abs/1907.13044v1}.
+\newblock Version 1, 2019-07-30.
+
+\bibitem[Steinerberger(2021)]{SteinerConstant}
+Stefan Steinerberger.
+\newblock An upper bound on the hot spots constant, 2021.
+\newblock URL \url{https://arxiv.org/abs/2106.03677v2}.
+\newblock Version 2, 2021-10-08.
+
+\end{thebibliography}
