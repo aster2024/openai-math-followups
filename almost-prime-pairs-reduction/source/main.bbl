@@ -1,0 +1,173 @@
+\begin{thebibliography}{23}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Arneth(2026)]{Arneth2026}
+Borros Arneth.
+\newblock Quadratic certificate dispersion and sifted fixed-shift {Liouville}
+  cancellation in the binary {Goldbach} problem ({PIHR}-{Goldbach}-{VII}),
+  2026.
+\newblock URL \url{https://doi.org/10.5281/zenodo.23011047}.
+\newblock Zenodo, 28 September 2026.
+
+\bibitem[Bombieri(1977)]{Bombieri}
+Enrico Bombieri.
+\newblock The asymptotic sieve.
+\newblock \emph{Rendiconti dell'Accademia Nazionale dei XL}, 5, 1(2):\penalty0
+  243--269, 1977.
+\newblock Volume dated 1975/76.
+
+\bibitem[Chen(1973)]{Chen}
+Jing~Run Chen.
+\newblock On the representation of a larger even integer as the sum of a prime
+  and the product of at most two primes.
+\newblock \emph{Scientia Sinica}, 16:\penalty0 157--176, 1973.
+
+\bibitem[Deligiannis(2026{\natexlab{a}})]{Deligiannis2026}
+Theodoros Deligiannis.
+\newblock Polynomial correlations of the {Liouville} function with an
+  application to an additive problem, 2026{\natexlab{a}}.
+\newblock URL \url{https://doi.org/10.5281/zenodo.21581938}.
+\newblock Zenodo, version of 26 July 2026.
+
+\bibitem[Deligiannis(2026{\natexlab{b}})]{DeligiannisObstructions}
+Theodoros Deligiannis.
+\newblock Bilinear obstructions in the cancellation theory of multiplicative
+  functions, 2026{\natexlab{b}}.
+\newblock URL \url{https://doi.org/10.5281/zenodo.19504780}.
+\newblock Zenodo, 11 April 2026.
+
+\bibitem[Ford(2023)]{Ford}
+Kevin Ford.
+\newblock Sieve methods, 2023.
+\newblock URL \url{https://ford126.web.illinois.edu/sieve2023.pdf}.
+\newblock Lecture notes, Spring 2023, Theorem 3.6.
+
+\bibitem[Ford and Maynard(2024)]{FordMaynard}
+Kevin Ford and James Maynard.
+\newblock On the theory of prime producing sieves, 2024.
+\newblock URL \url{https://arxiv.org/abs/2407.14368v1}.
+\newblock Version 1, 19 July 2024.
+
+\bibitem[Friedlander and Iwaniec(1998)]{FIAsymptotic}
+John Friedlander and Henryk Iwaniec.
+\newblock Asymptotic sieve for primes.
+\newblock \emph{Annals of Mathematics}, 148\penalty0 (3):\penalty0 1041--1065,
+  1998.
+
+\bibitem[Friedlander and Iwaniec(2010)]{Opera}
+John Friedlander and Henryk Iwaniec.
+\newblock \emph{Opera de Cribro}, volume~57 of \emph{American Mathematical
+  Society Colloquium Publications}.
+\newblock American Mathematical Society, 2010.
+\newblock ISBN 9780821849705.
+
+\bibitem[Goldston et~al.(2008)Goldston, Graham, Pintz, and
+  Y{\i}ld{\i}r{\i}m]{GGPPY}
+D.~A. Goldston, S.~W. Graham, J.~Pintz, and C.~Y. Y{\i}ld{\i}r{\i}m.
+\newblock Small gaps between almost primes, the parity problem, and some
+  conjectures of {Erd{\H o}s} on consecutive integers, 2008.
+\newblock URL \url{https://arxiv.org/abs/0803.2636v1}.
+\newblock Version 1, 18 March 2008.
+
+\bibitem[Guo(2026{\natexlab{a}})]{Guo2026RoughGoldbachParity}
+Jizhou Guo.
+\newblock Sums of two rough numbers with prescribed {L}iouville signs.
+\newblock
+  \url{https://github.com/aster2024/openai-math-followups/tree/main/rough-goldbach-parity},
+  October 2026{\natexlab{a}}.
+\newblock Preprint, 9 October 2026.
+
+\bibitem[Guo(2026{\natexlab{b}})]{Guo2026RoughPairsFixedDistance}
+Jizhou Guo.
+\newblock Rough numbers at a fixed distance with prescribed {L}iouville signs.
+\newblock
+  \url{https://github.com/aster2024/openai-math-followups/tree/main/rough-pairs-fixed-distance},
+  October 2026{\natexlab{b}}.
+\newblock Preprint, 10 October 2026.
+
+\bibitem[Guo(2026{\natexlab{c}})]{Guo2026ShiftedPrimeParity}
+Jizhou Guo.
+\newblock Shifted primes with a prescribed parity of the number of prime
+  factors.
+\newblock
+  \url{https://github.com/aster2024/openai-math-followups/tree/main/shifted-prime-parity},
+  October 2026{\natexlab{c}}.
+\newblock Preprint, 9 October 2026.
+
+\bibitem[Henriot(2012)]{Henriot}
+Kevin Henriot.
+\newblock {Nair--Tenenbaum} bounds uniform with respect to the discriminant.
+\newblock \emph{Mathematical Proceedings of the Cambridge Philosophical
+  Society}, 152\penalty0 (3):\penalty0 405--424, 2012.
+\newblock \doi{10.1017/S0305004111000752}.
+\newblock Theorem numbers as in arXiv:1102.1643v1 (8 February 2011).
+
+\bibitem[Henriot(2014)]{HenriotErratum}
+Kevin Henriot.
+\newblock {Nair--Tenenbaum} uniform with respect to the
+  discriminant---{ERRATUM}.
+\newblock \emph{Mathematical Proceedings of the Cambridge Philosophical
+  Society}, 157\penalty0 (2):\penalty0 375--377, 2014.
+\newblock \doi{10.1017/S0305004114000280}.
+
+\bibitem[Matom{\"a}ki et~al.(2015)Matom{\"a}ki, Radziwi{\l}{\l}, and
+  Tao]{MRTpatterns}
+Kaisa Matom{\"a}ki, Maksym Radziwi{\l}{\l}, and Terence Tao.
+\newblock Sign patterns of the {Liouville} and {M{\"o}bius} functions, 2015.
+\newblock URL \url{https://arxiv.org/abs/1509.01545v2}.
+\newblock Version 2, 23 September 2015.
+
+\bibitem[Montgomery and Vaughan(2007)]{MV}
+Hugh~L. Montgomery and Robert~C. Vaughan.
+\newblock \emph{Multiplicative Number Theory {I}: Classical Theory}, volume~97
+  of \emph{Cambridge Studies in Advanced Mathematics}.
+\newblock Cambridge University Press, 2007.
+\newblock \doi{10.1017/CBO9780511618314}.
+\newblock URL \url{https://websites.umich.edu/~hlm/mnt1.html}.
+
+\bibitem[Nair and Tenenbaum(1998)]{NairTenenbaum}
+Mohan Nair and G{\'e}rald Tenenbaum.
+\newblock Short sums of certain arithmetic functions.
+\newblock \emph{Acta Mathematica}, 180\penalty0 (1):\penalty0 119--144, 1998.
+
+\bibitem[{OpenAI}(2026{\natexlab{a}})]{OpenAI003}
+{OpenAI}.
+\newblock {OpenAI} mathematics release: family 003, 2026{\natexlab{a}}.
+\newblock URL
+  \url{https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+\newblock Zero-free half-plane for Dirichlet L-functions. Repository commit
+  adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+
+\bibitem[{OpenAI}(2026{\natexlab{b}})]{OpenAI007}
+{OpenAI}.
+\newblock Ordinary two-point correlations of multiplicative functions,
+  2026{\natexlab{b}}.
+\newblock URL
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Ordinary-two-point-correlations-of-multiplicative-functions-September-24-2026/final.pdf}.
+\newblock OpenAI Math Release preprint, 24 September 2026.
+
+\bibitem[Pintz(2010)]{PintzBV}
+J{\'a}nos Pintz.
+\newblock Are there arbitrarily long arithmetic progressions in the sequence of
+  twin primes? {II}, 2010.
+\newblock URL \url{https://arxiv.org/abs/1004.1067}.
+\newblock 7 April 2010.
+
+\bibitem[Selberg(1952)]{Selberg}
+Atle Selberg.
+\newblock On elementary methods in primenumber-theory and their limitations.
+\newblock In \emph{Compte rendu du onzi\`eme congr\`es des math\'ematiciens
+  scandinaves, Trondheim 1949}, pages 13--22, 1952.
+
+\bibitem[Tao(2014)]{TaoParity}
+Terence Tao.
+\newblock A general parity problem obstruction, 2014.
+\newblock URL
+  \url{https://terrytao.wordpress.com/2014/11/21/a-general-parity-problem-obstruction/}.
+\newblock Blog post, 21 November 2014.
+
+\end{thebibliography}

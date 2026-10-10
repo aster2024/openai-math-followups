@@ -6,6 +6,29 @@ Notes and papers by Jizhou Guo (mitsuha2021b@gmail.com) that build on results of
 
 ## Contents
 
+### [`almost-prime-pairs-reduction/`](almost-prime-pairs-reduction/) — Liouville signs at almost-prime pairs: a reduction to one inequality and two model sequences
+
+Paper (36 pages), 10 October 2026: [PDF](almost-prime-pairs-reduction/paper.pdf).
+
+Let h ≥ 2 be a fixed even integer, σ = c/log X, J_σ(n) = ∏_{p | n} (1 − p^(−σ)) and W(n) = J_σ(n)·J_σ(n + h). The sum
+M₀ = Σ_{n ≤ X} W(n) has order X/(log X)², and the sums of λ(n)W(n) and of λ(n + h)W(n) are at most εM₀ in absolute
+value when c ≥ c₀(ε). Consequently the single inequality
+
+```math
+\Bigl|\sum_{n\le X}\lambda(n)\,\lambda(n+h)\,W(n)\Bigr|\le(1-2\varepsilon)\,M_0\qquad\text{for all large }X
+```
+
+would give, for a fixed K, ≫ X/(log X)² integers n ≤ X with Ω(n), Ω(n + h) ≤ K for each sign pattern of
+(λ(n), λ(n + h)). The paper does not prove this inequality; this part uses classical inputs only.
+
+The paper also constructs two ±1-valued sequences. The first has square-root cancellation on intervals,
+progressions, additive and character twists, fixed two-point sums and reflected sums, and its sieve remainder for
+the pair (n, n + 2) at level X^θ is asymptotic to (c₂·log 2/32)·θ²·X·log X. The second has the corresponding
+two-point, character and Type I bounds, and its Type II matrices (f(mℓ + h)) have operator norm ≫ √(MN)/log X on
+infinitely many rectangles. A proof of the sieve remainder bound or of the Type II bound for λ therefore has to use
+information beyond the listed estimates. The paper further classifies exact separated-variable substitutions and
+proves a bound for a class of non-negative divisor weights.
+
 ### [`cm-elliptic-curves/`](cm-elliptic-curves/) — A zero-free half-plane for Hecke L-functions of nonzero angular type and for the curves y² = x³ + D
 
 Paper (36 pages), 8 October 2026: [PDF](cm-elliptic-curves/paper.pdf). Programs checking the explicit identities are in [`cm-elliptic-curves/anc/`](cm-elliptic-curves/anc/).

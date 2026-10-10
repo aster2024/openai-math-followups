@@ -1,0 +1,2070 @@
+\documentclass[11pt]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+  pdftitle={Liouville signs at almost-prime pairs: a reduction to one inequality and two model sequences},
+  pdfauthor={Jizhou Guo}}
+\Urlmuskip=0mu plus 1mu
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{inputthm}[theorem]{Input}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\e}{\mathrm e}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\Dpret}{\mathbb D}
+\newcommand{\ph}{\varphi}
+\newcommand{\leanname}[1]{\nolinkurl{#1}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\HS}{HS}
+\DeclareMathOperator{\Rea}{Re}
+\DeclareMathOperator{\cond}{cond}
+\title{Liouville signs at almost-prime pairs: a reduction to one inequality and two model sequences}
+\author{Jizhou Guo\\
+  \href{mailto:mitsuha2021b@gmail.com}{\texttt{mitsuha2021b@gmail.com}}}
+\date{October 10, 2026}
+
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\Pset}{\mathcal P}
+\newcommand{\Sset}{\mathcal S}
+\newcommand{\Rz}{R_z}
+\newcommand{\wt}{W_{\mathbf t}}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+\newcommand{\Qset}{\mathcal Q}
+\newcommand{\Dset}{\mathcal D}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\sfw}{\mathrm{sf}}
+\newcommand{\cprod}[1]{\prod_{p\mid #1}(\ind_{p\mid n}-1/p)}
+
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\Frob}{\mathrm{F}}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $\lambda$ be the Liouville function and $h\ge2$ a fixed even integer. For fixed $c>0$, put
+$\sigma=c/\log X$, $J_\sigma(n)=\prod_{p\mid n}(1-p^{-\sigma})$ and
+$W_X(n)=J_\sigma(n)J_\sigma(n+h)$. We prove that $M_0=\sum_{n\le X}W_X(n)\asymp_{h,c}X/\log^2X$,
+and that the mass with $\Omega(n)>K$ or $\Omega(n+h)>K$ is at most
+$C_{h,c}u^{-K}X/\log^2X$, where $u=2^{1/1000}$.
+For $0<\varepsilon\le1/4$ and fixed $c\ge c_0(\varepsilon)$, the sums $\sum_{n\le X}\lambda(n)W_X(n)$ and
+$\sum_{n\le X}\lambda(n+h)W_X(n)$ have absolute values of total at most $\varepsilon M_0$ for all large $X$. Consequently the inequality
+$|\sum_{n\le X}\lambda(n)\lambda(n+h)W_X(n)|\le(1-2\varepsilon)M_0$, for all large $X$, would give
+$\gg_{h,c,\varepsilon}X/\log^2X$ occurrences of each sign pattern with
+$\Omega(n),\Omega(n+h)\le K$ for some fixed $K$. We do not prove this inequality.
+We construct a sign sequence with square-root bounds, up to $\sqrt{\log X}$, on intervals,
+progressions and additive twists, on character twists of polynomial modulus and height, on fixed
+nonproportional positive-slope affine pairs and on reflected pairs. It has small root remainders at every
+fixed level $\exp((\log X)^\alpha)$, $0<\alpha<1$, but its root remainder for $(n,n+2)$ at $X^\theta$ is
+asymptotic to $(c_2\log2/32)\theta^2X\log X$ for every fixed $0<\theta<1$.
+For every fixed nonzero $h$ we also construct a sequence with the stated affine, character and Type~I
+bounds whose matrices $(f(m\ell+h))$ have operator norm $\gg_h\sqrt{MN}/\log X$ on infinitely many
+balanced rectangles with $MN\asymp X$. One sequence gives these lower bounds for $h=1,2$ on alternating
+scales. These constructions show that the respective root-remainder and Type~II targets require input beyond
+these listed numerical bounds.
+We classify exact separated-variable substitutions of polynomial height and bound their piece count.
+Finally, for a defined class of nonnegative divisor weights in the independent divisibility law, an
+individual-root positive second-moment normalisation forces $v\le\exp(O_\delta(L))$ when the padding
+primes are at most $e^L$; it therefore does not extend to $v=X^\theta$ with $X=\exp(L^{625})$.
+\end{abstract}
+\noindent\textit{2020 Mathematics Subject Classification.} Primary 11N36; Secondary 11N37, 11N25, 11K65.
+
+\section{Introduction}\label{sec:intro}
+OpenAI's proof of the two-point Chowla conjecture \cite{OpenAI007} (family 007 of the release, pinned to
+repository commit \texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}) is the starting point of
+\cite{Guo2026RoughPairsFixedDistance}, whose proofs adapt its graph argument. For fixed even $h\ge2$,
+\cite[Theorem~1.1]{Guo2026RoughPairsFixedDistance} gives, uniformly for $2\le z\le\exp((\log X)^{1/3750})$, the count
+$\frac14XV_h(z)\,(1+o(1))$ for each sign pattern of $(\lambda(n),\lambda(n+h))$ among the $n\le X$ for which
+$n$ and $n+h$ have no prime factor up to $z$; here $V_h(z)$ is the sieve density of Section~\ref{sec:reduction}.
+By \cite[Theorem~1.2]{Guo2026RoughPairsFixedDistance}, each pattern occurs for $\gg_hX/(\log X)^{1/1875}$ integers
+$n\le X$ such that $n$ and $n+h$ are squarefree, have no prime factor up to $\exp((\log X)^{1/3750})$, and satisfy
+$\Omega(n),\Omega(n+h)\le(1-1/4000)\log\log X$. Here we ask what additional information would give a bounded number
+of prime factors. Chen's theorem gives infinitely many primes $p$ with $p+2$ a prime or a product of
+at most two primes \cite{Chen}. The parity problem concerns the extent to which divisibility information alone distinguishes integers
+with an even number of prime factors from those with an odd number; Selberg's work and Bombieri's
+asymptotic sieve are classical points of reference \cite{Selberg,Bombieri,Opera}. Goldston, Graham, Pintz and Y\i ld\i r\i m
+\cite{GGPPY} obtain, in particular, infinitely many consecutive integers both having $\Omega=5$.
+Matom\"aki, Radziwi\l\l\ and Tao \cite{MRTpatterns} prove positive lower natural density for each of the
+eight consecutive three-term Liouville sign patterns. These statements concern different restrictions on
+prime factors and signs.
+
+Sequences that satisfy sieve hypotheses and violate a conclusion are a classical tool in this subject. By
+Selberg's examples and Bombieri's work there are sequences satisfying Type~I estimates at every level
+$\gamma<1$ and vanishing on the primes; see \cite[Section~1]{FordMaynard}. Ford and Maynard \cite{FordMaynard}
+give a general procedure for constructing non-negative sequences that satisfy prescribed Type~I and Type~II
+estimates, and show that a substantial Type~II range is always necessary to guarantee a non-trivial lower
+bound for the sum over primes. Friedlander and Iwaniec \cite{FIAsymptotic} add an axiom to the classical
+formulation of the sieve which breaks the parity problem and detects primes in thin sequences. Tao
+\cite{TaoParity} formulates a parity obstruction for properties defined by sign patterns of $\lambda$,
+presuming a Liouville pseudorandomness conjecture. Deligiannis \cite{Deligiannis2026} deduces a lower bound
+of the expected order for the number of Goldbach representations from two cancellation hypotheses for sifted
+two-point Liouville sums, and \cite{DeligiannisObstructions} analyses limitations of existing methods for
+such cancellation; Arneth \cite{Arneth2026} formulates a sifted fixed-shift Liouville cancellation as the
+remaining analytic problem of a programme on the binary Goldbach problem. The sequences of
+Theorems~\ref{thm:sieve-model} and~\ref{thm:type-model} below are $\pm1$-valued sequences for two-point sums
+at a fixed shift, with the lists of estimates stated there.
+
+All logarithms are natural. We write $e(t)=\exp(2\pi it)$,
+$\lambda(n)=(-1)^{\Omega(n)}$, where $\Omega$ counts prime factors with multiplicity, and
+$\omega(n)$ for the number of distinct prime factors. The divisor function is $\tau$, the M\"obius function
+is $\mu$, and $P^-(1)=\infty$. Cutoffs in sums mean integer floors, and only positive arguments of $f$ or
+$\lambda$ are included. Constants in $O$ and $\ll$ are independent of the growing variable unless indicated.
+Define
+\begin{equation}\label{eq:j-def}
+\begin{gathered}
+ \sigma=c/\log X,\qquad J_\sigma(n)=\prod_{p\mid n}(1-p^{-\sigma}),\qquad
+ W_X(n)=J_\sigma(n)J_\sigma(n+h),\\
+ M_0=\sum_{n\le X}W_X(n),\quad M_1=\sum_{n\le X}\lambda(n)W_X(n),\quad
+ M_2=\sum_{n\le X}\lambda(n+h)W_X(n),\\
+ M_{12}=\sum_{n\le X}\lambda(n)\lambda(n+h)W_X(n).
+\end{gathered}
+\end{equation}
+\begin{theorem}[Jordan weights]\label{thm:jordan}
+Fix even $h\ge2$ and $c>0$. There are positive $a_{h,c},C_{h,c},C'_{h,c}$ such that, for all sufficiently
+large $X$,
+\begin{equation}\label{eq:j-mass}
+\begin{gathered}
+ a_{h,c}\frac X{\log^2X}\le M_0\le C_{h,c}\frac X{\log^2X},\\
+ \sum_{n\le X}W_X(n)\{u^{\Omega(n)}+u^{\Omega(n+h)}\}\le C'_{h,c}\frac X{\log^2X},
+ \qquad u=2^{1/1000}.
+\end{gathered}
+\end{equation}
+For every $K\ge0$, uniformly in $X,K$ in this range,
+\begin{equation}\label{eq:j-tail}
+ \sum_{\substack{n\le X\\\Omega(n)>K\ \text{or}\ \Omega(n+h)>K}}W_X(n)
+ \le C'_{h,c}u^{-K}\frac X{\log^2X}.
+\end{equation}
+For every $0<\varepsilon\le1/4$ there is $c_0(\varepsilon)>0$, independent of fixed even $h$, such that
+for fixed $c\ge c_0(\varepsilon)$ and all sufficiently large $X$,
+\begin{equation}\label{eq:j-single}
+ |M_1|+|M_2|\le\varepsilon M_0.
+\end{equation}
+The threshold may depend on $h,c,\varepsilon$.
+\end{theorem}
+\begin{theorem}[Reduction to one inequality]\label{thm:reduction}
+Fix $0<\varepsilon\le1/4$, $c\ge c_0(\varepsilon)$ and even $h\ge2$.
+Suppose that for every sufficiently large $X$,
+\begin{equation}\label{eq:j-joint}
+ |M_{12}|\le(1-2\varepsilon)M_0.
+\end{equation}
+Each $(s,t)\in\{\pm1\}^2$ then has weighted mass at least $\varepsilon M_0/4$.
+Choose a fixed integer $K$ with $C'_{h,c}u^{-K}\le\varepsilon a_{h,c}/8$.
+For all sufficiently large $X$, the count of this pattern with
+$\Omega(n),\Omega(n+h)\le K$ is at least $\varepsilon a_{h,c}X/(8\log^2X)$.
+In particular $K$ is independent of $X$.
+\end{theorem}
+For any sign sequence and fixed positive shift $h$ put
+\begin{equation}\label{eq:root-def}
+\begin{aligned}
+ S_f^{(h)}(X;d,r)&=\sum_{\substack{n\le X\\n\equiv r\pmod d}}f(n)f(n+h),\quad
+ \mathcal R_h(d)=\{r\bmod d:r(r+h)\equiv0\pmod d\},\\
+ R_f^{(h)}(X,D)&=\sum_{d\le D}\mu^2(d)\sum_{r\in\mathcal R_h(d)}|S_f^{(h)}(X;d,r)|.
+\end{aligned}
+\end{equation}
+For $h=2$ omit the superscript.
+\begin{proposition}[Consumers of root remainder bounds]\label{prop:consumer}
+Fix even $h\ge2$. Suppose fixed $\theta>0$, $C_{\rm rem}<\infty$ and $X_0$ satisfy
+\begin{equation}\label{eq:root-hyp}
+ R_\lambda^{(h)}(X,X^\theta)\le C_{\rm rem}X/\log^2X\qquad(X\ge X_0).
+\end{equation}
+The sum includes every root in the support of the sieve weights. Then fixed $K$, $c_1>0$ and $X_1$
+exist, depending on $h,\theta,C_{\rm rem}$ and the classical input constants, such that each ordered
+sign pattern occurs at least $c_1X/\log^2X$ times with both $\Omega$ values at most $K$, for $X\ge X_1$.
+Equivalently, the fixed-$K$ count is
+\begin{equation}\label{eq:a-consumer-count}
+ \#\{1\le n\le X:\Omega(n),\Omega(n+h)\le K,\ \lambda(n)=s,\ \lambda(n+h)=t\}
+ \ge c_1X/\log^2X.
+\end{equation}
+Only finiteness of $C_{\rm rem}$ is required.
+The reflected conclusion for every large even $N$ requires the separate hypothesis
+\begin{equation}\label{eq:root-reflected-hyp}
+ \sum_{d\le N^\theta}\mu^2(d)\sum_{r(N-r)\equiv0\ (d)}
+ \left|\sum_{\substack{1\le n<N\\n\equiv r\ (d)}}\lambda(n)\lambda(N-n)\right|
+ \le C_{\rm rem}N/\log^2N,
+\end{equation}
+with fixed constants uniform in $N$ and all these roots; it gives fixed $K,c_1,N_1$ and the lower bound
+$c_1N/\log^2N$ for every ordered pattern and every even $N\ge N_1$.
+For the smaller level, fix $0<\alpha<1$ and put $D_\alpha(X)=\exp((\log X)^\alpha)$.
+Suppose a fixed $C<\infty$ satisfies, for every sufficiently large $X$,
+\begin{equation}\label{eq:root-subpower-hyp}
+ \sum_{d\le D_\alpha(X)}\mu^2(d)
+ \sum_{\substack{r\bmod d\\r(r+h)\equiv0\ (d)}}
+ \left|\sum_{\substack{n\le X\\n\equiv r\ (d)}}\lambda(n)\lambda(n+h)\right|
+ \le CX/\log^2X.
+\end{equation}
+Thus every squarefree modulus in this range and every root is included.
+Then, for each sufficiently large fixed $s_0$, every pattern occurs at least $c_{h,s_0}X/(\log X)^{2\alpha}$ times on the support
+$P^-(n),P^-(n+h)>\exp((\log X)^\alpha/s_0)$, with
+\begin{equation}\label{eq:growing-omega}
+ \Omega(n),\Omega(n+h)\le s_0(\log X)^{1-\alpha}+O_h(1).
+\end{equation}
+Constants may also depend on the fixed $\alpha$.
+The reflected version requires its own bound with squarefree $d\le\exp((\log N)^\alpha)$ and every
+root $r(N-r)\equiv0\pmod d$, with a fixed constant uniform for all sufficiently large even $N$.
+\end{proposition}
+\begin{theorem}[A sequence for the sieve remainder]\label{thm:sieve-model}
+There are an absolute constant $C$ and one $f:\N\to\{\pm1\}$ with the following properties. For all sufficiently large integer $M$,
+all integer intervals $I\subset[1,M]$, $q\le M$, $r\bmod q$ and real $\beta$,
+\begin{equation}\label{eq:model-one}
+ \left|\sum_{\substack{n\in I\\n\equiv r\ (q)}}f(n)e(\beta n)\right|
+ \le C\sqrt{t\log(2M)},\qquad t=|I\cap(r+q\Z)|.
+\end{equation}
+For each fixed $B>0$, eventually (with a threshold allowed to depend on $B$), uniformly over $q\le M^B$, all $\chi\bmod q$, $|v|\le M^B$ and these intervals,
+\begin{equation}\label{eq:model-character}
+ \left|\sum_{n\in I}f(n)\chi(n)n^{iv}\right|\le C_B\sqrt{|I|\log(2M)}.
+\end{equation}
+Every fixed nonproportional positive-slope integer affine pair, with fixed progression restrictions allowed,
+has correlation $O_{a_1,a_2,b_1,b_2,f}(\sqrt{X\log(2X)})$.
+The same bound holds uniformly for nonzero determinant and
+$1\le a_i\le(\log X)^B$, $0\le b_i\le(\log X)^B$, with constant depending only on $B,f$.
+Also
+\begin{equation}\label{eq:model-shifts}
+\begin{gathered}
+ \sup_{1\le h\le X}\left|\sum_{n\le X}f(n)f(n+h)\right|\ll_f\sqrt{X\log(2X)},\\
+ \left|\sum_{1\le n<N}f(n)f(N-n)\right|\ll_f\sqrt{N\log(2N)}\qquad(N\ge2).
+\end{gathered}
+\end{equation}
+Define $A_f(X,D)=\sum_{d\le D}d^{-1}\sum_{r\bmod d}|S_f(X;d,r)|$ over all moduli. For every fixed
+$0<\theta<1$, eventually
+\begin{equation}\label{eq:model-normalised}
+ A_f(X,X^\theta)\ll_\theta X\exp\left(-\frac{\log X}{4\log\log X}\right),
+\end{equation}
+whereas
+\begin{equation}\label{eq:model-root}
+ R_f(X,X^\theta)\sim\frac{c_2\log2}{32}\theta^2X\log X,\qquad
+ c_2=\frac38\prod_{p>2}(1+2/p)(1-1/p)^2>0.
+\end{equation}
+For every fixed $0<\alpha<1$, uniformly for $2\le D\le\exp((\log X)^\alpha)$,
+\begin{equation}\label{eq:model-small}
+ R_f(X,D)\le X^{1/2+o_\alpha(1)}.
+\end{equation}
+The sequence may be chosen not completely multiplicative. All fixed real parameters here share one sequence.
+\end{theorem}
+\begin{theorem}[A sequence for Type II sums]\label{thm:type-model}
+For every fixed integer $h\ne0$ there is one $f:\N\to\{\pm1\}$ and constants $C_h,Y_h>0$ such that,
+for integer $Y\ge Y_h$, all nonzero integer $a,c$, all integers $b,d$ with
+$|a|,|b|,|c|,|d|\le Y$, and integer intervals $I\subset[1,Y]$ on which the arguments lie in $[1,Y]$,
+\begin{equation}\label{eq:type-affine}
+\begin{gathered}
+ \left|\sum_{n\in I}f(an+b)\right|\le C_hY^{3/4}\sqrt{\log(2Y)},\\
+ \left|\sum_{n\in I}f(an+b)f(cn+d)\right|\le1+C_hY^{3/4}\sqrt{\log(2Y)}
+ \quad\bigl((a,b)\ne(c,d)\bigr).
+\end{gathered}
+\end{equation}
+For each fixed $A>0$, all $q\le x^A$ and $\chi\bmod q$ satisfy
+$\sum_{n\le x}f(n)\chi(n)\ll_{h,A}x^{3/4}\sqrt{\log(2x)}$.
+For fixed $0\le\tau<1/7$,
+\begin{equation}\label{eq:type-one}
+ \sum_{n\le L}f(qn+r)\ll_{h,\tau}L^{1-(1-7\tau)/16},\qquad
+ 1\le q\le L^\tau,\quad1\le r\le q.
+\end{equation}
+There are $c_h>0$ and $T_j\to\infty$ such that, on $A_j=(T_j,2T_j]\cap\Z$ and $B_j=(3T_j,6T_j]\cap\Z$,
+\begin{equation}\label{eq:type-large}
+ \|(f(m\ell+h))_{A_j\times B_j}\|_\op
+ \ge c_hT_j/\log T_j\asymp_h\sqrt{|A_j||B_j|}/\log(T_j^2).
+\end{equation}
+The comparison on the right concerns the lower-bound scale. A single sequence can have these properties
+and infinitely many such rectangles for $h=1$ on even scales and $h=2$ on odd scales.
+\end{theorem}
+An exact separated-variable substitution on $A\times B$ means maps into positive integers and nonzero
+rational row and column weights satisfying
+\begin{equation}\label{eq:separated}
+ U(x)V(y)+h=R(x)S(y)(xy+h).
+\end{equation}
+Such a substitution on a product set $A\times B$ is called a piece; it preserves products if $U(x)V(y)=xy$ on $A\times B$.
+\begin{theorem}[Classification and piece count]\label{thm:pieces}
+For finite $A,B\subset\Q$, each with at least two elements, and nonzero rational $h$, every rational-valued
+substitution \eqref{eq:separated} has $U,V$ injective, and there are $a,b,c,d\in\Q$ with $\Delta=ad-bc\ne0$ such that
+\begin{equation}\label{eq:moebius}
+ U(x)=\frac{ax+b}{cx+d},\quad V(y)=\frac{h(dy-hc)}{ha-by},\quad
+ R(x)S(y)=\frac{h\Delta}{(cx+d)(ha-by)},
+\end{equation}
+with nonzero denominators. Conversely these formulas give the identity.
+Fix integer $h\ne0$, $C\ge1$ and $\eta>0$. There is $K_{h,C,\eta}>0$ such that for all $X\ge2$,
+$A,B\subset[1,X]\cap\Z$ and every piece on $A\times B$ with $U,V$ valued in $[1,X^C]\cap\Z$, either the piece
+preserves products or $\min(|A|,|B|)\le K_{h,C,\eta}X^\eta$.
+If $Q$ such pieces that do not preserve products cover at least $\rho rs$ points of
+$A_0\times B_0$, where $A_0,B_0\subset[1,X]\cap\Z$, $r=|A_0|\ge1$, $s=|B_0|\ge1$ and $0<\rho\le1$, then
+\begin{equation}\label{eq:piece-count}
+ Q\ge\frac{\rho\min(r,s)}{K_{h,C,\eta}X^\eta}.
+\end{equation}
+For fixed $h$ and large $X$, if $xy+h>0$ throughout $A_0\times B_0$, a covering by
+$\min(r,s)$ such pieces exists with outputs at most $X^3$.
+When $r,s\asymp X^\delta$ with fixed $\delta>0$ and $xy+h>0$ on $A_0\times B_0$, the minimum number of pieces
+that do not preserve products, have outputs at most $X^3$ and cover $A_0\times B_0$ lies between
+$X^{\delta-o(1)}$ and $O(X^\delta)$.
+\end{theorem}
+
+\paragraph{The class $\mathcal C_+$.}\label{def:positive}
+Let $\mathcal P$ be a finite set of primes at most $Y=e^L\ge2$, and let $a(u)\ge0$ be a finite-support weight
+on $\mathcal P$-smooth integers, depending only on $u$, with $a(1)>0$; $a$ need not be multiplicative.
+In the independent Haar $p$-adic law put
+$w(n)=\sum_{u\mid n}a(u)$ and $S=\sum_u a(u)/u$.
+Tilt the law by $w/S$, and choose $U$ with the original conditional probabilities
+$q_n(u)=a(u)\ind_{u\mid n}/w(n)$.
+Add an independent uniform coordinate modulo a prime $v\notin\mathcal P$.
+For fixed integers $h,d$ impose $v\mid n+hdu$.
+A measurable retention indicator $B(n,u)\in\{0,1\}$ may read the vertex, this extra residue coordinate
+and additional independent coordinates, including independent random coins, but must retain mass
+\begin{equation}\label{eq:positive-retention}
+ \E\left[w\sum_u q_n(u)\ind_{B(n,u)}\ind_{v\mid n+hdu}\right]\ge\delta S/v,
+ \qquad0<\delta\le1\quad\text{fixed}.
+\end{equation}
+Assign every retained $(n,u)$ to exactly one bin, and define $\rho_{j,v}$ by summing the original $q_n(u)$
+with the retention and target indicators in that bin. The class consists of schemes requiring
+\begin{equation}\label{eq:positive-required}
+ \E\left[w\sum_j\rho_{j,v}^2\right]\le\frac{CS}{v^2L}(\log L)^\beta
+\end{equation}
+for fixed $C,\beta$, as $L\to\infty$.
+Retention is an indicator on this enlarged probability space. Replacing it inside the row sum by a
+coefficient $b(n,u)$ taking values strictly between zero and one is outside $\mathcal C_+$.
+\begin{theorem}[Nonnegative divisor weights]\label{thm:positive}
+Every scheme in $\mathcal C_+$ necessarily satisfies
+\begin{equation}\label{eq:positive-v}
+\begin{gathered}
+ v\le\frac C{\delta L}(\log L)^\beta\exp(H_{\mathcal P}/\delta)\le\exp(O_\delta(L)),\\
+ H_{\mathcal P}=\sum_{p\in\mathcal P}
+ \left[-\log(1-1/p)+\frac{\log p}{p-1}\right]\ll\log(2Y).
+\end{gathered}
+\end{equation}
+Thus the required normalisation does not hold at $v=X^\theta$, $X=\exp(L^{625})$, for fixed $\theta>0$.
+The implicit constant may depend on fixed $C,\beta$ as well.
+\end{theorem}
+
+\subsection*{What the model sequences show and what they do not}
+Theorem~\ref{thm:sieve-model} supplies precisely the interval, progression, additive-twist and
+polynomial-modulus and polynomial-height character bounds, the fixed affine bounds and their stated
+polylogarithmic extension, the all-shift and reflected bounds, the displayed normalised residue saving,
+and all fixed stretched-exponential root bounds. It also supplies the short-progression variance bound
+proved in Section~\ref{sec:sieve}.
+The constants in the eventual concentration bounds are absolute, or depend only on the displayed fixed
+parameters. The finite thresholds may depend on the realisation $f$ and are not specified numerically;
+a hypothesis with a prescribed numerical starting point is outside this statement.
+The restriction to nonproportional affine pairs in the numerical input list is deliberate. For example,
+\begin{equation}\label{eq:b-proportional-example}
+ \sum_{n\le X}f(n)f(2n)=O(\sqrt{X\log(2X)}),\qquad
+ \lambda(2n)=-\lambda(n),\quad
+ \sum_{n\le X}\lambda(n)\lambda(2n)=-\lfloor X\rfloor.
+\end{equation}
+For the model bound use \eqref{eq:b-centred-affine} with ambient length $2X$ and
+\eqref{eq:b-moments}: the distinct slopes leave at most three parameters with possibly nonzero mean.
+The Liouville identity uses complete multiplicativity and $\lambda(2)=-1$.
+An argument using only the listed numerical estimates, together with CRT,
+divisor-counting, sieve-weight identities and inequalities valid for arbitrary bounded sign sequences,
+applies equally to this $f$, whose positive-power root remainder exceeds $X/\log^2X$ by an unbounded
+factor. A proof of $R_\lambda(X,X^\theta)\le C_{\rm rem}X/\log^2X$ for $\lambda$, with a fixed $\theta>0$ and a finite
+$C_{\rm rem}$, must therefore use further information or stronger estimates than these specified strengths. Complete multiplicativity, the values at every prime, $\lambda=(-1)^\Omega$,
+Euler products, zero-free regions with uniform analytic control, and higher-order correlations are outside
+this list. The construction does not estimate the actual Liouville root remainder and does not address a
+fixed power saving for $A_\lambda$, parameters tending to the endpoints with $X$, or a computable generation
+algorithm for $f$. It can be chosen to fail complete multiplicativity explicitly.
+
+Theorem~\ref{thm:type-model} supplies the affine and reflected bounds at their displayed strengths,
+the Type~I bound, the unweighted maximal residue and prefix bounds of Section~\ref{sec:type}, and the
+polynomial-modulus one-factor character means; one may also include the displayed growing-coefficient
+bound there. A universal argument using only these data and finite algebra, norm inequalities, prime
+counts and sieve operations on the indices applies to its $f$. Its operator lower bound exceeds every
+fixed target $\sqrt{MN}(\log X)^{-3/2-\kappa}$, $\kappa>0$, on infinitely many of the specified rectangles.
+The sequence fails the multiplicative law at every fixed prime. The construction does not supply actual
+Vaughan weights, all prime values, Euler identities, zero-free analytic inputs or higher Liouville
+correlations; it does not determine a global optimal operator upper bound or force failure on every large
+rectangle. Theorem~\ref{thm:pieces} concerns Cartesian pieces, separate integer maps, exact identities,
+nonzero rational row and column weights and polynomial output height. Joint-variable maps, non-Cartesian
+masks, superpolynomial outputs and approximate identities are outside that statement.
+
+Theorem~\ref{thm:positive} concerns precisely $\mathcal C_+$: nonnegative coefficients depending only
+on the divisor, the independent divisibility law, its original selection probabilities, fixed retained
+root mass, one bin per retained edge and the stated positive individual-root second moment.
+It allows nonmultiplicative coefficients and vertex-dependent retention. Signed padding, cancellation
+across roots or moduli, freely vertex-dependent coefficients $a(n,u)$, splitting or replicating one edge
+between bins, fractional row coefficients $b(n,u)$ taking values strictly between zero and one,
+and a mechanism not requiring \eqref{eq:positive-required} are outside the class.
+The retention indicator may depend on additional independent coordinates, but it still takes only the
+values zero and one; the nonnegative divisor coefficients $a(u)$ themselves may be nonmultiplicative.
+A direct Liouville pairing estimate is also outside it. No transfer of its independent-law lower bound
+to a finite interval of actual integers is asserted. The local centring and short-block statements below
+have their stated scopes and do not restrict every possible centring or long-block method.
+
+The same sieve-model realisation has the rough-pair asymptotics at small levels described in
+Section~\ref{sec:sieve}, so its large-level root behaviour is compatible with
+\cite{Guo2026RoughPairsFixedDistance}.
+The Type~II model can also have both signs infinitely often at the shifted-prime positions $p+h$, in
+agreement with \cite{Guo2026ShiftedPrimeParity}.
+These are numerical compatibilities: the model signs are not $(-1)^\Omega$, and the multiplicative
+identities used for Liouville in
+\cite{Guo2026RoughPairsFixedDistance,Guo2026RoughGoldbachParity,Guo2026ShiftedPrimeParity}
+are additional inputs.
+
+Section~\ref{sec:reduction} proves the reduction and the two sieve consumers using classical inputs.
+Sections~\ref{sec:sieve} and \ref{sec:type} construct the two sequences, and Section~\ref{sec:pieces}
+proves the separated-variable classification and covering bound. Section~\ref{sec:weights} proves the
+positive-weight bounds and the related local and short-block statements.
+Remark~\ref{rem:j-poles} and Proposition~\ref{prop:d-inverse} are relative to the zero-free half-plane
+$\Re s>7/8$ of \cite{OpenAI003}; no other statement of this introduction uses it.
+
+\section{Jordan weights and the reduction}\label{sec:reduction}
+\subsection{Classical sieve inputs}
+Put $P(z)=\prod_{p\le z}p$, $\rho_h(d)=|\mathcal R_h(d)|$ on squarefree integers,
+$g_h(d)=\rho_h(d)/d$, and $V_h(z)=\prod_{p\le z}(1-g_h(p))$.
+For even $h$, $\rho_h(2)=1$ and $\rho_h(p)\le2$ for odd primes; the factors are positive.
+The dimension-two product condition is uniform in $h$, since $\rho_h(p)\le\rho_2(p)$.
+\begin{inputthm}[Fundamental lemma]\label{input:fundamental}
+For these densities, and for subsets of the forbidden roots, there are squarefree divisor weights
+$\xi_d^\pm$, supported on $d\mid P(z)$, $d\le D$, with $|\xi_d^\pm|\le1$, such that
+\begin{equation}\label{eq:fl-weights}
+ w^-(n)\le\ind_{(n(n+h),P(z))=1}\le w^+(n),\qquad
+ w^\pm(n)=\sum_{d\mid n(n+h)}\xi_d^\pm.
+\end{equation}
+For sufficiently large $s=\log D/\log z$, with $2\le z\le D^{1/2}$,
+\begin{equation}\label{eq:fl-main}
+ \left|\sum_d\xi_d^\pm g_h(d)-V_h(z)\right|\le E(s)V_h(z),\qquad E(s)\to0.
+\end{equation}
+We use the bounded-weight formulation of \cite[Theorem~3.6(a), p.~38]{Ford}; see also the standard
+fundamental-lemma treatment in \cite{Opera}. Its error tends to zero, in fact exponentially, at fixed
+sieve dimension. The probability-space formulation allows arbitrary subsets of the two local roots.
+The constants are absolute for even $h$, including $h\le2X$, by the product condition just checked.
+\end{inputthm}
+\begin{lemma}[Maximal all-residue bound]\label{lem:all-residue}
+For fixed $0<\eta<1/2$ and every $A>0$,
+\begin{equation}\label{eq:bv-all}
+ \sum_{d\le T^\eta}\max_{r\bmod d}\max_{y\le T}
+ \left|\sum_{\substack{n\le y\\n\equiv r\ (d)}}\lambda(n)\right|
+ \ll_{A,\eta}T\log^{-A}T.
+\end{equation}
+For $D\le X^{1/4}$ and $E_d$ the inner maximum at $T=2X$,
+\begin{equation}\label{eq:bv-weighted}
+ \sum_{d\le D}\mu^2(d)\rho_h(d)E_d
+ \le\left(\sum_{d\le D}E_d\right)^{1/2}
+ \left(\sum_{d\le D}\mu^2(d)4^{\omega(d)}E_d\right)^{1/2}
+ \ll_B X\log^{-B}X
+\end{equation}
+for every fixed $B>0$. Nonunit classes are included.
+\end{lemma}
+\begin{proof}
+The nonmaximal bound is \cite[(1.5), p.~2]{PintzBV}, whose maximum is over all residue classes.
+For completeness, its nonunit range also follows from its reduced-class case $(a,k)=1$.
+Write $E_{\rm red}(Z;k)=\max_{(a,k)=1}|\sum_{m\le Z,\ m\equiv a\ (k)}\lambda(m)|$.
+For a residue $r\pmod d$, let $g=(r,d)$ and put $n=gm$.
+Then $m\equiv r/g\pmod{d/g}$ is a reduced class, and complete multiplicativity gives
+$\lambda(n)=\lambda(g)\lambda(m)$; coprimality of $g,m$ is not required.
+Choose $\eta<\eta'<1/2$ and put $Q=T^\eta$. The maximum over residues is bounded by summing over
+the possible $g$, so
+\begin{equation}\label{eq:bv-reduced-to-all}
+\begin{aligned}
+ \sum_{d\le Q}\max_{r\bmod d}
+ \left|\sum_{\substack{n\le T\\n\equiv r\ (d)}}\lambda(n)\right|
+ &\le\sum_{g\le Q}\sum_{k\le Q/g}E_{\rm red}(T/g;k)\\
+ &\ll_{H,\eta,\eta'}\sum_{g\le Q}\frac{T/g}{\log^H(T/g)}
+ \ll_{H,\eta}T\log^{1-H}T.
+\end{aligned}
+\end{equation}
+Indeed $Q/g\le(T/g)^{\eta'}$, since their ratio is
+$T^{\eta-\eta'}g^{\eta'-1}\le1$, and $T/g\ge T^{1-\eta}$, so the reduced-class theorem applies
+uniformly for every $g\le Q$. Taking $H$ sufficiently large gives any fixed logarithmic saving.
+This reduction specifically uses complete multiplicativity of $\lambda$.
+Fix $\eta<\eta'<1/2$ and an integer $\ell>A+3$. Choose $O(\log^\ell T)$ grid cutoffs spaced by at most
+$T/\log^\ell T$. At the nonzero cutoffs $y\ge T/(2\log^\ell T)$ we have $T^\eta\le y^{\eta'}$ and
+$\log y\asymp\log T$, so \eqref{eq:bv-reduced-to-all} applies at the endpoint $y$ to all moduli $d\le T^\eta$
+(with $y$ in place of $T$ and $Q=T^\eta$). Use saving $A+\ell+3$ and sum over the grid; the cost is
+$O(T\log^{-A-2}T)$. Interpolation changes each progression by at most
+$T/(d\log^\ell T)+1$. Its sum, including the small initial interval, is
+$O(T\log^{1-\ell}T+T^\eta)$, proving \eqref{eq:bv-all} with the maxima in the stated order.
+Since $\rho_h(d)\le2^{\omega(d)}$, Cauchy--Schwarz gives \eqref{eq:bv-weighted}.
+The elementary bounds
+\begin{equation}\label{eq:four-divisors}
+ \sum_{d\le D}\frac{4^{\omega(d)}}d\le(1+\log D)^4,\qquad
+ \sum_{d\le D}4^{\omega(d)}\ll D(1+\log D)^3
+\end{equation}
+follow from $4^{\omega(d)}\le\tau_4(d)$ and four divisor variables.
+Thus $E_d\le2X/d+1$ makes the second square $O(X\log^4(2X))$; arbitrary saving in
+\eqref{eq:bv-all} proves the assertion. For $\lambda(n+h)$ substitute $m=n+h$ and subtract two
+prefixes, once $X\ge h$.
+\end{proof}
+CRT and $\rho_h(d)\le\tau(d)$ give
+\begin{equation}\label{eq:a-crt}
+ \sum_{n\le X}\ind_{d\mid n(n+h)}=Xg_h(d)+O(\rho_h(d)),\qquad
+ \sum_{d\le D}\mu^2(d)\rho_h(d)\ll D\log(2D).
+\end{equation}
+Writing $W(n)=\ind_{(n(n+h),P(z))=1}$, the fundamental lemma yields
+\begin{equation}\label{eq:a-sieve-lone}
+\begin{aligned}
+ \left|\sum_{n\le X}w^\pm(n)-XV_h(z)\right|&\le E(s)XV_h(z)+O(D\log(2D)),\\
+ \sum_{n\le X}W(n)&=XV_h(z)+O(E(s)XV_h(z)+D\log(2D)),\\
+ \sum_{n\le X}|w^+(n)-W(n)|&\le2E(s)XV_h(z)+O(D\log(2D)).
+\end{aligned}
+\end{equation}
+The last bound uses $w^+\ge W\ge w^-$ and is an $L^1$ comparison, valid after multiplication by any sign.
+Mertens' product theorem \cite[Section~2.2]{MV} and a convergent positive product give an absolute $c_*>0$ with
+\begin{equation}\label{eq:a-density}
+\begin{gathered}
+ V_h(z)\ge V_2(z)\ge c_*/\log^2(2z),\\
+ V_2(z)=2\left\{\prod_{p\le z}(1-1/p)\right\}^2
+ \prod_{2<p\le z}\left(1-\frac1{(p-1)^2}\right).
+\end{gathered}
+\end{equation}
+The comparison is prime by prime, including $2$.
+
+\begin{inputthm}[Nair--Tenenbaum upper bound]\label{input:nt}
+We use \cite[Theorem~1]{Henriot} for the two linear polynomials
+$Q_1(t)=t$, $Q_2(t)=t+h$, with fixed even $h\ge2$.
+The class $\mathcal M_2(A,B,\epsilon_{\rm NT})$ consists of nonnegative functions with
+\begin{equation}\label{eq:nt-class}
+\begin{gathered}
+ F(a_1b_1,a_2b_2)\le
+ \min\{A^{\Omega(a_1a_2)},B(a_1a_2)^{\epsilon_{\rm NT}}\}F(b_1,b_2),\\
+ (a_1a_2,b_1b_2)=1.
+\end{gathered}
+\end{equation}
+The functions used here are multiplicative under these coprime products.
+Put $Q=Q_1Q_2$, $g=\deg Q=2$, $\mathfrak d=\operatorname{disc}(Q)=h^2$, and let $\|Q\|$ be
+its maximum coefficient modulus. For fixed $A,B\ge1$, $0<\alpha_{\rm NT},\delta_{\rm NT}<1$ and
+\begin{equation}\label{eq:nt-parameters}
+ 0<\epsilon_{\rm NT}\le\frac{\alpha_{\rm NT}\delta_{\rm NT}}{12g^2},\qquad
+ x\ge c_{\rm NT}\|Q\|^{\delta_{\rm NT}},\qquad x^{\alpha_{\rm NT}}\le y\le x,
+\end{equation}
+the form of the upper bound used is
+\begin{equation}\label{eq:nt-upper}
+ \sum_{x<n\le x+y}F(n,n+h)
+ \ll_{A,B,\alpha_{\rm NT},\delta_{\rm NT},g,\mathfrak d}
+ y\prod_{p\le x}\left(1-\frac{\rho_h(p)}p\right)
+ \sum_{ab\le x}\frac{F(a,b)}{ab}.
+\end{equation}
+The local root counts of each linear polynomial at every modulus are one.
+The constants, including the fixed threshold constant $c_{\rm NT}$, may depend on the indicated
+parameters and the discriminant; this dependence is harmless for fixed $h$.
+They are uniform over $F$ in this common class, hence need not depend on $\sigma$ or $X$.
+Only this upper bound is used.
+\end{inputthm}
+
+\subsection{Mass and the prime-factor tail}
+\begin{proof}[Proof of the mass and tail assertions of Theorem~\ref{thm:jordan}]
+Choose a fixed small $\theta>0$ so that \eqref{eq:a-sieve-lone} with a fixed sufficiently large sieve ratio
+and $z=X^\theta$ gives $\gg_hX/\log^2X$ pairs with both endpoints rough.
+Their factor counts are at most $K_0=\lceil1/\theta\rceil+1$ for large $X$, and
+\begin{equation}\label{eq:a-j-lower}
+ 1-p^{-\sigma}\ge1-e^{-c\theta}>0,\qquad
+ W_X(n)\ge(1-e^{-c\theta})^{2K_0}
+\end{equation}
+on this support. This proves the lower mass bound without sign information.
+We obtain this lower bound from the fundamental lemma rather than from a two-sided mean-value theorem:
+$J_\sigma(2)\sim\sigma\log2\to0$, so the fixed prime-factor lower-growth hypothesis needed for such a
+two-sided theorem is unavailable uniformly in $X$.
+
+For the upper estimates we use the theorem of Nair and Tenenbaum \cite{NairTenenbaum} in the form of
+\cite[Theorem~1]{Henriot}. For a marked endpoint set
+\begin{equation}\label{eq:a-nt-function}
+ F(a,b)=u^{\Omega(a)}J_\sigma(a)J_\sigma(b),\qquad u=2^{1/1000}.
+\end{equation}
+This is nonnegative and multiplicative under the coprime products in \eqref{eq:nt-class}.
+Since $J_\sigma\le1$, for $(a_1a_2,b_1b_2)=1$ its growth ratio is
+\begin{equation}\label{eq:nt-growth}
+ \frac{F(a_1b_1,a_2b_2)}{F(b_1,b_2)}
+ =u^{\Omega(a_1)}J_\sigma(a_1)J_\sigma(a_2)
+ \le u^{\Omega(a_1)}\le a_1^{1/1000}\le(a_1a_2)^{1/500}.
+\end{equation}
+It is also at most $u^{\Omega(a_1a_2)}$.
+For the symmetric function $\widetilde F(a,b)=J_\sigma(a)u^{\Omega(b)}J_\sigma(b)$ the same calculation
+has $a_2$ in place of $a_1$. Thus both functions belong to
+$\mathcal M_2(u,1,1/500)$ with parameters independent of $X$ and $\sigma$. The polynomials $n,n+h$ are irreducible and coprime in $\Q[n]$,
+their product has degree $g=2$ and fixed discriminant $h^2$, and it has no fixed prime divisor:
+for $p=2$ odd $n$ avoids both roots, and for $p\ge3$ there are at most two roots.
+Take $\alpha_{\rm NT}=\delta_{\rm NT}=1/2$ and $y=x$; then
+$\alpha_{\rm NT}\delta_{\rm NT}/(12g^2)=1/192$, so $\epsilon_{\rm NT}=1/500$ is admissible.
+For dyadic starting points $x\ge\sqrt X$, the threshold
+$x\ge c_{\rm NT}\|Q\|^{1/2}$ is satisfied eventually because $h$ is fixed. The 2014 corrigendum \cite{HenriotErratum} concerns the later
+Theorems~5--6; here we use the Nair--Tenenbaum Theorem~1 with fixed-discriminant constants.
+
+Put $j_p=1-p^{-\sigma}$. The positive local prime-power sums are
+\begin{equation}\label{eq:a-euler-upper}
+ 1+\frac{j_pu}{p-u},\qquad1+\frac{j_p}{p-1},\qquad
+ \frac1{\log^2X}\exp\left((u+1)\sum_{p\le X}\frac{1-p^{-\sigma}}p\right).
+\end{equation}
+The last expression bounds their contribution after the dimension-two sieve product, up to a fixed
+constant and a bounded $h$-dependent factor at primes dividing $h$. The sum in \eqref{eq:nt-upper} is bounded above by the corresponding positive Euler product.
+The prime-power tails converge uniformly since $u<2$, including the geometric series
+$\sum_{\nu\ge1}(u/2)^\nu$ at the prime $2$; the remaining $O(p^{-2})$ terms are summable. Also
+\begin{equation}\label{eq:a-euler-sum}
+ \sum_{p\le X}\frac{1-p^{-\sigma}}p
+ \le\sigma\sum_{p\le X}\frac{\log p}p\ll c.
+\end{equation}
+Apply Theorem~1 on dyadic intervals with starting point at least $\sqrt X$; their logarithms are
+comparable to $\log X$, so summation gives $O_{h,c}(X/\log^2X)$.
+Below $\sqrt X$, $J_\sigma\le1$ and the growth bound give $O(X^{1/2+1/2000})$.
+Interchange the marked endpoint to obtain the two terms in \eqref{eq:j-mass}; use $u=1$ for the unsigned
+upper bound. Markov's inequality gives \eqref{eq:j-tail} with the same constant for all $K$.
+\end{proof}
+
+\subsection{The two single-sign moments}
+\begin{proof}[Proof of \eqref{eq:j-single}]
+Fix $\varepsilon$ and then choose a large sieve ratio $s$ with a positive error upper bound
+$0<E(s)\le\varepsilon/100$. Set $\eta=1/4$, $\theta=\eta/s$, $D=X^\eta$, $Y=X^\theta$, and
+\begin{equation}\label{eq:a-truncated}
+ J_{\le Y}(n)=\prod_{\substack{p\le Y\\p\mid n}}(1-p^{-\sigma}),\qquad
+ U(n)=J_{\le Y}(n)J_{\le Y}(n+h).
+\end{equation}
+At each prime $p\le Y$, independently for each endpoint, retain its negative divisibility condition
+with probability $p^{-\sigma}$. The expectation of the resulting two-endpoint sieve indicator is $U$.
+For each mark realisation $\mathfrak M$, the forbidden roots are a subset of $\{0,-h\}$, so its local
+densities satisfy $g_{\mathfrak M}(p)\le\rho_h(p)/p$ and $g_{\mathfrak M}(2)\le1/2$.
+Consequently the fundamental-lemma constants and the CRT error are independent of the marks;
+the divisor expansion uses its selected root classes. Since $|\xi_d^\pm|\le1$, either signed remainder
+is at most $2\sum_{d\le D}\mu^2(d)\rho_h(d)E_d$, independently of the marks; the factor two allows
+for the two prefixes when the sign is $\lambda(n+h)$. Let $\overline V$ be the
+average of the local density products; then $\overline V\ge V_h(Y)\ge c_*/\log^2(2Y)$.
+Apply the upper and lower sieve weights to each choice of marks and average. CRT errors are
+$O(D\log D)$ and main-term errors at most $E(s)X\overline V$. For sufficiently large $X$,
+\begin{equation}\label{eq:a-truncated-mass}
+ \sum U\ge(1-2E(s))X\overline V,
+ \qquad\sum|\overline w^+-U|\le4E(s)X\overline V.
+\end{equation}
+By \eqref{eq:bv-weighted}, either singly signed averaged upper divisor sum is at most
+$E(s)X\overline V$ in absolute value for large $X$. Therefore for either single sign $g$,
+\begin{equation}\label{eq:a-truncated-sign}
+ \left|\sum g(n)U(n)\right|\le5E(s)X\overline V\le6E(s)\sum U.
+\end{equation}
+These are positive averaging and $L^1$ comparisons, so no signed sieve error is assumed.
+
+For $X\ge h$, both endpoints are at most $2X$. Each has at most $\lceil1/\theta\rceil+1$ prime factors
+larger than $Y$, with multiplicity. Put $B=2\lceil1/\theta\rceil+2$ and choose
+\begin{equation}\label{eq:a-constant-order}
+ a=(1-e^{-c\theta})^B,\qquad c_0(\varepsilon)=\theta^{-1}\log(100B/\varepsilon),\qquad
+ aU\le W_X\le U.
+\end{equation}
+For fixed $c\ge c_0$, Bernoulli's inequality gives $1-a\le\varepsilon/100$. Hence
+\begin{equation}\label{eq:a-full-sign}
+ |M_i|\le(6E(s)+1-a)\sum U\le\frac{6E(s)+1-a}{a}M_0\quad(i=1,2).
+\end{equation}
+Twice the coefficient is less than $\varepsilon$ since
+$2(7\varepsilon/100)/(1-\varepsilon/100)<\varepsilon$ for $\varepsilon\le1/4$.
+The order is $\varepsilon$, $s$, $\theta$, $c_0$, fixed $c,h$, then the threshold for $X$.
+Thus $c_0$ is independent of $h$.
+\end{proof}
+\begin{remark}[Reflection]\label{rem:a-reflection}
+The same marginal conclusion holds for every large even $N$, with $\sigma=c/\log N$ and
+$J_\sigma(n)J_\sigma(N-n)$ on $1\le n<N$, with a threshold uniform in $N$.
+The roots are subsets of $\{0,N\}$, with at most one at $2$; the sieve constants and the lower bound
+by $V_2$ remain uniform. The substitution $m=N-n$ sends each progression to a progression of the same
+modulus, so maximal all-residue BV applies to the second sign. Both endpoints are at most $N$.
+A bounded-$\Omega$ Jordan consumer for varying $N$ would additionally require a uniform tail bound
+relative to its unsigned mass and the joint contraction. Those additional reflected estimates are not asserted.
+\end{remark}
+\begin{proof}[Proof of Theorem~\ref{thm:reduction}]
+For each $(s,t)$ the exact projection gives
+\begin{equation}\label{eq:a-sign-projection}
+ \sum_{n\le X}W_X(n)\ind_{(\lambda(n),\lambda(n+h))=(s,t)}
+ =\frac{M_0+sM_1+tM_2+stM_{12}}4\ge\frac\varepsilon4M_0.
+\end{equation}
+Use \eqref{eq:j-mass}, and only now choose fixed $K$ so that
+$C'_{h,c}u^{-K}\le\varepsilon a_{h,c}/8$, for example an integer at least
+$\log(8C'_{h,c}/(\varepsilon a_{h,c}))/\log u$, enlarged to be nonnegative.
+Removing the global tail \eqref{eq:j-tail} leaves at least
+$\varepsilon a_{h,c}X/(8\log^2X)$ weighted mass for each pattern. Since $0<W_X\le1$,
+its unweighted count is at least this large. More generally the same proof works if
+\begin{equation}\label{eq:a-general-contraction}
+ |M_1|+|M_2|+|M_{12}|\le(1-\gamma)M_0,\qquad\gamma>0\quad\text{fixed},
+\end{equation}
+replacing $\varepsilon$ by $\gamma$
+in this projection and tail choice.
+\end{proof}
+
+\subsection{Consumers at two sieve levels}
+\begin{proof}[Proof of Proposition~\ref{prop:consumer}]
+Reduce $\theta$ to a fixed positive number below $1/4$; positivity preserves the hypothesis.
+Put $D=X^\theta$. All roots supporting the squarefree upper sieve weight are included in
+\eqref{eq:root-hyp}, and its constant is uniform in all large $X$.
+The two upper-weighted single-sign sums are $O_B(X\log^{-B}X)$ by \eqref{eq:bv-weighted}.
+Choose a fixed $0<\delta<\theta$ so small that
+\begin{equation}\label{eq:a-consumer-choices}
+ E(\theta/\delta)<10^{-4},\qquad4C_{\rm rem}\delta^2/c_*<10^{-3},\qquad z=X^\delta.
+\end{equation}
+For large $X$, $\log(2z)\le2\delta\log X$, so the upper-weighted joint sign sum is at most
+$10^{-3}XV_h(z)$. Increase the threshold until $D\log(2D)$ and each of the weighted single-sign
+remainders are at most $10^{-3}XV_h(z)$. The unsigned rough mass is then at least $0.99XV_h(z)$,
+and each of the three signed rough sums is at most $0.01XV_h(z)$ by \eqref{eq:a-sieve-lone}.
+The sign identity
+\begin{equation}\label{eq:a-unweighted-projection}
+ \ind_{\lambda(n)=s,\lambda(n+h)=t}
+ =\tfrac14(1+s\lambda(n)+t\lambda(n+h)+st\lambda(n)\lambda(n+h))
+\end{equation}
+gives at least $XV_h(z)/8$ occurrences on the rough support. There
+\begin{equation}\label{eq:a-consumer-factor-count}
+ \Omega(n),\Omega(n+h)\le\frac{\log(2X)}{\delta\log X}\le1/\delta+1,\qquad
+ K=\lceil1/\delta\rceil+1.
+\end{equation}
+This and \eqref{eq:a-density} prove the assertion, with fixed $K$ even for any finite $C_{\rm rem}$.
+
+For reflection use $\rho_N(p)=1$ when $p\mid N$ and $2$ otherwise. The factor at $2$ is $1/2$,
+so the sieve constants, CRT error and density lower bound are uniform. The unsigned length is $N-1$,
+and the missing endpoint is absorbed in the CRT error. Reflection is a bijection of
+$\{1,\ldots,N-1\}$ and sends a progression to one of the same modulus. Use the independent
+hypothesis \eqref{eq:root-reflected-hyp} for the joint sign and repeat the fixed-$\delta$ argument.
+A fixed positive-shift bound alone does not supply this moving negative-slope hypothesis.
+
+At the smaller level choose sufficiently large fixed $s_0$ and
+\begin{equation}\label{eq:a-subpower-choices}
+\begin{gathered}
+ D=\exp((\log X)^\alpha),\qquad z=\exp((\log X)^\alpha/s_0),\\
+ \#\{n\le X:P^-(n),P^-(n+h)>z,\ (\lambda(n),\lambda(n+h))=(s,t)\}
+ \ge c_{h,s_0}\frac X{(\log X)^{2\alpha}}.
+\end{gathered}
+\end{equation} The sieve ratio is $s_0$ and the relative joint remainder is
+$O((\log X)^{2\alpha-2})\to0$. BV and CRT errors are negligible at this subpower level.
+The same projection yields $c_{h,s_0}X/(\log X)^{2\alpha}$ patterns; roughness gives
+\eqref{eq:growing-omega}. For reflection the same calculation uses its separate stretched-exponential
+root hypothesis and replaces $X$ by $N$. These bounds grow with the large variable.
+\end{proof}
+
+\begin{remark}[One-point poles under a zero-free input]\label{rem:j-poles}
+This remark uses the zero-free half-plane $\Re s>7/8$ of OpenAI, family 003 \cite{OpenAI003}; the
+preceding theorems do not use it. For fixed $c>0$, $0<\epsilon<1/32$, and $\sigma=c/\log X$, one has
+\begin{equation}\label{eq:j-poles}
+\begin{aligned}
+ \sum_{n\le X}J_\sigma(n)&=\frac{cX}{\log X}\{1+O_c(1/\log X)\}
+                  +O_{c,\epsilon}(X^{15/16+\epsilon}),\\
+ \sum_{n\le X}\lambda(n)J_\sigma(n)&=-\frac{ce^{-c}X}{\log X}\{1+O_c(1/\log X)\}
+                  +O_{c,\epsilon}(X^{15/16+\epsilon}),\\
+ \sum_{n\le X}J_\sigma(n)^2&=\frac{c(1-e^{-2c})X}{2\log X}\{1+O_c(1/\log X)\}
+                  +O_{c,\epsilon}(X^{15/16+\epsilon}).
+\end{aligned}
+\end{equation}
+The finite identities and Dirichlet series are
+\begin{equation}\label{eq:j-finite}
+ J_\sigma(n)=\sum_{d\mid n}\mu(d)d^{-\sigma},\qquad
+ \lambda(n)J_\sigma(n)=\sum_{d\mid n}\mu^2(d)d^{-\sigma}\lambda(n/d),
+\end{equation}
+\begin{equation}\label{eq:j-series}
+\begin{aligned}
+ \sum_nJ_\sigma(n)n^{-s}&=\frac{\zeta(s)}{\zeta(s+\sigma)},\\
+ \sum_n\lambda(n)J_\sigma(n)n^{-s}&=
+ \frac{\zeta(2s)\zeta(s+\sigma)}{\zeta(s)\zeta(2s+2\sigma)}\qquad(\Re s>1).
+\end{aligned}
+\end{equation}
+The second finite identity uses complete multiplicativity and $\mu(d)\lambda(d)=\mu^2(d)$.
+For large $X$, $0<\sigma\le1/64$. The logarithm estimate recalled in
+Remark~\ref{rem:analytic-input} gives arbitrarily small power growth in height for the zeta factors
+and their reciprocals on the contour shifted to $\Re s=15/16$. The factors at $2s$ converge
+absolutely. Perron truncation at height $X^3$ is uniform because the coefficient moduli are at most one.
+The crossed poles in the two series are respectively $1$ and $1-\sigma$; the exact summatory residues are
+\begin{equation}\label{eq:j-residues}
+ \frac X{\zeta(1+\sigma)},\qquad
+ \frac{\zeta(2-2\sigma)}{\zeta(1-\sigma)\zeta(2)}
+ \frac{X^{1-\sigma}}{1-\sigma}.
+\end{equation}
+At $s=1$ the reciprocal $1/\zeta(s)$ is a zero. Laurent expansion gives
+$\sigma X(1+O(\sigma))$ and $-\sigma X^{1-\sigma}(1+O(\sigma))$.
+For the square the exact local algebra is
+\begin{equation}\label{eq:j-square-series}
+\begin{gathered}
+ \sum_nJ_\sigma(n)^2n^{-s}=\frac{\zeta(s)\zeta(s+2\sigma)}{\zeta(s+\sigma)^2}H(s,\sigma),\\
+ H(s,\sigma)=\prod_p\left(1-
+ \frac{p^{-2\sigma}(1-p^{-\sigma})^2p^{-2s}}{(1-p^{-s-\sigma})^2}\right).
+\end{gathered}
+\end{equation}
+This product is analytic and uniformly bounded on $\Re s\ge15/16$, and $H=1+O(\sigma^2)$ there by
+$1-p^{-\sigma}\le\sigma\log p$ and $\sum_p(\log p)^2p^{-15/8}<\infty$.
+Its numerator factors are nonzero for $\Re s>0$. The summatory residues at $1$ and $1-2\sigma$ are
+$\sigma X(1+O(\sigma))/2$ and $-\sigma X^{1-2\sigma}(1+O(\sigma))/2$.
+Both poles lie at least $1/32$ to the right of the shifted line; the error is
+$O_{c,\epsilon}(X^{15/16+\epsilon})$. Since $X^{-\sigma}=e^{-c}$, this proves \eqref{eq:j-poles}.
+All constants allow fixed $c$; no claim for $c=c(X)$ is made.
+For $F(\beta)=\sum_{n\le X}\lambda(n)J_\sigma(n)e(n\beta)$, Parseval gives
+$\int_0^1|F|^2\asymp_cX/\log X$, one logarithm larger than the paired mass.
+The single-site residues are not paired main terms and do not estimate $M_{12}$.
+\end{remark}
+
+\section{A sequence for the sieve remainder}\label{sec:sieve}
+\subsection{Root harmonic mass}
+For the shift $2$, define in addition to \eqref{eq:root-def}
+\begin{equation}\label{eq:b-averages}
+ U_f(X,D)=\sum_{d\le D}\sum_{r\bmod d}|S_f(X;d,r)|,\qquad
+ A_f(X,D)=\sum_{d\le D}\frac1d\sum_{r\bmod d}|S_f(X;d,r)|.
+\end{equation}
+Discarding nonroot and nonsquarefree nonnegative terms, and then using $1\le D/d$, gives
+\begin{equation}\label{eq:b-comparison}
+ R_f(X,D)\le U_f(X,D),\qquad R_f(X,D)\le DA_f(X,D).
+\end{equation}
+An unnormalised all-residue bound $U_\lambda\ll X\log^{-A}X$, $A>2$, would supply the needed root bound.
+The normalised average has a different strength.
+\begin{lemma}[Harmonic root sum]\label{lem:b-harmonic}
+Let $a(d)=\mu^2(d)|\mathcal R_2(d)|$, with value zero on nonsquarefree integers. It is multiplicative and
+\begin{equation}\label{eq:b-local-a}
+ a(2)=1,\qquad a(p)=2\ (p>2),\qquad a(p^k)=0\ (k\ge2).
+\end{equation}
+For $T\ge2$,
+\begin{equation}\label{eq:b-divisors}
+ \sum_{d\le T}a(d)\ll T\log(2T),\quad
+ \sum_{d\le T}\frac{a(d)}{\sqrt d}\ll\sqrt T\log(2T),\quad
+ \sum_{d\le T}\frac{a(d)}d\ll\log^2(2T).
+\end{equation}
+Uniformly for primes $p\ge5$ and $T\ge2$,
+\begin{equation}\label{eq:b-harmonic}
+ H_p(T):=\sum_{\substack{m\le T\\(m,p)=1}}\frac{a(m)}m
+ =\frac{c_2}{2(1+2/p)}\log^2T+O(\log(2T)),
+\end{equation}
+where $c_2$ is defined in \eqref{eq:model-root}. Its implied constant is absolute.
+\end{lemma}
+\begin{proof}
+The roots at an odd prime are $0,-2$; at $2$ they coincide. CRT proves multiplicativity.
+Since $a(d)\le\tau(d)$,
+\begin{equation}\label{eq:b-pair-count}
+ \sum_{d\le T}a(d)\le\sum_{u\le T}\lfloor T/u\rfloor\le T(1+\log T).
+\end{equation}
+Partial summation gives the other two bounds.
+Define multiplicative $b_p$ by the local polynomials
+\begin{equation}\label{eq:b-polynomials}
+ \sum_{k\ge0}b_p(\ell^k)t^k=
+ \begin{cases}
+ (1-t)^2,&\ell=p,\\
+ (1+t)(1-t)^2,&\ell=2,\\
+ (1+2t)(1-t)^2=1-3t^2+2t^3,&\ell\ne2,p.
+ \end{cases}
+\end{equation}
+Coefficient multiplication gives $a(n)\ind_{(n,p)=1}=(\tau*b_p)(n)$, where convolution is over divisors.
+Uniformly in $p\ge5$,
+\begin{equation}\label{eq:b-absolute-convolution}
+ \sum_{k\ge1}|b_p(k)|k^{-3/4}\le C<\infty.
+\end{equation}
+The generic Euler factors are $1+3\ell^{-3/2}+2\ell^{-9/4}$, with a convergent product; the exceptional
+factors are absolutely bounded. Consequently $\sum |b_p(k)|\log^j(2k)/k$ is uniformly bounded
+for $j=0,1,2$. Elementary integral comparison gives, for $y\ge1$,
+\begin{equation}\label{eq:b-double-harmonic}
+ \sum_{uv\le y}\frac1{uv}=\tfrac12\log^2y+O(1+\log y).
+\end{equation}
+Indeed sum over $v$, then use $\sum_{u\le y}1/u=\log y+O(1)$ and
+$\sum_{u\le y}(\log u)/u=\frac12\log^2y+O(1+\log y)$.
+Insert this in
+\begin{equation}\label{eq:b-harmonic-convolution}
+ H_p(T)=\sum_{k\le T}\frac{b_p(k)}k\sum_{uv\le T/k}\frac1{uv},\qquad
+ \sum_k\frac{b_p(k)}k=\frac{c_2}{1+2/p}.
+\end{equation}
+Expansion of $(\log T-\log k)^2$ gives the claimed error; the infinite coefficient sum costs
+$O(T^{-1/4}\log^2T)$ by \eqref{eq:b-absolute-convolution}.
+At $2$ its factor is $3/8$ and at the primes $\ell\ne2,p$ it is $(1+2/\ell)(1-1/\ell)^2$;
+at $p$ it is $(1-1/p)^2$, the generic factor times $(1+2/p)^{-1}$. The logarithm of the positive product converges
+since the generic factors are $1+O(\ell^{-2})$. Thus $c_2>0$ and $H_p(T)\asymp\log^2T$ uniformly
+for sufficiently large $T$.
+\end{proof}
+
+\subsection{The independent atoms}
+Choose an integer $j_0$ so large that $t_{j_0}=j_0\log2>e^2$ and
+$\exp(t_{j_0}/\log t_{j_0})>5$. For $j\ge j_0$ put
+\begin{equation}\label{eq:b-bands}
+\begin{gathered}
+ t_j=j\log2,\quad I_j=[2^j,2^{j+1})\cap\Z,\quad
+ Y_j=\exp(t_j/\log t_j),\quad\kappa_j=(8\log t_j)^{-1},\\
+ \mathcal P_j=\{p\text{ prime}:Y_j<p\le2Y_j\},\qquad J_j=|\mathcal P_j|.
+\end{gathered}
+\end{equation}
+These prime bands overlap; they do not partition the primes. Every sum over $j$ counts a prime once
+for each band to which it belongs. The independent random atoms below are integer pairs, rather than
+prime bands.
+Partition nonnegative integers into the pairs
+\begin{equation}\label{eq:b-pair-partition}
+ \{4k,4k+2\},\quad\{4k+1,4k+3\}\quad(k\ge0),\qquad
+ \mathcal M=\{n\ge0:n\equiv0,1\pmod4\}.
+\end{equation}
+At starts $n\in\mathcal M\cap I_j$, $j\ge j_0$, prescribe
+\begin{equation}\label{eq:b-covariance}
+ m(n)=\kappa_j\sum_{p\in\mathcal P_j}(\ind_{p\mid n}-\ind_{p\mid n-1});
+\end{equation}
+at the finitely many earlier starts set $m(n)=0$. No divisibility of $0$ is used here.
+An integer at most $2^{j+1}$ has at most
+$(t_j+\log2)/\log Y_j\le2\log t_j$ distinct prime factors greater than $Y_j$.
+Each of the two nonnegative counts in \eqref{eq:b-covariance} is so bounded, as is their absolute difference.
+Thus $|m(n)|\le1/4$.
+For each pair choose independently a fair sign $Z_n$ and, independently of $Z_n$, a sign $E_n$ with
+\begin{equation}\label{eq:b-assignment}
+ \Prob(E_n=1)=(1+m(n))/2,\qquad f(n)=Z_n,\quad f(n+2)=Z_nE_n.
+\end{equation}
+All pairs are independent atoms $(Z_n,E_n)$. Every nonnegative integer lies in exactly one pair, and
+pair-block boundaries coincide with dyadic boundaries at least $4$, so no prescriptions conflict.
+Restricting to positive integers gives one infinite function. Its exact moments are
+\begin{equation}\label{eq:b-moments}
+\begin{gathered}
+ \E f(u)=0,\qquad
+ \E[f(u)f(v)]=\begin{cases}
+ 1,&u=v,\\m(\min(u,v)),&\{u,v\}\text{ is a designated pair},\\0,&\text{otherwise},
+ \end{cases}\\
+ b(n):=\E[f(n)f(n+2)]=\ind_{n\in\mathcal M}m(n).
+\end{gathered}
+\end{equation}
+Within a pair the product is $E_n$, and every individual sign is unbiased. Different pairs are independent.
+
+\subsection{Simultaneous concentration}
+\begin{lemma}[Bounded differences]\label{lem:bounded-differences}
+If a real function $Z$ of finitely many independent atoms changes by at most $c_i$ when atom $i$ changes,
+then
+\begin{equation}\label{eq:bounded-differences}
+ \Prob(|Z-\E Z|\ge t)\le2\exp\left(-\frac{2t^2}{\sum_i c_i^2}\right).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Reveal the atoms in order and let $M_i$ be the conditional expectation. The $i$th martingale increment
+has conditional mean zero and conditional range of length at most $c_i$.
+For a mean-zero $W$ in an interval of length $c$, let $g(s)=\log\E e^{sW}$.
+The tilted law is in the same interval, so its variance is at most $c^2/4$ by comparison with the interval
+midpoint. Hence $g''(s)\le c^2/4$ and $g(0)=g'(0)=0$ imply $g(s)\le s^2c^2/8$.
+Apply this conditionally and iterate to bound the exponential moment by
+$\exp(s^2\sum c_i^2/8)$. Markov with $s=4t/\sum c_i^2$ gives the upper tail, and $-Z$ gives the lower.
+If all $c_i=0$, the function is constant and the claim is immediate.
+\end{proof}
+\begin{lemma}[One realisation for all queries]\label{lem:b-concentration}
+Almost surely \eqref{eq:model-one} and \eqref{eq:model-character} hold eventually, and for every pair of
+integer affine maps with nonzero slopes and coefficients of modulus at most $M$, and every interval
+$J$ of at most $M$ parameters with arguments in $[1,M]$,
+\begin{equation}\label{eq:b-centred-affine}
+ \left|\sum_{n\in J}\{f(L_1(n))f(L_2(n))-\E[f(L_1(n))f(L_2(n))]\}\right|
+ \le C\sqrt{|J|\log(2M)}.
+\end{equation}
+The same holds when the parameter interval is intersected with a progression, replacing $|J|$ by its
+actual number of parameters. Empty sums are zero.
+\end{lemma}
+\begin{proof}
+For a real or imaginary part of a one-point sum with $t$ terms, an atom changes it by at most $4$,
+and at most $t$ atoms occur. The square-influence sum is at most $16t$, so its tail is
+$2\exp(-u^2/(8t))$. In a two-point test each vertex occurs at most once in each affine map.
+An atom has two vertices, affects at most four terms and changes each by at most $2$.
+At most $2|J|$ atoms occur, giving square-influence sum at most $128|J|$ and tail
+$2\exp(-u^2/(64|J|))$. Progression restrictions preserve injectivity. Coincident arguments give
+deterministic terms and do not increase this bound.
+
+Intervals and progressions in $[1,M]$ have $O(M^4)$ choices. For the two-point catalogue separate zero,
+one and at least two terms. A singleton is specified by two values in $[1,M]$, giving at most $M^2$
+tests; its centred sum has modulus at most $2$. For $t\ge2$ the actual output lists have the form
+\begin{equation}\label{eq:b-query-lists}
+ x_k=x_0+k\Delta_1,\quad y_k=y_0+k\Delta_2\quad(0\le k<t),\qquad
+ M^2(2M-1)^2M=O(M^5)
+\end{equation}
+possible lists: the initial values lie in $[1,M]$, $0<|\Delta_i|\le M-1$ by the value range,
+and $t\le M$. This counts the tests rather than their possibly many parameter descriptions.
+It leaves the influence budget unchanged and is smaller than the crude $O(M^{10})$ bound.
+
+For additive frequencies use $k/M^3$, $0\le k<M^3$. Nearest-grid interpolation costs at most
+$2\pi tM/M^3\le2\pi/M$, so the one-point catalogue has $O(M^7)$ tests.
+Use thresholds $200\sqrt{t\log(2M)}$ and $200\sqrt{|J|\log(2M)}$.
+The corresponding single-query real tails are bounded by
+$2(2M)^{-5000}$ and $2(2M)^{-625}$; splitting a complex sum into its real and imaginary parts only
+changes constants. The catalogue union probabilities are summable over every integer $M$.
+Borel--Cantelli gives all the eventual statements, without independence between queries or scales.
+For $q>M$ a progression contains at most one term and is covered trivially.
+
+For fixed integer $B\ge1$, the character catalogue has $O(M^{2B})$ characters, $M^2$ intervals and
+$O(M^{B+3})$ height points at spacing $M^{-3}$ in $|v|\le M^B$: in all $O(M^{3B+5})$ tests.
+The weights $\chi(n)n^{iv}$ have modulus at most one, so the same $16|I|$ influence budget applies.
+Moving the height to a nearest point costs at most
+$|I|M^{-3}\log M\le M^{-2}\log M$.
+Threshold $200(B+1)\sqrt{|I|\log(2M)}$ gives a summable union probability.
+Take the countable probability-one intersection over integer $B$; upper integer rounding includes all
+fixed real $B>0$. Thus one infinite realisation works for all the stated query catalogues.
+\end{proof}
+
+\begin{proposition}[Affine and reflected means]\label{prop:b-affine}
+The fixed affine, polylogarithmic coefficient, all-shift and reflected estimates of
+Theorem~\ref{thm:sieve-model} hold for every realisation in Lemma~\ref{lem:b-concentration}.
+In particular, for fixed positive-slope nonproportional forms,
+\begin{equation}\label{eq:b-affine}
+ \sum_{n\le X}f(a_1n+b_1)f(a_2n+b_2)\ll_{a_1,a_2,b_1,b_2,f}\sqrt{X\log(2X)}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+For different slopes the equations $L_1-L_2=0,2,-2$ have at most three solutions in total,
+so the mean is at most $3$. For equal slopes different intercepts give zero mean unless they differ by
+$\pm2$. In this remaining case write the smaller argument as $an+b$.
+On $I_j$, membership in $\mathcal M$ splits the parameters into at most two classes modulo
+$4/(a,4)$. If $p\in\mathcal P_j$ and $p\nmid a$, CRT gives a difference at most one between the counts
+$p\mid an+b$ and $p\mid an+b-1$ in each class. The contribution is $O(\kappa_jJ_j)$.
+Bands containing a prime divisor of fixed $a$ lie in a finite initial range and cost $O_a(1)$.
+For large $M$, monotonicity of $t/\log t$ and $J_j\le2Y_j$ give
+\begin{equation}\label{eq:b-z}
+ Z(M):=1+\sum_{j_0\le j\le\log_2M}\kappa_jJ_j
+ \le\exp(2\log M/\log\log M)=M^{o(1)}.
+\end{equation}
+With $M$ a fixed multiple of $X+1$, the mean is $O_{a,b}(1+Z(M))=o(\sqrt X)$.
+Lemma~\ref{lem:b-concentration} proves \eqref{eq:b-affine}; a fixed progression changes only the fixed
+coefficients and starting index.
+For reflection, only $2n-N=0,\pm2$ has nonzero mean, at at most three positions. The simultaneous
+query event with ambient $M=N$ gives \eqref{eq:model-shifts} for all totals.
+
+For slopes bounded by $(\log X)^B$, a prime divisor of the common slope is at most that size.
+A band containing such a prime satisfies $t_j/\log t_j\le B\log\log X$, hence
+$t_j=O_B(\log\log X\log\log\log X)$ and its whole support is $X^{o_B(1)}$.
+Other bands cost at most $Z(2X(\log X)^B)=X^{o_B(1)}$; the deviation remains
+$O(\sqrt{X\log X})$. This proves the uniform coefficient version without a fixed-form threshold
+hidden in growing coefficients. For $1\le h\le X$, the mean is zero unless $h=2$; the latter has just
+been estimated. Use ambient $2X$ in the same event to obtain the all-shift bound.
+\end{proof}
+
+\subsection{The two residue averages}
+\begin{proposition}[Root amplification]\label{prop:b-amplification}
+Every realisation in Lemma~\ref{lem:b-concentration} satisfies \eqref{eq:model-normalised},
+\eqref{eq:model-root} and \eqref{eq:model-small} for every fixed parameter in their stated ranges.
+\end{proposition}
+\begin{proof}
+Write $L_j=|I_j\cap[1,X]|$. For squarefree $d$ and every $r\bmod d$, CRT gives
+\begin{equation}\label{eq:b-progression-mean}
+ B(X;d,r):=\sum_{\substack{n\le X\\n\equiv r\ (d)}}b(n)
+ =\frac12\sum_j\frac{\kappa_jL_j}{d}
+ \sum_{\substack{p\in\mathcal P_j\\p\mid d}}
+ (\ind_{r\equiv0\ (p)}-\ind_{r\equiv1\ (p)})+O(Z(X)).
+\end{equation}
+Only nonempty intervals $I_j\cap[1,X]$ are summed. For odd $d$ the progression meets four classes modulo $4$, two allowed;
+for even squarefree $d$ it meets two, one allowed. This explains the factor $1/2$.
+If $p\nmid d$, the two divisibility tests have the same density and differ by $O(1)$ per interval;
+if $p\mid d$, their indicators are fixed and the matching-start count is $L_j/(2d)+O(1)$.
+The error is uniform even when $dp>X$.
+
+At a root and $p\ge5$ dividing $d$, the residue is $0$ or $-2$, never $1$. Every main term is
+nonnegative and exactly half the roots have residue $0$ at $p$. Put $d=pm$; then
+$\rho_2(pm)=2\rho_2(m)$ for squarefree $(m,p)=1$. The summed main quantity is
+\begin{equation}\label{eq:b-root-main}
+ \mathcal B(X,D)=\frac12\sum_j\kappa_jL_j
+ \sum_{\substack{p\in\mathcal P_j\\p\le D}}\frac1pH_p(D/p).
+\end{equation}
+Taking absolute values costs only
+\begin{equation}\label{eq:b-root-deterministic-error}
+ O(DZ(X)\log(2D)),
+\end{equation}
+by \eqref{eq:b-divisors} and $||v+e|-v|\le|e|$ for $v\ge0$.
+The prime number theorem \cite{MV}, by partial summation on dyadic prime intervals, gives
+\begin{equation}\label{eq:b-prime-counts}
+ J_j\asymp Y_j/\log Y_j,\quad
+ \sum_{p\in\mathcal P_j}p^{-1}\asymp1/\log Y_j,\quad
+ \sum_{p\in\mathcal P_j}p^{-2}\ll1/(Y_j\log Y_j).
+\end{equation}
+For $D=X^\theta$, a full dyadic interval $I_j\subset[1,X]$ with $X/4<2^j\le X/2$ has $L_j\asymp X$ and
+\begin{equation}\label{eq:b-full-band}
+ \log p\sim\frac{\log X}{\log\log X}=o(\log X),\quad
+ \log(D/p)=(\theta+o(1))\log X,\quad
+ \kappa_j\sum_{p\in\mathcal P_j}p^{-1}\asymp1/t_j\asymp1/\log X.
+\end{equation}
+Thus \eqref{eq:b-harmonic} gives $\mathcal B\gg_\theta X\log X$.
+For the upper bound $H_p(D/p)\ll\log^2(2D)$ and
+\begin{equation}\label{eq:b-main-upper}
+ \sum_{j\le\log_2X}\kappa_jL_j\sum_{p\in\mathcal P_j}p^{-1}\ll X/\log(2X).
+\end{equation}
+Split off $j\le\frac12\log_2X$, with total length $O(\sqrt X)$; on later bands
+$\kappa_j/\log Y_j=1/(8t_j)\ll1/\log X$. Small fixed bands are absorbed. Therefore
+$\mathcal B\asymp_\theta X\log X$.
+
+The progression-restricted concentration estimate gives, simultaneously for every $d\le D$ and $r$,
+\begin{equation}\label{eq:b-progression-deviation}
+ |S_f(X;d,r)-B(X;d,r)|\ll\sqrt{(X/d+1)\log(2X)}.
+\end{equation}
+Summing over roots yields
+\begin{equation}\label{eq:b-root-random-error}
+ O\left(\sqrt{XD}\log^{3/2}(2X)+D\log^{3/2}(2X)\right).
+\end{equation}
+For fixed $\theta<1$ both errors are $o(X\log X)$, proving $R_f(X,X^\theta)\asymp_\theta X\log X$.
+
+For a general $d$ let $c(d,r)\in\{0,1/2,1\}$ be the density of starts in the progression:
+it is $1/2$ if $4\nmid d$ and the relevant $0$ or $1$ if $4\mid d$.
+The analogue of \eqref{eq:b-progression-mean} uses $c(d,r)$ instead of $1/2$.
+For $p\mid d$,
+\begin{equation}\label{eq:b-residue-mean-bound}
+\begin{gathered}
+ \sum_{r\bmod d}|\ind_{r\equiv0\ (p)}-\ind_{r\equiv1\ (p)}|=2d/p,\\
+ \sum_{d\le D}\frac1d\sum_r|B(X;d,r)|
+ \ll\log(2D)\sum_j\kappa_jL_j\sum_{p\in\mathcal P_j}p^{-2}+DZ(X).
+\end{gathered}
+\end{equation}
+Here $\sum_{d\le D,p\mid d}1/d\le(1+\log(2D))/p$.
+Let $t=\log X$. Bands with $t_j\le t/2$ cost $O(\sqrt X\log(2X))$.
+On the others,
+\begin{equation}\label{eq:b-late-residue-bands}
+ \kappa_j\sum_{p\in\mathcal P_j}p^{-2}\ll\frac1{tY_j}
+ \ll\frac1t\exp\left(-\frac{t}{2\log t}\right).
+\end{equation}
+Their total, using $\log D\le t$ and $\sum L_j\le X$, is at most $CX\exp(-t/(2\log t))$.
+The normalised fluctuation costs
+\begin{equation}\label{eq:b-normalised-error}
+ \sum_{d\le D}\sqrt{(X/d+1)\log(2X)}
+ \ll\sqrt{XD\log(2X)}+D\sqrt{\log(2X)}.
+\end{equation}
+At $D=X^\theta$, $\theta<1$ fixed, this and $DZ(X)$ are $O_\theta(X^{1-\delta_\theta})$ for some
+$\delta_\theta>0$. They are smaller than $X\exp(-t/(4\log t))$; this proves
+\eqref{eq:model-normalised}, with all moduli included.
+
+For the exact constant retain only $t_j\ge t-\sqrt t$. Earlier bands have total length
+$O(Xe^{-\sqrt t})$ and cost $O(Xe^{-\sqrt t}t^2)=o(Xt)$ in \eqref{eq:b-root-main}.
+On the retained bands, uniformly in $j,p$,
+\begin{equation}\label{eq:b-constant-factors}
+\begin{gathered}
+ t_j=t+O(\sqrt t),\quad\log(D/p)=(\theta+o(1))t,\quad
+ H_p(D/p)=(c_2\theta^2/2+o(1))t^2,\\
+ \sum_{Y_j<p\le2Y_j}\frac1p=\frac{\log2+o(1)}{\log Y_j},\qquad
+ \kappa_j\sum_{p\in\mathcal P_j}\frac1p=\frac{\log2+o(1)}{8t}.
+\end{gathered}
+\end{equation}
+The retained lengths sum to $X+o(X)$. The outer $1/2$ in \eqref{eq:b-root-main}, the harmonic $1/2$,
+the $1/8$ in $\kappa_j$, the prime-band $\log2$ and the factor $\theta^2$ from $\log^2(D/p)$ give
+$c_2\log2\,\theta^2Xt/32+o(Xt)$. Both errors remain $o(Xt)$.
+These are deterministic estimates on one simultaneous concentration event, so the exact asymptotic
+holds for every fixed real $\theta$ without an uncountable intersection.
+
+For $2\le D\le\exp((\log X)^\alpha)$, fixed $\alpha<1$, a contributing band must have $Y_j<D$.
+Put $u=\log D$. Monotonicity of $t/\log t$ gives, for large $u$,
+\begin{equation}\label{eq:b-small-bands}
+ t_j<2u\log(2u),\qquad
+ \mathcal B(X,D)\ll\exp(Cu\log(2u))\log^2(2D)=X^{o_\alpha(1)}.
+\end{equation}
+Bounded $u$ needs only a fixed additive constant. The total contributing length is at most
+$C\exp(2u\log(2u))$. The deterministic error is $X^{o_\alpha(1)}$ and the random error is
+$X^{1/2+o_\alpha(1)}$, uniformly in the stated range, proving \eqref{eq:model-small}.
+Integer floors affect only endpoints already included in these bounds.
+\end{proof}
+
+\begin{remark}[The strength of the normalised saving]\label{rem:b-lower}
+The model does not have a fixed power saving for $A_f$.
+Fix $0<\theta<1$ and take a complete dyadic interval $I_j$ with $X/4<2^j\le X/2$.
+For large $X$ a prime $p\in\mathcal P_j$ exists, and $p\le2Y_j<X^\theta$.
+All root main terms are nonnegative, so
+$B(X;p,0)\ge\kappa_jL_j/(2p)-CZ(X)$.
+By \eqref{eq:b-progression-deviation}, its two errors are $o(\kappa_jL_j/p)$.
+Consequently
+\begin{equation}\label{eq:b-normalised-lower}
+\begin{aligned}
+ A_f(X,X^\theta)&\ge\frac{|S_f(X;p,0)|}{p}\ge\frac{\kappa_jL_j}{4p^2}
+ \ge\frac{X}{512Y_j^2\log t_j}\\
+ &=\frac{X}{512\log\log X}
+ \exp\left(-(2+o(1))\frac{\log X}{\log\log X}\right).
+\end{aligned}
+\end{equation}
+Thus $A_f/X^{1-\delta}\to\infty$ for every fixed $\delta>0$.
+The upper bound \eqref{eq:model-normalised} saves beyond every fixed inverse power of $\log X$.
+It does not simulate the stronger premise $A_\lambda\le X^{1-\delta}$.
+Conversely, suppose a sequence satisfies $A_f(X,X^{\theta_0})\ll X^{1-\delta_0}$ for fixed
+$\theta_0,\delta_0>0$. Monotonicity of $A_f$ in its second argument and \eqref{eq:b-comparison} give
+\begin{equation}\label{eq:b-fixed-power-consumer}
+ \theta_1=\min(\theta_0,\delta_0/2)>0,\qquad
+ R_f(X,X^{\theta_1})\le X^{\theta_1}A_f(X,X^{\theta_0})
+ \ll X^{1-\delta_0/2}\ll X/\log^2X.
+\end{equation}
+Thus an actual fixed power saving for the normalised average does provide a positive-level root bound;
+the model concerns the weaker displayed saving.
+\end{remark}
+\begin{corollary}[Further numerical bounds]\label{cor:b-numerical}
+The same sequence satisfies, for $X\ge H\ge q\ge1$,
+\begin{equation}\label{eq:b-variance}
+ \int_X^{2X}\sum_{r\bmod q}
+ \left|\sum_{\substack{x<n\le x+H\\n\equiv r\ (q)}}f(n)\right|^2dx
+ \ll X(H+q)\log(2X)\ll XH\log(2X).
+\end{equation}
+If $H/q\ge\exp((\log X)^\nu)$ for fixed $\nu>0$, this is smaller eventually than
+\begin{equation}\label{eq:b-variance-comparison}
+ \frac{XH^2}{q}\{\log(H/q)\}^{-1/1000}.
+\end{equation}
+For fixed $0<\theta<1$, uniformly over integer $1\le h\le X$, $h\ne2$,
+\begin{equation}\label{eq:b-other-shifts}
+ R_f^{(h)}(X,X^\theta)\ll_fX^{(1+\theta)/2}\log^{3/2}(2X).
+\end{equation}
+\end{corollary}
+\begin{proof}
+Square \eqref{eq:model-one}, sum progression lengths and integrate using ambient $3X$.
+The comparison follows from $\log(2X)\{\log(H/q)\}^{1/1000}=o(H/q)$.
+For $h\ne2$ the two vertices belong to different components, so every mean is zero.
+Apply the uniform two-point deviation on ambient $2X$ and sum the roots, bounded by $\tau(d)$.
+This is \eqref{eq:b-root-random-error}; its $D$ term is smaller than its $\sqrt{XD}$ term for $D\le X$.
+\end{proof}
+\begin{corollary}[Scope of the numerical premises]\label{cor:b-scope}
+The numerical properties listed in the introduction, even together with
+Corollary~\ref{cor:b-numerical}, do not imply a root bound $C_{\rm rem}X/\log^2X$ at any fixed positive
+power level for arbitrary sign sequences with those properties.
+\end{corollary}
+\begin{proof}
+Fix one realisation in the probability-one event above. It satisfies all these premises, but
+\eqref{eq:model-root} exceeds that bound for every fixed $0<\theta<1$ and finite $C_{\rm rem}$.
+Levels $\theta\ge1$ fail by monotonicity from $\theta=1/2$. Any chain of identities and inequalities
+valid for arbitrary bounded sign sequences also applies to this realisation.
+The conclusion concerns only the displayed strengths of the premises.
+\end{proof}
+\begin{remark}[Multiplicativity and small levels]\label{rem:b-compatibility}
+Almost surely, infinitely many distinct squares $k^2$, $k\ge2$, have each sign: successive squares
+are separated by at least $5$, so their matching components are different and their signs are independent
+and fair. The probability of a constant tail is zero, and the countable union over starting indices remains
+null. A completely multiplicative sign function has $f(k^2)=1$.
+The same argument applies to $3^{2k}$ and a sequence of primes separated by more than $2$;
+hence $f(3^{2k})=1$ for all $k$ and $f(p)=-1$ for all primes $p$ both fail.
+These probability-one events may be intersected with all the preceding events.
+
+More explicitly, for fixed $a\ge2$, even $h\ge2$ and a fixed cutoff $z$ with $(a,\prod_{p\le z}p)=1$,
+CRT provides a progression of $n$ with $P^-(n),P^-(n+h)>z$.
+Choose a rapidly increasing subsequence so that the matching components of
+$\{n,n+h,an,a(n+h)\}$ are disjoint across choices. For large $n$ the upper two arguments are in
+different components since their distance is $ah\ge4$, and are independent fair signs independent of
+the lower product. Hence
+\begin{equation}\label{eq:b-dilation}
+ f(an)f(a(n+h))=f(n)f(n+h)
+\end{equation}
+fails with probability $1/2$ independently at the selected $n$, and fails infinitely often almost surely.
+A countable intersection over $a,h$ and finite prime sets preserves one realisation.
+
+For fixed $0<\rho<\alpha<1$, put $z=\exp((\log X)^\rho)$ and $D=\exp((\log X)^\alpha)$.
+The one-point root-weighted error from \eqref{eq:model-one} is $X^{1/2+o(1)}$, and
+\eqref{eq:model-small} gives the joint root error at shift $2$ of the same size.
+The sieve ratio $(\log X)^{\alpha-\rho}$ tends to infinity; the CRT error $D\log D=X^{o(1)}$ and the
+upper-minus-rough error are $o(XV_2(z))$. The projection therefore gives
+\begin{equation}\label{eq:b-rough-patterns}
+ \#\{n\le X:P^-(n),P^-(n+2)>z,\ (f(n),f(n+2))=(s,t)\}
+ =(1/4+o(1))XV_2(z)
+\end{equation}
+for each fixed pattern. The roughness bound on $\Omega$ still grows.
+This is compatible with the smaller-level numerical conclusions; $f$ is not $(-1)^\Omega$.
+\end{remark}
+
+\section{A sequence for Type II sums}\label{sec:type}
+\subsection{Operator and fourth-moment norms}
+For $K\in\C^{r\times s}$ define
+\begin{equation}\label{eq:c-energy}
+ E(K)=\sum_{a,b=1}^s\left|\sum_{m=1}^r\overline{K_{ma}}K_{mb}\right|^2
+ =\tr((K^*K)^2)=\sum_j\sigma_j^4,
+\end{equation}
+where $\sigma_j$ are singular values. Here $\|K\|_{\Frob}$ denotes the Frobenius norm.
+\begin{lemma}[Norm comparisons]\label{lem:c-norms}
+Every complex matrix satisfies
+\begin{equation}\label{eq:c-norm-comparison}
+ \|K\|_\op^4\le E(K)\le\|K\|_\op^2\|K\|_{\Frob}^2.
+\end{equation}
+For a nonempty matrix whose entries have modulus one,
+\begin{equation}\label{eq:c-modulus-one}
+ \|K\|_\op\ge\sqrt{\max(r,s)},\qquad E(K)\ge\max(r^2s,rs^2).
+\end{equation}
+Consequently, for $L>1$, $E(K)\le(rs)^2L^{-6-\eta}$ gives
+$\|K\|_\op\le\sqrt{rs}L^{-3/2-\eta/4}$, whereas the operator bound
+$\sqrt{rs}L^{-3/2-\kappa}$ gives only $E(K)\le(rs)^2L^{-3-2\kappa}$ directly.
+With constants one these targets require respectively
+$\min(r,s)\ge L^{6+\eta}$ and $\min(r,s)\ge L^{3+2\kappa}$.
+\end{lemma}
+\begin{proof}
+The positive semidefinite matrix $K^*K$ has eigenvalues $\sigma_j^2$, proving \eqref{eq:c-energy}.
+Its largest fourth power is at most their sum, and each fourth power is at most
+$\|K\|_\op^2\sigma_j^2$. A standard column has norm $\sqrt r$, and a standard column of $K^*$ has
+norm $\sqrt s$. The diagonal terms of $E$ give $sr^2$; use
+$\tr((K^*K)^2)=\tr((KK^*)^2)$ to get $rs^2$. Substitution and fourth roots give the consequences.
+The general comparison also holds for empty matrices.
+\end{proof}
+\begin{remark}\label{rem:c-hadamard}
+For $H=\left(\begin{smallmatrix}1&1\\1&-1\end{smallmatrix}\right)$, $H^*H=2I$, so
+$\|H\|_\op^4=4$ and $E(H)=8$. Thus an operator estimate and a fourth-moment estimate are not
+equal with the same exponent and constant in general.
+\end{remark}
+
+\subsection{An infinite construction}
+\begin{proof}[Proof of Theorem~\ref{thm:type-model}]
+Fix $h\ne0$ and choose an integer $T_0\ge\max(16,2|h|+16)$, with $T_{j+1}=T_j^2$.
+Let $\mathcal P_j$ be the primes in $(T_j,2T_j]$ and $\mathcal Q_j$ those in $(3T_j,6T_j]$;
+define
+\begin{equation}\label{eq:c-core}
+ \mathcal C_j=\{pq+h:p\in\mathcal P_j,q\in\mathcal Q_j\}
+ \subset(3T_j^2+h,12T_j^2+h].
+\end{equation}
+All arguments are positive. Successive numerical supports are disjoint, as are the two prime
+catalogues both within and across scales. A value $pq+h$ uniquely determines $p,q$ by unique
+factorisation and the separated prime intervals, which exclude an exchange of positions.
+For every $(j,p)$ and $(j,q)$ take mutually independent fair signs $u_{j,p},v_{j,q}$;
+for each positive integer $t\notin\bigcup_j\mathcal C_j$ take an additional independent fair sign
+$\epsilon_t$. Define for every positive integer
+\begin{equation}\label{eq:c-definition}
+ f(pq+h)=u_{j,p}v_{j,q}\quad(pq+h\in\mathcal C_j),\qquad
+ f(t)=\epsilon_t\quad(t\notin\bigcup_j\mathcal C_j).
+\end{equation}
+The uniqueness and disjointness just proved make this a single well-defined function.
+Each value has mean zero and distinct values have zero two-point mean. In a common rectangle two distinct
+edges share at most one endpoint; an unshared fair sign makes their product mean zero. Fourth-order
+products are not independent: $f(pq+h)f(pq'+h)f(p'q+h)f(p'q'+h)=1$ for $p,p'\in\mathcal P_j$, $q,q'\in\mathcal Q_j$.
+
+For any affine test in \eqref{eq:type-affine}, injectivity of each form makes each value occur at most
+twice. Let $k_t\in\{0,1,2\}$ be the number of terms containing the unplanted atom $\epsilon_t$.
+Changing it has influence $c_t\le2k_t$, and $\sum_tk_t\le2|I|$.
+Since $k_t^2\le2k_t$,
+\begin{equation}\label{eq:c-unplanted-influence}
+ \sum_t c_t^2\le4\sum_tk_t^2\le8\sum_tk_t\le16|I|\le16Y.
+\end{equation}
+At scale $j$, each $u_{j,p}$ affects at most $3T_j$ values, with influence
+at most $12T_j$, and there are at most $T_j$ such atoms. Each $v_{j,q}$ has influence at most $4T_j$,
+with at most $3T_j$ atoms. The scale contributes at most
+$144T_j^3+48T_j^3=192T_j^3$.
+Only scales with $\mathcal C_j\cap[1,Y]\ne\varnothing$ contribute. For $Y\ge|h|$ these have
+$3T_j^2<Y+|h|\le2Y$, so $T_j<\sqrt Y$, also when $h<0$.
+Since $T_{j+1}\ge16T_j$,
+\begin{equation}\label{eq:c-influences}
+ \sum_{j:\mathcal C_j\cap[1,Y]\ne\varnothing}T_j^3\le2Y^{3/2},\qquad
+ \sum_i c_i^2\le16Y+384Y^{3/2}\le400Y^{3/2}.
+\end{equation}
+One-point means vanish. A two-point mean can be nonzero only where $an+b=cn+d$; distinct forms
+have at most one such parameter, so its modulus is at most $1$.
+
+At integer $Y$ there are at most $1000Y^6$ tests, including coefficients, intervals, positive and
+negative slopes and the value-range conditions. With deviation
+$\vartheta=100Y^{3/4}\sqrt{\log(2Y)}$, Lemma~\ref{lem:bounded-differences} gives each failure probability
+at most $2(2Y)^{-50}$ and union probability at most
+\begin{equation}\label{eq:c-affine-failure}
+ 2000Y^6(2Y)^{-50},\qquad
+ \sum_{Y\ge Y_h}2000Y^6(2Y)^{-50}<1
+\end{equation}
+for large enough $Y_h$. The countable union bound therefore leaves positive probability for an event
+where every test at every integer $Y\ge Y_h$ passes. On this event one may take $C_h=100$;
+finite initial ranges can be absorbed by enlarging the constant. This chooses a single infinite function.
+
+We can include the character means on the same probability space. For each fixed integer $A\ge1$ and
+integer $Y$, consider real and imaginary parts of $\sum_{n\le z}f(n)\chi(n)$, for all $q\le Y^A$,
+$\chi\bmod q$ and $z\le Y$. There are at most $2Y^{2A+1}$ tests, since $\varphi(q)\le q$.
+Their means are zero and their squared influence is still at most $400Y^{3/2}$.
+Use threshold
+\begin{equation}\label{eq:c-character-failure}
+ \vartheta_A=100(A+1)Y^{3/4}\sqrt{\log(2Y)},\qquad
+ \Prob(\text{a character test fails at }Y)
+ \le4Y^{2A+1}(2Y)^{-50(A+1)^2}.
+\end{equation}
+For each $A$ the sum over $Y$ converges. The probability of infinitely many failures is at most every
+such series tail and hence zero. Intersect these probability-one events over positive integers $A$,
+and then intersect with the positive-probability affine event; the resulting event still has positive
+probability. Fix a realisation in it. Real and imaginary bounds control the modulus, finite initial
+ranges are absorbed in the constant, and $Y=\lceil x\rceil$, $z=\lfloor x\rfloor$ and upper integer
+rounding of $A$ give
+\begin{equation}\label{eq:c-character}
+ \sum_{n\le x}f(n)\chi(n)\ll_{h,A}x^{3/4}\sqrt{\log(2x)},\qquad q\le x^A.
+\end{equation}
+This is a bound for one-point sums only.
+
+Put
+\begin{equation}\label{eq:c-rectangles}
+ A_j=(T_j,2T_j]\cap\Z,\quad B_j=(3T_j,6T_j]\cap\Z,\quad K_j(m,\ell)=f(m\ell+h).
+\end{equation}
+On the prime subrectangle $\mathcal P_j\times\mathcal Q_j$, the matrix is exactly $uv^{\mathsf T}$.
+Test with $\alpha_p=u_{j,p}/\sqrt{|\mathcal P_j|}$ and
+$\beta_q=v_{j,q}/\sqrt{|\mathcal Q_j|}$, supported on these coordinates, to obtain
+\begin{equation}\label{eq:c-rank-one}
+ \left|\sum_{m,\ell}\alpha_m\beta_\ell f(m\ell+h)\right|
+ =\sqrt{|\mathcal P_j||\mathcal Q_j|},\qquad
+ |\mathcal P_j|\sim T_j/\log T_j,\quad |\mathcal Q_j|\sim3T_j/\log T_j.
+\end{equation}
+The prime number theorem gives the last two comparisons and proves \eqref{eq:type-large}.
+Here $M=|A_j|$ and $N=|B_j|$, the products $m\ell$ have size $X\asymp T_j^2$, and $MN\asymp X$.
+The ratio of the lower bound to the target $\sqrt{MN}(\log X)^{-3/2-\kappa}$, for any fixed $\kappa>0$,
+tends to infinity like at least a positive multiple of
+$(\log T_j)^{1/2+\kappa}$. By \eqref{eq:c-norm-comparison}, the whole matrix also has
+\begin{equation}\label{eq:c-box-lower}
+ E(K_j)\gg_h T_j^4/(\log T_j)^4.
+\end{equation}
+This exceeds the fourth-moment target $(|A_j||B_j|)^2(\log X)^{-6-\kappa}$ by a factor at least a positive
+multiple of $(\log T_j)^{2+\kappa}$.
+
+For \eqref{eq:type-one}, $qn+r\le q(L+1)\le2L^{1+\tau}$.
+Use $Y=\lceil2L^{1+\tau}\rceil$ to get
+$O_{h,\tau}(L^{3(1+\tau)/4}\sqrt{\log(2L)})$. The exponent difference is
+\begin{equation}\label{eq:c-type-one-exponents}
+ \frac{15+7\tau}{16}-\frac{3+3\tau}{4}=\frac{3-5\tau}{16}>0\qquad(0\le\tau<1/7),
+\end{equation}
+so the logarithm is absorbed uniformly in $q,r$.
+Fixed affine pairs use ambient $Y$ a fixed multiple of $L$ and give
+$O_{h,a,b,c,d}(L^{3/4}\sqrt{\log(2L)})$.
+Reflection uses $(a,b,c,d)=(1,0,-1,N)$, $Y=N$ and $I=[1,N-1]$, giving
+$O_h(N^{3/4}\sqrt{\log(2N)})$ for every sufficiently large $N$.
+
+Finally choose $T_0\ge20$ and use $pq+1$ on even scales and $pq+2$ on odd scales.
+Their numerical supports remain disjoint, each within-scale prescription is unique, and distinct
+values remain pairwise orthogonal. Since $|h_j|\le2$, the same influence budget, test count and
+positive-probability event apply. Each shift has infinitely many of its own scales, and the character
+probability-one intersection is unchanged. Thus one $f$ has both asserted families of lower bounds,
+on alternating scales.
+\end{proof}
+
+\begin{remark}[A dyadic product window]\label{rem:c-dyadic}
+The original rectangles have products in $(3T_j^2,12T_j^2]$.
+The same realisation also has the operator lower bound on
+\begin{equation}\label{eq:c-dyadic-rectangle}
+ A'_j=(T_j,11T_j/10]\cap\Z,\qquad B'_j=(3T_j,33T_j/10]\cap\Z,
+ \qquad X_j=3T_j^2.
+\end{equation}
+Their products lie in $(3T_j^2,363T_j^2/100]\subset(X_j,2X_j]$.
+The prime number theorem gives
+\begin{equation}\label{eq:c-dyadic-primes}
+ |\mathcal P_j\cap A'_j|\sim\frac{T_j}{10\log T_j},\qquad
+ |\mathcal Q_j\cap B'_j|\sim\frac{3T_j}{10\log T_j}.
+\end{equation}
+The planted submatrix on these prime sets is still $uv^{\mathsf T}$. The same supported unit-vector
+test as in \eqref{eq:c-rank-one} therefore yields, with a different positive constant,
+\begin{equation}\label{eq:c-dyadic-norm}
+ \|(f(m\ell+h))_{A'_j\times B'_j}\|_\op
+ \ge\sqrt{|\mathcal P_j\cap A'_j|\,|\mathcal Q_j\cap B'_j|}
+ \gg_h\frac{T_j}{\log T_j}
+ \asymp\frac{\sqrt{|A'_j||B'_j|}}{\log X_j}.
+\end{equation}
+This restriction also applies separately on each of the alternating $h=1,2$ scales and requires no
+additional probabilistic event.
+\end{remark}
+
+\begin{proposition}[Additional bounds for the same sequence]\label{prop:c-extra}
+For fixed $0\le\theta<1/3$, uniformly in $1\le a\ne b\le L^\theta$,
+\begin{equation}\label{eq:c-growing-coefficients}
+ \sum_{m\le L}f(am+h)f(bm+h)
+ \ll_{h,\theta}L^{1-(1-3\theta)/4}\sqrt{\log(2L)}.
+\end{equation}
+For fixed $0<\epsilon<1/4$ and integer $Y\ge Y_h$,
+\begin{equation}\label{eq:c-small-residue}
+ \sum_{q\le Y^{1/4-\epsilon}}\max_{r\bmod q}\max_{z\le Y}
+ \left|\sum_{\substack{1\le n\le z\\n\equiv r\ (q)}}f(n)\right|
+ \ll_h Y^{1-\epsilon}\sqrt{\log(2Y)}.
+\end{equation}
+The latter holds for fixed translates too, after omitting nonpositive arguments.
+\end{proposition}
+\begin{proof}
+For \eqref{eq:c-growing-coefficients}, take
+$Y=\lceil2L^{1+\theta}+2|h|+2\rceil$ in the two-point affine bound. Its right side is
+$O_h(L^{3(1+\theta)/4}\sqrt{\log(2L)})$ and the possible one-parameter collision is absorbed.
+When $h<0$ only a fixed $O_h(1)$ initial segment has nonpositive arguments.
+
+For \eqref{eq:c-small-residue} choose $1\le r\le q$ and write the progression as
+$qk+(r-q)$ for $1\le k\le\lfloor(z-r)/q\rfloor+1$, with empty intervals interpreted as zero.
+The coefficients and range satisfy the affine hypotheses, so each maximum is at most
+$C_hY^{3/4}\sqrt{\log(2Y)}$. Multiply by at most $Y^{1/4-\epsilon}$ moduli.
+For fixed translates replace ambient $Y$ by $Y+2|h|+2$ and delete a fixed initial segment;
+its cumulative cost $O_h(Y^{1/4-\epsilon})$ is absorbed.
+In particular $\epsilon=1/20$ gives level $Y^{1/5}$ and error
+$O_h(Y^{19/20}\sqrt{\log Y})$.
+\end{proof}
+\begin{remark}[The prime subblock and multiplicativity]\label{rem:c-sharpness}
+For any matrix supported on $P\times Q$ with entries of modulus at most one,
+\begin{equation}\label{eq:c-subblock-sharp}
+ \|A\|_\op\le\|A\|_{\Frob}\le\sqrt{|P||Q|}.
+\end{equation}
+For a unit vector, rowwise Cauchy--Schwarz proves the bound; $A_{pq}=u_pv_q$ attains equality.
+Thus the prime subblock above has exactly this norm and relative scale $1/\log X$.
+Boundedness alone on that subblock cannot improve its cost to $o(\sqrt{MN}/\log X)$.
+This does not give an optimal global operator upper bound for every sequence satisfying the affine estimates.
+
+For every fixed integer $d\ge2$, use the distinct forms $dn,n$, ambient $\lceil dT\rceil$, to get
+\begin{equation}\label{eq:c-nonmultiplicative}
+\begin{gathered}
+ \sum_{n\le T}f(dn)f(n)=O_d(T^{3/4}\sqrt{\log(2T)}),\\
+ \#\{n\le T:f(dn)=s f(n)\}
+ =\tfrac12T+O_d(T^{3/4}\sqrt{\log(2T)})\qquad(s\in\{\pm1\}).
+\end{gathered}
+\end{equation}
+The second formula follows from the indicator $(1+s f(dn)f(n))/2$.
+At every fixed prime the relation $f(pn)=f(p)f(n)$ thus fails on asymptotically half the parameters;
+the Liouville relation $\lambda(pn)=-\lambda(n)$ would hold at every parameter.
+For a single shift $h$, every $p+h$ with $p$ prime lies outside the prescribed sets, since
+$p+h=rs+h$ would force $p=rs$. These positions carry independent $\epsilon$ signs, and both signs occur
+infinitely often almost surely. In the alternating $h=1,2$ construction cross-shift cores are excluded
+by parity ($rs\pm1$ is even and larger than $2$), so the same countable probability-one event can be
+included without changing the lower bounds.
+\end{remark}
+\begin{corollary}[Scope of the Type II premises]\label{cor:c-scope}
+The numerical properties in Theorem~\ref{thm:type-model} and Proposition~\ref{prop:c-extra}, together
+with finite algebra, norm inequalities, prime counting and sieve operations on the indices, do not imply
+for arbitrary sign sequences the operator target $\sqrt{MN}(\log X)^{-3/2-\kappa}$ for fixed
+$\kappa>0$.
+\end{corollary}
+\begin{proof}
+The single sequence just constructed satisfies these premises and $K(m,\ell)=f(m\ell+h)$,
+but violates the target on infinitely many specified rectangles by \eqref{eq:type-large}.
+An argument valid for arbitrary bounded sign sequences must apply to it. No assertion that
+$pq+h$ is prime enters the construction; the primes are row and column indices.
+\end{proof}
+
+\section{Exact separated-variable substitutions}\label{sec:pieces}
+We consider \eqref{eq:separated} on Cartesian pieces, with separate row and column maps and nonzero
+rational weights; no affine or monotonicity assumption is made on the maps.
+The output-height condition will be imposed only when the integer piece-count bound is deduced.
+\begin{proposition}[Constant multipliers]\label{prop:c-constant}
+Let $A,B$ be finite sets of distinct rational numbers of sizes $r,s\ge1$, let
+$d\in\Q\setminus\{0,1\}$ and $h\ne0$, and let $F,G$ be rational-valued functions.
+The matching graph
+\begin{equation}\label{eq:c-constant-graph}
+ \mathcal E=\{(x,y):F(x)G(y)+h=d(xy+h)\}
+\end{equation}
+is $K_{2,2}$-free, and its edge count satisfies
+\begin{equation}\label{eq:c-constant-edges}
+ |\mathcal E|\le\min(r+s\sqrt r,s+r\sqrt s).
+\end{equation}
+A Cartesian covering by such nonempty pieces requires at least $\min(r,s)$ pieces; with rational
+outputs this is attained. For arbitrary masks covering density $\rho$, the consequence is only
+\begin{equation}\label{eq:c-mask-count}
+ Q\ge\frac{\rho rs}{\min(r+s\sqrt r,s+r\sqrt s)}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Write $c=(d-1)h\ne0$. For distinct row and column pairs,
+\begin{equation}\label{eq:c-constant-minor}
+ (dx_1y_1+c)(dx_2y_2+c)-(dx_1y_2+c)(dx_2y_1+c)
+ =dc(x_1-x_2)(y_1-y_2)\ne0.
+\end{equation}
+The corresponding minor of $F(x)G(y)$ is zero, excluding all four matching edges.
+For row degrees $t_x$ and $e=|\mathcal E|$,
+\begin{equation}\label{eq:c-degree-count}
+ \sum_x\binom{t_x}{2}\le\binom s2,\qquad
+ \frac{e^2/r-e}{2}\le\frac{s(s-1)}2,\qquad
+ e\le\frac{r+\sqrt{r^2+4rs(s-1)}}2\le r+s\sqrt r.
+\end{equation}
+Interchange the two sides. A Cartesian piece has a singleton side, hence at most $\max(r,s)$ points.
+Counting gives $\min(r,s)$ pieces, attained by rows with
+$F(x_0)=1$, $G(y)=dx_0y+c$, or by columns.
+For masks each graph has at most the displayed edge count and the union bound gives \eqref{eq:c-mask-count}.
+\end{proof}
+\begin{proof}[Proof of the classification in Theorem~\ref{thm:pieces}]
+The $2\times2$ minor of $(xy+h)$ is $h(x_1-x_2)(y_1-y_2)\ne0$.
+In \eqref{eq:separated} the same minor of the right side is
+$R(x_1)R(x_2)S(y_1)S(y_2)\,h(x_1-x_2)(y_1-y_2)\ne0$, since the weights are nonzero, and the
+corresponding minor of the left side is $h(U(x_1)-U(x_2))(V(y_1)-V(y_2))$.
+Hence this product is nonzero and $U,V$ are injective.
+Divide the identity by $R(x)S(y)$:
+\begin{equation}\label{eq:c-rank-decomposition}
+ \frac{U(x)}{R(x)}\frac{V(y)}{S(y)}+\frac1{R(x)}\frac h{S(y)}=xy+h.
+\end{equation}
+For distinct $y_1,y_2$ the vectors $(V(y)/S(y),h/S(y))$, $y=y_1,y_2$, are independent: their
+determinant is $h(V(y_1)-V(y_2))/(S(y_1)S(y_2))\ne0$ by injectivity of $V$.
+Solving this linear system gives rational $a,b,c,d$ with
+\begin{equation}\label{eq:c-linear-rows}
+ U(x)/R(x)=ax+b,\qquad1/R(x)=cx+d,\qquad\Delta=ad-bc\ne0.
+\end{equation}
+The two row functions are independent because the matrix has rank two.
+Compare the coefficient and constant for two distinct $x$:
+\begin{equation}\label{eq:c-linear-columns}
+ aV(y)+hc=S(y)y,\qquad bV(y)+hd=hS(y),\qquad
+ (ha-by)V(y)=h(dy-hc).
+\end{equation}
+If $ha-by=0$, the other side vanishes too, forcing $ad=bc$.
+Therefore denominators are nonzero, $S(y)=h\Delta/(ha-by)$, and \eqref{eq:moebius} follows.
+The converse is the expansion
+\begin{equation}\label{eq:c-moebius-identity}
+ (ax+b)h(dy-hc)+h(cx+d)(ha-by)=h\Delta(xy+h).
+\end{equation}
+Divide by the two denominators and factor the resulting weight into row and column functions.
+\end{proof}
+\begin{remark}\label{rem:c-rational-shift}
+Nonconstant rational substitutions do exist. The parameters $a=d=1,c=0,b=t$ give
+\begin{equation}\label{eq:c-rational-shift}
+ U(x)=x+t,\qquad V(y)=\frac{hy}{h-ty},\qquad R(x)S(y)=\frac h{h-ty}
+\end{equation}
+where the denominator is nonzero. Integer outputs are essential for the next bound.
+\end{remark}
+\begin{lemma}[Integer outputs]\label{lem:c-integer}
+Scale $a,b,c,d$ to integers with $\Delta\ne0$, and suppose integer $h\ne0$.
+If $c\ne0$, at most $2\tau(|\Delta|)$ integer $x$ have $U(x)\in\Z$.
+If $b\ne0$, at most $2\tau(|h^2\Delta|)$ integer $y$ have $V(y)\in\Z$.
+If $b=c=0$, the substitution preserves products:
+\begin{equation}\label{eq:c-preserved}
+ U(x)=(a/d)x,\quad V(y)=(d/a)y,\quad U(x)V(y)=xy,\quad R(x)S(y)=1.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For integer outputs $u,v$, direct multiplication gives
+\begin{equation}\label{eq:c-divisor-identities}
+ (cx+d)(cu-a)=-\Delta,\qquad(ha-by)(bv+hd)=h^2\Delta.
+\end{equation}
+The nonzero denominators are signed divisors of these fixed integers; there are twice the positive
+ divisor counts, and nonconstant denominators are injective functions of the integer input.
+If $b=c=0$, $ad\ne0$, and substitution gives \eqref{eq:c-preserved}.
+For later use, for every $\epsilon>0$ there is $C_\epsilon$ with
+$\tau(n)\le C_\epsilon n^\epsilon$ for all positive integers. Indeed for
+$p\ge2^{1/\epsilon}$, $k+1\le2^k\le p^{\epsilon k}$; for each of the finitely many smaller primes
+$\sup_{k\ge0}(k+1)p^{-\epsilon k}<\infty$. Multiply those finite constants and then the prime-power
+bounds.
+\end{proof}
+\begin{proof}[Proof of the integer piece-count assertions of Theorem~\ref{thm:pieces}]
+If a side has at most two elements, take $K\ge2$. Otherwise each side has at least three, so apply the
+classification. Choose distinct $x_i\in A$, $i=1,2,3$, with distinct integer $u_i=U(x_i)$.
+Their equations are
+\begin{equation}\label{eq:c-reconstruction}
+ ax_i+b-cx_iu_i-du_i=0\quad(i=1,2,3).
+\end{equation}
+The $3\times4$ integer coefficient matrix has rank three. If its rational kernel had dimension at least
+two, perturb the known nondegenerate vector $v$ by $tw$ along an independent kernel vector.
+Avoid the at most two zeros of its determinant and the finitely many values making one of the three
+denominators zero, and choose nonzero rational $t$.
+The two distinct nondegenerate M\"obius functions would have the same values at three distinct $x_i$.
+Their cross-multiplied quadratic has three roots and is identically zero. Unique factorisation of the
+coprime linear numerators and denominators, including constant denominators, forces proportional
+coefficient vectors, contradicting the perturbation.
+
+The signed $3\times3$ minors give an integer kernel vector; divide by its common gcd.
+Each matrix entry has modulus at most $X^{C+1}$ and each minor is a sum of six triple products, so
+\begin{equation}\label{eq:c-height}
+ \max(|a|,|b|,|c|,|d|)\le6X^{3C+3},\qquad0<|\Delta|\le72X^{6C+6}.
+\end{equation}
+The kernel is one-dimensional, so this representative defines the same map on all of $A$ and the
+column map is unchanged by common scaling. If $b=c=0$ the piece preserves products.
+Otherwise Lemma~\ref{lem:c-integer}, with $\epsilon=\eta/(6C+6)$, gives
+\begin{equation}\label{eq:c-small-side}
+ \min(|A|,|B|)\le2C_\epsilon\max(72,72h^2)^\epsilon X^\eta.
+\end{equation}
+Take $K$ the maximum of this constant and $2$; it depends only on $h,C,\eta$.
+Every piece that does not preserve products has at most $KX^\eta\max(r,s)$ points.
+The union of $Q$ pieces has at most their total size, even with overlaps, proving \eqref{eq:piece-count}.
+For $r,s\ge X^\delta$ and any fixed $\eta>0$, $Q\ge\rho X^{\delta-\eta}/K$;
+in particular $Q=X^{o(1)}$ cannot cover fixed positive density (take $\eta=\delta/2$).
+
+For the upper construction, take one row at a time and set
+\begin{equation}\label{eq:c-row-construction}
+ U(x_0)=1,\quad V(y)=2x_0y+h,\quad R(x_0)=2,\quad S(y)=1.
+\end{equation}
+Then $UV+h=2(x_0y+h)$. If $h<0$, $x_0y>-h$ gives $2x_0y+h>x_0y>0$; positivity for $h\ge0$
+is immediate. For fixed $h$ and sufficiently large $X$, $V\le2X^2+|h|\le X^3$.
+Moreover $UV-xy=xy+h>0$, so this piece does not preserve products. Rows give $r$ pieces and columns
+ give $s$. For $r,s\asymp X^\delta$ the lower bound for every fixed $\eta$ matches this upper bound
+in the exponent. The upper construction is asserted with output exponent $3$, rather than for every
+prescribed smaller $C$.
+\end{proof}
+
+\section{Nonnegative divisor weights}\label{sec:weights}
+Expectations in the positive-weight results of this section are in the independent divisibility law:
+at each $p$ the valuation $V_p$ has distribution $(1-1/p)p^{-k}$, $k\ge0$, and any residue coordinates
+are independent Haar coordinates. They are not averages on a finite interval of integers.
+\subsection{The squarefree weight with coefficient 16}
+\begin{proposition}[A specified root second moment]\label{prop:d-squarefree}
+Fix even $h\ge2$. Let $\mathcal Q$ consist of primes at most $e^L$ that are not $1\pmod5$ and do not
+divide $h$. On squarefree products of $\mathcal Q$ put $a(u)=16^{\omega(u)}$; set
+\begin{equation}\label{eq:d-squarefree-data}
+ w(n)=17^{\omega_{\mathcal Q}(n)},\qquad S=\prod_{p\in\mathcal Q}(1+16/p).
+\end{equation}
+Let $d$ be a centre label with $\log d\le2L$ and take $0<\eta\le1$.
+Use bins with $j\eta\le100L$, $\omega(u)\le100\log L$ and
+$j\eta\le\log(du)<(j+1)\eta$.
+Add an independent uniform coordinate modulo a prime $v>e^{101L}$, $v\nmid hd$, and set
+\begin{equation}\label{eq:d-squarefree-rho}
+ \rho_{j,v}(n,d)=\frac1{w(n)}
+ \sum_{\substack{u\mid n,\ u\in\mathcal Q^{\sfw}\\
+ \omega(u)\le100\log L,\ j\eta\le\log(du)<(j+1)\eta}}
+ 16^{\omega(u)}\ind_{v\mid n+hdu}.
+\end{equation}
+Then, for large $L$,
+\begin{equation}\label{eq:d-squarefree-moment}
+ \E\left[w\sum_j\rho_{j,v}^2\right]\gg_h(S/v)L^{-24/17}.
+\end{equation}
+All unequal-padding off-diagonal terms vanish. An upper bound
+$S(v^2L)^{-1}(\log L)^\beta$, with fixed constants, requires
+$v\ll_h L^{7/17}(\log L)^\beta$.
+\end{proposition}
+\begin{proof}
+Given the $\mathcal Q$ configuration, choose two padding divisors independently with probabilities
+$16^{\omega(u)}/w$. The bins have $u_i\le e^{101L}$.
+Two target conditions require $v\mid hd(u_1-u_2)$; since $(v,hd)=1$, distinct such labels are
+incompatible. Equal labels have target probability $1/v$.
+Under the $w$-tilted law the equality probability is
+\begin{equation}\label{eq:d-squarefree-collision}
+ D_{\mathcal Q}=\prod_{p\in\mathcal Q}\left(1-\frac{32}{17(p+16)}\right)\asymp_h L^{-24/17}.
+\end{equation}
+The prime harmonic density of the three classes other than $1\pmod5$ is $3/4$ by the fixed-modulus
+prime number theorem; multiplying it by $32/17$ gives $24/17$.
+Conditional on equality, the label includes each prime independently with probability
+\begin{equation}\label{eq:d-squarefree-eligible}
+ \frac{256}{17p+240}\le\frac{16}p,\qquad
+ \E\log u\le17L,\qquad\E\omega(u)\le17\log L
+\end{equation}
+for large $L$. Markov discards at most $17/98+17/100<1/2$ of this mass when imposing
+$\log u\le98L$ and $\omega(u)\le100\log L$. These labels lie in the bins since $\log d\le2L$.
+Their fixed positive fraction gives \eqref{eq:d-squarefree-moment}. Comparing the bounds forces
+$v\ll_h L^{7/17}(\log L)^\beta$, which fails at $v=X^\theta$, $X=\exp(L^{625})$, fixed $\theta>0$.
+An additional source condition $u_0\mid n$ on a separate uniform coordinate multiplies both moments
+by $1/u_0$ only when $(u_0,v\prod_{p\in\mathcal Q}p)=1$; no such factorisation is asserted with overlap.
+\end{proof}
+
+\subsection{Arbitrary positive prime-power coefficients}
+\begin{lemma}[Full collision law]\label{lem:d-full-collision}
+Let $\mathcal P$ be a finite set of primes at most $Y\ge2$. For each prime take finitely supported
+$a_{p,k}\ge0$, with $a_{p,0}=1$, and extend multiplicatively to $a(u)$ supported on
+$\mathcal P$-smooth integers. Put
+\begin{equation}\label{eq:d-general-data}
+ w(n)=\sum_{u\mid n}a(u),\qquad S=\E w=\sum_u a(u)/u,\qquad
+ q_n(u)=a(u)\ind_{u\mid n}/w(n).
+\end{equation}
+Tilt by $w/S$, denoting this law by $\Prob^*,\E^*$, and choose two divisors independently using
+$q_n$. There is an absolute constant $c>0$, uniform in all coefficients and supports, with
+\begin{equation}\label{eq:d-full-collision}
+ \Prob^*(U_1=U_2)\ge c/(\log(2Y))^2.
+\end{equation}
+\end{lemma}
+\begin{proof}
+At one prime write $t=1/p$, $a_k=a_{p,k}$, $w_v=\sum_{k\le v}a_k$ and $S_p=\sum_k a_kt^k$.
+The local diagonal is
+\begin{equation}\label{eq:d-local-diagonal}
+ D_p=S_p^{-1}\sum_{v\ge0}(1-t)t^v\frac{\sum_{k\le v}a_k^2}{w_v}.
+\end{equation}
+For unequal exponents $i<j$, use $w_v\ge w_j$ and sum $v\ge j$ to get
+\begin{equation}\label{eq:d-off-diagonal}
+ 1-D_p\le\frac2{S_p}\sum_{j\ge1}a_j\frac{w_{j-1}}{w_j}p^{-j}
+ \le\frac2{S_p}\sum_{j\ge1}w_{j-1}p^{-j}=\frac2{p-1}.
+\end{equation}
+The last equality exchanges nonnegative sums. For small primes use $b_k=a_kp^{-k}$ and
+$w_v\ge a_i+a_j\ge2\sqrt{a_ia_j}$. The probability that selected exponents differ by at least $R$ is at most
+\begin{equation}\label{eq:d-exponent-gap}
+ \frac1{S_p}\sum_{\ell\ge R}p^{-\ell/2}\sum_{i\ge0}\sqrt{b_ib_{i+\ell}}
+ \le\frac{p^{-R/2}}{1-p^{-1/2}}.
+\end{equation}
+Each inner sum is at most $S_p$ by Cauchy--Schwarz. For $R=8$ and $p\ge2$ the upper bound is at most
+$1/(16(1-1/\sqrt2))<1/4$. For a probability vector $q$,
+\begin{equation}\label{eq:d-near-diagonals}
+ \sum_{|i-j|<8}q_iq_j\le15\sum_iq_i^2.
+\end{equation}
+Each of the fifteen diagonals is bounded by the right diagonal via Cauchy--Schwarz.
+Condition on the valuation and average in the tilted law; this proves $D_p\ge1/20$ for every prime,
+including $2,3$. Independence and multiplicative coefficients factor the tilted law and both choices,
+so equality is equality at every prime and
+\begin{equation}\label{eq:d-collision-product}
+ \Prob^*(U_1=U_2)=\prod_{p\in\mathcal P}D_p
+ \ge c_1\prod_{5\le p\le Y}\left(1-\frac2{p-1}\right).
+\end{equation}
+Its logarithm is $-2\sum_{p\le Y}1/p+O(1)$, since the errors are summable.
+Mertens' prime harmonic estimate proves \eqref{eq:d-full-collision}.
+\end{proof}
+\begin{corollary}[Full-support root consequence]\label{cor:d-full-root}
+If all supported labels are at most $U$, are included in bins, and a new prime $v>U$ is coprime to
+$hd$ and $\mathcal P$, then the target $v\mid n+hdu$ gives
+\begin{equation}\label{eq:d-full-root}
+ \E[w\sum_j\rho_{j,v}^2]\ge\frac{cS}{v(\log(2Y))^2}.
+\end{equation}
+For $Y=e^L$, the upper normalisation $S(v^2L)^{-1}(\log L)^\beta$ forces
+$v\le CL(\log L)^\beta$. This full-support bound is not being transferred to arbitrary truncations.
+\end{corollary}
+\begin{proof}
+Unequal labels have incompatible target residues; equal labels have target probability $1/v$.
+Use Lemma~\ref{lem:d-full-collision} and compare the two bounds.
+\end{proof}
+
+\begin{lemma}[Deterministic retained labels]\label{lem:d-truncated}
+In Lemma~\ref{lem:d-full-collision}, let $E$ be any supported-label subset with
+$\sum_{u\in E}a(u)/u\ge\delta S$, $0<\delta\le1$ fixed. Uniformly in the coefficients, supports and $E$,
+\begin{equation}\label{eq:d-truncated-collision}
+ \Prob^*(U_1=U_2\in E)
+ \ge\delta\exp\{-(2\log\log(2Y)+C)/\delta\}
+ \gg_\delta(\log(2Y))^{-2/\delta}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The tilting factor cancels the choice denominator, so the divisor marginal is
+\begin{equation}\label{eq:d-raw-marginal}
+ \pi(u)=\Prob^*(U_1=u)=a(u)/(uS).
+\end{equation}
+It and the joint two-choice law factor over primes. At one prime the conditional collision probability
+for a selected exponent $k$ with $a_k>0$ satisfies
+\begin{equation}\label{eq:d-conditional-collision}
+ \phi_p(k)=a_kp^k\sum_{v\ge k}(1-1/p)p^{-v}/w_v
+ \ge(1-1/p)a_k/w_k.
+\end{equation}
+Averaging its negative logarithm in $b_k/S_p$ gives
+\begin{equation}\label{eq:d-collision-log}
+\begin{aligned}
+ \sum_k\frac{b_k}{S_p}\log\frac1{\phi_p(k)}
+ &\le-\log(1-1/p)+\frac1{S_p}\sum_{k\ge1}a_kp^{-k}\log(1+w_{k-1}/a_k)\\
+ &\le-\log(1-1/p)+\frac1{p-1}.
+\end{aligned}
+\end{equation}
+Zero coefficients have zero probability and are omitted. The last inequality uses
+$\log(1+x)\le x$ and the nonnegative-sum identity in \eqref{eq:d-off-diagonal}.
+For $\phi(u)=\Prob^*(U_2=u\mid U_1=u)$, factorisation gives
+\begin{equation}\label{eq:d-harmonic-entropy}
+ \E_\pi\log(1/\phi(u))\le
+ \sum_{p\in\mathcal P}\{-\log(1-1/p)+1/(p-1)\}
+ \le2\log\log(2Y)+C=:H_Y.
+\end{equation}
+The prime harmonic estimate and summable $O(p^{-2})$ error prove the last bound, treating $2$ separately.
+If $e=\pi(E)\ge\delta$, the conditional mean of the nonnegative logarithm is at most $H_Y/e$.
+Jensen gives
+\begin{equation}\label{eq:d-truncated-jensen}
+ \Prob^*(U_1=U_2\in E)=e\E_\pi[\phi\mid E]
+ \ge e e^{-H_Y/e}\ge\delta e^{-H_Y/\delta},
+\end{equation}
+since $e e^{-H_Y/e}$ is increasing for $e>0$. This proves the lemma.
+\end{proof}
+\begin{corollary}[Retained-bin root consequence]\label{cor:d-truncated-root}
+Add an independent uniform coordinate at a prime $v\notin\mathcal P$ and assign each label in $E$
+to one bin. For fixed $h,d$ put
+\begin{equation}\label{eq:d-truncated-rho}
+ \rho_{j,v}(n)=w(n)^{-1}\sum_{\substack{u\in E_j\\u\mid n}}a(u)\ind_{v\mid n+hdu}.
+\end{equation}
+Then
+\begin{equation}\label{eq:d-truncated-root}
+ \E[w\sum_j\rho_{j,v}^2]\ge\frac Sv\Prob^*(U_1=U_2\in E)
+ \gg_\delta\frac{S}{v(\log(2Y))^{2/\delta}}.
+\end{equation}
+At $Y=e^L$, \eqref{eq:positive-required} requires
+\begin{equation}\label{eq:d-truncated-v}
+ v\ll_{\delta,C}L^{2/\delta-1}(\log L)^\beta.
+\end{equation}
+It fails for $v=X^\theta$, $X=\exp(L^A)$, with fixed $\theta,A>0$.
+\end{corollary}
+\begin{proof}
+Keep only the nonnegative diagonal terms. For a fixed label the target has probability $1/v$ in its
+independent coordinate; no off-diagonal congruence assumption is needed.
+Apply Lemma~\ref{lem:d-truncated} and compare bounds.
+\end{proof}
+
+\subsection{Cofactor entropy and vertex-dependent retention}
+\begin{lemma}[Cofactor entropy]\label{lem:d-cofactor}
+Let $a(u)\ge0$ have arbitrary finite support on $\mathcal P$-smooth integers, $a(1)>0$,
+without a multiplicativity assumption. Use $w,S,q_n$ of \eqref{eq:d-general-data}.
+If a measurable retained-edge indicator $B(n,u)$ has probability at least $\delta>0$ in the tilted
+and selected joint law, then
+\begin{equation}\label{eq:d-cofactor-bound}
+ \E^*\sum_u q_n(u)^2\ind_{B(n,u)}\ge\delta\exp(-H_{\mathcal P}/\delta),
+\end{equation}
+with $H_{\mathcal P}$ as in \eqref{eq:positive-v}.
+\end{lemma}
+\begin{proof}
+Write $K=(v_p(U))_{p\in\mathcal P}$ and $V=(v_p(n))_{p\in\mathcal P}$.
+Cancel the tilting and selection denominators. The joint probability at $V=K+J$ is
+\begin{equation}\label{eq:d-cofactor-law}
+ \Prob^*(U=u,V=K+J)=\frac{a(u)}{uS}
+ \prod_{p\in\mathcal P}(1-1/p)p^{-J_p},\qquad J_p\ge0.
+\end{equation}
+Thus $K$ has the harmonic marginal and the cofactor $J$ is an independent vector of geometric
+variables even when $a$ is not multiplicative. Given $V$, knowing $K$ is equivalent to knowing $J$.
+Since $q_n$ depends only on $V$,
+\begin{equation}\label{eq:d-cofactor-entropy}
+ \E^*\log(1/q_n(U))=H(K\mid V)=H(J\mid V)\le H(J)=H_{\mathcal P}.
+\end{equation}
+Unit coordinates do not alter the conditional divisor probabilities. The geometric entropy at $p$ is
+$-\log(1-1/p)+\log p/(p-1)$; summation gives the explicit formula and
+$H_{\mathcal P}\ll\log(2Y)$ from $\sum_{p\le Y}\log p/p=O(\log(2Y))$ and summable higher-order errors.
+The entropy inequality is the log-sum inequality, or nonnegativity of mutual information.
+All entropies are finite: $K$ has finite support and $J$ finite geometric entropy.
+
+The indicator may read additional independent unit coordinates. If its joint probability is
+$e\ge\delta$, the conditional mean of the nonnegative $\log(1/q_n(U))$ is at most $H_{\mathcal P}/e$.
+Jensen gives
+\begin{equation}\label{eq:d-cofactor-jensen}
+ \E^*[\ind_Bq_n(U)]\ge e e^{-H_{\mathcal P}/e}\ge\delta e^{-H_{\mathcal P}/\delta}.
+\end{equation}
+Conditioning on $n$ makes the left side exactly that of \eqref{eq:d-cofactor-bound}.
+\end{proof}
+\begin{proof}[Proof of Theorem~\ref{thm:positive}]
+For every $(n_{\mathcal P},u)$, before retention the target $v\mid n+hdu$ has probability $1/v$.
+Conditioning on it therefore preserves the joint law of $(n_{\mathcal P},u)$; the extra residue is
+forced by $u$. The original nonnegative logarithm still has mean at most $H_{\mathcal P}$ in this
+root-conditioned law. The mass condition \eqref{eq:positive-retention} says that retention has
+probability at least $\delta$ there. Repeat Jensen in that law and retain the diagonal terms of each
+nonnegative squared bin. Since each retained edge belongs to one bin, this gives
+\begin{equation}\label{eq:d-root-entropy}
+ \E[w\sum_j\rho_{j,v}^2]\ge\delta(S/v)e^{-H_{\mathcal P}/\delta}.
+\end{equation}
+No independence of $B$ is used. The $q_n$ are the original selection probabilities; they are not
+replaced by a probability renormalised after root conditioning or retention.
+Compare \eqref{eq:d-root-entropy} with \eqref{eq:positive-required} to get
+\eqref{eq:positive-v}. More generally it fails at $v=X^\theta$,
+$X=\exp(L^A)$, for fixed $A>1$ and $\theta>0$.
+\end{proof}
+
+\subsection{Local centring and a short inverse-convolution sum}
+\begin{proposition}[Local tilted centring]\label{prop:d-centring}
+Let $n$ be Haar-uniform in $\Z_p$, $v_p(a)=1$ and $0<r<1$. Set $B_r(n)=r^{v_p(n)}$.
+Then
+\begin{equation}\label{eq:d-local-t}
+ T_p(r):=\E[B_r(n)B_r(n+a)\mid p\mid n]=r^2\frac{p-2+r}{p-r},
+\end{equation}
+\begin{equation}\label{eq:d-local-centre}
+ \E[(\ind_{p\mid n}-1/p)B_r(n)B_r(n+a)]=\frac{p-1}{p^2}(T_p(r)-1)<0,
+ \qquad a_p(r)=\frac{T_p(r)}{p-1+T_p(r)}
+\end{equation}
+is the unique scalar replacing $1/p$ to make the expectation zero.
+For $C_c(n)=c^{\ind_{p\mid n}}$, $0<c<1$, the same formulas hold with $T_p(r)$ replaced by $c^2$.
+A single scalar depending only on $p,r$ does not centre both the first and second powers of the
+pair weight. The analogous assertion holds for $C_c$.
+\end{proposition}
+\begin{proof}
+Given $p\mid n$, write $n=pm$ and $a=pb$ with $b$ a unit.
+There are $p-2$ residue classes where both $m,m+b$ are units, and two where exactly one is divisible.
+For $j\ge1$ each valuation-tail probability is $(1-1/p)p^{-j}$, with disjoint events.
+Thus
+\begin{equation}\label{eq:d-local-geometric}
+ \E[r^{v_p(m)+v_p(m+b)}]
+ =1-2/p+2(1-1/p)\sum_{j\ge1}(r/p)^j=\frac{p-2+r}{p-r}.
+\end{equation}
+The two extracted factors give $r^2$. Outside $p\mid n$ both weights are one.
+Separating the two events gives the covariance. The full weighted mean is $(p-1+T)/p$ and its
+divisible part is $T/p$, whose ratio is the unique centre. For the Jordan local factor the divisible
+weight is $c^2$, including when $p=2$.
+The two expectations that would require a common scalar are
+\begin{equation}\label{eq:d-two-centres}
+ \E[(\ind_{p\mid n}-a_p)(B_r(n)B_r(n+a))^q]=0\qquad(q=1,2).
+\end{equation}
+For the second power the required centre is $a_p(r^2)$. On the divisible event the weight is strictly
+smaller, so $T_p(r^2)<T_p(r)$ and $T/(p-1+T)$ is strictly increasing.
+The Jordan centres are $c^2/(p-1+c^2)$ and $c^4/(p-1+c^4)$, also different.
+This proves only the scalar assertion; a centring depending on a whole word is outside it.
+\end{proof}
+\begin{remark}\label{rem:d-jordan-mask}
+A weight involving all primes reads the centre-prime coordinates as well as the other coordinates.
+The covariance in \eqref{eq:d-local-centre} therefore changes the original singleton centring.
+For Jordan weights with $\sigma=c/\log X$, $X=\exp(L^A)$ and $p\le e^L$,
+\begin{equation}\label{eq:d-small-jordan}
+ (1-p^{-\sigma})^2\le\sigma^2(\log p)^2\le c^2L^{2-2A}.
+\end{equation}
+For $A>1$, the centring correction has size comparable to $1/p$; dividing by the small raw divisible
+mass does not make it a small relative error.
+The balanced small-prime soft weight of \cite[Theorem~1.3]{Guo2026RoughPairsFixedDistance} reads only
+primes below the centre primes. Its argument does not justify replacing that mask by a full Jordan or
+full-$\Omega$ mask inside the operator while keeping the old centring.
+\end{remark}
+
+\begin{remark}[Analytic input for the short sum]\label{rem:analytic-input}
+The estimate in Proposition~\ref{prop:d-inverse} below, like Remark~\ref{rem:j-poles}, is relative to
+the zero-free half-plane $\Re s>7/8$ of OpenAI, family 003 \cite{OpenAI003}.
+Here are the short analytic deductions used. Put $a=7/8$.
+For every $\delta,\xi>0$, uniformly over all characters modulo $q$,
+\begin{equation}\label{eq:d-reciprocal}
+ |L(s,\chi)^{-1}|\ll_{\delta,\xi}\{q(|\Im s|+3)\}^{\xi}
+ \qquad(\Re s\ge a+\delta),
+\end{equation}
+with analytic value zero at a principal pole.
+It suffices to prove this for $0<\delta<1-a$.
+For a primitive nonprincipal character, partial summation of periodic partial sums bounded by $q$
+gives $|L(s,\chi)|\le q|s|/\Re s$ for $\Re s>0$.
+Choose the analytic logarithm $F(s)=\log L(s,\chi)$ in the simply connected zero-free half-plane,
+agreeing with the Euler logarithm on $\Re s>1$.
+Borel--Carath\'eodory on discs centred at $2+it$ with left edges $a+\delta/4,a+\delta/2$ gives
+$|F(a+\delta/2+it)|\ll_\delta\log(q(|t|+3))$, using the polynomial bound and $F(2+it)=O(1)$.
+On $b=1+\delta/2$ the Euler logarithm is $O_\delta(1)$.
+Apply three-lines to $F(s)\exp((s-it_0)^2/R^2)$, $R=q+|t_0|+3$; its finite boundary suprema give
+\begin{equation}\label{eq:d-log-bound}
+ |F(a+\delta+it_0)|\ll_\delta
+ \{\log(q(|t_0|+3))\}^{1-\delta/(2(1-a))}.
+\end{equation}
+Exponentiation, and $\exp(C(\log Q)^{1-c})\ll_{c,\xi}Q^\xi$, give \eqref{eq:d-reciprocal}; to the
+right of $b$ use the Euler product. For the primitive principal character use instead
+$Z(s)=\zeta(s)(s-1)/(s+1)$, analytic and nonzero including at $1$.
+The formula $\zeta(s)=s/(s-1)-s\int_1^\infty\{u\}u^{-s-1}du$ bounds $Z$ polynomially, and the same
+logarithm argument bounds both $Z$ and its reciprocal. Since $|(s-1)/(s+1)|\le1$ for $\Re s\ge0$,
+the reciprocal zeta bound follows. Imprimitive reciprocal Euler factors have logarithmic modulus at
+most $C_\delta\sum_{p\mid q}p^{-a-\delta}$.
+For any $\xi>0$ choose a fixed large $P$ so that $C_\delta p^{-a-\delta}\le\xi\log p$ for $p>P$;
+small primes cost a constant and $\sum_{p\mid q}\log p\le\log q$.
+Splitting the exponent margin gives the uniform imprimitive bound. Larger $\delta$ follow by weakening it.
+
+For Liouville the exact Euler series is
+\begin{equation}\label{eq:d-liouville-series}
+ \sum_{n\ge1}\lambda(n)\chi(n)n^{-s}=L(2s,\chi^2)/L(s,\chi)\qquad(\Re s>1).
+\end{equation}
+The numerator converges absolutely to the right of $a+\delta$, and its principal pole is at $1/2$,
+outside that region. Perron at height $Y^3$ and line $1+1/\log(2Y)$ has coefficient error
+$O(1+Y\log^2(2Y)/Y^3)$: bound the two nearest cutoff coefficients by one and sum
+$Y/(Y^3|n-Y|)$ for the others. Shift to $a+\delta$ and use \eqref{eq:d-reciprocal}; arbitrarily
+small exponent margins on the vertical and horizontal integrals give
+$\sum_{n\le Y}\lambda(n)\chi(n)\ll_\xi q^\xi Y^{7/8+\xi}$.
+For $n\equiv r\pmod q$, let $g=(r,q)$ and write $n=gm$, reducing to one unit class modulo $q/g$.
+Complete multiplicativity and character orthogonality (coefficient absolute sum one) give
+\begin{equation}\label{eq:d-analytic-ap}
+ \sum_{\substack{n\le Y\\n\equiv r\ (q)}}\lambda(n)\ll_\xi q^\xi Y^{7/8+\xi},
+ \qquad
+ \sum_{k\le Z}\lambda(qk+h)\ll_{h,\xi}q^\xi(qZ+h)^{7/8+\xi}.
+\end{equation}
+The last sum subtracts its fixed prefix through $h$; it includes nonunit residues.
+\end{remark}
+
+\begin{proposition}[Squarefree inverse and a short Type I sum]\label{prop:d-inverse}
+Fix $h\ge1$. For every $X\ge1$,
+\begin{equation}\label{eq:d-inverse-identity}
+ \sum_{md\le X}\lambda(m)\mu^2(d)\lambda(md+h)=\lambda(1+h).
+\end{equation}
+Relative to the zero-free input in Remark~\ref{rem:analytic-input}, for every $\epsilon>0$,
+uniformly for $1\le M\le X^{1/8}$,
+\begin{equation}\label{eq:d-short-type-one}
+ \left|\sum_{m\le M}\lambda(m)\sum_{d\le X/m}\mu^2(d)\lambda(md+h)\right|
+ \ll_{h,\epsilon}X^{15/16+\epsilon}M^{1/2}.
+\end{equation}
+With $C_h(X)=\sum_{n\le X}\lambda(n)\lambda(n+h)$ this gives
+\begin{equation}\label{eq:d-remaining-bilinear}
+ C_h(X)=-\sum_{M<m\le X/2}\lambda(m)
+ \sum_{2\le d\le X/m}\mu^2(d)\lambda(md+h)
+ +O_{h,\epsilon}(X^{15/16+\epsilon}M^{1/2}+M+1).
+\end{equation}
+No bound for the remaining bilinear sum is asserted.
+\end{proposition}
+\begin{proof}
+At $p^k$, $k\ge1$, the convolution coefficient is
+$\lambda(p^k)+\lambda(p^{k-1})=0$; at $1$ it is one. Thus
+$\lambda*\mu^2=\ind_{\{1\}}$ by multiplicativity. Summing its coefficient at $md$ against
+$\lambda(md+h)$ proves \eqref{eq:d-inverse-identity}. This uses the value $\lambda(p)=-1$ at every prime.
+For fixed $m$ expand $\mu^2(d)=\sum_{a^2\mid d}\mu(a)$, and choose
+$A=\max(1,\lfloor X^{1/16}m^{-1/2}\rfloor)$; the unfloored expression is at least one on the stated range.
+For $a\le A$, \eqref{eq:d-analytic-ap} with $q=ma^2\le X$, reducing its exponent margin if necessary,
+gives total $O_{h,\epsilon}(AX^{7/8+\epsilon})$.
+For $a>A$ the term-count bound is
+\begin{equation}\label{eq:d-squarefree-tail}
+ \sum_{a>A}\left\lfloor\frac X{ma^2}\right\rfloor\le\frac X{mA}.
+\end{equation}
+Both costs are $O_{h,\epsilon}(X^{15/16+\epsilon}m^{-1/2})$ by floor comparison.
+Sum over $m\le M$ using $\sum m^{-1/2}\le2\sqrt M$.
+Separate $d=1$ in \eqref{eq:d-inverse-identity} and then $m\le M$; the removed small-$m$ diagonal
+costs $O(M)$, and the remaining terms have $d\ge2$, $m\le X/2$.
+This proves \eqref{eq:d-remaining-bilinear}.
+For $M=X^\theta$, fixed $\theta<1/8$, \eqref{eq:d-short-type-one} saves a power with small enough
+$\epsilon$. At $M=X^{1/16}$ a log-squared saving for the displayed remaining sum would imply one for
+$C_h(X)$, but that additional bound is not proved. An absolute bound costs $O(X\log X)$; the balancing
+cutoff loses its saving for $m>X^{1/8}$. The exact hyperbolic identity itself does not supply an
+independent estimate for the isolated correlation.
+\end{proof}
+
+\subsection{Root spacing and the unchanged CRT comparison}
+\begin{proposition}[One-source geometry]\label{prop:d-spacing}
+Let $v$ be a positive integer and let an integer interval $I$ contain fewer than $v$ consecutive integers.
+A bipartite graph with source vertices $n\in I$, $v\mid n$, and arbitrary target vertices in $I$ has
+at most one source. On its nonzero component its weighted adjacency matrix and norm are
+\begin{equation}\label{eq:d-star}
+ A=\begin{pmatrix}0&c^*\\c&0\end{pmatrix},\qquad\|A\|_\op=\|c\|_2.
+\end{equation}
+For real coefficients the absolute pairing with source value one and arbitrary target signs can be
+$\sum_j|c_j|$. No assertion is made that Liouville attains those signs.
+\end{proposition}
+\begin{proof}
+There is at most one multiple of $v$ in $I$. Squaring the displayed matrix, or computing its two
+nonzero eigenvalues $\pm\|c\|_2$, gives the norm. Choose the sign of each real $c_j$ for the pairing.
+\end{proof}
+\begin{remark}[Scale comparison]\label{rem:d-crt}
+For fixed $C$ and $\theta>0$, $H\le e^{CL}$ and $v=X^\theta$, $X=e^{L^{625}}$, give
+\begin{equation}\label{eq:d-spacing}
+ H/v\le\exp(CL-\theta L^{625})\longrightarrow0.
+\end{equation}
+Thus root-source restrictions in these blocks have the one-source geometry, and do not enter a
+short-progression variance regime requiring $H/v\ge1$.
+Larger blocks $H\ge v$ remove this spacing issue.
+For the label supplies of \cite[Definition~2.6 and Proposition~2.7]{Guo2026RoughPairsFixedDistance},
+fix $W\ge10$, put $\alpha=1/(1200W)$ and $J=\lfloor\alpha\log L\rfloor$.
+Each supply has harmonic mass at least $W$ and primes at least $\exp(L^{.995})$, hence at least
+$W\exp(L^{.995})$ primes. If one keeps a finite comparison requiring uniform
+marginals for $2kJ$ selected centre coordinates, with $k\asymp\log v$, supplies of at least
+$W\exp(L^{.995})$ primes allow such selections. Every prime is at least $\exp(L^{.995})$, so their
+CRT modulus $D$ satisfies
+\begin{equation}\label{eq:d-crt-size}
+ \log D\ge2kJ L^{.995}\gg\log X.
+\end{equation}
+The unchanged full-coordinate CRT bound $D/|I|$ cannot be small on these coordinate sets at origin
+length $X$. This comparison uses only the supply and size bounds in the label construction of
+\cite[Definition~2.6 and Proposition~2.7]{Guo2026RoughPairsFixedDistance}.
+It does not say that every such set occurs in a nonzero closed word, or that a specialised event
+comparison or every longer-block analysis fails.
+\end{remark}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+\section*{Use of AI}
+The proofs and the text of this paper were produced with AI systems (GPT-6 Astra, GPT-6.1 Sol and Claude
+Opus~5.5) under the author's direction. They were checked by independent reviews with AI models. The author
+takes responsibility for the content.
+\end{document}
