@@ -77,7 +77,7 @@ conjecture, keeping the sieve density inside the operator.
 
 \section{Introduction}\label{sec:intro}
 All logarithms are natural. The function $\Omega(n)$ counts prime factors with multiplicity, $\omega(n)$ counts
-distinct prime factors, and $\lambda(n)=(-1)^{\Omega(n)}$. Put $P^-(1)=\infty$ and write $P^-(n)$ for the least
+distinct prime factors, $\lambda(n)=(-1)^{\Omega(n)}$, and $\mu$ is the M\"obius function. Put $P^-(1)=\infty$ and write $P^-(n)$ for the least
 prime factor otherwise. Throughout the paper $h\ge2$ is a fixed even integer. Define
 \begin{equation}\label{eq:rough-def}
  R_z(n)=\ind_{P^-(n)>z},\qquad
@@ -183,21 +183,21 @@ Matom\"aki, Radziwi\l\l\ and Tao (4 September 2015; version~2, 23 September 2015
 \cite[Theorems~1.6 and~1.9, pp.~2--3]{MRTpatterns} prove positive lower natural density for all eight Liouville
 patterns of length three and all nine adjacent M\"obius patterns.
 
-Weighted two-point sums of the present kind were formulated as a conjecture by Preobrazhenski\u{\i} and
-Preobrazhenskaya \cite[Conjecture~2, p.~3]{PP2015}. For $y\ge2$ let $\omega^-(n,y)$ and $\omega^+(n,y)$ be the
+Preobrazhenski\u{\i} and
+Preobrazhenskaya \cite[Conjecture~2, p.~3]{PP2015} state a conjecture on weighted two-point sums of $\mu$. For $y\ge2$ let $\omega^-(n,y)$ and $\omega^+(n,y)$ be the
 numbers of prime divisors of $n$ that are less than $y$ and at least $y$, and on squarefree $n$ put
 $\tau^{\pm}(n)=\tau^{\pm}_{\kappa_1,\kappa_2}(n,y)=\kappa_1^{\omega^-(n,y)}\kappa_2^{\omega^+(n,y)}$.
-Their conjecture states that, for fixed $0\le\kappa_1<\kappa_2$ and $y=\exp((\log x)^\delta)$ with some fixed
+Their conjecture states that, for a fixed admissible pair $(h_1,h_2)$, fixed $0\le\kappa_1<\kappa_2$ and $y=\exp((\log x)^\delta)$ with some fixed
 $0<\delta<1$,
 \[
 \sum_{N/2\le n\le N}\mu(n+h_1)\mu(n+h_2)\tau^{\pm}(n+h_1)\tau^{\pm}(n+h_2)
 =o\Bigl(\sum_{N/2\le n\le N}\tau^{\pm}(n+h_1)\tau^{\pm}(n+h_2)\Bigr).
 \]
 They remark that the case $\kappa_1=\kappa_2=1$ is the two-point Chowla conjecture for $\mu$, and state that for
-$0\le\kappa_1<\kappa_2$ the conjecture essentially implies the twin prime conjecture; their Theorem~4 includes a
-logarithmically averaged two-point estimate for $\lambda$ with a sieve weight. The weights $R_z$ and $b_z$ of
-Theorems~\ref{thm:rough} and~\ref{thm:soft} have this shape with $\kappa_2=1$ and $\kappa_1=0$, respectively
-$\kappa_1=r$. The two theorems are stated for $\lambda$, impose squarefreeness only at the primes up to $z$, and
+$0\le\kappa_1<\kappa_2$ the conjecture essentially implies the twin prime conjecture; their Theorem~4 includes an unconditional
+logarithmically averaged two-point estimate for $\lambda$ with the weight $\alpha_1(n+h_1)\alpha_1(n+h_2)$, where $\alpha_1$ is a divisor sum defined there. On squarefree integers, the weights $R_z$ and $b_z$ of
+Theorems~\ref{thm:rough} and~\ref{thm:soft} agree with $\tau^{\pm}_{\kappa_1,\kappa_2}(\cdot,y)$, $y=\lfloor z\rfloor+1$, for $\kappa_2=1$ and $\kappa_1=0$, respectively
+$\kappa_1=r$. The two theorems are stated for $\lambda$ and
 hold for $z\le\exp((\log X)^{1/3750})$.
 
 For the truncated functions $\lambda_y(n)=(-1)^{\Omega_y(n)}$ and $\mu_y(n)=\mu^2(n)(-1)^{\omega_y(n)}$, where
@@ -207,31 +207,30 @@ $|\sum_{n\le x}\lambda_y(n)\lambda_y(n+1)|\ll x((\log y)^{-9}+\exp(-u/8))$ for $
 and Mangerel \cite[Theorem~1.2(a)]{Mangerel2017} proves, for each fixed $a$ and in a range of
 $\beta=\log x/\log y$ specified there,
 $\sum_{n\le x}\mu_y(n)\mu_y(n+a)\ll x(1/\log\log y+\exp(-\tfrac1{21}\beta\log\beta))$. Mangerel's introduction
-attributes the first estimate of this type, with $y\le(\log x)^{2+o(1)}$, to Cassaigne, Ferenczi, Mauduit, Rivat
-and S\'ark\"ozy \cite{CFMRS1999}. These results concern the prime factors up to $y$;
-Theorem~\ref{thm:rough} concerns integers without such prime factors.
+cites Cassaigne, Ferenczi, Mauduit, Rivat
+and S\'ark\"ozy \cite{CFMRS1999} for an estimate of this type for $\lambda_y$ with $y\le(\log x)^{2+o(1)}$.
 
 Without sieve conditions, Tao \cite[Theorem~1.2]{Tao2016} proved the logarithmically averaged two-point Chowla
 conjecture, Tao and Ter\"av\"ainen \cite[Corollary~1.14]{TaoTeravainen2019} proved that
-$\sum_{n\le X}\lambda(n+h_1)\lambda(n+h_2)=o(X)$ for $X$ outside a set of logarithmic density zero, and Pilatte
+$\sum_{n\le X}\lambda(n+h_1)\lambda(n+h_2)=o(X)$ for distinct integers $h_1,h_2$ and $X$ outside a set of logarithmic density zero, and Pilatte
 \cite[Theorem~1.1]{Pilatte2023} proved $\sum_{n\le x}\lambda(n)\lambda(n+1)/n\ll(\log x)^{1-c}$ with an absolute
 $c>0$. Tao and Ter\"av\"ainen \cite[Theorem~3.1]{TaoTeravainen2025} give a quantitative two-point estimate for
-$1$-bounded multiplicative functions outside an exceptional set of scales, and deduce an asymptotic formula for
-consecutive smooth numbers at those scales \cite[Theorem~1.8]{TaoTeravainen2025}; a second paper of the release
-containing [O] proves the joint Dickman law for the largest prime factors of $n$ and $n+1$ in natural density
+pairs of $1$-bounded multiplicative functions, the first being equidistributed or nonpretentious in the sense stated there, outside an exceptional set of scales, and deduce an asymptotic formula for
+consecutive smooth numbers for $x$ in a set of logarithmic density one \cite[Theorem~1.8]{TaoTeravainen2025}; a second paper of the release
+containing \cite{OpenAI007} proves the joint Dickman law for the largest prime factors of $n$ and $n+1$ in natural density
 \cite[Theorem~1.1]{OpenAI012}. Charamaras and Richter \cite[Theorem~A]{CharamarasRichter2024} prove asymptotic
 independence of $\Omega(n)$ and $\Omega(n+1)$ along logarithmic averages, and Hughes
 \cite[Corollary~7.1]{Hughes2026} gives logarithmic frequency $1/4$ for each sign pair of $\lambda$ at two affine
-forms in every window $(x/\omega,x]$ with $\omega$ above an explicit threshold.
+forms, up to an error $\epsilon$, in every window $(x/\omega,x]$ with $\omega$ above an effective threshold depending on the forms and $\epsilon$.
 
-A Lean~4 repository \cite{JyhSalt2026} contains formal statements at specific small sieve levels: for every $z$
-with $\prod_{p\le z}p\le548$ (that is, $z\le10$) and every admissible residue class modulo that product,
-infinitely many $n$ with $n(n+2)$ free of prime factors up to $z$ and $\Omega(n(n+2))$ odd (5 September 2026); and,
-when the product is at most $2310$, a lower bound for the logarithmic mass of such $n$ in each admissible class
-(14 September 2026), described there as an instance of \cite{Tao2016}. The sifted sum
+A Lean~4 repository \cite{JyhSalt2026} contains formal statements at specific small sieve levels. For every $z$
+with $\prod_{p\le z}p\le548$ (that is, $z\le10$) it states that there are infinitely many $n$ with $n(n+2)$ free of
+prime factors up to $z$ and $\Omega(n(n+2))$ odd (merged 5 September 2026). When $P=\prod_{p\le z}p\le2310$ it
+states, for each admissible residue class $r$ modulo $P$, that there are infinitely many such $n\equiv r\pmod P$,
+together with a lower bound for $\sum1/k$ over the $k$ in suitable windows $(x/\omega,x]$ for which $n=Pk+r$ is of
+this kind (merged 14 September 2026); the lower bound is described there as an instance of \cite{Tao2016}. The sifted sum
 $\sum_{n\le N,\ P^-(n)>D,\ P^-(n+2)>D}\lambda(n)\lambda(n+2)$ with $D=N^{1/8}$ is considered in
-\cite[Section~9]{McCaffer2026}, in a reduction of the twin prime conjecture to a hypothesis on
-$\lambda(n)\lambda(n+2)$ in arithmetic progressions.
+\cite[Section~9]{McCaffer2026}, where a hypothesis on $\lambda(n)\lambda(n+2)$ in arithmetic progressions to moduli up to $(\log N)^A$ is stated to imply the twin prime conjecture.
 
 The author's papers \cite{GuoRough,GuoShifted}, both dated 9 October 2026, treat, respectively, sums of two rough
 numbers with prescribed Liouville signs and shifted primes with a prescribed parity of the number of prime
@@ -825,13 +824,13 @@ In particular, at a singleton prime,
  \E[(\ind_{Z=a}-1/p)F(Z)]=p^{-1}\E[F(a)-F(Z)].
 \end{equation}
 Integrating all singleton coordinates gives the same mixed difference $\Delta G$, bounded by $2^{S_1}$,
-and the reciprocal factor
+and the reciprocal factor, where $\mathcal L$ denotes the lit/unlit designation,
 \begin{equation}\label{eq:lit-reciprocals}
  b_{\mathcal L}=\prod_{p\ \mathrm{singleton}}p^{-1}
  \prod_{p\ \mathrm{nonsingleton}}p^{-u_p-\ind_{\ell_p>0}},\qquad
  |\E(\text{designated term})|\le\ind_{\mathrm{lit\ consistency}}b_{\mathcal L}\E[R|\Delta G|].
 \end{equation}
-Write $\mathcal L$ for the lit/unlit designation. Here $\ell_p,u_p$ count lit and unlit occurrences,
+Here $\ell_p,u_p$ count lit and unlit occurrences,
 and $U=\sum_{p\ \mathrm{nonsingleton}}u_p$ is the total number of unlit nonsingleton occurrences.
 Lit tests must force the same residue at their departures.
 This is a direct application of the numbered source lemma, with its independence condition verified.

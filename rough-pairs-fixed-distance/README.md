@@ -47,9 +47,9 @@ OpenAI's paper proving the two-point Chowla conjecture (family 007 of the
   bound [O, Theorem 5.4] and the lemmas around it. The paper states the versions it needs and proves them by going
   through the proofs of [O] step by step, with page references. The finite comparison of [O, Section 3] is replaced
   by a separate argument based on bounded independence (Bazzi, Razborov, Braverman).
-- Classical inputs: the Matomäki–Radziwiłł–Tao distance bound, the fundamental lemma of the sieve, the
-  Bombieri–Vinogradov theorem for λ over all residue classes, theorems of Shiu and Nair–Tenenbaum, and Halász's
-  theorem.
+- Classical inputs: the Matomäki–Radziwiłł–Tao short exponential-sum and distance bounds, the fundamental lemma of
+  the sieve, the Bombieri–Vinogradov theorem for λ over all residue classes, theorems of Shiu and Nair–Tenenbaum,
+  Halász's theorem, and the fixed-modulus prime number theorem and Mertens' theorem.
 
 The zero-free half-plane Re s > 7/8 of the same release is not used. The classical zero-free region enters through
 the cited distance bound.
@@ -58,8 +58,8 @@ the cited distance bound.
 
 - Preobrazhenskiĭ and Preobrazhenskaya ([arXiv:1405.0682](https://arxiv.org/abs/1405.0682), Conjecture 2)
   conjectured cancellation in two-point sums of μ with weights κ₁^(ω⁻(n,y)) κ₂^(ω⁺(n,y)), y = exp((log x)^δ), and
-  state that the conjecture essentially implies the twin prime conjecture. The weights of Theorems 1.1 and 1.3 have
-  this shape with κ₂ = 1; the theorems are for λ and hold for z ≤ exp((log X)^(1/3750)).
+  state that the conjecture essentially implies the twin prime conjecture. On squarefree integers, the weights of Theorems 1.1 and 1.3
+  agree with these for κ₂ = 1 and κ₁ = 0, respectively κ₁ = r (y just above z). The theorems are for λ and hold for z ≤ exp((log X)^(1/3750)).
 - Truncated functions, which record only the prime factors up to y: Cassaigne–Ferenczi–Mauduit–Rivat–Sárközy
   (1999), Daboussi–Sárközy (2003), Mangerel ([arXiv:1612.09544](https://arxiv.org/abs/1612.09544)).
 - Two-point correlations without sieve conditions: Tao ([arXiv:1509.05422](https://arxiv.org/abs/1509.05422)),
@@ -68,12 +68,12 @@ the cited distance bound.
   ([arXiv:2310.19357](https://arxiv.org/abs/2310.19357)), Charamaras–Richter
   ([arXiv:2412.17583](https://arxiv.org/abs/2412.17583)), Hughes
   ([arXiv:2609.28526](https://arxiv.org/abs/2609.28526)), and [O] itself.
-- Prescribed values of Ω at a fixed gap and restrictions on Ω: Goldston–Graham–Pintz–Yıldırım
+- Prescribed values of Ω at a fixed gap, restrictions on Ω, and sign patterns of λ and μ: Goldston–Graham–Pintz–Yıldırım
   ([arXiv:0803.2636](https://arxiv.org/abs/0803.2636)), Helfgott–Radziwiłł
   ([arXiv:2103.06853](https://arxiv.org/abs/2103.06853)), Matomäki–Radziwiłł–Tao
   ([arXiv:1509.01545](https://arxiv.org/abs/1509.01545)).
-- Formal statements at specific small sieve levels (n(n + 2) free of prime factors up to z ≤ 10 with an odd number
-  of prime factors, infinitely often in each admissible class): the Lean 4 repository
+- Formal statements at specific small sieve levels (n(n + 2) free of prime factors up to z ≤ 10 with Ω(n(n + 2)) odd,
+  infinitely often in each admissible class): the Lean 4 repository
   [jyh/salt](https://github.com/jyh/salt), September 2026.
 - The sifted sum of λ(n)λ(n + 2) at sieve level N^(1/8), in a conditional approach to twin primes: McCaffer
   ([doi:10.5281/zenodo.20388364](https://doi.org/10.5281/zenodo.20388364), May 2026).
