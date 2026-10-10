@@ -88,7 +88,8 @@ bounds whose matrices $(f(m\ell+h))$ have operator norm $\gg_h\sqrt{MN}/\log X$ 
 balanced rectangles with $MN\asymp X$. One sequence gives these lower bounds for $h=1,2$ on alternating
 scales. These constructions show that the respective root-remainder and Type~II targets require input beyond
 these listed numerical bounds.
-We classify exact separated-variable substitutions of polynomial height and bound their piece count.
+We classify exact separated-variable substitutions and, for integer outputs of polynomial height, bound the
+number of pieces.
 Finally, for a defined class of nonnegative divisor weights in the independent divisibility law, an
 individual-root positive second-moment normalisation forces $v\le\exp(O_\delta(L))$ when the padding
 primes are at most $e^L$; it therefore does not extend to $v=X^\theta$ with $X=\exp(L^{625})$.
@@ -115,17 +116,19 @@ eight consecutive three-term Liouville sign patterns. These statements concern d
 prime factors and signs.
 
 Sequences that satisfy sieve hypotheses and violate a conclusion are a classical tool in this subject. By
-Selberg's examples and Bombieri's work there are sequences satisfying Type~I estimates at every level
-$\gamma<1$ and vanishing on the primes; see \cite[Section~1]{FordMaynard}. Ford and Maynard \cite{FordMaynard}
+Selberg's examples and Bombieri's work there are, for each $\gamma<1$ and all large $x$, sequences satisfying
+Type~I estimates at level $\gamma$ and vanishing on the primes; see
+\cite[Section~1 and the remark after Proposition~4.10]{FordMaynard}. Ford and Maynard \cite{FordMaynard}
 give a general procedure for constructing non-negative sequences that satisfy prescribed Type~I and Type~II
 estimates, and show that a substantial Type~II range is always necessary to guarantee a non-trivial lower
 bound for the sum over primes. Friedlander and Iwaniec \cite{FIAsymptotic} add an axiom to the classical
 formulation of the sieve which breaks the parity problem and detects primes in thin sequences. Tao
-\cite{TaoParity} formulates a parity obstruction for properties defined by sign patterns of $\lambda$,
+\cite{TaoParity}, with Brady, formulates a parity obstruction to sieve-theoretic proofs that a property of
+the values of linear forms holds, in terms of the sign patterns of $\lambda$ that the property forbids,
 presuming a Liouville pseudorandomness conjecture. Deligiannis \cite{Deligiannis2026} deduces a lower bound
-of the expected order for the number of Goldbach representations from two cancellation hypotheses for sifted
-two-point Liouville sums, and \cite{DeligiannisObstructions} analyses limitations of existing methods for
-such cancellation; Arneth \cite{Arneth2026} formulates a sifted fixed-shift Liouville cancellation as the
+of the expected order for the number of Goldbach representations from two sifted cancellation hypotheses,
+and \cite{DeligiannisObstructions} analyses limitations of existing methods for quantitative cancellation in
+polynomial correlations of the Liouville function; Arneth \cite{Arneth2026} formulates a sifted fixed-shift Liouville cancellation as the
 remaining analytic problem of a programme on the binary Goldbach problem. The sequences of
 Theorems~\ref{thm:sieve-model} and~\ref{thm:type-model} below are $\pm1$-valued sequences for two-point sums
 at a fixed shift, with the lists of estimates stated there.
@@ -292,8 +295,9 @@ There are $c_h>0$ and $T_j\to\infty$ such that, on $A_j=(T_j,2T_j]\cap\Z$ and $B
 The comparison on the right concerns the lower-bound scale. A single sequence can have these properties
 and infinitely many such rectangles for $h=1$ on even scales and $h=2$ on odd scales.
 \end{theorem}
-An exact separated-variable substitution on $A\times B$ means maps into positive integers and nonzero
-rational row and column weights satisfying
+An exact separated-variable substitution on $A\times B$ means rational-valued maps $U,V$
+(positive-integer-valued in the integer-output statements below) and nonzero rational row and column
+weights $R,S$ satisfying
 \begin{equation}\label{eq:separated}
  U(x)V(y)+h=R(x)S(y)(xy+h).
 \end{equation}
@@ -394,7 +398,8 @@ fixed target $\sqrt{MN}(\log X)^{-3/2-\kappa}$, $\kappa>0$, on infinitely many o
 The sequence fails the multiplicative law at every fixed prime. The construction does not supply actual
 Vaughan weights, all prime values, Euler identities, zero-free analytic inputs or higher Liouville
 correlations; it does not determine a global optimal operator upper bound or force failure on every large
-rectangle. Theorem~\ref{thm:pieces} concerns Cartesian pieces, separate integer maps, exact identities,
+rectangle. Theorem~\ref{thm:pieces} concerns Cartesian pieces, separate maps (rational-valued for the classification,
+integer-valued for the count), exact identities,
 nonzero rational row and column weights and polynomial output height. Joint-variable maps, non-Cartesian
 masks, superpolynomial outputs and approximate identities are outside that statement.
 

@@ -11,8 +11,8 @@ Notes and papers by Jizhou Guo (mitsuha2021b@gmail.com) that build on results of
 Paper (36 pages), 10 October 2026: [PDF](almost-prime-pairs-reduction/paper.pdf).
 
 Let h ≥ 2 be a fixed even integer, σ = c/log X, J_σ(n) = ∏_{p | n} (1 − p^(−σ)) and W(n) = J_σ(n)·J_σ(n + h). The sum
-M₀ = Σ_{n ≤ X} W(n) has order X/(log X)², and the sums of λ(n)W(n) and of λ(n + h)W(n) are at most εM₀ in absolute
-value when c ≥ c₀(ε). Consequently the single inequality
+M₀ = Σ_{n ≤ X} W(n) has order X/(log X)², and for 0 < ε ≤ 1/4 and fixed c ≥ c₀(ε) the absolute values of the sums of
+λ(n)W(n) and of λ(n + h)W(n) add up to at most εM₀ for all large X. Consequently the single inequality
 
 ```math
 \Bigl|\sum_{n\le X}\lambda(n)\,\lambda(n+h)\,W(n)\Bigr|\le(1-2\varepsilon)\,M_0\qquad\text{for all large }X
@@ -21,12 +21,16 @@ value when c ≥ c₀(ε). Consequently the single inequality
 would give, for a fixed K, ≫ X/(log X)² integers n ≤ X with Ω(n), Ω(n + h) ≤ K for each sign pattern of
 (λ(n), λ(n + h)). The paper does not prove this inequality; this part uses classical inputs only.
 
-The paper also constructs two ±1-valued sequences. The first has square-root cancellation on intervals,
-progressions, additive and character twists, fixed two-point sums and reflected sums, and its sieve remainder for
-the pair (n, n + 2) at level X^θ is asymptotic to (c₂·log 2/32)·θ²·X·log X. The second has the corresponding
-two-point, character and Type I bounds, and its Type II matrices (f(mℓ + h)) have operator norm ≫ √(MN)/log X on
-infinitely many rectangles. A proof of the sieve remainder bound or of the Type II bound for λ therefore has to use
-information beyond the listed estimates. The paper further classifies exact separated-variable substitutions and
+The paper also constructs two ±1-valued sequences. The first has square-root bounds, up to a factor √log X, on
+intervals, progressions, additive and character twists, fixed non-proportional positive-slope two-point sums,
+all-shift sums and reflected sums, and for every fixed 0 < θ < 1 its sieve remainder for the pair (n, n + 2) at
+level X^θ is asymptotic to (c₂·log 2/32)·θ²·X·log X. The second has bounds ≪ Y^(3/4)·√log Y for one-point sums and
+for two-point sums along pairs of distinct affine forms, bounds for characters of polynomial modulus and for
+Type I sums, and its matrices (f(mℓ + h)) have operator norm ≫ √(MN)/log X on infinitely many balanced rectangles.
+Arguments that use only the listed estimates apply equally to these sequences, so a proof for λ of a bound
+C·X/(log X)² for the sieve remainder at a fixed level X^θ, or of the operator-norm bound √(MN)·(log X)^(−3/2−κ), has
+to use further information or stronger estimates than those listed. These constructions do not bear on whether
+the inequality above holds. The paper further classifies exact separated-variable substitutions and
 proves a bound for a class of non-negative divisor weights.
 
 ### [`cm-elliptic-curves/`](cm-elliptic-curves/) — A zero-free half-plane for Hecke L-functions of nonzero angular type and for the curves y² = x³ + D
