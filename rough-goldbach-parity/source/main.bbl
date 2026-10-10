@@ -1,9 +1,17 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{13}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Arneth(2026)]{Arneth2026}
+Borros Arneth.
+\newblock Quadratic certificate dispersion and sifted fixed-shift {Liouville}
+  cancellation in the binary {Goldbach} problem ({PIHR}-{Goldbach}-{VII}),
+  2026.
+\newblock URL \url{https://doi.org/10.5281/zenodo.23011047}.
+\newblock Zenodo, 28 September 2026.
 
 \bibitem[{CaptainSude}(2026)]{CaptainSude}
 {CaptainSude}.
@@ -12,6 +20,13 @@
 \newblock URL
   \url{https://github.com/CaptainSude/Liouville-Goldbach/blob/v1.0.0/paper/liouville-goldbach.pdf}.
 \newblock Release v1.0.0, 16 September 2026.
+
+\bibitem[Deligiannis(2026)]{Deligiannis2026}
+Theodoros Deligiannis.
+\newblock Polynomial correlations of the {Liouville} function with an
+  application to an additive problem, 2026.
+\newblock URL \url{https://doi.org/10.5281/zenodo.21581938}.
+\newblock Zenodo, version of 26 July 2026; first version 8 April 2026.
 
 \bibitem[Guo(2026)]{GuoEarlier}
 Jizhou Guo.

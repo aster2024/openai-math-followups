@@ -59,7 +59,11 @@ least c_ε N^(1−ε) representations of each pattern for every large N (Pouly,
 [doi:10.5281/zenodo.22959603](https://doi.org/10.5281/zenodo.22959603), 25 September 2026); all four patterns for
 every N ≥ 11 (Meng); the pattern (−1, −1) for every even N > 2 (CaptainSude) and, under GRH, for all large even N
 (Mangerel, arXiv:2412.17199). Chen-type theorems bound the number of prime factors of the summands without
-prescribing both parities.
+prescribing both parities. Sifted versions of the reflected two-point sum, with sifting level a power of N, are
+stated as a hypothesis by Deligiannis ([doi:10.5281/zenodo.21581938](https://doi.org/10.5281/zenodo.21581938),
+2026) and as the remaining analytic problem of a programme on the binary Goldbach problem by Arneth
+([doi:10.5281/zenodo.23011047](https://doi.org/10.5281/zenodo.23011047), September 2026). The companion paper for a
+fixed difference is [`rough-pairs-fixed-distance/`](../rough-pairs-fixed-distance/).
 
 ## Files
 

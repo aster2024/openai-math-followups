@@ -1,0 +1,2173 @@
+\documentclass[11pt]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+  pdftitle={Rough numbers at a fixed distance with prescribed Liouville signs},
+  pdfauthor={Jizhou Guo}}
+\Urlmuskip=0mu plus 1mu
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{inputthm}[theorem]{Input}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\e}{\mathrm e}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\Dpret}{\mathbb D}
+\newcommand{\ph}{\varphi}
+\newcommand{\leanname}[1]{\nolinkurl{#1}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\HS}{HS}
+\DeclareMathOperator{\Rea}{Re}
+\DeclareMathOperator{\cond}{cond}
+\title{Rough numbers at a fixed distance with prescribed Liouville signs}
+\author{Jizhou Guo\\
+  \href{mailto:mitsuha2021b@gmail.com}{\texttt{mitsuha2021b@gmail.com}}}
+\date{October 2026}
+
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\Pset}{\mathcal P}
+\newcommand{\Sset}{\mathcal S}
+\newcommand{\Rz}{R_z}
+\newcommand{\wt}{W_{\mathbf t}}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+\newcommand{\Qset}{\mathcal Q}
+\newcommand{\Dset}{\mathcal D}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\sfw}{\mathrm{sf}}
+\newcommand{\cprod}[1]{\prod_{p\mid #1}(\ind_{p\mid n}-1/p)}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $\lambda$ be the Liouville function and let $h\ge2$ be a fixed even integer. We show that there is an absolute
+constant $\gamma>0$ such that, uniformly for $2\le z\le\exp((\log X)^{1/3750})$, each of the four sign patterns of
+$(\lambda(n),\lambda(n+h))$ occurs for $\tfrac14XV_h(z)\,(1+O_h((\log X)^{-\gamma}))$ integers $n\le X$ such that
+$n$ and $n+h$ have no prime factor up to $z$; here $XV_h(z)$ is the main term for the number of such $n$.
+Consequently each pattern occurs for $\gg_hX/(\log X)^{1/1875}$ integers $n\le X$ with $n$ and $n+h$ squarefree,
+free of prime factors up to $\exp((\log X)^{1/3750})$, and with at most $(1-1/4000)\log\log X$ prime factors. We
+prove corresponding statements for the weights $r^{\omega_z(n)}$ on the small prime factors and
+$r^{\Omega(n)}$ on all prime factors, in each case with a squarefreeness restriction at the small primes. The proofs adapt the graph argument of OpenAI's proof of the two-point Chowla
+conjecture, keeping the sieve density inside the operator.
+\end{abstract}
+\noindent\textit{2020 Mathematics Subject Classification.} Primary 11N37; Secondary 11N36, 11N25, 11P32.
+
+\section{Introduction}\label{sec:intro}
+All logarithms are natural. The function $\Omega(n)$ counts prime factors with multiplicity, $\omega(n)$ counts
+distinct prime factors, and $\lambda(n)=(-1)^{\Omega(n)}$. Put $P^-(1)=\infty$ and write $P^-(n)$ for the least
+prime factor otherwise. Throughout the paper $h\ge2$ is a fixed even integer. Define
+\begin{equation}\label{eq:rough-def}
+ R_z(n)=\ind_{P^-(n)>z},\qquad
+ V_h(z)=\prod_{p\le z}\left(1-\frac{\nu_h(p)}p\right),\qquad
+ \nu_h(p)=\begin{cases}1,&p\mid h,\\2,&p\nmid h.\end{cases}
+\end{equation}
+Sums and counts over $n\le X$ always concern positive integers.
+
+\begin{theorem}\label{thm:rough}
+There is an absolute constant $\gamma>0$ such that, for each fixed even $h\ge2$ and every sufficiently large $X$,
+uniformly for $2\le z\le\exp((\log X)^{1/3750})$ and $(s,t)\in\{\pm1\}^2$,
+\begin{equation}\label{eq:rough-main}
+\#\{n\le X:R_z(n)R_z(n+h)=1,\ (\lambda(n),\lambda(n+h))=(s,t)\}
+ =\tfrac14XV_h(z)\bigl(1+O_h((\log X)^{-\gamma})\bigr).
+\end{equation}
+\end{theorem}
+
+\begin{theorem}\label{thm:omega-consumer}
+For each fixed even $h\ge2$ and each sign pattern there are $\gg_h X/(\log X)^{1/1875}$ integers $n\le X$ such that
+$n$ and $n+h$ are squarefree, have no prime factor up to $\exp((\log X)^{1/3750})$, have that sign pattern, and satisfy
+\begin{equation}\label{eq:hard-omega}
+ \Omega(n),\Omega(n+h)\le(1-1/4000)\log\log X.
+\end{equation}
+This holds for every sufficiently large $X$.
+\end{theorem}
+
+For $z\ge2$ let
+\begin{equation}\label{eq:soft-def}
+ S_z(n)=\prod_{p\le z}\ind_{p^2\nmid n},\qquad
+ \omega_z(n)=\#\{p\le z:p\mid n\},\qquad b_z(n)=S_z(n)r^{\omega_z(n)}.
+\end{equation}
+\begin{theorem}\label{thm:soft}
+There is an absolute constant $\gamma>0$, which may be the same as in Theorem~\ref{thm:rough}, such that for each
+fixed even $h\ge2$, each fixed $0<r<1$, and every sufficiently large $X$, uniformly for
+$2\le z\le\exp((\log X)^{1/3750})$ and $(s,t)\in\{\pm1\}^2$,
+\begin{equation}\label{eq:soft-main}
+ \sum_{\substack{n\le X\\(\lambda(n),\lambda(n+h))=(s,t)}}b_z(n)b_z(n+h)
+ =\tfrac14X V^{\sfw}_{r,h}(z)\bigl(1+O_{h,r}((\log X)^{-\gamma})\bigr),
+\end{equation}
+where $V^{\sfw}_{r,h}(z)=\prod_{p\le z}v_{r,h}(p)$ and
+\begin{equation}\label{eq:soft-local}
+ v_{r,h}(p)=\begin{cases}
+ 1-2/p+2r(p-1)/p^2,&p\nmid h,\\
+ 1-1/p+r^2(p-1)/p^2,&p^2\mid h,\\
+ 1-1/p+r^2(p-2)/p^2,&p\mid h,\ p^2\nmid h.
+ \end{cases}
+\end{equation}
+The threshold and implied constant may depend on $h,r$; $r$ is fixed before $X$.
+\end{theorem}
+
+The constants for the following theorem are separate from those used in Theorems~\ref{thm:rough} and~\ref{thm:soft}.
+Let $C_3$ be the absolute graph constant in \cite[(8.7), p.~41]{OpenAI007}, with the same permissible choice for the
+two-layer operators of Proposition~\ref{prop:phase}. Put $C_\Omega=\max(4,C_3)$ and fix
+\begin{equation}\label{eq:full-fixed}
+ W_\Omega=16\e C_\Omega^2,\quad \alpha_\Omega=\frac1{1200W_\Omega},\quad
+ \delta_\Omega=\sqrt{\alpha_\Omega/216},\quad r=1-\delta_\Omega,\quad
+ \gamma_\Omega=\alpha_\Omega/3600.
+\end{equation}
+\begin{theorem}\label{thm:full}
+With the parameters \eqref{eq:full-fixed} and $B(n)=r^{\Omega(n)}S_y(n)$, for each fixed even $h\ge2$, every
+sufficiently large $X$, $2\le y\le\exp((\log X)^{1/216})$, and every nonzero
+$(e_1,e_2)\in\{0,1\}^2$,
+\begin{equation}\label{eq:full-main}
+ \left|\sum_{n\le X}\lambda(n)^{e_1}\lambda(n+h)^{e_2}B(n)B(n+h)\right|
+ \ll_h X(\log X)^{-2\delta_\Omega-\gamma_\Omega}.
+\end{equation}
+In the same range the unsigned mass satisfies
+\begin{equation}\label{eq:full-mass-main}
+ \sum_{n\le X}B(n)B(n+h)\asymp_h X(\log X)^{-2\delta_\Omega}.
+\end{equation}
+The parameter $y$ imposes squarefreeness at small primes; it imposes no roughness restriction.
+\end{theorem}
+
+\begin{remark}\label{rem:tradeoff}
+Put $\rho=1/3750$. For every fixed $0<\kappa\le\rho$ and $0<\epsilon<\kappa$, for every sufficiently large $X$, every sign pattern occurs for at least
+$c_{h,\kappa,\epsilon}X/(\log X)^{2\kappa}$ integers $n\le X$ with both endpoints squarefree and
+\begin{equation}\label{eq:tradeoff}
+ \Omega(n),\Omega(n+h)\le(1-\kappa+\epsilon)\log\log X.
+\end{equation}
+For $\kappa=\rho$ both endpoints may additionally be required to have no prime factor up to
+$\exp((\log X)^\rho)$. For $\kappa<\rho$ this additional condition is not part of the assertion.
+All parameters are fixed before $X$.
+\end{remark}
+
+Mertens' theorem gives $V_h(z)\asymp_h(\log z)^{-2}$; see Lemma~\ref{lem:density}.
+At the upper endpoint of Theorem~\ref{thm:rough}, the density is of order $(\log X)^{-2/3750}$.
+An absolute cancellation estimate must therefore save more than this density to give a relative asymptotic.
+The bound on $\Omega$ in Theorem~\ref{thm:omega-consumer} grows with $X$.
+
+OpenAI's paper of 24 September 2026 \cite[Theorem~1.1 and Proposition~2.1, pp.~3, 7]{OpenAI007} gives an absolute
+power-of-logarithm saving for Liouville correlations in fixed affine forms and fixed progressions, including
+nonunit classes. For a fixed $z$, finite inclusion--exclusion over the primes up to $z$, together with classical
+one-point cancellation, gives each rough sign pattern a quarter of the rough-pair mass. Its
+Theorem~1.2 (p.~4) gives qualitative ordinary cancellation for bounded multiplicative functions when an original
+factor is uniformly nonpretentious, also with fixed progression restrictions.
+
+Goldston, Graham, Pintz and Y\i ld\i r\i m (18 March 2008) \cite[Theorems~6 and~9, pp.~5, 7]{GGPPY} prove that
+$\Omega(n)=\Omega(n+2)=B$ infinitely often for each integer $B\ge5$, and for each fixed even $h$ that
+$\Omega(n)=\Omega(n+h)=A$ infinitely often when $A\ge4$ if $4\mid h$, or $A\ge5$ if $h\equiv2\pmod4$.
+Helfgott and Radziwi\l\l\ (11 March 2021; version~2, 13 April 2021) \cite[Corollaries~1.4, 1.7--1.8, pp.~5--7]{HR}
+give correlations with restrictions on $\Omega$ in logarithmic averages and at almost all scales.
+Matom\"aki, Radziwi\l\l\ and Tao (4 September 2015; version~2, 23 September 2015)
+\cite[Theorems~1.6 and~1.9, pp.~2--3]{MRTpatterns} prove positive lower natural density for all eight Liouville
+patterns of length three and all nine adjacent M\"obius patterns.
+
+Weighted two-point sums of the present kind were formulated as a conjecture by Preobrazhenski\u{\i} and
+Preobrazhenskaya \cite[Conjecture~2, p.~3]{PP2015}. For $y\ge2$ let $\omega^-(n,y)$ and $\omega^+(n,y)$ be the
+numbers of prime divisors of $n$ that are less than $y$ and at least $y$, and on squarefree $n$ put
+$\tau^{\pm}(n)=\tau^{\pm}_{\kappa_1,\kappa_2}(n,y)=\kappa_1^{\omega^-(n,y)}\kappa_2^{\omega^+(n,y)}$.
+Their conjecture states that, for fixed $0\le\kappa_1<\kappa_2$ and $y=\exp((\log x)^\delta)$ with some fixed
+$0<\delta<1$,
+\[
+\sum_{N/2\le n\le N}\mu(n+h_1)\mu(n+h_2)\tau^{\pm}(n+h_1)\tau^{\pm}(n+h_2)
+=o\Bigl(\sum_{N/2\le n\le N}\tau^{\pm}(n+h_1)\tau^{\pm}(n+h_2)\Bigr).
+\]
+They remark that the case $\kappa_1=\kappa_2=1$ is the two-point Chowla conjecture for $\mu$, and state that for
+$0\le\kappa_1<\kappa_2$ the conjecture essentially implies the twin prime conjecture; their Theorem~4 includes a
+logarithmically averaged two-point estimate for $\lambda$ with a sieve weight. The weights $R_z$ and $b_z$ of
+Theorems~\ref{thm:rough} and~\ref{thm:soft} have this shape with $\kappa_2=1$ and $\kappa_1=0$, respectively
+$\kappa_1=r$. The two theorems are stated for $\lambda$, impose squarefreeness only at the primes up to $z$, and
+hold for $z\le\exp((\log X)^{1/3750})$.
+
+For the truncated functions $\lambda_y(n)=(-1)^{\Omega_y(n)}$ and $\mu_y(n)=\mu^2(n)(-1)^{\omega_y(n)}$, where
+$\Omega_y$ and $\omega_y$ count only the prime factors up to $y$, Daboussi and S\'ark\"ozy
+\cite[Corollary~2]{DaboussiSarkozy2003} prove
+$|\sum_{n\le x}\lambda_y(n)\lambda_y(n+1)|\ll x((\log y)^{-9}+\exp(-u/8))$ for $3\le y\le x$ and $u=\log x/\log y$,
+and Mangerel \cite[Theorem~1.2(a)]{Mangerel2017} proves, for each fixed $a$ and in a range of
+$\beta=\log x/\log y$ specified there,
+$\sum_{n\le x}\mu_y(n)\mu_y(n+a)\ll x(1/\log\log y+\exp(-\tfrac1{21}\beta\log\beta))$. Mangerel's introduction
+attributes the first estimate of this type, with $y\le(\log x)^{2+o(1)}$, to Cassaigne, Ferenczi, Mauduit, Rivat
+and S\'ark\"ozy \cite{CFMRS1999}. These results concern the prime factors up to $y$;
+Theorem~\ref{thm:rough} concerns integers without such prime factors.
+
+Without sieve conditions, Tao \cite[Theorem~1.2]{Tao2016} proved the logarithmically averaged two-point Chowla
+conjecture, Tao and Ter\"av\"ainen \cite[Corollary~1.14]{TaoTeravainen2019} proved that
+$\sum_{n\le X}\lambda(n+h_1)\lambda(n+h_2)=o(X)$ for $X$ outside a set of logarithmic density zero, and Pilatte
+\cite[Theorem~1.1]{Pilatte2023} proved $\sum_{n\le x}\lambda(n)\lambda(n+1)/n\ll(\log x)^{1-c}$ with an absolute
+$c>0$. Tao and Ter\"av\"ainen \cite[Theorem~3.1]{TaoTeravainen2025} give a quantitative two-point estimate for
+$1$-bounded multiplicative functions outside an exceptional set of scales, and deduce an asymptotic formula for
+consecutive smooth numbers at those scales \cite[Theorem~1.8]{TaoTeravainen2025}; a second paper of the release
+containing [O] proves the joint Dickman law for the largest prime factors of $n$ and $n+1$ in natural density
+\cite[Theorem~1.1]{OpenAI012}. Charamaras and Richter \cite[Theorem~A]{CharamarasRichter2024} prove asymptotic
+independence of $\Omega(n)$ and $\Omega(n+1)$ along logarithmic averages, and Hughes
+\cite[Corollary~7.1]{Hughes2026} gives logarithmic frequency $1/4$ for each sign pair of $\lambda$ at two affine
+forms in every window $(x/\omega,x]$ with $\omega$ above an explicit threshold.
+
+A Lean~4 repository \cite{JyhSalt2026} contains formal statements at specific small sieve levels: for every $z$
+with $\prod_{p\le z}p\le548$ (that is, $z\le10$) and every admissible residue class modulo that product,
+infinitely many $n$ with $n(n+2)$ free of prime factors up to $z$ and $\Omega(n(n+2))$ odd (5 September 2026); and,
+when the product is at most $2310$, a lower bound for the logarithmic mass of such $n$ in each admissible class
+(14 September 2026), described there as an instance of \cite{Tao2016}. The sifted sum
+$\sum_{n\le N,\ P^-(n)>D,\ P^-(n+2)>D}\lambda(n)\lambda(n+2)$ with $D=N^{1/8}$ is considered in
+\cite[Section~9]{McCaffer2026}, in a reduction of the twin prime conjecture to a hypothesis on
+$\lambda(n)\lambda(n+2)$ in arithmetic progressions.
+
+The author's papers \cite{GuoRough,GuoShifted}, both dated 9 October 2026, treat, respectively, sums of two rough
+numbers with prescribed Liouville signs and shifted primes with a prescribed parity of the number of prime
+factors. The paper \cite{GuoEarlier}, dated 8 October 2026, treats Goldbach-type representations with prescribed
+Liouville signs. The present argument concerns a fixed distance between the two integers.
+
+\paragraph{What is used.}
+Write [O] for \cite{OpenAI007}, taken at repository commit
+\begin{center}\small\nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.\end{center}
+We use [O, Lemma~5.5, p.~26], the arithmetic and combinatorial statements
+[O, Lemmas~6.1, 6.3--6.4, 7.1--7.2, pp.~27, 30--37], and the finite-dimensional transfer
+[O, Lemma~8.1, p.~39] as stated, checking their hypotheses in Proposition~\ref{prop:masked-moment}.
+For the padding weight $16^{\omega(u)}$, vertex weight $17^{\omega_{\Qset}}$, rough-target cutoff, balanced soft
+weight and numerical signs in the full-$\Omega$ argument, the original statements of [O, Lemma~2.2,
+Lemmas~4.1--4.2, 4.4--4.6, 5.2--5.3, 5.6, 6.2, 6.5, 7.3, Theorem~5.4, Lemma~8.2 and Propositions~8.3--8.4] do not
+serve as direct instances. We give the required versions in Sections~\ref{sec:setup}--\ref{sec:rough-proof},
+\ref{sec:soft} and~\ref{sec:full}, following those proofs with their page references.
+The comparison of [O, Lemma~3.1 and Corollaries~3.2--3.3, pp.~10--12] is replaced by
+Section~\ref{sec:comparison}. The classical inputs are the Matom\"aki--Radziwi\l\l--Tao short exponential-sum
+and distance bounds \cite[Theorem~1.7 and (1.12), p.~6]{MRT}, the fundamental lemma
+\cite[Theorem~3.6(a), p.~38]{Ford}, Liouville Bombieri--Vinogradov over all residues
+\cite[(1.5), p.~2]{PintzBV}, Shiu's positive mean bound \cite[p.~1]{Henriot}, the Nair--Tenenbaum upper theorem
+\cite[Theorem~1, pp.~1--2]{Henriot}, bounded independence \cite{Bazzi,Razborov,Braverman}, Hal\'asz in the form
+\cite[Chapter~III.4]{Tenenbaum}, and the fixed-modulus prime number theorem and Mertens' theorem \cite{MV}.
+The zero-free half-plane $\Re s>7/8$ is not used in any of the four theorems. The classical zero-free region enters
+Theorem~\ref{thm:full}, as well as the other signed graph estimates, through the cited MRT distance bound.
+
+The roughness of the target vertex is put into the padding probability, with row cutoff $KW_1/L$.
+Different paddings retain three local densities; equal paddings require a separate diagonal term with exponent
+$24/17$. Closed walks are rewritten using arrival indicators before the padding sum. The resulting truncation
+event is a depth-three Boolean circuit; bounded independence compares it with the independent residue model.
+For soft weights, $\sqrt b$ is placed in the operator and $\sqrt b$ in the test vector.
+
+The shift $h$ is fixed throughout; the statements have no exceptional set of $X$ or of scales.
+All absolute constants in the theorems and their thresholds $X_0(h)$
+(or $X_0(h,r)$ for the fixed soft weight) are ineffective. No statement here prescribes a fixed number of prime factors
+or asserts primality. One remaining two-point estimate toward a fixed number of prime factors is
+$|\sum_{n\le X}\lambda(n)\lambda(n+h)J_\sigma(n)J_\sigma(n+h)|\le
+(1-2\epsilon)\sum_{n\le X}J_\sigma(n)J_\sigma(n+h)$,
+where $J_\sigma(n)=\prod_{p\mid n}(1-p^{-\sigma})$, $\sigma=c/\log X$, $0<\epsilon\le1/4$ and $c$ is fixed
+sufficiently large in terms of $\epsilon$.
+
+Section~\ref{sec:setup} specifies the inputs and graph data. Section~\ref{sec:comparison} proves finite comparison.
+Sections~\ref{sec:collision}--\ref{sec:rough-proof} prove Theorem~\ref{thm:rough}.
+Section~\ref{sec:soft} treats the balanced soft weight. Section~\ref{sec:consumer} proves
+Theorem~\ref{thm:omega-consumer} and Remark~\ref{rem:tradeoff}.
+Sections~\ref{sec:full}--\ref{sec:full-proof} prove Theorem~\ref{thm:full}.
+
+\section{Notation, classical inputs and graph data}\label{sec:setup}
+Write $\e(\theta)=\exp(2\pi i\theta)$, $\tau_k$ for the $k$-fold divisor function, $\tau=\tau_2$,
+and $P(z)=\prod_{p\le z}p$. Let $\mu$ be the M\"obius function, $\varphi$ Euler's totient, and $\zeta$ the Riemann zeta function.
+Write $P^+(n)$ for the largest prime factor, with $P^+(1)=1$. Powers with exponent zero mean one, also at $r=0$.
+In an independent residue model there is one uniform coordinate $R_s$ modulo each $s$ in a pairwise coprime family.
+Write $\Prob_*$ and $\E_*$ for probability and expectation under this product law, and $\Prob_I$ for the law induced
+by a uniformly chosen integer in a finite interval $I$ of consecutive integers. Every translated site uses the same
+coordinates with the indicated offsets. Translated sites are not independent.
+Write $\rho(B)$ for the spectral radius of a finite matrix $B$; the Hilbert--Schmidt norm is unnormalized.
+For a finite prime set $\mathcal T$, put $\omega_{\mathcal T}(n)=\sum_{p\in\mathcal T}\ind_{p\mid n}$.
+The same divisibility notation is used for a residue site. At integer or residue sites, the rough mask
+$R_z(n)$ means $\prod_{p\le z}\ind_{p\nmid n}$.
+
+\begin{lemma}[Rough densities and exceptional primes]\label{lem:density}
+Let $W_1(z)=\prod_{p\le z}(1-1/p)$ and $v=\log(2z)$. Then
+\begin{equation}\label{eq:rough-density}
+\begin{aligned}
+ W_1(z)&\asymp v^{-1},\qquad V_h(z)\asymp_h W_1(z)^2,\\
+ V_h(z)&\ge c_*W_1(z)^2,\qquad W_1(z)/V_h(z)\ll v,\\
+ c_*&=\prod_{p>2}\left(1-\frac1{(p-1)^2}\right)>0.
+\end{aligned}
+\end{equation}
+For a nonzero integer $\Delta$,
+\begin{equation}\label{eq:exceptional-harmonic}
+ \sum_{p\mid\Delta}\frac1p\le\log\log\log(3|\Delta|)+O(1),\qquad
+ \prod_{\substack{p>3\\p\mid\Delta}}(1-3/p)^{-1}
+ \ll(\log\log(3|\Delta|))^6.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Mertens' theorem \cite[Section~2.2]{MV} gives the assertion about $W_1$.
+For $p\nmid h$, $(1-2/p)/(1-1/p)^2=1-1/(p-1)^2$; for $p\mid h$ the ratio is
+$(1-1/p)^{-1}$. Since $2\mid h$, the factor at $2$ is positive and all other exceptional factors form a fixed
+finite product. This proves every comparison in \eqref{eq:rough-density}.
+For \eqref{eq:exceptional-harmonic}, separate primes at $\log(3|\Delta|)$. The smaller ones contribute at most
+$\log\log\log(3|\Delta|)+O(1)$. There are at most
+$\log(3|\Delta|)/\log\log(3|\Delta|)$ larger prime divisors, and their reciprocal sum is bounded.
+Finally $-\log(1-3/p)\le6/p$ for $p\ge5$. Exponentiation gives the product bound.
+\end{proof}
+
+\begin{inputthm}[Fundamental lemma]\label{input:fl}
+For a sieve problem with multiplicative densities $0\le g(p)<1$ satisfying the product condition of dimension
+at most two, there are upper and lower divisor weights $\xi_d^\pm$, $|\xi_d^\pm|\le1$, supported on
+squarefree $d\mid P(z)$, $d\le D$, such that the corresponding divisor sums bound the sifted indicator above
+and below and
+\begin{equation}\label{eq:fl}
+ \left|\sum_d\xi_d^\pm g(d)-\prod_{p\le z}(1-g(p))\right|
+ \le E(s)\prod_{p\le z}(1-g(p)),\qquad s=\frac{\log D}{\log z},\qquad E(s)\ll\e^{-cs}
+\end{equation}
+for sufficiently large $s$, when $2\le z\le D^{1/2}$.
+The constants are uniform for subsets of the forbidden roots $0,-h$.
+This is \cite[Theorem~3.6(a), p.~38; probability-space formulation, pp.~1--3]{Ford}; its sharper error is
+$\exp(-s\log s+s\log_3s+O(s))$. Indeed $g(p)\le\nu_h(p)/p$, and the associated product condition is bounded by
+the dimension-two product. In particular its constants can be absolute for even $h$.
+\end{inputthm}
+
+\begin{lemma}[Maximal all-residue Liouville bound]\label{lem:bv}
+For fixed $\vartheta<1/2$ and every $A>0$,
+\begin{equation}\label{eq:bv}
+ \sum_{d\le T^\vartheta}\max_{a\bmod d}\max_{y\le T}
+ \left|\sum_{\substack{n\le y\\n\equiv a\pmod d}}\lambda(n)\right|
+ \ll_{A,\vartheta} T(\log T)^{-A}.
+\end{equation}
+The maximum includes nonunit classes. For $D\le X^{1/4}$, with $E_d$ denoting this maximum at $T=2X$,
+\begin{equation}\label{eq:root-cauchy}
+ \sum_{d\le D}\mu^2(d)\nu_h(d)E_d
+ \le\left(\sum_{d\le D}E_d\right)^{1/2}
+     \left(\sum_{d\le D}\mu^2(d)4^{\omega(d)}E_d\right)^{1/2}
+ \ll_{h,B}X(\log X)^{-B}
+\end{equation}
+for every $B>0$.
+\end{lemma}
+\begin{proof}
+The bound without the maximum over $y$ is \cite[(1.5), p.~2]{PintzBV}.
+Fix $\vartheta<\vartheta'<1/2$ and an integer $m>A+3$. Use $O(\log^m T)$ cutoffs with spacing at most
+$T/\log^m T$. At grid points $y\ge T/(2\log^m T)$ one has $T^\vartheta\le y^{\vartheta'}$ and
+$\log y\asymp\log T$. The cited estimate with saving $A+m+3$, summed over the grid, is
+$O(T\log^{-A-2}T)$. Interpolation and the initial small interval cost
+$O(T\log^{1-m}T+T^\vartheta)$, by the progression term count
+$T/(d\log^m T)+1$. This proves \eqref{eq:bv}.
+Since $\nu_h(d)\le2^{\omega(d)}$ on squarefree integers, Cauchy--Schwarz gives the inequality in
+\eqref{eq:root-cauchy}. Also $E_d\le2X/d+1$ and
+\begin{equation}\label{eq:divisor-bounds}
+ \sum_{d\le D}\frac{4^{\omega(d)}}d\le(1+\log D)^4,\qquad
+ \sum_{d\le D}4^{\omega(d)}\ll D(1+\log D)^3.
+\end{equation}
+These follow from $4^{\omega(d)}\le\tau_4(d)$ by summing its four divisor variables.
+The second square in \eqref{eq:root-cauchy} is $O(X\log^4(2X))$; arbitrary $A$ in \eqref{eq:bv} finishes the proof.
+Replacing $n$ by $n+h$ costs two prefixes, once $X\ge h$.
+\end{proof}
+
+\begin{lemma}[Unsigned and singly signed rough sums]\label{lem:rough-sieve}
+For each fixed $0<\rho_*<1$, uniformly for $2\le z\le\exp((\log X)^{\rho_*})$,
+\begin{align}
+ \sum_{n\le X}R_z(n)R_z(n+h)&=XV_h(z)+O_{h,\rho_*,B}(X\log^{-B}X),\label{eq:rough-unsigned}\\
+ \sum_{n\le X}\lambda(n)R_z(n)R_z(n+h),\quad
+ \sum_{n\le X}\lambda(n+h)R_z(n)R_z(n+h)&\ll_{h,\rho_*,B}X\log^{-B}X.\label{eq:rough-single}
+\end{align}
+Both assertions hold for every fixed $B>0$.
+\end{lemma}
+\begin{proof}
+Put $D=X^{1/4}$, $g_h(d)=\nu_h(d)/d$ on squarefree $d$, and
+$w^\pm(n)=\sum_{d\mid n(n+h)}\xi_d^\pm$. CRT gives
+\begin{equation}\label{eq:sieve-crt}
+ \sum_{n\le X}\ind_{d\mid n(n+h)}=Xg_h(d)+O(\nu_h(d)).
+\end{equation}
+Since $\sum_{d\le D}\mu^2(d)\nu_h(d)\ll D\log(2D)$, Input~\ref{input:fl} yields
+\begin{align}
+ \sum_{n\le X}R_z(n)R_z(n+h)&=XV_h(z)+O(E(s)XV_h(z)+D\log(2D)),\label{eq:sieve-count}\\
+ \sum_{n\le X}|w^+(n)-R_z(n)R_z(n+h)|&\le2E(s)XV_h(z)+O(D\log(2D)),\label{eq:sieve-lone}\\
+ \qquad s&\ge\tfrac14(\log X)^{1-\rho_*}.\notag
+\end{align}
+For large $X$, $z\le D^{1/2}$, $g_h(p)<1$ because $h$ is even, and $E(s)$ beats every logarithmic power.
+The second bound follows from $w^+\ge R_zR_z\ge w^-$. It is an $L^1$ bound and may be multiplied by either
+Liouville sign. Expanding $w^+$ and applying \eqref{eq:root-cauchy} proves the two signed bounds.
+\end{proof}
+
+\begin{inputthm}[Short Fourier means and distance]\label{input:mrt}
+For a multiplicative $g$ with $|g|\le1$, $10\le D\le Y$, and
+$Q=\min((\log Y)^{1/125},(\log D)^5)$, define
+\begin{equation}\label{eq:pretentious}
+ M(g;Y,Q)=\min_{\substack{q\le Q,\ \chi\bmod q\\|t|\le Y}}
+ \sum_{p\le Y}\frac{1-\Re(g(p)\overline{\chi(p)}p^{-it})}p.
+\end{equation}
+Then
+\begin{equation}\label{eq:mrt}
+ \sup_\theta\frac1Y\int_0^Y
+ \left|\sum_{x\le n\le x+D}g(n)\e(\theta n)\right|dx
+ \ll D\left(\e^{-M(g;Y,Q)/20}+\frac{\log\log D}{\log D}+(\log Y)^{-1/700}\right).
+\end{equation}
+Moreover in this character and height range
+\begin{equation}\label{eq:lambda-distance}
+ M(\lambda;Y,Q)\ge\tfrac14\log\log Y-O(1).
+\end{equation}
+These are \cite[Theorem~1.7 and (1.12), p.~6]{MRT}, with a conservative choice of the constant in (1.12).
+For the distance assertion one can apply (1.12) with auxiliary long and short parameters both $Y$ and its
+coefficient bound $1$, giving the distance at prime cutoff $10Y$ for every $q\le Q$ and $|t|\le Y$.
+Removing the primes in $(Y,10Y]$ costs at most $2\sum_{Y<p\le10Y}1/p=O(1)$, giving \eqref{eq:lambda-distance}.
+The supremum in \eqref{eq:mrt} is outside the origin integral. The distance bound in the cited version is deduced
+from the classical Vinogradov--Korobov zero-free region.
+\end{inputthm}
+
+\begin{definition}[Labels, bins and vertex cuts]\label{def:graph}
+Fix $W\ge10$, $J=\lfloor\alpha\log L\rfloor\ge1$, with $\alpha=1/(1200W)$, and $0<\eta\le1$.
+Let $H_0=\exp(L^{199/200})$, $Y_i=L^{199/200}\e^{6Wi}$, and
+\begin{equation}\label{eq:prime-supplies}
+ \Pset_i=\{p\equiv1\pmod5:Y_{i-1}\le\log p<Y_i,\ p\nmid h\},\quad
+ \Pset=\bigcup_{i=1}^J\Pset_i,\quad
+ \Dset=\{p_1\cdots p_J:p_i\in\Pset_i\}.
+\end{equation}
+At a small-prime cutoff $z$ (or $y$) below $H_0$ take
+\begin{equation}\label{eq:padding-data}
+\begin{gathered}
+ \Qset=\{p:z<p\le\e^L,\ p\not\equiv1\pmod5,\ p\nmid h\},\\
+ a(u)=a^{\omega(u)},\quad w(n)=(1+a)^{\omega_{\Qset}(n)},\quad S=\prod_{p\in\Qset}(1+a/p).
+\end{gathered}
+\end{equation}
+where $a=4$ or $16$, and $\Qset^{\sfw}$ is the finite set of squarefree products of primes in $\Qset$, including $1$.
+Set
+\begin{equation}\label{eq:bins}
+ \mathcal S_j=\{(d,u)\in\Dset\times\Qset^{\sfw}:\omega(u)\le100\log L,
+ j\eta\le\log(du)<(j+1)\eta\},\quad T_j=X\e^{j\eta},\quad j\eta\le100L.
+\end{equation}
+Write $V_i=\sum_{p\in\Pset_i}1/p$, $V_*=\prod_iV_i$,
+$S_0=\sum_j\sum_{(d,u)\in\mathcal S_j}a(u)/(du)$, and $k=\lfloor L\rfloor$,
+$\ell_0=\lfloor L^{1/10}\rfloor$, $M=\lceil\e^{103L}\rceil$.
+The exterior projection $E$ restricts to $\omega_{\Pset}(n)\le6WJ$.
+\end{definition}
+
+\begin{proposition}[Label supply and retained mass]\label{lem:mass}
+With the fixed data above, for sufficiently large $L$,
+\begin{equation}\label{eq:label-mass}
+ W\le V_i\le2W,\quad \log d<2L,\quad
+ \tfrac12SV_*\le S_0\le SV_*,\quad Xe^{-\eta}<T_j/(du)\le X.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Since $6WJ\le(1/200)\log L$, the supplies lie below $\e^L$. The fixed-modulus prime number theorem
+\cite[(2.2)--(2.3), pp.~8--9]{OpenAI007} gives
+$V_i=(3/2)W+o(1)$ uniformly in $i$; removing the fixed divisors of $h$ has bounded, eventually vanishing effect.
+The geometric sum of $Y_i$ is less than $L/(1-e^{-6W})<2L$.
+Under the law $a(u)/(uS)$, a prime occurs with probability $a/(p+a)$.
+For $a=4$ the expected logarithmic size and degree are at most $4L$ and $4\log L$.
+For $a=16$ the bounds $17L$ and $17\log L$ suffice for large $L$, also after removing primes up to $z$.
+Markov excludes $\log u>98L$ and $\omega(u)>100\log L$ with probabilities totaling at most
+$4/98+4/100<1/2$ or $17/98+17/100<1/2$, respectively.
+Every remaining $u$ belongs to a bin with every $d$. This repeats the two exclusions in
+\cite[Lemma~2.2, pp.~8--9]{OpenAI007}, with the present harmonic law proved explicitly.
+Dropping restrictions gives the upper bound. The last assertion follows directly from \eqref{eq:bins}.
+\end{proof}
+
+\begin{definition}[Rare vertices]\label{def:rare}
+A signed numerical step is $D_i=\epsilon_i h d_i u_i$, $\epsilon_i\in\{\pm1\}$, $(d_i,u_i)\in\mathcal S_j$.
+A path is positive when $d_i u_i$ divides its departure at each step; this also holds at the arrival.
+A forward prohibited word has length $3\le m\le\ell_0$, unequal consecutive whole tuples,
+interval-shaped occurrences of every centre prime, and a prime $p\mid d_1$, $p\nmid d_m$, such that
+\begin{equation}\label{eq:prohibited}
+ p\mid\sum_{i=b}^m D_i\qquad\text{for some }1<b<m.
+\end{equation}
+It is minimal if no shorter contiguous subword is forward prohibited in either orientation.
+Let $\mathcal B_j$ be the sites where a positive minimal prohibited word starts, and $\sigma_j=\ind_{n\notin\mathcal B_j}$.
+These are the definitions of \cite[Definition~5.1, pp.~21--22]{OpenAI007} with the present label supply.
+\end{definition}
+
+\begin{proposition}[Rare-site estimate for the changed padding]\label{lem:rare}
+For either padding weight in \eqref{eq:padding-data},
+\begin{equation}\label{eq:rare}
+ \Prob_*(n\in\mathcal B_j)\le\exp(-\tfrac12L^{199/200}).
+\end{equation}
+Its positivity event is a disjunction of at most $\exp(O(\ell_0 L))$ conjunctions, each with
+$O(\ell_0\log L)$ residue equalities.
+\end{proposition}
+\begin{proof}
+Follow \cite[Lemmas~5.2--5.3, pp.~22--23]{OpenAI007}. A word of at most $R\le4L$ steps has
+$O(R\log L)$ prime slots, so its equality patterns and polynomially many records per slot number
+$\exp(O(R\log^2L))$. Each distinct prime contributes one reciprocal and harmonic mass $O(\log L)$.
+Now $La(u)\le L^{1+100\log a}$; this changes only the absolute constant in that count.
+In a prohibited word, a centre prime $z'$ entering on the last transition has coefficient
+$\epsilon_m h u_m d_m/z'$ in \eqref{eq:prohibited}. The controlling prime $p$ is absent from $d_m$, divides
+neither $h$ nor any padding, and so that coefficient is a unit modulo $p$, independent of $z'$.
+With the other labels fixed the reciprocal sum for $z'$ is bounded by
+\begin{equation}\label{eq:elimination}
+ \sum_{\substack{H_0\le n\le e^L\\n\equiv c\pmod p}}\frac1n
+ \le\frac1{H_0}+\frac Lp\le\frac{1+L}{H_0}.
+\end{equation}
+The remaining positive reciprocal sum is $\exp(O(\ell_0\log^2L))$.
+Thus the probability is at most $(1+L)H_0^{-1}\exp(O(\ell_0\log^2L))$, giving \eqref{eq:rare}.
+Numerical pairs have $du\le e^{101L}$ and are uniquely recovered from their product by disjoint supports.
+Preselect the numerical prohibited and minimal words; positivity alone is a conjunction of the stated size.
+This proves the Boolean description and translation covariance. No Liouville values enter this event.
+\end{proof}
+
+\section{Finite residue comparison}\label{sec:comparison}
+
+\begin{lemma}[Shallow CNF comparison]\label{lem:cnf}
+Fix an integer $\ell\ge1$. Let the coordinate moduli be pairwise coprime integers between $2$ and $e^L$,
+all coprime to $\ell$, with the coordinate modulo $\ell$ added if $\ell>1$.
+An event given by a residue CNF with at most $e^{L^3}$ clauses, each of width at most $L$, has
+\begin{equation}\label{eq:cnf-comparison}
+ |\Prob_I(E)-\Prob_*(E)|\le e^{-L^6}\qquad(|I|\ge e^{L^{18}/2}).
+\end{equation}
+The literals may be residue equalities or their negations, with repetitions and arbitrary offsets.
+An expansion of such events with total absolute coefficient mass $e^{CL^4}$ has error at most $e^{-L^5}$.
+The threshold depends only on $\ell,C$.
+\end{lemma}
+\begin{proof}
+Bazzi's bounded-independence theorem \cite{Bazzi}, in the form of \cite[Theorem~1, p.~2]{Razborov}, bounds the
+error for an $m$-clause CNF under exactly $t$-wise uniform bits by
+$m^{C_0}e^{-c_0\sqrt t}$; complementation gives CNFs from DNFs.
+We give the reduction to that precise hypothesis.
+
+Put $B_0=\lceil L^8\rceil$. Adjoin an independent $U_s$ uniform on $[0,1)$ at every coordinate, and encode
+$K_s=\lfloor2^{B_0}(R_s+U_s)/s\rfloor$ in $B_0$ bits. Decode by
+\begin{equation}\label{eq:decoder}
+ \widehat R_s=\left\lfloor\frac{s(K_s+1/2)}{2^{B_0}}\right\rfloor,\qquad
+ \Prob(\exists s:\widehat R_s\ne R_s)
+ \le2^{1-B_0}\left(\ell+\sum_s s\right)\le e^{3L}2^{-B_0}.
+\end{equation}
+Conditional on any residue, only its two boundary dyadic cells can cause failure, of probability at most
+$2s2^{-B_0}$. Under the product law all encoded bits are independent and unbiased.
+The monotone decoder makes every residue preimage an interval of binary integers.
+An interval has a CNF with at most $2B_0$ clauses, by excluding each forbidden initial differing bit at each
+boundary. Its complement has at most $B_0^2$ clauses after distributing the two one-sided CNFs.
+Thus a residue literal has at most $2B_0^2$ clauses. Distributing a clause of width at most $L$ gives a Boolean CNF
+with
+\begin{equation}\label{eq:cnf-size}
+ m\le e^{L^3}(2B_0^2)^L\le e^{L^4},\qquad n_b\le e^{2L}
+\end{equation}
+clauses and bits, respectively, for large $L$.
+
+Take $t=\lceil L^{13}\rceil$. At most $t$ selected bits read at most $t$ coordinates, whose product is at most
+$\ell e^{tL}$. CRT counts each residue with error $O(1)$, so their total variation from uniform is at most that
+product divided by $|I|$, and hence at most $\Delta=e^{2tL-L^{18}/2}$.
+Jitter and projection do not increase this distance. If $f$ is the full bit-law density relative to the uniform
+cube, its Walsh coefficients satisfy $|\widehat f(S)|\le2\Delta$ for $1\le|S|\le t$. Consequently
+\begin{equation}\label{eq:walsh-mass}
+ q:=\sum_{1\le|S|\le t}|\widehat f(S)|\le2\Delta(t+1)n_b^t\le e^{-L^{17}}.
+\end{equation}
+Let $H=\sum_{1\le|S|\le t}\widehat f(S)\chi_S$ and $a_0=e^{-2L^6}$. Since $|H|\le q\le a_0$,
+\begin{equation}\label{eq:walsh-correction}
+ g=\frac{f-H+a_0}{1+a_0}\ge0,\qquad \E g=1,\qquad
+ d_{\rm TV}(f,g)\le\frac{q+a_0\E|1-f|}{2(1+a_0)}\le3a_0/2.
+\end{equation}
+All nonconstant Walsh coefficients of order at most $t$ vanish for $g$, so Fourier inversion on each marginal
+makes $g$ exactly $t$-wise uniform.
+Bazzi's error is at most $\exp(C_0L^4-c_0L^{13/2})\le a_0$.
+Adding the correction and decoding errors gives
+$2e^{3L}2^{-B_0}+5a_0/2\le e^{-L^6}$.
+Multiplication by $e^{CL^4}$ gives the scalar assertion. The argument used only the coordinate count, sizes and
+CRT, so it applies to prime-square coordinates as well as primes.
+\end{proof}
+
+\begin{proposition}[Encoding the graph events]\label{prop:encoding}
+For padding $4^{\omega(u)}$, any padding-prime subset as above, and any fixed-power choices of $\eta,K$, every
+comparison used in positive deletions, the signed trace, and the truncated testing norm is a scalar expansion
+covered by Lemma~\ref{lem:cnf}, of total absolute coefficient mass $\exp(O(L^4))$.
+Small-prime rough indicators or prime-square negative tests may be adjoined.
+\end{proposition}
+\begin{proof}
+This replaces \cite[Lemma~3.1 and Corollaries~3.2--3.3, pp.~10--12]{OpenAI007} for the present objects.
+Follow the event expansions of \cite[Lemma~4.6, pp.~19--21; Theorem~5.4, pp.~24--25;
+Proposition~8.4, pp.~41--42]{OpenAI007}.
+A numerical witness is preselected by its numerical arithmetic and minimality conditions.
+Its positivity is a conjunction of $O(L^{1/10}\log L)<L$ equalities. There are
+$\exp(O(L^{11/10}))$ witnesses at one site; their absence is a CNF. Conjoining these tests at at most
+$2k\le2L$ visited sites still gives fewer than $e^{L^3}$ clauses.
+
+An exact active-$\Qset$ state is a conjunction of all presences and all absences, with unit-width clauses.
+After the cutoff $\omega_{\Qset}\le\lfloor400\log L\rfloor$, there are
+$\exp(O(L\log L))$ possible states at a site. In each, denominators and the original padding cutoff are scalars.
+A degree condition $\omega_{\mathcal T}\le b$, $b=O(\log L)$, excludes each simultaneous $(b+1)$-subset and is a
+CNF of $\exp(O(L\log L))$ clauses. Roughness and fixed divisibilities add unit clauses.
+
+In a trace, fix a signed numerical word and the two external copy indices. Enumerate its states and expand its
+$2kJ$ centred factors into indicators and scalars, retaining their signs. The resulting event is the conjunction
+just described. There are $\exp(O(kL\log L))$ states, at most $2^{2kJ}$ centred expansions, scalar sizes
+$\exp(O(k\log L))$, and $\exp(O(kL))$ numerical words and external indices.
+Their total mass is $\exp(O(L^2\log L))\le\exp(O(L^4))$.
+This comparison precedes absolute values of word expectations.
+
+For deletion, expand the positive centred majorant and split the four failed cuts at both endpoints by the
+exact union bound. A large-degree or witness event $B$ may be treated by
+\begin{equation}\label{eq:two-cnf}
+ \ind_{H\cap B}=\ind_H-\ind_{H\cap B^c}.
+\end{equation}
+Both right-hand events have the required CNFs. This avoids an expansion over intersections of arbitrary witness
+families. Eligible pairs number $e^{O(L)}$ and exact states cost $e^{O(L\log L)}$, within the same scalar bound.
+Finally the truncated norm is expanded by its exact active state, of coefficient $5^{|\Qset_n|}$, at most a fixed
+power of $L$. Its $M\le e^{104L}$ block positions preserve the bound.
+Apply Lemma~\ref{lem:cnf} to all expansions. None reads the full $\Omega$ weight or a Liouville value.
+\end{proof}
+
+\begin{proposition}[Rough-target threshold comparison]\label{prop:threshold}
+For padding $16^{\omega(u)}$ and $w=17^{\omega_{\Qset}}$, replace the vertex degree cutoff by
+$\lfloor18\log L\rfloor$. The norm, positive deletion and signed-trace comparisons with the rough-target
+threshold defined in \eqref{eq:masked-rho} have per-event error $e^{-L^{10}}$ and aggregate error $e^{-L^9}$ on
+any origin interval of length at least $e^{L^{625}/2}$. These estimates are uniform in
+$z\le e^{L^{1/6}}$, bin position and numerical word data, for fixed $h$.
+\end{proposition}
+\begin{proof}
+On an exact active state there are at most
+$N=2^{18\log L}=L^{18\log2}<L^{13}$ possible padding divisors.
+A weighted sum of their target rough indicators exceeds its threshold exactly when some subset of candidates
+whose scalar weights exceed the threshold has all its targets rough. Negating this statement gives an AND over
+those subsets of an OR of positive residue equalities: one selected target has a small prime divisor.
+There are at most $2^N$ clauses, each of width at most $N\pi(z)$. Both orientations, all $O(L)$ visited sites,
+exact states, no-witness predicates and endpoint masks give a residue CNF whose logarithmic size is
+$O(L^{18\log2})+O(L^{1/6})+O(L\log L)$.
+Use \eqref{eq:two-cnf} for positive bad-event costs. The subsets are internal to this circuit, rather than scalar
+summands.
+
+Use the monotone decoder \eqref{eq:decoder} with $B_0=\lceil L^{15}\rceil$.
+Each binary interval has a DNF with at most $2B_0$ dyadic-prefix conjunctions, by following its two boundary
+paths in the binary tree and taking the included subtrees. Its complement has $O(B_0)$ such conjunctions too.
+Substitution into the residue CNF and flattening adjacent OR levels gives AND--OR--AND, of depth three and size
+at most $e^{L^{14}}$, including input occurrences. Decoding error is charged per coordinate: one correct decode
+settles every offset test at that coordinate.
+
+Braverman's exact independence bound \cite[Corollary~2, p.~1]{Braverman} for depth $d$, size $m$ and error
+$\epsilon_0$ is
+\begin{equation}\label{eq:braverman}
+ 3\,60^{d+3}(\log m)^{(d+1)(d+3)}
+       \{5\log(15m/\epsilon_0)\}^{d(d+3)}.
+\end{equation}
+At $d=3$, $m\le e^{L^{14}}$ and $\epsilon_0=e^{-L^{11}}$, this is $O(L^{588})$.
+Equivalently the Main Theorem there may be applied with
+\begin{equation}\label{eq:braverman-ceiling}
+ s_B=\lceil100L^{14}\rceil,\qquad 0.82^{s_B}(15m)\le e^{-L^{11}}
+\end{equation}
+for large $L$; the same exponent follows independently of the logarithm-base convention.
+Take $t=\lceil L^{589}\rceil$. At most $t$ bits involve moduli of product $e^{O(tL)}$, and the total bit count is
+at most $e^{2L}$. CRT and the low-order Walsh coefficient count therefore cost
+$\exp(-L^{625}/2+O(L^{590}))\le e^{-L^{12}}$.
+Apply the nonnegative correction \eqref{eq:walsh-correction} with $a_0=e^{-L^{11}}$ to obtain exact $t$-wise
+uniformity. Its error is $O(e^{-L^{11}})$; adding Braverman's error and the coordinate decoding error
+$e^{3L}2^{-L^{15}}$ gives $e^{-L^{10}}$.
+The states, words and factors $L16^{\omega(u)}$ retain the scalar mass $e^{O(L^4)}$ proved above.
+Thus their aggregate error is $e^{-L^9}$. The large threshold is not covered merely by Lemma~\ref{lem:cnf}.
+\end{proof}
+
+\section{Rough-target padding and its second moment}\label{sec:collision}
+Use $a=16$ in Definition~\ref{def:graph}, and suppose $2\le z\le e^{L^{1/6}}$.
+For a numerical $d$ whose primes exceed $z$ and are outside $\Qset$, $\log d\le2L$, define
+\begin{equation}\label{eq:masked-rho}
+ \rho_{j,z}^{\pm}(n,d)=\frac1{w(n)}
+ \sum_{\substack{u\mid n,\ u\in\Qset^{\sfw}\\j\eta\le\log(du)<(j+1)\eta}}
+ 16^{\omega(u)}R_z(n\pm hdu),\qquad
+ \rho_{j,z}=\max(\rho_{j,z}^+,\rho_{j,z}^-).
+\end{equation}
+The sum here includes all padding divisors in the bin, before the eligible degree restriction.
+
+\begin{proposition}[Three-density second moment]\label{prop:collision}
+For $0<\eta\le1$ and the bins $j\eta\le100L$, uniformly in $z,\eta,d$,
+\begin{equation}\label{eq:masked-second}
+ \E_*\left[w(n)R_z(n)\sum_j\rho_{j,z}(n,d)^2\right]
+ \ll_h\frac{S W_1^3(1+\log L)^6}{L}.
+\end{equation}
+Deleting a row with $\rho_{j,z}>KW_1/L$, after the low-$\Qset$ cutoff, costs, after summing bins and labels and
+normalizing by $SV_*$, at most
+\begin{equation}\label{eq:masked-deletion}
+ C_h W_1^2\frac{2^J(1+\log L)^6}{K}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Following the conditional-divisor experiment of \cite[Lemma~4.5, pp.~17--18]{OpenAI007}, tilt by $w/S$.
+Each $\Qset$ prime is then active with probability $17/(p+16)$, and conditional on activity is selected in a
+divisor with probability $16/17$. Two conditionally independent selected divisors $u_1,u_2$ give the factor
+\begin{equation}\label{eq:collision-factor}
+ 1-\frac{32}{17(p+16)}(1-\cos(t\log p))
+\end{equation}
+for their log-ratio characteristic function. It is nonnegative for every real $t$; the harmonic estimate below is used only for $|t|\le2$.
+Fixed-modulus PNT and partial summation, as in \cite[(4.11)--(4.13), pp.~17--18]{OpenAI007}, give
+\begin{equation}\label{eq:collision-char}
+ 0\le\phi_z(t)\ll_h
+ \left(\frac{1+v|t|}{1+L|t|}\right)^{24/17},\qquad v=\log(2z)\le2L^{1/6},\quad |t|\le2.
+\end{equation}
+Indeed the harmonic sum of $1-\cos(t\log p)$ on these padding primes is
+$\tfrac34\log((1+L|t|)/(1+v|t|))+O_h(1)$; replacing $p+16$ by $p$ changes it by $O(1)$.
+The coefficient $(32/17)(3/4)$ is $24/17$.
+The nonnegative triangular Fourier kernel
+\begin{equation}\label{eq:triangular}
+ \kappa(x)=\left(\frac{\sin x}{x}\right)^2
+ =\tfrac14\int_{-2}^2(2-|t|)e^{itx}\,dt,\qquad
+ \ind_{[-1,1]}(x)\le\kappa(x)/(\sin1)^2
+\end{equation}
+bounds bin collision. If $\rho_j$ denotes the unmasked bin probability, it gives
+\begin{equation}\label{eq:unmasked-collision}
+ \E^{\rm tilt}\sum_j\rho_j^2\ll_h L^{-1}+(v/L)^{24/17}\ll_h L^{-1},\qquad
+ \E^{\rm tilt}F=\E_*(wF)/S.
+\end{equation}
+The exact equality probability is
+\begin{equation}\label{eq:diagonal-padding}
+ D_Q=\prod_{p\in\Qset}\left(1-\frac{32}{17(p+16)}\right)\ll_h(v/L)^{24/17}.
+\end{equation}
+
+Fix an orientation and condition on the active padding configuration and $u_1,u_2$.
+For equal paddings, the two small-prime sites have mean $V_h(z)\ll_h W_1^2$, since $du$ is a unit at every small
+prime. For different eligible paddings, $0<|u_1-u_2|\le e^{101L}$.
+At each $p>3$ not dividing $h(u_1-u_2)$, the three offsets $0,\pm hdu_1,\pm hdu_2$ are distinct modulo $p$.
+Dropping the other factors bounds their common roughness probability by
+\begin{equation}\label{eq:triple-rough}
+ \prod_{3<p\le z}(1-3/p)
+ \prod_{\substack{p>3\\p\mid h(u_1-u_2)}}(1-3/p)^{-1}
+ \ll_h W_1^3(1+\log L)^6.
+\end{equation}
+Use Lemma~\ref{lem:density}; if the forbidden roots cover a whole small field, the probability is zero.
+Apply this bound before enlarging the unmasked collision sum, so the difference bound remains valid.
+Enlarge only the diagonal to all equal divisor choices. Since $\max(x,y)^2\le x^2+y^2$, the left side of
+\eqref{eq:masked-second} is bounded by a constant times
+\begin{equation}\label{eq:second-diagonal}
+ S\left\{\frac{W_1^3(1+\log L)^6}{L}+W_1^2(v/L)^{24/17}\right\},\qquad
+ \frac{W_1^2(v/L)^{24/17}}{W_1^3/L}
+ \ll_h v^{41/17}L^{-7/17}\ll_h L^{-1/102}.
+\end{equation}
+The last exponent is $(1/6)(41/17)-7/17=-1/102$. This proves \eqref{eq:masked-second}.
+
+On a bad row, the positive source edge mass $wR_z\rho_{j,z}^+$ is at most
+$LwR_z\rho_{j,z}^2/(KW_1)$. The centre majorant
+$a_d^+(n)=\prod_{p\mid d}(\ind_{p\mid n}+1/p)$ has mean $2^J/d$ independently of these coordinates.
+Sum $d$ to obtain $2^JV_*$ and use \eqref{eq:masked-second}. Reversing the orientation proves the arrival bound.
+This gives \eqref{eq:masked-deletion}, without independence between translated sites.
+\end{proof}
+
+\section{The modified graph moment and spectral estimate}\label{sec:moment}
+For the rough operator let
+\begin{equation}\label{eq:rough-tau}
+ \tau_j(n,d)=\ind_{\omega_{\Qset}(n)\le\lfloor18\log L\rfloor}
+ \ind_{\rho_{j,z}(n,d)\le KW_1/L}\sigma_j(n),\qquad
+ c_d(n)=\prod_{p\mid d}(\ind_{p\mid n}-1/p),\quad a_d(n)=|c_d(n)|.
+\end{equation}
+On $M$ consecutive sites define a symmetric matrix, for $m=n+hdu$ with $(d,u)\in\mathcal S_j$, by
+\begin{equation}\label{eq:rough-matrix}
+ A_d(n,m)=\frac{L16^{\omega(u)}}{\sqrt{w(n)w(m)}}\ind_{u\mid n}c_d(n)
+ \tau_j(n,d)\tau_j(m,d)R_z(n)R_z(m),\qquad A_d(m,n)=A_d(n,m).
+\end{equation}
+Other entries vanish. On the direct sum of $d$-indexed copies set
+$H_{d,d'}=\ind_{d\ne d'}A_{d'}$. The $\Pset$-degree restriction occurs only in $E$.
+
+
+For endpoint functions $f,g$ and a numerical sign $\epsilon(du)$ define the centred sums
+\begin{equation}\label{eq:centered-sums}
+ C_j(f,g)=\frac1{T_j}\sum_{n\le T_j}\sum_{(d,u)\in\mathcal S_j}
+ a(u)\ind_{u\mid n}c_d(n)\epsilon(du)f(n)g(n+hdu).
+\end{equation}
+Their retained versions $C_j^\circ(f,g)$ insert $\chi_j(n,d)\chi_j(n+hdu,d)$, where
+$\chi_j=\tau_j\ind_{\omega_{\Pset}\le6WJ}$.
+For the rough case take $f=g=\lambda R_z$, $a=16$ and $\epsilon=1$.
+For the soft and full weights the endpoint functions, numerical sign, and vertex cuts are specified below.
+
+\begin{inputthm}[Finite-dimensional transfer, {\cite[Lemma~8.1, p.~39]{OpenAI007}}]\label{input:transfer}
+Let $B_i$ be self-adjoint operators on a finite-dimensional complex Hilbert space, $P$ an orthogonal projection,
+and $\mathcal H_{i,j}=\ind_{i\ne j}B_j$. If $a,b\ge0$, $\|B_i\|\le a$, and
+$\sum_i\|B_iv\|^2\le b^2\|v\|^2$ for $v=Pv$, then
+\begin{equation}\label{eq:transfer}
+ \left\|P\left(\sum_iB_i\right)P\right\|\le3\max(a,b,\rho(\mathcal H)).
+\end{equation}
+Neither different $B_i$ nor $P$ need commute.
+\end{inputthm}
+
+\begin{proposition}[Moment with the rough density]\label{prop:masked-moment}
+There are absolute constants $C_2,C$, fixed before $W$, for padding $16$, with the following property.
+For each fixed even $h\ge2$ and fixed $W\ge10$, take $X$ sufficiently large in terms of $h,W$.
+Use the operator \eqref{eq:rough-matrix}, $\alpha=1/(1200W)$, and
+\begin{equation}\label{eq:masked-graph-parameters}
+ L=(\log X)^{1/625},\quad 2\le z\le e^{L^{1/6}},\quad
+ J=\lfloor\alpha\log L\rfloor,\quad\eta=L^{-\alpha/100},\quad
+ K=L^{\alpha\log2+\alpha/100}.
+\end{equation}
+Then
+\begin{equation}\label{eq:masked-moment}
+ \E_*\|H^k\|_{\HS}^2\le\{KW_1(C_2\sqrt W)^J\}^{2k}.
+\end{equation}
+The same bound holds for finite origin intervals of length at least $e^{L^{625}/2}$, after one absolute
+enlargement of $C_2$. Outside a fraction at most $e^{-2k}$ of those origins,
+\begin{equation}\label{eq:masked-spectrum}
+ \left\|E\left(\sum_dA_d\right)E\right\|\le KW_1(C\sqrt W)^J.
+\end{equation}
+\end{proposition}
+\begin{proof}
+We check the proof of \cite[Theorem~5.4, pp.~24--38]{OpenAI007} in its order.
+Write $\mathfrak b=KW_1$. Expanding $\|H^k\|_{\HS}^2$ joins two paths with common endpoints and reverses one.
+The result is a closed word of $2k$ steps with unequal consecutive whole tuples within each half. There are at
+most $|\Dset|^2M\le e^{108L}$ external choices, as in [O, (5.4), p.~24]; there is no additional copy choice per
+step. Proposition~\ref{prop:threshold} compares this signed expansion before taking absolute values.
+
+On a closed word the product of the two endpoint indicators is the product of the arrival indicators, counting
+visits with multiplicity, because $R_z^2=R_z$. Its square-root denominators multiply to one $w$ at each departure.
+Make these identities before dropping closure. The contribution now has the form [O, (5.6)--(5.7), p.~25], with
+$R\ge0$ independent of all $\Pset$ residue draws, and $G=\prod_i\sigma_j(n_i)$.
+The new masks and cutoff may depend on numerical centre labels, but not on their residue draws; they remain in
+$R$. Only $G$ contains the rare-witness predicates. This verifies the decisive hypothesis of
+[O, Lemma~5.5, p.~26]. A centre prime appearing in exactly one step is a singleton.
+At every nonsingleton occurrence expand the centred factor into its indicator (lit) or its scalar $-1/p$ (unlit).
+Lit consistency requires all the lit departure residues of one prime to agree.
+Force the common residue for each lit nonsingleton. For each subset $H$ of the singleton set $\mathcal U$, also
+force the residue at the sole occurrence of each singleton in $H$, leaving the other coordinates at their original
+draws. Write $G_H$ for $G$ on this hybrid and define
+\begin{equation}\label{eq:mixed-difference}
+ \Delta G=\sum_{H\subset\mathcal U}(-1)^{S_1-|H|}G_H,\qquad S_1=|\mathcal U|.
+\end{equation}
+In particular, at a singleton prime,
+\begin{equation}\label{eq:singleton-identity}
+ \E[(\ind_{Z=a}-1/p)F(Z)]=p^{-1}\E[F(a)-F(Z)].
+\end{equation}
+Integrating all singleton coordinates gives the same mixed difference $\Delta G$, bounded by $2^{S_1}$,
+and the reciprocal factor
+\begin{equation}\label{eq:lit-reciprocals}
+ b_{\mathcal L}=\prod_{p\ \mathrm{singleton}}p^{-1}
+ \prod_{p\ \mathrm{nonsingleton}}p^{-u_p-\ind_{\ell_p>0}},\qquad
+ |\E(\text{designated term})|\le\ind_{\mathrm{lit\ consistency}}b_{\mathcal L}\E[R|\Delta G|].
+\end{equation}
+Write $\mathcal L$ for the lit/unlit designation. Here $\ell_p,u_p$ count lit and unlit occurrences,
+and $U=\sum_{p\ \mathrm{nonsingleton}}u_p$ is the total number of unlit nonsingleton occurrences.
+Lit tests must force the same residue at their departures.
+This is a direct application of the numbered source lemma, with its independence condition verified.
+
+Next follow the three discarded classes. Let $\mathcal M_a$ be the crude factor in the proof of
+[O, Lemma~5.2, p.~22] and the discussion preceding Lemma~5.6 (p.~26), with padding coefficient $a^{\omega(u)}$.
+It retains the padding divisibilities, but drops denominators, cutoffs and added small-prime masks. Pointwise,
+for the non-$\Pset$ factor of any fixed numerical word,
+\begin{equation}\label{eq:crude-domination}
+\begin{aligned}
+ 0\le R_{\rm mask}
+ &\le\mathcal M_{16}:=\prod_{i=1}^{2k}L16^{\omega(u_i)}\ind_{u_i\mid n_i},\\
+ \mathcal M_{16}
+ &=4^{\sum_i\omega(u_i)}\mathcal M_4
+ \le\exp(200k(\log4)\log L)\mathcal M_4
+ =\exp(O(L\log L))\mathcal M_4.
+\end{aligned}
+\end{equation}
+Here $w\ge1$ and $\omega(u_i)\le100\log L$. The remaining lit-consistency and reciprocal factors are identical.
+Thus replacing $4$ by $16$ introduces only this additional factor in the positive majorants of
+[O, Lemmas~5.6, 6.2, 6.5, pp.~26, 28--29, 31--33]. Their crude enumeration still costs
+$\exp(O(L\log^2L))$, with all padding divisibilities retained. The added small-prime draws integrate to at most
+one after their masks are dropped, rather than requiring a sum over their configurations.
+For $U>L^{1/50}$ unlit occurrences, at least $U/2$ extra reciprocal powers remain. They give
+\begin{equation}\label{eq:unlit-cost}
+ \exp(O(L\log^2L))H_0^{-U/2}
+ \le\exp(O(L\log^2L)-\tfrac12L^{203/200}),
+\end{equation}
+as in [O, Lemma~5.6, p.~26].
+
+For high rank use [O, Lemma~6.1, pp.~27--28] as stated. In one column let $z_i$ be the abstract label at step $i$,
+with numerical prime value $p_{z_i}$, and let $(\mathbf e_z)$ be the coordinate basis indexed by its abstract labels. Put
+\[
+ t_i=D_i/p_{z_i},\qquad v(i)=\sum_{a<i}t_a\mathbf e_{z_a}.
+\]
+For two lit occurrences $i,i'$ of a label $z$, its control/difference pair is
+$(\mathbf e_z,v(i)-v(i'))$. Joint independence of a family means independence of all its displayed vectors over $\R$.
+The coefficients $t_i$ are independent of the numerical prime values in that column. A jointly independent family of
+$r_0=\lfloor L^{1/50}\rfloor$ such pairs has an invertible minor over $\R$ after deleting its control columns.
+The independent reciprocal prime law has largest atom at most $(V_iH_0)^{-1}$.
+The differences in the minor are bounded by $2kh e^{103L+1}=e^{O(L)}$, since eligible paddings still obey
+$u\le e^{100L+1}$. These are precisely the atom, independence and size hypotheses of Lemma~6.1; no invertibility
+modulo a control prime is required. Its square-root probability saving is
+$\exp(O(r_0\log L))H_0^{-r_0/2}$.
+Multiplying the crude enumeration gives $\exp(-cL^{203/200})$.
+This redoes the application in [O, Lemma~6.2, pp.~28--29] for the new fixed padding coefficient.
+
+For $S_1>L^{1/4}$ singletons, [O, Lemma~6.3, p.~30] applies: $\Delta G\ne0$ forces
+$T=\lfloor L^{1/12}\rfloor$ positive witnesses in a single hybrid, with distinct private marked singletons,
+and recorded total length at most $2k+\ell_0T\le4L$.
+Its proof uses only the witness supports and the mixed difference, unchanged here.
+[O, Lemma~6.4, pp.~31--32] supplies either an active private label with a unit coefficient in an internal
+congruence, or an active label with a nonzero private-label prefix contribution. The prohibited-word and
+minimality definitions are exactly Definition~\ref{def:rare}, so its statement applies as given.
+To repeat [O, Lemma~6.5, pp.~32--33], order witnesses by attachment. If at least $T/8$ have an active label
+absent from all earlier witnesses, use their internal congruences and eliminate in reverse order; if absent from
+all later witnesses, reverse that order. Otherwise more than $3T/4$ witnesses have all their active labels in both
+an earlier and a later witness. For private labels whose main occurrence has not passed their attachment, compare
+with an earlier witness; the main segment omits that label, and privacy removes it from the partner witness.
+For labels already passed, compare with a later witness and reverse the attachment order.
+One group supplies at least $\lfloor T/8\rfloor$ relations. Each relation is independent of all later selected
+variables and its selected coefficient is a unit. Use \eqref{eq:elimination} successively. The residue tests for
+new witness primes are unchanged in every hybrid, so no hybrid-choice cost is incurred. All records still cost
+$\exp(O(L\log^2L))$. The resulting bound is
+\begin{equation}\label{eq:singleton-cost}
+ \exp(O(L\log^2L))\left(\frac{1+L}{H_0}\right)^{\lfloor T/8\rfloor}
+ \le e^{-L^{21/20}},\qquad T\log H_0\asymp L^{647/600}.
+\end{equation}
+Thus all three exceptional classes have total $\exp(-cL^{1+\epsilon_1})$ for some absolute $\epsilon_1>0$.
+The added small-prime draws were dropped in these positive bounds, with no sum over their configurations.
+
+After the three classes are discarded, [O, Lemmas~7.1--7.2, pp.~34--37] apply to the remaining words as stated.
+Perfect positions are lit nonsingletons; their blocks have length at most $\ell_0$, have no prohibited witness,
+and have unequal consecutive tuples within each half. Their interval-shaped labels and nonzero subinterval
+displacements follow from Lemma~7.1. The bounds $S_1\le L^{1/4}$, $U\le L^{1/50}$ and rank below $r_0$ are
+exactly the hypotheses of Lemma~7.2. Its forest universe has $e^{O(Jk)}$ combined patterns uniformly over all
+numerical labels and padding coefficients. Added masks only select a subset of this universe.
+
+At this point repeat [O, Lemma~7.3 and (7.5), p.~37], changing its row constant.
+Fix the non-$\Pset$ environment, numerical tuples $d_i$ and orientations $\epsilon_i\in\{\pm1\}$.
+The coefficient at a departure $n$ is
+\begin{equation}\label{eq:rough-recursion-coefficients}
+\begin{aligned}
+ c_i(n,u)={}&\frac{L a(u)}{w(n)}\ind_{u\mid n}\ind_{\rm bin}
+ R_z(n+\epsilon_i h d_i u)\\
+ &\hspace{1cm}\cdot\ind_{\rho_{j,z}(n,d_i)\le KW_1/L},\qquad a(u)=16^{\omega(u)}.
+\end{aligned}
+\end{equation}
+The retained oriented row satisfies
+\begin{equation}\label{eq:density-row}
+ \sum_u\frac{L16^{\omega(u)}}{w(n)}\ind_{u\mid n}\ind_{\rm bin}
+ R_z(n\pm hdu)\ind_{\rho_{j,z}(n,d)\le KW_1/L}\le KW_1=\mathfrak b.
+\end{equation}
+On a closed word the product of the endpoint rough indicators equals the product of the arrival indicators,
+with visit multiplicities. This rewriting has already been made before closure is dropped.
+Retain the arrival rough factor in every $c_i$ while dropping block and the other endpoint restrictions.
+Set $F_{m+1}=1$ and recursively define
+\begin{equation}\label{eq:rough-padding-recursion}
+\begin{aligned}
+ F_i(n)&=\sum_u c_i(n,u)F_{i+1}(n+\epsilon_i h d_i u)
+ \le KW_1\|F_{i+1}\|_\infty,\\
+ F_i(n)&\le\mathfrak b^{m-i+1},\qquad
+ F_1(n)\le(KW_1)^m,\qquad m=2k.
+\end{aligned}
+\end{equation}
+The eligible-degree condition may be retained or dropped in this positive row bound; either choice gives the
+same upper bound. Backward induction therefore gives padding mass at most $(KW_1)^{2k}$.
+This works for every $\mathfrak b\ge0$, including $\mathfrak b<1$, and survives singleton overwrites.
+
+There are at most $Jk+S_1/2$ distinct centre labels. As in [O, (7.6)--(7.7), p.~38], their remaining reciprocal
+sum and the forest count give
+\begin{equation}\label{eq:moment-completion}
+ \mathfrak b^{2k}e^{C_4Jk}(2W)^{Jk+L^{1/4}/2}.
+\end{equation}
+Signs, designations, $2^{S_1}$ and the external $e^{108L}$ are absorbed in $e^{C_4Jk}$.
+For fixed $W$, $(2W)^{L^{1/4}/2}\le e^k$ eventually.
+The logarithm of the resulting main bound is at least $-O_W(L\log L)$ because $W_1\gg L^{-1/6}$.
+Both the exceptional classes and finite-comparison error $e^{-L^9}$ are smaller; one absolute enlargement of
+$C_2$, before choosing $W$, absorbs them. This proves \eqref{eq:masked-moment}.
+
+Finally redo [O, Lemma~8.2 and Proposition~8.3, pp.~40--41]. The absolute centred factor $a_d$ is constant along
+a $d$-edge. For an outgoing increasing edge from $n$ to $n+hdu$, the weighted row reads
+$R_z(n+hdu)$ and is bounded by $L\rho_{j,z}^+(n,d)$. For an incoming edge, read it from its larger endpoint
+$n$ to $n-hdu$; $u\mid n$ is equivalent to divisibility at the lower endpoint, and the row is bounded by
+$L\rho_{j,z}^-(n,d)$. Since $\rho_{j,z}=\max(\rho_{j,z}^+,\rho_{j,z}^-)$, each orientation contributes at most
+$KW_1a_d(n)$. Weighted Schur with weight $\sqrt w$ and \eqref{eq:density-row} gives
+\begin{equation}\label{eq:masked-schur}
+ \|A_d\|\le2\mathfrak b,\quad
+ \|A_dv\|^2\le4\mathfrak b^2\sum_n a_d(n)^2|v_n|^2,\quad
+ \sum_d\|A_dv\|^2\le4\mathfrak b^2(8W)^J\|v\|^2\quad(v=Ev).
+\end{equation}
+Indeed $\sum_da_d(n)^2\le\prod_i(\omega_{\Pset_i}(n)+V_i)\le(8W)^J$ on $E$, by the arithmetic--geometric
+mean inequality. No commutation with $E$ is used.
+Since $\rho(H)^{2k}\le\|H^k\|_{\HS}^2$, Markov gives
+$\rho(H)\le e\mathfrak b(C_2\sqrt W)^J$ outside $e^{-2k}$ of the origins.
+Input~\ref{input:transfer} now gives \eqref{eq:masked-spectrum} with, for example,
+$C\ge3\max(2,2\sqrt8,eC_2)$. All hypotheses have nonnegative row constants; none requires $\mathfrak b\ge1$.
+\end{proof}
+
+\section{Centering and the hard rough theorem}\label{sec:rough-proof}
+
+\begin{proposition}[Polynomial on rough shifts]\label{lem:shift-polynomial}
+Fix $a<199/200$, and suppose every element of $\mathcal Z\subset[D,2D)$ avoids the primes up to $e^{L^a}$,
+where $H_0/2\le D\le e^{2L}$. For arbitrary $|c_b|=1$, put
+\begin{equation}\label{eq:shift-polynomial}
+ \mathcal B(\theta)=\sum_{b\in\mathcal Z}\frac{c_b\e(hb\theta)}b.
+ \qquad \|\mathcal B\|_\infty\ll L^{-a},\qquad
+ \int_0^1|\mathcal B(\theta)|^4d\theta\ll D^{-1}L^{-4a}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+We repeat \cite[Lemma~4.2, pp.~13--14]{OpenAI007} with the changed cutoff $e^{L^a}$.
+For the sup norm, count one rough variable in $[D,2D)$.
+Orthogonality in the fourth moment imposes $b_1+b_2=b_3+b_4$; after discarding the unimodular coefficients and
+using weights at most $D^{-4}$, count the four forms $x_1,x_2,x_3,x_1+x_2-x_3$ in a three-dimensional box of
+side $D$. The last form is positive there.
+Their bad-prime union densities are $1/p$ and $4/p+O(p^{-2})$, respectively. Every pair of the four defining
+hyperplanes is independent, including at $2$, and the vector $(1,1,1)$ avoids all four; their union density is
+strictly below one.
+
+Use even inclusion--exclusion of order $r_0=2\lceil500\log L\rceil$.
+For each selected prime set of product $q$, CRT in the interval or box gives normalized error $O(q/D)$.
+There are at most $(r_0+1)(1+\pi(e^{L^a}))^{r_0}$ terms and $q\le e^{r_0L^a}$, so the total error is
+\begin{equation}\label{eq:shift-crt-error}
+ D^{-1}\exp(O(L^a\log L)).
+\end{equation}
+It is smaller than every fixed power of $L^{-1}$ because $a<199/200$.
+The independent truncation remainder is at most
+$(\sum_{p\le e^{L^a}}\nu(p))^{r_0+1}/(r_0+1)!\ll L^{-100}$, since that sum is at most
+$(4+o(1))\log L$. The exact products are $O(L^{-a})$ and $O(L^{-4a})$.
+Thus the two counts are $O(DL^{-a})$ and $O(D^3L^{-4a})$, giving \eqref{eq:shift-polynomial}.
+\end{proof}
+
+\begin{proposition}[Density in the testing and overlap step]\label{prop:testing}
+Use the rough matrix \eqref{eq:rough-matrix}, an origin interval of length at least $e^{L^{625}/2}$, and the vector
+$\sqrt w\lambda R_z$, truncated to its low-$\Qset$ state and then projected by $E$.
+Its averaged squared norm is $O_h(MSW_1)$.
+For a bin the retained centred sum has bound
+\begin{equation}\label{eq:bin-testing}
+ |C_j^\circ|\ll_h \frac{SW_1\,KW_1(C\sqrt W)^J}{L}+e^{-L^{0.9}}.
+\end{equation}
+After summing bins and dividing by $S_0$, the spectral contribution is
+\begin{equation}\label{eq:rough-spectral-contribution}
+ O_h\left(W_1^2\frac K\eta(C/\sqrt W)^J\right)+e^{-L^{0.8}}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Repeat \cite[Proposition~8.4, pp.~41--42]{OpenAI007} with all density factors retained.
+The squared vector is the truncated weight $wR_z$. Its product-law mean is at most $SW_1$, since the small-prime
+coordinates are disjoint from $\Qset$. Proposition~\ref{prop:threshold} transfers this mean to each of the $M$
+block positions, giving the norm bound. Test \eqref{eq:masked-spectrum} on the nonexceptional blocks.
+On every block the weighted absolute form is at most a fixed power of $L$ times $M$: use
+$w\le17^{18\log L}$ and $\sum_da_d\le(8W)^J$ on the exterior projection. Thus the fraction $e^{-2k}$ of
+exceptional blocks costs exponentially little even after division by $SW_1^2V_*$.
+
+For completeness, the overlapping-block identity of [O, (8.12)--(8.13), p.~42] is unchanged.
+If an increasing edge has displacement $q'=hdu$, the number of blocks among $t=0,\ldots,N-1$, $N=\lfloor T_j\rfloor$,
+containing it is
+\begin{equation}\label{eq:overlap}
+ m_N(n,q')=[\min(N-1,n-1)-\max(0,n+q'-M)+1]_+.
+\end{equation}
+For $M\le n\le N$ this is $M-q'$. The boundary involves at most $2M$ sites, and the remaining discrepancy is
+bounded by the deterministic row bound times
+\begin{equation}\label{eq:overlap-error}
+ O_h\left(\frac{he^{100L+1}}M+\frac M{T_j}+\frac1{T_j}\right).
+\end{equation}
+The row bound divided by $M$ is a fixed power of $L$, $M=e^{103L}+O(1)$, and $T_j\ge e^{L^{625}}$.
+This includes floor errors and edges passing the prefix endpoint. Dividing the quadratic form by $2LM$ gives
+\eqref{eq:bin-testing}. There are $O(L/\eta)$ bins and $S_0\ge SV_*/2$, $V_*\ge W^J$; these give
+\eqref{eq:rough-spectral-contribution}. The argument did not use a signed-norm monotonicity principle.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:rough}]
+Choose a permissible absolute $C\ge4$ in Proposition~\ref{prop:masked-moment} before $W$, and set
+\begin{equation}\label{eq:rough-parameters}
+\begin{gathered}
+ A=625,\quad L=(\log X)^{1/A},\quad\beta=1/6,\\
+ W=4eC^2,\quad\alpha=1/(1200W),\quad J=\lfloor\alpha\log L\rfloor,\\
+ \eps=\alpha/100,\quad\eta=L^{-\eps},\quad K=L^{\alpha\log2+\eps}.
+\end{gathered}
+\end{equation}
+All labels exceed $z$. The function $f_z=\lambda R_z$ is completely multiplicative and, for a graph label $q'=du$,
+\begin{equation}\label{eq:rough-dilation}
+ f_z(q'm)f_z(q'(m+h))=f_z(m)f_z(m+h).
+\end{equation}
+The square $f_z(q')^2=1$ proves this without a coprimality assumption between $q'$ and $m$.
+The full-divisibility part of the centred sum is exactly
+\begin{equation}\label{eq:raw-rough}
+ \sum_j\sum_{(d,u)\in\mathcal S_j}\frac{16^{\omega(u)}}{du}
+ \frac1{T_j/(du)}\sum_{m\le T_j/(du)}f_z(m)f_z(m+h).
+\end{equation}
+Its cutoff is in $(Xe^{-\eta},X]$. The positive upper sieve bounds the missing interval by
+$O_h(\eta XV_h(z))$ and the full rough count by $O_h(XV_h(z))$.
+If an actual tail is shorter, enlarge it to the complete interval $(Xe^{-\eta},X]$.
+The required sieve moduli are $X^{o(1)}$, so this bound is uniform in $z$.
+Thus \eqref{eq:raw-rough} differs from $S_0X^{-1}\sum_{n\le X}f_z(n)f_z(n+h)$ by
+$O_h(S_0\eta V_h(z))+e^{-L}$.
+
+The padding deletion is Proposition~\ref{prop:collision}.
+For the degree deletions repeat \cite[Lemma~4.6, pp.~19--20]{OpenAI007}, verifying the changed tilted law.
+Under $w/S$, the probabilities are $17/(p+16)$, and exponential Markov with parameter $1/20$ gives
+\begin{equation}\label{eq:q-degree-tail}
+ \Prob^{\rm tilt}(\omega_{\Qset}>18\log L)
+ \ll_h L^{-18/20+17(e^{1/20}-1)}\ll_h L^{-1/40}.
+\end{equation}
+The centre tilt by $a_d^+$ forces at most $J$ primes and leaves the others independent, of total mean at most
+$2WJ$. Its tail is at most
+$\exp(-6WJ+J+2(e-1)WJ)\le e^{-2WJ}$.
+In each fixed numerical label the small-prime pair has density $V_h(z)$; only these coordinates are independent
+of the centre and padding degree events. This retains the pair density in both deletions.
+For rare sites, the second moment of
+$w\prod_i(\omega_{\Pset_i}+V_i)$ is a fixed power of $L$: its $\Qset$ factor is
+$\prod_{p\in\Qset}(1+288/p)$, and the centre factors have moments bounded by fixed multiples of $V_i^2+V_i$.
+Cauchy--Schwarz with \eqref{eq:rare}, followed by the $O(L/\eta)$ bins, gives exponentially small error.
+All these are positive finite-residue expansions covered by Proposition~\ref{prop:threshold}; the padding
+threshold is encoded only after the low-degree cutoff.
+Together with Proposition~\ref{prop:testing}, the non-centering errors, divided by $V_h(z)$, are
+\begin{equation}\label{eq:rough-budget}
+ C_h\left\{\eta+\frac{2^J(1+\log L)^6}{K}
+ +2^J(L^{-1/40}+e^{-2WJ})+\frac K\eta(C/\sqrt W)^J\right\}+e^{-L^{0.8}}.
+\end{equation}
+
+It remains to redo \cite[Lemmas~4.1--4.2, 4.4, pp.~13--16]{OpenAI007} with $f_z$, the new range, and the densities.
+Use Proposition~\ref{lem:shift-polynomial} with
+$a=9949/10000$, and set $\Gamma=89/100$, $s=17/100$.
+In a partial centred term, a nonempty subset $I$ of the $J$ supplies is replaced by $-1/p$.
+Writing $b=\prod_{i\in I}p_i$, $d'=d/b$, and $n=ud'v$ extracts a reciprocal mass at most $SV_*$ and leaves
+\begin{equation}\label{eq:partial-rough}
+ \frac1Y\sum_{v\le Y}\sum_{b\in\mathcal Z}\frac{c_b}b f_z(v)f_z(v+hb),\qquad Y=T_j/(ud').
+\end{equation}
+The allowed $b$ lie in at most two dyadic intervals, $H_0/2\le D\le e^{2L}$, and $Y\ge e^{L^{625}/2}$.
+The coefficients are unimodular. This is [O, (4.8), p.~16] with the exact identity
+\eqref{eq:rough-dilation} in place of its original Liouville identity.
+
+Replacing $\lambda(p)$ by zero at $p\le z$ reduces \eqref{eq:pretentious} by at most
+$\sum_{p\le z}1/p\le\beta\log L+O(1)$.
+Input~\ref{input:mrt} therefore gives $M(f_z;Y,Q)\ge(625/5)\log L$ eventually.
+Here $10\le D\le Y$ and $Q$ has exactly the prescribed cap; the three errors in \eqref{eq:mrt} are bounded by
+\begin{equation}\label{eq:rough-mrt-errors}
+ L^{-25/4},\qquad L^{-199/200}\log L,\qquad L^{-25/28},
+ \qquad \frac1Y\sum_{v\le Y}\left|\sum_{m=1}^D f_z(v+m)e(\theta m)\right|\ll D L^{-\Gamma}.
+\end{equation}
+The last assertion follows from unit intervals of origins, as in [O, (4.6), p.~15]; endpoint cost $O(D/Y)$ is
+exponentially small.
+
+Average \eqref{eq:partial-rough} over translations $1\le m\le D$; the endpoint cost is $O_h(D/Y)$.
+Fourier orthogonality gives $(YD)^{-1}\sum_{v\le Y}\int\mathcal B F_vG_v$, with
+$F_v=\sum_{m=1}^D f_z(v+m)e(\theta m)$ and
+$G_v=\sum_{a=1}^{(2h+1)D}f_z(v+a)e(-\theta a)$.
+For any such window, the elementary upper sieve gives rough count $O_h(DW_1)$.
+For clarity, even inclusion--exclusion of order $O(\log L)$ has total CRT endpoint error
+$D^{-1}\exp(O(L^{1/6}\log L))$, and its independent remainder can be any fixed negative power of $L$.
+This verifies the uniformity even for the smallest $D$.
+Thus $\|F_v\|_2\|G_v\|_2\ll_h DW_1$ and $|G_v|\ll_h DW_1$.
+On $|\mathcal B|\le L^{-1-s}$ use Parseval; on the complement its measure is at most
+$L^{4+4s}\int|\mathcal B|^4\ll D^{-1}L^{4+4s-4a}$.
+Use also $\|\mathcal B\|_\infty\ll L^{-a}$ and \eqref{eq:rough-mrt-errors}. The two partial contributions are
+\begin{equation}\label{eq:rough-centering-pieces}
+ O_h(W_1L^{-1-s}),\qquad O_h(W_1L^{4+4s-5a-\Gamma}).
+\end{equation}
+After at most $2^J$ subsets, $O(L/\eta)$ bins and division by $V_h\asymp_h W_1^2$, their exponents are
+\begin{equation}\label{eq:rough-centering-exponents}
+ \beta+\eps+\alpha\log2-s,\qquad
+ \beta+\eps+\alpha\log2+5(1-a)+4s-\Gamma.
+\end{equation}
+Without the $\eps,\alpha$ terms the margins are $-1/300$ and $-107/6000$.
+For $W\ge10$ both are less than $-\eps$.
+
+In \eqref{eq:rough-budget}, the main deletion is $L^{-\eps}(1+\log L)^6$ and, since
+$C/\sqrt W=1/(2\sqrt e)$, the spectral exponent is $-\alpha/2+2\eps$.
+The remaining degree terms have strict negative margins. Absorbing logarithmic factors gives
+\begin{equation}\label{eq:rough-joint}
+ \left|\sum_{n\le X}\lambda(n)\lambda(n+h)R_z(n)R_z(n+h)\right|
+ \ll_h XV_h(z)L^{-\eps/2}.
+\end{equation}
+Lemma~\ref{lem:rough-sieve} supplies the unsigned and both single-sign terms with arbitrary-logarithmic absolute
+errors. Choose their saving larger than $2/3750+\gamma$ and use the exact sign expansion
+\begin{equation}\label{eq:sign-expansion}
+ \ind_{\lambda(n)=s,\lambda(n+h)=t}
+ =\tfrac14(1+s\lambda(n))(1+t\lambda(n+h)).
+\end{equation}
+Equation~\eqref{eq:rough-main} follows, for example with $\gamma=\eps/(4\cdot625)$.
+The cutoffs satisfy $\log z\le L^{1/6}$, exactly the stated range. All graph constants precede $W$ and $X$;
+choose the final threshold after $h$ and those constants are fixed. Origin exceptions were internal averages,
+not exclusions of values of $X$.
+\end{proof}
+
+\section{Balanced soft small-prime weights}\label{sec:soft}
+
+\begin{lemma}[Prime-square masks and densities]\label{lem:soft-density}
+For $0\le r_1,r_2\le1$ the function
+\begin{equation}\label{eq:two-soft-mask}
+ A_z(n)=S_z(n)S_z(n+h)r_1^{\omega_z(n)}r_2^{\omega_z(n+h)}
+\end{equation}
+is an average of negative prime-divisibility CNF indicators, with total averaging mass one, together with the
+always retained negative prime-square tests. Its unsigned mean is compared by Lemma~\ref{lem:cnf} in the prime-square
+model. When $r_1=r_2=r$, its pair mean is exactly \eqref{eq:soft-local}. Its single and squared means are
+\begin{equation}\label{eq:soft-single-products}
+ W_r=\prod_{p\le z}(1-1/p+r(p-1)/p^2),\qquad
+ W_{r^2}=\prod_{p\le z}(1-1/p+r^2(p-1)/p^2).
+\end{equation}
+Uniformly for $0\le r\le1$, $\delta=1-r$, and $z\ge2$,
+\begin{align}
+ \log W_r&=-\delta\log\log(2z)+O(1),\label{eq:soft-log-first}\\
+ \log W_{r^2}&=-(2\delta-\delta^2)\log\log(2z)+O(1),\label{eq:soft-log-square}\\
+ \log V^{\sfw}_{r,h}(z)&=-2\delta\log\log(2z)+O_h(1).\label{eq:soft-log-pair}
+\end{align}
+In particular
+\begin{equation}\label{eq:soft-density-ratios}
+\begin{gathered}
+ W_r\asymp v^{-\delta},\quad W_{r^2}\asymp v^{-(2\delta-\delta^2)},\quad
+ V^{\sfw}_{r,h}\asymp_h v^{-2\delta}\asymp_h W_r^2,\\
+ W_{r^2}/V^{\sfw}_{r,h}\ll_h v^{\delta^2},\quad W_r/V^{\sfw}_{r,h}\ll_h v^\delta,
+ \qquad v=\log(2z).
+\end{gathered}
+\end{equation}
+\end{lemma}
+\begin{proof}
+Independently retain $p\nmid n$ with probability $1-r_1$, and $p\nmid n+h$ with probability $1-r_2$.
+Always retain $p^2\nmid n,n+h$. On a coordinate modulo $p^2$, $p\nmid n$ excludes the $p$ residues
+$0,p,\ldots,(p-1)p$, and a negative square test excludes one residue. Each realization is thus a conjunction
+of at most $2\sum_{p\le z}(p+1)$ negative equalities. For $z\le e^{L^b}$, $b<1/2$, the clause count is less than
+$e^{L^3}$ and the moduli are at most $e^L$. Averaging Lemma~\ref{lem:cnf} costs no scalar coefficient mass.
+The same argument is valid with $b<1$ whenever the coordinate-size condition holds separately.
+
+List the residues modulo $p^2$. Outside the forbidden roots modulo $p$ the pair weight is one.
+A root at one endpoint has $p-1$ admissible lifts of weight $r$.
+A common root has $p-1$ or $p-2$ admissible lifts of weight $r^2$, according as $p^2\mid h$ or not.
+This gives \eqref{eq:soft-local}; at $p=2$, $h\equiv2\pmod4$, the factor is exactly $1/2$.
+The analogous single-site count gives \eqref{eq:soft-single-products}.
+
+For the full range $0\le r\le1$ the single local factors are
+\begin{equation}\label{eq:soft-local-expanded}
+ q_r(p)=1-\delta/p-r/p^2,\quad
+ q_{r^2}(p)=1-(2\delta-\delta^2)/p-r^2/p^2,\quad
+ v_{r,h}(p)=1-2\delta/p-2r/p^2\quad(p\nmid h).
+\end{equation}
+The single factors are at least $1-1/p$. For $p\ge5$, the factors are at least $4/5,4/5,3/5$, respectively.
+Taylor expansion of their logarithms therefore has a uniform $O(p^{-2})$ error.
+The factors at $p=2,3$ and at $p\mid h$ are finitely many positive exceptions with uniform positive lower bounds:
+the common-root factors are at least $1-1/p$, and the generic factor at $3$ is at least $1/3$.
+Mertens' harmonic sum and $\sum_pp^{-2}<\infty$ give
+\eqref{eq:soft-log-first}--\eqref{eq:soft-log-pair}; exponentiation gives \eqref{eq:soft-density-ratios}.
+Only these product comparisons are uniform in $r$. Theorem~\ref{thm:soft} still fixes $r$ before $X$.
+\end{proof}
+
+\begin{proposition}[Classical single-sign orthogonality]\label{prop:soft-single}
+For each fixed $0<\rho_*<1$ and every $B>0$, uniformly for
+$2\le z\le\exp((\log X)^{\rho_*})$ and $r_1,r_2\in[0,1]$,
+\begin{equation}\label{eq:soft-single-cancel}
+ \sum_{n\le X}\lambda(n)A_z(n),\quad\sum_{n\le X}\lambda(n+h)A_z(n)
+ \ll_{h,\rho_*,B}X(\log X)^{-B}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Average the negative prime tests in Lemma~\ref{lem:soft-density}. It suffices to treat uniformly the deterministic mask
+$M(n)=\prod_{p\in\mathcal T_1}\ind_{p\nmid n}\prod_{p\in\mathcal T_2}\ind_{p\nmid n+h}$,
+$\mathcal T_i\subset\{p\le z\}$, with the two squarefree masks still present.
+Put $T=X^{1/100}$ and
+\begin{equation}\label{eq:square-truncation}
+ S_{z,T}(n)=\sum_{\substack{b\le T,\ P^+(b)\le z\\b^2\mid n}}\mu(b).
+\end{equation}
+The full identity is the same sum without $b\le T$.
+Thus $|S_z-S_{z,T}|\le\sum_{b>T,b^2\mid n}1$ and $|S_{z,T}(n)|\le\tau(n)$.
+Replacing both factors has $L^1$ error at most
+\begin{equation}\label{eq:square-truncation-error}
+ \sum_{n\le X}\sum_{b>T,b^2\mid n}1+
+ \sum_{n\le X}\tau(n)\sum_{c>T,c^2\mid n+h}1
+ \ll_\xi X/T+X^{1+\xi}/T=O_h(X^{199/200}),\quad \xi=1/200.
+\end{equation}
+Use the complete shifted prefix through $X+h$ and $\tau(n)\ll_\xi n^\xi$; no additional floor sum is charged.
+
+For fixed $b,c\le T$, the two square divisibilities are inconsistent or give one class modulo
+$q_0=[b^2,c^2]\le T^4$.
+Tests at primes dividing $q_0$ are automatic or make the mask zero. Remove them.
+At each remaining prime at most two roots are excluded, and CRT works with $d$ coprime to $q_0$.
+Input~\ref{input:fl}, at level $D=X^{1/8}$, gives the $L^1$ upper-sieve approximation error on this progression
+\begin{equation}\label{eq:soft-sieve-error}
+ O\left(\frac X{q_0}E(s)+D\log(2D)\right),\qquad
+ s\ge\tfrac18(\log X)^{1-\rho_*}.
+\end{equation}
+Its local product is at most one; its dimension condition is uniformly bounded by the two-root sieve.
+The modulus and prime masks introduce no new constants. Summing this error costs
+$O(XE(s)+T^2D\log(2D))$, since
+\begin{equation}\label{eq:square-lcm}
+ \sum_{b,c\ge1}[b^2,c^2]^{-1}\le\zeta(2)^3,
+ \qquad T^2D=X^{29/200}.
+\end{equation}
+For the inequality write $b=gu,c=gv$, $(u,v)=1$ and drop that coprimality.
+Inserting a Liouville sign cannot increase this $L^1$ error.
+
+All remaining sums have modulus $q=q_0d\le X^{33/200}$.
+For fixed $q$ there are at most $\tau(q)^3$ choices of $b,c,d$ and at most $\tau(q)$ root classes per choice.
+The absolute remainder is bounded by
+\begin{equation}\label{eq:soft-grouped-bv}
+ \sum_{q\le X^{33/200}}\tau(q)^4E_q,
+ \quad E_q=\max_{a\bmod q}\max_{y\le2X}\left|\sum_{\substack{n\le y\\n\equiv a\pmod q}}\lambda(n)\right|.
+\end{equation}
+Lemma~\ref{lem:bv} gives $\sum E_q\ll_A X\log^{-A}X$ and $E_q\le2X/q+1$.
+Since $\tau(q)^8\le\tau_{256}(q)$, the divisor-variable bounds give
+\begin{equation}\label{eq:soft-bv-cauchy}
+ \sum_{q\le X^{33/200}}\tau(q)^8E_q\ll X\log^{256}(2X),\qquad
+ \sum\tau(q)^4E_q\ll_A X\log^{128-A/2}X.
+\end{equation}
+Choose $A$ sufficiently large. The translated sign is a difference of two prefixes in another residue class.
+This proves \eqref{eq:soft-single-cancel} using only the classical FL and BV inputs.
+\end{proof}
+
+
+\begin{lemma}[Soft padding recursion]\label{lem:soft-recursion}
+Fix $0<r<1$, use padding $16$, and let $b=b_z$ and $b^+$ be its cap in \eqref{eq:soft-cap}.
+In a fixed non-$\Pset$ residue environment put
+\begin{equation}\label{eq:soft-recursion-probabilities}
+ \rho_j^\pm(n,d)=\frac1{w(n)}\sum_{\substack{u\mid n,\ u\in\Qset^{\sfw}\\j\eta\le\log(du)<(j+1)\eta}}
+ a(u)b^+(n\pm hdu),\qquad \rho_j=\max(\rho_j^+,\rho_j^-).
+\end{equation}
+For fixed $d_i$ and $\epsilon_i\in\{\pm1\}$ define
+\begin{equation}\label{eq:soft-recursion-coefficients}
+ c_i^0(n,u)=\frac{La(u)}{w(n)}\ind_{u\mid n}\ind_{\rm bin}
+ \ind_{\rho_j(n,d_i)\le KW_r/L}.
+\end{equation}
+With $F_{m+1}=1$, the recursion obeys
+\begin{equation}\label{eq:soft-padding-recursion}
+\begin{aligned}
+ F_i(n)&=\sum_u c_i^0(n,u)b(n+\epsilon_i h d_i u)F_{i+1}(n+\epsilon_i h d_i u)\\
+ &\le KW_r\|F_{i+1}\|_\infty,\qquad F_1(n)\le(KW_r)^m.
+\end{aligned}
+\end{equation}
+On a closed word the balanced edge factors satisfy
+\begin{equation}\label{eq:soft-closed-weight}
+ \prod_{i=1}^m\sqrt{b(n_i)b(n_{i+1})}
+ =\prod_{i=1}^m b(n_{i+1})=\prod_{i=1}^m b(n_i),\qquad n_{m+1}=n_1,
+\end{equation}
+including repeated visits and zero weights.
+\end{lemma}
+\begin{proof}
+Since $0\le b\le b^+$, the row sum of $c_i^0(n,u)b(n+\epsilon_i h d_i u)$ is at most
+$L\rho_j^{\epsilon_i}(n,d_i)\ind_{\rho_j\le KW_r/L}\le KW_r$.
+Here $\rho_j^{\epsilon_i}$ means $\rho_j^+$ for $\epsilon_i=1$ and $\rho_j^-$ for $\epsilon_i=-1$.
+This is the backward induction of \cite[Lemma~7.3, p.~37]{OpenAI007} with a nonnegative row constant $KW_r$.
+It is uniform in the starting site and does not require $KW_r\ge1$.
+For \eqref{eq:soft-closed-weight}, every visited factor occurs in the two square roots at its incident edges,
+counted with visit multiplicity. Nonnegativity gives the identity, including when a factor is zero.
+Make it before dropping closure in the positive path enlargement; then \eqref{eq:soft-padding-recursion} at $m=2k$
+gives $(KW_r)^{2k}$. Adding the eligible padding-degree condition only decreases these sums.
+\end{proof}
+
+\begin{proposition}[Balanced operator and capped cutoff]\label{prop:soft-graph}
+Fix $0<r<1$ and retain \eqref{eq:rough-parameters}. Let $b=b_z$.
+Use the symmetric edge matrix \eqref{eq:soft-matrix} below and test it with $\sqrt{w(n)b(n)}\lambda(n)$.
+Define
+\begin{equation}\label{eq:soft-cap}
+ M_r=\left\lceil\frac{100\log L}{-\log r}\right\rceil,\qquad
+ b^+(n)=\max(b(n),r^{M_r}),\qquad r^{M_r}\le L^{-100}.
+\end{equation}
+Use $b^+(n\pm hdu)$ in the target padding probabilities \eqref{eq:masked-rho}, take their maximum $\rho_j$, and
+cut at $\rho_j\le KW_r/L$, after the low-$\Qset$ cutoff. The actual matrices and vectors use $b$. More explicitly, for $m=n+hdu$ let
+\begin{equation}\label{eq:soft-matrix}
+\begin{aligned}
+ \tau_j^b(n,d)&=\ind_{\omega_{\Qset}(n)\le\lfloor18\log L\rfloor}
+ \ind_{\rho_j(n,d)\le KW_r/L}\sigma_j(n),\\
+ A_d^b(n,m)&=\frac{L16^{\omega(u)}}{\sqrt{w(n)w(m)}}\ind_{u\mid n}c_d(n)
+ \tau_j^b(n,d)\tau_j^b(m,d)\sqrt{b(n)b(m)}.
+\end{aligned}
+\end{equation}
+Set $A_d^b(m,n)=A_d^b(n,m)$ and other entries to zero. In the following proof write $A_d=A_d^b$.
+The associated centred sums use $f=g=\lambda b$, $a=16$, $\epsilon=1$ and $\tau_j=\tau_j^b$.
+They satisfy the finite comparison of Proposition~\ref{prop:threshold}, the moment and spectral bounds of
+Proposition~\ref{prop:masked-moment} with $W_1$ replaced by $W_r$, and averaged testing norm $O_{h,r}(MSW_r)$.
+Explicitly, with $H_b{}_{d,d'}=\ind_{d\ne d'}A_{d'}^b$,
+\begin{equation}\label{eq:soft-moment-spectrum}
+ \E_*\|H_b^k\|_{\HS}^2\le\{KW_r(C_2\sqrt W)^J\}^{2k},\qquad
+ \left\|E\Bigl(\sum_d A_d^b\Bigr)E\right\|\le KW_r(C\sqrt W)^J.
+\end{equation}
+The spectral estimate excludes at most a fraction $e^{-2k}$ of the block origins; the finite-origin and
+constant conventions are those of Proposition~\ref{prop:masked-moment}.
+Their padding deletion is
+\begin{equation}\label{eq:soft-deletion}
+ O_{h,r}\left(W_r^2\frac{2^J(1+\log L)^6}{K}\right).
+\end{equation}
+\end{proposition}
+\begin{proof}
+The exact quadratic pairing contains $b(n)b(m)$, because each endpoint contributes a square root in the matrix
+and a square root in the vector. At zero-weight vertices all entries and the vector vanish.
+On the remaining space weighted Schur uses the positive weight $\sqrt{wb}$ and gives
+\begin{equation}\label{eq:soft-balancing}
+ |A_d(n,m)|\frac{\sqrt{w(m)b(m)}}{\sqrt{w(n)b(n)}}
+ =\frac{L16^{\omega(u)}}{w(n)}a_d(n)\ind_{u\mid n}b(m)\times\text{retained cuts}.
+\end{equation}
+Thus the oriented padding row is at most $KW_r$.
+On a closed word,
+\begin{equation}\label{eq:soft-arrival}
+ \prod_{i=1}^{2k}\sqrt{b(n_i)b(n_{i+1})}=\prod_{i=1}^{2k}b(n_{i+1}),\qquad n_{2k+1}=n_1.
+\end{equation}
+This includes repeated visits and zeros. The denominators have the identical closed-word identity for $w$.
+Apply it before dropping closure; no square root remains to be encoded.
+
+For finite comparison, fix an active state of at most $18\log L$ padding primes, hence at most
+$N\le L^{18\log2}$ candidates. A bad weighted sum is the OR over level vectors
+$(k_1,\ldots,k_N)\in\{0,\ldots,M_r\}^N$ whose scalar sum exceeds the threshold, of the events
+$b^+(n_i)\ge r^{k_i}$ for all $i$. If $k_i=M_r$ this event is automatic; otherwise it is exactly
+\begin{equation}\label{eq:cap-level}
+ S_z(n_i)=1\quad\text{and}\quad\omega_z(n_i)\le k_i.
+\end{equation}
+Negation yields an AND of ORs of square divisibilities $p^2\mid n_i$ or conjunctions of $k_i+1$ distinct prime
+divisibilities. The square-divisibility alternative is essential at $b=0$.
+On a $p^2$ coordinate, $p\mid n_i$ is an OR of $p$ equalities and $p^2\mid n_i$ one equality.
+Substitute the interval DNFs of Proposition~\ref{prop:threshold}, distribute the bottom $O_r(\log L)$
+conjunctions and flatten ORs. The depth is three, and the logarithmic size is at most
+\begin{equation}\label{eq:soft-circuit-size}
+ N\log(M_r+1)+O_r(L^{1/6}\log L+\log^2L)+O(L\log L)<L^{14}.
+\end{equation}
+The coordinate moduli are at most $e^L$, pairwise coprime to the disjoint graph coordinates.
+Use $t=\lceil L^{589}\rceil$ and the identical CRT/Walsh correction, giving aggregate error $e^{-L^9}$.
+Every residual factor $b$ is the average in Lemma~\ref{lem:soft-density}; repeated occurrences use independent
+auxiliary marks, which correctly produce $b$ to that multiplicity. Their probabilities sum to one.
+They only add CNF conditions and introduce no scalar-mass cost or physical-site independence.
+
+The padding experiment is unchanged from Proposition~\ref{prop:collision}.
+For different eligible paddings the generic three-site factor, at $p>3$, $p\nmid h(u_1-u_2)$, is exactly
+$1-3\delta/p-3r/p^2$. Comparing it with three single-site factors changes a convergent $O(p^{-2})$ product.
+Lemma~\ref{lem:density} bounds exceptional primes as before, and gives
+\begin{equation}\label{eq:soft-triple}
+ \E_{\rm small}[b(n)b(n\pm hdu_1)b(n\pm hdu_2)]
+ \ll_{h,r}W_r^3(1+\log L)^6.
+\end{equation}
+At equal paddings the mean of $b(n)b(n+hdu)^2$ has generic logarithmic coefficient
+$-(3\delta-\delta^2)/p$ and is at most $C_{h,r}W_r^3v^{\delta^2}$.
+If $\rho_j^{(b)}$ denotes the uncapped target probability, then
+\begin{equation}\label{eq:soft-second}
+ \E_*[wb\sum_j(\rho_j^{(b)})^2]
+ \ll_{h,r}SW_r^3\{(1+\log L)^6/L+v^{\delta^2}(v/L)^{24/17}\}
+ \ll_{h,r}SW_r^3(1+\log L)^6/L.
+\end{equation}
+The diagonal-to-main exponent is at most
+$(1/6)(24/17+1)+1-24/17=-1/102$.
+As before the different-padding estimate is used on eligible bin pairs before enlargement.
+Since $b^+\le b+r^{M_r}$, the cap's added squared collision is
+$O_r(L^{-200}SW_r/L)$, by the unmasked collision estimate and independence of the small-prime coordinates.
+Lemma~\ref{lem:soft-density} gives $W_r\gg L^{-1/6}$ for this whole fixed-$r$ range, so the extra term is negligible.
+The maximum of the two orientations only costs a constant.
+On a bad row $wb\rho_j^{(b)}\le Lwb\rho_j^2/(KW_r)$. Multiply the independent centre majorant $2^J/d$,
+sum, and obtain \eqref{eq:soft-deletion}.
+
+We now check the changed graph proof in the same order as Proposition~\ref{prop:masked-moment}.
+The trace expansion [O, pp.~24--25] uses \eqref{eq:soft-arrival} and remains a signed finite expansion.
+In [O, Lemma~5.5, p.~26] the integer powers of $b$, the capped cutoff and the padding state belong to the
+non-$\Pset$ factor $R$; singleton overwrites leave them unchanged, and $G$ is still only the witness factor.
+The three negligible classes drop $b$ using $0\le b\le1$, only in their nonnegative majorants:
+[O, Lemma~5.6, p.~26] retains the $U/2$ extra unlit reciprocals;
+[O, Lemma~6.2, pp.~28--29] retains the high-rank lit-consistency equations;
+[O, Lemma~6.5, pp.~31--33] retains the witness and padding divisibilities and the ordered unit-coefficient
+eliminations. In each class the pointwise comparison \eqref{eq:crude-domination} gives the same
+$\exp(O(L\log L))$ change of padding coefficient, and no $b$ is replaced by a positive lower bound.
+After these three classes are discarded, the forest hypotheses [O, Lemmas~7.1--7.2, pp.~34--37] hold on the
+smaller support. On surviving words keep the arrival $b$: Lemma~\ref{lem:soft-recursion}, with the closed identity
+\eqref{eq:soft-closed-weight} made before closure is dropped, gives the padding bound $(KW_r)^{2k}$.
+The completion [O, pp.~37--38] retains the same $C_2$, since $W_r\gg L^{-1/6}$ makes the main logarithm at least
+$-O_W(L\log L)$, even if $KW_r<1$.
+Weighted Schur [O, Lemma~8.2, p.~40] uses \eqref{eq:soft-balancing} on $b>0$, on each invariant level set of
+$a_d$. The outgoing row uses $\rho_j^+$ and the incoming row $\rho_j^-$, each capped at $KW_r/L$.
+Vertices with $b=0$ have zero rows and columns, so no division by zero occurs. Input~\ref{input:transfer} applies
+with $a=2KW_r$, $b=2KW_r(8W)^{J/2}$. This gives the same permissible absolute $C$.
+Finally the truncated squared vector is $wb$ with independent mean at most $SW_r$.
+The overlap identity \eqref{eq:overlap} and deterministic exceptional-block argument apply with the same fixed
+polynomial bounds. This proves all asserted testing and spectral estimates.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:soft}]
+By Lemma~\ref{lem:soft-density}, $V^{\sfw}_{r,h}\asymp_{h,r}W_r^2$ throughout the fixed-$r$ range.
+For every label $q'=du$, whose primes exceed $z$,
+\begin{equation}\label{eq:soft-dilation}
+ b(q'm)=b(m),\quad (\lambda b)(q'm)=\lambda(q')(\lambda b)(m),\quad
+ (\lambda b)(q'm)(\lambda b)(q'(m+h))=(\lambda b)(m)(\lambda b)(m+h).
+\end{equation}
+The small prime-square valuations are preserved even when $q'$ and $m$ share large primes.
+Thus the raw identity and normalization are unchanged, with a pair density $V^{\sfw}_{r,h}$.
+Positive window bounds for the pair and single masks follow by averaging the elementary upper sieve over the
+marks of Lemma~\ref{lem:soft-density}, dropping square restrictions for an upper bound.
+The local products change by bounded positive factors, since the difference is $O(p^{-2})$ outside fixed
+exceptional primes. An $O(\log L)$ truncation has normalized CRT error
+$H^{-1}e^{O(L^{1/6}\log L)}$ for $\log H\gg L^{199/200}$, and negligible independent remainder.
+This proves bounds $O_{h,r}(HV^{\sfw}_{r,h})$, $O_r(HW_r)$ and $O_r(HW_{r^2})$, including the raw tail of
+length $\eta X$.
+
+Proposition~\ref{prop:soft-graph} gives the relative spectral term
+\begin{equation}\label{eq:soft-spectral}
+ O_{h,r}((K/\eta)(C/\sqrt W)^J).
+\end{equation}
+Its padding deletion is \eqref{eq:soft-deletion}; degree and rare-site deletions preserve the pair density by the
+disjoint small prime-square coordinates. Their bounds are those in \eqref{eq:rough-budget}.
+For centering $f=\lambda b$ is multiplicative and $1$-bounded; its prime values change from those of $\lambda$
+only at $p\le z$ and by at most one. Thus \eqref{eq:rough-mrt-errors} still holds with $\Gamma=.89$.
+The small-frequency piece uses the squared density $W_{r^2}$, and the large-frequency piece the pointwise mean
+$W_r$. At both uses Lemma~\ref{lem:soft-density} supplies the full-$r$ comparisons.
+The two relative exponents, with $a=.9949$, $s=.17$, $\beta=1/6$, are
+\begin{equation}\label{eq:soft-centering-exponents}
+ \beta\delta^2+\eps+\alpha\log2-s,\qquad
+ \beta\delta+\eps+\alpha\log2+5(1-a)+4s-\Gamma.
+\end{equation}
+They do not exceed \eqref{eq:rough-centering-exponents}, because $\delta,\delta^2\le1$.
+The raw tail has cost $O_{h,r}(\eta V^{\sfw}_{r,h})$.
+The full relative budget therefore gives
+\begin{equation}\label{eq:soft-joint}
+ \left|\sum_{n\le X}\lambda(n)\lambda(n+h)b(n)b(n+h)\right|
+ \ll_{h,r}XV^{\sfw}_{r,h}L^{-\eps/2}.
+\end{equation}
+The unsigned mass is its independent product plus an exponentially small finite-comparison error by
+Lemma~\ref{lem:soft-density}; Proposition~\ref{prop:soft-single} gives arbitrary logarithmic savings for both
+single signs. Expanding \eqref{eq:sign-expansion} proves \eqref{eq:soft-main}, with the same
+$\gamma=\eps/(4\cdot625)$. The constants in the graph moments are absolute; circuit thresholds and positive
+comparisons may depend on the fixed $r$. No choice $r=r(X)$ is made.
+\end{proof}
+
+\section{Bounds on the number of prime factors}\label{sec:consumer}
+
+\begin{proposition}[Positive moments]\label{prop:positive-moment}
+For fixed even $h$, $z\le X^{o(1)}$ and $1\le u\le2$,
+\begin{align}
+ \sum_{2\le n\le X}R_z(n)R_z(n+h)u^{\omega(n)}
+ &\ll_h X(\log X)^{u-1}(\log z)^{-(u+1)}+O(\sqrt X\log^2X),\label{eq:hard-positive-moment}\\
+ \sum_{n\le X}b_z(n)b_z(n+h)u^{\omega(n)}
+ &\ll_h X(\log X)^{u-1}(\log z)^{-(u+1)\delta}+O(\sqrt X\log^2X),\label{eq:soft-positive-moment}\\
+ \qquad \delta&=1-r.\notag
+\end{align}
+The same estimates hold at the other endpoint. The soft upper bound applies to every fixed $0<r<1$.
+\end{proposition}
+\begin{proof}
+Apply the Nair--Tenenbaum theorem \cite[Theorem~1, pp.~1--2]{Henriot} on each dyadic interval $[Y,2Y]$ with
+$Y\ge\sqrt X$, to $Q_1(t)=t$, $Q_2(t)=t+h$ and the nonnegative weights
+\begin{equation}\label{eq:nt-functions}
+ F(a,b)=u^{\omega(a)}R_z(a)R_z(b),\qquad
+ F(a,b)=u^{\omega(a)}r^{\omega_z(a)+\omega_z(b)}.
+\end{equation}
+In the second bound the squarefree masks have been dropped.
+The polynomials are primitive, irreducible and coprime; the product has degree two, discriminant $h^2\ne0$,
+and no fixed prime divisor since $h$ is even.
+For the function class in that theorem, coprime-product growth is bounded by $2^{\omega(a)}\le\tau(a)$, hence
+both a fixed $A^{\Omega}$ bound and, for every fixed $\xi>0$, a uniform $B_\xi n^\xi$ bound.
+Choose its interval exponent and coefficient exponent to be $1/2$, and then a permissible $\xi$.
+The intervals have length $Y>Y^{1/2}$, and the coefficient threshold holds for large $Y$ with fixed $h$.
+These verify the hypotheses uniformly in $z,u$ (and in the bounded prime values of $r$).
+
+Both forms have one root modulo every integer. In the positive divisor sum on the right side of the cited
+theorem, drop the product cutoff and enlarge to Euler factors over primes at most $2Y$.
+For the hard weight, its local logarithms, including the theorem's sieve product, are
+$(u-1)/p+O(p^{-2})$ for $p>z$, and $-2/p+O_h(p^{-2})$ for $p\le z$.
+The fixed divisors of $h$ give bounded factors. This yields
+$C_hY(\log Y)^{u-1}(\log z)^{-(u+1)}$.
+For the soft weight the prime values are $ur,r$ below $z$ and $u,1$ above $z$, giving logarithm
+\begin{equation}\label{eq:soft-moment-log}
+ (u-1)\log\log X-(u+1)\delta\log\log z+O_h(1).
+\end{equation}
+Higher prime-power errors are uniformly summable. Geometric dyadic summation proves the stated main terms.
+Below $\sqrt X$, $\sum2^{\omega(n)}\le\sum\tau(n)\ll\sqrt X\log X$, within the remainder.
+Swapping the two functions proves the other endpoint. No signed or lower estimate is taken from this theorem.
+\end{proof}
+
+\begin{lemma}[A useful proportional tail]\label{lem:chernoff}
+If a positive pair weight has mass of order $X\log^{-2\kappa}X$ and one-endpoint moments bounded by
+$CX\log^{-2\kappa+(1-\kappa)(u-1)}X+O(\sqrt X\log^2X)$, $1\le u\le2$, then, for $0<\kappa<1/2$,
+the mass with $\omega(n)>(1-\kappa/2)\log\log X$ is
+$O(X\log^{-2\kappa-\kappa^2/32}X)+O(\sqrt X\log^2X)$.
+\end{lemma}
+\begin{proof}
+Take $\tau=1-\kappa/2$, $u=1+\kappa/(4(1-\kappa))$, and $a=u-1$.
+Markov's inequality gives relative exponent $E=(1-\kappa)(u-1)-\tau\log u$.
+Since $\log(1+a)\ge a-a^2/2$,
+\begin{equation}\label{eq:chernoff-half}
+ E\le-\frac{a\kappa}2+\frac{\tau a^2}2
+ =\frac{\kappa^2(-3+(7/2)\kappa)}{32(1-\kappa)^2}
+ \le-\kappa^2/32.
+\end{equation}
+The factor $u^{-\tau\log\log X}$ multiplying the remainder is at most one.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:omega-consumer} and Remark~\ref{rem:tradeoff}]
+Put $\rho=1/3750$, $z=\exp((\log X)^\rho)$.
+For $\kappa=\rho$ use the hard weight of Theorem~\ref{thm:rough} and \eqref{eq:hard-positive-moment}.
+For $0<\kappa<\rho$ fix $r=1-\kappa/\rho$ and use the weight of Theorem~\ref{thm:soft} and
+\eqref{eq:soft-positive-moment}. Lemma~\ref{lem:soft-density} gives
+$V^{\sfw}_{r,h}(z)\asymp_h W_r^2\asymp_h(\log X)^{-2\kappa}$ for this entire fixed-$r$ range, also when
+$\kappa>\rho/2$ and hence $r<1/2$.
+In either case each sign pattern has weighted mass comparable to $X\log^{-2\kappa}X$, and
+\begin{equation}\label{eq:tradeoff-moment}
+ \sum_{n\le X}\text{pair weight}\ u^{\omega(n)}
+ \le CX(\log X)^{-2\kappa+(1-\kappa)(u-1)}+O(\sqrt X\log^2X).
+\end{equation}
+Here $\delta\rho=\kappa$ in the soft case.
+Write $m=1-\kappa$, $\tau=m+\epsilon<1$, $a=\epsilon/\tau\in(0,1)$ and $u=1+a$.
+The relative Markov exponent for $\omega(n)>\tau\log\log X$ is
+\begin{equation}\label{eq:tradeoff-tail}
+ ma-\tau\log(1+a)\le-\epsilon a+\tau a^2/2=-\epsilon^2/(2\tau)<0.
+\end{equation}
+The other endpoint has the same bound. Both unsigned tails are negligible relative to each sign-pattern mass.
+The weight already excludes square factors at $p\le z$.
+Failure of squarefreeness at larger primes costs at most
+\begin{equation}\label{eq:large-square}
+ (2X+h)\sum_{m>z}m^{-2}=O_h(X/z),
+\end{equation}
+using complete prefixes to count square multiples. Remove these exceptions as well. Then $\Omega=\omega$ at
+both endpoints, and every remaining weight is at most one, so its cardinality is at least its weighted mass.
+This proves \eqref{eq:tradeoff}. At the hard endpoint retain both roughness conditions and take
+\begin{equation}\label{eq:tradeoff-numerical}
+ \kappa=1/3750,\quad\epsilon=1/60000,\quad
+ \kappa-\epsilon=1/4000,\quad 2\kappa=1/1875.
+\end{equation}
+This gives Theorem~\ref{thm:omega-consumer}.
+\end{proof}
+
+\begin{corollary}\label{cor:half-consumer}
+At the maximal $z$ of Theorem~\ref{thm:soft}, every sign pair occurs for at least
+$c_{h,r}X/(\log X)^{2\kappa}$ squarefree pairs with
+\begin{equation}\label{eq:soft-half-consumer}
+ \Omega(n),\Omega(n+h)\le(1-\kappa/2)\log\log X,\qquad\kappa=(1-r)/3750.
+\end{equation}
+At the hard endpoint the same argument gives $\Omega(n),\Omega(n+h)\le(1-1/7500)\log\log X$;
+Theorem~\ref{thm:omega-consumer} gives the stated smaller upper bound.
+\end{corollary}
+\begin{proof}
+Apply Lemma~\ref{lem:chernoff}, \eqref{eq:large-square} and the preceding pattern masses, or take
+$\epsilon=\kappa/2$ in Remark~\ref{rem:tradeoff}.
+\end{proof}
+
+\section{The full prime-factor weight: phases, norms and mass}\label{sec:full}
+In this and the remaining sections use padding $a(u)=4^{\omega(u)}$, $w=5^{\omega_{\Qset}}$,
+$\Qset=\{p:y<p\le e^L,\ p\not\equiv1\pmod5,\ p\nmid h\}$, and the original padding probability
+\begin{equation}\label{eq:original-rho}
+ \rho_j(n,d)=\frac1{w(n)}\sum_{\substack{u\mid n,\ u\in\Qset^{\sfw}\\j\eta\le\log(du)<(j+1)\eta}}4^{\omega(u)}.
+\end{equation}
+The cutoff is $\rho_j\le K/L$ and the low-$\Qset$ cutoff is $400\log L$.
+The original matrix has entry $L4^{\omega(u)}c_d(n)\ind_{u\mid n}\tau_j(n,d)\tau_j(m,d)/\sqrt{w(n)w(m)}$,
+where now $\tau_j$ contains these two cuts and $\sigma_j$, and $m=n+hdu$.
+No full $\Omega$ value enters this matrix or its finite-residue comparison.
+
+\begin{proposition}[Numerical signs and two layers]\label{prop:phase}
+Multiply the directed increasing edge with label $q'=du$ by any prescribed $\epsilon(q')\in\{\pm1\}$, and form
+\begin{equation}\label{eq:phase-lift}
+ \mathcal A_d=\begin{pmatrix}0&A_d^+\\(A_d^+)^*&0\end{pmatrix}.
+\end{equation}
+Duplicate $E$ in both layers. The moment and spectral estimates of
+\cite[Theorem~5.4 and Proposition~8.3, pp.~24, 41]{OpenAI007} have the same permissible absolute constants,
+with $K$ as row constant. Their finite comparison holds with $L^{18}$ by Proposition~\ref{prop:encoding}.
+\end{proposition}
+\begin{proof}
+Check the original proof in order. The Hilbert--Schmidt expansion [O, pp.~24--25] projects each lifted closed
+word to a physical word already counted there; it retains unequal consecutive tuples within each half.
+The projected lifted words form a subset of the physical closed words, and each physical word has at most two
+lifts, according to its starting layer. For a fixed numerical word its product of edge signs is a scalar of
+modulus one, independent of residue draws. Remove it from the signed expectation before taking the absolute
+value. Writing $X_w$ for the unphased contribution of a physical word, the positive word sums therefore obey
+\begin{equation}\label{eq:phase-word-domination}
+ \sum_{\widetilde w\in\mathcal W_{\rm lift}}|\E_*X_{\widetilde w}|
+ \le2\sum_{w\in\mathcal W_{\rm phys}}|\E_*X_w|.
+\end{equation}
+This compares absolute word sums, as used in [O, p.~24], rather than signed operator norms.
+The exact singleton identity [O, Lemma~5.5, p.~26] and the unlit, rank and singleton majorants
+[O, pp.~26--33] are unchanged. The eligible numerical ranges, reciprocal weights and rare witnesses are the
+ones verified in Proposition~\ref{lem:rare}; removing primes up to $y$ only prunes their positive sums.
+The surviving perfect blocks and forest universe [O, Lemmas~7.1--7.2, pp.~34--37] are unchanged subsets.
+The padding recursion [O, Lemma~7.3, p.~37] has oriented row bound $K$, with no numerical sign in the positive
+row. Completion [O, pp.~37--38] now has external factor $2|\Dset|^2M\le e^{108L}$, the envelope already used
+there, so the same absolute $C_2$ may be fixed. The signed finite expansion is covered by
+Proposition~\ref{prop:encoding} before absolute values.
+The arithmetic and counting proofs [O, Lemmas~5.2--5.3, 5.5--5.6, 6.1--6.5 and 7.1--7.2, pp.~22--37] use no
+numerical value of $K$, $\eta$ or $A$. They use the bin eligibility only through $du\le e^{101L}$ and the degree
+bound on $u$; these hold for $\eta\le1$. Within the padding-summation step, $K$ enters through the row recursion
+of Lemma~7.3; its bound is then carried through the completion. The exponent $A$ belongs to the finite-origin
+comparison, replaced here by Proposition~\ref{prop:encoding}.
+
+For the one-orientation block $A_d^+$, weighted absolute row and column sums, with $\phi=\sqrt w$, satisfy
+\begin{equation}\label{eq:phase-one-orientation-schur}
+ \sum_m|A_d^+(n,m)|\frac{\phi(m)}{\phi(n)}\le Ka_d(n),\qquad
+ \sum_n|A_d^+(n,m)|\frac{\phi(n)}{\phi(m)}\le Ka_d(m).
+\end{equation}
+Each is at most the corresponding two-orientation bound of [O, (8.4), p.~40].
+Since $a_d$ is constant along an edge, the weighted Cauchy--Schwarz calculation is
+\begin{equation}\label{eq:phase-schur-calculation}
+\begin{aligned}
+ \|A_d^+v\|^2
+ &\le\sum_n Ka_d(n)\sum_m|A_d^+(n,m)|\frac{\phi(n)}{\phi(m)}|v_m|^2\\
+ &\le K^2\sum_m a_d(m)^2|v_m|^2.
+\end{aligned}
+\end{equation}
+Its transpose has the same bound. These are the Schur bounds on the invariant level sets of $a_d$;
+the two-orientation proof in [O, Lemma~8.2, p.~40] uses their sum.
+For $v=(v_1,v_2)$, with the duplicated projection $v=Ev$, this gives
+\begin{equation}\label{eq:phase-schur}
+ \|\mathcal A_d\|\le K\le2K,\qquad
+ \sum_d\|\mathcal A_dv\|^2\le K^2(8W)^J\|v\|^2\le4K^2(8W)^J\|v\|^2.
+\end{equation}
+Thus the original permissible two-orientation constants still apply.
+If $\mathcal A=\sum_d\mathcal A_d$ and $A^+=\sum_d A_d^+$, the exact testing identity for real vectors is
+\begin{equation}\label{eq:phase-quadratic-form}
+ \langle(g_1,g_2),\mathcal A(g_1,g_2)\rangle
+ =\langle g_1,A^+g_2\rangle+\langle g_2,(A^+)^*g_1\rangle
+ =2\langle g_1,A^+g_2\rangle.
+\end{equation}
+All edge signs and testing vectors here are real. In particular this recovers twice the ordered increasing-edge
+bilinear form for the three sign-exponent cases.
+Input~\ref{input:transfer} and the Markov proof of [O, Proposition~8.3, p.~41] give
+$K(C_3\sqrt W)^J$ outside $e^{-2k}$ of origins, with
+$C_3=3\max(2,2\sqrt8,eC_2)$ as in [O, (8.7)]. This proves the stated constants without comparing signed
+submatrix norms by entrywise domination.
+\end{proof}
+
+\begin{proposition}[Positive actual-integer norms]\label{prop:full-norm}
+Uniformly for $99/100\le r\le1$, $2\le y\le e^{L^{1/12}}$,
+$e^{L^{18}/2}\le Y\le e^{2L^{18}}$, put $B_r(n)=r^{\Omega(n)}S_y(n)$ and
+$S_r=\prod_{p\in\Qset}(1+4r^2/p)$. Then
+\begin{align}
+ \sum_{n\le Y}B_r(n)^2w(n)&\ll YS_r(\log Y)^{r^2-1},&
+ \sum_{n\le Y}B_r(n)^2&\ll Y(\log Y)^{r^2-1},\label{eq:full-norm}\\
+ \sum_{n\le Y}B_r(n)^2e^{\omega_{\mathcal T}(n)}
+ &\ll Y(\log Y)^{r^2-1}
+ \exp\left((e-1)r^2\sum_{p\in\mathcal T}1/p\right)&&\label{eq:full-tilted-norm}
+\end{align}
+for any prime set $\mathcal T\subset[2,e^L]$.
+\end{proposition}
+\begin{proof}
+Shiu's nonnegative mean theorem in the form reproduced in \cite[p.~1]{Henriot} bounds a mean by
+$CY\exp(\sum_{p\le Y}(F(p)-1)/p)$ for functions of fixed divisor growth.
+For the two functions in \eqref{eq:full-norm}, $F\le5^{\omega(n)}\le\tau_5(n)$; for
+\eqref{eq:full-tilted-norm}, $F\le3^{\omega(n)}\le\tau_3(n)$.
+Thus $F(p^j)\le A^j$ and $F(n)\le B_\xi n^\xi$ have uniform constants for every fixed $\xi>0$.
+Apply the theorem with $q=1$, interval and progression exponents $1/2$ on dyadic long blocks above $\sqrt Y$.
+The small prefix costs $O(\sqrt Y\log^4Y)$.
+The prime values are $5r^2$ on $\Qset$, $r^2$ elsewhere, or $er^2$ on $\mathcal T$ and $r^2$ elsewhere.
+The squarefree cutoff changes only higher powers. Uniformly summable $O(p^{-2})$ errors identify the extra
+$\Qset$ product with $S_r$, and Mertens gives the displayed powers of $\log Y$.
+These are bounds on actual integers, rather than a residue model for full $\Omega$.
+\end{proof}
+
+\begin{proposition}[Unsigned full-weight pair mass]\label{prop:full-mass}
+For fixed even $h$, uniformly for $99/100\le r\le1$ and
+$2\le y\le\exp((\log X)^{1/216})$,
+\begin{equation}\label{eq:full-pair-mass}
+ c_hX(\log X)^{2r-2}\le\sum_{n\le X}r^{\Omega(n)+\Omega(n+h)}S_y(n)S_y(n+h)
+ \le C_hX(\log X)^{2r-2}
+\end{equation}
+for sufficiently large $X$.
+\end{proposition}
+\begin{proof}
+Choose a cutoff $z_0$ and independently for each $p\le z_0$ choose two thresholds with
+$\Prob(T_i>k)=r^k$, $k\ge0$; at $r=1$ take $T_i=\infty$.
+For $p\le y$ replace each threshold by its minimum with $2$.
+The complement of the event $p^{T_1}\mid n$ or $p^{T_2}\mid n+h$ has expectation exactly the two local
+prime-power weights, including the squarefree cap. This is a nonnegative sieve measure on integers and
+threshold choices, within the probability setup of \cite[pp.~1--3]{Ford}.
+
+For squarefree $d$, expand each bad-prime union into at most three conjunction terms.
+Conditional on thresholds a consistent term is one prime-power CRT progression, counted with error $O(1)$
+regardless of its modulus; inconsistent terms are zero. Average to obtain
+\begin{equation}\label{eq:threshold-crt}
+ A_d=Xg(d)+O(3^{\omega(d)}),\qquad g(d)=\prod_{p\mid d}g(p).
+\end{equation}
+Infinite thresholds may be truncated with an infinity option; bounded convergence then applies to each finite
+sieve sum. The divisor upper/lower identities of Input~\ref{input:fl} hold for every sample of the bad-prime
+set and may be integrated.
+
+For $p\nmid h$, $p>y$, a $p$-adic count gives
+\begin{equation}\label{eq:full-uncapped-local}
+ 1-g(p)=1-\frac{2(1-r)}{p-r}.
+\end{equation}
+Indeed at one of the two distinct roots the valuation-$k$ density is $(1-1/p)p^{-k}$, and summing
+$1-2/p+2(1-1/p)\sum_{k\ge1}r^kp^{-k}$ gives the formula.
+For $p\le y$ the factor is \eqref{eq:soft-local}. The finitely many $p\mid h$ have positive local expectations.
+All bad events are subsets of the ordinary two-root event, so $g(p)\le\nu_h(p)/p<1$.
+In the uncapped case one may also use $1-r^k\le(1-r)k$ and the mean valuation $2/(p-1)$.
+Thus the sieve dimension condition is uniformly bounded by dimension two. Logarithms of generic factors have
+coefficient $-2(1-r)/p$; the squarefree cap changes them by $O(p^{-2})$, and fixed exceptional factors stay
+uniformly positive for $r\ge.99$. Hence
+\begin{equation}\label{eq:full-local-product}
+ \prod_{p\le z_0}(1-g(p))\asymp_h(\log z_0)^{2r-2}\qquad(y\le z_0).
+\end{equation}
+Take a fixed sufficiently large $s_0$ with lower-sieve relative error at most $1/4$,
+$D=X^{1/4}$ and $z_0=X^{1/(4s_0)}$. Eventually $y\le z_0\le D^{1/2}$.
+The total CRT error is $O(D\log^2D)$, smaller than the main term.
+The finite prime-weighted mass is thus bounded below by a positive multiple of $X(\log X)^{2r-2}$.
+At each endpoint at most $4s_0+1$ prime factors counted with multiplicity exceed $z_0$.
+Restoring them costs at most the fixed factor
+$r^{8s_0+2}\ge(.99)^{8s_0+2}>0$, proving the lower bound.
+
+For the upper bound drop $S_y$ and apply \cite[Theorem~1, pp.~1--2]{Henriot} to the same fixed polynomials
+$t,t+h$ and $F(a,b)=r^{\Omega(a)+\Omega(b)}$.
+All function-class bounds hold uniformly since $0\le F\le1$; the polynomial, interval and coefficient
+hypotheses were verified in Proposition~\ref{prop:positive-moment}.
+The positive Euler factors give coefficient $(2r-2)/p$ with uniformly summable higher-power errors.
+Dyadic summation completes the bound. The restoring constant is not asserted uniform as $r$ tends to zero.
+\end{proof}
+
+\section{External padding collision}\label{sec:full-collision}
+
+\begin{inputthm}[Hal\'asz in the Montgomery--Tenenbaum form, {\cite[Chapter~III.4]{Tenenbaum}}]\label{input:halasz}
+For $Y\ge3$ and $1\le T\le Y/2$, if $F$ is multiplicative, $F(1)=1$ and $|F(n)|\le1$, then
+\begin{equation}\label{eq:halasz}
+ \frac1Y\left|\sum_{m\le Y}F(m)\right|
+ \ll(1+M_F)e^{-M_F}+T^{-1/2},\quad
+ M_F=\min_{|v|\le2T}\sum_{p\le Y}\frac{1-\Re(F(p)p^{-iv})}p.
+\end{equation}
+A rescaling of the height parameter gives the convention $|v|\le2T$ in this display.
+Our use has $T=L^{1000}$ and $Y\ge e^{L^{18}/2}$, so the stated height and length requirements hold for large $L$.
+\end{inputthm}
+
+\begin{proposition}[Common-prefix collision]\label{prop:external-collision}
+Use the range and notation of Proposition~\ref{prop:full-norm}. Conditional on an integer $um$, choose a
+squarefree $\Qset$ divisor $v$ with probability $4^{\omega(v)}/w(um)$. Then
+\begin{equation}\label{eq:external-collision}
+ \sum_{u\in\Qset^{\sfw}}\frac{4^{\omega(u)}r^{2\omega(u)}}u
+ \sum_{m\le Y}B_r(m)^2\Prob_{v\mid um}(|\log(u/v)|\le1)
+ \ll_h YS_r(\log Y)^{r^2-1}\frac{\log(2L)}L.
+\end{equation}
+The $u$-sum is finite and has the same physical prefix $m\le Y$ for every $u$.
+\end{proposition}
+\begin{proof}
+Replace the probability by $\E_v\exp(it\log(u/v))$ and call the resulting sum $H(t)$, $|t|\le2$.
+For a $\Qset$ prime put $z_p=p^{it}$, $k_p=4r^2/p$ and
+\begin{equation}\label{eq:external-local-factors}
+ C_{0,p}=1+\frac{k_p(4+z_p)}5,\qquad
+ C_{1,p}=\frac{1+4z_p^{-1}+k_p(z_p+4)}5.
+\end{equation}
+If $p\nmid m$, not choosing it in $u$ contributes $1$; choosing it contributes
+$k_p(z_p/5+4/5)$, since the conditional $v$ probabilities are $1/5,4/5$.
+If $p\mid m$, these same $v$ probabilities apply whether or not it is chosen in $u$, giving $C_{1,p}$.
+The finite Euler identity is therefore
+\begin{equation}\label{eq:external-euler}
+ H(t)=\left(\prod_{p\in\Qset}C_{0,p}\right)\sum_{m\le Y}F_t(m),\qquad
+ F_t(p^j)=\begin{cases}B_r(p^j)^2C_{1,p}/C_{0,p},&p\in\Qset,\\B_r(p^j)^2,&p\notin\Qset.
+ \end{cases}
+\end{equation}
+Define $F_t$ multiplicatively with $F_t(1)=1$.
+For $c=\Re z_p$, direct algebra gives
+\begin{equation}\label{eq:external-abs-identity}
+ |C_{0,p}|^2-|C_{1,p}|^2=\frac8{25}(1-c)(1+5k_p+2k_pc)\ge0,\qquad \Re C_{0,p}\ge1.
+\end{equation}
+Thus $|F_t|\le1$, as required in Input~\ref{input:halasz}. Its prime values are
+\begin{equation}\label{eq:external-prime-values}
+ F_t(p)=\tfrac{r^2}5(1+4p^{-it})+O(p^{-1})\ (p\in\Qset),\qquad F_t(p)=r^2\ (p\notin\Qset).
+\end{equation}
+The harmonic sum of these coefficient errors is $O(1)$.
+
+Put $v_0=\log(2y)$ and $\Psi(t)=\log((1+L|t|)/(1+v_0|t|))$.
+Fixed-modulus PNT and partial summation give, uniformly for $|t|\le3$,
+\begin{align}
+ \sum_{p\in\Qset}\frac{1-\cos(t\log p)}p&=\tfrac34\Psi(t)+O_h(1),\label{eq:external-harmonic}\\
+ \left|\prod_{p\in\Qset}C_{0,p}\right|&\ll_h S_r\exp(-3r^2\Psi(t)/5).\label{eq:external-prefactor}
+\end{align}
+For the latter, the leading logarithmic difference from $1+4r^2/p$ is
+$-(4r^2/5p)(1-\cos(t\log p))$; all $O(p^{-2})$ errors are summable.
+This is the same partial summation as \cite[(4.12), p.~18]{OpenAI007}, now with the lower cutoff $y$.
+
+Take $T=L^{1000}$. For any candidate twist $v$, \eqref{eq:external-prime-values} expands the distance as
+\begin{equation}\label{eq:external-distance}
+ (1-r^2)\log\log Y+r^2S_Y(v)-\tfrac45r^2S_Q(v)+\tfrac45r^2S_Q(v+t)+O_h(1),
+\end{equation}
+where $S_Y(v)=\sum_{p\le Y}(1-\cos(v\log p))/p$ and $S_Q$ is the $\Qset$ sum.
+If $|v|\le1$, partial summation of PNT gives $S_Y(v)=\log(1+|v|\log Y)+O(1)$.
+The increasing concave function $x\mapsto\log((1+Lx)/(1+v_0x))$ vanishes at zero, and is subadditive.
+Thus $\Psi(t)\le\Psi(v)+\Psi(v+t)$. Since $\log Y\ge L^{18}/2$, for sufficiently large $L$,
+\begin{equation}\label{eq:external-small-twist}
+ \log(1+|v|\log Y)\ge\tfrac65\log(1+L|v|)\ge\tfrac65\Psi(v)\qquad(|v|\le1).
+\end{equation}
+One may verify the inequality separately for $L|v|\le1$ and $1\le L|v|\le L$.
+Using \eqref{eq:external-harmonic} in \eqref{eq:external-distance} therefore gives
+\begin{equation}\label{eq:external-distance-lower}
+ M_{F_t}\ge(1-r^2)\log\log Y+\tfrac35r^2\Psi(t)-O_h(1)
+\end{equation}
+for these twists.
+For $1\le|v|\le2T$, work on $\sigma=1+1/\log Y$. Replacing the sharp prime sum by its $p^{-1/\log Y}$
+smoothing costs $O(1)$, by partial summation; higher powers cost $O(1)$ too.
+The Euler product and Euler summation with cutoff comparable to $|v|+3$ give
+$|\zeta(\sigma+iv)|\ll\log(|v|+3)$, hence
+$S_Y(v)\ge\log\log Y-O(\log\log(3T))$.
+Also $S_Q(v)\le2\sum_Q1/p\le(3/2)\log L+O_h(1)$, $S_Q(v+t)\ge0$, and
+$\log\log Y\ge18\log L-O(1)$. These inequalities imply \eqref{eq:external-distance-lower} in the large-twist
+range as well. This checks the full Hal\'asz minimum, not only a zero twist.
+
+Apply \eqref{eq:halasz}, \eqref{eq:external-prefactor}, and
+$M_{F_t}\le2\log\log Y+O(1)$ to obtain
+\begin{equation}\label{eq:external-char-bound}
+ |H(t)|\ll_h YS_r(\log Y)^{r^2-1}\log(2L)
+ \left(\frac{1+v_0|t|}{1+L|t|}\right)^{6r^2/5}.
+\end{equation}
+The $T^{-1/2}=L^{-500}$ term is absorbed uniformly; the other density and phase factors have magnitude at least
+$L^{-2}$ in the stated compact $r$ and $Y$ ranges.
+Finally apply the positive kernel \eqref{eq:triangular} to $\log(u/v)$, interchange only finite sums, and use
+\begin{equation}\label{eq:external-integral}
+ \int_0^2\left(\frac{1+v_0t}{1+Lt}\right)^\nu dt
+ \ll L^{-1}+(v_0/L)^\nu\ll L^{-1},\qquad
+ \nu=6r^2/5>1,\quad v_0\le2L^{1/12},\quad(11/12)\nu>1.
+\end{equation}
+This proves \eqref{eq:external-collision}, retaining complex phases throughout the Euler identity and distance
+minimization.
+\end{proof}
+
+
+\begin{lemma}[Uniform upper sieve for marked primes]\label{lem:marked-window}
+There is an absolute $u_0>0$ such that, for an interval $I$ of $N$ consecutive positive integers, $z\ge2$ and
+$\log N/\log z\ge u_0$, every set $\mathcal R\subset\{p\le z\}$ satisfies
+\begin{equation}\label{eq:marked-window-sieve}
+ \#\{n\in I:p\nmid n\text{ for every }p\in\mathcal R\}
+ \le2N\prod_{p\in\mathcal R}(1-1/p)+O(N^{1/2}\log^2(2N)),
+\end{equation}
+with an absolute error constant. Consequently, for $0\le\delta\le1$, $r=1-\delta$,
+\begin{equation}\label{eq:marked-window-average}
+ \sum_{n\in I}r^{\omega_z(n)}
+ \ll N(\log(2z))^{-\delta}+N^{1/2}\log^2(2N).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Use Selberg's upper sieve with divisor level $U=N^{1/4}$.
+Here is its finite quadratic construction, which also verifies uniformity in the marked set.
+Let $\mathcal D_U=\{d\le U:d\mid\prod_{p\in\mathcal R}p\}$ and
+\begin{equation}\label{eq:selberg-GF}
+ G_{\mathcal R}(U)=\sum_{d\in\mathcal D_U}\frac1{\varphi(d)},\qquad
+ F_{\mathcal R}=\prod_{p\in\mathcal R}(1-1/p)^{-1}.
+\end{equation}
+Put $y_q=\mu(q)/(\varphi(q)G_{\mathcal R}(U))$ for $q\in\mathcal D_U$, and define
+$\lambda_d/d=\sum_{q\in\mathcal D_U,\ d\mid q}\mu(q/d)y_q$.
+Finite divisor inversion gives $\lambda_1=1$ and $y_q=\sum_{d\in\mathcal D_U,\ q\mid d}\lambda_d/d$.
+Since $(d,e)=\sum_{q\mid(d,e)}\varphi(q)$, the quadratic main term is exactly
+\begin{equation}\label{eq:selberg-diagonalization}
+ \sum_{d,e\in\mathcal D_U}\frac{\lambda_d\lambda_e}{[d,e]}
+ =\sum_{q\in\mathcal D_U}\varphi(q)y_q^2=G_{\mathcal R}(U)^{-1}.
+\end{equation}
+Moreover
+\begin{equation}\label{eq:selberg-weight-bound}
+ \lambda_d=\frac{\mu(d)d}{\varphi(d)G_{\mathcal R}(U)}
+ \sum_{\substack{m\le U/d\\m\mid\prod_{p\in\mathcal R}p,\ (m,d)=1}}\frac1{\varphi(m)},\qquad
+ |\lambda_d|\le d/\varphi(d)\le\tau(d).
+\end{equation}
+The sifted indicator is bounded by $(\sum_{d\mid n}\lambda_d)^2$.
+Counting each modulus $[d,e]$ in $I$ as $N/[d,e]+O(1)$ therefore gives
+$N/G_{\mathcal R}(U)+O(U^2\log^2(2U))$, independently of the interval position and marked set.
+
+For the Rankin tail take $\sigma=1/\log z$. The full squarefree divisor sum is $F_{\mathcal R}$, and
+\begin{equation}\label{eq:selberg-rankin-tail}
+\begin{aligned}
+ \frac{F_{\mathcal R}-G_{\mathcal R}(U)}{F_{\mathcal R}}
+ &\le U^{-\sigma}\prod_{p\in\mathcal R}\left(1+\frac{p^\sigma-1}{p}\right)\\
+ &\le\exp\left(-\frac{\log U}{\log z}+C_0\right).
+\end{aligned}
+\end{equation}
+The constant $C_0$ is absolute: $p^\sigma-1\le(e-1)\log p/\log z$ for $p\le z$, and
+$\sum_{p\le z}(\log p)/p\ll\log z$ by Mertens' theorem \cite[Section~2.2]{MV}.
+Choose $u_0\ge4(C_0+\log2)$ once and for all. Then $G_{\mathcal R}(U)\ge F_{\mathcal R}/2$, proving
+\eqref{eq:marked-window-sieve}. This proves the sieve bound for every marked set before any averaging.
+
+Independently mark each prime up to $z$ with probability $\delta$.
+At a fixed $n$, the probability that no marked prime divides it is $r^{\omega_z(n)}$.
+Average \eqref{eq:marked-window-sieve}; its error is uniform and
+\begin{equation}\label{eq:marked-product-expectation}
+ \E_{\mathcal R}\prod_{p\in\mathcal R}(1-1/p)
+ =\prod_{p\le z}(1-\delta/p)\asymp(\log(2z))^{-\delta}.
+\end{equation}
+The comparison follows from the logarithmic expansion and Mertens, uniformly in $0\le\delta\le1$.
+This gives \eqref{eq:marked-window-average}.
+\end{proof}
+
+\section{Cancellation with the full weight}\label{sec:full-proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:full}]
+In this proof abbreviate $C_\Omega,W_\Omega,\alpha_\Omega,\delta_\Omega$ by $C,W,\alpha,\delta$.
+Thus \eqref{eq:full-fixed} fixes $W=16eC^2$, $\alpha=1/(1200W)$, $\delta=\sqrt{\alpha/216}$ and $r=1-\delta$.
+Set
+\begin{equation}\label{eq:full-parameters}
+\begin{gathered}
+ L=(\log X)^{1/18},\quad J=\lfloor\alpha\log L\rfloor,\quad\eps=\alpha/100,\\
+ b=1+r^{-2},\quad E_0=18\delta^2=\alpha/12,\quad
+ \eta=L^{-\eps},\quad K=L^{2\alpha\log b+2E_0+4\eps}.
+\end{gathered}
+\end{equation}
+The exponent of $K$ is less than $4\alpha$; these are fixed powers of $L$, as required in
+Proposition~\ref{prop:encoding}. The centre supply is Definition~\ref{def:graph}, with the same $H_0$ and
+$W\le V_i\le2W$. All label primes exceed $y$.
+
+Put $f_i(n)=\lambda(n)^{e_i}B(n)$. For $q'=du$, complete additivity of $\Omega$ and complete multiplicativity of
+$\lambda$ give the exact identity
+\begin{equation}\label{eq:full-dilation}
+ f_1(q'm)f_2(q'(m+h))
+ =\lambda(q')^{e_1+e_2}r^{2\Omega(q')}f_1(m)f_2(m+h).
+\end{equation}
+The small-prime-square mask is unchanged, with no coprimality condition on $q'$ and $m$.
+Multiply the edge by $\lambda(q')^{e_1+e_2}$ and use Proposition~\ref{prop:phase}.
+The raw term has positive harmonic mass
+\begin{equation}\label{eq:full-raw-mass}
+ S_{0,r}=\sum_j\sum_{(d,u)\in\mathcal S_j}\frac{4^{\omega(u)}r^{2J+2\omega(u)}}{du},\qquad
+ \tfrac12r^{2J}S_rV_*\le S_{0,r}\le r^{2J}S_rV_*.
+\end{equation}
+To prove the lower bound, its padding reciprocal law selects a prime with probability
+$4r^2/(p+4r^2)$, with expected logarithmic size at most $4L$ and degree at most $4\log L$.
+Use the two Markov exclusions in Proposition~\ref{lem:mass}, now with this law.
+The raw cofactor cutoff remains in $(Xe^{-\eta},X]$.
+The Nair--Tenenbaum upper theorem gives mass
+$O_h(\eta X(\log X)^{-2\delta})$ in the full missing interval of length comparable to $\eta X$.
+Here the weights $r^{\Omega}$ are bounded by one, the polynomials are the fixed $t,t+h$, and
+$\eta X>X^{1/2}$ eventually, so the interval and function-class hypotheses checked in
+Proposition~\ref{prop:positive-moment} hold. The normalized raw error is
+$O_h(\eta(\log X)^{-2\delta})$.
+
+We next align all physical prefixes before enlarging padding sums.
+The positive centred-factor majorant is
+\begin{equation}\label{eq:full-majorant}
+ a_d^+(n)=\prod_{p\mid d}(\ind_{p\mid n}+1/p)
+ =\sum_{e\mid d}\frac ed\ind_{e\mid n}.
+\end{equation}
+In a term with $u\mid n$ and $e\mid n$, write $n=uem$; the prime supports of $u,e$ are disjoint and exceed $y$.
+Then $B(uem)^2=r^{2\omega(u)+2\omega(e)}B(m)^2$, and the bin gives
+\begin{equation}\label{eq:alignment}
+ Xe^{-\eta}<T_j/(ud)\le X,\qquad T_j^{-1}\le e^\eta/(Xud),\qquad m\le Xd/e.
+\end{equation}
+Its coefficient in the normalized one-endpoint squared edge mass is bounded by
+$e^\eta e r^{2\omega(e)}/(Xd^2)$ times the external sum
+$\sum_u4^{\omega(u)}r^{2\omega(u)}/u$ and the $B(m)^2$ sum through $Y=Xd/e$.
+Only now extend $u$ to all of $\Qset^{\sfw}$. Apply \eqref{eq:full-norm} without $w$, cancel the prefix $Y$
+against this coefficient and sum $d,e$. Since $\sum_{e\mid d}r^{2\omega(e)}=(1+r^2)^J$, the whole squared mass is
+\begin{equation}\label{eq:full-positive-edge}
+ \ll_h S_r(\log X)^{r^2-1}(1+r^2)^JV_*.
+\end{equation}
+Every eligible $(d,u)$ belongs to one bin, so this alignment introduces no bin multiplicity.
+At the arrival, $n'=n+hdu=ue(m+hd/e)$ and $e\mid d$.
+Its cofactor $m'=m+hd/e$ is at most $(X+h)d/e$. Enlarge to this common prefix and repeat the same argument.
+This proves \eqref{eq:full-positive-edge} at either endpoint, with logarithms comparable to $\log X$.
+
+For a padding-cut failure, apply Cauchy--Schwarz in the positive edge measure.
+One squared factor has the bad indicator and $B(n)^2$, the other discards the indicator and uses
+\eqref{eq:full-positive-edge}. The original $\rho_j$ reads only the active $\Qset$ primes, so
+$\rho_j(uem,d)=\rho_j(um,d)$. Since the eligible $u$ and every $v$ in its bin have
+$|\log(u/v)|\le\eta\le1$,
+\begin{equation}\label{eq:full-bad-padding}
+ \ind_{\rho_j(um,d)>K/L}\le(L/K)\rho_j(um,d)
+ \le(L/K)\Prob_{v\mid um}(|\log(u/v)|\le1).
+\end{equation}
+After \eqref{eq:alignment} the prefix is the same $Y=Xd/e$ for all $u$.
+Proposition~\ref{prop:external-collision} makes the squared bad factor smaller than
+\eqref{eq:full-positive-edge} by $O_h(\log(2L)/K)$.
+At the arrival use $m'=m+hd/e$ and the common prefix just proved; the same inequality applies.
+Dividing the resulting two-endpoint deletion by \eqref{eq:full-raw-mass} gives
+\begin{equation}\label{eq:full-padding-deletion}
+ \ll_h(\log X)^{r^2-1}b^J\sqrt{\log(2L)/K}.
+\end{equation}
+
+For a $\Qset$-degree failure, retain $\omega(u)\le100\log L$ until
+$\omega_{\Qset}(uem)>400\log L$ implies $\omega_{\Qset}(m)>300\log L$.
+Markov and \eqref{eq:full-tilted-norm} give a squared-factor saving $O(L^{-200})$, since
+$\sum_Q1/p\le\log L+O_h(1)$; only afterward enlarge the $u$-sum.
+Cauchy--Schwarz saves $L^{-100}$.
+For a $\Pset$-degree failure, $\omega_{\Pset}(uem)\le J+\omega_{\Pset}(m)$ and
+\begin{equation}\label{eq:full-p-tail}
+ e^{-(6W-1)J}\exp(2(e-1)WJ)\le e^{-2WJ}\qquad(W\ge10).
+\end{equation}
+This gives $e^{-WJ}$ after Cauchy--Schwarz.
+For rare-site failures discard $B(n)B(n+hdu)\le1$ and use the positive deletion proof of
+\cite[Lemma~4.6, pp.~19--20]{OpenAI007}, with \eqref{eq:rare} and Proposition~\ref{prop:encoding}.
+The ratio of $SV_*$, where $S=\prod_{p\in\Qset}(1+4/p)$, to $S_{0,r}$ and the inverse mass density are fixed powers of $L$, absorbed in its
+exponential error. The complete relative deletion error is
+\begin{equation}\label{eq:full-deletion-budget}
+ \ll_h L^{E_0}b^J\{\sqrt{\log(2L)/K}+L^{-100}+e^{-WJ}\}+e^{-L^{0.8}}.
+\end{equation}
+Here $(\log X)^{(r^2-1)+2\delta}=(\log X)^{\delta^2}=L^{E_0}$.
+The nonrare estimates were actual-integer positive norms, not a finite-residue model for $B$.
+
+For the spectral term use Proposition~\ref{prop:phase} and the unweighted signed-trace comparison of
+Proposition~\ref{prop:encoding}.
+The actual squared testing norms of $\sqrt w f_i$ average to
+$O_h(MS_r(\log X)^{r^2-1})$, by Proposition~\ref{prop:full-norm}; Cauchy--Schwarz handles the bilinear form.
+The overlap identity \eqref{eq:overlap} and its deterministic exceptional-block bound apply to the two layers.
+All normalizations are fixed powers of $L$, so their exponential errors remain negligible.
+After the bins and \eqref{eq:full-raw-mass}, the relative spectral term is
+\begin{equation}\label{eq:full-spectral}
+ \ll_h L^{E_0}\frac K\eta\left(\frac C{r^2\sqrt W}\right)^J+e^{-L^{0.8}}.
+\end{equation}
+The $S_r$ in the actual norm cancels the $S_r$ in the raw mass.
+
+Finally repeat the centering proof of \cite[Lemmas~4.1--4.2, 4.4, pp.~13--16]{OpenAI007} with the present $f_i$.
+At least one signed factor has prime value $-r$ at every prime, since $S_y$ changes only higher powers.
+For that factor,
+\begin{equation}\label{eq:full-signed-distance}
+ M(f_i;Y,Q)=rM(\lambda;Y,Q)+(1-r)\sum_{p\le Y}1/p
+ \ge\tfrac14\log\log Y-O(1).
+\end{equation}
+Use precisely Input~\ref{input:mrt}; $Y\ge e^{L^{18}/2}$, $H_0/2\le D\le e^{2L}\ll Y$, and
+$Q=\min((\log Y)^{1/125},(\log D)^5)$. The height is $|t|\le Y$.
+Its errors give the short Fourier bound $DL^{-\Gamma}$ with
+\begin{equation}\label{eq:full-centering-parameters}
+ a=994999/1000000,\qquad\Gamma=2571/100000,\qquad s=1/1000000,
+ \qquad a<199/200,\quad\Gamma<18/700.
+\end{equation}
+In choosing the final threshold also require
+\begin{equation}\label{eq:marked-window-scale}
+ \tfrac12L^{199/200-a}\ge u_0,\qquad z_{\rm m}=e^{L^a},\qquad
+ \frac{\log D}{\log z_{\rm m}}\ge u_0
+ \quad(H_0/2\le D\le e^{2L}),
+\end{equation}
+where $u_0$ is fixed in Lemma~\ref{lem:marked-window}. This is possible because $199/200-a=10^{-6}>0$.
+The distance is eventually at least $(18/5)\log L$. The short error is
+$O(L^{-199/200}\log L)$, and the long error is $O(L^{-18/700})$.
+Proposition~\ref{lem:shift-polynomial} has $\|\mathcal B\|_\infty\ll L^{-a}$ and fourth moment
+$O(D^{-1}L^{-4a})$ at this changed cutoff.
+
+The averaged squared short-window norms are bounded by $D(\log Y)^{r^2-1}$:
+count each integer in at most $D$ windows and apply \eqref{eq:full-norm} without $w$, followed by Cauchy--Schwarz
+in the origin average. For the pointwise other factor, use
+\begin{equation}\label{eq:full-pointwise}
+ B(m)\le r^{\omega_{p\le e^{L^a}}(m)},\qquad |G_v|\ll_h DL^{-a\delta}.
+\end{equation}
+For the pointwise assertion, take $N=(2h+1)D$ and $z=z_{\rm m}$ in Lemma~\ref{lem:marked-window}.
+Condition \eqref{eq:marked-window-scale} gives $\log N/\log z_{\rm m}\ge u_0$.
+For every marked-prime set the Selberg sieve has divisor level $N^{1/4}$ and the Rankin estimate gives
+$G_{\mathcal R}(N^{1/4})\ge F_{\mathcal R}/2$; average only after applying this uniform bound.
+The expected product is $\prod_{p\le z_{\rm m}}(1-\delta/p)\asymp L^{-a\delta}$.
+The remainder $O_h(D^{1/2}\log^2(2D))$ is smaller than $DL^{-a\delta}$ throughout the stated $D$ range,
+for sufficiently large $L$. Dropping the squarefree mask and taking absolute values of the endpoint function
+therefore proves $|G_v|\ll_h DL^{-a\delta}$ in every positive window. The separately required CRT estimate in
+Proposition~\ref{lem:shift-polynomial} remains $D^{-1}e^{O(L^a\log L)}$, negligible because $a<199/200$.
+
+For a nonempty partial-centred subset $I$, put $q_I=\prod_{i\in I}p_i$; the physical shift is $hq_I$.
+The subset extracts only $J-|I|$ centre primes.
+Relative to $r^{2J}$ in the raw mass its missing factor is $r^{-2|I|}$, so summing subsets gives
+$(1+r^{-2})^J=b^J$. All remaining numerical signs have modulus one and leave the shift-polynomial estimate
+unchanged. Padding extraction has harmonic mass $S_r$.
+The Fourier split $|\mathcal B|\le L^{-1-s}$ now gives the two relative terms
+\begin{equation}\label{eq:full-centering-budget}
+ L^{E_0+\eps+\alpha\log b-s},\qquad
+ L^{5(1-a)+4s-\Gamma+(36-a)\delta+\eps+\alpha\log b}.
+\end{equation}
+The squared-norm loss is $L^{E_0}$; the pointwise loss is $L^{36\delta-a\delta}$.
+If only the second factor is signed, reindex by $hq_I$ before Fourier averaging, put the signed factor in $F$, and
+allow negative offsets in $G$. Removing the initial $O_h(D)$ origins makes all arguments positive and costs
+$O_h(D/Y)$, exponentially little. Hence this centering bound covers all three nonzero exponent pairs.
+The input is the classical MRT distance bound; the half-plane $\Re s>7/8$ is not used.
+
+We record the numerical margins. Since $C_3\ge6\sqrt8$, $C^2\ge288$; using $e>8/3$ gives
+$\alpha<1/14700000$, $\delta<1/56000$ and $r\ge.99$.
+Also $\log b<.71$ and
+\begin{equation}\label{eq:full-spectral-margin}
+ \log(4\sqrt e\,r^2)-2\log b
+ =\tfrac12+6\log r-2\log((1+r^2)/2)>2/5.
+\end{equation}
+For example $\log r\ge-1/99$ and the last logarithm is nonpositive.
+The exponent in \eqref{eq:full-spectral} is at most
+\begin{equation}\label{eq:full-spectral-exponent}
+ 3E_0+5\eps-(2/5)\alpha=\alpha/4+\alpha/20-2\alpha/5=-\alpha/10.
+\end{equation}
+The padding deletion exponent in \eqref{eq:full-deletion-budget} is $-2\eps$ before its square-root logarithm;
+the raw error has exponent $-\eps$, and both degree terms are smaller.
+For the two centering terms, $E_0+2\eps+\alpha\log b<s$, and
+\begin{equation}\label{eq:full-centering-margin}
+ 5(1-a)+4s+36/56000+1/10000000<.02571=\Gamma;
+ \qquad\text{the left side is less than } .025652.
+\end{equation}
+Thus both exponents in \eqref{eq:full-centering-budget} are less than $-\eps$.
+Absorb fixed logarithmic factors into $\eps/2$ to obtain
+\begin{equation}\label{eq:full-final-saving}
+ \left|\sum_{n\le X}f_1(n)f_2(n+h)\right|
+ \ll_h X(\log X)^{-2\delta}L^{-\eps/2},\qquad
+ L^{-\eps/2}=(\log X)^{-\alpha/3600}.
+\end{equation}
+This is \eqref{eq:full-main}; Proposition~\ref{prop:full-mass} proves \eqref{eq:full-mass-main}.
+All constants were fixed before $h,X$; only the final lower threshold depends on $h$.
+\end{proof}
+
+\begin{corollary}\label{cor:full-patterns}
+With \eqref{eq:full-fixed}, let $M_0(X,y)=\sum_{n\le X}B(n)B(n+h)$.
+For each sign pair the weighted mass is
+\begin{equation}\label{eq:full-pattern-mass}
+ \sum_{\substack{n\le X\\(\lambda(n),\lambda(n+h))=(s,t)}}B(n)B(n+h)
+ =\tfrac14M_0(X,y)\bigl(1+O_h((\log X)^{-\gamma_\Omega})\bigr).
+\end{equation}
+Every sign pattern also occurs for $\gg_h X/(\log X)^{2\delta_\Omega}$ integers $n\le X$ with both endpoints
+squarefree and
+\begin{equation}\label{eq:full-omega-consumer}
+ \Omega(n),\Omega(n+h)\le(1-\delta_\Omega/2)\log\log X.
+\end{equation}
+\end{corollary}
+\begin{proof}
+Expand \eqref{eq:sign-expansion}, use all three signed estimates in Theorem~\ref{thm:full}, and divide by
+\eqref{eq:full-pair-mass}; no exact unsigned Euler leading constant is asserted.
+For the cardinality assertion take $y=\exp((\log X)^{1/216})$, $\tau=1-\delta/2$ and $u=1+\delta/(4r)$.
+Then $ru=1-3\delta/4<1$. The Nair--Tenenbaum theorem for the nonnegative bounded function
+$(ru)^{\Omega(n)}r^{\Omega(n+h)}$ gives
+$O_h(X(\log X)^{ru+r-2})$; its fixed-polynomial hypotheses are those already verified, and squarefree masks
+may be dropped for this upper bound.
+Relative to the unsigned mass the Markov exponent is $r(u-1)-\tau\log u$.
+Equation~\eqref{eq:chernoff-half} with $\kappa=\delta$ makes it at most $-\delta^2/32$.
+The second endpoint is identical. The squarefree support at small primes and \eqref{eq:large-square} with $z=y$
+remove the remaining $O_h(X/y)$ exceptions. Each retained weight is at most one, so positive weighted mass
+bounds the cardinality below. This proves \eqref{eq:full-omega-consumer}.
+\end{proof}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\section*{Use of AI}
+The proofs and the text of this paper were produced with AI systems (GPT-6 Astra, GPT-6.1 Sol and Claude
+Opus~5.5) under the author's direction. They were checked by independent reviews with AI models, and the
+algebraic identities by computation on finite ranges (programs in the ancillary files). The author takes
+responsibility for the content.
+\end{document}

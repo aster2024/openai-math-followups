@@ -72,6 +72,27 @@ of OpenAI's paper
 groups with the prime factors of N removed; the paper obtains these from the proofs given there, going through
 every place where the displacement and the interval structure of the groups enter.
 
+### [`rough-pairs-fixed-distance/`](rough-pairs-fixed-distance/) — Rough numbers at a fixed distance with prescribed Liouville signs
+
+Paper (38 pages), 10 October 2026: [PDF](rough-pairs-fixed-distance/paper.pdf). Programs checking finite instances of the algebraic identities are in [`rough-pairs-fixed-distance/anc/`](rough-pairs-fixed-distance/anc/).
+
+Let h ≥ 2 be a fixed even integer. Uniformly for 2 ≤ z ≤ exp((log X)^(1/3750)), each of the four sign patterns of
+(λ(n), λ(n + h)) occurs for
+
+```math
+\tfrac14\,X\,V_h(z)\,\bigl(1+O_h((\log X)^{-\gamma})\bigr),\qquad V_h(z)=\prod_{p\le z}\Bigl(1-\frac{\nu_h(p)}{p}\Bigr),
+```
+
+integers n ≤ X such that n and n + h have no prime factor up to z (ν_h(p) = 1 if p divides h, and 2 otherwise).
+Consequently each pattern occurs for ≫ X/(log X)^(1/1875) integers n ≤ X with n and n + h squarefree, free of prime
+factors up to exp((log X)^(1/3750)), and with at most (1 − 1/4000)·log log X prime factors. The paper also treats a
+weight on the small prime factors and a weight on all prime factors.
+
+The proofs adapt the graph argument of OpenAI's paper proving the two-point Chowla conjecture (family 007 of the
+release). The operator of that paper is changed so that the sieve density stays inside it, and the paper proves the
+estimates it needs for the changed operator by going through the proofs given there. The zero-free half-plane
+Re s > 7/8 is not used.
+
 ### [`shifted-prime-parity/`](shifted-prime-parity/) — Shifted primes with a prescribed parity of the number of prime factors
 
 Paper (31 pages), 9 October 2026: [PDF](shifted-prime-parity/paper.pdf). Programs checking the algebraic identities on finite ranges are in [`shifted-prime-parity/anc/`](shifted-prime-parity/anc/).

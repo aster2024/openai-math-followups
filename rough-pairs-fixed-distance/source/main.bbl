@@ -1,0 +1,234 @@
+\begin{thebibliography}{29}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bazzi(2009)]{Bazzi}
+Louay~M. Bazzi.
+\newblock Polylogarithmic independence can fool {DNF} formulas.
+\newblock \emph{SIAM Journal on Computing}, 38\penalty0 (6):\penalty0
+  2220--2272, 2009.
+\newblock \doi{10.1137/070691954}.
+
+\bibitem[Braverman(2009)]{Braverman}
+Mark Braverman.
+\newblock Poly-logarithmic independence fools {$\mathrm{AC}^0$} circuits.
+\newblock In \emph{IEEE Conference on Computational Complexity}, pages 3--8,
+  2009.
+\newblock URL
+  \url{https://www.cs.cmu.edu/~odonnell/hits09/braverman-fooling-AC0.pdf}.
+\newblock Six-page author version, Main Theorem and Corollary 2, p. 1.
+
+\bibitem[Cassaigne et~al.(1999)Cassaigne, Ferenczi, Mauduit, Rivat, and
+  S{\'a}rk{\"o}zy]{CFMRS1999}
+Julien Cassaigne, S{\'e}bastien Ferenczi, Christian Mauduit, Jo{\"e}l Rivat,
+  and Andr{\'a}s S{\'a}rk{\"o}zy.
+\newblock On finite pseudorandom binary sequences. {III}. {T}he {L}iouville
+  function. {I}.
+\newblock \emph{Acta Arithmetica}, 87\penalty0 (4):\penalty0 367--390, 1999.
+
+\bibitem[Charamaras and Richter(2024)]{CharamarasRichter2024}
+Dimitrios Charamaras and Florian~K. Richter.
+\newblock Asymptotic independence of {$\Omega(n)$} and {$\Omega(n+1)$} along
+  logarithmic averages, 2024.
+\newblock URL \url{https://arxiv.org/abs/2412.17583v3}.
+\newblock arXiv:2412.17583v3, 17 August 2026; version 1, 23 December 2024.
+
+\bibitem[Daboussi and S{\'a}rk{\"o}zy(2003)]{DaboussiSarkozy2003}
+H{\'e}di Daboussi and Andr{\'a}s S{\'a}rk{\"o}zy.
+\newblock On the correlation of the truncated {L}iouville function.
+\newblock \emph{Acta Arithmetica}, 108\penalty0 (1):\penalty0 61--76, 2003.
+\newblock \doi{10.4064/aa108-1-6}.
+
+\bibitem[Ford(2023)]{Ford}
+Kevin Ford.
+\newblock Sieve methods, 2023.
+\newblock URL \url{https://ford126.web.illinois.edu/sieve2023.pdf}.
+\newblock Lecture notes, Spring 2023, Theorem 3.6.
+
+\bibitem[Goldston et~al.(2008)Goldston, Graham, Pintz, and
+  Y{\i}ld{\i}r{\i}m]{GGPPY}
+D.~A. Goldston, S.~W. Graham, J.~Pintz, and C.~Y. Y{\i}ld{\i}r{\i}m.
+\newblock Small gaps between almost primes, the parity problem, and some
+  conjectures of {Erd{\H o}s} on consecutive integers, 2008.
+\newblock URL \url{https://arxiv.org/abs/0803.2636v1}.
+\newblock Version 1, 18 March 2008.
+
+\bibitem[Guo(2026{\natexlab{a}})]{GuoEarlier}
+Jizhou Guo.
+\newblock Goldbach-type representations with prescribed {Liouville} signs,
+  October 2026{\natexlab{a}}.
+\newblock URL
+  \url{https://github.com/aster2024/openai-math-followups/tree/main/liouville-goldbach}.
+\newblock Preprint, 8 October 2026.
+
+\bibitem[Guo(2026{\natexlab{b}})]{GuoRough}
+Jizhou Guo.
+\newblock Sums of two rough numbers with prescribed {Liouville} signs,
+  2026{\natexlab{b}}.
+\newblock URL
+  \url{https://github.com/aster2024/openai-math-followups/tree/main/rough-goldbach-parity}.
+\newblock Preprint, 9 October 2026.
+
+\bibitem[Guo(2026{\natexlab{c}})]{GuoShifted}
+Jizhou Guo.
+\newblock Shifted primes with a prescribed parity of the number of prime
+  factors, 2026{\natexlab{c}}.
+\newblock URL
+  \url{https://github.com/aster2024/openai-math-followups/tree/main/shifted-prime-parity}.
+\newblock Preprint, 9 October 2026.
+
+\bibitem[Helfgott and Radziwi{\l}{\l}(2021)]{HR}
+Harald~Andr{\'e}s Helfgott and Maksym Radziwi{\l}{\l}.
+\newblock Expansion, divisibility and parity, 2021.
+\newblock URL \url{https://arxiv.org/abs/2103.06853v2}.
+\newblock Version 2, 13 April 2021.
+
+\bibitem[Henriot(2011)]{Henriot}
+Kevin Henriot.
+\newblock {Nair--Tenenbaum} bounds uniform with respect to the discriminant,
+  2011.
+\newblock URL \url{https://arxiv.org/abs/1102.1643v1}.
+\newblock Version 1, 8 February 2011.
+
+\bibitem[Hickey(2026)]{JyhSalt2026}
+Jason Hickey.
+\newblock salt: a formal mathematics project in {L}ean 4, 2026.
+\newblock URL \url{https://github.com/jyh/salt}.
+\newblock GitHub repository; pull requests 44 (merged 5 September 2026) and 126
+  (merged 14 September 2026); commit ffd2a9e2974fb5c79cd3cfedaa51ff26a5e685de,
+  9 October 2026.
+
+\bibitem[Hughes(2026)]{Hughes2026}
+Scott~D. Hughes.
+\newblock Effective logarithmic two-point {C}howla bounds in every window,
+  2026.
+\newblock URL \url{https://arxiv.org/abs/2609.28526v1}.
+\newblock arXiv:2609.28526v1, 22 September 2026.
+
+\bibitem[Mangerel(2020)]{Mangerel2017}
+Alexander~P. Mangerel.
+\newblock On the bivariate {E}rd{\H o}s--{K}ac theorem and correlations of the
+  {M}{\"o}bius function.
+\newblock \emph{Mathematical Proceedings of the Cambridge Philosophical
+  Society}, 169\penalty0 (3):\penalty0 547--605, 2020.
+\newblock \doi{10.1017/S0305004119000288}.
+\newblock Theorem numbering follows arXiv:1612.09544v2, 28 January 2017.
+
+\bibitem[Matom{\"a}ki et~al.(2015{\natexlab{a}})Matom{\"a}ki, Radziwi{\l}{\l},
+  and Tao]{MRT}
+Kaisa Matom{\"a}ki, Maksym Radziwi{\l}{\l}, and Terence Tao.
+\newblock An averaged form of {Chowla}'s conjecture.
+\newblock \emph{Algebra \& Number Theory}, 9:\penalty0 2167--2196,
+  2015{\natexlab{a}}.
+\newblock \doi{10.2140/ant.2015.9.2167}.
+\newblock URL \url{https://arxiv.org/abs/1503.05121v3}.
+\newblock Corrected version arXiv:1503.05121v3, 1 March 2022; Theorem 1.7 and
+  equation (1.12).
+
+\bibitem[Matom{\"a}ki et~al.(2015{\natexlab{b}})Matom{\"a}ki, Radziwi{\l}{\l},
+  and Tao]{MRTpatterns}
+Kaisa Matom{\"a}ki, Maksym Radziwi{\l}{\l}, and Terence Tao.
+\newblock Sign patterns of the {Liouville} and {M{\"o}bius} functions,
+  2015{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/1509.01545v2}.
+\newblock Version 2, 23 September 2015.
+
+\bibitem[McCaffer(2026)]{McCaffer2026}
+Alastair McCaffer.
+\newblock Twin primes via {L}iouville parity detection and sieve-weighted
+  {C}howla estimates, 2026.
+\newblock URL \url{https://doi.org/10.5281/zenodo.20388364}.
+\newblock Zenodo, 26 May 2026.
+
+\bibitem[Montgomery and Vaughan(2007)]{MV}
+Hugh~L. Montgomery and Robert~C. Vaughan.
+\newblock \emph{Multiplicative Number Theory {I}: Classical Theory}, volume~97
+  of \emph{Cambridge Studies in Advanced Mathematics}.
+\newblock Cambridge University Press, 2007.
+\newblock \doi{10.1017/CBO9780511618314}.
+\newblock URL \url{https://websites.umich.edu/~hlm/mnt1.html}.
+
+\bibitem[{OpenAI}(2026{\natexlab{a}})]{OpenAI007}
+{OpenAI}.
+\newblock Ordinary two-point correlations of multiplicative functions,
+  2026{\natexlab{a}}.
+\newblock URL
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Ordinary-two-point-correlations-of-multiplicative-functions-September-24-2026/final.pdf}.
+\newblock OpenAI Math Release preprint, 24 September 2026.
+
+\bibitem[{OpenAI}(2026{\natexlab{b}})]{OpenAI012}
+{OpenAI}.
+\newblock The joint {D}ickman law for consecutive integers, September
+  2026{\natexlab{b}}.
+\newblock URL
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-joint-Dickman-law-for-consecutive-integers-September-24-2026/paper.pdf}.
+\newblock 24 September 2026. Repository commit
+  adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+
+\bibitem[Pilatte(2023)]{Pilatte2023}
+C{\'e}dric Pilatte.
+\newblock Improved bounds for the two-point logarithmic {C}howla conjecture,
+  2023.
+\newblock URL \url{https://arxiv.org/abs/2310.19357v3}.
+\newblock arXiv:2310.19357v3, 25 August 2026; version 1, 30 October 2023.
+
+\bibitem[Pintz(2010)]{PintzBV}
+J{\'a}nos Pintz.
+\newblock Are there arbitrarily long arithmetic progressions in the sequence of
+  twin primes? {II}, 2010.
+\newblock URL \url{https://arxiv.org/abs/1004.1067}.
+\newblock 7 April 2010.
+
+\bibitem[Preobrazhenski{\u\i} and Preobrazhenskaya(2015)]{PP2015}
+Sergei Preobrazhenski{\u\i} and Tatyana Preobrazhenskaya.
+\newblock Correlations of the {M}{\"o}bius and {L}iouville functions and the
+  twin prime conjecture, 2015.
+\newblock URL \url{https://arxiv.org/abs/1405.0682v7}.
+\newblock arXiv:1405.0682v7, 4 May 2022 (the text of version 6, 20 October
+  2015, is the same); listed on arXiv under the title ``A note on correlations
+  of arithmetic functions''.
+
+\bibitem[Razborov(2008)]{Razborov}
+Alexander~A. Razborov.
+\newblock A simple proof of {Bazzi}'s theorem, 2008.
+\newblock URL \url{https://homepage.mi-ras.ru/~razborov/bazzi.pdf}.
+\newblock Author manuscript, 10 September 2008, Theorem 1.
+
+\bibitem[Tao(2016)]{Tao2016}
+Terence Tao.
+\newblock The logarithmically averaged {C}howla and {E}lliott conjectures for
+  two-point correlations.
+\newblock \emph{Forum of Mathematics, Pi}, 4:\penalty0 e8, 2016.
+\newblock \doi{10.1017/fmp.2016.6}.
+\newblock Theorem numbering follows arXiv:1509.05422v4, 29 July 2016.
+
+\bibitem[Tao and Ter{\"a}v{\"a}inen(2019)]{TaoTeravainen2019}
+Terence Tao and Joni Ter{\"a}v{\"a}inen.
+\newblock The structure of correlations of multiplicative functions at almost
+  all scales, with applications to the {C}howla and {E}lliott conjectures.
+\newblock \emph{Algebra \& Number Theory}, 13\penalty0 (9):\penalty0
+  2103--2150, 2019.
+\newblock \doi{10.2140/ant.2019.13.2103}.
+\newblock Numbering follows arXiv:1809.02518v2.
+
+\bibitem[Tao and Ter{\"a}v{\"a}inen(2025)]{TaoTeravainen2025}
+Terence Tao and Joni Ter{\"a}v{\"a}inen.
+\newblock Quantitative correlations and some problems on prime factors of
+  consecutive integers, 2025.
+\newblock URL \url{https://arxiv.org/abs/2512.01739v2}.
+\newblock arXiv:2512.01739v2, 25 April 2026; version 1, 1 December 2025.
+
+\bibitem[Tenenbaum(2015)]{Tenenbaum}
+G{\'e}rald Tenenbaum.
+\newblock \emph{Introduction to Analytic and Probabilistic Number Theory},
+  volume 163 of \emph{Graduate Studies in Mathematics}.
+\newblock American Mathematical Society, third edition, 2015.
+\newblock \doi{10.1090/gsm/163}.
+\newblock URL \url{https://doi.org/10.1090/gsm/163}.
+\newblock Chapter III.4, Distribution of additive functions and mean values of
+  multiplicative functions.
+
+\end{thebibliography}
