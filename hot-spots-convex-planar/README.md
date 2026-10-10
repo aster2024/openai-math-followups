@@ -37,19 +37,21 @@ the interior, and its interior values lie strictly between its boundary extremes
 - Only the statement of that theorem is used. For a simple eigenvalue it is applied to smooth strictly convex
   approximations of D, and Theorem 1.1 is then an approximation corollary; the extension, H² and spectral
   convergence estimates follow the classical route (in particular Bérard–Helffer 2021, Section 2).
-- For a double eigenvalue, a fixed approximating sequence need not reach every member of the eigenspace (rounded
-  rectangles tending to a square reach one direction). The paper proves that the first-order shape perturbation
+- For a double eigenvalue, a fixed approximating sequence need not reach every member of the eigenspace (a suitably
+  chosen fixed sequence of rounded elongated rectangles tending to a square reaches only one direction, while
+  symmetry-preserving roundings of the square reach all). The paper proves that the first-order shape perturbation
   of the eigenvalue maps onto the traceless symmetric 2 × 2 matrices for every convex D, selects a prescribed
   member by a quantitative perturbation, and applies the OpenAI theorem to smooth images of the approximating
   domains under diffeomorphisms close to the identity. These images need not be convex.
 - Theorem 1.3 does not use the OpenAI theorem. For simply connected domains with smooth boundary the
-  multiplicity bound is due to Nadirashvili (1987); the proof given here replaces the boundary regularity by an
-  even reflection and the weak Harnack inequality.
+  multiplicity bound is due to Nadirashvili (Mat. Sb. 133 (1987), English translation 1988; Theorem 3 there is
+  for smooth surfaces diffeomorphic to the disc with non-positive curvature). The proof given here needs no
+  smoothness of the boundary: it replaces the smooth-boundary nodal expansions by an even reflection and the weak
+  Harnack inequality.
 
 ## Related work
 
-Statements of the weak or strict hot spots property for classes of convex planar domains, each as stated in the
-cited work:
+Results on the hot spots problem for classes of planar domains, each as stated in the cited work:
 
 - Bañuelos and Burdzy (J. Funct. Anal. 164 (1999)): the three forms HS1, HS2, HS3; obtuse triangles (HS3);
   sufficiently long convex domains with symmetry (HS1).
@@ -58,16 +60,17 @@ cited work:
 - Atar and Burdzy (J. Amer. Math. Soc. 17 (2004)): lip domains.
 - Judge and Mondal (Ann. of Math. 191 (2020), erratum 195 (2022)): no interior critical points on any Euclidean
   triangle. Chen, Gui and Yao ([arXiv:2311.12659](https://arxiv.org/abs/2311.12659)): the non-vertex critical
-  points on triangles.
+  points on non-equilateral triangles.
 - Steinerberger ([arXiv:1907.13044](https://arxiv.org/abs/1907.13044)): on convex planar domains the extrema lie
   within a universal multiple of the inradius of the endpoints of a diameter.
 - Deng, Jiang and Yang ([arXiv:2607.17882](https://arxiv.org/abs/2607.17882)): the hot spots constant of convex
   planar domains with piecewise C^{1,α} boundary is below 1.48.
 - Deng, Gui, Jiang, Yang, Yao and Zou ([arXiv:2604.19003](https://arxiv.org/abs/2604.19003)): isosceles
-  trapezoids and kites.
-- Outside the class considered here: domains with holes (Burdzy and Werner 1999, Burdzy 2005) and convex
-  domains in high dimension (de Dios Pont, [arXiv:2412.06344](https://arxiv.org/abs/2412.06344)) can have interior
-  extrema.
+  trapezoids and convex kites (the hot spots assertions cover the cases in which the first positive eigenvalue is
+  simple).
+- Outside the class considered here: counterexamples with holes (Burdzy and Werner 1999, two holes; Burdzy 2005,
+  one hole, with both extreme values strictly in the interior) and convex counterexamples in all sufficiently
+  large dimensions (de Dios Pont, [arXiv:2412.06344](https://arxiv.org/abs/2412.06344)).
 
 The paper's introduction gives the precise statements and further references.
 

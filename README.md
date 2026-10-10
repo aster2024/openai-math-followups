@@ -49,7 +49,7 @@ holds for every member of the eigenspace, also when the eigenvalue is double.
 
 These statements are deduced from OpenAI's paper
 [Strict hot spots and absence of interior critical points on smooth simply connected planar domains](https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Strict-hot-spots-and-absence-of-interior-critical-points-on-smooth-simply-connected-planar-domains-September-24-2026/main.pdf)
-(24 September 2026), whose theorem is for domains with smooth boundary. For a simple eigenvalue the deduction is an
+(24 September 2026), whose theorem is for bounded simply connected planar domains with C^∞ boundary. For a simple eigenvalue the deduction is an
 approximation argument. For a double eigenvalue each member of the eigenspace is obtained as a limit of first
 eigenfunctions of smooth domains that need not be convex. Independently of that paper, the first positive Neumann
 eigenvalue of every bounded convex planar domain has multiplicity at most two, and the nodal set of each
