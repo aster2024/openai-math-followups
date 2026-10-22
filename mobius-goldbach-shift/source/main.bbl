@@ -1,0 +1,90 @@
+\begin{thebibliography}{10}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Davenport(1980)]{Davenport}
+Harold Davenport.
+\newblock \emph{Multiplicative Number Theory}, volume~74 of \emph{Graduate
+  Texts in Mathematics}.
+\newblock Springer, 2 edition, 1980.
+\newblock \doi{10.1007/978-1-4757-5927-3}.
+\newblock URL \url{https://link.springer.com/book/10.1007/978-1-4757-5927-3}.
+
+\bibitem[Guo(2026{\natexlab{a}})]{GuoRGP}
+Jizhou Guo.
+\newblock Sums of two rough numbers with prescribed {Liouville} signs, October
+  2026{\natexlab{a}}.
+\newblock URL
+  \url{https://github.com/aster2024/openai-math-followups/tree/9fc56815121a461cd79dbe7c30f2c59fde7aa938/rough-goldbach-parity}.
+\newblock Preprint, 9 October 2026.
+
+\bibitem[Guo(2026{\natexlab{b}})]{GuoSPP}
+Jizhou Guo.
+\newblock Shifted primes with a prescribed parity of the number of prime
+  factors, October 2026{\natexlab{b}}.
+\newblock URL
+  \url{https://github.com/aster2024/openai-math-followups/tree/9fc56815121a461cd79dbe7c30f2c59fde7aa938/shifted-prime-parity}.
+\newblock Preprint, 9 October 2026.
+
+\bibitem[Heath-Brown(2012)]{HeathBrown2012}
+D.~R. Heath-Brown.
+\newblock {Burgess}'s bounds for character sums, 2012.
+\newblock URL \url{https://arxiv.org/abs/1203.5219v2}.
+\newblock Version 2, 8 May 2012; introduction, equation (1).
+
+\bibitem[Iwaniec(1974)]{Iwaniec1974}
+Henryk Iwaniec.
+\newblock On zeros of {Dirichlet}'s {$L$} series.
+\newblock \emph{Inventiones Mathematicae}, 23\penalty0 (2):\penalty0 97--104,
+  1974.
+\newblock \doi{10.1007/BF01405163}.
+\newblock URL \url{https://link.springer.com/article/10.1007/BF01405163}.
+
+\bibitem[L{\"u} et~al.(2026)L{\"u}, Wang, and Wu]{LWW}
+Guangshi L{\"u}, Zhiwei Wang, and Jie Wu.
+\newblock On the {Hardy--Littlewood--Chowla} conjecture, 2026.
+\newblock URL \url{https://arxiv.org/abs/2610.20242v1}.
+\newblock Version 1, 14 October 2026.
+
+\bibitem[Matom{\"a}ki et~al.(2023)Matom{\"a}ki, Shao, Tao, and
+  Ter{\"a}v{\"a}inen]{MSTT}
+Kaisa Matom{\"a}ki, Xuancheng Shao, Terence Tao, and Joni Ter{\"a}v{\"a}inen.
+\newblock Higher uniformity of arithmetic functions in short intervals {I}.
+  {All} intervals.
+\newblock \emph{Forum of Mathematics, Pi}, 11:\penalty0 e29, 2023.
+\newblock \doi{10.1017/fmp.2023.28}.
+\newblock URL
+  \url{https://www.cambridge.org/core/journals/forum-of-mathematics-pi/article/higher-uniformity-of-arithmetic-functions-in-short-intervals-i-all-intervals/6DF08E2A3EFABB2DD0DA6CDA38649B18}.
+
+\bibitem[Montgomery and Vaughan(2006)]{MV}
+Hugh~L. Montgomery and Robert~C. Vaughan.
+\newblock \emph{Multiplicative Number Theory {I}: Classical Theory}, volume~97
+  of \emph{Cambridge Studies in Advanced Mathematics}.
+\newblock Cambridge University Press, 2006.
+\newblock \doi{10.1017/CBO9780511618314}.
+\newblock URL
+  \url{https://www.cambridge.org/core/books/multiplicative-number-theory-i/4E45519B26115AEEA4839C6C38206ACD}.
+
+\bibitem[{OpenAI}(2026{\natexlab{a}})]{OpenAIPD}
+{OpenAI}.
+\newblock The {Poisson--Dirichlet} law for prime predecessors, September
+  2026{\natexlab{a}}.
+\newblock URL
+  \url{https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Poisson-Dirichlet-Law-for-Prime-Predecessors-September-24-2026}.
+\newblock 24 September 2026, 74 pages. Repository commit
+  adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+
+\bibitem[{OpenAI}(2026{\natexlab{b}})]{OpenAIQ78}
+{OpenAI}.
+\newblock {The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $\Re s>7/8$},
+  September 2026{\natexlab{b}}.
+\newblock URL
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf}.
+\newblock Family 003 accompanying manuscript, 30 September 2026; Section 1,
+  Theorem 1.1, p. 4. Repository commit
+  adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+
+\end{thebibliography}

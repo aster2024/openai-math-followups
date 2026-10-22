@@ -103,6 +103,25 @@ primitive roots. For the exceptional set, later preprints give the exponent 7/12
 assuming that all zeros of primitive Dirichlet L-functions have real part at most a fixed Θ < 11/12 (H. Li and Z. Liu,
 [arXiv:2610.26756](https://arxiv.org/abs/2610.26756)).
 
+### [`mobius-goldbach-shift/`](mobius-goldbach-shift/) — The Möbius function at N − p
+
+Paper (40 pages), 22 October 2026: [PDF](mobius-goldbach-shift/paper.pdf). Programs checking finite instances of the algebraic identities are in [`mobius-goldbach-shift/anc/`](mobius-goldbach-shift/anc/).
+
+The statements are conditional on the arguments of G. Lü, Z. Wang and J. Wu
+([arXiv:2610.20242v1](https://arxiv.org/abs/2610.20242v1)), which state that Σ_{p≤x} μ(p + 2) = o(π(x)): the paper
+assumes that the arguments of their Sections 4.2–4.7 and Appendix A are correct as written. Under this assumption and
+the zero-free half-plane Re s > 7/8 for Dirichlet L-functions, as N → ∞ through even integers,
+
+```math
+\sum_{p<N}\mu(N-p)=o(\pi(N)),\qquad \#\{p<N:\ \mu(N-p)=\pm1\}=\Bigl(\frac{A_N}{2}+o(1)\Bigr)\pi(N),\qquad A_N=\prod_{p\nmid N}\Bigl(1-\frac{1}{p(p-1)}\Bigr).
+```
+
+For even N with rad(N) ≤ (log N)^C the same holds with Iwaniec's zero-free region of 1974 and Burgess's bound in place
+of the half-plane. Assuming in addition the remaining arguments of Lü, Wang and Wu as written, the paper gives the
+corresponding statements for μ(p + h), uniformly for 0 < |h| ≤ (log x)^C, and Liouville versions with sign densities
+1/2 + o(1). The paper adapts their determinant method to the shift N and lists every change by section, equation and
+page.
+
 ### [`rough-goldbach-parity/`](rough-goldbach-parity/) — Sums of two rough numbers with prescribed Liouville signs
 
 Paper (23 pages), 9 October 2026: [PDF](rough-goldbach-parity/paper.pdf). Programs checking finite instances of the algebraic identities are in [`rough-goldbach-parity/anc/`](rough-goldbach-parity/anc/).
@@ -235,6 +254,6 @@ The papers and text are under CC BY 4.0 (see [`LICENSE-papers.md`](LICENSE-paper
 
 ## Use of AI
 
-The proofs and the texts in this repository were produced with AI systems (GPT-6 Astra, GPT-6.1 Sol, Claude Opus 5.5 and
-Claude Sonnet 5.5) under the author's direction. They were checked by independent reviews with AI models, by Lean where a
+The proofs and the texts in this repository were produced with AI systems (GPT-6 Astra, GPT-6.1 Sol, Claude Fable 5.1, Claude Opus 5.5
+and Claude Sonnet 5.5) under the author's direction. They were checked by independent reviews with AI models, by Lean where a
 part is formalized, and by the computations in the ancillary directories. The author takes responsibility for the content.
