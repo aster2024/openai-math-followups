@@ -98,7 +98,10 @@ which proves the conjecture of Corrádi and Kátai for the Liouville function.
 
 Part II gives consequences of the zero-free half-plane Re s > 7/8 for Dirichlet L-functions: the exceptional set
 in the binary Goldbach problem, the least prime in an arithmetic progression, least non-residues, and least
-primitive roots.
+primitive roots. For the exceptional set, later preprints give the exponent 7/12 from the same half-plane
+(J. Pintz and I. Althöfer, [arXiv:2610.15559](https://arxiv.org/abs/2610.15559)) and the bound N^(1/2)(log N)^100
+assuming that all zeros of primitive Dirichlet L-functions have real part at most a fixed Θ < 11/12 (H. Li and Z. Liu,
+[arXiv:2610.26756](https://arxiv.org/abs/2610.26756)).
 
 ### [`rough-goldbach-parity/`](rough-goldbach-parity/) — Sums of two rough numbers with prescribed Liouville signs
 
@@ -154,6 +157,9 @@ Let λ be the Liouville function. For every X ≥ X\*, every integer h with 0 < 
 
 Consequently, for every non-zero integer h, the number of prime factors of p + h is even for infinitely many primes p
 and odd for infinitely many primes p; for h = 2 this gives both parities of the number of prime factors of p + 2.
+Later, G. Lü, Z. Wang and J. Wu ([arXiv:2610.20242](https://arxiv.org/abs/2610.20242), 14 October 2026) stated that
+μ(p + 2) = 1 and μ(p + 2) = −1 each have density 1/2 among the primes p with p + 2 squarefree; for h = 2 this implies
+the bound above with X/log X in place of X/(log X)^300.
 
 For h = −1 and an even number of prime factors, the statement that there are infinitely many such primes is
 Theorem 1.1 of OpenAI's paper
@@ -184,7 +190,11 @@ gives the endpoint σ\* = (1507 − 2√921)/1653 = 0.8749570698…; extending t
 from κ ∈ [3/4, 1] to κ ∈ [37/50, 1] gives σ†. The intermediate rational value 20999/24000 = 7/8 − 1/24000, with the
 skew parameter kept at 1/8, was obtained independently by Z. Gao
 ([A quantitative refinement of the seven-eighths zero-free half-plane](https://github.com/Gaozhongpai/seven-eighths-refinement-certificates), 7–8 October 2026). The endpoint σ\* was obtained
-independently by B. Liu ([arXiv:2610.12234](https://arxiv.org/abs/2610.12234), 8 October 2026, with Lean files).
+independently by B. Liu ([arXiv:2610.12234](https://arxiv.org/abs/2610.12234), 8 October 2026, with Lean files);
+version 2 of that note (12 October 2026) states a boundary that agrees with σ† to the 18 digits shown there. Later preprints state smaller boundaries:
+0.8748867 for Dirichlet L-functions and finite-order Hecke L-functions over Q(√−3) (Y. Xu and H. Sang,
+[arXiv:2610.15291](https://arxiv.org/abs/2610.15291)), and 0.874886647… for finite-order Hecke L-functions over
+every number field (B. Liu, [arXiv:2610.26835](https://arxiv.org/abs/2610.26835)).
 
 ### [`consequences/`](consequences/) — Consequences of results in the release
 

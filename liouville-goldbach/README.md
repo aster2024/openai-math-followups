@@ -36,6 +36,13 @@ Chen–Gupta–Li, Montgomery–Vaughan and Martin:
 - the least non-residue of a non-principal character modulo q is O((log q)^8);
 - the least primitive root and the least prime primitive root modulo p are O((log p)^24).
 
+Later preprints give smaller exponents for the exceptional set. Pintz and Althöfer
+([arXiv:2610.15559](https://arxiv.org/abs/2610.15559), 11 October 2026) prove E(X) ≪ X^(7/12+ε) whenever all
+Dirichlet L-functions have a common zero-free half-plane Re s > θ₀ with θ₀ < 1, and note that the 7/8 theorem
+supplies this input. Li and Liu ([arXiv:2610.26756](https://arxiv.org/abs/2610.26756), 19 October 2026) prove
+E(N) ≪ N^(1/2) (log N)^100, assuming that every non-trivial zero of every primitive Dirichlet L-function has real
+part at most a fixed Θ with 1/2 ≤ Θ < 11/12.
+
 ## What the proof uses
 
 The [OpenAI library](https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/lean), pinned to

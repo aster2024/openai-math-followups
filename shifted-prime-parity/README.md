@@ -67,6 +67,11 @@ recorded as open the assertion that p + 2 has an odd (or even) number of prime f
 Pintz ([arXiv:1004.1065](https://arxiv.org/abs/1004.1065), 2010) proved that λ(p + d) = −1 for infinitely many
 primes p for some even d with 0 < |d| ≤ 16.
 
+Later, Lü, Wang and Wu ([arXiv:2610.20242](https://arxiv.org/abs/2610.20242), 14 October 2026) stated that
+Σ_{p≤x} μ(p + 2) = o(π(x)), and that each of μ(p + 2) = 1 and μ(p + 2) = −1 has asymptotic density 1/2 among the
+primes p with p + 2 squarefree. For h = 2 this implies the lower bound above with X/log X in place of
+X/(log X)³⁰⁰.
+
 ## Files
 
 Read [paper.pdf](paper.pdf). The LaTeX source is in `source/`; with Tectonic installed,
