@@ -126,7 +126,7 @@ assuming that all zeros of primitive Dirichlet L-functions have real part at mos
 
 ### [`mobius-goldbach-shift/`](mobius-goldbach-shift/) — The Möbius function at N − p
 
-Paper (40 pages), 22 October 2026: [PDF](mobius-goldbach-shift/paper.pdf). Programs checking finite instances of the algebraic identities are in [`mobius-goldbach-shift/anc/`](mobius-goldbach-shift/anc/).
+Paper (65 pages), version 2 of 23 October 2026 (version 1: 22 October 2026): [PDF](mobius-goldbach-shift/paper.pdf). Programs checking finite instances of the algebraic identities are in [`mobius-goldbach-shift/anc/`](mobius-goldbach-shift/anc/).
 
 The statements are conditional on the arguments of G. Lü, Z. Wang and J. Wu
 ([arXiv:2610.20242v1](https://arxiv.org/abs/2610.20242v1)), which state that Σ_{p≤x} μ(p + 2) = o(π(x)): the paper
@@ -142,6 +142,13 @@ of the half-plane. Assuming in addition the remaining arguments of Lü, Wang and
 corresponding statements for μ(p + h), uniformly for 0 < |h| ≤ (log x)^C, and Liouville versions with sign densities
 1/2 + o(1). The paper adapts their determinant method to the shift N and lists every change by section, equation and
 page.
+
+Version 2 adds, under the same assumption on Lü, Wang and Wu and the half-plane Re s > 7/8, the bound
+Σ_{p≤x, εp+h≥1} f(εp + h) = O(π(x)/√(log log x)) for f = μ and f = λ, uniformly for ε = ±1 and 0 < |h| ≤ x(log x)^C
+(which contains the statement for N − p), together with versions for primes in progressions to moduli
+q ≤ (log x)^C, for values εp + h (h even) without prime factors up to exp((log x)^a), any fixed a < 1/2, and two
+conditions on the radical of N (one with a uniform real-zero gap, one with avoidance of a possible Landau–Page
+exceptional conductor) under which the reflected statements hold without the half-plane.
 
 ### [`rough-goldbach-parity/`](rough-goldbach-parity/) — Sums of two rough numbers with prescribed Liouville signs
 

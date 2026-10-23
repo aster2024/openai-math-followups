@@ -12,11 +12,27 @@
 \usepackage{xurl}
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
-  pdftitle={The Möbius function at N - p},
+  pdftitle={The M\"obius function at N - p},
   pdfauthor={Jizhou Guo}}
 \Urlmuskip=0mu plus 1mu
 \setlength{\emergencystretch}{2em}
 \newtheorem{theorem}{Theorem}[section]
+\newtheorem{theoremA}{Theorem}
+\renewcommand{\thetheoremA}{A}
+\newtheorem{theoremB}{Theorem}
+\renewcommand{\thetheoremB}{B}
+\newtheorem{theoremC}{Theorem}
+\renewcommand{\thetheoremC}{C}
+\newtheorem{theoremD}{Theorem}
+\renewcommand{\thetheoremD}{D}
+\newtheorem{theoremF}{Theorem}
+\renewcommand{\thetheoremF}{F}
+\newtheorem{theoremG}{Theorem}
+\renewcommand{\thetheoremG}{G}
+\newtheorem{theoremH}{Theorem}
+\renewcommand{\thetheoremH}{H}
+\newtheorem{theoremS}{Theorem}
+\renewcommand{\thetheoremS}{S}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -61,24 +77,35 @@
 \title{The M\"obius function at $N-p$}
 \author{Jizhou Guo\\
   \href{mailto:mitsuha2021b@gmail.com}{\texttt{mitsuha2021b@gmail.com}}}
-\date{October 2026}
+\date{23 October 2026 (version 2)}
 \numberwithin{equation}{section}
 \begin{document}
 \maketitle
 \begin{abstract}
-For even $\mathcal N$ tending to infinity, we deduce cancellation of
-$\mu(\mathcal N-p)$ over primes $p<\mathcal N$, and equal densities of its
-two nonzero signs, from a zero-free region implied by the $7/8$
-half-plane of OpenAI and the arguments of L\"u, Wang and Wu as written.
-We give the changes to their determinant method for this varying shift.
-For each fixed $C$, Iwaniec's 1974 zero-free region and Burgess's bound
-supply the analytic input when $\operatorname{rad}(\mathcal N)\le
-(\log\mathcal N)^C$.
-Assuming the additional arguments of L\"u, Wang and Wu as written, we
-also obtain cancellation uniformly for $0<|h|\le(\log x)^C$ in
-$\mu(p+h)$ on positive arguments. The corresponding Liouville statements
-have sign densities $1/2+o(1)$.
+For even $N$ tending to infinity, we deduce cancellation of $\mu(N-p)$
+over primes and equal densities of its two nonzero signs from a
+zero-free input and specified arguments of L\"u, Wang and Wu.
+We extend the determinant reduction to both positive-argument families
+$\mu(\varepsilon p+h)$, uniformly for $\varepsilon=\pm1$ and
+$0<|h|\le x(\log x)^C$, with error
+$O_C(\pi(x)/\sqrt{\log\log x})$ under the inputs
+$\mathrm H1$ and $\mathrm H2'$ stated below.
+We give the corresponding progression result for
+$q\le(\log x)^{C_q}$ and a relative rough-value result for
+$z\le\exp((\log x)^a)$, every fixed $0<a<1/2$, with even $h$.
+All have Liouville counterparts. The small-shift and reflected
+small-radical cases retain their weaker analytic inputs.
+We also give radical criteria using a uniform real-zero gap or
+classical exceptional-conductor avoidance.
 \end{abstract}
+\paragraph{Changes in version 2.}
+This version adds signed affine shifts, progressions, an explicit
+functional error rate, rough shifted values, and two radical criteria.
+The proofs include a positive active-prime remainder bound, uniform
+packing of disjoint auxiliary weights, and a direct sifted Vaughan
+identity. The original Goldbach, small-radical, small-shift and
+Liouville statements are retained with their stated hypotheses.
+
 \noindent\textit{2020 Mathematics Subject Classification.}
 Primary 11N37; Secondary 11P32, 11N05.
 
@@ -118,10 +145,10 @@ For every fixed choice of these constants, \eqref{eq:H1} implies
 \eqref{eq:Hstar} at all sufficiently large $\GN$, since
 $1-C_{\mathrm{zf},1}\log L/L>7/8$.
 
-\begin{theorem}[Goldbach shift]\label{thm:G}
+\begin{theoremG}[Goldbach shift]\label{thm:G}
 Assume $\mathrm H2'$ and $\mathrm H1^\star$ at every sufficiently large
 even $\GN$, with the fixed constants chosen in
-Theorem~\ref{thm:A} and Section~\ref{sec:assembly}.
+Theorem~\ref{thm:energy} and Section~\ref{sec:assembly}.
 Then, as $\GN\to\infty$ through even integers,
 \begin{equation}\label{eq:G}
  \sum_{p<\GN}\mu(\GN-p)=o(\pi(\GN)),\qquad
@@ -131,17 +158,17 @@ Then, as $\GN\to\infty$ through even integers,
 \end{equation}
 In particular these conclusions are deduced from $\mathrm H2'$ and
 \eqref{eq:H1}. The errors are uniform in even $\GN$ and ineffective.
-\end{theorem}
+\end{theoremG}
 
-\begin{theorem}[Small radical]\label{thm:S}
+\begin{theoremS}[Small radical]\label{thm:S}
 Assume $\mathrm H2'$. For each fixed $C>0$, the conclusions
 \eqref{eq:G} hold as $\GN\to\infty$ through even integers satisfying
 $\rad(\GN)\le(\log\GN)^C$, using Iwaniec's region
 \eqref{eq:Iwaniec} and the Burgess bound \eqref{eq:Burgess}.
 The errors are uniform in this class for fixed $C$ and ineffective.
-\end{theorem}
+\end{theoremS}
 
-\begin{theorem}[Small shifts]\label{thm:H}
+\begin{theoremH}[Small shifts]\label{thm:H}
 Assume the arguments of LWW as written: $\mathrm H2'$ and, in addition,
 Sections~2.3, 3, 5 and 6 \LWW{pp.~6--14, 39--47}.
 For each fixed $C>0$, uniformly in integers $0<|h|\le(\log x)^C$,
@@ -152,7 +179,7 @@ For each fixed $C>0$, uniformly in integers $0<|h|\le(\log x)^C$,
  \quad(\kappa=\pm1).
 \end{equation}
 The errors are ineffective.
-\end{theorem}
+\end{theoremH}
 
 \begin{theorem}[Liouville versions]\label{thm:lambda}
 Under the respective hypotheses of Theorems~\ref{thm:G}, \ref{thm:S}
@@ -160,6 +187,198 @@ and~\ref{thm:H}, their conclusions hold with $\lambda$ in place of
 $\mu$ and each sign density replaced by $1/2+o(1)$.
 The domain $p+h\ge1$ is retained in the small-shift statement.
 \end{theorem}
+
+\paragraph{Affine notation and classical inputs.}
+All statements below evaluate the arithmetic functions only on positive
+integers. For $\varepsilon\in\{-1,1\}$ put
+\begin{equation}\label{eq:eligible}
+ \mathcal P_{\varepsilon,h}(x)=\{p\le x:\varepsilon p+h\ge1\},\qquad
+ \Pi_{\varepsilon,h}(x)=|\mathcal P_{\varepsilon,h}(x)|,\qquad
+ E(x)=(\log\log x)^{-1/2}.
+\end{equation}
+Here and below $p,r$ in products over primes are positive primes,
+$P^-(1)=\infty$, and the theorem range parameters $C,C_q,a$ are fixed
+before $x\to\infty$. Band locations vary only within the uniform families
+of Section~\ref{subsec:band-uniform}.
+In addition to the hypotheses specified in each theorem, we use the
+prime number theorem, Siegel--Walfisz, Bombieri--Vinogradov for primes
+and for M\"obius on reduced classes with endpoint maxima,
+Montgomery--Vaughan mean values, fixed exponent-pair bounds for
+logarithmic phases, and the dyadic M\"obius estimate of
+\cite[Lemma~3.9(ii)]{MSTT}. Their uses, interval extensions and
+Liouville consequences are given in the proofs.
+
+\begin{theoremA}[Uniform affine shifts]\label{thm:affine}
+Assume $\mathrm H1$ and $\mathrm H2'$. For each fixed $C\ge0$,
+uniformly for $\varepsilon=\pm1$ and integers
+$0<|h|\le x(\log x)^C$, and for $f\in\{\mu,\lambda\}$,
+\begin{equation}\label{eq:affine-main}
+ \sum_{p\in\mathcal P_{\varepsilon,h}(x)}f(\varepsilon p+h)
+       =O_C(\pi(x)E(x)).
+\end{equation}
+For either $\kappa=\pm1$ the M\"obius sign main term is
+$A_h\Pi_{\varepsilon,h}(x)/2$, and the Liouville sign main term is
+$\Pi_{\varepsilon,h}(x)/2$, with the same error as in
+\eqref{eq:affine-main}.
+\end{theoremA}
+
+For the progression statement let $\Pi_{q,a_0;\varepsilon,h}(x)$
+count the primes in \eqref{eq:eligible} with $p\equiv a_0\pmod q$.
+Define
+\begin{equation}\label{eq:progression-factor}
+\begin{split}
+ \mathfrak A(q,a_0;\varepsilon,h)
+ ={}&\prod_{r\nmid qh}\left(1-\frac1{r(r-1)}\right)
+      \prod_{\substack{r\Vert q\\r\mid\varepsilon a_0+h}}
+                    \left(1-\frac1r\right)\\
+ &{}\cdot\prod_{\substack{r^2\mid q\\r^2\mid\varepsilon a_0+h}}0.
+\end{split}
+\end{equation}
+The last product sets the value to zero when a square is forced;
+an empty product is one.
+\begin{theoremB}[Progressions]\label{thm:progression}
+Under the hypotheses of Theorem~\ref{thm:affine}, for each fixed
+$C_q\ge0$, uniformly for $q\le(\log x)^{C_q}$ and $(a_0,q)=1$,
+\begin{equation}\label{eq:progression-main}
+ \sum_{\substack{p\in\mathcal P_{\varepsilon,h}(x)\\p\equiv a_0\ (q)}}
+ f(\varepsilon p+h)
+ =O_{C,C_q}\left(\frac{\pi(x)E(x)}{\varphi(q)}\right).
+\end{equation}
+The sign main terms are
+$\mathfrak A(q,a_0;\varepsilon,h)\Pi_{q,a_0;\varepsilon,h}(x)/2$
+for M\"obius and $\Pi_{q,a_0;\varepsilon,h}(x)/2$ for Liouville,
+with the error in \eqref{eq:progression-main}.
+\end{theoremB}
+
+\begin{theoremC}[Explicit rate]\label{thm:rate}
+In Theorems~\ref{thm:affine}, \ref{thm:progression} and
+\ref{thm:rough} the displayed function
+$E(x)=(\log\log x)^{-1/2}$ is valid with fixed $K$, fixed
+positive gaps between bands in each weight, and fixed analytic
+precision. The same rate holds for the weaker-input A/D branches
+specified below. In particular it gives a rate for G and S on their
+respective classes and for the shift range of H.
+The constants and thresholds may be ineffective.
+\end{theoremC}
+
+For nonzero even $h$ and $z\ge2$ define
+\begin{equation}\label{eq:rough-factors}
+ \begin{split}
+ V_h(z)&=\prod_{\substack{r\le z\\r\nmid h}}
+                       \left(1-\frac1{r-1}\right),\\
+ U_h(z)&=V_h(z)\prod_{\substack{r>z\\r\nmid h}}
+                       \left(1-\frac1{r(r-1)}\right).
+ \end{split}
+\end{equation}
+\begin{theoremD}[Rough affine values]\label{thm:rough}
+Assume $\mathrm H1$ and $\mathrm H2'$. For fixed $C\ge0$ and
+$0<a<1/2$, uniformly for nonzero even $h$ in the A range,
+$\varepsilon=\pm1$ and $2\le z\le\exp((\log x)^a)$,
+\begin{equation}\label{eq:rough-main}
+ \sum_{p\in\mathcal P_{\varepsilon,h}(x)}
+ f(\varepsilon p+h)\ind_{P^-(\varepsilon p+h)>z}
+ =O_{a,C}(V_h(z)\pi(x)E(x)),\qquad f=\mu,\lambda.
+\end{equation}
+For each $\kappa=\pm1$, the corresponding sign main terms are
+$U_h(z)\Pi_{\varepsilon,h}(x)/2$ and
+$V_h(z)\Pi_{\varepsilon,h}(x)/2$, respectively, with the error in
+\eqref{eq:rough-main}.
+\end{theoremD}
+
+The A and D errors are on the displayed ambient scales. They are
+not relative errors in an arbitrarily short eligible interval.
+For example $\varepsilon=1$, $h=-x$ and integral $x$ give an empty
+set in \eqref{eq:eligible}. At fixed $z$ the tail product in $U_h(z)$
+is retained. Uniformly in $h$,
+$0\le1-U_h(z)/V_h(z)\ll1/z$.
+
+\paragraph{Weaker-input branches.}
+For each fixed $C_0>0$, A and D on $0<|h|\le(\log x)^{C_0}$
+require $\mathrm H2'$ and the listed classical inputs alone.
+For $\varepsilon=-1$, $x=h=\GN$ even, A and D instead require
+$\mathrm H2'$ and the sufficiently strong fixed instance of
+$\mathrm H1^\star$ selected by the reflected energy proof, together
+with Burgess. On $\rad(\GN)\le(\log\GN)^{C_0}$, Iwaniec and
+Burgess supply this branch without $\mathrm H1$.
+The D branch always retains even $h$ and fixed $a<1/2$.
+These assertions concern A and D; no progression refinement of
+these weaker-input branches is asserted.
+
+\begin{theoremF}[Radical criteria]\label{thm:F}
+Fix $A_0,A_1,C_1,C_2>0$, interpreting $C_1,C_2$ as the constants
+in \eqref{eq:Hstar}, and write $L=\log\GN$.
+\begin{enumerate}
+\item Suppose $\mathrm{LS}(c)$: for some fixed $c>0,q_0$, every
+primitive real character of conductor $q\ge q_0$ and every real
+zero $\beta\in(0,1)$ satisfy $1-\beta\ge c/\log q$.
+For each prescribed nonnegative function $\eta(L)\to0$, Iwaniec's
+region and $\mathrm{LS}(c)$ imply the selected $\mathrm H1^\star$
+uniformly on
+\begin{equation}\label{eq:F-envelope}
+ \log\rad(\GN)\le\eta(L)L/\log L.
+\end{equation}
+The threshold may depend on $\eta$. In particular one may take
+$\rad(\GN)\le\exp(L/(\log L)^2)$.
+\item Let $c_{\rm LP}>0$ be a Landau--Page constant, choose
+\begin{equation}\label{eq:F-kappa}
+ 0<\kappa\le\frac{\min(c_{\rm LP},1/(4\cdot10^4))}{32C_1},
+ \quad \ell=\log X,\quad
+ R_X=\exp(\kappa\ell/\log\ell),\quad Q_X=8(2\ell)^{A_0}R_X.
+\end{equation}
+Let $q_X$ be the conductor of the possible Landau--Page character
+at $Q_X$. The selected $\mathrm H1^\star$ holds for all sufficiently
+large even $X\le\GN\le2X$ with $\rad(\GN)\le R_X$ if the
+exception is absent, if $q_X\le\ell^{A_1}$, or if
+\begin{equation}\label{eq:F-avoid}
+ q_X/\gcd(q_X,\GN)>(\log\GN)^{A_0}.
+\end{equation}
+This analytic criterion uses Iwaniec and Landau--Page.
+\end{enumerate}
+After the precision required by the reflected energy proof is fixed,
+these criteria give reflected A and D under $\mathrm H2'$,
+Burgess and the listed classical inputs, with $\mathrm{LS}(c)$
+needed only in the first criterion. Choose $\kappa$ after that
+precision is fixed. The analytic criteria themselves do not use
+$\mathrm H2'$.
+\end{theoremF}
+
+Under $\mathrm H1$ and $\mathrm H2'$, A contains G and the shift
+range of H; C quantifies both. The separate G, S, H and Liouville
+statements above keep their original hypotheses. A correlation at
+two distinct nonzero shifted arguments remains an open problem
+for the present method.
+
+\paragraph{Related averaged and fixed-shift statements.}
+Lichtman \cite[Theorem~1.1]{Lichtman} states cancellation averaged over
+positive shifts $h\le H<X$ when $\log H/\log\log X\to\infty$.
+Lichtman and Ter\"av\"ainen \cite[Corollary~1.4]{LichtmanTeravainen}
+state an almost-all-shifts result for
+$(\log X)^{1+\epsilon}\le H\le X$.
+Carella \cite[Theorem~1.1]{Carella} states, for a small fixed nonzero
+shift $a$, a bound $O_{c,a}(x(\log x)^{-c})$ for every fixed $c>1$;
+its Theorem~1.2 gives a two-shift statement under its
+Hypothesis~3.1.
+Tao and Ter\"av\"ainen \cite[Theorem~1.6]{TaoTeravainen}
+state hybrid correlations at distinct fixed natural-number shifts, with
+at most two von Mangoldt factors and a fixed number of Liouville factors,
+on scales governed
+by the conductor and quality of a hypothetical Siegel zero.
+The real-zero bounds stated by Banks \cite{Banks} and Kerr
+\cite{Kerr} motivate the separately named assumption
+$\mathrm{LS}(c)$; here that assumption is used in exactly its
+displayed form.
+For integer summands, Mangerel \cite{Mangerel} states
+$|\sum_{1\le n<N}\lambda(n)\lambda(N-n)|<N-1$ for all
+sufficiently large $N$. The rough-summand statement in
+\cite{GuoRGP} gives prescribed Liouville signs for two rough
+integer summands. The prime-factor law in \cite{OpenAIPD}
+states convergence of normalized logarithms of the prime factors
+of $p-1$ to the Poisson--Dirichlet law with parameter one.
+For ordinary short intervals, Matom\"aki, Pandey, Pliego,
+Ter\"av\"ainen and Wang \cite{MPPTW} state M\"obius cancellation
+at exponent $19/35+\epsilon$ and Gowers uniformity of the von
+Mangoldt function minus its Cram\'er model at exponent
+$3/5+\epsilon$.
 
 \paragraph{Background.}\label{par:background}
 In their preprint submitted on 14 October 2026, L\"u, Wang and Wu
@@ -180,82 +399,58 @@ parity of the number of prime factors} \cite{GuoSPP} and
 \emph{Sums of two rough numbers with prescribed Liouville signs}
 \cite{GuoRGP}, are dated 9 October 2026 in their repository entries.
 
-\paragraph{What is used from LWW.}\label{par:lww}
-We use Proposition~2.1 (the sifted Vaughan decomposition),
-Proposition~2.2 with (2.5) and (2.11) (twisted sifted M\"obius sums),
-Proposition~2.3 (weight removal), Proposition~3.1 with (3.1), (3.4),
-(3.5) (Type~I and Bombieri--Vinogradov), Lemma~4.1 with (4.6), and
-Proposition~6.1 with (6.3), as numbered inputs
-\LWW{pp.~4--16, 46--47}. We rework the expansion (4.3)--(4.5), the
-determinant equation (4.8), the block geometry, and the root-counting
-modifications of Lemma~A.1 and (A.5). The arguments of
-Sections~4.2--4.7 and Appendix~A are used as written after the changes
-in Appendix~\ref{app:dictionary}.
-In particular the proof of Proposition~4.2, including
-Propositions~4.3--4.5, is the input $\mathrm H2'$.
-The small-shift theorem also uses Lemmas~5.1--5.2 and the proof of
-Proposition~5.3 \LWW{pp.~40--45}; its assumption therefore includes
-more than $\mathrm H2'$. Formula~(5.15) \LWW{p.~44} is used only in
-Remark~\ref{rem:other-contour}.
+\paragraph{Proof inputs and changes to the argument.}\label{par:lww}
+The scope of $\mathrm H2'$ is exactly the one stated above.
+The sifted Vaughan identity, the small-conductor interval estimate,
+Type~I, finite moment transfer and positive population counts are
+proved here from their named classical inputs. Their versions in
+LWW Propositions~2.1--2.3, 3.1 and 6.1 provide reference points
+\LWW{pp.~4--14, 46--47}. The signed operator, memory and collision
+arguments use $\mathrm H2'$ after the changes listed in
+Appendix~\ref{app:dictionary}. The original statement H retains its
+additional assumptions on LWW Sections~2.3, 3, 5 and 6;
+Section~\ref{sec:small} also gives the stronger small-shift branch
+using the reconstructed estimates.
 
-From \emph{The Quasi-Riemann Hypothesis}, dated 30 September 2026,
-we use the zero-free half-plane \eqref{eq:H1}.
-Its implication for \eqref{eq:Hstar} supplies an analytic input to
-Theorem~\ref{thm:G}. Remark~\ref{rem:other-contour} records a
-separate consequence of \eqref{eq:H1} at polynomial height. For the small-radical class we use
-Iwaniec's Theorem~2 (1974, p.~97), stated in
-Input~\ref{input:I}, and the $r=2$ Burgess bound for arbitrary
-moduli in the form of Heath-Brown's introduction, equation~(1)
-\cite{HeathBrown2012}. The real-character exception is removed in
-Lemma~\ref{lem:Q}. The pointwise prime estimate needed here is
-established in Lemma~\ref{lem:P}, rather than obtained from a
-short-interval prime theorem.
+The reflected energy theorem uses Perron, Montgomery--Vaughan,
+P\'olya--Vinogradov, Burgess at $r=2$, and the small-conductor
+M\"obius input. Iwaniec's exact $3/4$-power region is stated in
+Input~\ref{input:I}. The general affine major arcs instead use a
+hybrid character/time mean value and the Mellin scale
+$\max(1,X/|h|)$. Finite checks of selected algebraic models and identities are
+described in Appendix~\ref{app:checks}.
 
-\paragraph{Changes to LWW's argument.}
-The determinant congruence decomposes the endpoint support into blocks
-on the unit-coordinate chart of $\PP^1(\Z/\GN\Z)$.
-In a basis of each index-$\GN$ lattice,
-$\det(\gN z,\gN z')=\GN\det(z,z')$.
-The matrix replacing $\operatorname{diag}(1,-2)$ is
-$E_{\GN}=\operatorname{diag}(1,\GN)$, followed by an integral shear.
-Lemma~\ref{lem:R} gives the root count with both coordinates units
-modulo $\GN$ and with the normalized complementary ratio.
-The major arcs reduce to the character-averaged energy
-\eqref{eq:alpha-star} at polylogarithmic height.
-In Type~I, $g=(r,\GN)$ is included in the extracted divisor before
-applying the M\"obius identity, giving a reduced class modulo $2qr/g$.
-
-\paragraph{Dependence and parameters.}
-All uses of the LWW moment, memory, truncation and distinctness
-arguments have exactly the scope specified above. The obstruction
-in Proposition~\ref{prop:EC} explains a limitation of the classical
-zero-free inputs for this method; the region \eqref{eq:Hstar} is a
-sufficient input. We choose every precision and exponent before the
-large-parameter limit. The coefficient-loss constant
-$C_{\mathrm{coef}}$ and the zero-free constants
-$C_{\mathrm{zf},1},C_{\mathrm{zf},2}$ are separate.
-For weight removal the large parameter tends to infinity with a
-fixed number $b$ of disjoint weights, and then $b$ tends to infinity.
-Every $o(1)$ here is ineffective through Siegel--Walfisz or LWW
-Proposition~2.2.
-
-\paragraph{Outline.}
-Sections~\ref{sec:setting}--\ref{sec:transport} give the determinant
-reduction, blocks, root count and transport. Section~\ref{sec:major}
-proves the major-arc energy estimate. Sections~\ref{sec:typeI}--\ref{sec:assembly}
-complete the Goldbach statements. Sections~\ref{sec:small} and
-\ref{sec:liouville} give the small-shift and Liouville statements.
-Appendix~\ref{app:dictionary} records the changes to LWW by section,
-equation and page.
+\paragraph{Parameters and outline.}
+All precision exponents are fixed before the large-parameter limit.
+The coefficient-loss constants and the selected zero-free constants
+are chosen separately. The quantitative removal of weights fixes
+$K$ and each within-weight band gap, and packs
+$b_x\asymp\log\log x$ disjoint copies with a common threshold.
+Sections~\ref{sec:setting}--\ref{sec:transport} give the shared
+determinant reduction, signed root count and Type~II transport.
+Section~\ref{sec:major} gives the reflected and general analytic
+interfaces and the radical criteria. Sections~\ref{sec:typeI}--
+\ref{sec:assembly} provide Type~I, relative moments, densities and
+assembly. The small-shift and Liouville sections record their
+specific changes. Section~\ref{sec:progressions} supplies the
+additional character and relative-measure arguments for B.
 
 \section{Setting and determinant reduction}\label{sec:setting}
+The reflected subsections retain the version~1 notation: $\GN$
+is the global bound and $x$ is a prime-dyad scale. Subsections
+headed ``Changes for general $h$'' use global bound $x$ and
+dyad scale $y$. In each case $L$ is the logarithm of the global
+bound, and the dyadic logarithm differs by $O_B(\log L)$.
+The normalized bases and later estimates are shared through the
+explicit specialization $\Delta=H=\GN$.
+
 \begin{definition}[Parameters and coefficients]\label{def:parameters}
 For the Goldbach shift, $\GN$ is even and $L=\log\GN$.
 Fix $B>2$, let $p\in(x,2x]$, and put
 \begin{equation}\label{eq:ranges}
  \begin{gathered}
  \frac{\GN}{2L^B}\le x\le\frac{\GN}2,\quad
- Z=\exp(L^{0.24}),\quad U=V=x^{1/5},\\
+ Z=\exp(L^{3/4}),\quad U=V=x^{1/5},\\
  X=MN\asymp x,\quad M,N\ge x^{1/5}/2,\quad MN\le2x\le\GN.
  \end{gathered}
 \end{equation}
@@ -263,7 +458,7 @@ The letter $N$ always denotes the length of the Vaughan variable $n$.
 Write $R_Z(n)$ for the indicator that every prime divisor of $n$
 exceeds $Z$. Fix $0<\rho<1$ and
 \begin{equation}\label{eq:bands}
- \frac1{10}<a_1<\cdots<a_K<\frac15,\quad
+ \frac1{10}<a_1<\cdots<a_K<\theta<\frac12,\quad
  \mathcal P_i=\{p:\exp(L^{a_i})<p\le\exp(2L^{a_i}),\ p\nmid\GN\},
  \quad V_i=\sum_{p\in\mathcal P_i}\frac1p.
 \end{equation}
@@ -273,7 +468,7 @@ $\omega(n)=\sum_i\omega_i(n)$. The weight of LWW (2.13), p.~7, is
 \begin{equation}\label{eq:weight}
  W(n)=\prod_{i=1}^K\frac{\rho^{\omega_i(n)-1}\omega_i(n)}{V_i}.
 \end{equation}
-Let $J=\lfloor L^{0.01}\rfloor$, $R=\lceil L^{1/2}/2\rceil$,
+With $j_*,r_*$ fixed in Section~\ref{subsec:retune}, let $J=\lfloor L^{j_*}\rfloor$, $R=\lceil L^{r_*}/2\rceil$,
 and let $d_0,D$ have the meanings of LWW Section~4.2, pp.~17--21.
 The real smooth dyadic cutoff $\eta$ is supported on $[1,4]$
 (LWW Section~4.1, p.~15), so its product scale $Y$ has
@@ -295,7 +490,7 @@ For a character $\xi$ of modulus dividing $k\GN$, put
 \begin{equation}\label{eq:polynomials}
  \begin{split}
  B_\xi(t)&=\frac1{Y\prod_i V_i}
-    \sum_{b\in\Aset}\eta(b/Y)e(\lambda_0b/Y)\xi(b)b^{it},\\
+    \sum_{b\in\Aset}\eta(b/Y)e(-\lambda_0b/Y)\xi(b)b^{it},\\
  M_\xi(t)&=\frac1M\sum_{M<m\le2M}\alpha_m\xi(m)m^{it},\qquad
  N_\xi(t)=\frac1N\sum_{N<n\le2N}\beta_n\xi(n)n^{it}.
  \end{split}
@@ -333,29 +528,84 @@ Terms with $0<\GN-mn<Y$ vanish, since $W$ requires a factor from
 every band. No dyadic condition on $\GN-p$ is needed.
 \end{remark}
 
-\begin{proposition}[Vaughan reduction]\label{prop:vaughan}
-Define $F(n)=\mu(\GN-n)W(\GN-n)$ for $1\le n<\GN$ and
-$F(n)=0$ otherwise. LWW Proposition~2.1 \LWW{p.~4} applies to this
-bounded function. Its Type~II sum is
-\begin{equation}\label{eq:T3}
- T_3(F)=\sum_{\substack{m>U,n>V\\x<mn\le2x}}
- \mu(m)R_Z(m)c_V(n)R_Z(n)\mu(\GN-mn)W(\GN-mn).
+\begin{proposition}[Sifted Vaughan reduction]\label{prop:vaughan}
+Let $y\in[x/(\log x)^B,x]$, $U=V=y^{1/5}$, and
+$Z=\exp((\log x)^\gamma)$ for fixed $\gamma<1$.
+For any bounded function $F$ on the positive integers set
+\begin{align}
+ T_1(F)&=\sum_{d\le U}\mu(d)R_Z(d)
+       \sum_{y<dk\le2y}R_Z(k)(\log k)F(dk),\label{eq:T1}\\
+ T_2(F)&=\sum_{\substack{d\le U\\\ell\le V}}
+       \mu(d)\Lambda(\ell)R_Z(d\ell)
+       \sum_{y<d\ell k\le2y}R_Z(k)F(d\ell k),\label{eq:T2}\\
+ T_3(F)&=\sum_{\substack{m>U,n>V\\y<mn\le2y}}
+       \mu(m)R_Z(m)c_V(n)R_Z(n)F(mn),\quad
+       c_V(n)=\sum_{\substack{\ell\mid n\\\ell>V}}\Lambda(\ell).
+       \label{eq:T3}
+\end{align}
+Then $0\le c_V(n)\le\log n$ and
+\begin{equation}\label{eq:sifted-vaughan}
+ \sum_{y<p\le2y}(\log p)F(p)
+ =T_1(F)-T_2(F)+T_3(F)
+  +O\bigl(\|F\|_\infty[Z+\sqrt y(\log(2y))^2]\bigr).
 \end{equation}
-The smoothing and Mellin separation in LWW Section~4.1, p.~14,
-reduce it to rectangular sums
-\begin{equation}\label{eq:Trect}
- T=\sum_{m,n}\alpha_m\beta_n F(mn),\qquad
- M,N\ge x^{1/5}/2,\quad MN\asymp x,\quad |v|\le L^{2B},
-\end{equation}
-with the coprimality restrictions justified below. The argument of
-$\mu$ is positive wherever $F$ is nonzero.
+The same holds for a partial dyad by including its endpoint in $F$.
 \end{proposition}
 \begin{proof}
-Apply the stated decomposition and separate the cutoff in $mn/x$.
-It concerns the prime variable, so this separation has the same
-Mellin norm and coefficient bounds for $F$ as in LWW. On parts of a
-rectangle where $mn\ge\GN$, the definition $F(mn)=0$ applies.
+For Dirichlet convolution $*$, $\log=1*\Lambda$ and
+$\mu*1=\delta_1$. Splitting at $U,V$ gives the exact identity
+\begin{equation}\label{eq:vaughan-convolution}
+ \Lambda=\Lambda_{\le V}+\mu_{\le U}*\log
+    -\mu_{\le U}*\Lambda_{\le V}*1
+    +\mu_{>U}*\Lambda_{>V}*1.
+\end{equation}
+The three convolution terms combine to
+$\mu*1*\Lambda_{>V}=\Lambda_{>V}$.
+On the dyad the first term vanishes. Multiplication by $R_Z(n)F(n)$
+and complete multiplicativity of $R_Z$ yield $T_1-T_2+T_3$.
+Deleting the sifting indicator from the von Mangoldt sum costs
+$O(\|F\|_\infty Z)$: in $(y,2y]$ a fixed prime has at most one
+power, and $\sum_{p\le Z}\log p\ll Z$. Deleting all higher
+prime powers, including bases above $Z$, costs at most
+$O(\|F\|_\infty\sqrt y(\log(2y))^2)$.
+
+In $T_2$ the outer product $d\ell\le y^{2/5}$ has coefficient
+bounded by $\log(d\ell)$. Both variables in $T_3$ exceed
+$y^{1/5}$. Dyadic localization and smoothing therefore produce
+\begin{equation}\label{eq:Trect}
+ T=\sum_{m,n}\alpha_m\beta_n F(mn),\qquad
+ M,N\ge y^{1/5}/2,\quad MN\asymp y,
+ \quad |\alpha_m|\le1,\quad|\beta_n|\ll\log x.
+\end{equation}
+For a partial dyad $(y,t]$, write its bounded factor as
+$F_0(n)\ind_{n\le t}$ and expose the full product cutoff
+$\ind_{y<mn\le t}$ before the rectangular reduction; for a full
+dyad take $t=2y$. Smooth this product cutoff as a function of $mn/y$
+at relative width $\delta=(\log x)^{-B_s}$. The positivity endpoint
+of the shifted target remains in $F_0$. On each rectangle choose
+the shorter variable as the counting variable. An endpoint strip contains
+$O(\sum_{m\asymp M}(\delta y/m+1))
+ =O(\delta y+\sqrt y)$ pairs, with fixed logarithmic coefficient
+losses. Mellin inversion of the smooth cutoff has a fixed power
+of $\delta^{-1}$ as its $L^1$ norm; truncate at
+$|v|\le\delta^{-2}$, raising the fixed integration-by-parts order
+for any desired logarithmic precision. The coefficients acquire
+only $m^{iv},n^{iv}$. The shifted target, its positivity endpoint
+and its roughness multiplier are kept intact and are never
+differentiated. The extra factor $\log k$ in $T_1$ is treated by
+real-weight partial summation after its endpoint-uniform estimate.
 \end{proof}
+\begin{remark}[Changes in version 2: prime decomposition]
+The displayed identity replaces the version~1 invocation of LWW
+Proposition~2.1, which lies outside $\mathrm H2'$. The two
+prime-power corrections and the boundary-strip count apply to
+both orientations, character twists and the rough target.
+For the reflected specialization take $x=\GN$ and use $y$ for
+the dyad variable denoted by $x$ in \eqref{eq:ranges}.
+The fixed Mellin cutoff exponent in \eqref{eq:coefficients} can
+be increased to the required $2B_s$ before choosing the energy
+height; this only changes the fixed constants denoted there by $B$.
+\end{remark}
 
 \begin{lemma}[Puncturing and unit support]\label{lem:puncturing}
 The punctured bands satisfy $V_i=\log2+o(1)$, uniformly in $\GN$.
@@ -375,7 +625,7 @@ A common prime of a sifted variable and $\GN$ exceeds $Z$.
 The number of discarded pairs is bounded, up to an absolute constant, by
 \begin{equation}\label{eq:unit-discard}
  \sum_{\substack{p\mid\GN\\p>Z}}\frac Xp
- \le\frac{X\omega_{\rm all}(\GN)}Z\le XLe^{-L^{0.24}}.
+ \le\frac{X\omega_{\rm all}(\GN)}Z\le XLe^{-L^{3/4}}.
 \end{equation}
 The bound $|\alpha_m\beta_n|\ll L$ absorbs this into the claimed
 error. The restrictions preserve the coefficient and sifting
@@ -386,36 +636,43 @@ puncturing, and modulo $k$ because the bands lie above $L^{A_0}$.
 \end{proof}
 
 \begin{proposition}[The cofactor square]\label{prop:cofactor-square}
-After a smooth dyadic partition $\eta(a/Y)$, the expansion of
+Specialize the bounded function in Proposition~\ref{prop:vaughan} to
+\[
+ F(n)=\begin{cases}
+ \mu(\GN-n)W(\GN-n),&1\le n<\GN,\\
+ 0,&\text{otherwise}.
+ \end{cases}
+\]
+After a smooth dyadic partition $\eta(a/Y)$, the resulting
 \eqref{eq:Trect} has the form
 \begin{equation}\label{eq:expansion-mu}
  T=\frac{(-1)^K}{\prod_i V_i}
- \sum_{h\ge1}\mu(h)\rho^{\omega(h)}
- \sum_{\substack{p_i\in\mathcal P_i,m,n\\mn+ah=\GN}}
+ \sum_{\ell_0\ge1}\mu(\ell_0)\rho^{\omega(\ell_0)}
+ \sum_{\substack{p_i\in\mathcal P_i,m,n\\mn+a\ell_0=\GN}}
  \alpha_m\beta_n+O(XLe^{-L^{0.1}}).
 \end{equation}
 Its dyadic pieces satisfy
 \begin{equation}\label{eq:cauchy-all}
  |T_Y|^2\ll\frac{\GN}{Y}Q_Y^+\le\frac{\GN}{Y}\QQ,
  \qquad
- \QQ=\sum_{\substack{h\in\Z\\h\ne0}}
+ \QQ=\sum_{\substack{\ell_0\in\Z\\\ell_0\ne0}}
  \left|\frac1{\prod_i V_i}
- \sum_{\substack{a\in\Aset,m,n\\\GN-mn=ah}}
+ \sum_{\substack{a\in\Aset,m,n\\\GN-mn=a\ell_0}}
  \eta(a/Y)\alpha_m\beta_n\right|^2\ge0.
 \end{equation}
-Here $Q_Y^+$ is the same square restricted to $h\ge1$.
-All cofactors in $\QQ$ satisfy $|h|\ll\GN/Y$.
+Here $Q_Y^+$ is the same square restricted to $\ell_0\ge1$.
+All cofactors in $\QQ$ satisfy $|\ell_0|\ll\GN/Y$.
 \end{proposition}
 \begin{proof}
-If $\GN-mn=ah$ and $(a,h)=1$, then
-$\mu(ah)=(-1)^K\mu(h)$ and $\omega(ah)=K+\omega(h)$.
+If $\GN-mn=a\ell_0$ and $(a,\ell_0)=1$, then
+$\mu(a\ell_0)=(-1)^K\mu(\ell_0)$ and $\omega(a\ell_0)=K+\omega(\ell_0)$.
 Also $(a,m)=1$: a common list prime would divide $\GN$.
-When $(a,h)>1$, some list prime has square dividing $\GN-mn$.
+When $(a,\ell_0)>1$, some list prime has square dividing $\GN-mn$.
 For fixed $m$ this is one residue class of $n$ modulo that square,
 and the count in LWW (4.3), p.~15, gives $O(XLe^{-L^{0.1}})$.
 The coprimality restriction can be removed in the expansion at the
 same cost; its new terms have that square-divisibility property.
-Cauchy--Schwarz uses $|\mu(h)\rho^{\omega(h)}|\le1$ and the
+Cauchy--Schwarz uses $|\mu(\ell_0)\rho^{\omega(\ell_0)}|\le1$ and the
 common range $O(\GN/Y)$ from Remark~\ref{rem:ranges}.
 Each square is nonnegative, proving $Q_Y^+\le\QQ$.
 On a supported rectangle $mn\ll MN\le\GN$, whence
@@ -438,25 +695,81 @@ with no positivity condition. In particular $\GN\mid t$ and
 $|t|\ll\GN Y$, while $t'=t/\GN=b-a$ has size $O(Y)$.
 \end{lemma}
 \begin{proof}
-The divisor-square estimate used in LWW Lemma~4.1 and (4.6), p.~16,
-has the form
+The elementary divisor-square estimate proved in
+\eqref{eq:affine-divisor-square}, specialized to $\Delta=\GN$, has the form
 \begin{equation}\label{eq:divisor-square}
- \sum_{h\in I_\ell}\tau(\GN-\ell h)^2\ll(X/Y)L^3,\qquad |I_\ell|\ll X/Y
+ \sum_{\ell_0\in I_\ell}\tau(\GN-\ell \ell_0)^2\ll(X/Y)L^3,\qquad |I_\ell|\ll X/Y
 \end{equation}
 where $I_\ell$ is the translated cofactor interval for fixed
-$\ell\asymp Y$, with $\GN-\ell h$ in the positive dyadic
+$\ell\asymp Y$, with $\GN-\ell \ell_0$ in the positive dyadic
 product range. The argument depends on
-$d\mid\GN-\ell h\Rightarrow(d,\ell)\mid\GN$; since
+$d\mid\GN-\ell \ell_0\Rightarrow(d,\ell)\mid\GN$; since
 $(\ell,\GN)=1$, it gives $(d,\ell)=1$, exactly the needed hypothesis.
-For the all-integer square use the full interval $|h|\ll\GN/Y$
-and $|\GN-\ell h|$ in its absolute counts. Its length costs at most
+For the all-integer square use the full interval $|\ell_0|\ll\GN/Y$
+and $|\GN-\ell \ell_0|$ in its absolute counts. Its length costs at most
 $\GN/X\ll L^B$ relative to the displayed local estimate.
-LWW's divisor argument and the common-list saving then give the
+The absolute estimates in Section~\ref{subsec:affine-transport}
+and the common-list saving then give the
 stated $\GN YL^{-A}$ after increasing the fixed precision.
 Reducing \eqref{eq:determinant} modulo $a$ and $b$, and using
 $(a,b)=1$, proves divisibility by $a,b$ of the corresponding
 numerators and equality of their integer quotients.
 \end{proof}
+
+\subsection{Changes for general \texorpdfstring{$h$}{h}: the common square}\label{subsec:affine-setting}
+For the general statements $x$ denotes the global prime bound,
+$L=\log x$, and $y\ge x/L^B$ is a prime-dyad scale.
+In \eqref{eq:Trect} put $X=MN\asymp y$ and
+\begin{equation}\label{v2:2-1}
+ \Delta=-\varepsilon h,\qquad H=|h|,\qquad W_0=X+H,
+ \qquad H/X\ll L^{B+C},\qquad H/(d_0YX)=o(1).
+\end{equation}
+Use the bands and weight \eqref{eq:weight}, punctured at $p\mid h$.
+The common retuned parameters are specified in
+Section~\ref{subsec:retune}; their band ceiling is $\theta<1/2$.
+The puncturing and unit-support proof above applies with
+$\omega_{\rm all}(H)=O_C(L)$ and $Z=\exp(L^{3/4})$.
+In particular the coefficient sequences remain sifted and bounded.
+\begin{proposition}[Affine cofactor square]\label{prop:affine-square}
+In \eqref{eq:Trect} take $F(n)=f(\varepsilon n+h)W(\varepsilon n+h)$ when $\varepsilon n+h\ge1$ and $F(n)=0$ otherwise, for $f=\mu$ or $f=\lambda$. On unit Vaughan support set $w=\varepsilon mn+h=\varepsilon(mn-\Delta)$ and require $w\ge1$. The selected-prime expansion gives a sum over $w=a\ell$, $\ell\ge1$, after the square-overlap error $O_{K,\rho}(XL\exp(-cL^{0.1}))$. After a smooth dyadic partition in $a$,
+
+
+\begin{equation}
+|T_Y|^2\ll (W_0/Y)\,Q_Y,
+\end{equation}
+
+
+where the nonnegative enlarged square is
+
+
+\begin{equation}\label{v2:3-4}
+Q_Y=\sum_{j\in\mathbb Z\setminus\{0\}}
+ \left|\frac1{\prod_iV_i}\sum_{mn-\Delta=aj}
+ \eta(a/Y)\alpha_m\beta_n\right|^2.
+\end{equation}
+
+
+For coprime $a,b$, equality of the integer cofactors is equivalent to
+
+
+\begin{equation}\label{v2:3-5}
+bmn-ars=\Delta(b-a).
+\end{equation}
+
+
+For D, define $P_h(z)=\prod_{r\le z,\ r\nmid h}r$ and $\mathcal R_{z,h}(n)=1_{(n,P_h(z))=1}$. If every selected list prime exceeds $z$, then
+
+
+\begin{equation}\label{v2:3-6}
+\mathcal R_{z,h}(a\ell)=\mathcal R_{z,h}(\ell).
+\end{equation}
+
+
+Multiplying the target by $\mathcal R_{z,h}$ leaves exactly the same upper-bound square \eqref{v2:3-4}.
+
+\end{proposition}\begin{proof} Puncturing at $r\mid h$ changes a band's reciprocal mass by at most $O(L\exp(-L^{0.1}))$. Sifted variables sharing a prime with $h$ share one exceeding $Z$; counting their multiples costs $O(XL^2/Z)$, at every fixed logarithmic precision. Each list prime is coprime to $m$. Hence its square dividing $w$ selects one residue class of $n$, and $N\gg r^2$ allows the bound $O(N/r^2)$. The bounded-weight square-overlap calculation in the reflected proof applies, including its separate Liouville expansion; it uses no sign of the affine coefficient. Once overlaps are removed, the common factor is $f(\ell)\rho^{\omega(\ell)}$ of modulus at most one. The positive cofactors lie in $[1,O(W_0/Y)]$. Cauchy gives the square over cofactors of the permitted sign, and adding the other sign adds nonnegative terms, producing \eqref{v2:3-4}. A zero cofactor would mean $mn=\Delta$; for $H>1$ this contradicts unit support, and for $H=1$ the dyadic product range excludes it. The equation \eqref{v2:3-5}, reduced modulo $a,b$, forces both divisibilities because $(a,b)=1$; it then gives equality of integer quotients. Finally $(a,P_h(z))=1$ proves \eqref{v2:3-6}, so the extra roughness indicator stays in the common bounded cofactor factor. \end{proof}
+
+For actual primes $p\nmid h$, the shifted value is coprime to $h$. Thus $\mathcal R_{z,h}(\varepsilon p+h)$ equals the full roughness indicator. The omitted primes dividing $h$ contribute $O(L)$ without logarithmic weight and $O(L^2)$ with it.
 
 \section{Blocks and relative coordinates}\label{sec:blocks}
 Endpoint positions, with the list data of LWW attached, are
@@ -716,250 +1029,222 @@ For the exceptional-measure bound, multiplication by $\GN$ preserves
 Haar measure; for the subsequent cube count we count $\beta$ directly.
 \end{proof}
 
-\section{Root counting}\label{sec:roots}
-\begin{lemma}[Lemma R]\label{lem:R}
-Put $U_0=d_0YM$, $V_0=N$, and fix $\delta>0$.
-Suppose $U_0,V_0\ge x^\delta$, $\GN<U_0V_0$, and
-$\log x=L+O_B(\log L)$. Let $S$ be odd and squarefree,
-$(S,\GN)=1$, $S\le\exp(C_0L^{0.98})$, and let
-$g_0\bmod S$ have determinant $\GN\bmod S$.
-For intervals $I_1\subset[1,16]$, $I_2\subset[1,2]$ and
-$I_3\subset[0,1]$,
-\begin{equation}\label{eq:R-matrix}
- \begin{split}
- &\#\{P=(u,v)^T:(u,v)=1,\ (uv,\GN)=1,
-       \,u/U_0\in I_1,\ v/V_0\in I_2,
-       \,\beta_P\in I_3,\ \gN(P)\equiv g_0\pmod S\}\\
- &\hspace{5mm}=
- \frac{c_{\GN}U_0V_0|I_1||I_2||I_3|}
-      {|\operatorname{SL}_2(\Z/S\Z)|}
-       +O(U_0V_0x^{-\delta/800}),
- \end{split}
+\subsection{Changes for general \texorpdfstring{$h$}{h}: signed bases and slope cells}
+\label{subsec:affine-geometry}
+The unit blocks now have modulus $H=|h|$, including the single
+block $\Z^2$ when $H=1$. The determinant orientation is
+$\Delta=-\varepsilon h$.
+\begin{lemma}[Signed normalized basis]\label{lem:affine-basis}
+Let $P=(u,v)^T$ have $u,v>1$, $(u,v)=(uv,H)=1$. Define
+\begin{equation}\label{eq:affine-basis}
+ 0\le c<u,\quad cv\equiv-\Delta\pmod u,\quad
+ d=(\Delta+cv)/u,\quad\beta=c/u,\quad
+ g_\Delta(P)=\begin{pmatrix}u&c\\v&d\end{pmatrix}.
 \end{equation}
-where
-\begin{equation}\label{eq:cN}
- c_{\GN}=\frac1{\zeta(2)}\prod_{p\mid\GN}\frac{p-1}{p+1}
- =\frac1{\zeta(2)}\prod_{p\mid\GN}
-       \frac{(1-1/p)^2}{1-1/p^2},\qquad
- (\log\log\GN)^{-2}\ll c_{\GN}\le1.
+It is an oriented basis of
+$\Lambda_\varrho=\{(s,t):t\equiv\varrho s\pmod H\}$,
+$\varrho=v\bar u\pmod H$, with determinant $\Delta$.
+For $Q=g_\Delta(P)z$ and $\tau_\beta(z)=z_1+\beta z_2$,
+\begin{equation}\label{v2:3-1}
+ Q_1=u\tau_\beta(z),\qquad
+ Q_2=v\tau_\beta(z)+\Delta z_2/u,\qquad
+ \det(P,Q)=\Delta z_2.
 \end{equation}
-For prescribed lines $\ell_p\in\PP^1(\mathbb F_p)$ at $p\mid S$,
-\begin{equation}\label{eq:R-lines}
- \begin{split}
- &(U_0V_0)^{-1}
- \#\{P:(u,v)=1,(uv,\GN)=1,\ u/U_0\in I_1,\ v/V_0\in I_2,\\
- &\hspace{35mm}\beta_P\in I_3,\ \ker(\gN(P)_{1,*}\bmod p)=\ell_p\ (p\mid S)\}\\
- &\hspace{8mm}=c_{\GN}|I_1||I_2||I_3|
-          \prod_{p\mid S}\frac1{p+1}+O(x^{-c\delta})
- \end{split}
+Lattice-primitivity is $(z_1,z_2)=1$; plane primitivity also
+requires $(Q_1,H)=1$. For primitive $z$ and $r\nmid H$,
+\begin{equation}\label{v2:3-2}
+ r\mid Q_1\quad\Longleftrightarrow\quad
+ [z]_r=\ker(u,c)\pmod r.
 \end{equation}
-for an absolute $c>0$, possibly smaller than $1/800$.
-All errors are uniform in the intervals, matrix class and $\GN$
-in the stated dyadic regime.
 \end{lemma}
 \begin{proof}
-We use LWW Appendix~A, (A.2)--(A.4), pp.~48--50, and give the
-changes to Lemma~A.1 and (A.5), pp.~47--51.
-
-\emph{The matrix and the shorter-coordinate case.}
-The matrix \eqref{eq:basis} has determinant $\GN$ and $0\le c'<u$.
-Suppose $U_0\le V_0$, and fix $u\equiv u_0\pmod S$ with
-$(u,\GN)=1$. Replace LWW's set by
-\begin{equation}\label{eq:Ru}
- \mathcal R_u=\{(c',v)\bmod uS:
-       c'\equiv c'_0\ (S),\ v\equiv v_0\ (S),\
-       c'v\equiv ud''_0-\GN\ (uS)\}.
-\end{equation}
-The right side in the last congruence is a unit at every prime
-dividing $u$. At primes dividing both $u$ and $S$ this follows also
-from $u_0d''_0-c'_0v_0\equiv\GN\not\equiv0\pmod p$.
-Consequently the same count as in LWW gives
-\begin{equation}\label{eq:Ru-size}
- \#\mathcal R_u=u\prod_{\substack{p\mid u\\p\nmid S}}(1-1/p),
- \qquad (u,c')=(u,v)=1.
-\end{equation}
-
-\emph{Exponential sums.}
-Let $S_1=(u,S)$, $S_2=S/S_1$, and
-$\gamma S_2\equiv1\pmod{uS_1}$. The CRT calculation of
-LWW (A.3), p.~49, gives
-\begin{equation}\label{eq:CRT}
- \left|\sum_{(c',v)\in\mathcal R_u}
-        e\left(\frac{hc'+kv}{uS}\right)\right|
- \le\frac1{S_1}\sum_{j\bmod S_1}
-   |K_{uS_1}(\gamma h+ju,\gamma k(ud''_0-\GN))|.
-\end{equation}
-Here $K_m(h,k)=\sum_{y\bmod m,(y,m)=1}e((hy+k\bar y)/m)$.
-Since $S_1\mid u$ and $(u,\GN)=1$, $ud''_0-\GN$ is a unit
-modulo $uS_1$. Thus
-\[
- (\gamma h+ju,\gamma k(ud''_0-\GN),uS_1)\le S_1(h,k,u).
-\]
-The all-modulus fourth-moment bound (A.2), followed by (A.3) and
-Fourier completion (A.4), gives rectangle discrepancy
-$O(u^{0.99}S^2)$, independent of the rectangle.
-No prime-modulus Kloosterman estimate is used.
-
-\emph{The sieve on $v$.}
-Expand
-$\ind_{(v,\GN)=1}=\sum_{d\mid\rad(\GN)}\mu(d)\ind_{d\mid v}$.
-There are at most $2^{\omega_{\rm all}(\GN)}=x^{o(1)}$ terms.
-Every $d$ is coprime to $uS$; replacing $v$ by $dv_2$ replaces
-the right side of \eqref{eq:Ru} by the unit
-$\bar d(ud''_0-\GN)$ and the prescribed residue by
-$v_2\equiv\bar d v_0\pmod S$. Therefore the same rectangle error
-applies. Splitting into periods as in LWW Appendix~A, p.~50, the
-count for this $d$ is
-\begin{equation}\label{eq:v-sieve}
- \frac{V_0|I_2||I_3|}{dS^2}
- \prod_{\substack{p\mid u\\p\nmid S}}(1-1/p)
- +O\left(\left(\frac{V_0}{uSd}+1\right)u^{0.99}S^2\right).
-\end{equation}
-The sum with $\mu(d)$ multiplies the main term by
-$\prod_{p\mid\GN}(1-1/p)$ and leaves error
-$O(x^{o(1)}(V_0/(uS)+1)u^{0.99}S^2)$.
-
-\emph{The sieve on $u$ and the local constant.}
-Use
-\[
- \prod_{\substack{p\mid u\\p\nmid S}}(1-1/p)
- =\sum_{\substack{\ell\mid u\\(\ell,S)=1}}\frac{\mu(\ell)}\ell,
- \qquad
- \ind_{(u,\GN)=1}=\sum_{d\mid\rad(\GN)}\mu(d)\ind_{d\mid u}.
-\]
-For $(\ell d,S)=1$, counting $u\in U_0I_1$ in its fixed residue
-class gives
-$U_0|I_1|/(\operatorname{lcm}(\ell,d)S)+O(1)$.
-The double divisor series has local factors
-\begin{equation}\label{eq:local-factors}
- \begin{cases}
- 1-p^{-2},&p\nmid S\GN,\\
- (1-p^{-2})-p^{-1}(1-p^{-1})=1-p^{-1},&p\mid\GN,\\
- 1,&p\mid S.
- \end{cases}
-\end{equation}
-To justify its tail without a factor $2^{\omega_{\rm all}(\GN)}$,
-sum over $d$ before extending $\ell$:
-\begin{equation}\label{eq:divisor-tail}
- \sum_{d\mid\rad(\GN)}\frac{\mu(d)}{\operatorname{lcm}(\ell,d)}
- =\begin{cases}
- 0,&(\ell,\GN)>1,\\
- \ell^{-1}\prod_{p\mid\GN}(1-1/p),&(\ell,\GN)=1.
- \end{cases}
-\end{equation}
-Indeed a prime common to $\ell$ and $\GN$ makes the two $d$-choices
-cancel; otherwise the choices contribute $1-1/p$.
-After the factor $\mu(\ell)/\ell$, the tail $\ell>16U_0$ is
-$O(\sum_{\ell>16U_0}\ell^{-2})=O(1/U_0)$.
-The integer-counting errors total
-$O(2^{\omega_{\rm all}(\GN)}\log U_0)=O(x^{o(1)})$.
-The resulting $u$ main term is
-\begin{equation}\label{eq:u-main}
- \frac{U_0|I_1|}{S\zeta(2)}
- \prod_{p\mid S}(1-p^{-2})^{-1}
- \prod_{p\mid\GN}(1+1/p)^{-1}.
-\end{equation}
-Multiplication by the $v$-sieve factor and
-$|\operatorname{SL}_2(\Z/S\Z)|=S^3\prod_{p\mid S}(1-p^{-2})$
-gives \eqref{eq:R-matrix} with \eqref{eq:cN}.
-At $\GN=2$ this is $1/(3\zeta(2))$.
-For completeness, split the factors $1-1/p$ at $p=L$.
-Mertens' product estimate gives
-$\prod_{p\mid\GN,p\le L}(1-1/p)\ge\prod_{p\le L}(1-1/p)
-\gg1/\log L$.
-For $p>L\ge2$, $\log(1-1/p)\ge-2/p$ and
-$\sum_{p\mid\GN,p>L}1/p\le\omega_{\rm all}(\GN)/L\le1/\log2$.
-Thus the product over these larger primes is bounded below by an
-absolute positive constant. It follows from the squared-factor
-formula in \eqref{eq:cN} that
-\begin{equation}\label{eq:cN-lower}
- c_{\GN}\ge\zeta(2)^{-1}\prod_{p\mid\GN}(1-1/p)^2
-      \gg(\log L)^{-2}=(\log\log\GN)^{-2}.
-\end{equation}
-The upper bound $c_{\GN}\le1$ is immediate.
-Only that upper bound is needed for the root moment.
-
-\emph{Error for $U_0\le V_0$.}
-Summing the rectangle errors over $u\asymp U_0$ gives
-\begin{equation}\label{eq:R-error}
- \begin{split}
- O\bigl(x^{o(1)}S^2(V_0U_0^{0.99}+U_0^{1.99})\bigr)
- &=O\bigl(U_0V_0x^{o(1)}S^2
-                (U_0^{-0.01}+U_0^{0.99}/V_0)\bigr)\\
- &=O(U_0V_0x^{-c_0\delta}),\qquad c_0=1/200.
- \end{split}
-\end{equation}
-Both terms in parentheses are at most $x^{-\delta/100}$ and
-$S^2\le\exp(2C_0L^{0.98})=x^{o(1)}$.
-This fixes $c_0$ before the next subdivision.
-
-\emph{The case $V_0<U_0$.}
-Complete $(v,u)^T$ in the normalized way:
-$c''u\equiv-\GN\pmod v$, $0\le c''<v$,
-$d'''=(\GN+c''u)/v$. Put $\varepsilon=\GN/(uv)$.
-Our hypothesis gives
-\begin{equation}\label{eq:epsilon}
- 0<\varepsilon\le\frac{\GN}{d_0YMN}<1,
- \qquad\frac{\GN}{d_0YMN}\ll\frac{L^B}{d_0Y}
- \quad\hbox{in the application}.
-\end{equation}
-Since $d''/v=\beta_P+\varepsilon$, $k=\lfloor d''/v\rfloor\in\{0,1\}$,
-and
-\begin{equation}\label{eq:swapped}
- \begin{split}
- c''&=(1+k)v-d'',\quad d'''=(1+k)u-c',\\
- \widetilde g&=\begin{pmatrix}v&(1+k)v-d''\\u&(1+k)u-c'\end{pmatrix},
- \quad\det\widetilde g=\GN,\\
- \beta''_P&=1+k-\beta_P-\varepsilon,\qquad
- k=1\ \Longleftrightarrow\ \beta_P+\varepsilon\ge1.
- \end{split}
-\end{equation}
-Either endpoint $\beta''_P\in\{0,1\}$ would imply $v\mid\GN$, impossible for
-$v>1$ and $(v,\GN)=1$. Both $k$ branches must be included.
-For $k=\kappa\in\{0,1\}$ the prescribed residue becomes
-\begin{equation}\label{eq:swapped-residue}
- \widetilde g_0^{(\kappa)}=
- \begin{pmatrix}v_0&(1+\kappa)v_0-d''_0\\
-                 u_0&(1+\kappa)u_0-c'_0\end{pmatrix},
- \quad
- J_\kappa(u,v)=\bigl((1+\kappa)-I_3-\GN/(uv)\bigr)\cap[0,1).
-\end{equation}
-Their union is $1-(I_3+\GN/(uv))$ modulo $1$, of length $|I_3|$.
-
-Partition $I_1\times I_2$ into cells of relative side
-$x^{-\kappa_0}$, $\kappa_0=c_0\delta/4$.
-There are $O(x^{c_0\delta/2})$ cells. On each,
-$\GN/(uv)$ varies by at most $4x^{-\kappa_0}$.
-For each branch start with the affine interval
-$(1+\kappa)-I_3-\varepsilon_0$, where $\varepsilon_0$ is its
-corner value. Enlarge or contract this interval by $4x^{-\kappa_0}$
-at each end and only then intersect with $[0,1)$, taking reversed
-intervals as empty. This also covers a branch whose clipped
-interval is empty at the corner.
-Apply the shorter-coordinate case on that cell, with the two
-coordinate roles interchanged and residue
-$\widetilde g_0^{(\kappa)}$. Its error is independent of interval
-lengths, so the summed error is
-$O(U_0V_0x^{-c_0\delta/2})$.
-The boundary mass is at most $8x^{-\kappa_0}$ per cell times its
-main-term density, and totals $O(U_0V_0x^{-\kappa_0})$.
-The two branches preserve $|I_3|$, giving final exponent
-$c_0/4=1/800$ in \eqref{eq:R-matrix}.
-This argument counts $\beta=c'/u$ directly. It does not differentiate
-the map $r\mapsto\GN r$.
-
-\emph{Prescribed lines.}
-At $p\mid S$, matrices of determinant $\GN$ with a prescribed
-first-row kernel number $p(p-1)$: there are $p-1$ nonzero first rows
-with that kernel and $p$ choices of second row. The total number
-is $p(p^2-1)$, so the proportion is $1/(p+1)$.
-CRT multiplies these proportions. Summing the per-matrix errors
-costs at most $S^3=x^{o(1)}$; decrease the fixed positive exponent
-$c$ in \eqref{eq:R-lines}, for example to $1/1600$ for sufficiently
-large $x$ with fixed $\delta$.
-The factor at $2$ is already included in $c_{\GN}$ and is not
-inserted again.
+The congruence defining $c$ gives $ud-vc=\Delta$ and
+$(u,c)=1$. Both columns lie in the index-$H$ lattice, and their
+index is $H$. This proves the basis assertion for either sign.
+Matrix multiplication gives \eqref{v2:3-1}. At a prime outside
+$H$ the matrix is invertible; at a prime dividing $H$ it has rank
+one with a first column whose coordinates are units. The
+primitivity and kernel proofs in Lemma~\ref{lem:coordinates}
+therefore apply with these signed entries.
 \end{proof}
+
+For odd $u,v$, reduction modulo two gives
+\begin{equation}\label{eq:affine-parity}
+ Q_1,Q_2\text{ odd}\quad\Longleftrightarrow\quad
+ \begin{cases}z_1\text{ odd},\ z_2\text{ even},&H\text{ odd},\\
+ z_1+cz_2\text{ odd},&H\text{ even}.
+ \end{cases}
+\end{equation}
+The even-$H$ case uses the labelled enlargement of
+Section~\ref{subsec:enlargement} with unit endpoint support;
+it does not impose a parity test on $z_1$.
+For odd $H$ retain the odd-odd physical projection, equivalently
+the first line of \eqref{eq:affine-parity}. Nonunit intermediate
+positions remain labelled lattice-primitive states.
+At every source state use a determinant-$\Delta$ lattice
+complement to define its intrinsic ratio. For
+$\det(z,w)=1$ this ratio and its derivative are
+\begin{equation}\label{v2:4-4}
+ \beta_Q=\frac{\tau_\beta(w)}{\tau_\beta(z)}\pmod1,
+ \qquad\partial_\beta\frac{\tau_\beta(w)}{\tau_\beta(z)}
+       =\frac1{\tau_\beta(z)^2}.
+\end{equation}
+Changing orientation changes the ratio's sign and preserves both
+good-state tests' distances to integers. In particular both tests
+are imposed at the current source, including added nonunit states.
+
+\begin{lemma}[Uniform local cells]\label{lem:slope-cells}
+Set $D_0=d_0Y$ and retain
+$\Omega=[D_0M,16D_0M]\times[N,2N]$. In each labelled block
+partition physical slopes into half-open intervals of width
+$H/(D_0M^2)$. Each cell contains $O(D_0)$ lattice-primitive
+positions, and an edge with determinant $O(HD_0)$ interacts with
+only $O(1)$ neighboring cells. A path of at most $2R$ such edges
+from a root has relative coordinates
+\begin{equation}\label{v2:3-3}
+ |(z_j)_2|\ll RD_0,\qquad |(z_j)_1|\ll1+RD_0.
+\end{equation}
+All constants are independent of $H$.
+\end{lemma}
+\begin{proof}
+Fix a lattice-primitive $P$ in one cell. For another $Q$ in it,
+$|\det(P,Q)|\le256HD_0$ and the determinant is in $H\Z$.
+For each of its $O(D_0)$ possible values, differences of solutions
+belong to $\Q P\cap\Lambda_\varrho=\Z P$; the fixed ratio of
+first coordinates leaves $O(1)$ choices. This proves occupancy.
+An edge changes slope by $O(H/(D_0M^2))$. Sum the slope changes
+along the path and multiply by the two first coordinates to get
+$|\det(P,P_j)|\ll RHD_0$. Divide by $\Delta$ in
+\eqref{v2:3-1}, and use $\tau_\beta(z_j)\in[1/16,16]$ and
+$0\le\beta<1$, to prove \eqref{v2:3-3}.
+\end{proof}
+This cell partition extends the version~1 whole-block partition
+to every $H$. Its occupancy improves the earlier unnormalized
+small-shift bound $O(|h|d_0Y)$ to $O(d_0Y)$.
+The finite checks in Appendix~\ref{app:checks} include these identities
+and the signed swapped complement below.
+
+\section{Root counting}\label{sec:roots}
+\begin{remark}[Changes in version 2: signed root count]
+The root count below replaces the version~1 positive-determinant
+Lemma R. It counts the normalized signed basis directly, includes
+all three swapped-complement branches, and permits every fixed
+subpower modulus exponent below one.
+\end{remark}
+\begin{lemma}[Lemma R, signed form]\label{lem:R}
+Put $U_0=d_0YM$, $V_0=N$ and assume $U_0,V_0\ge x^\delta$, $0<H<U_0V_0$, $H\le xL^C$. Let $S$ be odd, squarefree, coprime to $H$, with $S\le\exp(C_0L^\sigma)$ for any fixed $\sigma<1$. For a matrix $g_0=\left(\begin{smallmatrix}u_0&c_0\\v_0&d'_0\end{smallmatrix}\right)$ modulo $S$ of determinant $\Delta$, and intervals $I_1\subset[1,16]$, $I_2\subset[1,2]$, $I_3\subset[0,1]$, the formula is
+
+
+\begin{equation}\label{v2:4-1}
+\begin{aligned}&\#\left\{(u,v):\begin{array}{l}
+(u,v)=1,\ (uv,2H)=1,\ u/U_0\in I_1,\ v/V_0\in I_2,\\
+\beta=c/u\in I_3,\ g_\Delta(u,v)\equiv g_0\pmod S
+\end{array}\right\}\\
+&\quad=\frac{c_{2H}U_0V_0|I_1||I_2||I_3|}{|\mathrm{SL}_2(\mathbb Z/S\mathbb Z)|}
++O(U_0V_0x^{-c\delta}),
+\end{aligned}
+\end{equation}
+
+
+where
+
+
+\begin{equation}
+c_{2H}=\zeta(2)^{-1}\prod_{r\mid2H}\frac{r-1}{r+1}.
+\end{equation}
+
+
+The error is uniform in the signed $\Delta$, intervals, and residue class, with a threshold allowed to depend on the fixed $\sigma,C_0$. Prescribed first-row kernel lines at $r\mid S$ instead have main mass $c_{2H}\prod_{r\mid S}(r+1)^{-1}$ and a power-saving error with a possibly smaller fixed $c>0$.
+
+\end{lemma}\begin{proof}\emph{The shorter-coordinate case.} Fix $u\equiv u_0\pmod S$, $(u,2H)=1$, and replace the Appendix A inverse graph by
+
+
+\begin{equation}
+\mathcal R_u=\{(c,v)\pmod{uS}:c\equiv c_0\ (S),\ v\equiv v_0\ (S),\ cv\equiv ud_0'-\Delta\ (uS)\}.
+\end{equation}
+
+
+The last right-hand side is a unit at every prime dividing $u$, including the primes shared by $u,S$, because $u_0d'_0-c_0v_0\equiv\Delta$ and $(S,H)=1$. Exactly as in the CRT calculation of LWW (A.3), with $S_1=(u,S)$, $S_2=S/S_1$, and $\gamma S_2\equiv1\pmod{uS_1}$, its exponential sum is bounded by
+
+
+\begin{equation}
+\frac1{S_1}\sum_{j\bmod S_1}
+ |K_{uS_1}(\gamma r+ju,\gamma s(ud'_0-\Delta))|.
+\end{equation}
+
+
+Here
+$K_m(r,s)=\sum_{y\bmod m,(y,m)=1}e((ry+s\bar y)/m)$
+is the Kloosterman sum. The common-divisor factor is at most $S_1(r,s,u)$, independently of the size or sign of $\Delta$. The stated Appendix A estimates (A.2)–(A.4) therefore give the same discrepancy $O(u^{0.99}S^2)$ for every rectangle. Its total mass is
+
+
+\begin{equation}
+|\mathcal R_u|=u\prod_{p\mid u,\ p\nmid S}(1-1/p).
+\end{equation}
+
+
+Sieve $(v,2H)=1$ by $e\mid\operatorname{rad}(2H)$. Each such $e$ is coprime to $uS$; replacing $v$ by $ev'$ replaces the inverse-graph constant by a unit multiple and leaves the rectangle error unchanged. Period splitting gives a main term
+
+
+\begin{equation}
+\frac{V_0|I_2||I_3|}{eS^2}\prod_{p\mid u,p\nmid S}(1-1/p)
+\end{equation}
+
+
+and error $O((V_0/(uSe)+1)u^{0.99}S^2)$. Summing the signed divisor sieve multiplies the main term by $\prod_{p\mid2H}(1-1/p)$ and costs at most $2^{\omega_{\rm all}(2H)}=x^{o(1)}$ in the error.
+
+For the $u$ average expand its Euler weight as $\sum_{\ell\mid u,(\ell,S)=1}\mu(\ell)/\ell$ and its unit condition by $d\mid\operatorname{rad}(2H)$. Counting the fixed residue modulo $S$ gives the factor $1/\operatorname{lcm}(\ell,d)$. Sum first over $d$:
+
+
+\begin{equation}\label{v2:4-2}
+\sum_{d\mid\operatorname{rad}(2H)}\frac{\mu(d)}{\operatorname{lcm}(\ell,d)}
+=\begin{cases}0,&(\ell,2H)>1,\\
+\ell^{-1}\prod_{p\mid2H}(1-1/p),&(\ell,2H)=1.
+\end{cases}
+\end{equation}
+
+
+This proves the convergent tail bound $O(1/U_0)$ after the additional $\mu(\ell)/\ell$; it avoids an unnecessary divisor-count factor in the main term. The local Euler factors and $|\mathrm{SL}_2(\mathbb Z/S\mathbb Z)|=S^3\prod_{p\mid S}(1-p^{-2})$ give precisely $c_{2H}$ above. The summed rectangle error is
+
+
+\begin{equation}
+O\big(x^{o(1)}S^2(V_0U_0^{0.99}+U_0^{1.99})\big)
+=O(U_0V_0x^{-c_0\delta}),
+\end{equation}
+
+
+for a fixed $c_0>0$, since $U_0\le V_0$ and $S=x^{o(1)}$. No comparison $H\asymp x$ was used; the polynomial upper bound for $H$ suffices for the divisor cost.
+
+\emph{Swapping the coordinates.} If $V_0<U_0$, write $\epsilon_0=\Delta/(uv)$; it lies strictly between $-1$ and 1. Since $d/v=\beta+\epsilon_0$, let $k=\lfloor\beta+\epsilon_0\rfloor\in\{-1,0,1\}$. The normalized complement of $(v,u)^T$ with determinant $\Delta$ is
+
+
+\begin{equation}\label{v2:4-3}
+\widetilde c=(1+k)v-d,\qquad \widetilde d=(1+k)u-c,\qquad
+\widetilde\beta=1+k-\beta-\epsilon_0.
+\end{equation}
+
+
+Here $0<\widetilde c<v$: an endpoint value would imply $v\mid\Delta$, excluded by $v>1$ and $(v,H)=1$. Direct multiplication gives $v\widetilde d-u\widetilde c=\Delta$. For each of the three $k$ branches use the corresponding fixed matrix residue and the interval
+
+
+\begin{equation}
+((1+k)-I_3-\Delta/(uv))\cap[0,1).
+\end{equation}
+
+
+Their total length is $|I_3|$, since they describe one reflected interval modulo 1. Partition $I_1\times I_2$ into relative cells of side $x^{-c_0\delta/4}$. On a cell $\Delta/(uv)$ varies by $O(x^{-c_0\delta/4})$, because its absolute value is less than one. Enlarge or contract the \emph{unclipped} interval by that amount before intersecting with $[0,1)$; this includes branches that are empty at a corner but become nonempty inside the cell. The shorter-coordinate discrepancy is uniform in interval length. Summing it over $O(x^{c_0\delta/2})$ cells leaves a power saving; the boundary main mass is $O(U_0V_0x^{-c_0\delta/4})$. This proves \eqref{v2:4-1}, with smaller $c$. The negative branch $k=-1$ is essential and is not present in the positive-Delta proof.
+
+At a prime $p\mid S$, the determinant-Delta matrix coset has $p(p^2-1)$ elements. A prescribed first-row kernel admits $p-1$ nonzero first rows and $p$ second rows each, giving probability $1/(p+1)$. CRT multiplies the probabilities. Summing per-matrix errors costs at most $S^3=x^{o(1)}$, absorbed by decreasing $c$. This proves the line version. The factor at 2 is already in $c_{2H}$, so is not inserted again.
+
+\end{proof}
+For the reflected specialization $\Delta=H=\GN$ even, write
+\begin{equation}\label{eq:cN}
+ c_{\GN}=c_{2H}=\frac1{\zeta(2)}
+           \prod_{r\mid\GN}\frac{r-1}{r+1}\le1.
+\end{equation}
+Thus \eqref{v2:4-1} also supplies the matrix and line counts used
+in the reflected transport below. Only the upper bound on this
+density is used.
 
 \section{Transport of the Type II argument}\label{sec:transport}
 \begin{lemma}[Reduced determinant and boundary geometry]\label{lem:transport-geometry}
@@ -988,8 +1273,9 @@ The determinant identities follow from $\det\gN=\GN$ and
 \eqref{eq:positions}. The remaining bounds follow from
 Lemma~\ref{lem:coordinates} and the cutoff in \eqref{eq:K}.
 In the last boundary formula $s\in[1,16]$, so the extra term and its
-$s$ derivative are $O(1)$; its $\beta$ derivative is
-$t_0z_2=\exp(O(L^{0.21}))$. Transversality, rather than smallness of
+$s$ derivative are $O(1)$. The full boundary has
+$\partial_\beta E_2=t_0z_2$, with
+$|\partial_\beta E_2|\ll\exp(O_K(L^{j_*+\theta}))$. Transversality, rather than smallness of
 this term, is what the cube count uses.
 \end{proof}
 
@@ -1029,19 +1315,24 @@ The measure (4.29), p.~23, becomes
 $c_{\GN}\,d(u/(d_0YM))\,d(v/N)\,d\beta$, and each prescribed line
 has mass $1/(p+1)$.
 
-The absolute coefficient mass remains $\exp(O_K(L^{0.73}))$,
+The absolute coefficient mass remains $\exp(O_K(L^{r_*+j_*+\theta}))$,
 since $|z_j|\ll Rd_0Y$.
-The Bonferroni truncation has
-$S\le\exp(O(L^{0.96}))\le\exp(C_0L^{0.98})$.
+The model Bonferroni remainder in this retuned application uses
+Lemmas~\ref{lem:positive}--\ref{lem:bonferroni}; arithmetic
+discrepancy still uses the crude coefficient count. The retained
+Bonferroni truncation has
+$S\le\exp(O_K(L^{1-7j_*}))$.
 By \eqref{eq:boundaries} and
 \begin{equation}\label{eq:ratio-derivative}
  \partial_\beta\frac{\tauN(w)}{\tauN(z)}
      =\frac{\det(z,w)}{\tauN(z)^2}
      =\frac1{\tauN(z)^2}\quad(\det(z,w)=1),
 \end{equation}
-the boundary surfaces have a transverse derivative at least $1/16$
-and gradients $x^{o(1)}$. The neighborhood volume is
-$\ll\varepsilon\max|\nabla E|/|\partial_{t_0}E|
+the boundary surfaces have a transverse partial derivative of modulus
+at least $1/256$ and gradients $x^{o(1)}$. For each boundary, let
+$\partial_{\mathrm{tr}}E$ denote its derivative in $s$, $t_0$ or
+$\beta$ used above. Its neighborhood volume is
+$\ll\varepsilon\max|\nabla E|/|\partial_{\mathrm{tr}}E|
 =x^{-c\delta/8+o(1)}$ at the chosen cube size.
 Sum the per-cube power errors before the moment limit; their
 product with the coefficient mass gives $O_A(L^{-2AR})$.
@@ -1089,13 +1380,13 @@ At $P=(Dbm,s)$, $Q=(Dar,n)$ this gives exactly
  =\alpha_m\overline{\alpha_r}\beta_n\overline{\beta_s}.
 \end{equation}
 All support, list-invariance and norm bounds are unchanged by this
-conjugation. Every prime divisor of $Db$ is below $Z$, whereas $s$
-is $Z$-rough; a common prime of the endpoint coordinates must therefore
-divide $m,s$. If $p\mid(m,s)$ on endpoint support, then $p>Z$ and
-$p\nmid\GN$; the determinant equation gives $p\mid b-a$.
-The retained cross-edge exclusion gives $b\ne a$, while
-$0<|b-a|<4Y<Z$, a contradiction. The argument is independent of
-the sign of the common cofactor.
+conjugation. Primitivity must hold for comparison endpoints as well
+as raw endpoints. Every prime of $Db$ is below $Z$, whereas $s$ is
+$Z$-rough. Thus a common prime $p'$ of $Dbm,s$ exceeds $Z$ and
+avoids $\GN$. Write $t=bmn-ars$. Since $(b,ars)=1$, $t\ne0$.
+Both kernels impose $\GN\mid t$ and $|t/\GN|\ll Y$.
+The common prime would divide the nonzero integer $t/\GN$, which
+is impossible because $Y=o(Z)$. The other endpoint is identical.
 
 Use Lemma~\ref{lem:block-size} for the partition in Section~4.6,
 and the positive matrix and ambient spectral H\"older argument in
@@ -1124,10 +1415,294 @@ It is independent of the Cauchy cofactor factor $\GN/Y$.
 Using arcs for the unreduced determinant without the block
 congruence would connect a position to $\asymp\GN Y$ positions.
 The trace loss would be
-$(d_0Y\GN)^{1/(2R)}=\exp(L^{1/2}+o(L^{1/2}))$ rather than $O(1)$.
+$(d_0Y\GN)^{1/(2R)}=\exp(L^{1-r_*}+o(L^{1-r_*}))$ rather than $O(1)$.
 The block congruence absorbs this determinant scale and reappears
 in the major arcs.
 \end{remark}
+
+\subsection{Changes for general \texorpdfstring{$h$}{h}: signed transport}\label{subsec:affine-transport}
+The covering identity for the signed determinant is
+\begin{equation}\label{v2:5-1}
+ \int_{\{\theta:\Delta\theta\in\Mone\}}
+ e(\theta(t-\Delta(b-a)))\,d\theta
+ =\ind_{H\mid t}\int_{\Mone}e(\phi(t/\Delta-b+a))\,d\phi.
+\end{equation}
+The proof of Lemma~\ref{lem:cover} uses $H$ inverse branches with
+absolute Jacobian $1/H$ for either orientation. The reduced
+determinant is
+$\det(g_\Delta z,g_\Delta z')/(\Delta D)=\det(z,z')/D$,
+so its raw-minus-comparison bracket is exactly
+\eqref{eq:reduced-brace} with $t'=\det(z,z')/D$.
+
+\paragraph{Root averaging and sharp boundaries.}
+Use \eqref{v2:3-3} for each path and Lemma~\ref{lem:R} for its
+arithmetic roots. With $s=u/(D_0M)$ and $t_0=v/N$, the physical
+boundaries become
+\begin{equation}\label{v2:4-5}
+ s\tau_\beta(z)\in\{1,16\},\qquad
+ t_0\tau_\beta(z)+\frac{\Delta z_2}{D_0MNs}\in\{1,2\}.
+\end{equation}
+Their transverse derivatives in $s,t_0$, respectively, equal
+$\tau_\beta(z)\in[1/16,16]$. All other derivatives and boundary
+counts are $x^{o(1)}$; for example
+$|\Delta z_2/(D_0MN)|\ll RH/X\ll L^{B+C+r_*}$.
+The good-state ratio has the transverse derivative
+\eqref{v2:4-4}. The odd-$H$ parity projection depends only on
+$z$. Partition normalized root space into cubes of side
+$x^{-c\delta/8}$. Boundary volume is
+$x^{-c\delta/8+o(1)}$, and the summed interval-uniform root errors
+still save a fixed power after all retained residue and path
+choices. The independent-line moment has density $c_{2H}\le1$.
+The same reasoning with one edge also applies when goodness fails
+at either endpoint. Section~\ref{subsec:positive-tail} proves the
+new model-tail bound; Section~\ref{subsec:retune} checks its separate
+arithmetic discrepancy budget at the retuned parameters.
+
+\paragraph{Signed operators.}
+The relative primitive box now has radius $O(RD_0)$, and its
+physical cutoff is $\ind_{g_\Delta z\in\Omega}$. The shared-prime
+lattice, intrinsic good-state tests, weighted adjoints, signed
+memory and collision-rank restoration are precisely the
+$\mathrm H2'$ operations described above. For a prescribed
+determinant $j_1$, write $z'=j_1w_z+nz$; the ratio strip leaves
+$O(1)$ integers $n$. In the shared-prime lattice the parameter
+is $D\tau_\beta(w_*)/\tau_\beta(z_*)=D\beta_{Q_*}$ modulo one,
+and the same balanced box has sides between $Y^{0.1}$ and
+$Y^{0.9}$ and area comparable with $Y$. The signed clean kernel
+contains no $\Delta$. Physical and parity restrictions are
+endpoint multipliers of norm at most one. In the dirty raw
+equation $\det(z,z')=D(b-a)$, use the intrinsic ratio at its
+source; the dirty comparison congruence is nonzero since all its
+marking primes avoid $H$ and the shared product. The unchanged
+signed-memory identities are used only with the scope of
+$\mathrm H2'$. Appendix~\ref{app:dictionary} records each interface.
+
+\paragraph{Endpoint pairing.}
+The coefficient $f(Db m,s)=\overline{\alpha_m}\beta_s$ gives
+\eqref{eq:pairing-product}. Its norm and supremum satisfy
+\[
+ \|f\|\ll(D_0X)^{1/2}L^{C_6},\qquad \sup|f|\le L^{C_6},
+\]
+where the exponent is fixed independently of $K$.
+The complete band-prime part of $P_1=Dbm$ is exactly $Db$,
+because $m$ is sifted. Thus this coefficient depends on the
+position and not on the ordering of its lists. For both kernels,
+endpoint primitivity follows from $H\mid t$, $0<|t/\Delta|\ll Y$
+and $Y=o(Z)$ by the argument above.
+
+For a slope cell $j$, let $f_j$ be its endpoint vector and $g_j$
+the vector on its boundedly many interacting cells. For positive
+$B_0=\mathcal A\mathcal A^*$, the principal coefficient-space
+Gram matrix on that cell has largest eigenvalue at most its trace
+$d_j$. Cell occupancy gives
+$\langle f_j,B_0^Rf_j\rangle\le CD_0\sup|f|^2d_j$.
+Apply spectral H\"older in the ambient space first, and then
+Cauchy and H\"older over the cells, to obtain
+\begin{equation}\label{eq:cell-pairing}
+ |\langle f,\mathcal A g\rangle|
+ \ll\|g\|\|f\|^{1-1/R}
+       \left(CD_0\sup|f|^2\sum_jd_j\right)^{1/(2R)}.
+\end{equation}
+Only actual unit endpoint roots enter $\sum_jd_j$, so no factor
+for the number of labelled blocks occurs. Root averaging and
+$\mathrm H2'$ give
+$\sum_jd_j\ll D_0XL^{-2RE_0}$. The trace loss is
+$D_0^{1/(2R)}=O(1)$ by Section~\ref{subsec:retune}.
+This gives the pairing scale $D_0X$ with arbitrary fixed saving.
+
+\paragraph{Goodness, padding and common lists.}
+The exceptional ratio measure saves
+$O_K(\exp(-cL^{0.1}))$. The one-edge root count and
+$O(1)$ raw/$O(Y)$ comparison counts give the same error on
+removing either good-state projection. Harmonic padding draws
+are summed over all $d_0$ intervals exactly once; their
+distinctness/avoidance probability differs from one by
+$O_K((J+1)^2\exp(-cL^{0.1}))$.
+
+Here are the absolute estimates required for those operations.
+For fixed $\ell\asymp Y$ coprime to $H$, put
+$k=\Delta+\ell j\asymp X$. Its $j$ interval has length
+$O(X/Y)$, regardless of its center. If $d\mid k$ then
+$(d,\ell)\mid\Delta$, hence $(d,\ell)=1$.
+Deleting a largest factor in the four-factor decomposition that
+majorizes $\tau(k)^2$, the remaining product is at most
+$O(X^{3/4})$. Each such divisor gives
+$O(X/(Yd)+1)$ points. Summing gives
+\begin{equation}\label{eq:affine-divisor-square}
+ \sum_{j:\Delta+\ell j\asymp X}\tau(\Delta+\ell j)^2
+ \ll (X/Y)L^3+X^{3/4}L^2\ll(X/Y)L^3.
+\end{equation}
+Cauchy for each product pair therefore bounds the absolute raw
+form by $XYL^{O(1)}$. Common-list pairs gain the extra factor
+$\sum_{p\in\cup_i\mathcal P_i}p^{-2}\ll\exp(-cL^{0.1})$.
+For the comparison form fix $k_0=mn$ and $\ell_0=rs$. Then
+\begin{equation}\label{eq:affine-comparison}
+ \ell_0\equiv ba^{-1}k_0\pmod H,\qquad
+ |bk_0-a\ell_0|\ll HY.
+\end{equation}
+For either fixed variable the other has $O(1)$ choices, in a
+single residue class in an interval of length $O(H)$.
+Use $2\tau(k_0)\tau(\ell_0)\le\tau(k_0)^2+\tau(\ell_0)^2$,
+sum over the $O(Y^2)$ product pairs, and multiply by arc mass
+$O(L^{3A_0}/Y)$. This gives $XYL^{O(1)}$ and the same additional
+common-list saving.
+
+\begin{proposition}[Affine Type II transport]\label{prop:affine-II}
+Under $\mathrm H2'$, with the parameters of
+Section~\ref{subsec:retune}, the affine square satisfies
+\begin{equation}\label{v2:4-6}
+ |Q_Y-Q_Y^{\rm maj}|\ll_A XYL^{-A}
+\end{equation}
+at every fixed precision, uniformly in the A range and with the
+rough cofactor multiplier of D. Here $Q_Y^{\rm maj}$ is obtained
+from the raw equation in \eqref{v2:3-5} by the signed covering
+kernel \eqref{v2:5-1} and cutoff $\psi_1(t/(\Delta Y))$.
+\end{proposition}
+\begin{proof}
+The preceding root, operator, pairing and absolute estimates
+verify the changed interfaces of LWW Sections~4.2--4.7.
+The retuning below supplies the model-tail and arithmetic-root
+errors with the required fixed precision. The number of product
+and padding dyads is $O_K(L)$. These fixed logarithmic costs are
+absorbed before choosing the bands. The root normalization is
+$D_0X$; the Cauchy cofactor count $(X+H)/Y$ remains a separate
+factor and does not change that normalization.
+\end{proof}
+
+\subsection{Changes in version 2: the positive active-prime remainder}\label{subsec:positive-tail}
+The signed main moment still uses the memory and ghost operators
+in $\mathrm H2'$. The following auxiliary positive estimate is
+used for the model remainder in root averaging.
+\begin{lemma}[Positive active-prime bound]\label{lem:positive}
+Consider the relative-coordinate path expansion of a $2R$-edge root moment, with the same active lists, normalized list permutations, position restrictions and shared-prime restrictions as above. Keep the definition $V_i=\sum_{p\in\mathcal P_i}1/p$ and assume these masses are bounded above and below by fixed positive constants, $2KR\le L^2$, and the absolute geometric kernels admit $O(1)$ raw endpoints and $O(Y)$ comparison endpoints, the latter carrying $O(L^{3A_0}/Y)$. Let $\mathcal A_{\rm act}$ be the sum of absolute geometric path coefficients, including the list normalization, times the independent-line factors for primes that occur in active lists, while all factors for primes that never occur in a list are replaced by one. Then, uniformly in the real root variables and the permitted projections,
+
+
+\begin{equation}\label{v2:9-1}
+\mathcal A_{\rm act}\le L^{C_*R}
+\end{equation}
+
+
+for a fixed $C_*=C_*(K,A_0,\rho)$ and sufficiently large $L$.
+
+\end{lemma}\begin{proof} For a prime $p$ in group $i$, let $A_p\subset\{0,\ldots,2R\}$ be its active time set, and let $\kappa_p$ count its consecutive active runs. Put $q_0=q_{2R}=\sqrt\rho$, $q_j=\rho$ for $0<j<2R$. If $A_p$ is nonempty, its line average vanishes unless all active positions have one common projective line $\ell_p$. In the consistent case its factor is exactly
+
+
+\begin{equation}\label{v2:9-2}
+\frac{V_i^{-\kappa_p}}{p+1}
+\prod_{j\notin A_p}q_j^{1_{[z_j]_p=\ell_p}}.
+\end{equation}
+
+
+Indeed the first occurrence charges one uniform-line probability, and the physical list normalization charges one $1/V_i$ at the beginning of each active run. Shared entries continue a run without a new charge. This is also obtained directly from the local factor (4.37) of LWW before introducing $b'_p$.
+
+Write $a_p=\min A_p$, $c_p=\max A_p$. Dropping the factors at $j<a_p$ and $j>c_p$ increases \eqref{v2:9-2}, because each belongs to $[0,1]$. All remaining inactive positions are internal, so their $q_j$ equals $\rho$. It remains to bound the model with prime factors
+
+
+\begin{equation}\label{v2:9-3}
+\frac{V_i^{-\kappa_p}}{p+1}
+\prod_{\substack{a_p<j<c_p\\j\notin A_p}}
+\rho^{1_{[z_j]_p=\ell_p}}.
+\end{equation}
+
+
+Define $\nu_i^+(p)=1/(V_i(p+1))$ and $\lambda_i^+(p,\ell)=\nu_i^+(p)$. Active lists have product measure $\nu_i^+$; symmetric memory tuples have measure $(\lambda_i^+)^{\otimes k}/k!$. Since $V_i=\sum_{p\in\mathcal P_i}1/p$, one has $\sum_p\nu_i^+(p)\le1$ exactly. Use the active-list leave/discard and recall/fresh operations with \emph{no ghost operators}. A fresh target entry has measure $\nu_i^+$; recalling a memory entry contributes $1/V_i$. At an edge multiply source memory hits and target memory hits by $\vartheta_+^{h_s+h_t}$, with $\vartheta_+=\sqrt\rho$. Use a nonnegative geometric upper kernel consisting of the absolute raw term plus the absolute comparison upper bound. Retain list permutations and all required shared-prime and complete-list restrictions.
+
+First require all initial/fresh prime births to be distinct and the initial and final memory to be empty. A prime appearing in two separated active runs must remain in memory throughout the gap: discarding it would require a second fresh birth, and retaining it after its last run would leave final memory nonempty. Thus its history is forced. Each gap position receives two factors $\sqrt\rho$, one from each incident edge. The first active run costs $\nu_i^+(p)$, and each later run costs $1/V_i$, reproducing \eqref{v2:9-3}. Consistency of active lines is enforced by shared-prime conditions and by the line recorded in a recalled memory entry. There is no contribution from a never-active prime. Multiplicity factorials cancel the orderings of memory coordinates, so this is an identity of positive path sums.
+
+Remove distinctness of births. All weights are nonnegative, so the sum increases. Starting empty, at most $K$ memory coordinates are appended per edge; therefore every canonical path has memory size at most $2KR\le L^2$. Restrict the enlarged space to this cap, which still contains every canonical path.
+
+We now prove a two-sided absolute bound for each positive edge operator. With Schur weight $v_0^{k_1+\cdots+k_K}$, fixed $v_0>1$, an edge changes the exponent by at most $K$. There are at most $L^{2K}$ choices of recalled memory coordinates, and sums of fresh prime measures are at most one per group. The normalized list permutations have row and column sum one. For a fixed determinant, B\'ezout and the bounded $\tau$ ratio give $O(1)$ positions. There are $O(Y)$ comparison determinants, canceling the $1/Y$ comparison factor. Thus the weighted row sum is at most
+
+
+\begin{equation}\label{v2:9-4}
+C_{K,\rho}L^{2K}(1+L^{3A_0}).
+\end{equation}
+
+
+The adjoint coefficients follow from the complete factorial state measure. In one group let $S,I\in\{0,1\}$ indicate appending the departing prime and recalling the arriving prime. In the unordered memory description, each token type has measure $\nu(p)^n/n!$. If the source active prime is $p$ and the target is $q$, cross-edge exclusion gives $p\ne q$. Multiplication by source measure divided by target measure gives:
+
+\begin{center}\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.13\textwidth}>{\raggedright\arraybackslash}p{0.23\textwidth}>{\raggedright\arraybackslash}p{0.23\textwidth}>{\raggedright\arraybackslash}p{0.31\textwidth}@{}}
+\toprule
+$(S,I)$ & Forward coefficient & Adjoint coefficient & Reversed rule\\
+\midrule
+$(0,0)$ & $\nu(q)$ & $\nu(p)$ & $(0,0)$\\
+$(1,0)$ & $\nu(q)$ & $n'_p$ & $(0,1)$\\
+$(0,1)$ & $n_q/V_i$ & $\nu(p)/V_i$ & $(1,0)$\\
+$(1,1)$ & $n_q/V_i$ & $n'_p/V_i$ & $(1,1)$\\
+\bottomrule
+\end{longtable}
+\end{center}
+
+Here $n_q$ and $n'_p$ are the relevant source/target anchored memory multiplicities. Equivalently the adjoint is the reversed rule times $V_i^{S-I}$. Shared active-list measures cancel. This calculation includes repeated token types and active/memory overlaps in the enlarged space. In every reverse creation the memory line is anchored at its position; there is no free factor $p+1$. Taking the product of these identities over groups, and using the reversed $O(1)/O(Y)$ geometric count, proves the same polynomial column bound as \eqref{v2:9-4}, up to a fixed constant. The cap and endpoint projections only decrease absolute sums. Weighted Schur gives the polynomial edge norm.
+
+The vector $b$ at relative position $e_1$, with empty memory and arbitrary admissible active lists, has squared norm at most $\prod_i(\sum_p\nu_i^+(p))^{J+1}\le1$. Its positive matrix element across $2R$ such operators is bounded by the product of their norms, giving \eqref{v2:9-1}. The main signed-memory construction retains its original parameter $\vartheta^2>\sqrt\rho$; that condition concerns ghost operators, which are absent from this auxiliary positive bound. The geometric input was the elementary endpoint count; the arithmetic root average enters only in the later transfer. \end{proof}
+
+\begin{lemma}[Bonferroni model remainder]\label{lem:bonferroni}
+For damping Bonferroni depth $B_d$, the total independent-line main mass of the absolute remainder is at most
+
+
+\begin{equation}\label{v2:9-5}
+L^{C_*R}\frac{(C_KR)^{B_d}}{B_d!}.
+\end{equation}
+
+
+\end{lemma}\begin{proof} Fix a path and its active prime values first. For a never-active prime define
+
+
+\begin{equation}
+d_p(\ell)=1-\prod_{j=0}^{2R}q_j^{1_{[z_j]_p=\ell}}\in[0,1].
+\end{equation}
+
+
+Its mean is at most $(2R+1)/(p+1)$ by $1-\prod(1-u_j)\le\sum u_j$. Distinct inactive primes have independent lines, independently also of active-prime consistency. The mean of the elementary-symmetric Bonferroni error of degree $B_d$ is therefore at most $(C_KR)^{B_d}/B_d!$, uniformly in the path and its active values. Multiply by the exact active factors and absolute geometric coefficients, sum, and apply Lemma~\ref{lem:positive}. This uses independence only after the path and active values have been fixed. It does not assert a relative error for arithmetic roots; their discrepancy is treated separately. \end{proof}
+
+\subsection{Retuned numerical parameters}\label{subsec:retune}
+Fix $0<a<1/2$ and choose
+
+
+\begin{equation}
+\theta=\frac{\max(a,1/10)+1/2}{2},\qquad
+j_*=\frac{1-2\theta}{10},\qquad
+r_*=\theta+2j_*,\qquad b_*=\theta+3j_*.
+\end{equation}
+
+
+Replace the version~1 numerical parameters by
+
+
+\begin{equation}\label{v2:9-6}
+Z=\exp(L^{3/4}),\quad J=\lfloor L^{j_*}\rfloor,\quad
+R=\lceil L^{r_*}/2\rceil,\quad
+B_d=\lceil L^{b_*}\rceil,\qquad
+\max(a,1/10)<a_1<\cdots<a_K<\theta.
+\end{equation}
+
+
+The positive margins are
+
+
+\begin{equation}\label{v2:9-7}
+r_*-j_*-\theta=j_*,\qquad
+b_*-r_*=j_*,\qquad
+1-(r_*+j_*+\theta)=1-(b_*+\theta)=7j_*>0.
+\end{equation}
+
+
+The changes to every affected use of the old numerical exponents are as follows.
+
+\paragraph{1.} \emph{Vaughan and Type I:} $Z=x^{o(1)}$, $Z^{O(\log L)}=x^{o(1)}$, and every marking prime and selected product $a\asymp Y$ is below $Z$ eventually. The Type I small-divisor BV margin remains $19/40-2/5>0$. Finite target-presieve moduli are still $\exp(O(L^a\log L))=x^{o(1)}$. All factorial and Rankin arguments in Section~\ref{sec:typeI} retain only fixed logarithmic losses.
+\paragraph{2.} \emph{Sifted M\"obius:} the smooth-divisor reciprocal tail in Lemma~\ref{input:sifted} becomes $O(L^{3/4}\exp(-c_\delta L^{1/4}))$, still smaller than any fixed logarithmic power. No other part of the small-conductor estimate changes.
+\paragraph{3.} \emph{Paths and root moduli:} $\log(d_0Y)=O_K(L^{j_*+\theta})$; the crude absolute path/list/permutation coefficient count has logarithm $O_K(L^{r_*+j_*+\theta})$. Retained prime moduli have logarithm $O_K(L^{r_*+j_*+\theta}+L^{b_*+\theta})=O_K(L^{1-7j_*})$. Both are subpower. The Appendix A discrepancy and the signed root lemma are valid for any fixed modulus exponent below one, since every extra fixed power of $S$ is absorbed by the coordinate power saving. Boundary derivatives and counts remain $x^{o(1)}$.
+\paragraph{4.} \emph{Root-model tail:} use \eqref{v2:9-5}, not the crude path count, for the model Bonferroni error. Stirling bounds its logarithm by $O(R\log L)-(b_*-r_*+o(1))L^{b_*}\log L$, which is smaller than $-2AR\log L$ for every fixed $A$ eventually. The arithmetic discrepancy uses the crude subpower coefficient count in item 3.
+\paragraph{5.} \emph{Prime measures and signed memory:} $(J+1)R/p_{\min}\to0$, so $b'_p>0$, $s_i^{J+1}=1+o(1)$ and the original finite primewise identities are unchanged. The main signed model's memory cap remains $L^2$. Its truncation error has factor $2^{-L^2+O(R)}$ times $\exp(O_K(L^{1-7j_*}))$, hence remains negligible. The address count is polynomial in $L$, and the collision-rank threshold $\lceil C_0 2R\log L/L^{0.1}\rceil$ is $o(R)$. The high-/low-rank restoration argument therefore keeps the same saving.
+\paragraph{6.} \emph{Signed edge norms:} the clean bound has $L^{\theta-A_0}$ in place of $L^{0.2-A_0}$, so $A_0>G+3$ still suffices. The dirty raw bound becomes $L^{1-j_* K/2}+L^{-A}$; choose fixed $K>2(G+3)/j_*$. Dirty comparison bounds retain exponential minimum-prime savings. The good-state powers of $Y$, the balanced-box powers, and the Vaughan exponent $1/5$ are not changed.
+\paragraph{7.} \emph{Moment to pairing:} the trace factor has logarithm $O_K(L^{j_*+\theta-r_*})=O_K(L^{-j_*})$. Thus it is bounded. There are $O_K(L)$ auxiliary-product dyads as before. Goodness and padding collisions still have exponential savings, because $J$ is only a fixed power of $L$.
+\paragraph{8.} \emph{Major arcs:} the short-prime contour proof works uniformly up to $\exp(O(L^\theta))$. The sparse-frequency count has logarithm $O(L^{0.9}\log L+L^\theta)$ and still satisfies the Gram estimates. In the reflected $\mathrm H1^\star$ interface, $a_K<\theta<1/2$ allows the $\log Y$ term to be absorbed into $L^{1-a_K}\log L$ in Lemma LS. Its Burgess/P\'olya–Vinogradov energy bounds do not depend on $J$ or the marking ceiling. Deleting prime powers with base at most $Z$ costs $O(ZL/V)$ after the long-prime cofactor sum, negligible since $V$ is a fixed positive power of the large variable.
+
+The determinant estimates at \eqref{v2:9-6} hold under $\mathrm H2'$. The model-tail bound in item~4 follows from Lemmas~\ref{lem:positive}--\ref{lem:bonferroni}. The resulting roughness range is subpower.
+
+The strict endpoint $a=1/2$ is not obtained. In this fixed-parameter scheme the trace condition requires $r_*>j_*+\theta$, while the active-prime modulus budget requires $r_*+j_*+\theta<1$. These already imply $2\theta+2j_*<1$. This is an obstruction to the displayed parameter scheme, not a claim about all methods.
 
 \section{Major arcs}\label{sec:major}
 \subsection{Reduction to the averaged energy}\label{subsec:arc-reduction}
@@ -1405,7 +1980,7 @@ Consequently
  |N_\xi(t)|\le4L^{-D}(\log(2N/V)+1)+(4Z+2L)/V
  \le8L^{1-D}+(4Z+2L)/V.
 \]
-Since $V\ge\GN^{1/6}$ and $Z=\exp(L^{0.24})$, the last ratio is
+Since $V\ge\GN^{1/6}$ and $Z=\exp(L^{3/4})$, the last ratio is
 at most $L^{1-D}$ for large $L$. Only endpoint sums with $y\ge V$
 are used, even when $I_{k'}$ is short.
 \end{proof}
@@ -1490,7 +2065,7 @@ Write $B_{\xi_b}(t)^j=\sum_uc_u^{(j)}\xi_b(u)u^{it}$, where
 \begin{equation}\label{eq:B-power}
  c_u^{(j)}=\sum_{\substack{b_1\cdots b_j=u\\b_i\in\Aset}}
       \prod_i c_{b_i},\qquad
- c_b=\frac{\eta(b/Y)e(\lambda_0b/Y)}{Y\prod_iV_i},\qquad
+ c_b=\frac{\eta(b/Y)e(-\lambda_0b/Y)}{Y\prod_iV_i},\qquad
  |c_b|\le C_B/(16Y).
 \end{equation}
 This polynomial is supported on $[Y^j,(16Y)^j]\subset[1,\GN]$.
@@ -1682,24 +2257,45 @@ In all cases the same-character row is $O(X'\log L)$, because
 $X'\ge\GN^{1/5-o(1)}$ absorbs $(2T_0+1)^2\tau(k\GN)$.
 \end{proof}
 
-\begin{inputthm}[Twisted sifted M\"obius sums]\label{input:sifted}
-LWW Proposition~2.2, (2.5), p.~5, states that for fixed
-$\delta,B',C'>0$, $x^\delta\le D_1\le2x$,
-$I\subset[D_1,2D_1]$ and a character of modulus
-$q\le(\log x)^{B'}$, for every fixed $A'>0$,
-\begin{equation}\label{eq:LWW-sifted}
- \sup_{|t|\le x^{C'}}
- \left|\sum_{d\in I}\mu(d)R_Z(d)\chi(d)d^{it}\right|
- \ll_{A',B',C',\delta}D_1(\log x)^{-A'}.
+\begin{lemma}[Twisted sifted M\"obius sums]\label{input:sifted}
+For a primitive character of conductor at most $L^D$, every fixed $C_t,A,\delta>0$ admits
+
+
+\begin{equation}\label{v2:5-11}
+\sup_{|t|\le x^{C_t}}\left|\sum_{m\in I}\mu(m)R_Z(m)\xi^*(m)m^{it}\right|
+\ll M L^{-A},\qquad I\subset[M,2M],\quad M\ge x^\delta.
 \end{equation}
-For a bounded-variation weight $w$, (2.11), p.~6, multiplies this
-bound by $\|w\|_\infty+\operatorname{Var}_I(w)$.
-Fixed logarithmic powers in these norms are absorbed by a larger
-fixed precision.
-\end{inputthm}
+
+
+\end{lemma}\begin{proof}First use \cite[Lemma~3.9(ii)]{MSTT} at any dyadic scale $D_0\ge x^{\delta/2}$ with auxiliary variable $X_*=D_0^{R_*}$, fixed $R_*>2(C_t+1)/\delta$, and exponent $1/R_*$. Its freely chosen logarithmic precision covers both $L^D$ and the desired saving, uniformly over these scales. To obtain arbitrary subintervals, decompose a prefix ending at any $u\in[M,2M]$ into dyads down to scale $M L^{-E}$, for a large fixed $E$. The sum of their square-root lengths is $O(\sqrt M)$, while the remaining initial segment contributes at most $O(\sqrt M L^{-E/2})$ to the weighted sum with coefficient $m^{-1/2}$. All retained scales exceed $x^{\delta/2}$ for sufficiently large $x$. Thus weighted prefix sums, and hence their differences on every subinterval of $[M,2M]$, are $O(\sqrt M L^{-A})$ after selecting the precision and $E$. Partial summation against the \emph{real} factor $m^{1/2}$ now gives $O(ML^{-A})$ for the untapered interval sum; the phase is not differentiated. This derives the interval estimate from the full-dyad consequence of the cited lemma.
+
+Choose the fixed rescaling exponent once large enough for the
+same argument with $\delta/2$ as well as $\delta$; for example
+$R_*>8(C_t+1)/\delta$ suffices for the frequency requirement.
+After the convolution below, all retained prefix dyads then
+have length at least $x^{\delta/4}$ for sufficiently large $x$.
+The identity
+
+
+\begin{equation}
+\mu(m)R_Z(m)=\sum_{\substack{d\mid m\\P^+(d)\le Z}}\mu(m/d)
+\end{equation}
+
+
+is checked prime by prime. For $d\le M^{1/2}$ apply the preceding untapered estimate at scale $M/d\ge x^{\delta/2}$; summing $1/d$ over $Z$-smooth $d$ costs $O(\log Z)$. For $d>M^{1/2}$, Rankin with exponent $1/\log Z$ bounds its reciprocal mass by $O(\log Z\exp(-c_\delta L^{1/4}))$. This proves \eqref{v2:5-11}. If the coefficient also has the unit restriction $(m,h)=1$, remove it at cost $O(M\omega_{\rm all}(h)/Z)$, uniformly in the phase, since any excluded sifted factor exceeds $Z$. Consequently \eqref{v2:5-11} still holds. Fixed Mellin phases and smooth weights of logarithmic variation are absorbed by increasing the fixed precision.
+
+\end{proof}
+\begin{remark}[The published interval estimate]
+Lemma~3.9(ii) of \cite[p.~46]{MSTT} is stated with a supremum
+over subintervals of its dyadic range. The proof above uses its
+full-dyad consequence and recovers the interval estimate by prefix
+decomposition and partial summation against a real weight.
+For a bounded-variation weight the estimate is multiplied by its
+supremum plus variation.
+\end{remark}
 
 \subsection{The energy theorem}\label{subsec:A}
-\begin{theorem}[Theorem A]\label{thm:A}
+\begin{theorem}[Reflected energy estimate]\label{thm:energy}
 Fix $A$ and $A_1\ge1$, and put
 \begin{equation}\label{eq:A-constants}
  \begin{aligned}
@@ -1728,9 +2324,9 @@ On the coefficient support,
 Removing the unit indicator changes this by at most
 \[
  \sum_{\substack{p\mid\GN\\p>Z}}\frac{2M/p}{M}
- \le2\omega_{\rm all}(\GN)/Z\le2Le^{-L^{0.24}}.
+ \le2\omega_{\rm all}(\GN)/Z\le2Le^{-L^{3/4}}.
 \]
-Apply LWW Proposition~2.2, (2.5), p.~5, and (2.11), p.~6, to the
+Apply Lemma~\ref{input:sifted} and its bounded-variation extension to the
 sum without the indicator: the modulus is at most $L^{A_1}$,
 $M\ge x^\delta$ and $|t+v|\le x$ for large $x$.
 For every fixed $A'$ this gives
@@ -1800,12 +2396,221 @@ same required margin. Sum the two families and divide by $\ph(\GN)$:
  \ll L^{-A-1}/\GN+L^{-A-1}/\ph(\GN)\ll L^{-A}/\GN.
 \]
 \end{proof}
-The inputs to Theorem~\ref{thm:A} are the ordinary mean value theorem,
+The inputs to Theorem~\ref{thm:energy} are the ordinary mean value theorem,
 P\'olya--Vinogradov, Burgess at $r=2$, partial fractions and zero
-counting, Perron, and LWW Proposition~2.2. The half-plane
+counting, Perron, and Lemma~\ref{input:sifted}. The half-plane
 \eqref{eq:H1} enters only by supplying \eqref{eq:Hstar}.
 For one fixed region the theorem supplies its selected fixed
 precision $A$; it does not assert all precisions from one fixed width.
+
+\subsection{Changes for general \texorpdfstring{$h$}{h}: the hybrid analytic interface}\label{subsec:hybrid}
+In this subsection $L=\log x$, $X=MN\asymp y$, $y\ge x/L^B$,
+$\Delta=-\varepsilon h$ and $H=|h|$. Normalize $B,M,N$ as in
+\eqref{eq:polynomials}, replacing the unit modulus $\GN$ by $H$.
+The same fibre expansion used in
+Section~\ref{subsec:arc-reduction} applies to the units modulo
+$kH$ over those modulo $H$: the kernel of reduction has size at
+most $k$, for either sign of $\Delta$. On the arc
+$\phi=c/k+\lambda_0/Y$, expand
+$e(\operatorname{sgn}(\Delta)cu/(kH))$ on each fibre.
+Its Fourier coefficients have modulus at most one, and each
+character of the fibre group extends to the full unit group.
+The same representative at both endpoints and Cauchy as in
+\eqref{eq:fibre-cauchy} remove the fibre-dependent coefficients
+before orthogonality modulo $H$. Together with the $a,b$
+phases modulo $k$, a bound $k^8$ for all character losses
+suffices and is independent of $H$.
+The characters occur in the two locations
+\begin{equation}\label{v2:5-3}
+ \xi=\chi\psi\text{ on }m,n,\qquad
+ \xi_b=\chi\psi\psi'_b\text{ on }b,\qquad
+ \chi\pmod H,\quad\psi'_b\pmod k.
+\end{equation}
+Choose $A_1>A_0$. If $\cond(\xi)>L^{A_1}$, then
+$\xi_b$ is nonprincipal; otherwise $\xi$ would be induced from
+modulus $k$. For each fixed extension $\psi$, at most
+$L^{2A_1+1}$ characters $\chi$ lie in the complementary range,
+since the primitive inducing character determines $\chi$.
+
+\subsubsection{Uniform Mellin scale}
+Let $\mathcal T=\max(1,X/H)$, $w=u/(YX)$, $w'=u'/(YX)$, so $w,w'$ belong to a fixed compact subset of $(0,\infty)$. The smooth factor is
+
+
+\begin{equation}
+\psi_1((X/\Delta)(w-w'))e(\lambda_0(X/\Delta)(w-w')).
+\end{equation}
+
+
+With $z_0=\log w'$ and $\zeta=\mathcal T\log(w/w')$, insert fixed cutoffs in $w,w'$ equal to one on their ranges and call the resulting function $K_{\lambda_0}(z_0,\zeta)$. If $H\le X$, the compact support of $\psi_1$ makes $\zeta$ lie in a fixed interval. If $H>X$, $\mathcal T=1$ and the two fixed cutoffs give that conclusion. All mixed derivatives have bounds by fixed powers of $L^{A_0}$, uniformly in $H$: in the former case $(X/H)/\mathcal T=1$, while in the latter $X/H\le1$.
+
+Its Fourier transform satisfies, for every fixed integer $j$,
+
+
+\begin{equation}\label{v2:5-4}
+|\widehat K_{\lambda_0}(v,s)|\ll_j
+(1+|v|/L^{B_0})^{-j}(1+|s|/L^{B_0})^{-j},
+\end{equation}
+
+
+with fixed $B_0$. Fourier inversion with $t=\mathcal T v$ yields an \emph{exact factor $1/\mathcal T$} and factors $w^{it}(w')^{i(s-t)}$. Including normalized endpoint polynomials and arc measure $d\phi=d\lambda_0/Y$ gives
+
+
+\begin{equation}\label{v2:5-5}
+\frac{YX^2}{\mathcal T}\cdot
+\frac1{\varphi(H)}\sum_\chi
+\iint\widehat K_{\lambda_0}(t/\mathcal T,s)
+Q_\chi(t)Q'_\chi(s-t)\,dt\,ds.
+\end{equation}
+
+
+Here $Q=BMN$, with $M^{-1},N^{-1},Y^{-1}$ normalizations as in the reflected proof; the $b$-phase is $e(-\lambda_0b/Y)$ and the primed $a$-phase is its inverse. The precise sign has no effect on the estimates below. Frequency cutoffs can be chosen as
+
+
+\begin{equation}\label{v2:5-6}
+|s|\le L^{B_1},\qquad |t|\le\mathcal T L^{B_1},\qquad B_1=B_0+2,
+\end{equation}
+
+
+independently of the requested saving. Higher integration-by-parts order, not a growing $B_1$, supplies arbitrary fixed precision in the tails.
+
+\subsubsection{Hybrid mean value}
+For arbitrary bounded coefficient polynomials of lengths $M,N$, their product has coefficients $c_u$ on $u\asymp X$ with
+
+
+\begin{equation}
+\sum_u|c_u|^2\ll L^{C_2}/X.
+\end{equation}
+
+
+For a fixed character extension $\psi$ and any real interval $I$ of length $T\ge1$,
+
+
+\begin{equation}\label{v2:5-7}
+\frac1{\varphi(H)}\sum_{\chi\bmod H}
+\int_I\left|\sum_u c_u\psi(u)\chi(u)u^{it}\right|^2dt
+\ll (T+X/H)\sum_u|c_u|^2.
+\end{equation}
+
+
+Orthogonality leaves a sum of time integrals over residue classes modulo $H$. Distinct integers in one class, inside a fixed multiple of $X$, have logarithms spaced at least $cH/X$. Montgomery–Vaughan's Hilbert-inequality form of the mean value bounds each class by $(T+O(X/H))$ times its coefficient square sum. If a class has only one term its integral is exactly $T$ times that square. Summing proves \eqref{v2:5-7}. Translation of $I$ multiplies coefficients by phases and changes none of the estimates.
+
+At $T\asymp\mathcal T L^{B_1}$, \eqref{v2:2-1} and $\mathcal T=\max(1,X/H)$ imply the bound $L^{C_3}/H$. This is also a uniform bound for polynomially weighted tails after multiplication by \eqref{v2:5-4}. Dyadic decomposition of $t$ and then $s$, using \eqref{v2:5-7} and Cauchy on the primed and unprimed sides, shows that the part outside \eqref{v2:5-6} contributes at most $L^{-A}/H$ for any fixed $A$, by taking $j$ large. The possible factor $H/X\ll L^{B+C}$ is included in the fixed precision budget. The trivial bound $|B|\ll_{K,\rho}1$ is enough for this tail argument.
+
+\subsubsection{Short-prime cancellation under \texorpdfstring{$\mathrm H1$}{H1}}\label{subsec:short-prime}
+Suppose $\xi$ is nonprincipal modulo $q\le x^{C_q}$, and $|t|\le x^{C_t}$ for fixed $C_q,C_t$. Under $\mathrm H1$, uniformly for $P\ge\exp(cL^{a_1})$ and $P\le\exp(CL^\theta)$,
+
+
+\begin{equation}\label{v2:5-8}
+\sum_{P<p\le P'}\frac{\xi(p)p^{it}}p\ll P^{-1/16}L^{C_4},\qquad P\le P'\le2P.
+\end{equation}
+
+
+To prove this, pass first to the primitive inducing character. On $\sigma=15/16$ the partial-fraction formula for $L'/L$ and the zero count in a unit-height interval give $|L'/L(\sigma+iu)|\ll\log(q(|u|+3))$: every nontrivial zero is at horizontal distance at least $1/16$, and there is no pole for a nonprincipal character. The same bound holds on the contour between $15/16$ and $1+1/\log P$. Apply truncated Perron to $-L'/L(s-it,\xi)$ at height $x^{C_t+C_q+20}$ and move to $15/16$. Taking half-integer endpoints, then restoring an endpoint term if necessary, bounds the truncation error by $O(PL^{O(1)}x^{-C_t-C_q-20}+L^{O(1)})$. The vertical integral is $O(P^{15/16}L^{O(1)})$, and the horizontal integrals are negligible. This proves the twisted von Mangoldt endpoint bound. Prime powers contribute $O(P^{1/2}L^{O(1)})$. Partial summation with the real weight $1/(u\log u)$ gives \eqref{v2:5-8}; the phase $u^{it}$ is part of the sum and is never differentiated. Imprimitive Euler factors and puncturing at $p\mid h$ cost $O(L/P)$ on these bands, absorbed by the bound.
+
+To estimate $B_{\xi_b}$, put $g(y)=y\eta(y)e(-\lambda_0y)$ and use its Mellin transform. Isolating one prime from the first band gives
+
+
+\begin{equation}\label{v2:5-9}
+B_{\xi_b}(t)=\frac1{V_1}\int_{\mathbb R}\widehat g(v)Y^{-iv}
+ \left(\sum_{p\in\mathcal P_1}\frac{\xi_b(p)p^{i(t+v)}}p\right)
+ \prod_{i=2}^K\left(\frac1{V_i}\sum_{p\in\mathcal P_i}\frac{\xi_b(p)p^{i(t+v)}}p\right)dv.
+\end{equation}
+
+
+The product is at most one in modulus, including the empty product when $K=1$. The transform has $L^1$ norm at most a fixed logarithmic power. Truncate $|v|\le x^2$ using three or more integrations by parts; its tail is $O(x^{-1})$ times a fixed logarithmic factor. On \eqref{v2:5-6}, $|t+v|\le x^3$ for large $x$. Decompose $\mathcal P_1$ into ordinary dyadic intervals and apply \eqref{v2:5-8}. Thus for each fixed $D$,
+
+
+\begin{equation}\label{v2:5-10}
+\sup_{|t|\le2\mathcal T L^{B_1}}|B_{\xi_b}(t)|\ll_D L^{-D}
+\end{equation}
+
+
+whenever $\xi_b$ is nonprincipal. Combining \eqref{v2:5-10} with \eqref{v2:5-7} proves the large-conductor contribution $\ll_A L^{-A}/H$.
+
+\subsubsection{Small conductors and sparse-frequency energy}\label{subsec:sparse}
+Let $\mathcal P\subset[P,2P)$ with $cL^{0.1}\le\log P\le CL^\theta$, and
+
+
+\begin{equation}
+P_s(t)=P^{-1}\sum_{p\in\mathcal P}v_p\xi_b(p)p^{i(t+v)},\quad |v_p|\le1,
+\end{equation}
+
+
+where $v$ is any real number. For fixed $A_s,B_1$, let $\mathcal I$ be the unit intervals with integer endpoints meeting $|t|\le2XL^{B_1}$ and $|P_s(t)|>L^{-A_s}$. Then
+
+
+\begin{equation}\label{v2:5-12}
+|\mathcal I|\le\exp(O(L^{0.9}\log L)),\qquad
+\sum_{I\in\mathcal I}\sup_{t\in I}|N_\xi(t)|^2\ll L^{C_5}.
+\end{equation}
+
+
+For the first assertion take $T_0=4XL^{B_1}$ and $j=\lfloor\log T_0/\log(2P)\rfloor$. Unique factorization gives coefficient-square mass of $P_s^j$ at most $j!(2/P)^j$, and its length is at most $T_0$. Choose a large-value point in each interval and divide the intervals into three classes modulo 3, making the points separated. On disjoint unit neighborhoods the inequality
+
+
+\begin{equation}
+|F(t_r)|^2\ll\int_{t_r-1/2}^{t_r+1/2}(|F(u)|^2+|F(u)F'(u)|)du
+\end{equation}
+
+
+follows by integrating the derivative of $|F|^2$. Apply the ordinary Dirichlet-polynomial mean value to $F=P_s^j$ and $F'$, whose coefficients acquire factors $\log n\ll L$. It follows that
+
+
+\begin{equation}
+|\mathcal I|\ll T_0L^{O(1)}L^{2A_sj}j!(2/P)^j.
+\end{equation}
+
+
+Here $j\ll L^{0.9}$ and $\log T_0-j\log P\ll\log P+j$, so the logarithm of this bound is $O(L^{0.9}\log L)$. The growing-order factorial has been retained.
+
+For the second assertion choose a maximizing point for $|N_\xi|$ in each closed interval and again separate by three classes. The unweighted evaluation Gram entries are $\sum_{N<n\le2N}n^{i(t_r-t_s)}$. Put $T_*=\exp(L/(\log L)^2)$. For $1\le|u|\le T_*$, Euler summation and one integration by parts give the normalized bound $O(1/|u|+x^{-c_\delta})$; the discretization error is $O((1+|u|)/N)$. For $T_*<|u|\le x^{C_0}$, the second-derivative estimate when $|u|\le N$ gives $O(\sqrt{|u|}/N+|u|^{-1/2})$. When $|u|\ge N$, choose a fixed integer $k>C_0/\delta$ and the classical exponent pair
+
+
+\begin{equation}
+\kappa_k=(2^{k+2}-2)^{-1},\qquad\lambda_k=1-(k+1)\kappa_k.
+\end{equation}
+
+
+It bounds the normalized logarithmic-phase sum by $O(N^{-(k+2-C_0/\delta)\kappa_k}+N^{-1})$. Thus in the high range the normalized Gram entry is $O(\exp(-cL/(\log L)^2))$. The number of intervals in \eqref{v2:5-12} times either of the two error terms tends to zero. Separation gives row sum of $1/|t_r-t_s|$ at most $O(\log(2+|\mathcal I|))=O(L)$. The Gram row sums are therefore $O(NL)$. The Hermitian Schur bound and $\sum_n|\beta_n\xi(n)/N|^2\ll L^{O(1)}/N$ prove the second assertion of \eqref{v2:5-12}, with no dependence on the character conductor or the shift $v$.
+
+For each small-conductor $\xi$, split the integral of $|P_sMN|^2$ into $|P_s|\le L^{-A_s}$ and its complement. The first part is $\ll L^{-2A_s+C_6}$ by the ordinary mean value of $MN$ over length $O(XL^{B_1})$. On the second part use \eqref{v2:5-11} for $M$ and the second assertion of \eqref{v2:5-12} for $N$, giving $\ll L^{-2A'+C_5}$. Choosing fixed $A_s,A'$ sufficiently large gives every fixed saving. Minkowski applied to \eqref{v2:5-9} and the ordinary dyadic prime decomposition then gives
+
+
+\begin{equation}\label{v2:5-13}
+\int_{|t|\le2XL^{B_1}}|B_{\xi_b}(t)M_\xi(t)N_\xi(t)|^2dt\ll_A L^{-A}.
+\end{equation}
+
+
+The argument is uniform in the bounded $b$-character and in the Mellin shift in \eqref{v2:5-9}. In \eqref{v2:5-11}, the extra frequency is the original $t$ plus the Vaughan Mellin twist, not that prime-polynomial shift. Summing \eqref{v2:5-13} over at most $L^{2A_1+1}$ small-conductor characters and dividing by $\varphi(H)$ yields $\ll_A L^{-A}/H$, since $H/\varphi(H)\ll\log\log(3H)\ll\log L$ with a harmless constant in the bounded-$H$ cases.
+
+\begin{proposition}[General affine major arcs]\label{prop:hybrid-major}
+Under $\mathrm H1$, with the preceding fixed choices, the
+affine comparison square has bound
+$|Q_Y^{\rm maj}|\ll_A XYL^{-A}$ at every fixed precision.
+\end{proposition}
+\begin{proof}
+Combining both conductor ranges gives
+
+
+\begin{equation}\label{v2:5-14}
+\frac1{\varphi(H)}\sum_{\chi\bmod H}\int_{|t|\le2\mathcal T L^{B_1}}
+ |B_{\chi\psi\psi'_b}(t)M_{\chi\psi}(t)N_{\chi\psi}(t)|^2dt
+\ll_A L^{-A}/H.
+\end{equation}
+
+
+The primed endpoint, coefficient conjugations, translated intervals, and reversed signs of the frequency twists satisfy the same estimates. Cauchy in $t,\chi$, then the $s$ integration and the bounded-denominator character/arc sums in Section~\ref{subsec:arc-reduction}, cost only fixed logarithmic powers. Equations \eqref{v2:5-5} and \eqref{v2:5-14} give
+
+
+\begin{equation}\label{v2:5-15}
+|Q_Y^{\rm maj}|\ll_D\frac{YX^2}{\mathcal T H}L^{-D}
+\le XYL^{-D},
+\end{equation}
+
+
+because $\mathcal T H=\max(X,H)$. The tail estimate in Section~\ref{subsec:hybrid} supplies the same precision. This is the signed comparison form defined in Proposition~\ref{prop:affine-II}, so the bound follows under $\mathrm H1$. The principal and low-conductor contribution is controlled by \eqref{v2:5-13}.
+
+\end{proof}
 
 \subsection{The small-radical input}\label{subsec:radical}
 \begin{inputthm}[Iwaniec, 1974, Theorem 2]\label{input:I}
@@ -1864,14 +2669,156 @@ radical up to $L^{A_0}$ even when $\GN=2^m$; a prime-power region
 alone does not cover these conductors.
 
 \begin{corollary}[The analytic alternatives]\label{cor:alternatives}
-Theorem~\ref{thm:A} supplies \eqref{eq:alpha-star} from the selected
+Theorem~\ref{thm:energy} supplies \eqref{eq:alpha-star} from the selected
 $\mathrm H1^\star$, and therefore from $\mathrm H1$ for every even
 $\GN$. In the class $\rad(\GN)\le L^C$ it follows from
 Corollary~\ref{cor:small-radical}. For $0<|h|\le L^C$, all
 characters have conductor at most $L^{A_0+C}$, but the scale-$1$
-Mellin reduction does not apply; Section~\ref{subsec:small-major}
-uses LWW Section~5 instead.
+Mellin reduction is replaced in Section~\ref{subsec:small-major}
+by the reconstructed hybrid small-conductor proof.
 \end{corollary}
+
+\subsection{Changes in version 2: radical criteria}\label{subsec:radical-v2}
+For use on the larger radical classes, the elementary real-conductor
+bound in Lemma~\ref{lem:Q} can be seen directly. At an odd
+$p^e$, the units congruent to one modulo $p$ have odd order, so
+a real character is trivial on them and factors modulo $p$.
+At powers of two, units congruent to one modulo eight are squares;
+the real conductor has 2-part at most eight. Thus
+$q^*\le8\rad(q^*)\le8\rad(k\GN)$.
+
+In the remainder of this subsection write $N$ for the even integer
+$\GN$ (rather than a Vaughan polynomial length) and $L=\log N$.
+\paragraph{The $\mathrm{LS}(c)$ criterion.}
+Assume $\mathrm{LS}(c)$ as in Theorem~\ref{thm:F}. Fix the desired $\mathrm H1^\star$ width and height constants and the arc-denominator exponent $A_0$, and fix a nonnegative envelope $\eta(L)\to0$. Uniformly for even $N$ with $L=\log N$ and
+
+
+\begin{equation}\label{v2:12-1}
+\log\operatorname{rad}(N)\le\eta(L)\frac{L}{\log L},
+\end{equation}
+
+
+LS(c) and Iwaniec's 1974 Theorem 2 imply the selected $\mathrm H1^\star$, once $N$ exceeds a threshold depending on the envelope and fixed parameters.
+
+\begin{proof} For a primitive conductor $q^*\mid kN$, $k\le L^{A_0}$,
+
+
+\begin{equation}
+\log\operatorname{rad}(q^*)\le\log\operatorname{rad}(N)+A_0\log L
+=o(L/\log L)
+\end{equation}
+
+
+uniformly in the class. At the fixed height $|t|\le L^{C_2}$,
+$\ell=\log(q^*(|t|+3))\le2L$ for sufficiently large $L$. The inverse of Iwaniec's width is
+
+
+\begin{equation}
+4\cdot10^4\{\log\operatorname{rad}(q^*)+(\ell\log(2\ell))^{3/4}\}
+=o(L/\log L).
+\end{equation}
+
+
+Thus the Iwaniec region strictly contains the desired closed strip of width $C_1\log L/L$. Its only possible exception is a real simple zero of a real character. For a primitive real character, Lemma~\ref{lem:Q} gives
+
+
+\begin{equation}
+\log q^*\le\log8+\log\operatorname{rad}(q^*)=o(L/\log L).
+\end{equation}
+
+
+LS(c) therefore puts its real zero strictly farther from one than $C_1\log L/L$, uniformly. For $\mathrm H1^\star$ only conductors above the fixed threshold $L^{A_1}$ need this argument; they eventually exceed $q_0$. This removes the exception and proves the closed zero-free strip. \end{proof}
+
+An explicit envelope is $\eta(L)=1/\log L$, giving
+
+
+\begin{equation}\label{v2:12-2}
+\operatorname{rad}(N)\le\exp\left(\frac{\log N}{(\log\log N)^2}\right).
+\end{equation}
+
+
+For every fixed $a_0<1$, the class $\operatorname{rad}(N)\le\exp((\log N)^{a_0})$ is another example. These classes can include $N=2^m r_m$ with odd primes $r_m\le\exp(m^\delta)$, fixed $\delta<1$, whose radicals need not be bounded by a fixed power of $\log N$.
+
+For a fixed requested width $C_1$, a stronger explicit boundary is also permitted: let
+
+
+\begin{equation}
+\kappa=\frac{\min(c,1/(4\cdot10^4))}{8C_1}.
+\end{equation}
+
+
+If $\log\operatorname{rad}(N)\le\kappa L/\log L$, then for large $L$ the extra $A_0\log L$ and the $3/4$ term can each be bounded by a fixed fraction of $\kappa L/\log L$. Both the Iwaniec width and the real-zero gap exceed the requested width by a fixed strict margin. The exact threshold may depend on $\kappa,A_0,C_1,C_2$. This assertion provides one fixed selected precision; it does not supply arbitrary growing precision from one fixed $\kappa$.
+
+\paragraph{The Landau--Page criterion.}
+We use the classical theorem in the form recalled in
+\cite[Lemma~7.1]{FGKMT}: for an absolute $c_{\rm LP}>0$,
+among primitive conductors at most $Q$ at most one character
+has a real zero $\beta>1-c_{\rm LP}/\log Q$; such a character
+is real. This is the only part of that paper used here.
+Fix $A_0,A_1,C_1,C_2>0$, the parameters of the selected $\mathrm H1^\star$ interface, and choose
+
+
+\begin{equation}
+0<\kappa\le\frac{\min(c_{\rm LP},1/(4\cdot10^4))}{32C_1}.
+\end{equation}
+
+
+For a dyadic scale $X$, put $\ell=\log X$ and
+
+
+\begin{equation}
+R_X=\exp(\kappa\ell/\log\ell),\qquad Q_X=8(2\ell)^{A_0}R_X.
+\end{equation}
+
+
+Let $q_X$ be the conductor of the possible Landau--Page character at $Q_X$, leaving $q_X$ undefined if there is no such character. For every sufficiently large $X$, the selected $\mathrm H1^\star$ holds uniformly for even $X\le N\le2X$ with $\operatorname{rad}(N)\le R_X$, provided either the exceptional character does not exist, or $q_X\le\ell^{A_1}$, or
+
+
+\begin{equation}\label{v2:12-3}
+\frac{q_X}{\gcd(q_X,N)}>(\log N)^{A_0}.
+\end{equation}
+
+
+\begin{proof} Write $L_N=\log N$, so $\ell\le L_N\le2\ell$ for large $X$. For $q^*\mid kN$, $k\le L_N^{A_0}$, one has
+
+
+\begin{equation}
+\log\operatorname{rad}(q^*)\le\kappa\ell/\log\ell+A_0\log(2\ell).
+\end{equation}
+
+
+At $|t|\le L_N^{C_2}$, the logarithm in Iwaniec's theorem is at most $2\ell$ eventually. Since $(2\ell\log(4\ell))^{3/4}=o(\ell/\log\ell)$, the denominator of Iwaniec's width is at most $8\cdot10^4\kappa\ell/\log\ell$ eventually. The resulting width is at least $16C_1\log\ell/\ell$, strictly greater than the requested $C_1\log L_N/L_N$. Thus only a real zero of a primitive real character can remain in the requested closed strip.
+
+Such a character has $q^*\le8\operatorname{rad}(kN)\le Q_X$. Also $\log Q_X\le2\kappa\ell/\log\ell$ eventually. Every character other than the possible Landau--Page character therefore has real-zero distance at least
+
+
+\begin{equation}
+\frac{c_{\rm LP}}{\log Q_X}\ge16C_1\frac{\log\ell}{\ell},
+\end{equation}
+
+
+again a strict margin. If the exceptional character does not exist there is nothing to remove. If $q_X\le\ell^{A_1}$, its conductor is at most $L_N^{A_1}$, so it is outside the conductor range required by $\mathrm H1^\star$. In the remaining case, for positive integers $q,N$,
+
+
+\begin{equation}
+q\mid kN\quad\Longleftrightarrow\quad q/\gcd(q,N)\mid k.
+\end{equation}
+
+
+This follows prime by prime by comparing valuations. Consequently there is a positive integer $k\le L_N^{A_0}$ with $q_X\mid kN$ if and only if $q_X/\gcd(q_X,N)\le L_N^{A_0}$. Condition \eqref{v2:12-3} excludes precisely this possibility. Every required conductor is now covered, proving $\mathrm H1^\star$. All margins are uniform on the stated dyadic class. \end{proof}
+
+\emph{Reflected consequence on $\mathrm H2'$.} The A and D conclusions and their functional rate follow on this dyadic class from Section~\ref{sec:small}, with Iwaniec, Landau--Page, Burgess and the other named classical inputs. Neither $\mathrm H1$ nor LS(c) is required here. This is an explicitly specified exceptional-conductor avoidance class, not an exception-free numerical list: the identity of $q_X$ may be unknown. The scale and the fixed width must be selected before $\kappa$. 
+
+For reflected sign consequences the requested $C_1,C_2$ are the
+fixed energy precision required by Theorem~\ref{thm:energy} and
+Section~\ref{sec:assembly}; $\kappa$ is chosen afterwards.
+This proves both analytic criteria of Theorem~\ref{thm:F}.
+The LS criterion supplies every fixed requested precision for
+each prescribed envelope; its threshold may depend on that
+envelope. At conductor comparable with $N$, a gap $c/\log q$
+alone does not give a width $C_1\log\log N/\log N$ or control
+complex zeros. The reflected consequences are on the displayed
+classes only.
 
 \subsection{The classical-region obstruction}\label{subsec:obstruction}
 \begin{remark}[A separate contour estimate]\label{rem:other-contour}
@@ -1942,137 +2889,363 @@ It identifies why the present uniform argument uses
 \eqref{eq:Hstar}. In the small-radical class all the real
 conductors dividing $k\GN$ are small by Lemma~\ref{lem:Q}.
 
+\begin{remark}[Changes in version 2: the scope of EC]
+The split-prime assumptions in Proposition~\ref{prop:EC} remain
+separate from a zero assumption. Under $\mathrm H1$, the Perron
+argument at $15/16$ in Section~\ref{subsec:short-prime}, applied
+up to $\GN$, gives
+$\sum_{p<\GN}\chi(p)=O(\GN^{15/16}(\log\GN)^{O(1)})$
+uniformly for primitive nonprincipal conductors at most $\GN$.
+For a real such character, half the primes are therefore split,
+up to $o(\pi(\GN))$; this already excludes EC's bound
+$\pi(\GN)/20$. A sufficiently strong selected
+$\mathrm H1^\star$ gives the corresponding conclusion through
+Lemma~\ref{lem:P}, with small conductors treated by
+Siegel--Walfisz. The weaker-input statements apply only on their
+specified classes. The LS criterion supplies the required wider
+strip on its prescribed radical envelope; the avoidance criterion
+excludes $q_X\mid\GN$ by \eqref{eq:F-avoid}.
+For D at $z=2$, $V_\GN(2)=1$ and $U_\GN(2)=A_\GN$,
+apart from the possible prime $2$ in passing to full roughness.
+\end{remark}
+
 \section{Type I and the common divisor}\label{sec:typeI}
-\begin{proposition}[Type I for the Goldbach shift]\label{prop:I}
-For the bounded function in Proposition~\ref{prop:vaughan},
-LWW Proposition~3.1 with the following changes gives
-$T_1(F),T_2(F)\ll_A xL^{-A}$, uniformly in the range
-\eqref{eq:ranges}.
+\subsection{Finite presieving of the target}\label{subsec:presieve}
+\begin{remark}[Changes in version 2: Type I]
+This section replaces the version~1 reflected Type~I proof by a
+proof for both orientations. Its common-divisor extraction is the
+same; the finite presieve and the endpoint/Rankin bounds below
+also cover the rough target. The retained exponents $2/5$ and
+$1/20$ refer to the large variable, not to the marking-band ceiling.
+\end{remark}
+Assume $h$ is even and $2\le z\le\exp(L^a)$, $a<1/2$. Let $\mathcal Q=\{r\in\mathbb P:r\le z,r\nmid h\}$; it consists of odd primes. For an integer $R_z\ge0$ put
+
+
+\begin{equation}
+S_{R_z}(n)=\sum_{\substack{e\mid n,\ e\mid P_h(z)\\\omega_{\rm all}(e)\le R_z}}\mu(e),\qquad
+E_{R_z}(n)=\sum_{\substack{e\mid n,\ e\mid P_h(z)\\\omega_{\rm all}(e)=R_z+1}}1.
+\end{equation}
+
+
+The binomial identity $\sum_{j=0}^R(-1)^j\binom{u}{j}=(-1)^R\binom{u-1}{R}$ for $u>0$ gives
+
+
+\begin{equation}\label{v2:6-1}
+|\mathcal R_{z,h}(n)-S_{R_z}(n)|\le E_{R_z}(n).
+\end{equation}
+
+
+For $u\le R$ the error is zero; for $u>R$, $\binom{u-1}{R}\le\binom{u}{R+1}$. This proves the pointwise inequality, including $u=0$. The same bound works in the independent divisor model with local probabilities $1/(r-1)$, because $h$ is coprime to every sieve prime. In particular
+
+
+\begin{equation}\label{v2:6-2}
+\sum_{\substack{e\mid P_h(z)\\\omega_{\rm all}(e)=R_z+1}}\frac1{\varphi(e)}
+\le \frac{(\sum_{r\in\mathcal Q}1/(r-1))^{R_z+1}}{(R_z+1)!}.
+\end{equation}
+
+
+The numerator's base is at most $a\log L+O(1)$. Given a fixed desired precision $A$, choose a sufficiently large fixed $C_z$ and $R_z=\lceil C_z\log L\rceil$. Stirling's elementary lower bound $R!\ge(R/e)^R$ makes \eqref{v2:6-2} $O_A(L^{-A})$. Every retained $e$ obeys
+
+
+\begin{equation}\label{v2:6-3}
+e\le z^{R_z+1}\le\exp(O_A(L^a\log L))=x^{o(1)}.
+\end{equation}
+
+
+This is uniform for all $z$ in the stated range, including fixed $z$. Also
+
+
+\begin{equation}\label{v2:6-4}
+c/\log z\le V_h(z)\le1,\qquad V_h(z)\gg_a L^{-a}.
+\end{equation}
+
+
+Indeed omitting factors increases the product, and for odd primes
+
+
+\begin{equation}
+\frac{r-2}{r-1}=(1-1/r)\left(1-\frac1{(r-1)^2}\right).
+\end{equation}
+
+
+Mertens' product estimate and convergence of the second positive product prove \eqref{v2:6-4}. Thus any error $O_A(xL^{-A})$ with $A>a$ is negligible relative to $xV_h(z)$.
+
+\subsection{Type I for both orientations}\label{subsec:general-I}
+\begin{proposition}[Uniform Type I]\label{prop:I}
+For the function $F$ below, both Type~I terms of
+Proposition~\ref{prop:vaughan} have bound $O_A(yL^{-A})$
+at every fixed precision, in the A range and, for the rough
+target, in the D range. The same is true for the Liouville target.
 \end{proposition}
 \begin{proof}
-Use the argument of LWW Section~3, pp.~10--14.
-The classes with shift $+2$ become, for example,
-$k\equiv\GN\bar q\pmod d$; every divisor $d$ built from list
-primes is coprime to $\GN$.
-The sifted modulus $q$ can have a prime $>Z$ in common with $\GN$.
-Discarding those terms costs
-\begin{equation}\label{eq:I-q-discard}
- \ll xL^3\omega_{\rm all}(\GN)/Z=O_A(xL^{-A}).
-\end{equation}
-At this point the unit condition on the sifted inner variable can
-also be removed at that cost. It is removed before expanding
-$R_Z$, so that no additional condition on the later M\"obius variable
-is imposed.
+Let $f=\mu$ or $\lambda$, and use the bounded function
 
-After the truncated inclusion--exclusion in LWW Section~3, p.~11,
-$r$ is odd and squarefree with small prime factors, and may share
-primes with $\GN$. Put $g=(r,\GN)$.
-The list divisor $d$ is coprime to $r\GN$, so $dg$ is squarefree.
-Use the exact identity (3.4), p.~12, in the form
-\begin{equation}\label{eq:mu-dg}
- \mu(dg v)=\mu(dg)
-     \sum_{\substack{a\mid v\\p\mid a\Rightarrow p\mid dg}}\mu(v/a).
-\end{equation}
-The substitution is now
-\begin{equation}\label{eq:I-substitution}
- \GN-qrj=dgat,\qquad
- t\equiv(\GN/g)(da)^{-1}\pmod{qr/g},\qquad t\ge1.
-\end{equation}
-The inverse exists: primes of $a$ lie in $dg$, so
-$(da,qr/g)=1$. Indeed $d$ is disjoint from $qr$ and the primes of
-$g$ have been removed from the squarefree $r$; $q$ is $Z$-rough.
-Also $(\GN/g,r/g)=1$, $(\GN,q)=1$ and $(g,qr/g)=1$.
-Thus the class is reduced. Primes of $a$ may divide $g$; no
-condition $(g,da)=1$ is needed or imposed.
-Since $qr,dga$ are odd and $\GN$ is even,
-$j$ odd is equivalent to $t$ odd.
-The M\"obius variable therefore lies in a reduced class modulo
-$2qr/g$, with $0$ excluded.
 
-Apply Bombieri--Vinogradov in LWW (3.1), p.~10, with the
-$\tau$-weighted grouping of p.~13.
-For each fixed $g$, $qr/g$ determines $qr$ and its rough part $q$
-and small-prime part $r$ uniquely; one may bound coefficients by
-$L$ or by $L\tau(qr/g)$ without a $\tau(g)$ loss.
-The level is comparable to $\GN/(dga)$ and depends on $g$.
-Apply the bound separately for each $g$ and then sum its reciprocal
-weight:
-\begin{equation}\label{eq:I-g-sum}
- \sum_{g\mid\rad(\GN)}\frac1g
- =\prod_{p\mid\GN}(1+1/p)\ll\log L.
+\begin{equation}
+F(n)=f(\varepsilon n+h)\mathcal R_{z,h}(\varepsilon n+h)W(\varepsilon n+h)\,1_{\varepsilon n+h\ge1}.
 \end{equation}
-The sum over $a$ of $1/a$ has the same admissible Euler-product
-bound as in LWW. For the large-$a$ part in (3.5), p.~13, the new
-Rankin factor is
-\begin{equation}\label{eq:I-Rankin}
- \prod_{p\mid g}(1-p^{-1/20})^{-1}
- \le19^{R''}=L^{O(1)},\qquad R''=\lceil C'\log L\rceil,
-\end{equation}
-absorbed by $x^{-1/50}$. Here $r$ has at most $R''$ prime factors.
-The incompatibility $(r,d)>1$ is unchanged: a list prime in both
-would divide $\GN$.
 
-The positive cofactor interval is
-\begin{equation}\label{eq:I-endpoints}
- \left[\frac{\GN-2x}{dga},\frac{\GN-x}{dga}\right),
- \qquad \GN/(dga)\ll L^B x/(dga).
+
+For the unrough version omit $\mathcal R_{z,h}$. On a prime dyad of scale $y\ge x/L^B$, the assertion to prove is $T_1(F),T_2(F)\ll_A yL^{-A}$ at each fixed precision.
+
+Write the outer Type I variable as $q\le y^{2/5}$ with $R_Z(q)=1$ and coefficient $|\alpha_q|\le O(L)$. Discard $q$ having a common prime with $h$. Such a prime is greater than $Z$, and summing reciprocal multiples costs $O(yL^3\omega_{\rm all}(h)/Z)$; the harmless endpoint counts are of smaller power size. This is negligible at every fixed logarithmic precision. Separate $k$ odd first, and expand the factors at odd primes in the inner roughness $R_Z(k)$ at depth $R_I=\lceil C_I\log L\rceil$, obtaining odd squarefree $r\le Z^{R_I+1}=x^{o(1)}$ with $r\mid k$. Keep $k$ odd. Expand $W$ at depth $R_W=\lceil C_W\log L\rceil$ as
+
+
+\begin{equation}
+W(n)=\sum_{d\mid n}c_d+\text{remainder},
 \end{equation}
-The maximum over endpoints in Bombieri--Vinogradov handles this
-interval. Replacing $x$ by $\GN$ in the level costs only the fixed
-power $L^B$, covered by the chosen precision.
-Partial summation for $T_1$ is that of LWW Section~3, p.~14.
+
+
+where $d$ is squarefree, uses only selected band primes, $d=\exp(O_K(R_WL^\theta))=x^{o(1)}$, $\sum_d|c_d|/d\ll_{K,\rho}1$, and the remainder is bounded by a positive finite divisor sum with reciprocal coefficient mass $O_{K,\rho}(1/R_W!)$. Here is the finite expansion used at this interface. In a single
+band, writing $u=\omega_i(n)$ and $V=V_i$, Taylor's formula for
+$(1-t)^{u-1}$ at $t=0$ gives
+\begin{equation}\label{eq:finite-taylor}
+ \frac{u\rho^{u-1}}V
+ =\frac1V\sum_{j=0}^{R_W-1}(j+1)(\rho-1)^j
+   \sum_{\substack{d\mid n,\ p\mid d\Rightarrow p\in\mathcal P_i\\
+                    d\text{ squarefree},\ \omega_{\rm all}(d)=j+1}}1
+   +\mathcal E_i(n).
+\end{equation}
+Indeed $u\binom{u-1}{j}=(j+1)\binom{u}{j+1}$, and
+\begin{equation}
+ |\mathcal E_i(n)|\le
+ \frac{(R_W+1)(1-\rho)^{R_W}}V
+ \sum_{\substack{d\mid n,\ p\mid d\Rightarrow p\in\mathcal P_i\\
+                  d\text{ squarefree},\ \omega_{\rm all}(d)=R_W+1}}1.
+\end{equation}
+The reciprocal coefficient mass of this positive remainder is
+$O(1/R_W!)$, also with $1/\varphi(d)$ in place of $1/d$,
+because both band sums are eventually bounded above by one.
+The absolute reciprocal mass of a retained single-band polynomial
+is bounded by a fixed constant. Multiplying the $K$ expansions
+and telescoping their errors proves the assertions for $W$.
+This supplies directly the finite identity corresponding to
+LWW (2.17) and its Type~I truncation.
+
+Insert \eqref{v2:6-1} for the target roughness. The sieve divisor $e$ and list divisor $d$ are coprime, since every band prime exceeds $z$, and $D=de$ is squarefree and coprime to $h$. All of its primes are below $Z$. A term with $(r,D)>1$ is impossible: a common prime divides both $qk$ and $\varepsilon qk+h$, hence divides $h$, contrary to $(D,h)=1$. For the other terms the conditions $r\mid k$, $D\mid\varepsilon qk+h$, and $k$ odd give one class modulo $2rD$, because $(q,D)=1$. Their count is
+
+
+\begin{equation}\label{v2:6-5}
+O(y/(qrD)+1).
+\end{equation}
+
+
+Use \eqref{v2:6-5} for every finite Taylor or Bonferroni error. The reciprocal mass in $r$ is $O(\log Z)$, in $e$ is $O(\log z)$, and in $d$ is bounded. A tail of depth $C\log L$ has any requested fixed logarithmic saving by \eqref{v2:6-2} or the Taylor factorial bound. All $+1$ terms total $x^{2/5+o(1)}$, since the total absolute coefficient mass and the number of sieve divisors are $x^{o(1)}$. Choose the depths to absorb the fixed logarithmic factors. This proves the required truncation error estimate without summing over divisors of the full primorial.
+
+Now put $k=rj$ and $g=(r,h)$. The integer $g$ is odd and squarefree, $g\mid\varepsilon qrj+h$, and $(D,g)=1$. For M\"obius, the exact local-factor identity gives
+
+
+\begin{equation}\label{v2:6-6}
+\mu(Dg v)=\mu(Dg)\sum_{\substack{b\mid v\\p\mid b\Rightarrow p\mid Dg}}\mu(v/b).
+\end{equation}
+
+
+Here the displayed support means every prime dividing $b$ divides $Dg$; arbitrary prime powers in $b$ are allowed. At a prime dividing $Dg$, the two potentially nonzero terms cancel when that prime divides $v$, proving the identity prime by prime. Thus write
+
+
+\begin{equation}\label{v2:6-7}
+\varepsilon qrj+h=Dgbt,\qquad
+t\equiv(h/g)(Db)^{-1}\pmod{qr/g}.
+\end{equation}
+
+
+The inverse exists: $D$ is disjoint from $qr$, while the primes of $g$ have been removed from the squarefree $r$ and are below every prime dividing $q$. Also $(h/g,qr/g)=1$, since $q$ was made coprime to $h$ and $(r/g,h)=1$. Hence \eqref{v2:6-7} is reduced. There is no extra requirement $(g,Db)=1$. When $h$ is even, $j$ odd is equivalent to $t$ odd, giving a reduced class modulo $2qr/g$. The positive interval for $t$ is contained in
+
+
+\begin{equation}\label{v2:6-8}
+[1,Y_0],\qquad Y_0=(|h|+3y)/(Dgb).
+\end{equation}
+
+
+The sign $\varepsilon$ changes the order of the interval endpoints, not its modulus or reducedness.
+
+For $Dgb\le y^{1/20}$, one has $Y_0\ge y^{19/20}$ and $\log Y_0\asymp L$. Moreover $2qr/g\le y^{2/5+o(1)}$, below the Bombieri–Vinogradov level $Y_0^{1/2}L^{-B_{\rm BV}}$ for every fixed $B_{\rm BV}$, once $x$ is sufficiently large. For fixed $g,D,b$, group by $qr/g$. The coefficient is at most $O(L\tau(qr/g))$; in fact the rough/small-prime factorization is unique. The weighted reduced-class M\"obius estimate follows from ordinary BV by
+
+
+\begin{equation}
+\Big(\sum_{m\le Q}\tau(m)E(Y_0;m)\Big)^2
+\le\Big(\sum E(Y_0;m)\Big)\Big(\sum\tau(m)^2E(Y_0;m)\Big),
+\end{equation}
+
+
+using $E(Y_0;m)\ll Y_0/m+1$ and $\sum\tau(m)^2/m\ll L^4$. At sufficiently large fixed BV precision this gives $\ll Y_0L^{-A}$ for the weighted sum. Sum \emph{separately for each $g$}, since the level depends on it, and then use
+
+
+\begin{equation}
+\sum_{g\mid\operatorname{rad}(h)}1/g\ll\log L,\qquad
+\sum_{b:\ p\mid b\Rightarrow p\mid Dg}1/b
+\le\prod_{p\le Z}(1-1/p)^{-1}\ll\log Z.
+\end{equation}
+
+
+Together with $\sum_e1/e\ll\log z$, $\sum_d|c_d|/d\ll1$, and $(|h|+3y)/y\ll L^{B+C}$, these are only fixed logarithmic losses.
+
+For $Dgb>y^{1/20}$, the factors $Dg=x^{o(1)}$ imply $b>y^{1/25}$ for sufficiently large $x$. Rankin at exponents $1/2$ and $1/20$ gives
+
+
+\begin{equation}
+\sum_{b>y^{1/25}}\frac1b\ll y^{-1/50}L^{O(1)},\qquad
+\#\{b\le |h|+3y:p\mid b\Rightarrow p\mid Dg\}
+\ll y^{1/20}L^{O(1)}.
+\end{equation}
+
+
+To justify the products, $Dg$ has $O_{K,A}(\log L)$ distinct prime divisors, all odd; each factor $(1-p^{-\eta})^{-1}$ is bounded by a constant depending only on fixed $\eta>0$. Thus the whole factor is $L^{O_{K,A}(1)}$. Counting \eqref{v2:6-7} absolutely gives $O(y/(Dbqr)+1)$. The reciprocal term has the displayed power saving; the endpoint term totals $y^{9/20+o(1)}$. Both absorb every fixed logarithmic loss. This completes the M\"obius Type~I bound. Partial summation for the factor $\log k$ supplies $T_1$ with one additional fixed power of $L$.
+
+For Liouville use $\lambda(Dgt)=\lambda(Dg)\lambda(t)$, so there is no $b$-sum and $Dg=x^{o(1)}$ always lies in the small-divisor branch. The needed Liouville BV follows from
+
+
+\begin{equation}
+\lambda(n)=\sum_{b^2\mid n}\mu(n/b^2).
+\end{equation}
+
+
+For a reduced class modulo $m$, $(b,m)=1$ and the inner M\"obius class is $c\bar b^2\pmod m$. Truncate at $b\le L^{A+2}$. Use M\"obius BV at scale $Y_0/b^2$ with a larger fixed logarithmic level exponent. For the tail summed over $m\le Q$ use $Y_0/(b^2m)+1$, obtaining $O(Y_0L/L^{A+2}+Q\sqrt{Y_0})$; choose $Q\le\sqrt{Y_0}L^{-A-2}$ in addition to the head's BV restriction. The same Cauchy/divisor-square estimate gives the $\tau$-weighted version. This proves the Liouville Type I bound.
+
+For the unrough A statement with \emph{odd} $h$, take $e=1$. Equation \eqref{v2:6-7} forces even $t$. Write $t=2t'$; for M\"obius use $\mu(2t')=-\mu(t')1_{t'\text{ odd}}$ and a reduced class modulo $2qr/g$. For Liouville use $\lambda(2t')=-\lambda(t')$, with no parity restriction, and modulus $qr/g$. All inverses exist because these moduli apart from the explicit 2 are odd. This supplies the odd-shift Type I case.
+
 \end{proof}
 
 \section{Removal of the auxiliary weights}\label{sec:weights}
-\begin{proposition}[Normalized weight removal]\label{prop:weights}
-For each fixed $b$ choose $b$ disjoint copies $W_j$ of
-\eqref{eq:weight}, and let $m_j$ be their reduced-class means for
-$W_j(\GN-a)$. Then
-$m_j=2^{K(\rho-1)}+o(1)>0$, and
-\begin{equation}\label{eq:weight-removal}
- \begin{split}
- \limsup_{\GN\to\infty}\frac1{\GN}
-       \left|\sum_{p<\GN}\mu(\GN-p)\log p\right|
- &\le\sqrt{C_{K,\rho}/b}\\
- &\quad+\limsup_{\GN\to\infty}
- \max_{1\le j\le b}\frac{
-     |\sum_{p<\GN}\mu(\GN-p)W_j(\GN-p)\log p|}{m_j\GN}.
- \end{split}
+\subsection{Positive moments on the eligible prime interval}\label{subsec:relative-moments}
+In this section $L=\log x$ and $I$ is the eligible interval in
+$[1,x]$. For D retain its even-shift and fixed-$a<1/2$ conditions.
+For A omit every low-prime sieve factor and put $V=1$; no parity
+assumption on $h$ is then needed.
+\begin{remark}[Changes in version 2: relative measures]
+The version~1 reduced-class mean and fixed-number variance are
+used below with a finite positive presieve. The variance retains
+the factor $V_h(z)$, and the later Cauchy inequality uses the rough
+prime measure. The last subsection replaces the fixed-$b$ limit
+by a uniform construction with growing $b_x$.
+\end{remark}
+Let $I$ be the interval of eligible primes in $[1,x]$; endpoints depend on $\varepsilon,h$. Put $\Theta_I=\sum_{p\in I}\log p$. For $F=1$, $W_j$, or $W_jW_k$ with $j\ne k$, the assertion is
+
+
+\begin{equation}\label{v2:6-9}
+\sum_{p\in I}(\log p)\mathcal R_{z,h}(\varepsilon p+h)F(\varepsilon p+h)
+=V_h(z)m_F\Theta_I+O_A(xL^{-A}),
 \end{equation}
-The constant $C_{K,\rho}$ is independent of $b$.
+
+
+where $m_1=1$, $m_{W_j}=m_j$, and $m_{W_jW_k}=m_jm_k$. The bound is uniform in $z,h$ and in both endpoints, for each fixed band array.
+
+For completeness, the independent local divisor model assigns $r\mid\varepsilon p+h$ probability $1/(r-1)$ at any odd $r\nmid h$. The CRT proves independence at distinct primes, because the affine coefficient $\varepsilon$ is a unit and the required residue is reduced. Every band avoids $h$, and different bands are disjoint. Consequently
+
+
+\begin{equation}\label{v2:6-10}
+m_j=\prod_{i=1}^K\left[\frac1{V_i}\sum_{r\in\mathcal P_i}\frac1{r-1}
+\prod_{\substack{q\in\mathcal P_i\\q\ne r}}
+\left(1-\frac{1-\rho}{q-1}\right)\right]
+=2^{K(\rho-1)}+o(1).
+\end{equation}
+
+
+The rough primes and all band primes are disjoint, so the local-model average of $\mathcal R_{z,h}F$ is exactly $V_h(z)m_F$.
+
+To pass to primes, use the finite presieve \eqref{v2:6-1} and the finite Taylor divisor expansions from Section~\ref{subsec:general-I}, now with at most $2K$ bands. A retained product modulus is $ed=x^{o(1)}$ and coprime to $h$; its prime class is $p\equiv-\varepsilon h\pmod{ed}$. The modulus uniquely determines its low-prime factor $e$ and band factor $d$. The Taylor coefficient is bounded by a fixed power of $\log L$, so BV with a larger fixed logarithmic precision applies to the sum over all retained moduli, and is uniform in the two interval endpoints. Prime powers and the few primes dividing $h$ cost $x^{1/2+o(1)}$ and $x^{o(1)}$, respectively, after all finite coefficient sums.
+
+The Taylor remainder has reciprocal coefficient mass $O(1/R_W!)$ also with $1/\varphi(d)$ instead of $1/d$, since each band's sum $\sum1/(r-1)$ tends to $\log2<1$. The roughness remainder multiplied by the absolute truncated Taylor polynomial has local-model mass bounded by \eqref{v2:6-2} times $\sum_d|c_d|/\varphi(d)\ll_{K,\rho}1$. Apply BV to these positive finite error sums as well. Choosing the truncation depths and BV precision proves errors $O_A(xL^{-A})$. Replacing the interval length by $\Theta_I$ uses the endpoint-uniform PNT error, again with enough logarithmic precision. This establishes \eqref{v2:6-9}.
+
+Each $W_j/m_j$ is bounded by a constant depending on $K,\rho$ but not on $b$, after increasing the threshold for the fixed array. Thus its square is at most a fixed constant times itself. With
+
+
+\begin{equation}
+\mathcal W_b(n)=b^{-1}\sum_{j=1}^bW_j(n)/m_j,
+\end{equation}
+
+
+expand the square and apply \eqref{v2:6-9}. The cross terms for $j\ne k$ are $V_h(z)\Theta_I$ after normalization. The first moments and constant term have the same mean. The diagonal terms are bounded as just described. Hence
+
+
+\begin{equation}\label{v2:6-11}
+\sum_{p\in I}(\log p)\mathcal R_{z,h}(\varepsilon p+h)
+ |\mathcal W_b(\varepsilon p+h)-1|^2
+\le \frac{C_{K,\rho}}b V_h(z)\Theta_I+O_{A,b}(xL^{-A}).
+\end{equation}
+
+
+The constant $C_{K,\rho}$ is independent of $b$ and of the band locations. This is the relative variance needed for D; the factor $V_h(z)$ has not been discarded.
+
+\begin{proposition}[Normalized fixed-number weight removal]\label{prop:weights}
+For any fixed $b$, normalized weights
+$\mathcal W_b=b^{-1}\sum_j W_j/m_j$ satisfy
+\eqref{v2:6-11}. For a bounded target, Cauchy--Schwarz with
+measure $(\log p)\mathcal R_{z,h}(\varepsilon p+h)$ gives
+\begin{equation}\label{eq:weight-removal}
+ \left|\sum_{p\in I}(\log p)f(\varepsilon p+h)
+ \mathcal R_{z,h}(\varepsilon p+h)(1-\mathcal W_b(\varepsilon p+h))\right|
+ \ll xV_h(z)b^{-1/2}+o_b(xV_h(z)).
+\end{equation}
+For the unrough statement replace $V_h(z)$ by one. This includes
+the version~1 fixed-$b$ conclusion when $x=h=\GN$ and
+$\varepsilon=-1$.
 \end{proposition}
 \begin{proof}
-Let $P_0$ be the product of the list primes for a fixed copy.
-For every $d\mid P_0$,
-\begin{equation}\label{eq:CRT-weight}
- \frac1{\ph(P_0)}\sum_{\substack{a\bmod P_0\\(a,P_0)=1}}
-          \ind_{d\mid\GN-a}=\frac1{\ph(d)}.
-\end{equation}
-This follows because $\GN$ is a unit modulo $d$, so the divisibility
-condition selects one reduced class. It does not require translation
-to permute all reduced classes.
-Thus the mean (2.14) and second moment (2.15) of LWW, p.~7, apply.
-The truncated divisor expansion and Bombieri--Vinogradov for
-$p\equiv\GN\pmod d$, $(d,\GN)=1$, give the same weighted
-moments over primes. All moduli are odd squarefree products of
-list primes, and the maximum over reduced classes makes the estimate
-uniform in $\GN$.
-
-For the weight truncation write $R_w=\lceil\log L\rceil$, as in
-LWW Section~2.3, p.~9. Its integer-average error in this range is
-\begin{equation}\label{eq:weight-truncation}
- O(L^{B+1}/R_w!)=o(1),\qquad
- R_w!=L^{(1+o(1))\log\log L}.
-\end{equation}
-This distinguishes $R_w$ from the moment order $R$.
-The variance argument (2.16)--(2.19), pp.~7--10, is applied to
-$b^{-1}\sum_jW_j/m_j$. Cauchy--Schwarz against the bounded target
-and the triangle inequality give \eqref{eq:weight-removal}.
-The means tend to the same positive fixed constant, so normalization
-has a bounded cost independent of $b$.
-For each fixed $b$, let $\GN$ tend to infinity before letting $b$
-tend to infinity; thresholds may depend on its chosen bands.
+The total mass of this measure is
+$V_h(z)\Theta_I+O_A(xL^{-A})$. Multiply its square root by
+the square root of \eqref{v2:6-11}; use
+$\Theta_I\ll x$ and $V_h(z)\gg L^{-a}$ with a sufficiently
+large fixed precision. The constant is independent of $b$.
 \end{proof}
+\subsection{A common threshold for separated band families}\label{subsec:band-uniform}
+Fix $K$, $\alpha>1/10$, an admissible ceiling $\theta$, and $\delta_b>0$. Permit the individual exponents to vary with $x$ subject to $a_1\ge\alpha$, $a_K\le\theta$ and $a_{i+1}-a_i\ge\delta_b$. All weighted estimates above have a common threshold and implied constant on this family.
+
+The dependence on band locations is controlled as follows. Band masses converge uniformly because every lower endpoint exceeds $\exp(L^\alpha)$; puncturing costs $O(L\exp(-L^\alpha))$. Maximum product sizes, root moduli, coefficient masses, and boundary derivatives use only the fixed ceiling. Minimum-prime and overlap bounds use only $\alpha$. The sole hierarchy comparison in the second good-state test is bounded explicitly by
+
+
+\begin{equation}
+\log\#\{DZ\}\le C_K\log L+C_K L^{a_{i_*}-\delta_b},
+\end{equation}
+
+
+so its ratio to $L^{a_{i_*}}$ tends to zero uniformly. All finite memory identities and the positive bound in Section~\ref{subsec:retune} have constants depending only on the fixed normalization bounds and operator parameters. Prime-polynomial contours and mean values are uniform in their endpoints. In Type I and the auxiliary moments, at most $K$ or $2K$ groups occur in any one estimate; their coefficient bounds and factorial tails are uniform. Cross moments between two different copies require disjoint bands, not a fixed gap between those copies. The reflected weak-input interface has the same uniform large-value margin, as checked in the last item in Section~\ref{subsec:retune}. This accounts for every use of band locations in the cited arguments.
+
+\subsection{Packing and the explicit rate}\label{subsec:packing}
+Use $a=0$ for the unrough statement. After fixing $K$, choose an admissible $\theta>\max(a,1/10)$ and put
+
+
+\begin{equation}
+g=\frac{\theta-\max(a,1/10)}{4K+4},\quad
+\alpha_i=\max(a,1/10)+(2i-1)g,\quad
+b_x=\left\lfloor\frac{g\log L}{\log4}\right\rfloor.
+\end{equation}
+
+
+For $1\le j\le b_x$ choose the $i$th band by logarithmic endpoints
+
+
+\begin{equation}\label{v2:10-1}
+t_{i,j}=4^{j-1}L^{\alpha_i},\qquad
+\exp(t_{i,j})<p\le\exp(2t_{i,j}),\quad p\nmid h.
+\end{equation}
+
+
+Its exponent $a_{i,j}=\alpha_i+(j-1)\log4/\log L$ lies in $[\alpha_i,\alpha_i+g]$. Each weight has consecutive exponent gaps exactly $2g$. Across different $i$, the neighborhoods are separated by $g$; within one $i$, adjacent logarithmic lower endpoints have ratio four, exceeding the previous band's upper/lower ratio two. Thus all $b_xK$ bands are disjoint for sufficiently large $x$, and each weight belongs to one fixed separated family. The marking primes exceed the rough threshold. Only the number of copies grows; $K$ and every analytic precision are fixed.
+
+Apply \eqref{v2:6-11} with uniform errors to these copies. The $b_x^2$ mixed errors are divided by $b_x^2$; averaging the uniformly small marked sums also loses no factor $b_x$. Since $b_x\asymp\log L$, the positive-measure Cauchy argument gives
+
+
+\begin{equation}\label{v2:10-2}
+\left|\sum_{p\in I}(\log p)f(\varepsilon p+h)\mathcal R(p)\right|
+\ll \frac{xV}{\sqrt{\log L}}+xL^{-A}+\sqrt{Vx\cdot xL^{-A}},
+\end{equation}
+
+
+where $V=1$ or $V_h(z)$. With $V\gg L^{-a}$, a sufficiently large \emph{fixed} $A$ absorbs the final terms. Low primes and removal of the prime logarithm contribute relative error $O(L^{a-1}\log L+L^{a+1-B})$, smaller than $(\log L)^{-1/2}$ for every fixed $a<1/2$ and sufficiently large fixed $B$.
+
+Consequently the final errors are
+
+
+\begin{equation}\label{v2:10-3}
+O_C\left(\frac{\pi(x)}{\sqrt{\log\log x}}\right)\quad\text{in A},\qquad
+O_{a,C}\left(\frac{V_h(z)\pi(x)}{\sqrt{\log\log x}}\right)\quad\text{in D}.
+\end{equation}
+
+
+The sign formulas use the exact main terms already computed, and have the same errors. For M\"obius relative to the whole rough population, replacing $U_h(z)$ by $V_h(z)$ adds $O(1/z)$ to the relative error. Constants and thresholds remain ineffective through the named classical inputs. This is an explicit functional rate, not a numerical effective estimate.
+
+The original fixed-$b$ argument alone did not prove \eqref{v2:10-3}. The additional uniformity check and explicit packing are essential. No prime distribution estimate is applied at the full product of all marking primes; each analytic moment uses only its finite truncated divisors from at most two weight copies.
 
 \section{Squarefree values}\label{sec:density}
 \begin{proposition}[Uniform squarefree density]\label{prop:squarefree}
@@ -2129,6 +3302,137 @@ $\GN/L^B$; this proves the identity without varying the target
 sequence in a partial-summation limit.
 \end{proof}
 
+\subsection{Changes for general \texorpdfstring{$h$}{h}: positive eligible counts}\label{subsec:general-density}
+This assertion uses only the classical inputs. Uniformly for the entire A range,
+
+
+\begin{equation}\label{v2:7-2}
+\#\{p\in\mathcal P_{\varepsilon,h}(x):\mu^2(\varepsilon p+h)=1\}
+=A_h\Pi_{\varepsilon,h}(x)+o(\pi(x)).
+\end{equation}
+
+
+Remove primes dividing $h$, at most $O(L)$ terms. For the others, $d^2\mid\varepsilon p+h$ forces $(d,h)=1$. Truncate the square-divisor expansion at $d\le L^D$; the unweighted tail is at most
+
+
+\begin{equation}
+\sum_{L^D<d\le\sqrt{x+|h|}}(x/d^2+1)
+\ll xL^{-D}+\sqrt{xL^C},
+\end{equation}
+
+
+which is $o(\pi(x))$ for fixed $D>2$. For the head, apply Siegel–Walfisz to $p\equiv-\varepsilon h\pmod{d^2}$, a reduced class, at both endpoints of the eligible interval. The modulus is a fixed power of $\log x$; arbitrarily large fixed saving absorbs the $L^D$ divisors. Replace the interval's logarithmic-integral mass by its actual prime count using the same endpoint-uniform PNT estimate. Extending the absolutely convergent series gives
+
+
+\begin{equation}
+\sum_{(d,h)=1}\frac{\mu(d)}{\varphi(d^2)}
+=\prod_{r\nmid h}(1-1/(r(r-1)))=A_h,
+\end{equation}
+
+
+with an admissible tail. Restoring the removed primes changes only $O(L)$ terms. This proves \eqref{v2:7-2}, including odd $h$ and empty eligible intervals.
+
+
+The same argument with a larger fixed truncation exponent gives
+any requested error $O_A(xL^{-A})$ in the unweighted count.
+In particular its error is smaller than $\pi(x)E(x)$.
+\subsection{Rough and squarefree-rough populations}\label{subsec:rough-density}
+The positive population formula follows from \eqref{v2:6-9} with $F=1$ and the same removal of $\log p$:
+
+
+\begin{equation}\label{v2:6-14}
+\#\{p\in\mathcal P_{\varepsilon,h}(x):P^-(\varepsilon p+h)>z\}
+=V_h(z)\Pi_{\varepsilon,h}(x)+o(V_h(z)\pi(x)).
+\end{equation}
+
+
+For squarefree rough values use $\mu^2(n)=\sum_{d^2\mid n}\mu(d)$. Remove the $O(\omega_{\rm all}(h))$ primes dividing $h$. On the remainder any contributing $d$ is coprime to $h$, and roughness forces $(d,P_h(z))=1$. Truncate at $d\le L^D$ with $D$ a sufficiently large fixed number. Since $1\le n\le x+|h|\ll xL^C$, the weighted discarded tail is
+
+
+\begin{equation}\label{v2:6-15}
+\ll L\sum_{L^D<d\le\sqrt{x+|h|}}(x/d^2+1)
+\ll xL^{1-D}+\sqrt{xL^C}\,L.
+\end{equation}
+
+
+It is smaller than any prescribed fixed logarithmic error by choosing $D$ suitably. For the head expand roughness using \eqref{v2:6-1}. Moduli are $d^2e=x^{o(1)}$, with $(d,e)=1$, and the reduced prime residue is $-\varepsilon h$. The modulus has the unique decomposition into its square part $d^2$ and its squarefree part $e$; thus the sum of BV discrepancies has no uncontrolled multiplicity. Positive Bonferroni tails are bounded by \eqref{v2:6-2} times $\sum_d1/\varphi(d^2)\ll1$. Restore the finitely many omitted primes only after bounding the total finite divisor coefficient mass by $x^{o(1)}$; their error is negligible.
+
+The main series factors as
+
+
+\begin{equation}
+V_h(z)\sum_{\substack{(d,hP_h(z))=1}}\frac{\mu(d)}{\varphi(d^2)}=U_h(z).
+\end{equation}
+
+
+Extending the $d$-series has error $O(L^{-D+1})$, since $d/\varphi(d)\ll\log(2d)$ suffices. Consequently
+
+
+\begin{equation}\label{v2:6-16}
+\#\{p\in\mathcal P_{\varepsilon,h}(x):P^-(\varepsilon p+h)>z,\ \mu^2(\varepsilon p+h)=1\}
+=U_h(z)\Pi_{\varepsilon,h}(x)+o(V_h(z)\pi(x)).
+\end{equation}
+
+
+The proofs of \eqref{v2:6-14} and \eqref{v2:6-16} give arbitrarily strong fixed-logarithmic weighted remainders before removing the prime logarithm. After that removal their relative errors are bounded by $O(L^{a-1}\log L)$ plus arbitrarily small fixed powers of $L^{-1}$. They are therefore smaller than $E(x)$ throughout the final fixed-$a<1/2$ range, not merely unspecified little-o errors.
+
+For $\kappa=\pm1$, the identities $1_{\mu(n)=\kappa}=(\mu^2(n)+\kappa\mu(n))/2$ and $1_{\lambda(n)=\kappa}=(1+\kappa\lambda(n))/2$, multiplied by the roughness indicator, prove the sign formulas from \eqref{eq:rough-main}, \eqref{v2:6-14}, and \eqref{v2:6-16}, at the precision of Section~\ref{subsec:packing}. Finally
+
+
+\begin{equation}
+0\le1-U_h(z)/V_h(z)\le\sum_{r>z}\frac1{r(r-1)}\ll1/z,
+\end{equation}
+
+
+uniformly in $h$. This is the exact reason both signs have density $1/2$ within the rough population when $z\to\infty$ and the eligible interval has a fixed positive proportion of the primes.
+
+\subsection{The progression local factors}\label{subsec:progression-density}
+Fix $C,C_q,A>0$. Uniformly for $0<|h|\le x(\log x)^C$, $q\le(\log x)^{C_q}$, $(a_0,q)=1$, and $\varepsilon=\pm1$, let $\Pi_{q,a_0;\varepsilon,h}(x)$ count the eligible primes additionally satisfying $p\equiv a_0\pmod q$. Then
+
+
+\begin{equation}\label{v2:13-1}
+\#\{p\in\mathcal P_{\varepsilon,h}(x):p\equiv a_0\ (q),\ \mu^2(\varepsilon p+h)=1\}
+=\mathfrak A(q,a_0;\varepsilon,h)\Pi_{q,a_0;\varepsilon,h}(x)+O_{A,C,C_q}(x(\log x)^{-A}),
+\end{equation}
+
+
+where the product, interpreted as zero if any forced-square factor occurs, is
+
+
+\begin{equation}\label{v2:13-2}
+\mathfrak A(q,a_0;\varepsilon,h)=
+\prod_{r\nmid qh}\left(1-\frac1{r(r-1)}\right)
+\prod_{\substack{r\Vert q\\r\mid\varepsilon a_0+h}}\left(1-\frac1r\right)
+\prod_{\substack{r^2\mid q\\r^2\mid\varepsilon a_0+h}}0.
+\end{equation}
+
+
+\begin{proof} Write $L=\log x$ and delete the $O(\log(2|h|))=O_C(L)$ primes dividing $h$. On the remaining primes, a square divisor $d^2\mid\varepsilon p+h$ necessarily has $(d,h)=1$. Truncate $\mu^2(n)=\sum_{d^2\mid n}\mu(d)$ at $d\le L^D$, with a fixed $D>A+C_q+3$. The absolute discarded sum is at most
+
+
+\begin{equation}
+\sum_{L^D<d\le\sqrt{x+|h|}}(x/d^2+1)
+\ll xL^{-D}+\sqrt{xL^C}=O_{A,C,C_q}(xL^{-A}).
+\end{equation}
+
+
+For each retained squarefree $d$, the simultaneous conditions $p\equiv a_0\pmod q$ and $p\equiv-\varepsilon h\pmod{d^2}$ are either incompatible or specify one class modulo $m_d=\operatorname{lcm}(q,d^2)$. Compatibility means $a_0\equiv-\varepsilon h\pmod{\gcd(q,d^2)}$. When compatible the class is reduced: it is a unit at primes dividing $q$ by $(a_0,q)=1$, and at primes dividing $d$ by $(d,h)=1$. Since $m_d\le L^{C_q+2D}$, endpoint-uniform Siegel–Walfisz applies at arbitrarily high fixed precision. Summing its errors over $d\le L^D$ gives the required error after increasing that precision. A small interval endpoint causes no difficulty: use the trivial bound below $xL^{-B}$ and the usual Siegel–Walfisz estimate above it, with fixed $B$ chosen at the requested precision.
+
+Relative to the prime progression's logarithmic-integral mass, the main coefficient is
+
+
+\begin{equation}
+\sum_{\substack{(d,h)=1\\a_0\equiv-\varepsilon h\ (\gcd(q,d^2))}}
+\mu(d)\frac{\varphi(q)}{\varphi(\operatorname{lcm}(q,d^2))}.
+\end{equation}
+
+
+The series is absolutely convergent for fixed $q$. Its tail beyond $L^D$ is at most \[\varphi(q)\sum_{d>L^D}\frac1{\varphi(d^2)}\ll L^{C_q-D+1},\], uniformly in the displayed range. Even multiplying this by $x$ is within the requested error. Compatibility and the totient ratio factor prime by prime. If $r\nmid qh$, selecting $r\mid d$ costs $1/\varphi(r^2)=1/(r(r-1))$. If $r\mid h$, it cannot be selected. If $r\Vert q$, selection is compatible exactly when $r\mid\varepsilon a_0+h$, and then costs $\varphi(r)/\varphi(r^2)=1/r$. If $r^2\mid q$, selection is compatible exactly when $r^2\mid\varepsilon a_0+h$, and then costs one. These are precisely \eqref{v2:13-2}; in particular the coefficient lies in $[0,1]$.
+
+Siegel–Walfisz for the original progression replaces its logarithmic-integral mass by the actual eligible-prime count at the same precision. Restoring the removed primes costs $O_C(L)$ in the original count; their contributions in the finite expansion are at most $O_C(L^{D+1})$, also admissible. This proves \eqref{v2:13-1}. \end{proof}
+
+For $q=9$, $a_0=1$, $\varepsilon=1$, $h=8$, the last product is zero and every eligible shifted value is divisible by 9. Thus keeping $A_h$ as a progression sign-density constant would be false. Formula \eqref{v2:13-1} supplies the correct positive population but does not split it into two signs.
+
 \section{Assembly of the Goldbach statements}\label{sec:assembly}
 \begin{proof}[Proofs of Theorems~\ref{thm:G} and~\ref{thm:S}]
 Choose $\rho$, $A^*>0$ and then $B>A^*+3$.
@@ -2142,7 +3446,7 @@ Complete the parameter choices in the following order:
  A_0\ ;\ K\ ;\ C^*,C^\dagger,C_0\ ;\ B_0,B_1\ ;\\
  A_{\mathrm{energy}}=D^*+O(A_0+B_1)\ ;\\
  D,C_{\mathrm{zf},1},C_{\mathrm{zf},2},C_3,A_s,A_1\ ;\\
- \text{the fixed precision of Proposition 2.2}\ ;\ a_i\ ;\ L_0.
+ \text{the fixed precision of Lemma~\ref{input:sifted}}\ ;\ a_i\ ;\ L_0.
  \end{gathered}
 \end{equation}
 Here $c_*$ is a fixed reserve for scale and dyadic losses, chosen
@@ -2157,9 +3461,9 @@ saving exponents; their positions affect thresholds, not these choices.
 
 On each of the $O(\log L)$ dyadic prime intervals, the Vaughan
 reduction and Proposition~\ref{prop:I} reduce the weighted prime sum
-to Type~II sums $T_Y$ on $O(L^{0.2})$ product scales.
+to Type~II sums $T_Y$ on $O_K(L^\theta)$ product scales.
 Propositions~\ref{prop:II} and~\ref{prop:arc-reduction}, followed by
-Theorem~\ref{thm:A}, give
+Theorem~\ref{thm:energy}, give
 \begin{equation}\label{eq:assembly-square}
  \QQ=\Qmaj+O(\GN YL^{-D^*}),\quad
  |\Qmaj|\ll\GN YL^{-D^*},\quad
@@ -2171,7 +3475,7 @@ $T_3(F)\ll xL^{-A^*}$.
 For Theorem~\ref{thm:G}, use the selected $\mathrm H1^\star$;
 \eqref{eq:H1} supplies it for every fixed selection of constants.
 For Theorem~\ref{thm:S}, use Corollary~\ref{cor:small-radical} with
-$A_1=A_0+C+1$ and the Burgess input in Theorem~\ref{thm:A}.
+$A_1=A_0+C+1$ and the Burgess input in Theorem~\ref{thm:energy}.
 In either case
 \begin{equation}\label{eq:weighted-conclusion}
  \sum_{x<p\le2x}(\log p)\mu(\GN-p)W(\GN-p)=O(xL^{-A^*}),
@@ -2201,396 +3505,163 @@ Lemma~\ref{lem:R} and the $O(\log L)$ dyadic summation are uniform
 in even $\GN$. Constants depend on the fixed bands, $K,\rho,b$,
 and requested precisions, and in the small-radical case on $C$.
 The limits are ineffective through Siegel--Walfisz and
-Proposition~2.2. A fixed $\mathrm H1^\star$ supplies the selected
+Lemma~\ref{input:sifted}. A fixed $\mathrm H1^\star$ supplies the selected
 fixed energy precision; the half-plane and the small-radical region
 supply every fixed precision needed in this order.
 \end{proof}
 
-\section{Small shifts}\label{sec:small}
-Throughout this section $x$ is the large parameter, $L=\log x$,
-and $0<|h|\le L^C$, with fixed $C$. All constants are uniform in
-this range. We use the prime form $p+h$ on the domain $p+h\ge1$.
+\subsection{Changes in version 2: assembly of A, C and D}\label{subsec:affine-assembly}
+\begin{proof}[Proofs of Theorems~\ref{thm:affine}, \ref{thm:rate} and~\ref{thm:rough}]
+Use $L=\log x$, $\Delta=-\varepsilon h$, $H=|h|$.
+For D fix $a<1/2$ and the retuned exponents of
+Section~\ref{subsec:retune}; for A one may use the same exponents
+with any fixed auxiliary $a\in(0,1/10]$ and omit the rough sieve.
+Choose a sufficiently large fixed lower-prime cutoff $B$ and
+smoothing precision, and then the required saving $D_*$ so that
+it absorbs the coefficient, Mellin, dyadic and $L^{B+C}$ losses.
+Choose $E_0,G,A_0,K$ in the order of
+\eqref{eq:parameter-order}, with $A_0>G+3$ and
+$K>2(G+3)/j_*$. These choices precede the band locations.
+Next choose the fixed transform exponents, conductor cutoff and
+small-conductor, Type~I and moment precisions. Finally choose
+the separated band family and its packing. For the reflected
+branch choose the energy precision and zero-free constants by
+\eqref{eq:A-constants} at this stage; they do not enter the
+earlier coefficient-loss exponent.
 
-\subsection{Setting and reductions}\label{subsec:small-reduction}
-Define $F_h(n)=\mu(n+h)W(n+h)$ when $n+h\ge1$, and $0$ otherwise.
-On $(x,2x]$ the arguments are positive for large $x$.
-Puncture the bands at $p\mid h$, costing at most
-$\omega_{\rm all}(h)e^{-L^{0.1}}$ in reciprocal mass.
-Every prime divisor of $h$ is below $Z$, so the sifted Vaughan
-variables satisfy $(mnrs,h)=1$ automatically.
-Write $mn+h=ah'$, $a\in\Aset$. A common prime of $a,m$ would
-divide $h$, which puncturing excludes.
-Remove $(a,h')>1$ as in LWW (4.3), p.~15.
-Now $mn+h\asymp X$ on every rectangle, so the common cofactor
-range is $O(X/Y)$ and
-\begin{equation}\label{eq:small-cauchy}
- |T_Y|^2\ll(X/Y)Q_Y,
- \qquad Q_Y\ge0.
+The sifted Vaughan identity, Proposition~\ref{prop:I},
+Proposition~\ref{prop:affine-II} and
+Proposition~\ref{prop:hybrid-major} give, under $\mathrm H1$
+and $\mathrm H2'$,
+\begin{equation}\label{eq:affine-assembly-square}
+ Q_Y\ll XYL^{-D_*},\qquad
+ |T_Y|^2\ll\frac{X+H}{Y}Q_Y
+       \ll X(X+H)L^{-D_*}\ll X^2L^{B+C-D_*}.
 \end{equation}
-The Lemma~4.1 check is
-$d\mid\ell h'+h\Rightarrow(d,\ell)\mid h$ and
-$(\ell,h)=1$, so $(d,\ell)=1$.
-For $(a,b)=1$ the equation is
-\begin{equation}\label{eq:small-det}
- b(mn+h)=a(rs+h)
- \quad\Longleftrightarrow\quad
- t=bmn-ars=-h(b-a),\qquad h\mid t,\quad t''=-t/h=b-a.
+The rough indicator transfers to the bounded common cofactor
+in Proposition~\ref{prop:affine-square}; it gives precisely the
+same upper square. A larger fixed $D_*$ absorbs all subsequent
+losses. The number of product scales is $O_K(L^\theta)$ and
+the number of retained prime dyads is $O_B(\log L)$.
+For each fixed requested $A$, and with $B>A+2$, this proves
+uniformly for every permitted single weight
+\begin{equation}\label{v2:6-12}
+ \sum_{p\in\mathcal P_{\varepsilon,h}(x)}(\log p)
+ f(\varepsilon p+h)\mathcal R(\varepsilon p+h)W_j(\varepsilon p+h)
+       \ll_A xL^{-A},
 \end{equation}
-It is LWW (4.8), p.~16, when $h=2$.
+where $\mathcal R=1$ for A and $\mathcal R=\mathcal R_{z,h}$
+for D. The omitted low primes cost $O(xL^{1-B})$.
 
-\subsection{Oriented bases, parity and root counts}\label{subsec:small-basis}
-\begin{lemma}[Small-shift blocks and orientation]\label{lem:small-basis}
-Use labelled lattices $\Lambda_\varrho$ of index $|h|$ for unit
-slopes modulo $|h|$ and odd-odd endpoint positions.
-For a primitive odd-odd root $P=(u,v)^T$ with $(uv,h)=1$, choose
-$ud-vc=1$, $0\le c<u$, $r_P=c/u$. Put
-\begin{equation}\label{eq:small-basis}
- \begin{split}
- P^*&=-h(c,d)^T,\qquad
- g_h(P)=\begin{pmatrix}u&-hc\\v&-hd\end{pmatrix}
-       =\begin{pmatrix}u&-hur_P\\v&-h(1/u+vr_P)\end{pmatrix},\\
- E_h&=\operatorname{diag}(1,-h),\quad
- \det g_h(P)=-h,\quad \tau_h(z)=z_1-hr_Pz_2.
- \end{split}
+Section~\ref{subsec:band-uniform} supplies one threshold for
+these estimates, and Section~\ref{subsec:packing} gives
+$b_x\asymp\log L$ disjoint copies. Apply its Cauchy bound
+with the rough prime measure when relevant. A sufficiently large
+fixed $A,B$ yields
+\begin{equation}\label{eq:affine-weighted-main}
+ \left|\sum_{p\in\mathcal P_{\varepsilon,h}(x)}(\log p)
+ f(\varepsilon p+h)\mathcal R(\varepsilon p+h)\right|
+       \ll xV/\sqrt{\log L},
+ \quad V=1\text{ or }V_h(z).
 \end{equation}
-This is a basis of the index-$|h|$ lattice. For $Q=g_h(P)z$,
-\begin{equation}\label{eq:small-coordinates}
- \det(P,Q)=-hz_2,\qquad Q_1=u\tau_h(z),\qquad
- Q_2=v\tau_h(z)-hz_2/u.
-\end{equation}
-Lattice-primitivity is $(z_1,z_2)=1$; integer-plane primitivity
-also requires $(Q_1,h)=1$.
-For primitive $z$ and $p\nmid h$, list divisibility is
-$[z]_p=\ker(u,-hc)\bmod p$.
-For $\det(z,w)=1$, the intrinsic ratio obtained with a complement
-of determinant $|h|$ is
-\begin{equation}\label{eq:small-ratio}
- \beta_Q^{(h)}\equiv-\operatorname{sgn}(h)
-      \frac{\tau_h(w)}{\tau_h(z)}\pmod1,
+For $p>x/L^B$, replace $\log p$ by $L$ with relative error
+$O_B(\log L/L)$ using Chebyshev. Low primes contribute
+$O(x/L^B)$. Relative to $V\pi(x)$ their total error is
+$O(L^{a-1}\log L+L^{a+1-B})$ in D and the same expression
+with $a=0$ in A. It is smaller than $(\log L)^{-1/2}$.
+The $O(\log x)$ primes dividing $h$ can be restored on this
+scale; on the others punctured and full roughness agree.
+This proves A and D and the rate C.
+
+The positive counts in Section~\ref{sec:density} and the exact
+identities
+\begin{equation}\label{eq:general-signs}
+ \ind_{\mu(n)=\kappa}=\frac{\mu^2(n)+\kappa\mu(n)}2,
  \qquad
- \partial_r\frac{\tau_h(w)}{\tau_h(z)}
-        =-\frac{h}{\tau_h(z)^2}.
+ \ind_{\lambda(n)=\kappa}=\frac{1+\kappa\lambda(n)}2
+ \quad(n\ge1)
 \end{equation}
-Its absolute derivative lies in $[|h|/256,256|h|]$.
-The odd-odd restriction is
-\begin{equation}\label{eq:small-parity}
- \begin{cases}
- z_1\text{ odd},&h\text{ even},\\
- z_1\text{ odd and }z_2\text{ even},&h\text{ odd}.
- \end{cases}
-\end{equation}
-\end{lemma}
-\begin{proof}
-The columns lie in $\Lambda_\varrho$ and have determinant $-h$,
-so the basis and coordinate assertions follow with that orientation.
-The first-row kernel assertion follows from invertibility modulo
-$p\nmid h$. If $W=g_h(P)w$ has relative determinant $1$,
-then $\det(Q,W)=-h$. Multiplication of $W$ by
-$-\operatorname{sgn}(h)$ gives determinant $|h|$, proving
-\eqref{eq:small-ratio}. At an integer-plane primitive state this
-ratio is $|h|r_Q\pmod1$.
-Both good-state tests use distance to integers, so changing the
-ratio's sign preserves them; absolute-value boundary bounds also
-preserve their estimates.
-The derivative formula follows by differentiation, and
-$\tau_h(z)\in[1/16,16]$ gives its range, bounded below by $1/256$
-and above by $x^{o(1)}$.
-For even $h$, $P^*\equiv0\pmod2$, giving the initial parity case.
-For odd $h$, $P^*\equiv(c,d)\pmod2$ and
-$d-c\equiv ud-vc\equiv1\pmod2$. Hence
-$Q\equiv(z_1+cz_2,z_1+dz_2)\pmod2$, proving the other case.
+give their sign formulas, with the actual eligible counts.
+Section~\ref{sec:progressions} proves B with its own relative
+measure and uses the same packing for its instance of C.
 \end{proof}
 
-Let $\mathfrak M_h=\{\theta:|h|\theta\in\Mone\}$.
-The covering identity is
-\begin{equation}\label{eq:small-cover}
- \int_{\mathfrak M_h}e(\theta(t+h(b-a)))\,d\theta
- =\ind_{h\mid t}\int_{\Mone}e(\phi(t''-b+a))\,d\phi.
-\end{equation}
-Indeed the branch substitution first gives phase
-$e(-\operatorname{sgn}(h)\phi(t''-b+a))$; for $h>0$ reflect
-$\phi$, using symmetry of $\Mone$. The kernel is block diagonal
-and its reduced determinant is exactly $\det(z,z')/D$.
-A full block can contain $\asymp d_0YMN/|h|$ positions, so
-Lemma~\ref{lem:block-size}'s $O(d_0Y)$ application bound is replaced
-by the local partition below.
-
-Parity is imposed only through the multiplier $\chi$ in LWW
-(4.34), p.~25, and the corresponding sublattice restriction in
-$M_R$: use \eqref{eq:small-parity} on the full relative integer
-lattice. This projection has norm at most $1$.
-The labelled enlargement is used only for nonunit states modulo
-$h$, where the endpoint vector vanishes. In particular even positions
-are not separately reintroduced this way. For odd $h$, allowed
-reduced determinants are even, which is just a restriction of this
-projection. The endpoint multiplier $\chi(B_Dk)$ in (4.45), p.~29,
-and compression of the clean-edge operator cannot increase its norm.
-
-\begin{lemma}[Lemma R for small shifts]\label{lem:Rh}
-Let $d_0YM,N\ge x^\delta$ and let $S$ be odd squarefree,
-$(S,h)=1$, $S\le\exp(C_0L^{0.98})$.
-Use the intervals $I_1,I_2,I_3$ of Lemma~\ref{lem:R}.
-For a matrix $g_0\bmod S$ of determinant $-h$, the number of
-primitive roots with $u,v$ odd, $(uv,h)=1$,
-$u/(d_0YM)\in I_1$, $v/N\in I_2$, $r_P\in I_3$ and
-$g_h(P)\equiv g_0\pmod S$ is
-\begin{equation}\label{eq:Rh-count}
- \frac{c_h d_0YMN|I_1||I_2||I_3|}
-      {|\operatorname{SL}_2(\Z/S\Z)|}
-       +O(d_0YMNx^{-c\delta}),\qquad
- c_h=\frac1{\zeta(2)}\prod_{p\mid2h}\frac{p-1}{p+1}.
-\end{equation}
-Prescribed lines have weights $1/(p+1)$ and a uniform error of the
-same form, with a possibly smaller fixed positive $c$.
-For $h=\pm2$, $c_h=1/(3\zeta(2))$.
-\label{eq:ch}
-\end{lemma}
+\begin{corollary}[Quantitative reflected branches]\label{cor:reflected-v2}
+For $\varepsilon=-1$, $x=h=\GN$ even, the A and D conclusions
+and their explicit rate hold under $\mathrm H2'$, Burgess and
+the sufficiently strong fixed $\mathrm H1^\star$ selected above.
+They hold on the small-radical class of S with Iwaniec and Burgess,
+and on the classes in F with its respective analytic inputs.
+\end{corollary}
 \begin{proof}
-Use LWW Lemma~A.1 and (A.5), pp.~47--51, with the original ratio
-$r_P=c/u$. Since $(h,S)=1$,
-$g_h\equiv g_0\pmod S$ is equivalent to
-$g\equiv g_0E_h^{-1}\pmod S$.
-The odd-odd condition supplies the original parity factor at $2$.
-Sieve the odd part of $\rad(h)$ on both coordinates as in
-Lemma~\ref{lem:R}; its local factor is $(p-1)/(p+1)$ and its
-divisor cost $2^{\omega_{\rm all}(h)}\le L^{O(1)}$.
-The swapped-coordinate case is LWW's determinant-one calculation
-with displacement $1/(uv)$, since the counted ratio remains $r_P$.
-Thus there is no $\GN/(uv)$ displacement to discard.
-The ratio map $r\mapsto|h|r$ preserves Haar measure, and the
-line distribution follows from the determinant-$(-h)$ matrix
-coset just as in \eqref{eq:R-lines}.
+In this specialization $X\le\GN$ and the Mellin scale is one.
+The reflected energy theorem supplies the major-arc bound at
+the selected precision. Its large-value count remains uniform
+for $a_K\le\theta<1/2$, because
+$L^{a_K}=o(L^{1-a_K}\log L)$, and the Burgess and
+P\'olya--Vinogradov power margins are unchanged. Replacing $Z$
+by $\exp(L^{3/4})$ costs at most $O(ZL/V)$ in the long-prime
+deletion, still negligible since $V$ is a fixed positive power
+of the large variable. The reconstructed sifted M\"obius lemma
+and the Vaughan identity supply the other changed analytic
+interfaces. The common signed transport, positive moments and
+packing then give \eqref{eq:affine-weighted-main} and its unweighted
+consequences. The small-radical region and the criteria in F
+supply precisely this selected rectangle. This also completes
+the reflected consequences of Theorem~\ref{thm:F}.
 \end{proof}
 
-\subsection{Locality within a small-shift block}\label{subsec:small-locality}
-\begin{proposition}[Small-shift Type II estimate]\label{prop:small-II}
-Using $\mathrm H2'$ and the changes below,
-\begin{equation}\label{eq:small-II}
- |Q_Y-Q_Y^{\mathrm{maj},h}|\ll_A XYL^{-A}
-\end{equation}
-uniformly for $0<|h|\le L^C$.
+\section{Small shifts}\label{sec:small}
+Here $L=\log x$ and $0<|h|\le L^{C_0}$, with fixed $C_0$.
+\subsection{Changes to the version 1 small-shift proof}\label{subsec:small-major}
+The unnormalized basis used there was
+$g_h(P)=\bigl(\begin{smallmatrix}u&-hc\\v&-hd\end{smallmatrix}\bigr)$,
+where $ud-vc=1$. It has determinant $-h$, but can have a
+relative first-coordinate bound proportional to $|h|$.
+We now use the normalized signed basis
+\eqref{eq:affine-basis} with $\Delta=-\varepsilon h$.
+Lemma~\ref{lem:slope-cells} bounds both cell occupancy and path
+coordinates independently of $|h|$. The parity conditions are
+\eqref{eq:affine-parity}; after the normalization the even-$h$
+condition is not simply that $z_1$ be odd. Lemma~\ref{lem:R}
+counts the normalized signed complementary ratio directly.
+These replacements reuse the block, root and transport sections
+instead of requiring a separate small-shift geometric proof.
+
+\begin{proposition}[Small shifts without $\mathrm H1$]\label{prop:small-v2}
+For fixed $C_0$, A and D restricted to
+$0<|h|\le L^{C_0}$ hold with their displayed rates under
+$\mathrm H2'$ and the listed classical inputs alone.
+For D retain nonzero even $h$ and every fixed $a<1/2$.
 \end{proposition}
 \begin{proof}
-The relative kernel has $t''=\det(z,z')/D$ and the same list
-structure. Rows~5, 9 and 17 of Table~\ref{tab:dictionary} are
-replaced as follows; all support-dependent constants refer to the
-fixed cutoff $\psi_1$.
-On an edge,
-\begin{equation}\label{eq:small-slopes}
- \begin{split}
- |\det(P_j,P_{j+1})|&\ll|h|d_0Y,\\
- |\operatorname{slope}(P_{j+1})-\operatorname{slope}(P_j)|
-       &\ll\frac{|h|}{d_0YM^2}.
- \end{split}
-\end{equation}
-Summing at most $2R$ edges from $P=P_0$ gives
-\begin{equation}\label{eq:small-path}
- |\det(P,P_j)|\ll R|h|d_0Y,\quad
- |(z_j)_2|\ll Rd_0Y,\quad
- |(z_j)_1|=|\tau_h(z_j)+hr_P(z_j)_2|
-              \ll|h|Rd_0Y=x^{o(1)}.
-\end{equation}
-Use the relative cube $Z_0$ of radius $2C_{\rm pos}|h|Rd_0Y$ in
-(4.33), p.~24. Its coefficient mass remains
-$\exp(O_K(L^{0.73}))$, since
-$\log(|h|Rd_0Y)=O(L^{0.21})$.
-The second position boundary, with its orientation retained, is
-\begin{equation}\label{eq:small-boundary}
- E_2=t_0\tau_h(z)-\frac{hz_2}{uN},\qquad
- \left|\frac{hz_2}{uN}\right|\ll\frac{R|h|}{MN}.
-\end{equation}
-Its derivatives have the bounds of LWW (4.30), pp.~23--24.
-
-Inside each labelled block partition the physical slope $P_2/P_1$
-into half-open intervals of length $|h|/(d_0YM^2)$.
-By \eqref{eq:small-slopes}, each interval interacts with $O(1)$
-neighbors in that block. Each contains $O(|h|d_0Y)$
-lattice-primitive positions: choose one such $P$ in it.
-Other positions have
-$|\det(P,Q)|\ll|h|d_0Y$ and determinants in $|h|\Z$.
-For a fixed determinant their differences belong to
-$\Q P\cap\Lambda_\varrho=\Z P$, by lattice-primitivity,
-so the first-coordinate strip gives $O(1)$ choices.
-This reasoning also applies to added nonunit states and does not
-assume their primitivity in $\Z^2$.
-The trace factor is
-\begin{equation}\label{eq:small-trace}
- (|h|d_0Y)^{1/(2R)}
-       =\exp(O(L^{0.21}/L^{1/2}))=O(1).
-\end{equation}
-For the comparison count, $h\mid bk_0-a\ell_0$ and
-$|bk_0-a\ell_0|\ll|h|Y$, giving $O(1)$ choices of $\ell_0$ in
-one class modulo $|h|$ in an interval of length $O(|h|)$.
-For endpoint primitivity, $p\mid(m,s)$ would give
-$p\mid h(b-a)$ with $p>Z>|h|$ and
-$0<|b-a|<4Y<Z$, a contradiction.
-The other dictionary rows, Lemma~\ref{lem:Rh}, and LWW's arguments
-then give \eqref{eq:small-II}.
+In the hybrid major arcs all characters are modulo $kH$,
+$k\le L^{A_0}$, and have conductor at most $L^{A_0+C_0}$.
+Choose the fixed cutoff $A_1>A_0+C_0+1$. The small-conductor
+proof in Section~\ref{subsec:sparse} then estimates the whole
+character average, including its principal character, at the
+same Mellin scale $\max(1,X/H)$. The short-prime contour under
+$\mathrm H1$ is unused. The reconstructed Type~I and positive
+moment proofs, common signed transport, retuning and uniform
+packing are unchanged. Thus the A/D assembly applies with
+$\mathrm H2'$ as its sole nonclassical input.
 \end{proof}
 
-\subsection{Small-shift major arcs}\label{subsec:small-major}
-\begin{proposition}[Small-shift major term]\label{prop:small-major}
-Using the arguments of LWW Section~5 as written,
-\begin{equation}\label{eq:small-major}
- |Q_Y^{\mathrm{maj},h}|\ll_D XYL^{-D}
-\end{equation}
-uniformly for $0<|h|\le L^C$.
-\end{proposition}
-\begin{proof}
-The kernel from \eqref{eq:small-cover} carries
-\[
- \ind_{bmn\equiv ars\ (h)}\psi_1(t''/Y)
-       \int_{\Mone}e(\phi(t''-b+a))\,d\phi.
-\]
-Now $\psi_1(t''/Y)=\psi_1((ars-bmn)/(hY))$ forces
-$|bmn-ars|\ll|h|Y\ll bmn$, a genuine localization.
-Apply the proof of LWW Proposition~5.3, pp.~42--45, with these changes.
-The congruence expands as
-\begin{equation}\label{eq:small-character}
- \ind_{bmn\equiv ars\ (h)}
-   =\frac1{\ph(|h|)}\sum_{\chi\bmod|h|}\chi(bmn)\overline{\chi(ars)}.
-\end{equation}
-On $\phi=h_1/k+\lambda_0/Y$,
-\[
- e(h_1t''/k)=e(-h_1bmn/(hk))e(h_1ars/(hk)).
-\]
-Expand these unit-residue functions factor by factor in characters
-modulo $|h|k$, and the factors $e(\mp h_1(b-a)/k)$ modulo $k$.
-The total character mass is at most
-$(|h|k)^6\le L^{6(A_0+C)}$.
-
-Mellin separation uses $|h|Y$ in place of $Y$ and reflects the
-cutoff when its orientation requires it. Its relative scale is
-$|h|/X$, giving
-\begin{equation}\label{eq:small-frequencies}
- |t|\le(X/|h|)L^{B_1}\le XL^{B_1},\qquad
- T_*=\exp(L/(\log L)^2).
-\end{equation}
-These are in the range of LWW Lemmas~5.1--5.2, pp.~40--41.
-The kernel has $X$ replaced by $X/h$; its prefactor gains at most
-an additional $|h|\le L^C$.
-Fix one character term. Its conductor is at most
-$|h|k\le L^{A_0+C}$.
-LWW (5.14), p.~43, follows with arbitrary fixed precision $A$ from
-(5.2), p.~40, Lemma~5.2 and Proposition~2.2 at the fixed modulus
-exponent $A_0+C$.
-Lemma~5.2 is uniform in the bounded character twist and gives an
-energy estimate. The arbitrary saving comes from Proposition~2.2.
-To absorb the character mass and the prefactor choose
-\begin{equation}\label{eq:small-budget}
- A=D+9A_0+7C+B_1+1
-\end{equation}
-in place of LWW's $D+9A_0+B_1+1$.
-The rest of their assembly is used as written.
-All moduli are $L^{O(1)}$, so this step uses no
-$\mathrm H1$ or $\mathrm H1^\star$.
-It uses LWW Section~5 in addition to $\mathrm H2'$.
-\end{proof}
-
-\subsection{Small-shift Type I}\label{subsec:small-typeI}
-\begin{proposition}[Small-shift Type I]\label{prop:small-I}
-LWW Section~3 with the following divisor and parity substitutions
-gives $T_1(F_h),T_2(F_h)\ll_A xL^{-A}$ uniformly in $h$.
-\end{proposition}
-\begin{proof}
-The sifted $q$ satisfies $(q,h)=1$.
-After expanding $R_Z$, let $g=(r,h)$ with $r$ odd squarefree.
-The list divisor $d$ is disjoint from $rh$.
-Apply \eqref{eq:mu-dg} and write
-\begin{equation}\label{eq:small-I-substitution}
- qrj+h=dgat,\qquad
- t\equiv(h/g)(da)^{-1}\pmod{qr/g},\qquad t\ge1.
-\end{equation}
-The inverse exists because $(da,qr/g)=1$.
-The class is reduced since $(h/g,r/g)=(h,q)=1$ and
-$(g,qr/g)=1$. The primes of $a$ may lie in $g$, so no term is
-removed by a condition $(g,da)=1$.
-The M\"obius function is evaluated at $t$ itself in this substitution;
-factoring out $g$ after evaluating it would instead require
-$\mu(gt')=\mu(g)\mu(t')\ind_{(t',g)=1}$.
-
-For even $h$, $j$ odd is equivalent to $t$ odd, and the class
-modulo $2qr/g$ is reduced.
-For odd $h$, $j$ odd is equivalent to $t$ even. Put $t=2t''$;
-then
-\begin{equation}\label{eq:small-I-parity}
- t''\equiv(h/g)(2da)^{-1}\pmod{qr/g},\qquad
- \mu(2t'')=-\mu(t'')\ind_{2\nmid t''}.
-\end{equation}
-The last indicator makes the class modulo $2$ reduced, so in both
-cases the M\"obius sum is over a reduced class modulo $2qr/g$.
-Apply (3.1) with the weighted grouping of LWW p.~13 separately
-at each $g$-dependent level $x/(dg)$ (and $x/(dga)$ in the small-$a$
-part). Then sum $\sum_{g\mid\rad(h)}1/g\ll\log L$.
-The extra Rankin factor
-$\prod_{p\mid g}(1-p^{-1/20})^{-1}\le L^{O(1)}$ is absorbed by
-$x^{-1/50}$ as in \eqref{eq:I-Rankin}.
-The positive interval for $p+h\in(x+h,2x+h]$ is handled by the
-maximum over endpoints in the same estimate.
-\end{proof}
-
-\begin{remark}[Other Type I parametrizations]\label{rem:other-I}
-For comparison, factoring $t=gt'$ after the original substitution
-requires the factor $\ind_{(t',g)=1}$ in
-$\mu(gt')=\mu(g)\mu(t')\ind_{(t',g)=1}$.
-One may split into at most $\ph(g)\le|h|$ reduced classes modulo
-$qr$ and absorb $L^C$ by increasing the distribution precision.
-Another exact expansion is
-\[
- R_Z(k)=\ind_{(k,h)=1}R'_Z(k),\qquad
- R'_Z(k)=\ind_{\text{each prime divisor of $k$ exceeds $Z$ or divides $h$}}.
-\]
-Expanding only $R'_Z$ leaves $r$ coprime to $h$; the remaining
-condition on $j$ can be expanded over $e\mid\rad(h)$, with
-$2^{\omega_{\rm all}(h)}\le L^{O(1)}$ terms. The proof above uses
-\eqref{eq:small-I-substitution} instead.
-\end{remark}
-
-\subsection{Removal of weights and assembly}\label{subsec:small-assembly}
 \begin{proof}[Proof of Theorem~\ref{thm:H}]
-For weight removal, $d\mid P_0$ and $(h,d)=1$ give
-\begin{equation}\label{eq:small-weight-CRT}
- \frac1{\ph(P_0)}\sum_{\substack{a\bmod P_0\\(a,P_0)=1}}
-          \ind_{d\mid a+h}=\frac1{\ph(d)}.
-\end{equation}
-Bombieri--Vinogradov uses the reduced class $p\equiv-h\pmod d$.
-Use the same mean normalization as in Proposition~\ref{prop:weights}.
-
-For squarefree density use $1\le p+h\le x+|h|$.
-If $p\nmid h$ and $d^2\mid p+h$, then $(d,h)=1$; otherwise a
-common prime divisor would equal $p\mid h$, which accounts for
-at most $\omega_{\rm all}(h)$ primes.
-Siegel--Walfisz applies uniformly to the reduced class
-$p\equiv-h\pmod{d^2}$ for $d\le L^{A+2}$.
-For the tail, restricting to $d\le\sqrt{x+|h|}$ gives
-\begin{equation}\label{eq:small-squarefree-tail}
- L\sum_{d>L^{A+2}}\frac{x+|h|}{d^2}
-       +O(\sqrt{x+|h|}\,L),
-\end{equation}
-and the extra endpoint term is absorbed at any fixed precision.
-Thus
-\begin{equation}\label{eq:small-squarefree}
- \#\{p\le x:p+h\ge1,\ \mu^2(p+h)=1\}
-       =(A_h+o(1))\pi(x),\qquad A_h\ge0.3739,
-\end{equation}
-uniformly in $h$.
-
-Assemble Propositions~\ref{prop:small-II}, \ref{prop:small-major}
-and~\ref{prop:small-I}, using
-$|T_Y|^2\ll(X/Y)Q_Y$ and $Q_Y\ll XYL^{-D^*}$.
-The dyadic summation and normalized weight removal give the weighted
-cancellation, and the bounded-target comparison
-\eqref{eq:unweight}, with $\GN$ replaced by $x$, gives its
-unweighted form. The negligible lower prime range includes all
-$p+h\le0$, at most $O(L^C)$ primes; the domain in
-\eqref{eq:H} excludes them throughout.
-When summing dyadic intervals with lower endpoint $\gg x/L^B$,
-their logarithms are $L+O_B(\log L)$, so the fixed-$C$ range and
-all bounds above remain uniform. Apply the sign identity
-\eqref{eq:mu-sign-identity} on positive arguments to obtain
-\eqref{eq:H}. This uses LWW Sections~2.3, 3, 5 and 6, as well as
-$\mathrm H2'$, exactly as in the statement.
+Use Proposition~\ref{prop:small-v2} with $\varepsilon=1$.
+The stated hypotheses of H include $\mathrm H2'$.
+Its cancellation follows from A with the explicit error above;
+the sign formula follows from the positive count and
+\eqref{eq:general-signs}. In this range
+$\Pi_{1,h}(x)=\pi(x)+O(L^{C_0})$, so replacing the eligible
+count by $\pi(x)$ costs less than the error. This proves H
+with its original hypotheses and gives the separately stated
+weaker-input branch. Positivity is retained throughout.
 \end{proof}
+The reflected weaker-input branch is
+Corollary~\ref{cor:reflected-v2}. Neither branch asserts that
+one selected polylogarithmic-height rectangle suffices for all
+intermediate affine shifts, where frequencies can be of size $X/H$.
 
 \section{Liouville versions}\label{sec:liouville}
 The function $\lambda(n)=(-1)^{\Omega(n)}$ is completely
@@ -2695,7 +3766,7 @@ $\rho^{\omega(\ell)}\le\rho^{\omega(w)-K}$, by
 count, at an additional fixed constant.
 Cauchy uses only $|\lambda(\ell)\rho^{\omega(\ell)}|\le1$.
 For the Goldbach shift use $Q_Y^+\le\QQ$ in
-\eqref{eq:cauchy-all}; for small shifts use \eqref{eq:small-cauchy}.
+\eqref{eq:cauchy-all}; for small shifts use \eqref{v2:3-4}.
 In each case the resulting square contains no target function.
 \end{proof}
 
@@ -2780,81 +3851,33 @@ than $A$, and take square roots.
 
 \subsection{Type I for Liouville}\label{subsec:lambda-typeI}
 \begin{proposition}[Liouville Type I]\label{prop:lambda-I}
-With the corresponding positive-argument functions $F_\lambda$,
-$T_1(F_\lambda),T_2(F_\lambda)\ll_{A,K,\rho}xL^{-A}$ for
-shift $+2$, Goldbach shift $\GN$, and small shift $h$ under the
-same uniformity ranges as above.
+The Type~I estimates of Proposition~\ref{prop:I} hold for
+the Liouville target in both orientations, with or without
+the D roughness condition, on their respective stated ranges.
 \end{proposition}
 \begin{proof}
-The truncated inclusion--exclusion for $R_Z$, divisor expansion of
-$W$ and truncation error (3.3) in LWW Section~3, pp.~10--12,
-use only $|\alpha_q|\le L$, boundedness of $F$, and counts in
-residue classes. For shift $+2$ the remaining expression is
-\begin{equation}\label{eq:lambda-I-shape}
- \sum_q\alpha_q\sum_r\mu(r)
- \sum_{\substack{d\\(d,r)=1}}c_d
- \sum_{\substack{x<qk\le y\\2\nmid k, r\mid k\\d\mid qk+2}}
-                                      \lambda(qk+2),
- \qquad y\in[x,2x].
-\end{equation}
-Write $k=rj$. Now $d$ odd and $d\mid qrj+2$ imply $(d,qr)=1$.
-Replace (3.4) by complete multiplicativity:
-\begin{equation}\label{eq:lambda-I-two}
- \lambda(dv)=\lambda(d)\lambda(v),\qquad
- qrj+2=dt,\qquad
- \lambda(d)\sum_{\substack{(x+2)/d<t\le(y+2)/d\\
-                         dt\equiv qr+2\ (2qr)}}\lambda(t).
-\end{equation}
-The class is reduced since $(d,2qr)=(qr+2,2qr)=1$.
-There is no auxiliary $a$-sum. The divisor satisfies
-$d\le\exp(O_K(R_I L^{0.2}))=x^{o(1)}$, where
-$R_I=\lceil C'\log L\rceil$ is the Type~I truncation depth.
-For large $x$ this gives $d\le x^{1/20}$; for the Goldbach
-substitution below, also $dg\le x^{1/20}$ since $g\le r=x^{o(1)}$.
-Thus the small-divisor case $da\le x^{1/20}$ with $a=1$ covers the whole sum,
-and no Rankin branch is needed.
-
-Group by $qr$ with coefficient at most $L\tau(qr)$.
-For $Y=(2x+2)/d\ge2x^{19/20}$ and
-$2qr\le x^{2/5+o(1)}\le Y^{1/2}L^{-B'(A_{\rm BV})}$,
-Lemma~\ref{lem:BVlambda-weighted} gives
-\begin{equation}\label{eq:lambda-I-bound}
- \sum_d|c_d|\sum_{q,r}|\alpha_q|E_\lambda((2x+2)/d;2qr)
- \ll xL^{-A}\sum_d|c_d|/d\ll_{K,\rho}xL^{-A},
-\end{equation}
-using $\sum_d|c_d|/d\ll_{K,\rho}1$ from LWW Section~3, p.~11.
-The $T_1$ partial summation of p.~14 is unchanged.
-
-For the Goldbach shift, let $g=(r,\GN)$ and write
-\begin{equation}\label{eq:lambda-I-G}
- \GN-qrj=dgt,\qquad
- \lambda(\GN-qrj)=\lambda(dg)\lambda(t),\qquad
- t\equiv(\GN/g)d^{-1}\pmod{qr/g}.
-\end{equation}
-The class is reduced by the coprimality checks in
-Proposition~\ref{prop:I}, and $j$ odd is equivalent to $t$ odd.
-Use modulus $2qr/g$ and level $Y=\GN/(dg)\ge x^{19/20}$;
-the modulus is $\le x^{2/5+o(1)}$.
-Carry out the grouping separately for each $g$ because this level
-depends on $g$, then sum $\sum_{g\mid\rad(\GN)}1/g\ll\log L$.
-The endpoints are those of Section~\ref{sec:typeI} with $a=1$.
-
-For the shift $h$, put $g=(r,h)$ and use
-\begin{equation}\label{eq:lambda-I-h}
- qrj+h=dgt,\qquad \lambda(qrj+h)=\lambda(dg)\lambda(t),\qquad
- t\equiv(h/g)d^{-1}\pmod{qr/g}.
-\end{equation}
-For even $h$ the odd $t$ class modulo $2qr/g$ is reduced.
-For odd $h$, put $t=2t''$:
-\begin{equation}\label{eq:lambda-I-odd}
- \lambda(2t'')=-\lambda(t''),\qquad
- t''\equiv(h/g)(2d)^{-1}\pmod{qr/g}.
-\end{equation}
-There is no parity condition on $t''$ here.
-Apply Lemma~\ref{lem:BVlambda-weighted} at modulus $qr/g$ and
-$Y=(2x+h)/(2dg)$; handle each $g$ separately and then sum $1/g$.
-All cofactors are positive and $0$ is excluded.
+Use \eqref{v2:6-7} with $\lambda(Dgt)=\lambda(Dg)\lambda(t)$;
+there is no auxiliary smooth $b$-sum. The retained $Dg=x^{o(1)}$
+lies in the small-divisor case. For even $h$ use the reduced odd
+class modulo $2qr/g$. For odd $h$ put $t=2t'$ and use
+$\lambda(2t')=-\lambda(t')$, with reduced modulus $qr/g$
+and no parity condition on $t'$.
+Apply Lemma~\ref{lem:BVlambda-weighted} at the $g$-dependent
+level before summing $\sum_{g\mid\rad(h)}1/g$.
+All finite presieve/Taylor errors use boundedness only and were
+proved in Section~\ref{subsec:general-I}.
 \end{proof}
+\begin{remark}[Changes in version 2: the Liouville target]
+The version~1 expansion and distribution lemmas above are retained.
+The square-overlap proof applies to
+$w=\varepsilon mn+h\ge1$ because every marking prime avoids $h$
+and is coprime to $m$. Its positive cofactor has exactly the range
+in Proposition~\ref{prop:affine-square}; the rough indicator is
+constant under removal of the selected product. The coefficient
+$\mu(m)R_Z(m)$ in the prime decomposition remains M\"obius.
+The progression proof uses the same Liouville distribution lemma
+after its explicit nonunit-class factorization.
+\end{remark}
 
 \subsection{Uses of the target function}\label{subsec:lambda-inventory}
 \begin{center}
@@ -2902,10 +3925,10 @@ $\pi(x)+O(L^C)$.
 
 In the Goldbach assembly, use Lemma~\ref{lem:lambda-expansion} and
 Proposition~\ref{prop:lambda-I} for the expansion and Type~I sums.
-The block estimate, major arcs and Theorem~\ref{thm:A} are independent
+The block estimate, major arcs and Theorem~\ref{thm:energy} are independent
 of the target. The same normalized weight removal gives the unweighted
 cancellation. For small shifts use the identical substitutions in
-Section~\ref{subsec:small-assembly}.
+Section~\ref{sec:small}.
 Lemma~\ref{lem:BVlambda} changes the fixed distribution exponent
 $B(A)$ to $B'(A)$; all choices still precede the large parameter.
 Uniformity in $\GN$ or $|h|\le L^C$ and the respective hypotheses
@@ -2919,8 +3942,100 @@ $(1-A_{\GN})/2+o(1)$ for each Liouville sign, consistent with
 The errors remain ineffective through the cancellation argument.
 \end{proof}
 
+\section{Progressions}\label{sec:progressions}
+\begin{remark}[Changes in version 2: progression restriction]
+This section adds the prime-variable character to the existing
+determinant and analytic arguments. The local density was proved
+in Section~\ref{subsec:progression-density}. Restriction to a
+progression also requires the relative moment and logarithm-removal
+calculation below.
+\end{remark}
+\begin{proof}[Proof of Theorem~\ref{thm:progression}]
+\subsection*{The prime-variable character and Type I}
+Let $\upsilon$ be any Dirichlet character modulo $q$. We first prove the marked estimate with the factor $\upsilon(p)$ at arbitrary fixed logarithmic precision, uniformly over $q,\upsilon$. Fix a sufficiently large low-prime cutoff exponent $B$. At the Vaughan level, $\upsilon(mn)=\upsilon(m)\upsilon(n)$, so replace the two coefficient sequences by $\alpha_m\upsilon(m)$ and $\beta_n\upsilon(n)$. Their absolute coefficient bounds are unchanged. Since $q<Z$ eventually, every sifted variable is already coprime to $q$.
+
+The affine cofactor identity and Cauchy square are unchanged: the extra character factors belong to the coefficients, while the bounded target on the cofactor is still $f(\ell)$ times its damping. The signed root counting, labelled intermediate space, endpoint primitivity, comparison kernel, memory moments, goodness removal and minor-arc error in Section~\ref{subsec:affine-transport} apply to these coefficients with the same bounds. In particular no congruence modulo $q$ is added to the root-counting modulus.
+
+For Type I the outer character factor has modulus at most one. To make the inner character completely explicit, in the notation of Section~\ref{subsec:general-I} one has $\varepsilon q_1rj+h=Dgbt$ (rename its outer variable $q_1$ to avoid the present modulus $q$). Thus the prime-variable character is
+
+
+\begin{equation}
+\upsilon(q_1rj)=\upsilon\big(\varepsilon(Dgbt-h)\big).
+\end{equation}
+
+
+Partition $t$ into its residue classes modulo $q$. On each it is constant and bounded. The reduced M\"obius/Liouville class modulo $2q_1r/g$ is intersected with one residue modulo $q$. These latter classes need not be reduced in $t$, so one must not invoke reduced-class BV on them directly. Instead, an equivalent simpler treatment is to partition the original inner variable $k$ modulo $q$ before the transformation. Since the sieve already gives $(q_1k,q)=1$, all these are unit classes for $k$, but the resulting target class can still be nonunit. To handle that case, absorb the fixed prime-power part forced by the modulus into the target using the same local-factor identity \eqref{v2:6-6}, as detailed next.
+
+For a residue $t\equiv c\pmod q$, put $v=(c,q)$, $q'=q/v$, and write $t=v t_1$. Then $t_1\equiv c/v\pmod{q'}$ is reduced, but $(v,t_1)$ may be nontrivial. For M\"obius use the general identity
+
+
+\begin{equation}\label{v2:14-2}
+\mu(vt_1)=\begin{cases}
+\mu(v)\displaystyle\sum_{\substack{b_1\mid t_1\\p\mid b_1\Rightarrow p\mid v}}\mu(t_1/b_1),&v\text{ squarefree},\\
+0,&v\text{ not squarefree}.
+\end{cases}
+\end{equation}
+
+
+If a prime divides both $b_1$ and $q'$, the original reduced class of $t_1$ is impossible, so only $(b_1,q')=1$ survives. The other original modulus $m=2q_1r/g$ is already reduced in $t$, hence $(v,m)=1$ is necessary, and any prime of $b_1$ dividing $m$ likewise gives an impossible term. On the surviving terms the new variable $t_2=t_1/b_1$ satisfies two compatible reduced classes, hence one reduced class modulo $\operatorname{lcm}(m,q')\le qm$. The numerator changes by inverses of $v,b_1$, which are units wherever needed. For Liouville simply use $\lambda(vt_1)=\lambda(v)\lambda(t_1)$, with no $b_1$ expansion.
+
+All extra finite choices and multiplicities cost only fixed powers of $L$: there are $q\le L^{C_q}$ residue classes, $v\le q$, and at most $q$ preimages of a modulus under $m\mapsto\operatorname{lcm}(m,q')$. To justify the latter bound prime by prime, let e be the exponent in q'. If the fixed lcm has larger exponent, the exponent in m is forced; if it equals e, the exponent in m has at most e+1 choices. Thus there are at most $\tau(q')\le q'$ possible m. The small-divisor BV margin in Section~\ref{subsec:general-I} remains fixed after these logarithmic factors and replacing its divisor cutoff by $Dgbvb_1\le y^{1/20}$. The extra reciprocal sum over $b_1$ is at most $\prod_{p\mid q}(1-1/p)^{-1}\ll\log L$.
+
+For the complementary smooth tail, $v\le L^{C_q}$ and all primes of $b_1$ divide $q$; the set of primes supporting $bb_1$ has $O_{K,A,C_q}(\log L)$ elements. Apply the same Rankin argument as in Section~\ref{subsec:general-I} to the combined smooth factor $bb_1$. Its convolution multiplicity contributes the square of the corresponding Euler product, still a fixed power of L at each fixed Rankin exponent. Thus the power-saving tail and endpoint estimates survive. Odd h uses the already separated factor 2 from Section~\ref{subsec:general-I} before this residue decomposition. This proves the uniformly twisted Type I estimate. The additional residue and divisor costs are absorbed by raising its fixed BV and truncation precisions, without changing the Type II coefficient budget.
+
+\subsection*{The two character locations in the major arcs}
+The finite fibre expansion and Mellin kernel are unchanged. Its characters now have the form
+
+
+\begin{equation}\label{v2:14-3}
+\xi=\chi\psi\upsilon\quad\hbox{on }m,n,\qquad
+\xi_b=\chi\psi\psi'_b\quad\hbox{on the marking product }b.
+\end{equation}
+
+
+All are regarded on the common modulus $\operatorname{lcm}(kH,q)$. The prime-variable character $\upsilon$ occurs only in the two long polynomials. Choose a fixed $A_1>A_0+C_q+2$. If $\xi_b$ were principal, then $\chi\psi=(\psi'_b)^{-1}$ and $\xi=\upsilon(\psi'_b)^{-1}$ would have conductor dividing $\operatorname{lcm}(q,k)$, at most $qk\le L^{A_0+C_q}$. Therefore every $\xi$ above the chosen cutoff has nonprincipal $\xi_b$, and $\mathrm H1$ gives the same short-prime saving.
+
+The hybrid mean value still averages over $\chi\pmod H$; the fixed additional character $\upsilon$ is absorbed into the coefficients and has modulus at most one. Orthogonality and the logarithmic spacing H/X are unchanged. In the small-conductor range the primitive inducer of $\xi$ determines $\chi$ for fixed $\psi,\upsilon$, so there are still at most $L^{2A_1+1}$ characters. The small-conductor M\"obius bound applies at the raised fixed cutoff. Primes dividing q cause no extra loss since they are below Z; primes dividing H are removed exactly as in Lemma~\ref{input:sifted}. The sparse-frequency estimate accepts arbitrary bounded coefficients in the long polynomial, including $\upsilon$, and is uniform in the marking character. Thus \eqref{v2:5-14}–\eqref{v2:5-15} retain their bounds.
+
+Combining Type I and Type II gives, at every fixed precision A,
+
+
+\begin{equation}
+\sum_{p\in\mathcal P_{\varepsilon,h}(x)}(\log p)f(\varepsilon p+h)W_j(\varepsilon p+h)\upsilon(p)
+\ll_{A,C,C_q}xL^{-A}.
+\end{equation}
+
+
+Character orthogonality modulo q and the factor $1/\varphi(q)$ then give the same bound for each marked progression sum. The uniform band-family proof applies unchanged after the fixed cutoff and precisions are raised; no parameter grows with q beyond its fixed logarithmic exponent.
+
+\subsection*{Progression-relative weight removal}
+Let $I$ be the eligible prime interval and put $\Theta_{I;q,a_0}=\sum_{p\in I,\,p\equiv a_0(q)}\log p$. For $F=1,W_j,W_jW_k$ with $j\ne k$, the finite Taylor expansion and CRT give
+
+
+\begin{equation}\label{v2:14-4}
+\sum_{\substack{p\in I\\p\equiv a_0\ (q)}}(\log p)F(\varepsilon p+h)
+=m_F\Theta_{I;q,a_0}+O_A(xL^{-A}).
+\end{equation}
+
+
+Indeed every band prime exceeds $q$ and is coprime to $h$, so each retained band divisor $d$ is coprime to $q$. Combining its reduced shifted class with $a_0\pmod q$ gives one reduced class modulo $qd$. Different $d$ give different $qd$, all $x^{o(1)}$, so the summed BV discrepancies retain arbitrary fixed precision. The same positive Taylor remainder bound applies. The local probabilities at band primes remain $1/(r-1)$; hence the means $m_F$ are exactly those in \eqref{v2:6-10} and factor for disjoint copies. Endpoint-uniform Siegel–Walfisz gives $\Theta_{I;q,a_0}\ll x/\varphi(q)$.
+
+Using the $b_x$ copies in Section~\ref{subsec:packing}, \eqref{v2:14-4} yields variance at most $C\Theta_{I;q,a_0}/b_x+O_A(xL^{-A})$. Cauchy with this progression measure and the uniformly small marked progression sums bounds the unmarked weighted sum by
+
+
+\begin{equation}
+\frac{Cx}{\varphi(q)\sqrt{\log L}}+O_A(xL^{-A})
++O_A\left(\sqrt{\frac{x}{\varphi(q)}\,xL^{-A}}\right).
+\end{equation}
+
+
+Choose fixed $A>C_q+4$. Both errors are absorbed by the first term. To remove $\log p$, use the progression bound $\pi(x;q,a_0)\ll x/(\varphi(q)L)$ for the high primes; this gives a relative error $O_B(\log L/L)$. The low-prime segment contributes at most $x/L^B$, a relative error $O(L^{C_q+1-B})$, so take fixed $B>C_q+4$. Using only the ambient Chebyshev bound here would fail when $C_q$ is large. This proves \eqref{eq:progression-main}. Finally choose the precision in \eqref{v2:13-1} larger than $C_q+3$ and use the exact sign identities, proving the stated sign counts. 
+
+\end{proof}
+The modulus range is $q\le(\log x)^{C_q}$ with fixed $C_q$.
+
 \appendix
-\section{Changes relative to LWW, Sections 4.1--4.7 and Appendix A}
+\section{Changes relative to LWW}
 \label{app:dictionary}
 All LWW references in Table~\ref{tab:dictionary} are to version~1,
 14 October 2026. Page numbers are the numbered pages of that paper.
@@ -2952,7 +4067,7 @@ Row&LWW location&Replacement or retained input\\\midrule
 Separate the product cutoff as there, with $F=0$ off positive shifted arguments.
 Use the nonnegative enlargement \eqref{eq:cauchy-all} and its exact
 integer-cofactor expansion \eqref{eq:all-expanded}. Its common range
-is $|h|\ll\GN/Y$, and $|T_Y|^2\ll(\GN/Y)\QQ$.\\
+is $|\ell_0|\ll\GN/Y$, and $|T_Y|^2\ll(\GN/Y)\QQ$.\\
 2\phantomsection\label{dict:02}&(4.8)--(4.9), p.~16; (4.24)--(4.25), p.~21&
 Set $t'=t/\GN$, use $\psi_1(t/(\GN Y))=\psi_1(t'/Y)$ and
 $\MN$. The $\GN$ branches cancel the Jacobian $1/\GN$ in
@@ -2969,13 +4084,14 @@ $\tauN(z)=z_1+\beta z_2$ replaces $z_1-2rz_2$.\\
 Lemma~\ref{lem:coordinates} directly gives
 $|z_2|\le64d_0YMN/\GN$, $|z_1|\le16+|z_2|$.
 It implies the needed $|z|\ll Rd_0Y$ and coefficient mass
-$\exp(O_K(L^{0.73}))$.\\
+$\exp(O_K(L^{r_*+j_*+\theta}))$.\\
 6\phantomsection\label{dict:06}&(4.30), (4.32), pp.~23--24&
 The second boundary is
 $E_2=t_0\tauN+z_2\GN/(d_0YMNs)$.
 The extra term is $O(1)$, as is its $s$ derivative;
 $\partial_{t_0}E_2=\tauN\in[1/16,16]$ and
-$\partial_\beta E_2=t_0z_2=\exp(O(L^{0.21}))$.
+$\partial_\beta E_2=t_0z_2$ and
+$|\partial_\beta E_2|\ll\exp(O_K(L^{j_*+\theta}))$.
 The neighborhood volume is $x^{-c\delta/8+o(1)}$.\\
 7\phantomsection\label{dict:07}&(4.31), p.~24&
 $\partial_\beta(\tauN(w)/\tauN(z))=1/\tauN(z)^2$ for
@@ -3007,7 +4123,7 @@ The enclosing region has $|\ell|\ll Y$ and bounded $\tau$ ratios.\\
 13\phantomsection\label{dict:13}&(4.45), p.~29&
 $\chi(B_Dk)$ is a bounded endpoint multiplier. Sharp or nonrectangular
 position restrictions preserve its contraction property.\\
-14\phantomsection\label{dict:14}&(4.47)--(4.48), p.~30&
+14\phantomsection\label{dict:14}&(4.47)--(4.48), pp.~30--31&
 $j_1=P_{\rm full}-Dp_*ZT_f=\det(z,z')=D(b-a)$;
 $\tauN(z')/\tauN(z)\in[1/16,16]$.
 The second good-state test is applied to the intrinsic ratio at
@@ -3016,9 +4132,10 @@ the source $g_{\GN}(P)z$.\\
 The reduced integer box has the same nonzero linear congruence modulo
 a list prime. List primes are coprime to $\GN$ and to the chosen shared $D$.\\
 16\phantomsection\label{dict:16}&Endpoint primitivity, p.~35&
-A common prime of $m,s$ is $>Z$ and coprime to $\GN$.
-It divides $b-a$, while $0<|b-a|<4Y<Z$ by the retained cross-edge
-exclusion. The cofactor sign is irrelevant.\\
+A common prime of $Dbm,s$ is $>Z$ and coprime to $\GN$.
+For both kernels, $\GN\mid t$, $t\ne0$ by $(b,ars)=1$, and
+$|t/\GN|\ll Y=o(Z)$. Such a prime would divide $t/\GN$,
+which is impossible.\\
 17\phantomsection\label{dict:17}&Section~4.6 partition, p.~36&
 Use labelled blocks with $O(d_0Y)$ lattice-primitive positions in the
 application of Lemma~\ref{lem:block-size}, with no interaction between
@@ -3037,12 +4154,12 @@ The bad-state ratio measure is unchanged.\\
 For fixed $k_0=mn$, $\ell_0=rs$ is in the class
 $ba^{-1}k_0\bmod\GN$ in an interval of length $O(\GN)$, giving
 $O(1)$ choices. Raw absolute divisor-square counts use the translated
-cofactor interval or $|h|\ll\GN/Y$, at a cost $\GN/X\ll L^B$.\\
+cofactor interval or $|\ell_0|\ll\GN/Y$, at a cost $\GN/X\ll L^B$.\\
 21\phantomsection\label{dict:21}&Appendix~A, swapped case, p.~50&
 Retain $\GN/(uv)$, with $\GN/(uv)\ll L^B/(d_0Y)$.
 Use both $k=\lfloor\beta+\GN/(uv)\rfloor\in\{0,1\}$ branches,
-the separate matrix residues and the cell envelopes of
-\eqref{eq:swapped}--\eqref{eq:swapped-residue}.\\
+the separate matrix residues and the interval envelopes in the proof
+of Lemma~\ref{lem:R}.\\
 22\phantomsection\label{dict:22}&Lemma~A.1 and (A.5), pp.~47--51&
 Use Lemma~\ref{lem:R}, the determinant-$\GN$ matrix coset,
 $c_{\GN}=\zeta(2)^{-1}\prod_{p\mid\GN}(p-1)/(p+1)$ and
@@ -3056,12 +4173,121 @@ $|\MN|=|\Mone|\ll L^{3A_0}/Y$.\\
 \end{longtable}
 \normalsize
 
+\subsection{Additional version 2 changes and reconstructed inputs}
+The preceding table retains the reflected dictionary, with the
+common numerical retuning. The following entries give the further
+changes for both orientations, the quantitative rate, rough values
+and progressions. They also identify arguments outside
+$\mathrm H2'$ that are now supplied in the paper.
+\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.25\textwidth}>{\raggedright\arraybackslash}p{.69\textwidth}@{}}
+\toprule LWW location & Version 2 replacement or retained input\\\midrule
+\endhead
+Proposition 2.1, p.~4 & The exact convolution identity
+\eqref{eq:vaughan-convolution}, both prime-power corrections and
+the boundary-strip/Mellin proof of Proposition~\ref{prop:vaughan}.\\
+Proposition 2.2, pp.~5--6 & Lemma~\ref{input:sifted}, proved from
+MSTT at full dyads, followed by prefix dyads, real-weight partial
+summation and a smooth-divisor convolution. The sifted tail has
+$\exp(-cL^{1/4})$ decay with $Z=\exp(L^{3/4})$.\\
+(2.13)--(2.19), pp.~7--10 & The same weight. Finite Taylor
+divisors, reduced-class probabilities $1/(r-1)$ and positive
+presieve errors give the relative moments in
+Section~\ref{subsec:relative-moments}.\\
+Section 3, pp.~10--14 & Extract $g=(r,h)$ before applying
+\eqref{v2:6-6}; use the reduced class modulo $2qr/g$, or the
+explicit odd-$h$ parity rule, with each $g$-dependent BV level
+treated before the reciprocal $g$-sum. Large smooth divisors use
+the fixed-exponent Rankin bounds in Section~\ref{subsec:general-I}.\\
+(4.3)--(4.8), pp.~15--16 & $w=\varepsilon(mn-\Delta)>0$,
+$\Delta=-\varepsilon h$, $H=|h|$. Cauchy uses
+$(X+H)/Y$ and the all-nonzero-integer square
+\eqref{v2:3-4}; its raw equation is \eqref{v2:3-5}.
+Roughness passes to the common cofactor by \eqref{v2:3-6}.\\
+(4.24)--(4.32), pp.~21--24; Appendix A & The normalized signed
+basis \eqref{eq:affine-basis}, index-$H$ labelled blocks,
+parity \eqref{eq:affine-parity}, intrinsic derivative
+\eqref{v2:4-4} and signed root Lemma~\ref{lem:R}.
+The swap has all $k=-1,0,1$ branches and intervals are enlarged
+before clipping.\\
+(4.29)--(4.32), pp.~23--24 & Root density $c_{2H}$ and
+probability $1/(p+1)$ per prescribed line. Every fixed
+$S\le\exp(C_0L^\sigma)$, $\sigma<1$, is allowed. Boundary
+transversality uses \eqref{v2:4-5} with $x^{o(1)}$ gradients.\\
+(4.35)--(4.38), pp.~25--27 & Keep the signed prime measures,
+ghosts and factorial identities. For the separate positive
+remainder use \eqref{v2:9-2}, remove only exterior damping,
+and use the exact adjoint table of Lemma~\ref{lem:positive}.\\
+Bonferroni step, p.~23 & The model tail is
+$L^{C_*R}(C_KR)^{B_d}/B_d!$. Arithmetic discrepancy still
+uses the crude subpower residue/coefficient count.
+Sections~\ref{subsec:positive-tail}--\ref{subsec:retune}.\\
+(4.42)--(4.50), pp.~29--31 & The relative signed kernels and
+balanced powers of $Y$ remain. The clean norm uses
+$L^{\theta-A_0}$ and the dirty raw norm $L^{1-j_*K/2}$.
+Choose $A_0>G+3$, $K>2(G+3)/j_*$.\\
+(4.53)--(4.62), pp.~32--35 & Retain cap $L^2$, polynomial
+address counts and collision threshold $o(R)$. The new
+subpower cost exponent is $1-7j_*<1$.
+The signed ghost operators are unchanged.\\
+(4.63)--(4.68), pp.~36--37 & Within each block use cells of
+width $H/(d_0YM^2)$ and occupancy $O(d_0Y)$. Spectral
+H\"older precedes restriction to actual unit roots. The trace
+factor $(d_0Y)^{1/(2R)}$ is independent of $H$.\\
+(4.70)--(4.76), pp.~37--39 & The absolute raw and comparison
+bounds \eqref{eq:affine-divisor-square} and
+\eqref{eq:affine-comparison} are uniform in signed $\Delta$.
+Endpoint primitivity uses $H\mid t$ for comparison edges too.\\
+Section 5, pp.~39--45 & Fibre character mass $k^{O(1)}$,
+Mellin scale $\mathcal T=\max(1,X/H)$ and exact prefactor
+$YX^2/\mathcal T$. Hybrid spacing is $H/X$. Large conductors
+use the $15/16$ contour under H1; small conductors use the
+reconstructed sparse-frequency Gram argument.\\
+Section 5, reflected branch & Retain the long-prime energy
+theorem under one sufficiently strong fixed H1$^\star$.
+The comparison $a_K<1/2$ keeps its large-value bound; Burgess
+and P\'olya--Vinogradov retain fixed power margins.\\
+Section 5.3, p.~46 & Uniformity is proved on separated
+single-weight families. Pack $b_x\asymp\log\log x$ disjoint
+copies by \eqref{v2:10-1}; each mixed moment uses at most
+$2K$ bands, and its averaged error has no $b_x$ loss.\\
+Proposition 6.1, pp.~46--47 & Positive counts use the actual
+eligible interval. Rough/squarefree-rough factors are $V_h,U_h$;
+progression squarefreeness uses \eqref{eq:progression-factor},
+including forced zeros.\\
+New progression interfaces & The prime-variable twist is on
+$m,n$, not on the marking product. Nonunit target classes are
+factored by \eqref{v2:14-2}; progression-relative variance and
+prime bounds remove logarithms at scale $\pi(x)/\varphi(q)$.\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\section{Finite checks}\label{app:checks}
+The finite checks cover block algebra, unit charts, parity, signed
+normalized bases, all three complementary-basis branches, cofactor
+equations, presieve and local-factor identities, and the sifted
+Vaughan convolution with both prime-power corrections.
+The positive-memory models include factorial-measure adjoints,
+shared lists, repeated memory types, active/memory overlaps,
+projective infinity, longer nonalternating histories and never-active
+primes. Rational parameter checks include the earlier one-third
+range and the half-exponent choice.
+These checks concern finite identities and models. Root discrepancy,
+analytic estimates and signed operator bounds require the arguments
+and inputs stated in the paper.
+
 \bibliographystyle{plainnat}
 \bibliography{references}
 \section*{Use of AI}
 The proofs and the text of this paper were produced with AI systems
-(GPT-6.1 Sol, Claude Fable~5.1 and Claude Opus~5.5) under the author's
-direction. The proofs were checked by independent reviews with AI
-models, and the algebraic identities on finite instances by the
-programs in the ancillary files. The author takes responsibility for the content.
+under the author's direction: version~1 with GPT-6.1 Sol, Claude
+Fable~5.1 and Claude Opus~5.5, and the additions of version~2 with
+GPT-6 Astra, GPT-6.1 Sol and Claude Opus~5.5. The proofs were checked
+by independent reviews with AI models (for version~2, GPT-6.1 Sol,
+GPT-6 Astra and Gemini~4 Argon), and finite identities and models by
+the programs in the ancillary files. No human expert has reviewed the
+proofs. The author takes responsibility for the content.
+
+
 \end{document}
