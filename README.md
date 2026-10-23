@@ -60,6 +60,27 @@ The proof extends the cubic-theta method of OpenAI's paper
 (5 October 2026) from finite-order characters to characters of non-zero angular type: the higher angular modes are
 obtained from pure Wirtinger derivatives of the cubic theta function at the cusps.
 
+### [`concyclic-ramsey-moduli/`](concyclic-ramsey-moduli/) — Concyclic Euclidean Ramsey sets with three-dimensional moduli
+
+Paper (17 pages), 23 October 2026: [PDF](concyclic-ramsey-moduli/paper.pdf). Exact-arithmetic checks are in [`concyclic-ramsey-moduli/anc/`](concyclic-ramsey-moduli/anc/).
+
+Let A be a set of n ≥ 7 distinct points on a circle, and let M(A) be the field generated over Q by its four-point
+cross ratios. If trdeg_Q M(A) = 3, then A is Euclidean Ramsey if and only if its points split into two groups of at
+least three points each, such that all four-point cross ratios inside each group are algebraic. For seven points this
+says that A is Ramsey if and only if some four-point cross ratio is algebraic. Consequently, for x, y, z algebraically
+independent, the seven circle points with stereographic parameters −2, 0, 2, x, y, −4 − x − 2y, z are not Ramsey; this
+is the family left open in Appendix E of D. Pálvölgyi's
+[A cyclic non-Ramsey heptagon](https://arxiv.org/abs/2609.23327v1).
+
+The "if" direction applies the sufficient direction of Theorem 1.1 of OpenAI's paper
+[A classification of finite Euclidean Ramsey configurations](https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-classification-of-finite-Euclidean-Ramsey-configurations-September-23-2026/paper.pdf)
+(23 September 2026) and is a circle case of W. Strinz's two-group theorem
+([spherical-ramsey v1.1.0](https://doi.org/10.5281/zenodo.23396387)). The "only if" direction and the non-Ramsey
+example use neither direction of OpenAI's theorem: the paper includes a self-contained proof of the necessity of the
+tensor condition and derives the classification from a second-order expansion of the tensor equations along the
+derivations of M(A). An explicit Ramsey family on the curve y² = x³ − 2, with moduli of transcendence degree one and
+no algebraic cross ratio, shows that the dimension hypothesis cannot simply be dropped.
+
 ### [`hot-spots-convex-planar/`](hot-spots-convex-planar/) — First Neumann eigenfunctions of convex planar domains attain their extrema on the boundary
 
 Paper (32 pages), 10 October 2026: [PDF](hot-spots-convex-planar/paper.pdf).

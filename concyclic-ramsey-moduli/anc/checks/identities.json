@@ -1,0 +1,101 @@
+{
+  "symbolic_delta": true,
+  "symbolic_N_diagonal": true,
+  "symbolic_circle_kernel": true,
+  "exact_moment_tests": [
+    {
+      "parameters": [
+        "-3",
+        "-2",
+        "-1",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "M": [
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "-4/5",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "4/5"
+        ]
+      ],
+      "K": [
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "-96/5"
+        ],
+        [
+          "0",
+          "-96/5",
+          "4"
+        ]
+      ],
+      "trace_spatial_K": 4
+    },
+    {
+      "parameters": [
+        "-5/2",
+        "-4/3",
+        "-1/7",
+        "0",
+        "2/5",
+        "7/4",
+        "9"
+      ],
+      "M": [
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "-6096/15457",
+          "1552/15457"
+        ],
+        [
+          "0",
+          "1552/15457",
+          "6096/15457"
+        ]
+      ],
+      "K": [
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "-2429514112/865051005",
+          "-1772391616/865051005"
+        ],
+        [
+          "0",
+          "-1772391616/865051005",
+          "5889718132/865051005"
+        ]
+      ],
+      "trace_spatial_K": 4
+    }
+  ],
+  "jet_modulus_prime": true,
+  "scope": "Rational substitutions verify universal moment identities. They do not define a nonzero derivation on Q or assert that these rational configurations are non-Ramsey."
+}

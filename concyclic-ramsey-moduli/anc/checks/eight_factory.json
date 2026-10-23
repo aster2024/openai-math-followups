@@ -1,0 +1,12 @@
+{
+  "eight_sign_spaces": 128,
+  "projection_dimension_counts": {
+    "1": 8,
+    "2": 28,
+    "3": 91,
+    "0": 1
+  },
+  "eight_node_U_plus_TU_dimension": 4,
+  "symbolic_two_group_graph_certificate": true,
+  "family": "{0,1,-1,infinity} union g({0,1,-1,infinity}); g=[[1,c],[b,a]]"
+}

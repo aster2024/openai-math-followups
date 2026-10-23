@@ -1,0 +1,208 @@
+\section{An elliptic boundary example}\label{sec:elliptic}
+
+We prove Theorem~\ref{thm:elliptic} by rational identities. No
+elliptic-curve group law is needed. Work first in the function field
+\[
+ F=\Q(x,y),\qquad y^2=x^3-2,
+\]
+where $x$ is transcendental. Define the rational map
+\begin{equation}\label{eq:elliptic-map}
+ \begin{aligned}
+ x'&=\frac{\cA(x,y)}{(x-3)^2},
+ &\cA(x,y)&=3x^2+9x-4-10y,\\
+ y'&=\frac{\cB(x,y)}{(x-3)^3},
+ &\cB(x,y)&=5x^3+45x^2-40-(27x+19)y.
+ \end{aligned}
+\end{equation}
+Write $(x_i,y_i)$ for its iterates, starting with $(x_0,y_0)=(x,y)$.
+The circle parameters will be $x_0,\ldots,x_6$.
+
+\subsection{A finite rational test and real embeddings}
+The polynomial identity
+\begin{equation}\label{eq:curve-identity}
+ \cB(x,y)^2-\cA(x,y)^3+2(x-3)^6
+ =(y^2-x^3+2)(-171x^2-1674x+1000y+1561)
+\end{equation}
+shows that the map preserves the curve wherever defined. To check
+that the required denominators are nonzero as functions, and the
+iterates distinct and nonconstant, use the curve point
+$P_0=(129/100,-383/1000)$. Eight successive first coordinates are
+the following fractions, denoted $r_i$:
+\begin{center}
+\small
+\begin{tabular}{@{}cl@{}}
+\toprule
+$i$&$r_i=x_i(P_0)$\\
+\midrule
+0&$\dfrac{129}{100}$\\[3pt]
+1&$\dfrac{164323}{29241}$\\[3pt]
+2&$\dfrac{2340922881}{58675600}$\\[3pt]
+3&$\dfrac{307326105747363}{160280942564521}$\\[3pt]
+4&$\dfrac{794845361623184880769}{513127310073606144900}$\\[3pt]
+5&$\dfrac{49680317504529227786118937923}{3458519104702616679044719441}$\\[3pt]
+6&$\dfrac{30037088724630450803382035538503505921}{3010683982898763071786842993779918400}$\\[3pt]
+7&$\dfrac{182386897568483763089689099250940650872600619203}{127572396335305049740547038646345741798859364401}$\\[3pt]
+\bottomrule
+\end{tabular}
+\end{center}
+Exact cross multiplication gives
+\begin{equation}\label{eq:orbit-order}
+ r_0<r_7<r_4<r_3<r_1<r_6<r_5<r_2,
+ \qquad r_i\ne3\quad(0\le i\le7).
+\end{equation}
+The fractions and comparisons are checked by
+\ancfile{elliptic.py}. Each iterate is therefore defined as a
+rational function, and the first seven $x_i$ are distinct. If
+$P_1$ is the image of $P_0$, then $x_i(P_1)=r_{i+1}\ne r_i$
+for $0\le i\le6$, so each $x_i$ is nonconstant.
+
+The rational function $x^3-2$ is not a square in $\Q(x)$, by its
+odd order at infinity. For every transcendental real
+$X>\sqrt[3]{2}$ and either sign $Y=\pm\sqrt{X^3-2}$, substitution
+defines an embedding of $F$ into $\R$. Indeed $\Q(x)\simeq\Q(X)$,
+and a relation $Y\in\Q(X)$ would make $x^3-2$ a square after
+clearing denominators. The quadratic field extension therefore
+embeds injectively. Every nonzero denominator and difference of
+functions just checked remains nonzero at $(X,Y)$.
+The actual circle coordinate field is the embedded copy of $F$:
+the coordinates recover $X_0=X$ and $X_1$, and
+\[
+ Y=\frac{3X^2+9X-4-(X-3)^2X_1}{10}.
+\]
+
+\subsection{The tensor ring in this example is a domain}
+This property is needed only for the following construction. Put
+$K=\Q(x,u)$. The element $x^3-2$ is not a square in $K$.
+In $K(y)$, a proposed square root of $u^3-2$ has the form
+$a+by$, $a,b\in K$. Comparing the $y$ coefficient in its square
+gives $ab=0$. If $b=0$, it would make $u^3-2$ a square in $K$;
+if $a=0$, it would make $(u^3-2)/(x^3-2)$ a square in $K$.
+Both have odd order at $u=\infty$, so neither is possible.
+Consequently $K(y,v)$ with $y^2=x^3-2$, $v^2=u^3-2$
+has degree four over $K$.
+
+The ring
+\[
+ A_0=\Q[x,u,y,v]/(y^2-x^3+2,v^2-u^3+2)
+\]
+is free over $\Q[x,u]$ with basis $1,y,v,yv$. These elements
+are independent in the degree-four field just constructed, so
+$A_0$ injects into it and is a domain. The tensor ring
+$\cB_F=F\otimes_\Q F$ is the localization of $A_0$ at the
+nonzero pure left and pure right elements. Thus it too is a domain.
+This argument is specific to this function field; the preceding
+classification and two-group certificate assumed no such property.
+
+\subsection{A simultaneous invariant}
+For the two copies of the function field write
+\[
+ Z=(x-u)^2,\qquad S=xu(x+u)-4+2yv,
+ \qquad d=S/Z.
+\]
+The last quotient is taken only in the fraction field of $\cB_F$.
+The same map \eqref{eq:elliptic-map} on both pairs $(x,y)$ and
+$(u,v)$ preserves $d$. Here is a polynomial verification.
+Write
+\[
+ D=x-3,\quad E=u-3,\quad a=\cA(x,y),\quad a'=\cA(u,v),
+ \quad b=\cB(x,y),\quad b'=\cB(u,v),
+\]
+and put
+\begin{equation}\label{eq:invariant-polynomial}
+ \begin{split}
+ M&=aa'(aE^2+a'D^2)-4D^4E^4+2bb'DE,\\
+ \mathcal C&=M(x-u)^2-S(aE^2-a'D^2)^2.
+ \end{split}
+\end{equation}
+Division by the two monic curve equations gives
+\begin{equation}\label{eq:invariant-ideal}
+ \mathcal C=Q_1(y^2-x^3+2)+Q_2(v^2-u^3+2).
+\end{equation}
+The quotients are displayed in Section~\ref{sec:certificates}, and
+\ancfile{elliptic.py} performs the divisions with exact coefficients.
+The transformed $S$ and $Z$ have common denominator $D^4E^4$,
+with numerators $M$ and $(aE^2-a'D^2)^2$, respectively.
+Thus \eqref{eq:invariant-ideal} proves invariance of $d$.
+
+All the needed differences $L(x_i)-R(x_i)$ are nonzero. In fact
+$x_i$ is nonconstant and hence not rational, so there is a
+$\Q$-linear functional $\lambda:F\to\Q$ with
+$\lambda(1)=0$ and $\lambda(x_i)=1$. Applying
+$\lambda\otimes\mathrm{id}$ to a proposed equality
+$x_i\otimes1=1\otimes x_i$ gives $1=0$.
+The denominators in every $d_i$ are consequently nonzero.
+The invariant gives $d_i=d$ along all seven simultaneous iterates.
+
+Set
+\[
+ K(t,w)=tw(t+w)-4,\qquad C(t,w)=t^2w^2+8(t+w).
+\]
+The further polynomial identity
+\begin{equation}\label{eq:biquadratic}
+ K(t,w)^2-(t-w)^2C(t,w)=4(t^3-2)(w^3-2)
+\end{equation}
+implies, for $t_i=L(x_i)$ and $u_i=R(x_i)$,
+\begin{equation}\label{eq:invariant-node}
+ (t_i-u_i)^2d^2-2K(t_i,u_i)d+C(t_i,u_i)=0.
+\end{equation}
+Indeed $S_i=K(t_i,u_i)+2L(y_i)R(y_i)$ and
+$d=S_i/(t_i-u_i)^2$; expanding \eqref{eq:biquadratic} proves
+\eqref{eq:invariant-node}.
+
+\subsection{A certificate with only pure-factor denominators}
+In $\cB_F[t,w]$, define
+\begin{equation}\label{eq:elliptic-certificate}
+ G(t,w)=-2L((4y^2)^{-2})
+ \bigl[(t-w)^2S^2-2K(t,w)ZS+C(t,w)Z^2\bigr].
+\end{equation}
+This has degree at most two in each variable. Its only inverse
+is a pure left factor, since $4y^2\ne0$ in $F$.
+Multiplying \eqref{eq:invariant-node} by $Z^2$ proves that
+\eqref{eq:elliptic-certificate} vanishes at each tensor node,
+first in the fraction field and therefore in the domain $\cB_F$.
+On multiplying coefficients, $m(Z)=0$ and $m(S)=4y^2$, so
+\[
+ m(G(t,w))=-2(t-w)^2.
+\]
+Equation \eqref{eq:circle-kernel} gives a tensor matrix with
+multiplied value $\HH$ and zero node evaluations. The seven points
+are distinct, hence span the plane. OpenAI's Theorem~1.1,
+sufficient direction, proves the positive Ramsey assertion of
+Theorem~\ref{thm:elliptic}.
+
+\subsection{All thirty-five cross ratios are transcendental}
+For $0\le a<b<c<d\le6$, put
+\[
+ \rho_{abcd}=
+ \frac{(x_a-x_c)(x_b-x_d)}{(x_a-x_d)(x_b-x_c)}\in F.
+\]
+At $P_0$ and $P_1$ its values are respectively
+$\crat(r_a,r_b;r_c,r_d)$ and
+$\crat(r_{a+1},r_{b+1};r_{c+1},r_{d+1})$, where here the
+notation denotes the corresponding difference formula.
+All differences in the denominators are nonzero by
+\eqref{eq:orbit-order}. Computing first value minus second value,
+the exact signs in lexicographic order of $(a,b,c,d)$ are
+\begin{equation}\label{eq:cross-signs}
+ \texttt{--+-++--++-----+--++++---++++---+++}.
+\end{equation}
+These are $35$ nonzero signs. The rational table, the difference
+formula, and \eqref{eq:cross-signs} form a finite certificate;
+\ancfile{elliptic.py} enumerates it with \ancfile{fractions.Fraction}
+and saves every exact difference.
+
+If $\rho_{abcd}$ were algebraic over $\Q$, its irreducible
+polynomial would have a rational root upon evaluation at $P_0$.
+This evaluation is legitimate for that finite expression: every
+denominator used is nonzero at $P_0$. The irreducible polynomial
+would therefore be linear and $\rho_{abcd}$ a rational constant,
+contradicting its different value at $P_1$. Thus it is transcendental
+in $F$, and injectivity of the real embedding preserves this fact.
+All other orderings are invertible fractional linear transforms,
+so all four-point cross ratios are transcendental.
+
+Finally $M(A)\subset F$ and $\trdeg_\Q F=1$, while $M(A)$ contains
+a transcendental cross ratio. Hence $\trdeg_\Q M(A)=1$.
+This completes the proof of Theorem~\ref{thm:elliptic}, with the
+positive Ramsey conclusion depending exactly on OpenAI's sufficient
+direction as specified.

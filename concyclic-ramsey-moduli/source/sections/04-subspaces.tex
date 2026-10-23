@@ -1,0 +1,137 @@
+\section{Common isotropic three-dimensional subspaces}\label{sec:subspaces}
+
+The linear algebra in this section is over an arbitrary field of
+characteristic zero. Nodes are distinct, $\gamma_i$ is defined by
+\eqref{eq:barycentric}, and $W$ is the quadratic evaluation space.
+A subspace is \emph{totally isotropic} for a symmetric bilinear form
+if that form vanishes on every pair of its vectors.
+
+\begin{lemma}[Seven nodes]\label{lem:seven}
+For seven nodes, every three-dimensional subspace totally isotropic
+for $B_0$ and $B_1$ is
+\begin{equation}\label{eq:sign-space}
+ U=E W,\qquad E=\diag(\eps_1,\ldots,\eps_7),\quad \eps_i\in\{1,-1\}.
+\end{equation}
+There are exactly $2^6$ such spaces.
+\end{lemma}
+\begin{proof}
+Let $T=\diag(t_i)$. Since $B_1(a,b)=B_0(Ta,b)$, we have
+$TU\subset U^{\perp_{B_0}}$. The latter has dimension four and
+contains $U$. Thus
+$K=\{u\in U:Tu\in U\}$ has dimension at least two. The linear map
+$K\to U/K$, $u\mapsto Tu\bmod K$, has a nonzero kernel. Choose
+$u\ne0$ in it; then $u,Tu,T^2u\in U$.
+
+These vectors are independent. Otherwise $f(T)u=0$ for some nonzero
+polynomial of degree at most two, so $u$ is supported on at most two
+nodes. But $B_0(u,u)=B_1(u,u)=0$ is an invertible Vandermonde
+system on those nodes for the quantities $\gamma_i u_i^2$. It
+would force $u=0$.
+
+The three vectors therefore form a basis of $U$. Applying both
+forms to their pairs yields
+\[
+ \sum_i\gamma_i t_i^r u_i^2=0\qquad(0\le r\le5).
+\]
+The $6\times7$ Vandermonde matrix has a one-dimensional kernel,
+spanned by $(\gamma_i)_i$ by \eqref{eq:moments}. Hence
+$u_i^2=c$ for every $i$. Since $u\ne0$, $c\ne0$. Dividing by
+$u_1$ gives $u_i/u_1=\eps_i\in\{1,-1\}$ and proves
+\eqref{eq:sign-space}. Conversely every such space is isotropic
+by \eqref{eq:moments}.
+
+For the count, suppose a relative sign matrix preserves $W$.
+Its sign vector is the evaluation of a polynomial $q$ of degree at
+most two, and its product with $(t_i^2)_i$ is the evaluation of
+another such polynomial $r$. The polynomial $T^2q(T)-r(T)$ has
+degree at most four and seven roots, so is zero. Thus $q$ is
+constant, and all relative signs coincide. Only a common sign
+is redundant, giving $2^6$ spaces.
+\end{proof}
+
+\begin{lemma}[Eight nodes]\label{lem:eight}
+For eight nodes, a three-dimensional subspace totally isotropic
+for $B_0,B_1,B_2$ is $EW$ for a sign matrix $E$.
+\end{lemma}
+\begin{proof}
+The map $T$ is injective on $U$. Indeed a vector in its kernel
+would be supported at the unique possible zero node, and a
+nonzero such vector has $B_0(u,u)\ne0$.
+The subspace $U+TU$ is totally isotropic for $B_0$: the
+$U,U$ pair uses $B_0$, the mixed pair uses $B_1$, and the
+$TU,TU$ pair uses $B_2$. Nondegeneracy of $B_0$ in dimension
+eight gives $\dim(U+TU)\le4$. Since $\dim TU=3$, the space
+$K=\{u\in U:Tu\in U\}$ again has dimension at least two.
+The preceding kernel argument supplies $u,Tu,T^2u\in U$;
+their independence follows as in Lemma~\ref{lem:seven}.
+The three forms on these vectors give
+\[
+ \sum_i\gamma_i t_i^r u_i^2=0\qquad(0\le r\le6).
+\]
+The $7\times8$ Vandermonde kernel is spanned by $(\gamma_i)_i$,
+so all $u_i^2$ are equal and nonzero. Normalization gives $U=EW$.
+The sign-uniqueness argument in Lemma~\ref{lem:seven} also
+applies to eight nodes; there are $2^7$ such spaces.
+\end{proof}
+
+\begin{proposition}[Restriction and gluing]\label{prop:gluing}
+Let $n\ge7$. Suppose $U\subset F^n$ has dimension three and
+satisfies the product property \eqref{eq:product-property}.
+Then $U=EW$ for a sign matrix $E$.
+\end{proposition}
+\begin{proof}
+For $n=7$, the product property implies isotropy for $B_0,B_1$
+by interpolation, so use Lemma~\ref{lem:seven}. Suppose $n\ge8$.
+Choose eight coordinate positions such that restriction of $U$
+has rank three: choose three independent coordinate rows of a
+basis matrix and add five positions. The restricted product vectors
+are quartic evaluations. Interpolation on these eight nodes makes
+the restricted space isotropic for its own $B_0,B_1,B_2$.
+Lemma~\ref{lem:eight} makes it a signed quadratic evaluation
+space. In particular, any three of its coordinate rows are
+independent.
+
+For any additional node, combine it with any seven of the chosen
+eight. The new restriction has rank three and is again a signed
+quadratic space. On the common seven nodes the two spaces agree:
+both are the image of $U$ there, and restriction has rank three.
+The uniqueness of signs in Lemma~\ref{lem:seven} makes their
+signs agree up to one common reversal. After this reversal, a
+fixed vector of $U$ is represented on both sets by quadratic
+polynomials agreeing at seven nodes; they are the same polynomial.
+Thus the new sign extends the original signs consistently for
+every vector in $U$. Repeating for each remaining node proves
+$U=EW$ globally.
+\end{proof}
+
+\begin{lemma}[The two sign groups]\label{lem:sign-groups}
+Suppose $n\ge7$, $\dim V=3$, $V\cap W=0$, and
+$V\subset W+EW$. Then each sign occurs at least three times.
+Moreover, restriction of every vector of $V$ to either sign group
+is the evaluation of a quadratic polynomial on that group.
+\end{lemma}
+\begin{proof}
+Let $m$ be the size of the smaller sign group $I$ and let $J$ be
+the other group. If $m\le2$, then $|J|\ge5$.
+For a vector in $W\cap EW$, write its values as $r(t_i)$ and
+$\eps_iq(t_i)$ and reverse all signs so that $\eps_i=1$ on $J$.
+On $J$ the quadratics $r,q$ agree, hence are identical. On $I$
+the polynomial $q$ must vanish. Therefore
+$\dim(W\cap EW)=3-m$ and
+\[
+ \dim((W+EW)/W)=m<3.
+\]
+This contradicts the injective image of $V$ in the quotient.
+Both groups consequently have size at least three.
+Finally, an element of $W+EW$ has the form
+$(p(t_i)+\eps_iq(t_i))_i$. Its restrictions are the quadratics
+$p+q$ and $p-q$, respectively.
+\end{proof}
+
+All these classifications are field arguments, rather than
+enumerations of rational examples. As arithmetic checks,
+\ancfile{structure.py} verifies the $64$ seven-node sign spaces
+and their projection dimensions, and \ancfile{eight_factory.py}
+checks the $128$ eight-node sign spaces and $\dim(U+TU)=4$
+on distinct rational nodes. These checks supplement the proofs
+above.

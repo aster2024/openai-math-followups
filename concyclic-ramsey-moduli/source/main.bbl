@@ -1,0 +1,55 @@
+\begin{thebibliography}{1}
+
+\bibitem{jones2026}
+JD~Jones.
+\newblock Six concyclic points satisfy the {Euclidean Ramsey} tensor criterion.
+\newblock Note in \texttt{six-concyclic-lean}, October 7, 2026.
+\newblock Initial commit \texttt{0703d7d26aebe9f46a23e38c2de365e178b14dd4},
+  Sections 2 and 5.
+  \url{https://github.com/JD-Jones-ASES/six-concyclic-lean/blob/0703d7d26aebe9f46a23e38c2de365e178b14dd4/note/main.tex}.
+
+\bibitem{openai2026}
+{OpenAI}.
+\newblock A classification of finite {Euclidean Ramsey} configurations.
+\newblock OpenAI Math Release, result 172, September 23, 2026.
+\newblock Theorem 1.1. Pinned repository commit
+  \texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-classification-of-finite-Euclidean-Ramsey-configurations-September-23-2026/paper.pdf}.
+
+\bibitem{openai2026lean}
+{OpenAI}.
+\newblock {Lean} formalization of result 172: {Euclidean Ramsey}
+  classification.
+\newblock OpenAI Math Release, \texttt{OAI.Combinatorics.EuclideanRamsey.Main},
+  2026.
+\newblock Source at commit \texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a};
+  includes \texttt{fieldCriterion\_ramsey} and \texttt{classification}.
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/lean/OAI/Combinatorics/EuclideanRamsey/Main.lean}.
+
+\bibitem{palvolgyi2026}
+D{\"o}m{\"o}t{\"o}r P{\'a}lv{\"o}lgyi.
+\newblock A cyclic non-{Ramsey} heptagon.
+\newblock arXiv:2609.23327v1, September 20, 2026.
+\newblock Theorems A.3, A.8 and A.12, and the example in Appendix E.
+  \url{https://arxiv.org/html/2609.23327v1}.
+
+\bibitem{strinz2026mobius}
+Will Strinz.
+\newblock {Ramsey}-ness of finite spherical sets is {M{\"o}bius} invariant.
+\newblock \texttt{mobius-ramsey}, version 1.0.0, October 13, 2026.
+\newblock Theorem C. DOI:
+  \href{https://doi.org/10.5281/zenodo.23339523}{10.5281/zenodo.23339523}.
+  \url{https://github.com/wstrinz/mobius-ramsey/blob/e03b716ef2cc1cc542a06486135c01f1c4406e08/note/mobius.tex}.
+
+\bibitem{strinz2026spherical}
+Will Strinz.
+\newblock Two {M{\"o}bius} groups suffice: {Euclidean Ramsey} sets on spheres
+  of every dimension, after the tensor classification.
+\newblock \texttt{spherical-ramsey}, version 1.1.0, October 15, 2026.
+\newblock Theorems B and C2, Section 7, and accompanying ledger SR-C3 and
+  SR-C29. DOI:
+  \href{https://doi.org/10.5281/zenodo.23396387}{10.5281/zenodo.23396387}. Note
+  at commit \texttt{09f88943111035c1764169cfd96bde7340aff687}:
+  \url{https://github.com/wstrinz/spherical-ramsey/blob/09f88943111035c1764169cfd96bde7340aff687/note/spherical-ramsey.tex}.
+
+\end{thebibliography}

@@ -1,0 +1,142 @@
+\section{A second-order condition over the moduli field}\label{sec:second-order}
+
+Normalize three distinct parameters to $0,1,\infty$. Choose a rational
+$\alpha$ different from every finite normalized parameter, including
+$0$ and $1$, and apply
+$r\mapsto1/(r-\alpha)$. Every parameter is now finite and the first
+three are distinct rational numbers. This operation and its inverse
+are rational over $\Q$, so the field of all finite parameters remains
+the moduli field $F=M(A)$. The unit circle coordinates have this same
+field, since
+\[
+ a(t)=\left(\frac{1-t^2}{1+t^2},\frac{2t}{1+t^2}\right),\qquad
+ t=\frac{a_2}{1+a_1}.
+\]
+The denominator in the inverse is $2/(1+t^2)>0$.
+Section~\ref{sec:transport} justifies using this normalization for
+certificate existence without a Ramsey-invariance input.
+
+Write the distinct finite parameters as $t_1,\ldots,t_n$ and let
+$k=\trdeg_\Q F$. Choose a transcendence basis $u_1,\ldots,u_k$.
+The field $F$ is finite separable over $\Q(u_1,\ldots,u_k)$.
+Each partial derivation extends uniquely to $F$: for an algebraic
+element $\beta$ with minimal polynomial $f$, differentiating
+$f(\beta)=0$ prescribes
+\[
+ D(\beta)=-\frac{(Df)(\beta)}{f'(\beta)}.
+\]
+Here $Df$ differentiates the coefficients. Separability makes the
+denominator nonzero, and the prescription preserves the defining
+ideal of the simple extension. Applying this to finite simple
+extensions proves existence and uniqueness. It follows that
+$\Der_\Q(F,F)$ has basis $D_1,\ldots,D_k$, where
+$D_j(u_l)=\delta_{jl}$. Its common constants are precisely the
+elements of $F$ algebraic over $\Q$: a transcendental element can
+itself be included in a transcendence basis and assigned derivative
+one.
+
+Let
+\begin{equation}\label{eq:velocity-space}
+ V=\bigl\{(D(t_i))_{i=1}^n:D\in\Der_\Q(F,F)\bigr\},\qquad
+ W=\bigl\{(q(t_i))_{i=1}^n:\deg q\le2\bigr\}.
+\end{equation}
+Since the $t_i$ generate $F$, the velocity map is injective, and
+$\dim_F V=k$. Its first three entries vanish. A quadratic vanishing
+at those three distinct parameters is zero, so
+\begin{equation}\label{eq:transversality}
+ V\cap W=0,\qquad \dim W=3.
+\end{equation}
+
+Set
+\begin{equation}\label{eq:barycentric}
+ H(T)=\prod_{i=1}^n(T-t_i),\qquad \gamma_i=H'(t_i)^{-1}.
+\end{equation}
+Lagrange interpolation, followed by comparison of the coefficient of
+$T^{n-1}$, gives
+\begin{equation}\label{eq:moments}
+ \sum_i\gamma_i t_i^r=0\quad(0\le r\le n-2),\qquad
+ \sum_i\gamma_i t_i^{n-1}=1.
+\end{equation}
+
+\begin{proposition}[The graph condition]\label{prop:graph}
+Suppose $n\ge7$ and the circle set has a tensor certificate. There is
+an $F$-linear map $Q:V\to W$ such that
+\begin{equation}\label{eq:graph-relation}
+ B_l(v,Qw)+B_l(w,Qv)=4B_l(v,w)
+ \quad(v,w\in V,\ 0\le l\le n-6),
+\end{equation}
+where $B_l(a,b)=\sum_i\gamma_i t_i^l a_ib_i$.
+Consequently
+\begin{equation}\label{eq:graph-U}
+ U=\{v-\tfrac14Qv:v\in V\}
+\end{equation}
+has dimension $k$, is totally isotropic for every $B_l$, and satisfies
+$V\subset U+W$.
+\end{proposition}
+\begin{proof}
+Normalize the certificate by \eqref{eq:full-normalization}. In the
+truncated ring
+\[
+ \cR=F[\delta_1,\ldots,\delta_k]/(\delta_1,\ldots,\delta_k)^3
+\]
+put $D_\delta=\sum_j\delta_jD_j$, acting trivially on the $\delta_j$.
+The map
+\[
+ \varphi(x)=x+D_\delta x+\tfrac12D_\delta^2x
+\]
+is a $\Q$-algebra homomorphism. This follows by applying Leibniz
+twice and discarding terms of degree at least three. In particular
+it respects inverses, since a nonzero constant term is a unit.
+Commutation of the individual derivations is not needed for this
+calculation. Map the left factor of $\cB_F$ identically to $F$ and
+the right factor by $\varphi$.
+
+Using $h(1,t)$, the image matrix represents a polynomial
+\[
+ \cG(t,u)=-2(t-u)^2+\cG_1(t,u)+\cG_2(t,u),
+\]
+of degree at most two in each variable, with $\cG_j$ homogeneous
+of degree $j$ in $\delta$. The first-order node equations give
+$\cG_1(t_i,t_i)=0$. Each coefficient on the diagonal is a polynomial
+of degree at most four with at least seven roots; hence
+$\cG_1(t,t)=0$. Polynomial division gives
+\[
+ \cG_1(t,u)=(u-t)N(t,u),\qquad
+ N(t,t)=\sum_j a_j(t)\delta_j,\quad \deg a_j\le2.
+\]
+The quotient $N$ has degree at most one in each variable: multiplication
+by $u-t$ raises the degree in either variable by one. Put
+$q(t)=\cG_2(t,t)$, a polynomial in $t$ of degree at most four.
+With $v_i=\sum_jD_j(t_i)\delta_j$, the second-order node equations
+are
+\begin{equation}\label{eq:quadratic-node}
+ q(t_i)=2v_i^2-v_i\sum_j a_j(t_i)\delta_j.
+\end{equation}
+The quadratic displacement in $\varphi(t_i)$ contributes no term of
+order two: the leading kernel has a double zero on the diagonal,
+and $\cG_1$ already has order one in $\delta$.
+
+For a velocity $v=\sum_j c_j(D_j(t_i))_i$, define
+$Qv=(\sum_jc_j a_j(t_i))_i$. This is well-defined because the
+velocity columns are independent, and it takes values in $W$.
+Multiplying \eqref{eq:quadratic-node} by $\gamma_i t_i^l$ and
+summing, \eqref{eq:moments} gives
+$B_l(v,Qv)=2B_l(v,v)$ for $0\le l\le n-6$.
+Polarization proves \eqref{eq:graph-relation}.
+Also \eqref{eq:moments} makes $W$ totally isotropic for every
+such $B_l$, because $l+4\le n-2$. Expanding
+$B_l(v-Qv/4,w-Qw/4)$ now gives zero. The graph map is injective
+by \eqref{eq:transversality}, so $\dim U=k$; its definition gives
+$V\subset U+W$.
+\end{proof}
+
+There is a useful equivalent form of this condition. The
+$(n-5)\times n$ matrix $(\gamma_i t_i^l)_{0\le l\le n-6}$ has
+rank $n-5$ by the Vandermonde determinant. Its kernel is exactly
+the five-dimensional space of values of polynomials of degree at
+most four, by \eqref{eq:moments}. Thus
+\begin{equation}\label{eq:product-property}
+ u,w\in U\quad\Longrightarrow\quad
+ (u_iw_i)_{i=1}^n\text{ is the value vector of a polynomial of degree }\le4.
+\end{equation}
+This formulation will allow restriction to eight nodes.

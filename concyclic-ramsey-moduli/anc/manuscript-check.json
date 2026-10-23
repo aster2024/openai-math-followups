@@ -1,0 +1,9 @@
+{
+  "literal_ten_by_ten_matrix": true,
+  "literal_eight_orbit_values": true,
+  "literal_35_difference_signs": true,
+  "literal_polynomial_quotients": true,
+  "all_labels_unique_and_all_references_resolve_in_source": true,
+  "bibliography_exactly_matches_citations": true,
+  "status": "PASS"
+}

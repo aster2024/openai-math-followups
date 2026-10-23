@@ -1,0 +1,170 @@
+\section{The tensor criterion and its necessary direction}\label{sec:tensors}
+
+For a field $F\subset\R$ write
+\[
+ \cB_F=F\otimes_\Q F,\qquad L(x)=x\otimes1,\qquad R(x)=1\otimes x,
+ \qquad m(x\otimes y)=xy.
+\]
+Every nonzero pure factor $L(x)$ or $R(x)$ is a unit. The ring
+$\cB_F$ need not be a domain. If $a_1,\ldots,a_n\in F^d$, put
+$p_i=(1,a_i)^T$. A \emph{tensor certificate} is a matrix
+$P\in\Mat_{d+1}(\cB_F)$ with
+\begin{equation}\label{eq:tensor-criterion}
+ L(p_i)^TPR(p_i)=0\quad(1\le i\le n),\qquad
+ m(P_{\alpha\beta})=\delta_{\alpha\beta}
+                   \quad(1\le\alpha,\beta\le d).
+\end{equation}
+The constant row and column have no prescribed multiplied values.
+OpenAI's Theorem~1.1 says that a distinct configuration of at least two
+points spanning $\R^d$ is Ramsey if and only if
+\eqref{eq:tensor-criterion} holds in its coordinate field
+\cite{openai2026}. The sufficient direction is the input for all
+positive conclusions of this note. To specify the dependence of the
+negative conclusions, we give the elementary necessity argument
+separately; it is the tensor separation and colouring mechanism of
+\cite[Section~2]{openai2026}, with the required descent made explicit.
+
+\begin{lemma}[Descent]\label{lem:descent}
+Let $F\subset E\subset\R$, and suppose the coordinates lie in $F$.
+A tensor certificate over $E\otimes_\Q E$ descends to one over
+$F\otimes_\Q F$. The same assertion holds if the whole multiplied
+matrix is prescribed to be a fixed matrix over $F$.
+\end{lemma}
+\begin{proof}
+Choose an $F$-basis $(e_\lambda)$ of $E$. There is a free-module
+decomposition
+\[
+ E\otimes_\Q E=
+ \bigoplus_{\lambda,\mu}(F\otimes_\Q F)(e_\lambda\otimes e_\mu).
+\]
+Expand the given matrix as a finite sum
+$P_E=\sum(e_\lambda\otimes e_\mu)P_{\lambda\mu}$.
+Since its evaluation coefficients lie in $F\otimes_\Q F$, each
+$P_{\lambda\mu}$ has zero evaluations. If $H_{\lambda\mu}=m(P_{\lambda\mu})$,
+the required entries of the target matrix $H$ satisfy
+\[
+ H=\sum_{\lambda,\mu}e_\lambda e_\mu H_{\lambda\mu},
+\]
+where only the prescribed entries are included if appropriate.
+This is a finite linear system over $F$, soluble over $E$.
+Row reduction over $F$ shows that it has a solution
+$c_{\lambda\mu}\in F$. Then
+$\sum L(c_{\lambda\mu})P_{\lambda\mu}$ is the required certificate.
+\end{proof}
+
+\begin{proposition}[Independent necessity]\label{prop:necessity}
+If a distinct, affinely spanning configuration $a_1,\ldots,a_n\in\R^d$
+has no tensor certificate in its coordinate field, it is non-Ramsey.
+In every ambient dimension there is an avoiding colouring with at most
+$(2n+1)^n$ colours. This statement uses neither direction of OpenAI's
+Theorem~1.1.
+\end{proposition}
+\begin{proof}
+Descent permits us to work with $\R\otimes_\Q\R$. Regard
+$W_*=\R\times\R^d$ as a $\Q$-vector space, and write
+$e_i(v,u)=v+a_i\cdot u$. On the subspace $T(W_*)$ of symmetric
+tensors in $W_*\otimes_\Q W_*$ define
+\[
+ \Psi(T)=\bigl((e_i\otimes e_i)(T)\bigr)_{i=1}^n\oplus G(T),
+ \qquad
+ G\bigl((v,u)\otimes(v',u')\bigr)=u(u')^T.
+\]
+Here $G(T)$ is a real symmetric matrix. Distributing the finite
+coordinate sums identifies these tensors with matrices over
+$\R\otimes_\Q\R$. Under this identification, the first components
+are the tensor evaluations and the last component is the multiplied
+spatial block. A certificate can always be made symmetric for the
+combined transpose and tensor flip by averaging. Hence
+$y_*=(0,\ldots,0,I_d)$ is outside the image of $\Psi$.
+
+Separation in the quotient $\Q$-vector space gives a $\Q$-linear
+functional vanishing on $\operatorname{im}\Psi$ and taking $y_*$ to
+one: choose a basis containing the nonzero class of $y_*$.
+Write its components as
+$\ell_i:\R\otimes_\Q\R\to\R$ and
+$\Lambda:\operatorname{Sym}_d(\R)\to\R$, and put
+$h_i(x)=\ell_i(x\otimes x)$. On a pure square this gives
+\begin{equation}\label{eq:separation-functions}
+ \sum_i h_i(v+a_i\cdot u)+\Lambda(uu^T)=0,
+ \qquad \Lambda(I_d)=1.
+\end{equation}
+Taking $u=0$ shows $\sum_i h_i(x)=0$ for all real $x$.
+
+In $\R^N$ define $H_i(z)=\sum_{j=1}^N h_i(z_j)$.
+Every congruent copy has the form $b_i=t+Aa_i$ with $A^TA=I_d$:
+the distance identities identify the Gram matrices of the spanning
+difference vectors, giving a linear isometric embedding and then a
+translation. If $N<d$ there is no such copy. Apply
+\eqref{eq:separation-functions} to each coordinate row of $A$ and
+add. Additivity of $\Lambda$ gives
+\[
+ \sum_iH_i(z)=0\quad(z\in\R^N),\qquad
+ \sum_iH_i(b_i)=-\Lambda(A^TA)=-1.
+\]
+No real scalar is pulled through the merely $\Q$-linear functional.
+
+Partition the residues modulo $2$ of each $H_i(z)$ into $2n+1$
+equal half-open intervals of $[0,2)$. Their $n$ labels colour $z$.
+In a monochromatic copy,
+$H_i(b_i)-H_i(b_1)=2k_i+e_i$ with $k_i\in\mathbb Z$ and
+$|e_i|<2/(2n+1)$. Summing gives
+$-1=2\sum_i k_i+\sum_i e_i$, where
+$|\sum_i e_i|<2n/(2n+1)<1$. An odd integer cannot have absolute
+value less than one. This contradiction proves the assertion.
+\end{proof}
+
+\subsection{Full normalization on the unit circle}
+Put
+\[
+ h(s,t)=(s^2+t^2,s^2-t^2,2st)^T,\qquad
+ \HH=\diag(-1,1,1).
+\]
+The components of $h$ form a basis of the binary quadratic forms over
+any $\Q$-algebra, and
+\begin{equation}\label{eq:circle-kernel}
+ h(s,t)^T\HH h(u,v)=-2(sv-tu)^2.
+\end{equation}
+Every bihomogeneous polynomial of bidegree $(2,2)$ over $\cB_F$
+therefore has a unique representation $h(s,t)^TPh(u,v)$.
+For finite parameters, $h(1,t)^TPh(1,u)$ similarly represents every
+polynomial of degree at most two in each variable. These are changes
+of basis in free modules and remain valid when $\cB_F$ has zero divisors.
+
+If at least three distinct unit circle points have a certificate,
+replace it by $(P+P^*)/2$, where
+$P^*_{\alpha\beta}=\tau(P_{\beta\alpha})$ and
+$\tau(x\otimes y)=y\otimes x$. Its multiplied matrix is symmetric.
+Ordinary evaluation of \eqref{eq:tensor-criterion} gives
+\[
+ m(P_{00})+1+2m(P_{01})a_{i1}+2m(P_{02})a_{i2}=0.
+\]
+Three distinct circle points are not collinear. This affine function
+must vanish identically, whence
+\begin{equation}\label{eq:full-normalization}
+ m(P)=\HH.
+\end{equation}
+Thus prescribing the full matrix here loses no possible certificate.
+
+\subsection{Projective transport without a Ramsey input}\label{sec:transport}
+For $A\in\mathrm{GL}_2(\R)$, let $C_A$ be its action on binary
+quadratic forms, so $h(Az)=C_Ah(z)$. Equation
+\eqref{eq:circle-kernel} and $[Az,Aw]=\det(A)[z,w]$ give
+\[
+ C_A^T\HH C_A=\kappa\HH,\qquad \kappa=(\det A)^2.
+\]
+In a common real field containing the coordinates and the entries of
+$A$, a certificate with \eqref{eq:full-normalization} transports to
+\begin{equation}\label{eq:transport}
+ P'=L(\kappa)L(C_A^{-T})PR(C_A^{-1}).
+\end{equation}
+Indeed the new augmented circle vectors are $C_Ap_i$ divided by their
+constant coordinates. These coordinates equal
+$\|Az_i\|^2/\|z_i\|^2>0$ and are units in the pure factors.
+The evaluations therefore vanish and $m(P')=\HH$.
+Lemma~\ref{lem:descent} descends $P'$ to the image coordinate field.
+The inverse transformation gives the converse. Thus the existence of
+a tensor certificate for a circle set of at least three points is
+projectively invariant by algebra alone. When this fact is used to
+prove a positive Ramsey conclusion, the sufficient direction of
+OpenAI's Theorem~1.1 is still required. Its use in a negative proof
+requires only Proposition~\ref{prop:necessity}.

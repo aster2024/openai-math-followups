@@ -1,0 +1,99 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array}
+\usepackage[expansion=false]{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\makeatletter
+\g@addto@macro\UrlBreaks{\do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9}
+\makeatother
+\setlength{\emergencystretch}{3em}
+\allowdisplaybreaks[2]
+\renewcommand{\labelitemi}{$\bullet$}
+\numberwithin{equation}{section}
+\newtheorem{maintheorem}{Theorem}
+\renewcommand{\themaintheorem}{\Alph{maintheorem}}
+\newtheorem{maincorollary}[maintheorem]{Corollary}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Pone}{\mathbb P^1}
+\newcommand{\trdeg}{\operatorname{trdeg}}
+\newcommand{\crat}{\operatorname{cr}}
+\newcommand{\Mat}{\operatorname{Mat}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Der}{\operatorname{Der}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cR}{\mathcal R}
+\newcommand{\HH}{H_0}
+\newcommand{\ancfile}[1]{\texttt{\detokenize{#1}}}
+\hypersetup{pdftitle={Concyclic Euclidean Ramsey sets with three-dimensional moduli},pdfauthor={Jizhou Guo}}
+\title{Concyclic Euclidean Ramsey sets\protect\\ with three-dimensional moduli}
+\author{Jizhou Guo\\\texttt{mitsuha2021b@gmail.com}}
+\date{October 23, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $A$ be a finite set of at least seven points on a circle, and let $M$ be
+the field generated over $\Q$ by its four-point cross ratios. When
+$\trdeg_\Q M=3$, the set is Euclidean Ramsey precisely when it is a union of
+two groups, each containing at least three points and having only algebraic
+internal cross ratios. For seven points this is equivalent to the existence
+of an algebraic four-point cross ratio. We prove the necessary implication
+by a second-order tensor obstruction and a classification of simultaneous
+totally isotropic three-dimensional subspaces. The sufficient implication
+is an application of OpenAI's Theorem~1.1 and is also covered by Strinz's
+two-group theorem. The criterion decides the three-parameter example left
+open in Appendix~E of P\'alv\"olgyi's paper: it is non-Ramsey. This negative
+conclusion, and the necessary implication above, use neither direction of
+OpenAI's classification; the needed tensor necessity is proved here.
+An explicit elliptic family, whose Ramsey conclusion uses the sufficient
+direction of that classification, has one-dimensional moduli and no
+algebraic four-point cross ratio. It illustrates the role of the dimension
+hypothesis; other examples of this phenomenon are already public.
+\end{abstract}
+
+\input{sections/01-introduction}
+\input{sections/02-tensors}
+\input{sections/03-second-order}
+\input{sections/04-subspaces}
+\input{sections/05-classification}
+\input{sections/06-appendix-example}
+\input{sections/07-elliptic}
+\input{sections/08-certificates}
+
+\begingroup
+\raggedright
+\bibliographystyle{plain}
+\bibliography{references}
+\endgroup
+
+\section*{Use of AI}
+The proofs and the text of this note were produced with AI systems
+(GPT-6.1 Sol, with editing by Claude Opus~5.5) under the author's
+direction. They were checked by independent reviews with AI models
+(GPT-6.1 Sol and Gemini~4 Argon) and, for the explicit identities and
+finite arithmetic certificates, by the exact computations in the
+ancillary files. No human expert has reviewed this note. The author
+takes responsibility for the content. Every positive Ramsey conclusion
+depends on the sufficient direction of OpenAI's classification,
+Theorem~1.1 of result~172, at commit
+\texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}~\cite{openai2026}.
+The negative conclusions are justified by the independent tensor-necessity
+and colouring argument in Section~\ref{sec:tensors}, so do not require
+either direction of that theorem.
+\end{document}

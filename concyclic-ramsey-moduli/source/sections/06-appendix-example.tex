@@ -1,0 +1,122 @@
+\section{The example in P\'alv\"olgyi's Appendix E}\label{sec:appendix-example}
+
+\begin{proof}[Proof of Corollary~\ref{cor:palvolgyi}]
+Write $w=-4-x-2y$. Algebraic independence makes the seven parameters
+in \eqref{eq:appendix-family} distinct. The three rational anchors
+$-2,0,2$ give a normalization defined over $\Q$ and with rational
+inverse. Therefore the moduli field is $\Q(x,y,z)$, of
+transcendence degree three.
+
+We show that every four-point cross ratio is transcendental.
+A cross ratio containing $z$ is a nonconstant fractional linear
+function of $z$ over $\Q(x,y)$, so is transcendental over that field.
+For a quadruple not containing $z$, there are three cases. Three
+rational anchors and one of $x,y,w$ give a nonconstant fractional
+linear function of that variable. Two rational anchors and two of
+$x,y,w$ give a nonconstant function of two independent variables:
+each pair among $x,y,w$ is algebraically independent, since its
+affine change of variables from $(x,y)$ is invertible. Finally,
+one rational anchor $a\in\{-2,0,2\}$ and all of $x,y,w$ have,
+in one ordering, cross ratio
+\begin{equation}\label{eq:appendix-cross}
+ \rho=\frac{(a-y)(x-w)}{(a-w)(x-y)}
+      =\frac{2(a-y)(x+y+2)}{(a+4+x+2y)(x-y)}.
+\end{equation}
+It is nonconstant: its denominator has $x^2$ coefficient one,
+whereas its numerator has $x^2$ coefficient zero and $y^2$
+coefficient $-2$. Thus the numerator cannot be a constant multiple
+of the denominator. Other orderings give one of the six invertible
+fractional linear transforms of $\rho$, and remain nonconstant.
+
+The only elements of a pure rational function field over $\Q$
+algebraic over $\Q$ are its rational constants. To check this
+directly, a separable polynomial relation would make all partial
+derivatives zero. For a reduced fraction $P/Q$, the equality
+$\partial_j(P/Q)=0$ gives $P\mid\partial_jP$ when $P\ne0$;
+degree in the $j$th variable forces $\partial_jP=0$, and then
+$\partial_jQ=0$. Characteristic zero and repetition in all variables
+make both constant. None of the preceding cross ratios is therefore
+algebraic. Corollary~\ref{cor:seven}, necessary direction, proves
+non-Ramsey-ness. That direction was established without either
+direction of OpenAI's Theorem~1.1.
+\end{proof}
+
+\subsection{A direct finite obstruction}
+There is also a short exact certificate that uses the second-order
+node equations directly, independently of the common-subspace
+classification. For this family the parameter Jacobian with respect
+to $(x,y,z)$ is
+\[
+ J=\begin{pmatrix}
+ 0&0&0\\0&0&0\\0&0&0\\1&0&0\\0&1&0\\-1&-2&0\\0&0&1
+ \end{pmatrix}.
+\]
+Writing $a_j(t)=\sum_{r=0}^2c_{jr}t^r$ in
+\eqref{eq:quadratic-node}, the nine coefficients must satisfy
+the following twelve linear equations:
+\begin{equation}\label{eq:appendix-system}
+ \sum_i\gamma_i t_i^l
+   \bigl(J_{ij}a_k(t_i)+J_{ik}a_j(t_i)\bigr)
+ =4\sum_i\gamma_i t_i^lJ_{ij}J_{ik},
+ \quad l=0,1,\quad 1\le j\le k\le3.
+\end{equation}
+For $j=k$, this is twice the coefficient equation for
+$\delta_j^2$; for $j<k$ it is the coefficient equation for
+$\delta_j\delta_k$. Thus the factor four is uniform.
+
+Order the coefficient columns as
+$(c_{10},c_{11},c_{12},c_{20},c_{21},c_{22},c_{30},c_{31},c_{32})$,
+and order rows first by $l$, then by
+$(j,k)=(1,1),(1,2),(1,3),(2,2),(2,3),(3,3)$.
+Let $M$ be the first ten rows of the augmented matrix. At the
+expression test $(x,y,z)=(-3,-1,3)$, the seven nodes are distinct,
+so every denominator $H'(t_i)$ is nonzero. The matrix $720M$ is
+\[
+\setlength{\arraycolsep}{3.5pt}
+\begin{pmatrix}
+-28&-36&-12&0&0&0&0&0&0&64\\
+-15&-45&-15&-14&-18&-6&0&0&0&120\\
+1&3&9&0&0&0&-14&-18&-6&0\\
+0&0&0&-30&-90&-30&0&0&0&300\\
+0&0&0&1&3&9&-15&-45&-15&0\\
+0&0&0&0&0&0&2&6&18&4\\
+-36&-12&-84&0&0&0&0&0&0&48\\
+-45&-15&-45&-18&-6&-42&0&0&0&120\\
+3&9&27&0&0&0&-18&-6&-42&0\\
+0&0&0&-90&-30&-90&0&0&0&180
+\end{pmatrix}.
+\]
+Fraction elimination and integer Bareiss elimination give
+\begin{equation}\label{eq:appendix-determinant}
+ \det(720M)=1223059046400000,\qquad
+ \det M=\frac1{30611001600000}.
+\end{equation}
+Both calculations and a left-null-vector certificate are in
+\ancfile{second_jet_certificate.py}. The nonzero test value proves
+that this augmented minor is a nonzero rational function of
+$x,y,z$. At every algebraically independent triple it stays
+nonzero, since its nonzero numerator cannot vanish. Nine coefficient
+columns cannot then span the right-hand side of the ten-row system.
+This rules out a tensor certificate; Proposition~\ref{prop:necessity}
+gives an avoiding colouring with $15^7$ colours in every dimension,
+without using either direction of OpenAI's classification.
+
+The rational test is a test of finitely many rational expressions,
+not a specialization homomorphism from $\Q(x,y,z)$ to $\Q$.
+In particular it makes no non-Ramsey assertion about the rational
+seven-point configuration used in the determinant computation.
+
+\subsection{Why the derivation-certificate question is different}
+The discussion in \cite[Appendix~E, after Theorem~A.8]{palvolgyi2026}
+concerns an identity
+\[
+ \sum_i\lambda_i\|D(a'_i)\|^2=C\ne0
+\]
+for one derivation $D$, fixed real scalar weights $\lambda_i$,
+and every congruent copy in $\R^3$. The absence of such an identity
+is a restriction on this particular non-Ramsey certificate method.
+It does not imply tensor-certificate existence. The joint
+second-order conditions \eqref{eq:appendix-system} involve mixed
+coefficients from three independent parameter directions and are
+inconsistent. Thus the determinant obstruction and the reported
+failure of the single-derivation method have compatible conclusions.

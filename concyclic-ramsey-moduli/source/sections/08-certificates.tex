@@ -1,0 +1,58 @@
+\section{Exact identity certificates}\label{sec:certificates}
+
+The ancillary directory contains the five scripts cited in this note,
+together with a validator that compares the certificates printed here
+with their output. They use
+Python~3, its standard library, and SymPy; all numerical tests are
+exact rational or integer calculations. The README gives serial
+commands with the resource bounds. In particular:
+\begin{itemize}
+\item \ancfile{identities.py} checks the homogeneous determinant
+and circle-kernel identities and the barycentric moment formulas.
+\item \ancfile{structure.py} checks the $64$ seven-node sign spaces,
+their projection dimensions, and an algebraic-diagonal certificate.
+\item \ancfile{eight_factory.py} checks the $128$ eight-node sign
+spaces and the universal two-group graph identity.
+\item \ancfile{second_jet_certificate.py} checks
+\eqref{eq:appendix-determinant} by two determinant algorithms and
+saves an exact left-null-vector certificate.
+\item \ancfile{elliptic.py} checks the polynomial identities
+\eqref{eq:curve-identity}, \eqref{eq:invariant-ideal}, and
+\eqref{eq:biquadratic}; the rational orbit; and every cross-ratio
+difference in \eqref{eq:cross-signs}. It also performs $21$ rational
+tests of the simultaneous invariant.
+\end{itemize}
+Rational expression tests prove the specified nonvanishing and
+nonconstancy claims. The general statements about all isotropic
+spaces are proved in Section~\ref{sec:subspaces}, and the invariant
+is proved by its polynomial identity, rather than by the $21$
+sample tests.
+
+\begingroup
+\interdisplaylinepenalty=10000
+For an explicit certificate of \eqref{eq:invariant-ideal}, the
+two polynomial quotients are
+\begin{align*}
+Q_1=-20(u-3)^2\bigl(&5u^4x-15u^4+5u^3x^2-45u^3
+ -54u^2vx+10u^2vy+112u^2v\\
+&-45u^2x^2+135u^2x+54uvx^2-100uvx-60uvy
+ +114uv\\
+&-40ux+120u-20v^2x^2+120v^2x-180v^2
+ -12vx^2\\
+&-114vx+90vy+20x^2-180\bigr),
+\end{align*}
+and
+\begin{align*}
+Q_2=-20(x-3)^2\bigl(&-15u^2x^3-45u^2x^2+54u^2xy
+ -12u^2y+60u^2\\
+&+5ux^4+120ux^3-54ux^2y+135ux^2
+ -100uxy-40ux\\
+&-114uy-240u+10vx^2y-60vxy+90vy
+ -15x^4\\
+&-225x^3+112x^2y+114xy+120x+180\bigr).
+\end{align*}
+\endgroup
+Substitution into \eqref{eq:invariant-ideal} and expansion gives
+an identity in $\Q[x,u,y,v]$. The script obtains the same quotients
+by successive polynomial division in $y$ and $v$ and verifies the
+zero remainder.

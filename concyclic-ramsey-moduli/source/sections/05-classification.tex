@@ -1,0 +1,90 @@
+\section{Proof of the classification}\label{sec:classification}
+
+\subsection{Necessity}
+Suppose the circle set in Theorem~\ref{thm:main} is Ramsey.
+Proposition~\ref{prop:necessity} gives a tensor certificate.
+Transport and descent give a certificate for the finite rational-frame
+normalization of Section~\ref{sec:second-order}. In its moduli field,
+$\dim V=3$ and $V\cap W=0$. Proposition~\ref{prop:graph} provides
+a three-dimensional space $U$ satisfying the product property,
+with $V\subset U+W$. Proposition~\ref{prop:gluing} gives $U=EW$,
+and Lemma~\ref{lem:sign-groups} partitions the nodes into two
+groups of size at least three, on each of which every derivation
+has quadratic parameter velocity.
+
+For four distinct finite parameters in one group put
+\[
+ \rho=\frac{(t_a-t_c)(t_b-t_d)}{(t_a-t_d)(t_b-t_c)}.
+\]
+If $v_i=D(t_i)$, the quotient rule gives
+\begin{equation}\label{eq:cross-derivative}
+ \frac{D\rho}{\rho}=
+ \frac{v_a-v_c}{t_a-t_c}+\frac{v_b-v_d}{t_b-t_d}
+ -\frac{v_a-v_d}{t_a-t_d}-\frac{v_b-v_c}{t_b-t_c}.
+\end{equation}
+For quadratic velocities $v_i=a+bt_i+ct_i^2$, each difference
+quotient is $b+c(t_i+t_j)$, so the four terms cancel. Thus every
+$\Q$-derivation of $F$ kills $\rho$. The constants characterization
+in Section~\ref{sec:second-order} makes $\rho$ algebraic over
+$\Q$. All internal cross ratios in both groups are algebraic.
+This proves the necessary implication using neither direction of
+OpenAI's Theorem~1.1.
+
+\subsection{The known sufficient mechanism}\label{sec:positive}
+For completeness we record the circle certificate behind the
+sufficient implication. This is a case of Strinz's two-group
+theorem~\cite[Theorem C2]{strinz2026spherical}; the conclusion
+that the certificate implies Ramsey is OpenAI's sufficient direction.
+
+In the unit circle coordinate field $F$, choose
+$A_I,A_J\in\mathrm{GL}_2(F)$ taking three points of each group to
+$0,1,\infty$. The other normalized parameters are real algebraic
+elements of $F$. Choose algebraic homogeneous representatives
+$w_i$, so $A_Hz_i=\lambda_iw_i$ with $\lambda_i\in F^\times$
+for $i\in H$, $H=I,J$.
+
+There is an element $e\in\cB_F$ such that
+\begin{equation}\label{eq:algebraic-projector}
+ m(e)=1,\qquad e(L(\alpha)-R(\alpha))=0
+\end{equation}
+for every coordinate $\alpha$ of the finitely many $w_i$.
+Here is an explicit construction. If $f_\alpha\in\Q[X]$ is the
+minimal polynomial, put
+\[
+ g_\alpha(X)=\frac{f_\alpha(X)}{X-\alpha}\in F[X],\qquad
+ e_\alpha=L(f_\alpha'(\alpha)^{-1})
+                       g_\alpha^L(R(\alpha)),\qquad
+ e=\prod_\alpha e_\alpha.
+\]
+The superscript $L$ embeds the coefficients in the left factor.
+The identities
+$(R(\alpha)-L(\alpha))g_\alpha^L(R(\alpha))=0$
+and $g_\alpha(\alpha)=f_\alpha'(\alpha)\ne0$ prove
+\eqref{eq:algebraic-projector}.
+
+For $z=(s,t)^T$, $w=(u,v)^T$, define the bilinear graph forms
+\[
+ K_H(z,w)=\det\bigl(L(A_H)z,R(A_H)w\bigr)\qquad(H=I,J).
+\]
+At a node of group $H$, \eqref{eq:algebraic-projector} gives
+$eK_H(L(z_i),R(z_i))=0$. Multiplication of coefficients gives
+$m(K_H)=\det(A_H)(sv-tu)$. Hence
+\begin{equation}\label{eq:two-group-certificate}
+ G(z,w)=-2L((\det A_I\det A_J)^{-1})eK_I(z,w)K_J(z,w)
+\end{equation}
+vanishes at every tensor node, and $m(G)=-2(sv-tu)^2$.
+The basis identity \eqref{eq:circle-kernel} yields a matrix with
+$m(P)=\HH$. Dividing the node vectors by $s_i^2+t_i^2>0$
+gives \eqref{eq:tensor-criterion}. All denominators are nonzero
+elements of $F$ in pure tensor factors; no domain assumption is used.
+At least three distinct circle points span the plane, so OpenAI's
+Theorem~1.1, sufficient direction, applies. This proves
+Theorem~\ref{thm:main} and hence Corollary~\ref{cor:seven}.
+
+In particular, the construction applies to a group of four points
+with algebraic cross ratio and any remaining triple, without a
+dimension restriction. More generally it includes the algebraic-plus-
+three conclusion of Strinz. Both are positive Ramsey consequences
+of the sufficient direction of OpenAI's Theorem~1.1. The scripts
+\ancfile{structure.py} and \ancfile{eight_factory.py} check the
+diagonal and graph identities used by these constructions.

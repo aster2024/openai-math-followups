@@ -1,0 +1,12 @@
+{
+  "sign_flips": 64,
+  "projection_dimension_counts": {
+    "1": 7,
+    "2": 21,
+    "3": 35,
+    "0": 1
+  },
+  "family_velocity_space_contained_in_any_sign_flip_plus_W": false,
+  "algebraic_plus_three_arbitrary_universal_projector_check": true,
+  "non_domain_and_infinity": true
+}
