@@ -60,6 +60,25 @@ The proof extends the cubic-theta method of OpenAI's paper
 (5 October 2026) from finite-order characters to characters of non-zero angular type: the higher angular modes are
 obtained from pure Wirtinger derivatives of the cubic theta function at the cusps.
 
+### [`cm-elliptic-curves-gaussian/`](cm-elliptic-curves-gaussian/) — A zero-free half-plane for angular Hecke L-functions over Q(i) and for the curves y² = x³ − Dx
+
+Paper (35 pages), 24 October 2026: [PDF](cm-elliptic-curves-gaussian/paper.pdf). Programs checking the explicit identities are in [`cm-elliptic-curves-gaussian/anc/`](cm-elliptic-curves-gaussian/anc/).
+
+Let K = Q(i). Every unitary Hecke character η of K of finite conductor and non-zero angular type satisfies
+L_K(s, η) ≠ 0 for Re s > 11/12, with the same half-plane for every conductor, every angular type and every norm
+phase. Consequently, for every non-zero rational D the elliptic curve E_D : y² = x³ − Dx, in particular every
+congruent number curve y² = x³ − n²x, satisfies
+
+```math
+L(E_D,s)\neq 0\qquad\text{for }\ \mathrm{Re}\,s\gt \frac{17}{12}.
+```
+
+The paper also gives the distribution of Gaussian primes in sectors and of the traces a_p(E_D) with error term
+O(x^(11/12+ε)), and zero-free half-planes for all symmetric powers of E_D and for all newforms attached to Hecke
+characters of K. The proof passes by quadratic base change to Q(ζ₁₂) and adapts the cubic-theta method of OpenAI's
+11/12 paper there, using the Kazhdan–Patterson cubic theta function over Q(ζ₁₂) and Poisson summation over complete
+orbits of S-units.
+
 ### [`concyclic-ramsey-moduli/`](concyclic-ramsey-moduli/) — Concyclic Euclidean Ramsey sets with three-dimensional moduli
 
 Paper (17 pages), 23 October 2026: [PDF](concyclic-ramsey-moduli/paper.pdf). Exact-arithmetic checks are in [`concyclic-ramsey-moduli/anc/`](concyclic-ramsey-moduli/anc/).

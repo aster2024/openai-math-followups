@@ -1,0 +1,1429 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{booktabs,array,longtable}
+\usepackage[expansion=false]{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\allowdisplaybreaks[2]
+\setlength{\emergencystretch}{3em}
+\setcounter{tocdepth}{1}
+\renewcommand{\labelitemi}{\(\bullet\)}
+\numberwithin{equation}{section}
+\newtheorem{maintheorem}{Theorem}
+\renewcommand{\themaintheorem}{\Alph{maintheorem}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{inputthm}[theorem]{Classical input}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\A}{\mathbb A}
+\newcommand{\OO}{\mathcal O}
+\newcommand{\N}{\mathrm N}
+\newcommand{\ind}{\mathbf1}
+\newcommand{\dd}{\,d}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\rad}{\operatorname{rad}}
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\sfstar}{\sideset{}{^*}\sum}
+\newcommand{\GC}{\Gamma_{\C}}
+\newcommand{\wt}{\widehat}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\E}{\mathcal E}
+\newcommand{\la}{\mathfrak l}
+\DeclareMathOperator{\Li}{Li}
+\hypersetup{pdftitle={A zero-free half-plane for angular Hecke L-functions over Q(i) and for quartic twists of y squared equals x cubed minus x},pdfauthor={Jizhou Guo}}
+\title{A zero-free half-plane for angular Hecke $L$-functions over $\Q(i)$ and for the elliptic curves $y^2=x^3-Dx$}
+\author{Jizhou Guo\\\texttt{mitsuha2021b@gmail.com}}
+\date{24 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For $K=\Q(i)$, every unitary Hecke character of finite conductor and nonzero angular type has an $L$-function without zeros in $\Rea s>11/12$, with arbitrary norm phase. Deuring's theorem gives the half-plane $\Rea s>17/12$ in arithmetic normalization for every rational quartic twist $y^2=x^3-Dx$, including the congruent number curves. We prove the result by quadratic base change to $\Q(\zeta_{12})$ and the cubic-theta method of OpenAI's \emph{The Quasi-Riemann Hypothesis}. The two complex angular modes are $(k-1,k+1)$; one may be zero. We derive the normalized theta coefficients, annular reflection, a labelled mean square, and the two Poisson transformations on complete sixth-power unit orbits. The argument uses explicitly stated classical inputs and specified finite arithmetic and smooth-kernel statements of the source papers. Applications include Gaussian primes in sectors, the CM distribution of Frobenius traces with power-saving errors, and zero-free half-planes for all symmetric powers. Finite-order factors in the applications use the release's $7/8$ theorem.
+\end{abstract}
+\tableofcontents
+
+\section{Introduction and statements}\label{sec:intro}
+Fix $K=\Q(i)\subset\C$. In the ideal-side convention, a unitary Hecke character $\eta$ has type $(k,t_0)$ if
+\begin{equation}\label{eq:type}
+ \eta((z))=(z/|z|)^k\N_{K/\Q}(z)^{it_0}
+ \quad(z\equiv1\pmod{\mathfrak f}),\qquad k\in\Z,\ t_0\in\R.
+\end{equation}
+Here $\mathfrak f$ is a finite presentation modulus; primitive conductors will always be specified as such. Unitary $L$-functions have functional equation centered at $1/2$. Theorems~\ref{thm:A} and~\ref{thm:B} use the classical inputs and the finite arithmetic and smooth-kernel statements specified in Section~\ref{sec:inputs}. The applications in Section~\ref{sec:applications} additionally use \cite[Theorem 1.1]{QRH78} for their finite-order factors.
+
+\begin{maintheorem}\label{thm:A}
+Every unitary Hecke character $\eta$ of $K=\Q(i)$ of finite conductor and nonzero angular type satisfies
+\[
+ L_K(s,\eta)\ne0\qquad(\Rea s>11/12).
+\]
+The boundary is independent of the conductor, angular type, and norm parameter. If $\psi=\eta\N^u$, $u\in\R$, the boundary is $u+11/12$. In particular an algebraic character of type $(a,b)$, $a\ne b$, has boundary $(a+b)/2+11/12$.
+\end{maintheorem}
+
+\begin{maintheorem}\label{thm:B}
+For every $D\in\Q^\times$, the elliptic curve
+\[
+ E_D:\ y^2=x^3-Dx
+\]
+has $L(E_D,s)\ne0$ for $\Rea s>17/12$ in arithmetic normalization, centered at $1$. This includes $D=n^2$, the congruent number curves. Its nontrivial zeros lie in $7/12\le\Rea s\le17/12$.
+\end{maintheorem}
+
+\begin{corollary}\label{cor:newforms}
+Let $f$ be a holomorphic CM newform of weight $w\ge2$ associated to an algebraic Hecke character of $\Q(i)$ of type $(w-1,0)$, of any finite conductor. Then
+\[
+ L(f,s)\ne0\qquad\bigl(\Rea s>(w-1)/2+11/12\bigr).
+\]
+The conjugate infinity type gives the same assertion.
+\end{corollary}
+\begin{proof}
+Hecke's theta-series correspondence identifies the arithmetic $L$-function with $L_K(s,\psi_f)$, including primitive local factors; see \cite[Theorem 12.5 and the following remark]{Iwaniec}. The character $\psi_f\N^{-(w-1)/2}$ has angular type $w-1\ne0$. Apply Theorem~\ref{thm:A} and the norm shift.
+\end{proof}
+
+Intermediate constants and derivative orders depend on a fixed character. The common location of the boundary will subsequently give estimates uniform in angular frequency through the analytic conductor. These are separate assertions.
+
+We use the cubic-theta, M\"obius mean-square method of OpenAI's paper of 5 October 2026, denoted \emph{p2} \cite{QRH12}. The auxiliary field is
+\[
+ F=\Q(\zeta_{12})=\Q(i,\sqrt3),\qquad E_0=\Q(\sqrt{-3}).
+\]
+The base change of a type-$k$ Gaussian character has angular vector $(k,k)$. The cubic Gauss calibration has vector $(1,-1)$, so an auxiliary diagonal type $r$ uses modes $(r-1,r+1)$. The M\"obius initialization in Section~\ref{sec:initialization} uses $r=-k$. A full sixth-power unit quotient replaces the finite unit group in the argument over $E_0$. Its Poisson kernel can grow logarithmically at small positive norm. We keep the compact-quotient zero orbit separate and establish the labelled estimate with all moving local amplitudes retained.
+
+\subsection{Related work and source conventions}\label{sec:related}
+Hecke's angular prime ideal theorem and analytic continuation originate in \cite{Hecke}; modern normalizations appear in \cite{Tate,Watkins}. The classical de la Vall\'ee-Poussin region has width of order the reciprocal logarithm of the analytic conductor, with the real exceptional case confined to zero angular type; see \cite[Lemma 2.1]{CPS}. Coleman's theorem \cite[Theorem 2]{Coleman}, as reproduced in \cite[Theorem 2.5]{Khale}, gives a Vinogradov-type region. In the imaginary quadratic case its shape, after removing the norm phase, is
+\[
+ \sigma\ge1-\frac{c_K}
+ {\max\{\log\N\mathfrak f,(\log V)^{2/3}(\log\log V)^{1/3}\}},
+ \qquad V=\max(|k|,|t|),
+\]
+for sufficiently large $V$, with a possible exceptional real finite character at $k=0$.
+
+Guo's paper of 8 October 2026 \cite{GuoEisenstein} proves the $11/12$ boundary for nonzero angular types over $E_0$ and the $17/12$ boundary for $y^2=x^3+D$. It derives the higher cusp derivatives and gives sector, CM distribution, least-prime and symmetric-power applications. We follow its notation and organization where the proofs run in parallel.
+
+The OpenAI sources are fixed at commit
+\[
+ \texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+\]
+The paper of 30 September 2026 \cite[Theorem 1.1]{QRH78} states the $7/8$ boundary for finite-order Hecke characters over $E_0$ and for Dirichlet characters, allowing the principal pole. The paper of 5 October \cite[Theorem 1.1]{QRH12} states $11/12$ for those families. Release 029, \emph{Primitive roots for every admissible integer base}, dated 4 October \cite[Theorem 1.2]{PrimitiveRoots}, states $\Rea s>1-10^{-6}$ for finite-order characters of cyclotomic fields containing $\mu_{12}$. Its cubic-theta construction supplies the normalization used below.
+
+The draft \emph{A seven-eighths theorem for Hecke characters over arbitrary number fields}, dated 8 October 2026 in \nolinkurl{Rogerhu12/openai-math-extensions} \cite{FollowupSevenEighths}, states, under its Source Input~1.1, $\Rea s>7/8$ for every continuous unitary Hecke character of every number field. Its Source Input~1.1 retains release 029's theta construction and local identities in Sections 3 and 5--7 and Appendix A, and the September paper's physical estimates, zero detection and canonical moment arguments in Sections 4--18, with their stated finite-seminorm, strict-width, common-mask and polynomial-height properties. The draft supplies a field and fixed-infinity-type transfer and uses finite-order twists of a character and its conjugate.
+
+Liu \cite{LiuImproved}, submitted 8 October and revised 12 October 2026, states the boundary $0.874957019420098946\ldots$ for the finite-order $E_0$ and Dirichlet families.
+
+Xu--Sang \cite{XuSang}, submitted 11 October and revised 15 October, state $0.8748867$ for the same families under the analytic inputs they cite.
+
+Liu \cite{LiuFields}, submitted 19 October, states $B_\flat=0.874886647039964\ldots$ for finite-order characters of every number field, using the exceptional-theta constructions and local calculations of release 029.
+
+Yates's Zenodo note \cite{Yates}, posted 7 October and revised 8 October 2026, assumes the correctness of p2's argument and states $11/12$ for unitary Hecke characters over $E_0$, $17/12$ for rational elliptic curves with CM by an order of $E_0$, and the corresponding CM-newform and partial symmetric-power statements. Its angular step uses a cusp derivative of order $|k|+1$. All these descriptions refer to the linked versions, read on 24 October 2026.
+
+Neither p2 nor release 029 is formalized. The exact printed statements used as inputs are identified in Section~\ref{sec:inputs}; their arithmetic and smooth hypotheses are stated there. Every change involving the angular type or the field $F$ is derived in the subsequent sections.
+
+\section{Conventions and precise external inputs}\label{sec:inputs}
+For a number field $M$, $L_M(s,\eta)$ means the primitive Hecke Euler product, and a superscript $S$ deletes the indicated finite factors. A ramified primitive local factor is $1$. Removing an unramified unitary factor multiplies the function by $1-\eta(\mathfrak p)(\N\mathfrak p)^{-s}$; its zeros have real part zero.
+
+\begin{inputthm}[Hecke theory and the prime ideal theorem]\label{inp:Hecke}
+A unitary Hecke character has meromorphic continuation, the Hecke functional equation, and order one after its poles are removed. It is entire unless it is a pure norm character $\N^{it_0}$, whose only pole is simple at $1+it_0$. For $K=\Q(i)$ and nonzero angular type,
+\[
+ \Lambda(s,\eta)=(4\N\mathfrak f)^{s/2}
+ \GC(s+|k|/2-it_0)L_K(s,\eta),\qquad
+ \GC(z)=2(2\pi)^{-z}\Gamma(z),
+\]
+satisfies $\Lambda(s,\eta)=\epsilon_\eta\Lambda(1-s,\bar\eta)$, up to an $s$-independent normalization, with $|\epsilon_\eta|=1$. The Euler product is nonzero and absolutely convergent for $\Rea s>1$. For every fixed field $M$ and finite set $S$,
+\[
+ \#\{\mathfrak p\notin S:Y/2<\N\mathfrak p\le Y\}
+ \sim Y/(2\log Y).
+\]
+\end{inputthm}
+These are Hecke--Tate theory \cite{Hecke,Tate,Watkins} and the prime ideal theorem \cite[Chapter 5]{IK}. The analogous gamma product over the two complex places is used over $F$.
+
+\begin{inputthm}[Class field theory and additive duality]\label{inp:CFT}
+For an abelian extension $M/L$, Artin reciprocity associates its characters $\chi$ to Hecke characters and gives
+\[
+ L_M(s,\psi\circ\N_{M/L})=\prod_{\chi\in\widehat{\operatorname{Gal}(M/L)}}L_L(s,\psi\chi).
+\]
+Locally this is the norm description of characters and Artin induction of one-dimensional representations, including ramified factors. Kummer classes in $L^\times/L^{\times n}$ give the order-dividing-$n$ characters when $\mu_n\subset L$; local Hilbert pairings are nondegenerate and satisfy global reciprocity. The $S$-unit theorem gives rank $r_1+r_2+|S_f|-1$, and the $S$-class group classifies everywhere unramified abelian extensions split at $S$. The trace additive character identifies $\A_L/L$ with its dual, with volume one under self-dual measure; adelic Poisson holds for Schwartz--Bruhat functions.
+\end{inputthm}
+See \cite[Chapters I, IV--VI]{Neukirch} and \cite[Chapter II, Sections 29--30; Chapter III, Section 41]{Weil}. Section~\ref{sec:base} verifies the complete base change in our field; Section~\ref{sec:arithmetic} derives its $S$-arithmetic realization.
+
+\begin{inputthm}[Kazhdan--Patterson, corrected]\label{inp:KP}
+For the $n$-fold rank-$d$ determinant-modified cover with parameter $c$, the exceptional central datum, trivial on rational lifts and unitary on scalars, has an automorphic residual representation with its exceptional local subquotients. At tame places its Whittaker space has dimension one if $d=n-1$ and $2(c+1)=0\pmod n$; in this case there is a nonzero global Fourier functional and all local Whittaker spaces have dimension one. At a complex place the exceptional representation for $d\le n$ is the corresponding ordinary irreducible principal series. At nonarchimedean places the ordinary Jacquet functor is exact, and the rank-two principal series has the two Bruhat-cell Jacquet exponents.
+\end{inputthm}
+The precise references are \cite[Sections 0.1--0.3 and II.1; Theorem I.2.9; Corollary I.3.6; Theorems I.6.4--I.6.5; II.2.1 and II.2.5]{KP84}. We use $(d,n,c)=(2,3,2)$. The correction \cite{KP85} to II.2.2--II.2.3 replaces stabilization of $C_S$ by stabilization of $C_ST(S)$, with $T(S)=\prod_{v\in S_f}(1+q_v^{-1})$ in rank two. Section~\ref{sec:theta} starts with the actual nonzero global functional and proves the normalized factorization and every needed local value.
+
+\begin{inputthm}[Quadratic large sieve]\label{inp:GL}
+Let $\{\rho_{\mathfrak a}\}$, indexed by squarefree ideals prime to a fixed modulus $\mathfrak c$ of a fixed field, be primitive characters of trivial infinity type and order dividing two. Suppose there are a finite group $G_0$, an ideal homomorphism $[\cdot]$ into $G_0$, and a map $C:G_0^2\to\{\pm1\}$ such that
+\[
+ \rho_{\mathfrak a}(\mathfrak b)
+ =\rho_{\mathfrak b}(\mathfrak a)C([\mathfrak a],[\mathfrak b])
+ \quad((\mathfrak a,\mathfrak b)=1),
+\]
+and for coprime $\mathfrak a,\mathfrak b$ of the same class the primitive product has conductor exactly $\mathfrak a\mathfrak b$. Then for $M,N\ge1$ and arbitrary complex $\beta_{\mathfrak b}$,
+\[
+ \sfstar_{\N\mathfrak a\le M}
+ \left|\sfstar_{\N\mathfrak b\le N}\beta_{\mathfrak b}
+                  \rho_{\mathfrak b}(\mathfrak a)\right|^2
+ \ll_{\mathfrak c,F,\eps}(MN)^\eps(M+N)
+             \sfstar_{\N\mathfrak b\le N}|\beta_{\mathfrak b}|^2.
+\]
+\end{inputthm}
+This is \cite[Definition 1, Theorem 1.1]{GL}. Section~\ref{sec:labels} checks its hypotheses for our actual quadratic family.
+
+\begin{inputthm}[Deuring and CM theta series]\label{inp:CM}
+For $E/\Q$ with CM by an order in an imaginary quadratic field $K$, its two-dimensional $\ell$-adic representation is induced from the algebraic character $\psi_E$ of $K$ of infinity type $(1,0)$ (or its conjugate). At every finite place, taking inertia invariants gives
+\[
+ L(E/\Q,s)=L_K(s,\psi_E).
+\]
+Its conductor is $|d_K|\N\operatorname{cond}(\psi_E)$. The Hecke theta series of type $(w-1,0)$ gives the associated weight-$w$ CM newform with the same all-place Euler product.
+\end{inputthm}
+See \cite[Theorem 4.5 and the local definition following Theorem 4.4, pp.\ 26--27]{Zhang}, \cite[Chapter II, Theorem 10.5]{Silverman}, and \cite[Section 12.3]{Iwaniec}. Section~\ref{sec:CM} identifies $\psi_E$ explicitly for every $D$.
+
+The source statements retained as printed are p2 Appendix B, Lemmas B.1--B.3, for finite coefficient arrays, fixed positive compact boxes, and uniformly bounded derivatives, stated with proofs in Appendix~\ref{app:smooth}; and the finite-field Gauss inversion, Gauss--Jacobi and duplication identities in release 029 Lemma 3.4, whose hypotheses here are a finite field containing $\mu_{12}$, a nontrivial additive character, and the indicated nontrivial multiplicative characters; in particular $\chi(-1)=1$. We state and derive those identities in Section~\ref{sec:gauss}. All field-dependent assertions of release 029 Lemmas 3.1--3.4, Proposition 5.1 and Lemmas 6.1--6.4 are proved here in the needed specialization. Its Proposition 4.1 and the field-specific main theorem of p2 are used as descriptions of the method rather than as black-box estimates over $F$. The only additional printed zero-free theorem used in the applications is \cite[Theorem 1.1]{QRH78}, with its finite-order $E_0$/Dirichlet scope and principal pole allowed.
+
+\section{Quadratic base change and Gaussian infinity types}\label{sec:base}
+Choose representatives of the complex places of $F$ by
+\[
+ \sigma_\pm(i)=i,\qquad \sigma_\pm(\sqrt3)=\pm\sqrt3.
+\]
+Then $N_{F/K,\infty}(z_+,z_-)=z_+z_-$. Consequently $\widetilde\eta=\eta\circ N_{F/K}$ has angular vector $(k,k)$ and common norm phase $t_0$. The identity
+\[
+ L_K(s,\eta\N^{-it_0})=L_K(s+it_0,\eta)
+\]
+removes that phase. Complex conjugation permits either sign of $k$; our later formulas allow both.
+
+Let $\chi$ be the quadratic character of $F/K$. The discriminants $d_F=144$, $d_K=-4$ give relative discriminant $(3)$, of norm $9$. The prime $\lambda=1+i$ is unramified inert in $F/K$: $X^4-X^2+1$ reduces to $(X^2+X+1)^2$ at $2$, so the absolute residue degree is two and the absolute ramification index is two. Thus $\chi(\lambda)=-1$. The prime $(3)$ of $K$ is tamely ramified quadratic in $F/K$, as also follows from the reduction $(X^2+1)^2$ at $3$.
+
+\begin{lemma}[Complete base change]\label{lem:base}
+For every Hecke character $\psi$ of $K$,
+\begin{equation}\label{eq:base}
+ L_F(s,\psi\circ N_{F/K})=L_K(s,\psi)L_K(s,\psi\chi)
+\end{equation}
+with all finite Euler factors.
+\end{lemma}
+\begin{proof}
+At an unramified split prime, putting $x=\psi(\mathfrak p)q_{\mathfrak p}^{-s}$ gives $(1-x)^{-2}$ on both sides. At an unramified inert prime the upper value is $\psi(\mathfrak p)^2$ and the upper norm is $q_{\mathfrak p}^2$, so its factor is $(1-x^2)^{-1}=(1-x)^{-1}(1+x)^{-1}$. If $\psi$ is ramified at an unramified prime, the norm is onto units and all relevant factors equal one. This includes $\lambda$.
+
+At the ramified prime $(3)$, write $M/L$ for the local quadratic extension. The norm subgroup in $O_L^\times$ is the kernel of $\chi|_{O_L^\times}$, of index two. If $\psi$ is trivial on units, its pullback is unramified and $\psi\chi$ is ramified; the upper factor equals the $\psi$ factor. If $\psi|_{O_L^\times}=\chi|_{O_L^\times}$, its pullback equals that of the unramified $\psi\chi$, and the upper factor equals the $\psi\chi$ factor. In every other case both lower characters and the pullback are ramified. For an unramified lower character the norm of an upper uniformizer is a lower uniformizer times a unit, since the residue degree is one; its value therefore gives the stated factor. These cases include conductor cancellation. Multiplying the local identities proves \eqref{eq:base} initially in absolute convergence and then meromorphically.
+\end{proof}
+
+For $k\ne0$, $\psi$ and $\psi\chi$ have the same nonzero angular type and are entire after any real norm shift. Hence zero-freeness of the upper product descends to each factor. In particular no pole of a second factor can cancel a zero. We will prove zero-freeness on $F$ for precisely the diagonal angular family with zero radial parameters, and then apply this lemma.
+
+\section{$S$-integers, complete unit orbits and Gauss calibration}\label{sec:arithmetic}
+The polynomial $X^4-X^2+1$ gives $\OO_F=\Z[\zeta_{12}]$ and $d_F=144$. The Minkowski ideal-class bound is
+\[
+ (4/\pi)^2(4!/4^4)\sqrt{144}=18/\pi^2<2.
+\]
+Thus $F$ has class number one. Choose a finite set $S$ containing both complex places, primes over $6$, the different, all fixed character conductors and the nonspherical places of the theta vector constructed below. Fix this set before choosing any varying row or label. Set
+\[
+ R=\OO_{F,S},\quad U=R^\times,\quad \Gamma=U^6,\quad
+ F_S=\prod_{v\in S}F_v,\quad G_1=F_S^1=\{y:|y|_S=1\}.
+\]
+At complex places $|z|_v=|z|^2$; at a finite place $|\varpi_v|_v=q_v^{-1}$. An exterior ideal is supported away from $S$, and $q_{\mathfrak a}=\N\mathfrak a$. For an element $a\in F^\times$, $q_a=|a|_S$ equals its exterior ideal norm by the product formula. Let $\ell_x$ have finite components one and both complex components $x^{1/4}$, so $|\ell_x|_S=x$.
+
+\subsection{Lattice, power classes and allowed generators}
+Let $\psi=\prod_v\psi_v$ be the standard trace additive character, use self-dual additive measures, and put $e(x)=\prod_{v\in S}\psi_v(x_v)$. The diagonal lattice $R$ in $F_S$ is self-dual and has covolume one. Indeed the exterior $\prod_{v\notin S}\OO_v$ is self-dual with volume one, and adelic duality and strong approximation identify its quotient with $F_S/R$. Applying adelic Poisson to $f_S\prod_{v\notin S}\ind_{\OO_v}$ gives
+\begin{equation}\label{eq:lattice}
+ \sum_{r\in R}f(r)=\sum_{h\in R}\wt f(h),\qquad
+ \sum_{r\in aR}f(r)=q_a^{-1}\sum_{h\in a^{-1}R}\wt f(h),
+ \quad \wt f(h)=\int_{F_S}f(x)e(-xh)\dd x.
+\end{equation}
+
+Use arithmetic Frobenius for reciprocity and the Hilbert convention
+\[
+ (a,b)_{n,v}=\operatorname{Art}_v(b)(a^{1/n})/a^{1/n}.
+\]
+In particular $(u,\varpi)_{n,v}=u^{(q_v-1)/n}$ at a tame place. On the finite group $\mathcal V=F_S^\times/F_S^{\times6}$ put
+\[
+ H_S(x,y)=\prod_{v\in S}(x_v,y_v)_{6,v}.
+\]
+Let $E$ be the image of $U$. The map $U/U^6\to\mathcal V$ is injective, $E=E^\perp$, and there is an isotropic complement $B$, with $\mathcal V=E\oplus B$. Here is a verification. For $\ell=2,3$, local Kummer theory gives
+\[
+ \dim_{\mathbb F_\ell}F_S^\times/F_S^{\times\ell}=2|S_f|+4,
+ \qquad
+ \dim_{\mathbb F_\ell}U/U^\ell=|S_f|+2.
+\]
+The finite local dimension is $2+\ind_{v\mid\ell}[F_v:\Q_\ell]$, and the local degrees above $\ell$ sum to four. An $S$-unit locally an $\ell$th power at $S$ gives an everywhere unramified Kummer extension split at $S$. The trivial $S$-class group makes that extension trivial, proving injectivity. Exterior Hilbert symbols of two $S$-units are one; reciprocity makes their $S$ pairing one. Also $-1=\zeta_{12}^6$, so the Hilbert pairing is alternating. Nondegeneracy and the displayed dimensions make $E$ Lagrangian. A symplectic complement at each $\ell$, combined by the Chinese remainder theorem, gives $B$.
+
+Every exterior fractional ideal has a generator $a$ with $[a]\in B$: adjust an arbitrary generator by its unit-class component. Any two such \emph{allowed} generators differ by $\Gamma$. Products of allowed generators are allowed. The norm-one idele class compactness, or the $S$-unit theorem, makes $G_1/U$ compact; its finite cover $G_1/\Gamma$ is compact as well. Consequently allowed generators have balanced representatives in one fixed compact subset after division by $\ell_{q_a}$.
+
+Every exterior ideal has exactly $|U/U^6|$ nonzero element orbits modulo $\Gamma$. The rank of $U$ is $|S_f|+1$, its torsion is $\mu_{12}$, and therefore
+\begin{equation}\label{eq:unitcount}
+ |U/U^6|=6^{|S_f|+2}.
+\end{equation}
+For the minimal two finite places this is $1296$. We retain every such orbit in row sums.
+
+\subsection{Residue symbols and finite characters}\label{sec:gauss}
+For an exterior prime $\mathfrak p$ define $\chi_{\mathfrak p}(x)=(x/\mathfrak p)_6$ by the power $(q_{\mathfrak p}-1)/6$. Extend by zero on nonunits, even for exponent zero modulo six, and put
+\[
+ \chi_{\mathfrak a}(x)=\prod_{\mathfrak p\mid\mathfrak a}
+                 \chi_{\mathfrak p}(x)^{v_{\mathfrak p}(\mathfrak a)}.
+\]
+The empty index has value one also at zero. Exterior residue fields contain $\mu_{12}$, so $\chi_{\mathfrak p}(-1)=1$. Isotropy of $B$ and Hilbert reciprocity give, for allowed coprime generators,
+\[
+ \chi_a(b)=\chi_b(a),\qquad
+ \chi_{\mathfrak a}(\varepsilon)=H_S(\varepsilon,a)^{-1}\quad(\varepsilon\in U).
+\]
+The latter is a finite-order Hecke character of $\mathfrak a$, depending only on $[a]$. Kummer theory identifies $\chi_\bullet(u)$ with $F(u^{1/6})/F$ away from its excluded primes. Its exterior conductor divides $\rad((u)_S)$; its $S$-conductor belongs to a fixed finite list since the $S$ power-class group is finite. A character of $B$ likewise extends to a Hecke character by making it trivial on $E$ and using its inverse as the $S$-component.
+
+For squarefree exterior $c$ define
+\[
+ \gamma_j(c)=q_c^{-1/2}\sum_{x\bmod c}\chi_c(x)^je(x/c).
+\]
+The primitive additive character and change of variable show independence of an allowed generator. At a prime $e(x/p)=\psi_p(-x/p)$; the minus sign is harmless. For nontrivial powers at an exterior prime, the printed finite-field identities of release 029 Lemma 3.4 are
+\begin{align}\label{eq:finitegauss}
+ \gamma_j\gamma_{-j}&=1,&
+ \gamma_2^3&=q^{-1/2}J(\rho,\rho),&
+ \gamma_1\gamma_2&=\gamma_2^3\,\overline{\chi(4)}\gamma_3,
+ \qquad \rho=\chi^2.
+\end{align}
+Gauss inversion proves the initial identity by additive orthogonality. Gauss--Jacobi gives $G_2^2=J(\rho,\rho)G_4$ and $G_2G_4=q$. For duplication, completing the square gives
+$J(\chi,\chi)=\overline{\chi(4)}J(\chi^3,\chi)$, and hence
+$G_1G_4=\overline{\chi(4)}G_2G_3$. These calculations prove \eqref{eq:finitegauss} with exactly the stated hypotheses.
+
+Let $\Lambda_{E_0}(\mathfrak a)=\pi_+(\mathfrak a)/|\pi_+(\mathfrak a)|$, where $\pi_+\equiv1\pmod3$ is the unique primary Eisenstein generator, and set $\Lambda=\Lambda_{E_0}\circ N_{F/E_0}$. In our two embeddings the relative archimedean norm is $z_+\bar z_-$, so $\Lambda$ has vector $(1,-1)$ and no radial phase.
+
+We check the calibration at every exterior prime of $F$. Over $E_0$, reduction of $J(\rho,\rho)$ at $\mathfrak q$ has all monomial degrees strictly between $0$ and $q_{\mathfrak q}-1$ and is zero. Its norm is $q_{\mathfrak q}$. Expanding $\rho(x)=\omega^{j(x)}$ modulo $(1-\omega)^2=(3)$ gives $J\equiv-1\pmod3$. Thus $J=-\pi_+(\mathfrak q)$. If an exterior prime of $F$ has relative residue degree $f$, its cubic residue character is the norm lift. The Davenport--Hasse Jacobi formula
+\[
+ J_{\mathbb F_{Q^f}}(\rho\circ N,\rho\circ N)
+   =(-1)^{f-1}J_{\mathbb F_Q}(\rho,\rho)^f
+   =-\pi_+(\mathfrak q)^f
+\]
+applies since $\rho,\rho,\rho^2$ are nontrivial \cite[Theorem 1.1]{HoshiKanai}. This includes relative residue degree two.
+
+For the quadratic Gauss phase let $\mathfrak w_v(a)$ be the normalized Weil index of $ax^2$ for $\psi_v$. The identities
+$\prod_v\mathfrak w_v(a)=1$ for $a\in F^\times$ and
+$\mathfrak w_v(a)\mathfrak w_v(b)=(a,b)_{2,v}\mathfrak w_v(ab)$
+are \cite[Chapter II, Sections 28--30]{Weil}. The tame local Gauss integral gives $\mathfrak w_p(p^{-1})=\gamma_3(p)$ and $\mathfrak w_v(u)=1$ on units. Hence
+$\gamma_3(p)=\mathfrak w_S(p^{-1})^{-1}$. On $B$ the multiplicative defect is $H_S^3=1$, so these signs give a finite $B$-character. Multiplying by $\overline{\chi_\bullet(4)}$ gives a finite-order Hecke character $G$, unramified outside $S$. We have proved
+\begin{equation}\label{eq:calibration}
+ \gamma_2(p)^3=-\Lambda(p),\qquad
+ \gamma_1(p)\gamma_2(p)=-\Lambda(p)G(p),\qquad
+ \gamma_1(p)\gamma_{-1}(p)=1.
+\end{equation}
+The Chinese remainder identity is
+\[
+ \gamma_j(ab)=\chi_a(b)^j\chi_b(a)^j\gamma_j(a)\gamma_j(b)
+ \quad((a,b)=1).
+\]
+Because the sixth powers of the symmetric symbols are one, \eqref{eq:calibration} extends to squarefree $n$ with the minus sign replaced by $\mu_F(n)$. These field and phase calculations are independently checked at finite residue fields by the ancillary programs.
+
+The complete $S$-character of $\vartheta=\bar\Lambda\xi$, denoted $L_S$, is chosen so that $L_S(a)=\vartheta((a)_S)$ for exterior generators. Its finite components are retained, and $L_S(U)=1$. This is essential: for $u=1+\zeta_{12}$, $N_{F/K}(u)=i$, and for odd $k$ the bare infinity factor on $u^6$ equals $-1$. The finite components compensate it. A finite power-class indicator never replaces the entire infinite-order character.
+
+The complete unit-orbit convention also records the finite unit twists exactly. If $[r]=[\varepsilon a]$ with $a$ allowed, then
+\[
+ \chi_n(r)=\xi_\varepsilon(n)\chi_n(a),\qquad
+ \xi_\varepsilon(n)=H_S(\varepsilon,n)^{-1}.
+\]
+Each $\xi_\varepsilon$ is a fixed finite-order Hecke character. The perfect pairing between $E$ and $B$ gives, for allowed $n_1,n_2$,
+\[
+ \sum_{\varepsilon\in U/U^6}
+ \xi_\varepsilon(n_1)\overline{\xi_\varepsilon(n_2)}
+ =|U/U^6|\ind_{[n_1]=[n_2]}.
+\]
+Thus retaining native rows is equivalent to summing their complete finite unit-twist family. Nonzero Poisson frequencies retain these same unit phases; the zero frequency instead has the single compact-quotient volume computed in Lemma~\ref{lem:orbitpoisson}.
+
+\section{The normalized cubic theta representation}\label{sec:theta}
+We specialize Input~\ref{inp:KP} and calculate its values, following the datum of \cite[Proposition 5.1 and Appendix A]{PrimitiveRoots}. Write
+\[
+ n(x)=\begin{pmatrix}1&x\\0&1\end{pmatrix},\quad
+ \bar n(x)=\begin{pmatrix}1&0\\x&1\end{pmatrix},\quad
+ a(y)=\begin{pmatrix}y&0\\0&1\end{pmatrix},\quad
+ w=\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+\]
+Root groups have canonical lifts. On the diagonal torus the KP cocycle is
+\[
+ \sigma_{2,v}(\operatorname{diag}(a,b),\operatorname{diag}(a',b'))
+ =(a,b')_{3,v}(ab,a'b')_{3,v}^{\,2}.
+\]
+The scalar centrality exponent is $d-1+2dc=9$, and the cocycle on two scalar sections is $(z,z')_3^9=1$. Thus ordinary scalars form a split central subgroup; its quotient is a genuine threefold cover of $\mathrm{PGL}_2$, retaining the rational splitting by Hilbert reciprocity.
+
+On the center of the covering torus choose
+\begin{equation}\label{eq:central}
+ \omega_v\bigl(\zeta s_v(\operatorname{diag}(x^3,y^3))s_v(zI)\bigr)
+       =\iota(\zeta)|x^3/y^3|_v^{1/6}.
+\end{equation}
+Cube arguments have trivial Hilbert symbols, and two presentations differ by a common scalar cube, so this is well defined and trivial on split scalars. On $\operatorname{diag}(t^3,t^{-3})$ it is $|t|_v$, exactly the exceptional condition. To verify global compatibility, a rational ratio locally a cube everywhere is a global cube: otherwise its cyclic Kummer extension has a nonsplit unramified prime by Chebotarev. For that global cube the product formula makes \eqref{eq:central} trivial on rational lifts. KP's maximal-abelian-torus extension and induction therefore apply.
+
+The tame uniqueness conditions $2=3-1$ and $2(2+1)=0\pmod3$ hold. The residual representation $\Theta=\bigotimes'_v\Theta_v$ has a nonzero global Whittaker functional $\lambda$ and local uniqueness at every place. Choose a pure tensor with $\lambda\ne0$ and put its finitely many nondistinguished places in $S$. At exterior places normalize the spherical local functional at one, whose nonvanishing is proved below. Varying one component at a time and using uniqueness proves
+\begin{equation}\label{eq:factorW}
+ \lambda(\pi(g)\varphi)=W_{S,\varphi_S}(g_S)
+                         \prod_{v\notin S}W_{v,\varphi_v}(g_v).
+\end{equation}
+For a partial evaluation that is zero the scalar in this argument is zero as well. Only finitely many exterior factors differ from one. This normalization uses the corrected KP theorem: stabilization concerns $C_ST(S)$, with the factor stated in Input~\ref{inp:KP}, and no uncorrected spherical vanishing assertion is used.
+
+Rational conjugation of the upper root gives the Fourier expansion
+\begin{equation}\label{eq:fourierTheta}
+ \theta_\varphi(g)=\theta_{\varphi,N}(g)
+        +\sum_{\nu\in F^\times}W_\varphi(a(\nu)g).
+\end{equation}
+The product formula removes the additive Jacobian. At fixed finite level this is a smooth Fourier series on the compact additive quotient; integration by parts in its archimedean coordinates gives absolute local uniform convergence. The constant term transforms under left complex diagonals by radial inducing characters, including for every fixed right-translated or differentiated vector.
+
+\subsection{All exterior valuations}
+Choose $\iota$ so the effective quotient torus cocycle satisfies
+\[
+ C(p,u)=\chi_p(u)^{-2},\quad C(u,p)=\chi_p(u)^2,\quad
+ C(u,u')=C(p,p)=1
+\]
+for units $u,u'$. The compact section agrees on unit diagonals, integral roots and $w$ \cite[Proposition 0.1.3]{KP84}. The cocycle gives
+\begin{equation}\label{eq:lifts}
+ n(x)a(y)=a(y)n(x/y),\quad wa(y)=a(y^{-1})w,\quad
+ wn(H)=n(H^{-1})a(-H^{-2})\bar n(H^{-1}).
+\end{equation}
+In the last relation the possible Hilbert factor is $(H^{-1},-H)_3=1$; the split scalar quotient removes the scalar in the middle relation.
+
+Use the Weyl-conjugate induction of exponent $-1/6$. Its torus representation has basis $e_j$, $j\bmod3$, with
+\[
+ \sigma^-(a(p^ju))e_0=q^{j/6}\chi_p(u)^{2j}e_j.
+\]
+The exceptional subrepresentation contains the spherical line by KP I.2.9. For its stable Jacquet integral $J_e$ at $a(p^e)$ put $x=p^eH$. The measure, modular half-character and torus exponent contribute
+$q^{-e}q^{e/2}q^{-e/6}=q^{-2e/3}$.
+The region $H\in O_p$ contributes $e_{-e}$. The shell $H=p^{-l}v$, $l\ge1$, contributes $q^{l/3}e_{-e+2l}I_{e,l}$, where
+\[
+ I_{e,l}=\int_{O_p^\times}\chi_p(v)^{-2l}
+                       \overline{\psi_p(p^{e-l}v)}\dd v.
+\]
+Writing $g_j=q^{-1/2}\sum_x\chi_p(x)^j\psi_p(x/p)$ gives
+\[
+ I_{e,l}=
+ \begin{cases}
+ 1-q^{-1},&l\le e,\ 3\mid l,\\
+ 0,&l\le e,\ 3\nmid l,\\
+ q^{-1/2}g_{-2l},&l=e+1,\ 3\nmid l,\\
+ -q^{-1},&l=e+1,\ 3\mid l,\\
+ 0,&l>e+1.
+ \end{cases}
+\]
+The last cancellation is additive orthogonality on lifted residue classes; this is a stable integral. For any fixed smooth vector, sufficiently deep unit subgroups fix the multiplicative data, and the same cancellation establishes stability on sufficiently distant shells.
+
+The interior shells use
+$1+(1-q^{-1})\sum_{j=1}^kq^j=q^k$.
+The terminal shell, with $g_2g_4=1$, yields
+\[
+ J_{3k}=q^{-k}J_0,\quad
+ J_{3k+1}=q^{-k-1/2}g_2J_0,\quad
+ J_{3k+2}=0,\qquad J_0=e_0+q^{-1/6}g_4e_2\ne0.
+\]
+A scalar coordinate nonzero on $J_0$ is the required local functional. Negative valuations vanish by integral upper-root invariance: choose $x\in O_p$ with $\psi_p(p^ex)\ne1$. The unit cocycle then gives the complete table
+\begin{equation}\label{eq:Wtable}
+ W_p(a(p^eu))=\chi_p(u)^{2e}
+ \begin{cases}
+ q^{-j},&e=3j\ge0,\\
+ q^{-j-1/2}\gamma_2(p),&e=3j+1\ge1,\\
+ 0,&e<0\text{ or }e\equiv2\pmod3.
+ \end{cases}
+\end{equation}
+Multiplying the values over the exterior places gives
+$\gamma_2(c)/(q_c^{1/2}q_n)$ at $A=cn^3$, $c$ squarefree, with no coprimality condition between $c$ and $n$. CRT supplies exactly the unit factors in $\gamma_2(c)$.
+
+\subsection{Complex profiles and fixed finite places}\label{sec:localprofiles}
+At a complex place put $t=|y|_v$, $\rho=\sqrt t$. The spherical Jacquet integral is a nonzero constant times
+\[
+ \rho^{4/3}\int_{\R^2}(\rho^2+|x|^2)^{-4/3}e^{-icx_1}\dd x
+       =C\rho K_{1/3}(c\rho),\qquad c>0.
+\]
+Insert the Laplace representation of the power, integrate its Gaussian transform and then the remaining positive variable; absolute integrability justifies this computation. Normalized holomorphic or antiholomorphic upper-root derivatives multiply the Whittaker function by $y$ or $\bar y$. For every integer $m$ this gives
+\begin{equation}\label{eq:mode}
+ W_m(y)=t^{a_m}(y/|y|)^mK_{1/3}(c\sqrt t),
+ \qquad a_m=(|m|+1)/2.
+\end{equation}
+The expression includes $m=0$.
+
+At a finite place a fixed vector is invariant under some upper-root open subgroup, forcing its Whittaker function to have compact upper support in $|y|_v$. The two-cell Jacquet exponents have absolute values $q^{-1},q^{-2}$ on $a(p^3)$. To see their consequence without an absolute Jacquet estimate, let a polynomial $P$ annihilate that action on the ordinary Jacquet module. Jacquet exactness gives
+\[
+ P(\pi(a(p^3)))\varphi=\sum_i(\pi(n(x_i))-1)\varphi_i.
+\]
+For sufficiently small $|y|_v$, applying the Whittaker functional after $a(y)$ kills the right side. Thus $P(E)W(y)=0$, $EW(y)=W(yp^3)$. Solutions are polynomial factors times those eigenvalue powers. A small cube-unit subgroup fixes the vector, leaving finitely many unit classes, so
+\begin{equation}\label{eq:finitebounds}
+ W(y)\ll_\delta |y|_v^\delta\qquad(\delta<1/3)
+\end{equation}
+at small norm. These conclusions hold also for its fixed Weyl rotation.
+
+A desired finite cutoff is obtained within the same representation. Start with $W_\varphi(1)\ne0$ and choose a small unit subgroup $U_v$ on which this value is constant. Take it inside sixth powers and all fixed finite-character unit kernels. An additive Schwartz--Bruhat average of upper-root translates whose Fourier transform is $\ind_{U_v}$ multiplies $W_\varphi(y)$ by $\ind_{U_v}(y)$. Divide by the nonzero value. Smoothness makes the average a finite linear combination. Its Weyl rotation still satisfies \eqref{eq:finitebounds}.
+
+For later bounds, fixed right derivatives or compact rotations have Jacquet integrands whose $h$th horizontal derivative is
+\[
+ O_{h,j}\bigl(\rho^{4/3}(\rho^2+|x|^2)^{-4/3-h/2}\bigr).
+\]
+Indeed right derivatives of the inducing section produce ratios of quadratic forms of equal degree, bounded on the bottom-row unit sphere; each $x$ derivative reduces the degree by one. Integration at $h=0$ gives $O(\rho^{2/3})$, and integration by parts against the nontrivial additive character gives $O(\rho^{2/3-h})$ at large $\rho$. Every fixed norm derivative consequently obeys
+$O(\min(t^{1/3},t^{-A}))$. Combining this with \eqref{eq:finitebounds} on a norm sheet proves the needed small-norm power and arbitrary large-norm decay for every fixed profile and its derivatives.
+
+\section{Angular periods and annular reflection}\label{sec:reflection}
+Fix a unitary Hecke character $\xi$ of $F$ with angular vector $(r,r)$, $r\in\Z$, and zero radial parameters. Put $\vartheta=\bar\Lambda\xi$. Its angular vector is
+\begin{equation}\label{eq:twomodes}
+ (m_+,m_-)=(r-1,r+1),
+\end{equation}
+which is never $(0,0)$. In particular the elliptic type $r=1$ has modes $(0,2)$. The formulas also hold for negative $r$ using the opposite root derivatives. Keep $\Lambda$ and the cubic Gauss orientation fixed.
+
+For a row $u\in R\setminus\{0\}$ choose its allowed ideal generator $u_0$ and write $u=\varepsilon u_0$. The finite character $\lambda_\varepsilon(y)=H_S(\varepsilon,y)^{-1}$ satisfies $\lambda_\varepsilon(U)=1$; it depends only on $\varepsilon\Gamma$. Let $L=L_S\lambda_\varepsilon$, where $L_S$ is the complete $S$-character of $\vartheta$. Choose at the complex places the vectors \eqref{eq:mode} matching $m_\pm$, and at $S_f$ the common cutoff just constructed. The finite list of $\varepsilon\Gamma$ costs only a fixed number of choices.
+
+At a row prime $p$, write $j=v_p(u)\bmod6$, retaining a puncture when $j=0$. Define
+\begin{equation}\label{eq:alphamask}
+ \alpha_{p,j}(v)=
+ \begin{cases}
+ \tau_{p,j}^{-1}\chi_p(v)^{-j},&j\ne0,\ v\ne0,\\
+ 0,&j\ne0,\ v=0,\\
+ 1-q^{-1},&j=0,\ v=0,\\
+ -q^{-1},&j=0,\ v\ne0,
+ \end{cases}
+ \quad
+ \tau_{p,j}=\sum_{v\ne0}\chi_p(v)^{-j}\psi_p(v/p).
+\end{equation}
+Finite Fourier inversion gives $\sum_v\alpha_{p,j}(v)\psi_p(tv/p)=\chi_p(t)^j$, including the nonunit zero in the $j=0$ case.
+
+Let $g(y,\boldsymbol v)$ have $S$-component $a(y)$, component $n(v_p/p)$ at row primes, and identity elsewhere. With the product of the coefficients \eqref{eq:alphamask}, average the resulting theta digit sum over $X_l/\Gamma$, $X_l=\{|y|_S=l\}$, against $\ind_B([y])L(y)^{-1}$. Denote it by $T_u(l)$. Rational automorphy allows $g$ to be replaced by $wg$.
+
+Here the integrand really descends to the unit quotient. For $\gamma\in\Gamma$ reindex $v'_p\equiv\gamma v_p\pmod p$. If $b_p=(\gamma v_p-v'_p)/p$, the root relation gives the compact right factor $k_p=n(b_p)a(\gamma)$; at other exterior places take $k_p=a(\gamma)$. The exact identities are
+\[
+ g(\gamma y,\boldsymbol v')=a(\gamma)g(y,\boldsymbol v)k^{-1},
+ \qquad
+ wg(\gamma y,\boldsymbol v')=a(\gamma^{-1})wg(y,\boldsymbol v)k^{-1}.
+\]
+The compact factors fix the exterior spherical vectors, $\alpha_{p,j}(\gamma v)=\alpha_{p,j}(v)$, and the $S$ cocycle of a sixth power is one. These facts prove descent for the combined digit sums and for their constant terms. The left inducing law of each constant term is radial, while $L^{-1}$ has a nonzero angular component by \eqref{eq:twomodes}. Rotation of that angle circle in the compact quotient annihilates both constant-term integrals.
+
+Unfolding the direct Fourier expansion now gives
+\begin{equation}\label{eq:Tdirect}
+ T_u(l)=\sum_{c\ {\rm sf},n}
+ \frac{\gamma_2(c)\vartheta(cn^3)\chi_{cn^3}(u)}
+      {q_c^{1/2}q_n}\,V_0(q_cq_n^3l).
+\end{equation}
+There is no restriction $(c,n)=1$. On the direct cutoff $[\nu y]=1$, $[y]\in B$ forces $[\nu]\in B$; comparison with the allowed generator makes $\nu$ a $\Gamma$ multiple of it. The $S$ cocycle is then one by isotropy. This proves the claimed index set and normalization.
+
+\subsection{Signed unfolding and the finite reflected factors}
+If $f$ is absolutely integrable on every norm sheet, then
+\begin{align}\label{eq:orbit}
+ &\sum_{\gamma\in\Gamma}\int_{\Omega_l}\ind_B([y])L(y)^{-1}
+ H_S([\gamma\nu],[y]^{-1})^2f(\gamma\nu/y)\dd_l^\times y \notag\\
+ &\hspace{8mm}=L(\nu)^{-1}\int_{X_{q_\nu/l}}
+ \ind_B([\nu][v]^{-1})H_S([\nu],[v])^2L(v)f(v)\dd^\times v .
+\end{align}
+Indeed the sets $\gamma\nu\Omega_l^{-1}$ tile $X_{q_\nu/l}$, and inversion and multiplication preserve multiplicative Haar measure. This proves absolute convergence before the signed substitution. The class and character relations are $[y]=[\nu][v]^{-1}$, $L(y)^{-1}=L(\nu)^{-1}L(v)$; alternation gives the displayed Hilbert factor. Our effective $S$ cocycle is $H_S^2$, by the exterior cocycle, rational splitting, reciprocity and weak approximation.
+
+The local reflected active branch at shifted valuation $e-2$ has unit argument $t$ and value
+\begin{equation}\label{eq:localR}
+ R_{p,j,e}(t)=W_e\chi_p(t)^{4+2e}
+     \sum_{v\ne0}\alpha_{p,j}(v)\chi_p(v)^4\psi_p(p^{e-1}t/v).
+\end{equation}
+This follows by \eqref{eq:lifts}: the $a(-H^{-2})$ term supplies the shift by $-2$, the cocycle and unit law give the displayed powers, and the compact lower-root factor fixes the spherical vector. It is zero for $e<0$. For $e=0$ substitute $x=t/v$; its unit power is $8-j$. For $e>0$ the additive character is trivial, so it vanishes unless $j=4$; the remaining power is $4+2e$. Table~\eqref{eq:Wtable} also removes $e\equiv2\pmod3$. At a valuation-one row prime only $e=0$ remains, with magnitude one and power one. Its pairing with a free squarefree column contributes an additional power $-4$; symmetric reciprocity turns $1-4$ into the quadratic power three.
+
+For completeness, all coefficients can be separated before absolute values. Write the row ideal as $hd$, with $h$ powerful and $d$ the valuation-one part. Let $\mathcal F(h)$ consist of squarefree $f_0\mid\rad(h)$ containing every prime of $h$ whose exponent is not divisible by six. Then $q_{f_0}^2\le q_h$, and reflected frequencies have the unique form
+\[
+ \nu=\varepsilon\,acn^3/(df_0)^2,\qquad
+ (cn,df_0)=1,
+\]
+where $a$ is supported on $f_0$ with allowed exponents $0,1\pmod3$, and $c$ is squarefree. Here $\varepsilon$ denotes the frequency unit class; the row unit class is already absorbed in $L$. Shared $c,n$ primes remain allowed. Forbidden branches retain value zero. Write $f=f_0$, $e_p=v_p(a)$, $s_p=R_{p,j_p,e_p}(1)$, and
+$b_{p}=8-j_p$ at $e_p=0$, $b_p=4+2e_p$ otherwise, modulo six. Also write $R_{p,1,0}(t)=\omega_p\chi_p(t)$ and
+$I_{h,f}=\prod_{p\mid h,\ p\nmid f}(1-q_p^{-1})$. A reflected branch is
+\begin{equation}\label{eq:reflected}
+ \sum_{f\in\mathcal F(h)}\sum_{a,n}
+ \frac{\Omega(a,n,f)}{q_n}\,r(d)
+ \sum_{c\ {\rm sf}}\frac{\lambda(c)}{\sqrt{q_c}}\chi_d(c)^3
+     \Phi_{\kappa}\left(\frac{Xq_aq_cq_n^3}{q_d^2q_f^2}\right),
+\end{equation}
+with the following explicit factors:
+\begin{align*}
+ \Omega={}&I_{h,f}L(a)^{-1}L(n)^{-3}L(f)^2
+ \prod_{p\mid f}s_p
+ \chi_p\left(\varepsilon(a/p^{e_p})n^3(f/p)^{-2}\right)^{b_p},\\
+ r(d)={}&L(d)^2\prod_{p\mid d}\omega_p
+ \chi_p\left(\varepsilon an^3(d/p)^{-2}f^{-2}\right)
+ \prod_{p\mid f}\chi_p(d)^{-2b_p},\\
+ \lambda(c)={}&L(c)^{-1}\prod_{p\mid f}\chi_p(c)^{b_p}
+ \prod_{q\mid c}\gamma_2(q)
+          \chi_q\left(\varepsilon a(c/q)f^{-2}\right)^2 .
+\end{align*}
+The row factor has $(d,hn)=1$ and its fixed $S$-class, the column has $(c,f)=1$ and its fixed class, and the outer sum has $(n,f)=1$. The remaining $(c,d)>1$ collisions vanish through $\chi_d(c)^3$. Every negative symbol argument is a local unit on this support. The phase separation follows also directly from
+\[
+ L(\nu)^{-1}=L(\varepsilon)^{-1}L(a)^{-1}L(n)^{-3}L(f)^2
+                         L(d)^2L(c)^{-1}.
+\]
+Fixing $[\varepsilon],[a],[n],[d],[c],[f]$ makes
+$\kappa=[\varepsilon][a][c][n]^3[d]^{-2}[f]^{-2}$ constant, leaving a common norm profile in \eqref{eq:orbit}. The continuous character factors remain exactly the displayed frozen, row and column factors.
+
+The coefficient envelope for the frozen numerator is
+\begin{equation}\label{eq:beta}
+ \beta_p(e)=
+ \begin{cases}
+ 1,&e=0,\\
+ q^{-j},&e=1+3j,\ j\ge0,\\
+ q^{1/2-j},&e=3j,\ j\ge1,\\
+ 0,&\text{otherwise}.
+ \end{cases}
+ \quad
+ \sum_e\beta_p(e)q^{-\sigma e}
+ =1+\frac{q^{-\sigma}+q^{-1/2-3\sigma}}{1-q^{-1-3\sigma}}
+ \le3+\sqrt2
+\end{equation}
+for $\sigma\ge0$. In \eqref{eq:reflected}, $|\Omega|\le\prod_{p\mid f}\beta_p(e_p)$ and $|r|,|\lambda|\le1$. The local Fourier calculation and CRT prove these formulas, including all inactive zero-digit factors. The exterior absolute series at $\sigma>1/2$ is bounded by
+\[
+ \zeta_F^S(\sigma+1/2)\zeta_F^S(3\sigma+1)
+              \prod_{p\mid f}\sum_e\beta_p(e)q_p^{-\sigma e}.
+\]
+Together with Section~\ref{sec:localprofiles}, this justifies the orbit unfolding, finite translations and norm integration for a fixed row.
+
+\subsection{Exact Mellin multiplier and compact annuli}\label{sec:annular}
+Disintegrate multiplicative measure as $(\dd l/l)\dd_l^\times y$, with each angle circle of mass one. The finite direct cutoff has constant nonzero Mellin factor. With $a_v=(|m_v|+1)/2$ the Bessel integral is
+\begin{align}\label{eq:besselmellin}
+ &\int_0^\infty t^{s+a}K_{1/3}(c\sqrt t)\frac{\dd t}{t}\notag\\
+ &\quad=2^{2s+2a-1}c^{-2s-2a}
+                  \Gamma(s+a-1/6)\Gamma(s+a+1/6),
+ \qquad\Rea s>1/6-a.
+\end{align}
+The substitution $c\sqrt t=x$ and the classical Bessel Mellin integral \cite[10.43.19]{DLMF} prove it. Thus
+\[
+ \wt V_0(s)=CA^s\prod_{v=+,-}\prod_{\epsilon=\pm1}
+                         \Gamma(a_v+s+\epsilon/6),\quad C\ne0,\ A>0.
+\]
+
+In the complexified real Lie algebra let $E_1,F_1$ be the holomorphic upper and lower roots, and $E_2,F_2$ their antiholomorphic counterparts. The compact generators $F_1-E_2$, $F_2-E_1$ kill the spherical vector, and $[F_1,E_2]=[F_2,E_1]=0$. Induction gives $F_1^j\phi_0=E_2^j\phi_0$ and its counterpart. Our $w$ sends $E_i$ to $F_i$ and fixes $\phi_0$, whence
+\[
+ \pi(w)\phi_m=\phi_{-m}.
+\]
+The reflected angular factor cancels the opposite mode in the period. A determinant-one Weyl convention would give $(-1)^{|m|}$; the product for the two modes is one because $|r-1|+|r+1|$ is even.
+
+For each finite class branch let $H_\kappa$ be the reflected profile before norm smoothing. The fixed finite local integrals give a function $B_\kappa(s)$ holomorphic for $\Rea s>-\delta$, $\delta<1/3$, and bounded on closed vertical strips there, by \eqref{eq:finitebounds} and compact upper support. Finite power-class indicators involve no complex-place coordinate. The exact ratio, absorbing a fixed constant into $B_\kappa$, is
+\begin{equation}\label{eq:multiplier}
+ R_\kappa(s)=\frac{\wt H_\kappa(s)}{\wt V_0(-s)}
+ =A^{2s}B_\kappa(s)
+ \prod_{v=+,-}\prod_{\epsilon=\pm1}
+ \frac{\Gamma(a_v+s+\epsilon/6)}{\Gamma(a_v-s+\epsilon/6)}.
+\end{equation}
+No finite factor is divided out. The nearest numerator pole is at most $-1/3$, even when a local mode is zero. Stirling gives vertical growth $(1+|t|)^{8\Rea s}$ on each fixed line. The exponent eight comes from four gamma quotients.
+
+To justify the global contour argument, put
+\[
+ D_u(s)=\sum_{c\ {\rm sf},n}
+ \frac{\gamma_2(c)\vartheta(cn^3)\chi_{cn^3}(u)}
+      {q_c^{1/2}q_n}(q_cq_n^3)^{-s}\quad(\Rea s>1/2).
+\]
+The direct expansion \eqref{eq:Tdirect} makes $T_u(l)$ and all its norm derivatives rapidly decreasing as $l\to\infty$. The reflected expansion, whose positive frequencies have a fixed positive lower norm, makes them rapidly decreasing as $l\to0$. Both statements follow using the preceding absolute series with arbitrarily large fixed exponent; the angular integrals already killed the constants. Consequently $\wt T_u$ is entire,
+\[
+ \wt T_u(s)=\wt V_0(s)D_u(s)
+          =\sum_\nu b_u(\nu)q_\nu^s\wt H_{\kappa(\nu)}(-s)
+\]
+on the respective absolute-convergence half-planes. Reciprocal gamma functions are entire, so $D_u$ is entire. On a right line it is bounded; on a left line \eqref{eq:multiplier} and the dual series give polynomial growth. Inside the strip it has at most exponential growth. Divide by a sufficiently large power of $s+C$, with its pole outside the strip, and apply the maximum principle after multiplication by $e^{\epsilon s^2}$ on growing rectangles; let their height tend to infinity and then $\epsilon\downarrow0$. This yields polynomial strip growth.
+
+For a fixed $I\Subset(0,\infty)$ and $U\in C_c^\infty(I)$, Mellin inversion may therefore move to the dual absolute-convergence line before expanding the dual series. Its kernel is
+\begin{equation}\label{eq:annularkernel}
+ \Phi_{\kappa,U}(x)=\frac1{2\pi i}\int_{(0)}
+                \wt U(-s)R_\kappa(s)x^{-s}\dd s.
+\end{equation}
+This gives exactly \eqref{eq:reflected} for the compact annular weight $U(q_{cn^3}/X)$. Moving the individual kernel to $-1/4$ or to $A_1>0$, respectively, gives
+\begin{equation}\label{eq:annulardecay}
+ |(x\partial_x)^j\Phi_{\kappa,U}(x)|
+ \ll\|U\|_{C^J(I)}\min(x^{1/4},x^{-A_1}),
+ \qquad J>8A_1+j+1.
+\end{equation}
+The constants depend only on the fixed type, $S$, support and the finite profile list. A norm phase $U(x)x^{it}$ costs $(1+|t|)^J$. This proves reflection for arbitrary annular tests with a finite seminorm.
+
+\section{The labelled completed mean square}\label{sec:labels}
+The label prime set stays outside fixed $S$. For squarefree exterior $f$ and $V_*(x)=\sqrt x\,W(x)$ define
+\begin{equation}\label{eq:completed}
+ \mathcal T(X;k,f;W)=\sum_{c\ {\rm sf},n}
+ \frac{\gamma_2(c)\vartheta(cn^3)}{q_c^{1/2}q_n}
+ \chi_{cn^3}(kf^4)V_*(q_cq_n^3/X).
+\end{equation}
+
+\begin{proposition}\label{prop:completed}
+Fix $C_0,\eps>0$ and $I\Subset(0,\infty)$. There is a finite $J$ such that for $Z\ge2$, $1\le H,X,q_f\le Z^{C_0}$ and $W\in C_c^\infty(I)$,
+\begin{equation}\label{eq:completedbound}
+ \sum_{\substack{[k]\in(R\setminus\{0\})/\Gamma\\q_k\le H}}
+ |\mathcal T(X;k,f;W)|^2
+ \ll Z^\eps\|W\|_{C^J(I)}^2
+                  \left(H+\frac{H^2q_f}{X}\right).
+\end{equation}
+Constants depend on the fixed $\xi,S,I,C_0,\eps$.
+\end{proposition}
+
+\begin{proof}
+At $p\mid f$ let $r=v_p(k)$ and $j\equiv r+4\pmod6$. A reflected label branch has active flag $a\in\{0,1\}$, denominator $p^{2a}$, numerator exponent $e\ge0$ and scalar $c_{r,a,e}$. The inactive branch exists only at $j=0$ and equals $(1-q^{-1})W_e$. Active branches are \eqref{eq:localR}. For $e>0$ only $j=4$ survives, with exact magnitude $(1-q^{-1})q^{1/2}|W_e|$. At $e=0$ the magnitude is one except that the $j=4$ and $j=0$ active terms have magnitude $q^{-1/2}$. The $j=4$ value follows from the trivial Gauss sum divided by the nontrivial Gauss sum. The $j=0$ value follows from its $-q^{-1}$ digit coefficients. All these statements retain the zero-digit inactive branch.
+
+The two weighted local masses are
+\begin{equation}\label{eq:labelmasses}
+ S_0(q)=\sum_{r\ge0}q^{-r/2}\sum_{a,e}|c_{r,a,e}|,\qquad
+ S_1(q)=\sum_{r\ge0}q^{-r}\sum_{a,e}|c_{r,a,e}|q^{a-e/2}.
+\end{equation}
+At $j=4$ the unweighted inner mass is
+\[
+ q^{-1/2}+(1-q^{-1})q^{1/2}
+           \frac{q^{-1/2}+q^{-1}}{1-q^{-1}}
+       =1+2q^{-1/2}.
+\]
+At $j=0$ the inactive mass is $1+q^{-1/2}$ and the active mass is $q^{-1/2}$; the other four digits have mass one. With $a_0=q^{-1/2}$ this gives the exact formula
+\begin{equation}\label{eq:S0}
+ S_0(q)=\frac{1+3a_0+a_0^2+3a_0^3+a_0^4+a_0^5}{1-a_0^6}
+       \le1+\frac{12}{\sqrt q}\quad(q\ge2).
+\end{equation}
+For the second mass put
+\[
+ T=\frac{q^{-1}+q^{-5/2}}{1-q^{-5/2}},\quad
+ J_4=\sqrt q+(1-q^{-1})q^{3/2}T,\quad
+ J_0=\sqrt q+\frac{1-q^{-2}}{1-q^{-5/2}}.
+\]
+The weighted masses by digit $j=4,5,0,1,2,3$ are respectively $J_4,q,J_0,q,q,q$. Therefore
+\begin{equation}\label{eq:S1}
+ S_1(q)=\frac{J_4+1+q^{-2}J_0+q^{-2}+q^{-3}+q^{-4}}
+                   {1-q^{-6}}\ll\sqrt q.
+\end{equation}
+For example $T\le2/q$, $J_4\le3\sqrt q$, $J_0\le2\sqrt q$ give $S_1(q)\le6\sqrt q$. These bounds have absolute constants for every $q\ge2$.
+
+Write $k=e_fk_0$ with $e_f=(k,f^\infty)$ and $(k_0,f)=1$, and freeze every label branch. All numerator valuations at label primes, including the ordinary spherical valuations of inactive branches, belong to $A_f$ below. The free numerator indices are prime to $f$. Write
+\[
+\begin{gathered}
+ E=q_{e_f},\quad A_f=\prod_{p\mid f}p^{e_p},\quad
+ D_f=\prod_{p\mid f}p^{a_p},\quad Q_f=q_{A_f},\\
+ B_f=q_{D_f}^2,\qquad H_0=H/E,\qquad Z_{\rm eff}=XQ_f/B_f.
+ \end{gathered}
+\]
+Empty $E>H$ ranges vanish. All label interactions in \eqref{eq:reflected} are frozen scalars or single row or column characters. The free row-column exponent remains three. After fixing the two separate $S$ power classes, the same norm profile applies to all those rows and columns. The full Hecke factors separate by \eqref{eq:orbit} before absolute values.
+
+Here are the large-sieve and uniform-tail details for arbitrary row cap $H_0$ and unbounded $Q_f$. Write a free row as $hd$, with $h$ powerful, $d$ squarefree. On blocks $q_h\asymp P$, $q_d\asymp D_0$, the reflected numerator is $Q=q_aq_cq_n^3$, its argument is $Z_{\rm eff}Q/(q_d^2q_{f_0}^2)$, and $q_{f_0}^2\le q_h$. For a small predetermined $\delta>0$ cut it at
+\begin{equation}\label{eq:uniformcut}
+ M=16Z^\delta D_0^2P/Z_{\rm eff}.
+\end{equation}
+Since $D_0P\ll H_0$, $B_f\le q_f^2$, $X\ge1$ and $Q_f\ge1$, this is at most a fixed power $16Z^{4C_0+\delta}$, independently of $Q_f$. When $Q>M$ the argument is at least $2Z^\delta$. Split its decay as $x^{-A}=x^{-(A-1)}x^{-1}$. The remaining absolute numerator series is bounded by
+\[
+ \zeta_F^S(3/2)\zeta_F^S(4)
+        \prod_{p\mid f_0}\sum_e\beta_p(e)q_p^{-e}.
+\]
+The frozen free-prime branch sums, using \eqref{eq:beta}, cost $q_h^\eps$ by separating finitely many small primes. The per-row tail is consequently
+\[
+ \ll\|W\|_{C^J}P^\eps Z^{-\delta(A-1)}
+                         D_0^2P/Z_{\rm eff}.
+\]
+The last ratio is at most $Z^{4C_0}$ up to a fixed constant. For any desired $B>0$, choose $A$ with
+$\delta(A-1)>B+2+6C_0$; summing rows and blocks still gives $O(Z^{-B})$. If $M<1$, every integral positive numerator is in this same tail. No factor $Q_f^\eps$ or $Z_{\rm eff}^\eps$ is incurred.
+
+In the retained range fix $h,f_0,a,n$ and the finite classes. On $q_c\asymp C$ Fourier-separate the logarithmic dependence on $q_c$ and $q_d$, using Appendix~\ref{app:smooth}. Bound \eqref{eq:annulardecay} gives uniform Euler derivatives at every argument, so the separation cost does not grow with $Z_{\rm eff}$. The family $\chi_d(c)^3$ satisfies Input~\ref{inp:GL}: it is the quadratic Kummer family for $F(\sqrt c)/F$, its conductor outside $S$ is exactly squarefree $c$, and its $S$-conductor divides a fixed modulus. Use the $S$ square class for the finite map. Reciprocity on allowed generators is symmetric; for coprime equal classes their product is locally a square at $S$ and has conductor exactly the product exterior ideal. Thus all three family axioms hold. Row restrictions delete rows of that family; fixed column phases and restrictions are arbitrary coefficients. Its column square mass is
+$\sum_{q_c\asymp C}q_c^{-1}=O_F(1)$.
+
+The large sieve gives $(D_0+C)^{1/2}$ in row norm. Summing $C$ blocks up to $M$ costs logarithms and gives $\sqrt{D_0}+\sqrt M$. The $n$ sum uses $\sum_{q_n\le M^{1/3}}q_n^{-1}\ll\log(2+M)$; the $a$ and active-subset sums cost $q_h^\eps$ by \eqref{eq:beta}. There are $O(P^{1/2})$ powerful ideals $h$: uniquely write $h=b^2c^3$ with $c$ squarefree and sum $\sum_cq_c^{-3/2}$. Squaring yields, with $c_f=\prod_{p\mid f}|c_{r_p,a_p,e_p}|$,
+\begin{equation}\label{eq:freeblock}
+ \sum_{\text{block}}|\text{frozen branch}|^2
+ \ll Z^\eps\|W\|_{C^J}^2c_f^2P^{1/2}
+                 (D_0+D_0^2P/Z_{\rm eff}).
+\end{equation}
+Choose the sieve losses and $\delta$ before the norm scales so their sum is any prescribed loss. Formula~\eqref{eq:freeblock} uses full $\Gamma$ row orbits, with a fixed finite number of unit classes; no shape restriction is present.
+
+Since $D_0\ll H_0/P$, the right side is at most
+\[
+ Z^\eps\|W\|_{C^J}^2c_f^2P^{-1/2}
+                          (H_0+H_0^2/Z_{\rm eff}).
+\]
+Sum $D_0$ blocks, then use Minkowski over $P$; $\sum_{P\ {\rm dyadic}}P^{-1/4}<\infty$. The resulting row norm is
+\begin{equation}\label{eq:frozenlabel}
+ \ll Z^\eps\|W\|_{C^J}c_f
+      \left(\sqrt{H/E}+\frac{H/E}{\sqrt X}
+                                      \frac{q_{D_f}}{\sqrt{Q_f}}\right).
+\end{equation}
+The derivative order is fixed after the requested tail decay, $C_0$ and loss. It is independent of $Q_f$.
+
+Finally apply Minkowski over all label branches and $e_f$. Enlarge their nonnegative envelopes to all $r\ge0$. Equations~\eqref{eq:labelmasses}--\eqref{eq:S1} bound the row norm by
+\[
+ Z^\eps\|W\|_{C^J}
+ \left(\sqrt H\prod_{p\mid f}S_0(q_p)
+      +\frac H{\sqrt X}\prod_{p\mid f}S_1(q_p)\right)
+ \ll Z^{\eps'}\|W\|_{C^J}
+           \left(\sqrt H+\frac H{\sqrt X}q_f^{1/2}\right).
+\]
+Indeed $1+O(q^{-1/2})$ and a bounded constant per prime are $O(q_f^{\epsilon_1})$ after separating fixed small primes. Absolute convergence of these local masses permits passage from finite branch sums to the full sums. The rapidly decreasing tails in \eqref{eq:frozenlabel} retain the factor $E^{-1/2}$ and are absorbed in its initial term. Squaring proves \eqref{eq:completedbound}, with the losses allocated in advance.
+\end{proof}
+
+\section{Orbital Poisson and smooth row kernels}\label{sec:poisson}
+Choose a nonnegative tensor Schwartz--Bruhat function $\Phi$ on $F_S$ as follows. At each complex place take the squared modulus of the inverse Fourier transform of a compact smooth bump, positive on a fixed ball. At finite $S$-places use small unit-neighborhood indicators. Thus $\Phi(0)=0$, whereas
+\[
+ \Psi(x)=\int_{G_1}\Phi(g\ell_x)\dd g
+\]
+is positive and bounded below on $0<x\le1$: restrict finite factors to units and complex norm-one ratios to a fixed compact neighborhood. Scale once so $\Psi\ge1$ there. Put
+\[
+ K_\Phi(x)=\int_{G_1}\wt\Phi(g\ell_x)\dd g.
+\]
+All local Fourier supports are compact, so $K_\Phi(x)=0$ for $x>C_\Phi$. These are smooth functions of positive norm; $\Psi$ and its Euler derivatives decay arbitrarily rapidly at infinity. If $d_S=2+|S_f|-1=|S_f|+1$, then
+\begin{equation}\label{eq:logkernel}
+ |(x\partial_x)^j\Psi(x)|+
+ |(x\partial_x)^jK_\Phi(x)|
+ \ll_j(1+|\log x|)^{d_S}\qquad(0<x\le1).
+\end{equation}
+For $K_\Phi$, finite valuations have lower bounds and each complex squared modulus has an upper bound. Write those moduli as fixed upper bounds times $e^{-v_i}$, $v_i\ge0$. The norm constraint says the sum of $v_i$ and the nonnegative finite valuation logarithms is $|\log x|+O(1)$. The complex simplex has volume $O((1+|\log x|)^{2-1})$, and counting finite valuation tuples costs $(1+|\log x|)^{|S_f|}$. A norm derivative may be placed on one complex factor, preserving boundedness and compact support. For $\Psi$ the finite valuations are bounded, and its complex coordinates above modulus one are controlled by Schwartz decay; the same simplex bound handles the remaining coordinates. On every compact positive interval these bounds are integrable majorants and justify differentiation. They prove \eqref{eq:logkernel}, including the stated arbitrary decay at infinity for $\Psi$.
+
+\begin{lemma}[Poisson on full unit orbits]\label{lem:orbitpoisson}
+Let $\rho$ be a primitive exterior residue character of modulus $\mathfrak m=mR$, of order dividing six, extended by zero on nonunits. Let $D_0$ be squarefree exterior and $(D_0,\mathfrak m)=1$. Then
+\begin{align}\label{eq:orbitpoisson}
+ &\sum_{[r]\ne0}\rho(r)\ind_{(r,D_0)=1}\Psi(q_r/H)\notag\\
+ &\quad=\frac{H\gamma(\rho)}{\sqrt{q_{\mathfrak m}}}
+ \sum_{d\mid D_0}\frac{\mu(d)\rho(d)}{q_d}
+ \sum_{[h]\ne0}\bar\rho(h)
+ K_\Phi\left(\frac{Hq_h}{q_dq_{\mathfrak m}}\right)+Z_0,\\
+ Z_0&=\ind_{\mathfrak m=R}H\,\vol(G_1/\Gamma)\wt\Phi(0)
+                          \prod_{p\mid D_0}(1-q_p^{-1}),\notag\\
+ \gamma(\rho)&=q_{\mathfrak m}^{-1/2}
+                    \sum_{x\bmod\mathfrak m}\rho(x)e(x/m).\notag
+\end{align}
+Every row and nonzero frequency is an actual $(R\setminus\{0\})/\Gamma$ orbit.
+\end{lemma}
+\begin{proof}
+For $t\in G_1/\Gamma$ expand the exclusion by $\mu(d)$, write $r=dr_0$ and split $r_0$ into classes modulo $mR$. Apply \eqref{eq:lattice} to
+$f(r_0)=\Phi(dr_0/(t\ell_H))$. Its Fourier transform contributes $H/q_d$, the residue-class lattice contributes $q_{\mathfrak m}^{-1}$, and the finite primitive transform is
+$\sqrt{q_{\mathfrak m}}\gamma(\rho)\bar\rho(h)$. Thus the coefficient is $H\mu(d)\rho(d)\gamma(\rho)/(q_d\sqrt{q_{\mathfrak m}})$, with Fourier argument $t\ell_Hh/(dm)$.
+
+Integrate over the compact quotient. Since $\rho(\Gamma)=1$, nonzero $h$ orbits unfold it to $G_1$. Translation by the norm-one part of $h/(dm)$ leaves the norm argument in \eqref{eq:orbitpoisson}. The zero frequency has no free orbit: its integral is the compact quotient volume times $\wt\Phi(0)$. Its Gauss coefficient vanishes unless the primitive modulus is one. Summing $\mu(d)/q_d$ gives $Z_0$. The original additive origin is zero because $\Phi(0)=0$.
+
+For the exchanges choose a fixed compact fundamental set for $G_1/\Gamma$. Its uniformly scaled lattice sums have Schwartz majorants, allowing Poisson and Fubini. On unfolding the dual nonzero orbits, compact norm support leaves finitely many exterior ideals and finitely many unit classes for each; the original orbital series converges by arbitrary decay and ideal counting. These arguments prove all interchanges, while the zero frequency remains separate throughout.
+\end{proof}
+
+We use the elementary smooth facts in Appendix~\ref{app:smooth}. In particular, if two finite row families have common-test squared-norm bounds $M_1\|U\|_{C^j}^2$ and $M_2\|U\|_{C^j}^2$, a row-dependent two-column kernel is bounded by $\sqrt{M_1M_2}$ times its uniform $C^{2j+4}$ norm. In our applications the row sets at both uses are finite by compact dual norm support. An intervening $\Psi$ sum can be infinite; Poisson is applied to it before the next finite-array lemma. For nonzero kernel arguments in fixed polynomial norm ranges, \eqref{eq:logkernel} costs an arbitrarily small power of the ambient parameter. Zero frequencies are never estimated by this positive-norm bound.
+
+\section{Two Poisson transformations and the signed preimages}\label{sec:transfer}
+All sums in this section are over exterior ideals; a star means squarefree. Use a separate symbol $F_0>0$ for the label length. The number field is always $F$. Put
+\[
+ a_\xi(n)=\bar\Lambda(n)\gamma_2(n)\xi(n).
+ \]
+ Define
+ \[
+ \E(H,X,F_0;\xi,W)=\frac1{XF_0}
+  \sfstar_{F_0\le q_f<2F_0}\ \sum_{0<q_r\le H}
+ \left|\sfstar_n a_\xi(n)\chi_n(r)\chi_n(f)^4W(q_n/X)\right|^2.
+\]
+Rows are full $\Gamma$-orbits. CRT and \eqref{eq:calibration} give, for coprime squarefree $a,b$,
+\begin{align}\label{eq:pairGauss}
+ a_\xi(ab)&=a_\xi(a)a_\xi(b)\chi_b(a)^4,\notag\\
+ a_\xi(a)\overline{a_\xi(b)}\gamma(\chi_a\bar\chi_b)
+   &=\mu(a)\mu(b)(\xi G)(a)\overline{(\xi G)(b)},\\
+ \mu(a)\mu(b)(\xi G)(a)\overline{(\xi G)(b)}
+             \gamma(\bar\chi_a\chi_b)
+   &=a_\xi(a)\overline{a_\xi(b)}.\notag
+\end{align}
+The finite CRT cross factor is $\chi_a(b)\bar\chi_b(a)=1$. The same background character returns after the two directions. At every common extracted divisor it cancels by $\xi(d)\bar\xi(d)=1$.
+
+If $\E_R$ adds $(n,R)=1$, inclusion--exclusion, twisted multiplicativity and weighted Cauchy--Schwarz give
+\begin{equation}\label{eq:exclusions}
+ \E_R(H,X,F_0)\le\tau(R_0)\sum_{d\mid R_0}
+                     \E(H,X/q_d,F_0q_d),
+\end{equation}
+where $R_0=\rad(R)$. To check it, write $n=dm$ for each divisor in the exclusion expansion. Its extra coefficient is $a_\xi(d)$ and its extra column mask is $\chi_m(d)^4$, merging with the fourth-power label to give $df$. The shared-prime zeros impose $(d,f)=1$ on nonzero terms. The map $f\mapsto df$ is injective and preserves squarefreeness, the length product $XF_0$ is unchanged, and $|\chi_d(r)|\le1$. Enlarging the resulting positive label range proves \eqref{eq:exclusions}.
+
+Fix $I=[u,v]\Subset(0,\infty)$ and polynomial parameter ranges in an ambient $Z\ge2$. Let $\max(H,LF_0)\le\Sigma$. Write $\mathcal A(W)$ for $\E(H,L,F_0;\xi,W)$ with the row cap replaced by $\Psi(q_r/H)$, so it majorizes that capped energy.
+
+\subsection{The initial transformation}
+Expand the square, extract the common column divisor $n_i=Cu_i$, and apply Lemma~\ref{lem:orbitpoisson} to the primitive character $\chi_{u_1}\bar\chi_{u_2}$, with exclusion $C$. The direct origin contributes $O(H\|W\|_\infty^2)$: it has $u_1=u_2=1$ and $O(L)$ diagonal columns before normalization. Apply the middle identity in \eqref{eq:pairGauss}, and extend the coprimality condition by the complete M\"obius sum $u_i=tx_i$. This gives the column family
+\begin{align}\label{eq:initialP}
+ P_{C,d,t}(y;U)&=\sfstar_n\mu(n)(\xi G)(n)\ind_{(n,t)=1}
+ \bar\chi_n(y)\chi_n(C)^4\chi_n(d)\,U(q_n/\ell),\\
+ \ell&=L/(q_Cq_t),\qquad y=hf^2,\qquad d\mid C.\notag
+\end{align}
+Here $C,t$ are coprime squarefree, and nonzero Fourier support implies
+\[
+ q_h\le C_\Phi v^2L^2q_d/(Hq_C^2).
+\]
+The coupled kernel, in $x_i=q_{n_i}/L$, is
+\[
+ (x_1x_2)^{-1/2}W(x_1)\bar W(x_2)
+ K_\Phi\left(\frac{Hq_hq_C^2}{L^2q_dx_1x_2}\right).
+\]
+The exact outer restrictions before positive enlargement are
+$(f,Ct)=(h,t)=1$. They come from the common extracted factors at $C,t$. In particular the actual image has $(y,t)=1$.
+
+Set
+\begin{equation}\label{eq:weightsY}
+ w_{C,d}=\frac{Hq_C}{q_dL^2F_0},\qquad
+ Y_{C,d}=c_I\frac{\Sigma LF_0q_d}{Hq_C^2},
+ \quad c_I\ge\max(1,4C_\Phi v^2).
+\end{equation}
+The map $(f,[h])\mapsto[hf^2]$ has divisor-bounded multiplicity: $f^2$ divides the output ideal, and for each $f$ the input orbit is unique. Since $\Sigma\ge LF_0$, every initial image obeys $q_y\le Y_{C,d}$. Bound the initial signs $\mu(d)\mu(t)$ and this multiplicity in absolute value, and majorize the row range by $\Psi(q_y/Y_{C,d})$. The common-kernel lemma shows that a common-test bound for
+\begin{equation}\label{eq:Qform}
+ \mathcal Q(U)=\sum_{C,t}\sum_{d\mid C}w_{C,d}
+       \sum_{[y]\ne0}\Psi(q_y/Y_{C,d})|P_{C,d,t}(y;U)|^2
+\end{equation}
+bounds $\mathcal A(W)$ with derivative cost $2j+4$ and an arbitrarily small power loss. The test $U$ is common to every $C,d,t$ in this assertion. The outside range is $q_Cq_t\le2vL$. This is a positive enlargement to all native orbits.
+
+For clarity, the primitive finite Gauss identity was used only on the coprime residual columns, before their complete M\"obius extension. The extension uses the same coefficient and kernel formula. Artificial equal-column terms cancel by the full divisor sum. A genuine modulus-one nonzero dual term remains in \eqref{eq:Qform}, and its origin has already been counted separately.
+
+\subsection{The return transformation and cancellation}
+Apply orbital Poisson to the fresh $y$ square in \eqref{eq:Qform}. Write its two columns $gz_i$, use $e\mid g$ from the row exclusion, and put $z_i=wn_i$ in the complete coprimality inversion. The final identity in \eqref{eq:pairGauss} gives the returned column
+\begin{equation}\label{eq:returned}
+ a_\xi(n)\ind_{(n,tg/e)=1}
+           \chi_n(deh)\chi_n(Cew)^4
+\end{equation}
+at scale $X'_0=\ell/(q_gq_w)$. Its prefactor is
+$Y\mu(e)\mu(w)q_g/(q_e\ell)$ and its two-column kernel is
+\[
+ U_0(x_1)\bar U_0(x_2)
+ K_\Phi\left(\frac{Yq_hq_g^2}{q_e\ell^2x_1x_2}\right),
+ \qquad U_0(x)=x^{-1/2}U(x).
+\]
+The exact support conditions are
+\[
+ (g,Ct)=(w,gCth)=1,\quad
+ q_gq_w\le2v\ell,\quad
+ q_h\le4C_\Phi v^2\ell^2q_e/(Yq_g^2).
+\]
+The modulus of the common $w$ factor squared is $\ind_{(w,h)=1}$; this zero is kept.
+
+Regroup by exterior ideals and a native orbit:
+\[
+ R_0=tg/e,\qquad f'=Cew,\qquad r'=deh.
+\]
+The ideals $R_0,f'$ are squarefree and coprime. Substitution gives three exact identities:
+\begin{align}\label{eq:regroup}
+ X'_0&=L/(q_{R_0}q_{f'}),&
+ w_{C,d}\frac{Yq_g}{q_e\ell}&=\frac{c_I\Sigma q_{R_0}}{L^2},\notag\\
+ \frac{Yq_hq_g^2}{q_e\ell^2}
+       &=\frac{c_I\Sigma F_0q_{r'}q_{R_0}^2}{HL}.
+\end{align}
+All preimages thus have identical coefficients, norm kernel and unit phase. Division of a native orbit by an allowed generator is well defined modulo $\Gamma$.
+
+Their complete list is: all $t\mid R_0$; a disjoint factorization $f'=Cew$ with $e\mid(r')_S$, $(w,r')=1$; and $d\mid(C,(r')_S)$. Then
+$g=eR_0/t$, $h=r'/(de)$. There is no restriction $(t,r')=1$ after the positive enlargement. For a prime $p\mid f'$, its three locations contribute the signed sum
+\begin{equation}\label{eq:localsigned}
+ \underbrace{(1+\ind_{p\mid r'})}_{C\text{ location}}
+ -\underbrace{\ind_{p\mid r'}}_{e\text{ location}}
+ -\underbrace{\ind_{p\nmid r'}}_{w\text{ location}}
+ =\ind_{p\mid r'}.
+\end{equation}
+Summing signs on the common kernel imposes $f'\mid(r')_S$ and leaves the factor $\tau(R_0)$ from all $t$ divisors. This identity includes the whole-index nonunit zeros. It is the cancellation needed for row contraction.
+
+\subsection{Child scales and the transfer estimate}\label{sec:children}
+On $q_{R_0}\asymp R$, $q_{f'}\asymp F'$ set
+\begin{equation}\label{eq:children}
+ X'=L/(RF'),\qquad \Sigma'=L/R,\qquad
+ H'=HL/(\Sigma F_0R^2).
+\end{equation}
+Retain only $R_0$ for which the original kernel is nonzero. Compact support and \eqref{eq:localsigned} give
+\[
+ q_{f'}\le q_{r'}\le\frac{HL}{\Sigma F_0q_{R_0}^2}.
+\]
+Thus $H'\ge1$ on every nonempty block. For each $j_0\mid R_0$,
+\[
+ \frac{X'}{q_{j_0}}
+ \ge\frac{\Sigma F_0q_{R_0}^2}{HRq_{j_0}}
+ \ge\frac{\Sigma F_0}{H}\ge1.
+\]
+Exclusion removal by \eqref{eq:exclusions} therefore leaves every child column scale at least one and preserves $\Sigma'$. In particular
+\begin{equation}\label{eq:childineq}
+ H'\le HL/(\Sigma F_0),\qquad
+ H'/\Sigma'\le H/\Sigma,\qquad \Sigma'\le L.
+\end{equation}
+The changes from the actual norms to dyadic lengths are absorbed by rescaling the fixed positive column box. Tests may be taken on $I_*=[u/2,2v]$ during separation and on $I'=[u/16,4v]$ for the children.
+
+Each nonzero kernel argument is either outside the compact support or between a fixed negative power of $Z$ and $C_\Phi$. Bound \eqref{eq:logkernel} supplies any finite derivative with loss $Z^\delta$. The oscillatory norm modes are attached to the columns; the fresh row lift remains $\Phi$, preserving its compact dual norm support.
+
+Let $S_j$ be the supremum of
+$\E(H',X',F';\xi,U)/\Sigma'$
+over the children, including exclusion removal, and tests of $C^j$ norm at most one. The common-test bound for an unnormalized child row-label square is $(\Sigma')^2S_j$. A block has $O(R)$ ideals $R_0$, and \eqref{eq:regroup} gives prefactor $\Sigma R/L^2$. Hence its total is bounded by the product
+\[
+ \frac{\Sigma R}{L^2}\,R\,(L/R)^2S_j=\Sigma S_j
+\]
+up to the allotted small losses. The return origin contributes
+\[
+ \ll\Sigma\|U\|_\infty^2
+     \sum_C\frac{\tau(C)}{q_C^2}
+     \sum_{q_t\ll L}\frac1{q_t}
+ \ll Z^\delta\Sigma\|U\|_\infty^2.
+\]
+The initial origin is $O(H)\le O(\Sigma)$. Ideal counting controls the convergent $C$ sum and the logarithmic $t$ sum without a condition $Y\ge1$. Applying the common-kernel lemma at both transformations and summing blocks proves
+\begin{equation}\label{eq:transfer}
+ \mathcal A(W)\ll Z^\eps\Sigma(1+S_j)
+                               \|W\|_{C^{4j+12}(I)}^2.
+\end{equation}
+Both origins have thus been retained, and all signs in the return transformation were summed before any absolute value. Formula~\eqref{eq:transfer} is the full-orbit analogue of p2 Proposition 5.4, derived here from \eqref{eq:orbitpoisson}.
+
+\section{Cube inversion, finite descent and the M\"obius estimate}\label{sec:descent}
+Write $\Sigma=XF_0$. Complete multiplicativity of $\vartheta=\bar\Lambda\xi$ and the whole-index masks gives
+\begin{align}\label{eq:cube}
+ &X^{-1/2}\sfstar_n a_\xi(n)\chi_n(rf^4)W(q_n/X)\notag\\
+ &\quad=\sum_h\frac{\mu(h)\vartheta(h)^3\chi_h(rf^4)^3}{q_h}
+                       \mathcal T(X/q_h^3;r,f;W).
+\end{align}
+To verify the inversion expand the right side. Its coefficient at a free squarefree $c$ and cube product $b=hn$ is
+\[
+ X^{-1/2}\gamma_2(c)\vartheta(c)\vartheta(b)^3\sqrt{q_b}
+        \chi_c(rf^4)\chi_b(rf^4)^3
+                      \sum_{h\mid b}\mu(h).
+\]
+Only $b=1$ survives. This calculation allows collisions of $h,n,c$; their mask zeros hold on both sides.
+
+\begin{proposition}[Energy with a positive gap]\label{prop:energy}
+Fix $\kappa,C_0,\eps>0$, $\xi,S,I$. There is a finite $J$ such that, for $Z\ge2$ and $1\le H,X,F_0\le Z^{C_0}$ with $H\le XF_0Z^{-\kappa}$,
+\begin{equation}\label{eq:energy}
+ \E(H,X,F_0;\xi,W)\ll Z^\eps XF_0\|W\|_{C^J(I)}^2 .
+\end{equation}
+\end{proposition}
+\begin{proof}
+Put $H_c^3=\min(X,X^2/H^2)$. In \eqref{eq:cube} split at $q_h=H_c$. Weighted Cauchy--Schwarz with weights $1/q_h$ and Proposition~\ref{prop:completed} bound the short contribution to the normalized energy by
+\[
+ \ll Z^\eps\|W\|_{C^{J_R}}^2
+                (H+H^2F_0H_c^3/X)\ll Z^\eps\Sigma\|W\|_{C^{J_R}}^2.
+\]
+The relevant $h$ sum has polynomial support, so its harmonic sum is logarithmic. This remains true if $H_c<1$, when the short part is empty.
+
+In the long part collect $b=hn$. The coefficient is a sum of $\mu(h)$ over $h\mid b$, $q_h>H_c$, so has magnitude at most $\tau(b)$. The outside factor is $\vartheta(b)^3\sqrt{q_b}\chi_b(r)^3$ and the retained condition $(b,f)=1$. The remaining column length is $L_b=X/q_b^3$. Since $q_b^3\le vX$ on support and
+$\sum_{q_b^3\le vX}\tau(b)/q_b\ll_I\log^2(2+X)$,
+weighted Cauchy--Schwarz gives
+\begin{equation}\label{eq:long}
+ \E(H,X,F_0;W)\ll Z^\eps
+ \left(\Sigma\|W\|_{C^{J_R}}^2+
+       \sup_{\substack{q_b>H_c\\L_b>1}}\E(H,L_b,F_0;W)\right).
+\end{equation}
+For the normalization, the squared coefficient gives $q_b$; after Cauchy with weight $1/q_b$, the normalized energy at length $L_b$ carries $q_b^3L_b/X=1$. Only logarithmic divisor sums remain. The terms $L_b\le1$, if nonempty, have $L_b\ge1/v$ and finitely many columns; their energy is $O_I(H)\le O_I(\Sigma)$.
+
+If the displayed supremum is nonempty, then $H^2>X$ and $L_b<H^2/X$. Apply \eqref{eq:transfer} at a long length $L$. By \eqref{eq:childineq},
+\[
+ H'\le\frac{HL}{\Sigma F_0}
+       <H(H/\Sigma)^2\le HZ^{-2\kappa},
+ \qquad H'/\Sigma'\le Z^{-\kappa},\qquad \Sigma'\le L.
+\]
+Every positive child column and label scale is at least one. Their product is at most $L\le X_{\rm parent}$, so each is at most the same $Z^{C_0}$ as the parent column scale; the row cap decreases. This stronger observation closes the same polynomial range throughout the induction.
+
+Induct on the range $H\le Z^{j\kappa}$, starting at $H\le1$. There are then only the fixed finite unit-class rows; counting $O(X)$ columns and $O(F_0)$ labels bounds the energy by $O(X)\le O(\Sigma)$. If an exceptional stopped column scale is below one but nonempty, it is at least the reciprocal of its fixed support endpoint and its energy is $O_I(H/X)\ll_I H\le\Sigma$. These observations cover every base case. The row cap contracts strictly, so at most $\lceil C_0/\kappa\rceil+1$ levels suffice. This is the induction parameter even when a long length equals the parent column length.
+
+Choose all enlarged compact supports, the derivative orders at each level exceeding $J_R$ and $4J_{\rm child}+12$, and the allocation of $\eps$ before letting $Z$ grow. The depth is fixed, all orders remain finite, and \eqref{eq:long} and \eqref{eq:transfer} give \eqref{eq:energy}.
+\end{proof}
+
+\subsection{Initialization of the angular M\"obius family}\label{sec:initialization}
+Let $\eta=\eta_K\circ N_{F/K}$ with its norm phase removed and nonzero diagonal angular type. For $D_0\ge2$, $0<\theta\le1/10$, set $H=D_0^{1+\theta}$ and
+\[
+ A_u(D_0)=\sum_n\mu_F(n)\eta(n)\chi_n(u)W(q_n/D_0).
+\]
+Majorize the row cap by $\Psi(q_u/H)$, and conjugate the entire inner M\"obius sum before expanding. At coprime residual columns the Gauss conversion is
+\begin{equation}\label{eq:initGauss}
+ \mu(z)\bar\eta(z)\gamma_{-1}(z)
+  =\bar\Lambda(z)\gamma_2(z)(\bar\eta\bar G)(z).
+\end{equation}
+Thus the actual coefficient background in the preceding propositions is
+$\xi=\bar\eta\bar G$. Its angular vector remains diagonal and its radial parameters are zero.
+
+Normalize the smoothed square by $D_0^{-1}$. The direct origin is $O(H\|W\|_\infty^2)$. Extract the common original divisor $gz_i$, use $e\mid g$ for the row exclusion and $z_i=vm_i$ for complete coprimality inversion. Apply \eqref{eq:orbitpoisson} and \eqref{eq:initGauss}, retaining the whole-index zeros. Make the change
+\begin{equation}\label{eq:initmap}
+ b=g/e,\quad f=ev,\quad r=eh;\qquad
+ e=(f,(r)_S),\quad v=f/e,\quad g=be,\quad h=r/e .
+\end{equation}
+The inverse follows from $(v,h)=1$. Both $b,f$ are squarefree and coprime, and the residue-mask identity $he^5v^4=rf^4$ holds exactly modulo $\Gamma$. Common extracted unitary factors cancel.
+
+The resulting nonzero contribution is
+\begin{equation}\label{eq:initexpression}
+ \frac H{D_0^2}\sfstar_{(b,f)=1}\mu(f)q_b
+ \sum_{[r]\ne0}\sfstar_{(m_1m_2,b)=1}
+ a_\xi(m_1)\overline{a_\xi(m_2)}
+ \chi_{m_1}(rf^4)\overline{\chi_{m_2}(rf^4)}
+                          \mathcal K_{b,f,r},
+\end{equation}
+where $W_0(x)=x^{-1/2}\bar W(x)$ and
+\[
+ \mathcal K_{b,f,r}
+ =W_0(q_bq_fq_{m_1}/D_0)\overline{W_0(q_bq_fq_{m_2}/D_0)}
+       K_\Phi\left(\frac{Hq_r}{q_f^2q_{m_1}q_{m_2}}\right).
+\]
+This is the initialization corresponding to p2 Proposition 4.5, obtained here with full $F$-orbits and the angular character fixed by \eqref{eq:initGauss}.
+
+On $q_b\asymp B$, $q_f\asymp F_0$ put
+\[
+ X=D_0/(BF_0),\quad H_*=C_{I,\Phi}D_0^2/(HB^2),\quad
+ \Sigma=XF_0=D_0/B.
+\]
+Dual support gives $q_r\le H_*$, and
+$H_*/\Sigma\ll D_0^{-\theta}/B\le D_0^{-\theta/2}$
+for large $D_0$. Discard empty row ranges. Apply Proposition~\ref{prop:energy} with gap $\theta/2$, and remove $(m,b)=1$ by \eqref{eq:exclusions}, preserving $\Sigma$. A nonempty subunit child scale is bounded below by a fixed support constant, hence satisfies the same counting bound as in the proof of that proposition.
+
+The row-kernel lemma and \eqref{eq:logkernel} convert the common-test bound into a bound for the actual coupled kernel in \eqref{eq:initexpression}. A block's scalar and counting factors are
+\[
+ \frac{HB}{D_0^2}\,B\,(XF_0)^2=H.
+\]
+The second $B$ counts the possible $b$ ideals. Sum the logarithmically many blocks and restore the normalization $D_0$. We obtain a finite $J$ with
+\begin{equation}\label{eq:mobiusms}
+ \sum_{0<q_u\le D_0^{1+\theta}}|A_u(D_0)|^2
+       \ll D_0^{2+\theta+\eps}\|W\|_{C^J(I)}^2.
+\end{equation}
+Every step retains all unit-class rows. The background returns to the same $\xi$ after two transformations; no $L$-function of $\xi^3$ is introduced by cube inversion.
+
+\subsection{Sixth-power amplification and Mellin continuation}\label{sec:amplification}
+For exterior prime ideals with $Y/2<q_p\le Y$, $Y=H^{1/6}$, the rows $[p^6]$ are distinct and have norm at most $H$. The mask is
+$\chi_n(p^6)=\ind_{p\nmid n}$. Ideal counting therefore gives
+$A_{p^6}(D_0)=A_1(D_0)+O_I(D_0/Y)$.
+The prime ideal theorem supplies $\gg_F Y/\log Y$ such rows. Averaging their squares in \eqref{eq:mobiusms} gives
+\[
+ |A_1(D_0)|^2
+ \ll D_0^{2+\theta+\eps}Y^{-1}\log Y+D_0^2Y^{-2}.
+\]
+The two exponents before taking square roots are
+$11/6+5\theta/6+\eps$ and $5/3-\theta/3$. Given $\delta>0$, choose fixed positive $\theta,\eps$ sufficiently small. Then
+\begin{equation}\label{eq:mobiuspower}
+ \sum_n\mu_F(n)\eta(n)W(q_n/D_0)
+       \ll_{\eta,S,I,\delta}
+          D_0^{11/12+\delta}\|W\|_{C^{J_\delta}(I)}.
+\end{equation}
+All these choices precede $D_0\to\infty$.
+
+Suppose $\rho$ were a zero of $L_F^S(s,\eta)$ with $\Rea\rho>11/12$. Take $W(x)=x^{-i\Im\rho}w(x)$ with nonzero nonnegative $w\in C_c^\infty(I)$. Then $\wt W(\rho)>0$. Estimate~\eqref{eq:mobiuspower}, with arbitrary fixed $\delta<\Rea\rho-11/12$, makes
+\[
+ M(s)=\int_0^\infty A_1(D_0)D_0^{-s}\frac{\dd D_0}{D_0}
+\]
+holomorphic on $\Rea s>11/12$. At small $D_0$ the support is empty; at infinity the estimate and its logarithmic derivatives give locally uniform convergence. In absolute convergence,
+$L_F^S(s,\eta)M(s)=\wt W(s)$.
+Analytic continuation contradicts a zero at $\rho$. The angular $L$-function is entire, and restoring finite factors preserves this zero-free half-plane. Lemma~\ref{lem:base} descends it to $K$; reinstating the norm phase proves Theorem~\ref{thm:A}. For a real norm power, $L(s,\eta\N^u)=L(s-u,\eta)$, which proves its shifted formulation.
+
+\section{Every rational quartic twist and its primitive conductor}\label{sec:CM}
+Put $\lambda=1+i$ in $K$. For an odd Gaussian ideal let $\alpha_{\rm pr}$ denote its unique generator congruent to one modulo $\lambda^3$. The seed character is
+\[
+ \psi_1((\alpha))=\alpha_{\rm pr},\qquad
+ \operatorname{cond}(\psi_1)=\lambda^3,\qquad
+ \text{infinity type }(1,0).
+\]
+The modulus suffices by the definition; a smaller modulus cannot suffice since $-1\equiv1\pmod{\lambda^2}$ but its type value is $-1$.
+
+For $D=a/b\ne0$, $(a,b)=1$, $b>0$, the substitution $x=b^{-2}X$, $y=b^{-3}Y$ gives integer parameter $ab^3$. Remove its integer fourth-power factors and write the resulting signed fourth-power-free integer as $d$. Then $E_D$ is $\Q$-isomorphic to $E_d$, with $v_p(d)\in\{0,1,2,3\}$. For $t^4=d$ let
+$\kappa_d(\sigma)=\sigma(t)/t$, a quartic Kummer character of $G_K$. With arithmetic Frobenius it has value $(d/\mathfrak p)_4$ at good primes. The CM character is
+\begin{equation}\label{eq:psiD}
+ \psi_d=\psi_1\kappa_d^{-1},\qquad
+ \psi_d(\mathfrak p)=\overline{(d/\mathfrak p)_4}\,\pi_{\mathfrak p}
+                      \quad(\mathfrak p\nmid2d).
+\end{equation}
+Indeed $(x,y)\mapsto(t^2x,t^3y)$ identifies $E_1$ with $E_d$, and its conjugate differs by the CM automorphism $[\kappa_d^{-1}]$. The type-$(1,0)$ eigenspace has exactly the indicated inverse twist.
+
+We also verify its good-prime direction directly. For $p\equiv1\pmod4$ let $\chi=(\cdot/\pi)_4$, $\phi=\chi^2$, and $J=\sum_t\chi(t)\phi(1-t)$. The identity
+$\sum_{x^2=t}\phi(x)=\chi(t)+\bar\chi(t)$ gives
+\[
+ \sum_x\phi(x^3-dx)=\bar\chi(d)J+\chi(d)\bar J .
+\]
+Gauss--Jacobi gives $J\bar J=p$. Reducing $J$ modulo $\pi$, its monomial degrees lie strictly between $0$ and $p-1$, so $J\equiv0\pmod\pi$. On $E_1$, the point $(i,1-i)$ doubles to $(0,0)$; together with $(1,0)$ it generates a subgroup of order eight. Hence
+$-2\Rea J=a_p(E_1)\equiv p+1\pmod8$.
+If $p\equiv1\pmod8$, then $\Rea J\equiv-1\pmod4$ and $\Im J\equiv0\pmod4$; if $p\equiv5\pmod8$, they are $1,2\pmod4$. Thus $-J$ is primary in both cases, and $J=-\pi_{\rm pr}$. The trace equals
+\[
+ a_p(E_d)=\bar\chi(d)\pi_{\rm pr}
+                         +\chi(d)\bar\pi_{\rm pr}.
+\]
+The type-$(1,0)$ Frobenius at $\pi$ is the root lying in the ideal $\pi$: its differential vanishes modulo that prime. Hence the trace formula identifies that root as $\bar\chi(d)\pi_{\rm pr}$ and confirms the conjugation in \eqref{eq:psiD}. It agrees with \cite[Sections 2.3--2.4, (2.13)--(2.16)]{DDW}, whose explicit family there has odd squarefree parameter. Our twist argument applies to all the rational parameters above.
+
+At an inert $p\equiv3\pmod4$, $p\nmid2d$, the substitution $x\mapsto-x$ changes the sign of the Legendre sum, so $a_p=0$. The primary generator of $(p)$ is $-p$ and the quartic symbol of a rational unit is one in $\mathbb F_{p^2}$, since $(p^2-1)/4$ is a multiple of $p-1$. Thus $\psi_d((p))=-p$ and its Hecke factor is $(1+p^{1-2s})^{-1}$, precisely the elliptic factor.
+
+\begin{proposition}[All primitive conductors]\label{prop:conductor}
+For signed fourth-power-free $d$, put $e=v_2(d)$ and $a=d/2^e$ odd. Then
+\begin{equation}\label{eq:conductord}
+ \mathfrak f_d=\lambda^{c(d)}
+              \prod_{\substack{\mathfrak p\mid d\\\mathfrak p\nmid2}}
+                         \mathfrak p ,
+ \qquad N(E_d)=4\N\mathfrak f_d
+       =2^{c(d)+2}\prod_{\substack{p\mid d\\p\ {\rm odd}}}p^2,
+\end{equation}
+where
+\[
+\begin{array}{ccl}
+ \toprule
+ e&a\bmod4&c(d)\\
+ \midrule
+ 0&1&3\\
+ 0&3&4\\
+ 1\text{ or }3&1\text{ or }3&6\\
+ 2&1&4\\
+ 2&3&3\\
+ \bottomrule
+\end{array}
+\]
+In particular every $2$-Euler factor is one. At $3$ the factor is
+$(1+3^{1-2s})^{-1}$ if $3\nmid d$, and one if $3\mid d$.
+\end{proposition}
+\begin{proof}
+At every odd $\mathfrak p\nmid d$ both factors of \eqref{eq:psiD} are unramified. At an odd $\mathfrak p\mid d$, the valuation of $d$ is nonzero modulo four. Tame Kummer reciprocity makes its unit character nontrivial and trivial on principal units. The conductor exponent is exactly one. This argument includes residue characteristic three. All these bad elliptic primes have additive potentially good reduction, hence local elliptic factor one, also as follows from the induced character.
+
+We give a finite local proof of the dyadic table, including the possible cancellation between the seed and twist. In $L=\Q_2(i)$ put $U_m=1+\lambda^mO_L$. For $m\ge3$ the logarithm, or Hensel's lemma, makes squaring onto $U_{m+2}$, so $U_3^4=U_7$. The local Kummer character and the seed are therefore trivial on $U_7$. Rational fourth-power classes in $\Q_2^\times$ are determined by $v_2$ modulo four and the odd unit modulo sixteen. In $L$, $-4=\lambda^4$, so it suffices to take $d=2^ea$, $e=0,1$, $a\in\{1,3,\ldots,15\}$.
+
+The group $(\Z[i]/\lambda^7)^\times$ has the unique representatives
+\[
+ i^j u^k v^l,\quad0\le j,k,l<4,\qquad u=-1+2i,\quad v=5.
+\]
+The three generators have order four. Multiplying their Gaussian integer representatives shows all $64$ products are distinct modulo $\lambda^7$. Its unit filtration is
+\begin{align*}
+ U_2/U_7&=\langle i^2,u,v\rangle,&
+ U_3/U_7&=\langle u,v\rangle,\\
+ U_4/U_7&=\langle u^2,v\rangle,&
+ U_5/U_7&=\langle u^2,v^2\rangle,&
+ U_6/U_7&=\langle v^2\rangle .
+\end{align*}
+These equalities follow by valuations of the displayed generators and the successive indices two.
+
+Let $\epsilon_d$ be the finite character of $\psi_d$ at $\lambda$, in the ideal-side convention. Direct evaluation of \eqref{eq:psiD}, or quartic reciprocity with its supplementary laws \cite[Proposition 2.1 and (2.7)]{DDW}, gives for $e=0,1$ and odd $a$:
+\begin{equation}\label{eq:dyadicgenerators}
+ \epsilon_{2^ea}(i)=-i\,(-1)^{(a^2-1)/8},\qquad
+ \epsilon_{2^ea}(u)=i^e(-1)^{(a-1)/2},\qquad
+ \epsilon_{2^ea}(v)=1.
+\end{equation}
+Here is an explicit finite way to verify every value in this formula. For each of the sixteen $d$ and each residue $z$, choose a Gaussian integer
+$\alpha\equiv z\pmod{\lambda^7}$, $\alpha\equiv1\pmod a$ by CRT. If $\alpha_{\rm pr}=i^j\alpha$, evaluate
+\[
+ \epsilon_d(z)=i^j\overline{(d/\alpha_{\rm pr})_4}.
+\]
+Factor the odd norm of $\alpha_{\rm pr}$; at a split factor $A+Bi$ of norm $p$, read the symbol from
+$d^{(p-1)/4}\pmod p$ with $i\equiv-A/B$, and at inert rational factors it is one. This is the power definition, so it uses integer arithmetic only. Substituting $z=i,-1+2i,5$ and $a=1,3,\ldots,15$ gives the following exponent table, all entries modulo four:
+\[
+\begin{array}{c|rrrrrrrr}
+ a&1&3&5&7&9&11&13&15\\ \hline
+ \epsilon(i)&3&1&1&3&3&1&1&3\\
+ \epsilon_a(u)&0&2&0&2&0&2&0&2\\
+ \epsilon_{2a}(u)&1&3&1&3&1&3&1&3\\
+ \epsilon(v)&0&0&0&0&0&0&0&0
+\end{array}
+\]
+The table and the group generators establish \eqref{eq:dyadicgenerators} on the whole finite group. The ancillary conductor program performs this exact finite evaluation and additionally checks every product of residue classes.
+
+For $e=0$, the character on $u$ is one or minus one according as $a\equiv1$ or $3\pmod4$. Since it is nontrivial on $i^2$, its minimal conductor is respectively $\lambda^3$ or $\lambda^4$. For $e=1$, it is nontrivial on $u^2$ but trivial on $v^2$, so its minimal conductor is $\lambda^6$. For $e=2$, replace $d$ by $d/(-4)=-a$ without changing its local fourth-power class; this exchanges the two odd congruence cases. For $e=3$ the same replacement leaves valuation one, with exponent six. This proves the whole table, also for negative $a$. No class has exponent zero.
+
+The conductor formula for induction in Input~\ref{inp:CM} gives \eqref{eq:conductord}. At three, an unramified inert prime has value $-3$ and norm nine, giving the stated factor. If $3\mid d$, its tame conductor exponent is one and its factor is one.
+\end{proof}
+
+Deuring's all-place theorem now identifies the primitive character \eqref{eq:psiD} with $E_d/\Q$, rather than with the two-factor function of the curve over $K$:
+\begin{equation}\label{eq:deuring}
+ L(E_D/\Q,s)=L_K(s,\psi_d)
+           =L_K(s-1/2,\eta_d),\qquad \eta_d=\psi_d\N^{-1/2}.
+\end{equation}
+It has angular type one and is unitary. This proves Theorem~\ref{thm:B} by Theorem~\ref{thm:A}. The identity includes the primitive conductor at every bad prime as just determined.
+
+One can also restore any finitely deleted factors directly. Unitary Hecke local roots have modulus one when present; elliptic local roots have modulus at most $\sqrt p$. Thus their local polynomials and inverses have no zero or pole for $\Rea s>17/12$ in arithmetic normalization. The same observation works after the half-unit shift. The completed elliptic function has functional equation $s\leftrightarrow2-s$ and is entire; reflecting the proved half-plane confines its nontrivial zeros to $7/12\le\Rea s\le17/12$.
+
+\section{Power-saving applications}\label{sec:applications}
+The only additional release theorem in this section is the finite-order $7/8$ theorem of \cite[Theorem 1.1]{QRH78}. It covers every Dirichlet character, including the principal character with its pole allowed. Thus it covers the factors of
+$\zeta_K(s)=\zeta(s)L(s,\chi_{-4})$.
+All nonzero angular frequencies below use Theorem~\ref{thm:A}.
+
+\begin{lemma}[Uniform prime sums]\label{lem:uniform}
+For a primitive type-$(k,0)$ character $\eta$ of $K$, $k\ne0$, put
+\[
+ \mathcal C(\eta,t)=4\N\mathfrak f\,(|k|+|t|+3)^2.
+\]
+For $0<\delta<1/12$, $11/12+\delta\le\sigma\le2$,
+\begin{align}\label{eq:uniformprime}
+ |L'_K/L_K(\sigma+it,\eta)|&\ll_\delta\log\mathcal C(\eta,t),\notag\\
+ \sum_{\N\mathfrak p\le x}\eta(\mathfrak p)\log\N\mathfrak p
+ &\ll_\delta x^{11/12+\delta}
+ \log\!\bigl(4\N\mathfrak f(|k|+x+3)^2\bigr)\log(2x).
+\end{align}
+Constants are independent of $k$ and $\mathfrak f$. For the fixed functions $\zeta_K,\zeta$ and $L(s,\chi_{-4})$, the corresponding prime sums have boundary $7/8+\delta$, with main term $x$ for the zeta functions. In their logarithmic derivatives the principal pole is subtracted.
+\end{lemma}
+\begin{proof}
+Euler convergence bounds $\log L_K(2+it,\eta)$ absolutely. Set $q=4\N\mathfrak f$. On $\sigma=-1$, the functional equation and the dual Euler series at two give
+\[
+ |L_K(-1+it,\eta)|\ll q^{3/2}(|k|+|t|+3)^3.
+\]
+The gamma quotient is uniform in $k$: with $z=-1+|k|/2+it$, its modulus is
+$(2\pi)^{-3}|z(z+1)(z+2)|$, by $\Gamma(z+3)/\Gamma(z)$ and conjugation. On $\sigma=4$ the Euler product is bounded. Divide by $(s+|k|+3)^3$ and apply Phragm\'en--Lindel\"of on $[-1,4]$; the denominator has no zero there, and Hecke's order-one bound supplies the growth condition. We get polynomial growth with
+$\log|L_K(s,\eta)|\ll\log\mathcal C(\eta,t)$ on that strip, uniformly.
+
+The disk centered at $2+it$ of radius $2-11/12-\delta/2$ lies in the zero-free half-plane. Fix the branch of $\log L$ by its bounded center Euler value. Borel--Carath\'eodory and then Cauchy's estimate on the smaller disk reaching $11/12+\delta+it$ give the logarithmic derivative estimate. Points to the right use the same disks or Euler convergence. No constant from \eqref{eq:mobiuspower} is used.
+
+For a principal zeta function apply the same argument to $(s-1)L(s)$, increasing a polynomial degree if necessary. On the positive disks the zero-free holomorphic function $(s-1)L(s)/(s+1)$ has bounded center logarithm and polynomial growth; hence
+\[
+ -L'/L(s)=\frac1{s-1}+O_\delta(\log\mathcal C(t)).
+\]
+For the fixed Dirichlet functions use their two parity gamma factors and the $7/8$ theorem. Their product gives the assertion for $\zeta_K$ with its single pole.
+
+Here are sharp-cutoff details. The coefficients $b(n)$ of $-L_K'/L_K$ satisfy $|b(n)|\le2\Lambda(n)$; there are two split prime contributions, or one inert contribution of weight $2\log p$ at norms $p^{2j}$. Take a half-integer $x\ge e$, $c=1+1/\log x$ and $T=x$. Truncated Perron gives
+\[
+ \sum_{n\le x}b(n)=\frac1{2\pi i}\int_{c-iT}^{c+iT}
+          -\frac{L'}L(s)\frac{x^s}{s}\dd s+O(\log^2(2x)).
+\]
+Indeed the truncation factor is $\min(1,(T|\log(x/n)|)^{-1})$. In $[x/2,2x]$ the half-integer separation gives error $O(x\log^2x/T)$; outside it, Euler convergence at $c$ gives the same bound.
+
+Shift to $\sigma=11/12+\delta$. The vertical integral is
+$O_\delta(x^{11/12+\delta}\log\mathcal C(\eta,T)\log(2T))$,
+and the horizontal integrals are $O_\delta(x^c\log\mathcal C(\eta,T)/T)$.
+There are no enclosed zeros. In the fixed finite-order cases shift to $7/8+\delta$, retaining residue $x$ when principal. Prime ideal powers of exponent at least two contribute $O(\sqrt x\log^2(2x))$, which is absorbed. Moving a general real $x$ to a neighboring half-integer costs $O(\log(2x))$. This proves the lemma. Deleting primes in a presentation modulus adds at most a constant times $\log\N\mathfrak m$ to the logarithmic derivative on these positive strips; after removing prime powers its prime sum cost is at most $\log\N\mathfrak m$.
+\end{proof}
+
+\begin{theorem}[Gaussian prime ideals in sectors]\label{thm:sectors}
+For an arc $J\subset\R/2\pi\Z$, let $\pi_{\rm Gau}(x;J)$ count odd Gaussian prime ideals of norm at most $x$ whose primary generator $\pi\equiv1\pmod{\lambda^3}$ has argument in $J$. For every $\eps>0$, uniformly in $J$,
+\begin{align}\label{eq:sectors}
+ \sum_{\substack{\N\mathfrak p\le x,\ \mathfrak p\nmid2\\
+                    \arg\pi_{\mathfrak p}\in J}}\log\N\mathfrak p
+ &=\frac{|J|}{2\pi}x+O_\eps(x^{11/12+\eps}),\notag\\
+ \pi_{\rm Gau}(x;J)&=\frac{|J|}{2\pi}\Li(x)+O_\eps(x^{11/12+\eps}).
+\end{align}
+The degree-two prime ideals may be omitted with error $O(\sqrt x\log x)$ in the weighted assertion. Counting all four associates of prime elements gives main term $4|J|\Li(x)/(2\pi)$.
+\end{theorem}
+\begin{proof}
+The multiplicative primary-generator character
+$\alpha((\pi))=\pi/|\pi|$ has conductor dividing $\lambda^3$ and angular type one. Each nonzero power $\alpha^j$ has primitive conductor dividing this same modulus, so $4\N\mathfrak f\le32$. Lemma~\ref{lem:uniform} gives its weighted prime sum
+$O_\delta(x^{11/12+\delta}\log^2(2x))$ uniformly for $|j|\le x^{1/12}$. The zero frequency is $x+O_\delta(x^{7/8+\delta}\log^2(2x))$, from $\zeta_K=\zeta L(\chi_{-4})$.
+
+For nonnegative weights $w_{\mathfrak p}$ and angles $\theta_{\mathfrak p}$, the Selberg arc polynomials give the weighted Erd\H{o}s--Tur\'an inequality \cite[Lemma 2.1 and its proof]{PT}:
+\[
+ \left|\sum w_{\mathfrak p}\ind_J(\theta_{\mathfrak p})
+ -\frac{|J|}{2\pi}\sum w_{\mathfrak p}\right|
+ \ll\frac{\sum w_{\mathfrak p}}{M+1}
+ +\sum_{1\le|j|\le M}\frac1{|j|}
+             \left|\sum w_{\mathfrak p}e^{ij\theta_{\mathfrak p}}\right|.
+\]
+The constant-coefficient error is $O(M^{-1})$ and other coefficients are $O(1/|j|+1/M)$; splitting a wrapping arc gives every endpoint convention. Set $M=\lfloor x^{1/12}\rfloor$, $w_{\mathfrak p}=\log\N\mathfrak p$. The error is
+$O_\delta(x^{11/12}+x^{11/12+\delta}\log^3(2x))$.
+Choose $\delta<\eps/2$ and absorb logarithms. Partial summation proves the count. Inert norms are $p^2$, with total weighted contribution $O(\sqrt x\log x)$. Applying the arc result to each of its four rotations proves the associate statement.
+\end{proof}
+
+\begin{theorem}[Hecke--Sato--Tate distribution]\label{thm:ST}
+Fix $D\in\Q^\times$. For every interval $I\subset[-1,1]$, specifying membership of zero and of its endpoints, put
+\[
+ \mu_{\rm CM}(I)=\frac12\ind_{0\in I}
+                 +\frac1{2\pi}\int_I\frac{\dd t}{\sqrt{1-t^2}}.
+\]
+Uniformly in $I$, for every $\eps>0$,
+\begin{align}\label{eq:ST}
+ \sum_{\substack{p\le x,\ p\ {\rm good}\\
+                  a_p(E_D)/(2\sqrt p)\in I}}\log p
+ &=\mu_{\rm CM}(I)x+O_{D,\eps}(x^{11/12+\eps}),\notag\\
+ \#\{p\le x:p\ {\rm good},\ a_p(E_D)/(2\sqrt p)\in I\}
+ &=\mu_{\rm CM}(I)\Li(x)+O_{D,\eps}(x^{11/12+\eps}).
+\end{align}
+\end{theorem}
+\begin{proof}
+Each primitive power $\eta_d^j$, $j\ne0$, has angular type $j$ and conductor dividing $\mathfrak f_d$; remove any finitely restored ramification-cancellation primes to retain the original good-prime values. Lemma~\ref{lem:uniform} and the same arc argument give equidistribution of its prime-ideal values with discrepancy $O_{D,\eps}(x^{11/12+\eps})$. Removing the bad primes costs a fixed constant; removing degree-two ideals costs $O(\sqrt x\log x)$.
+
+At split $p$, the two prime-ideal values are $e^{i\theta}$ and $e^{-i\theta}$ and $a_p/(2\sqrt p)=\cos\theta$. For $I=[a,b]$ its cosine preimage consists of at most two arcs of total length $2(\arccos a-\arccos b)$. Each rational split prime is counted twice; its resulting mass is
+\[
+ \frac{x}{2\pi}(\arccos a-\arccos b)
+        =\frac{x}{2\pi}\int_a^b\frac{\dd t}{\sqrt{1-t^2}}.
+\]
+The arc majorants also give the same discrepancy for open or degenerate intervals. At inert primes the trace is zero. Their weighted count is
+$x/2+O_\eps(x^{7/8+\eps})$, from the Dirichlet factors $\zeta(s)$ and $L(s,\chi_{-4})$ and the pole-subtracted argument above. A split good prime has nonzero trace: a trace-zero Gaussian integer has square norm, whereas its Frobenius norm is the rational prime $p$. Thus the atom at zero is exactly the inert mass. Add these contributions and use partial summation.
+\end{proof}
+
+\begin{theorem}[Every symmetric power]\label{thm:sym}
+For $n\ge1$, the arithmetic symmetric-power $L$-function of $E_D$ has no zeros in
+\[
+ \Rea s>n/2+11/12.
+\]
+Put $L_n^{\rm unit}(s)=L(\operatorname{Sym}^n E_D,s+n/2)$ and $\chi_K=\chi_{-4}$. With primitive power characters and all local factors,
+\begin{align}\label{eq:sym}
+ L_{2r+1}^{\rm unit}(s)&=\prod_{j=0}^rL_K(s,\eta_d^{\,2r+1-2j}),\notag\\
+ L_{2r}^{\rm unit}(s)&=L_\Q(s,\chi_K^r)
+                         \prod_{j=0}^{r-1}L_K(s,\eta_d^{\,2r-2j}).
+\end{align}
+The middle Dirichlet factor has boundary $7/8$; its possible principal pole at arithmetic $s=r+1$ is permitted.
+For $n=0$, the function is $\zeta(s)$ and has the $7/8$ boundary with its pole at one allowed.
+\end{theorem}
+\begin{proof}
+Diagonalize the CM action on the two-dimensional $\ell$-adic representation with basis $e_1,e_2$. The subgroup $G_K$ acts by $\psi_d,\bar\psi_d$; its other coset exchanges the lines. The Weil pairing gives determinant $\operatorname{cyc}$, so $\psi_d\bar\psi_d=\operatorname{cyc}$ on $G_K$. Pair the monomials $e_1^{n-j}e_2^j$ and $e_1^je_2^{n-j}$ for $j<n/2$. Their representation is
+$\operatorname{Ind}_{G_K}^{G_\Q}(\psi_d^{n-2j}\operatorname{cyc}^j)$.
+If $n=2r$, the remaining line $e_1^re_2^r$ restricts to $\operatorname{cyc}^r$. An off-diagonal matrix with entries $a,b$ has $ab=-\det=-\operatorname{cyc}$, so its action on that line is
+$(-1)^r\operatorname{cyc}^r$. The line is therefore
+$\operatorname{cyc}^r\chi_K^r$.
+
+This is a representation decomposition, hence it commutes with inertia invariants and includes every bad local factor. Shifting by $n/2$ gives \eqref{eq:sym}. Each paired factor has positive nonzero angular type and is entire and nonzero for $\Rea s>11/12$ by Theorem~\ref{thm:A}. The middle factor is either $L(s,\chi_{-4})$ or $\zeta(s)$, with the $7/8$ boundary from the finite-order release theorem. Their nonzero meromorphic product has no zero in the stated half-plane. Restoring the arithmetic shift proves the theorem.
+\end{proof}
+
+For the Gaussian angular character, $|d_K|=4$, the primary modulus is $\lambda^3$ of norm eight, and its analytic-conductor prefactor is at most $32$. There are four associates, and the quadratic Dirichlet character is $\chi_{-4}$. The distribution error exponent $11/12+\eps$ gives the explicit saving $1/12-\eps$ for $0<\eps<1/12$. The constants in Lemma~\ref{lem:uniform} and Theorems~\ref{thm:sectors}--\ref{thm:ST} are effectively computable from the displayed parameters: the functional-equation bounds, Borel--Carath\'eodory inequality, Perron estimate and trigonometric majorants are effective once the stated zero-free inputs are used.
+
+\section{Where the hypotheses enter}\label{sec:limits}
+At zero angular type the Hecke function can have a pole: for a pure norm character it is $\zeta_K(s-it_0)$ with pole $1+it_0$. The assertion of entireness in the descent proof then has to be replaced by the meromorphic identity. In the auxiliary diagonal family $r=0$ the period modes are $(-1,1)$, so its theta constant still vanishes. This does not eliminate the target zeta pole. In the Mellin identity $L^S(s,\eta)M(s)=\wt W(s)$ the function $M$ has a zero at that pole; the product has the prescribed finite value.
+
+The angular and radial hypotheses for the auxiliary field are also specific. If $\xi=\Lambda$, its vector is $(1,-1)$ and both period modes are zero; the radial theta constant survives, so the residue-free, two-ended decay argument in Section~\ref{sec:annular} stops. An arbitrary independent pair of radial parameters over $F$ cannot be removed by one norm shift from $K$. Our lifted characters have neither obstruction.
+
+The complete unit phases cannot be replaced by their power classes. For example the conductor-one Gaussian character
+$\eta_4((z))=(z/|z|)^4$ is well defined. If $P$ lies over $(2+i)$, that prime is inert in $F/K$, and
+\[
+ (\eta_4\circ N_{F/K})(P)=((2+i)/\sqrt5)^8.
+\]
+Every sixth power of a generator has trivial sixth-power class, whereas the sixth power of this value is $((3+4i)/5)^{24}\ne1$: a root of unity in $\Q(i)$ must be one of $\{\pm1,\pm i\}$. The infinite-order factor is thus distinct from the finite class profile. The signed separation in \eqref{eq:reflected} retains precisely that factor.
+
+Conductor cancellation under ramified base change is visible in the curve with $d=9$. Here $9^{1/4}=\sqrt3$, so $\kappa_9=\chi$ and $\eta_9=\eta_1\chi$. Its lift to $F$ equals the lift of $\eta_1$. At three $\eta_9$ is ramified and $\eta_9\chi=\eta_1$ is unramified; the upper Euler factor is the latter factor, as in Lemma~\ref{lem:base}.
+
+Zero-free finite-order approximants by themselves give no extension to a larger domain. For $q>1$, $b<1$, the entire zero-free functions
+\[
+ f_n(s)=\exp\left(-\sum_{j=1}^n q^{-j(s-b)}/j\right)
+\]
+converge locally uniformly on $\Rea s>b$ to $1-q^{-(s-b)}$. The continuation of that limit has a zero at $b$. They cannot converge locally uniformly to it on a connected neighborhood crossing $b$, by Hurwitz's theorem. A finite-order limit argument would require local convergence in the enlarged domain, in addition to convergence of Euler products to the right of one.
+
+For a non-Hecke example let $\lambda_F(\mathfrak a)=(-1)^{\Omega(\mathfrak a)}$. Complete multiplicativity and unit modulus hold, but
+\[
+ L(s,\lambda_F)=\zeta_F(2s)/\zeta_F(s)
+\]
+has a zero at one. Also $\mu_F\lambda_F=\mu_F^2$ has a positive-density main term. This function lacks the finite-conductor Hecke period and the normalized theta completion; the labelled bound cannot be inferred from its multiplicativity alone. Likewise the positive gap in Proposition~\ref{prop:energy} is necessary: at $X=F_0=1$, a test selecting the unit ideal with value one makes the energy equal the number of row orbits up to $H$, which is unbounded.
+
+\begin{remark}[Elementary restrictions on alternative reductions]
+A character pulled back from $E_0$ has vector $(a,-a)$, which cannot equal $(k,k)$ for $k\ne0$. An isogeny over any finite extension preserves the rational geometric endomorphism algebra, so it cannot change a CM field from $K$ to $E_0$. Also, a finite periodic multiplier cannot project arbitrary Fourier sequences onto square indices: if its period is $\mathfrak m$, CRT gives $A\equiv a^2\pmod{\mathfrak m}$ and $A\equiv p\pmod{p^2}$ for any prime $p\nmid\mathfrak m$. Vanishing on odd valuations forces its value at $a^2$ to be zero. Imposing additional moving residue restrictions would introduce moving conductor data that must be estimated separately. These observations explain the use of the complete cubic coefficient family instead of a finite square-index restriction.
+\end{remark}
+
+\appendix
+\section{Smooth kernels and weighted recombination}\label{app:smooth}
+These are the precise field- and type-independent statements of p2 Appendix B, Lemmas B.1--B.3, used in the proof. We include their coefficient-independent arguments.
+
+\begin{lemma}[Mellin separation; p2 Lemma B.1]\label{lem:separation}
+Fix a box $\mathcal I=\prod_{\nu=1}^d I_\nu\Subset(0,\infty)^d$. For a smooth kernel supported there,
+\[
+ \mathcal K(\boldsymbol x)=\int_{\R^d}b(\boldsymbol t)
+                 \prod_\nu x_\nu^{it_\nu}\dd\boldsymbol t,\qquad
+ \int|b(\boldsymbol t)|(1+|\boldsymbol t|)^J\dd\boldsymbol t
+                    \ll\|\mathcal K\|_{C^q(\mathcal I)}
+\]
+for each even $q>J+d$. If
+$\mathcal K_R=\prod_\nu W_\nu(x_\nu)F(R\prod_\nu x_\nu^{a_\nu})$,
+the exponents are fixed and
+\[
+ \|F\|_{A,q}=\max_{h\le q}\sup_{x>0}
+            (1+x)^A|(x\partial_x)^hF(x)|<\infty,
+\]
+then
+\[
+ |b_R(\boldsymbol t)|\ll(1+R)^{-A}(1+|\boldsymbol t|)^{-q}
+                 \|F\|_{A,q}\prod_\nu\|W_\nu\|_{C^q}.
+\]
+\end{lemma}
+\begin{proof}
+Take the Fourier transform of $\mathcal K(e^{y_1},\ldots,e^{y_d})$ with factor $(2\pi)^{-d}$ and invert it. Integration by parts using $(1-\Delta_y)^{q/2}$ gives the $q$-power decay. Ordinary and logarithmic derivatives are comparable on the fixed box. The argument of $F$ is comparable to $R$, so the chain rule retains $(1+R)^{-A}$. The weighted integral converges for $q>J+d$.
+\end{proof}
+
+\begin{lemma}[Row-dependent kernels; p2 Lemma B.2]\label{lem:rowkernel}
+Fix $I\Subset\operatorname{int}I_*$ in $(0,\infty)$ and an integer $m\ge0$. Let $r$ range over a finite set, $w_r\ge0$, and let
+$S_{j,r}(U)=\sum_na_{j,r}(n)U(x_{j,r,n})$, $j=1,2$, be finite sums with positive arguments. Suppose for every common $U\in C_c^\infty(I_*)$ that
+\[
+ \sum_rw_r|S_{j,r}(U)|^2\le M_j\|U\|_{C^m(I_*)}^2 .
+\]
+For $|c_r|\le w_r$ and smooth kernels $\mathcal K_r$ supported in $I^2$,
+\begin{align*}
+ &\left|\sum_rc_r\sum_{n_1,n_2}a_{1,r}(n_1)\bar a_{2,r}(n_2)
+      \mathcal K_r(x_{1,r,n_1},x_{2,r,n_2})\right|\\
+ &\hspace{15mm}\ll\sqrt{M_1M_2}\sup_r
+                                      \|\mathcal K_r\|_{C^{2m+4}(I^2)} .
+\end{align*}
+\end{lemma}
+\begin{proof}
+Choose a fixed $V\in C_c^\infty(I_*)$ equal to one on $I$ and use common tests $U_t(x)=V(x)x^{it}$. Mellin separation writes each kernel as
+$\int b_r(s,t)U_s(x)\bar U_t(y)\dd s\dd t$, with the uniform bound
+\[
+ \sup_r|b_r(s,t)|\ll
+ \sup_r\|\mathcal K_r\|_{C^q}(1+|s|+|t|)^{-q}.
+\]
+Take that common bound before the row sum and use row Cauchy--Schwarz. The hypothesis supplies $\sqrt{M_1M_2}(1+|s|)^m(1+|t|)^m$. The remaining integral on $\R^2$ converges at $q=2m+4$, proving the statement.
+\end{proof}
+
+\begin{lemma}[Weighted recombination; p2 Lemma B.3]\label{lem:recombination}
+For finite rows and labels let $w_r\ge0$ and
+$|c_{\iota,r}(\boldsymbol t)|\le b_\iota(\boldsymbol t)$, with
+$M=\sum_\iota\int b_\iota<\infty$. Then, whenever the right side is finite,
+\[
+ \sum_rw_r\left|\sum_\iota\int c_{\iota,r}(\boldsymbol t)
+                              F_{\iota,\boldsymbol t}(r)\dd\boldsymbol t\right|^2
+ \le M\sum_\iota\int b_\iota(\boldsymbol t)
+                  \sum_rw_r|F_{\iota,\boldsymbol t}(r)|^2\dd\boldsymbol t .
+\]
+The finite-sum version holds as well.
+\end{lemma}
+\begin{proof}
+Apply weighted Cauchy--Schwarz in $(\iota,\boldsymbol t)$ for each row, then sum its nonnegative weight. Tonelli applies to the nonnegative majorant.
+\end{proof}
+
+\section{Ancillary computations}\label{app:anc}
+Nine ancillary Python programs check the following explicit parts of the argument, using integer arithmetic, exact cyclotomic polynomials, SymPy and mpmath:
+\begin{itemize}
+ \item Field discriminants, local base-change cases, Jacquet shell identities and amplification exponents.
+ \item Finite Gauss--Jacobi identities, reflection digits and the actual residue types of $F$, including residue-degree-two lifting.
+ \item The frozen, row and column phase factors in \eqref{eq:reflected}, with shared cube primes and inactive branches.
+ \item Signed preimages, both Gauss directions, initialization and finite CRT Poisson identities.
+ \item The sixteen dyadic classes, all $64$ unit residues in each, and $864$ good-prime Euler comparisons.
+ \item High-precision Bessel--Mellin integrals and direct lower-root Hankel integrals.
+\end{itemize}
+The finite identities are checked exactly. The quadratures are numerical checks without interval certification. The global representation, Poisson theorem, mean-square estimates and zero-free conclusion follow from the mathematical arguments and stated inputs above. The accompanying documentation specifies the dependencies, serial commands, resource limits and scope of each computation.
+
+\bibliographystyle{plain}
+\bibliography{references}
+\section*{Use of AI}
+The proofs and the text were produced with AI systems (GPT-6 Astra, GPT-6.1 Sol and Claude Opus~5.5) under the author's direction. Independent reviews used GPT-6.1 Sol and Gemini~4 Argon, together with the ancillary computations. No human expert has reviewed the proofs or text. The author takes responsibility for the content.
+\end{document}

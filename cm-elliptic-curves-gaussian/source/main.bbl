@@ -1,0 +1,202 @@
+\begin{thebibliography}{10}
+
+\bibitem{FollowupSevenEighths}
+{AI-assisted research draft}.
+\newblock A seven-eighths theorem for {H}ecke characters over arbitrary number
+  fields.
+\newblock
+  \href{https://github.com/Rogerhu12/openai-math-extensions/blob/a4a1eb9e45b38d50c39afb9c35f582e8786ce262/papers/029-artin-primitive-roots/hecke_seven_eighths_all_characters.tex}{Repository
+  Rogerhu12/openai-math-extensions at commit a4a1eb9e}, October 2026.
+\newblock Draft dated 8 October 2026; repository owner Rogerhu12. The theorem
+  is stated under its source hypothesis on the constructions and analytic
+  arguments of the two OpenAI papers.
+
+\bibitem{CPS}
+Evan Chen, Peter~S. Park, and Ashvin~A. Swaminathan.
+\newblock Linnik's theorem for {S}ato--{T}ate laws on elliptic curves with
+  complex multiplication.
+\newblock \url{https://arxiv.org/abs/1506.09170}, 2015.
+\newblock arXiv:1506.09170, version 3; Theorem 1.1 and Lemma 2.1.
+
+\bibitem{Coleman}
+M.~D. Coleman.
+\newblock A zero-free region for the {H}ecke {$L$}-functions.
+\newblock {\em Mathematika}, 37(2):287--304, 1990.
+\newblock Theorem 2; the statement is also reproduced as Theorem 2.5 of Khale
+  et al.; \url{https://doi.org/10.1112/S0025579300013000}.
+
+\bibitem{DDW}
+Chantal David, Lucile Devin, and Ezra Waxman.
+\newblock One-level densities in families of {G}r{\"o}ssencharakters associated
+  to {CM} elliptic curves.
+\newblock {\em Mathematika}, 72(1):e70067, 2026.
+\newblock \href{https://arxiv.org/abs/2405.15597v3}{arXiv:2405.15597v3},
+  revised 19 December 2025.
+
+\bibitem{GL}
+Leo Goldmakher and Beno{\^i}t Louvel.
+\newblock A quadratic large sieve inequality over number fields.
+\newblock {\em Mathematical Proceedings of the Cambridge Philosophical
+  Society}, 154(2):193--212, 2013.
+\newblock \url{https://arxiv.org/abs/1112.1642}; Definition 1 and Theorem 1.1.
+
+\bibitem{GuoEisenstein}
+Jizhou Guo.
+\newblock A zero-free half-plane for {H}ecke {$L$}-functions of nonzero angular
+  type over {$\mathbb Q(\sqrt{-3})$} and for the elliptic curves {$y^2=x^3+D$}.
+\newblock
+  \url{https://github.com/aster2024/openai-math-followups/tree/main/cm-elliptic-curves},
+  2026.
+\newblock 8 October 2026.
+
+\bibitem{Hecke}
+Erich Hecke.
+\newblock {Eine neue Art von Zetafunktionen und ihre Beziehungen zur Verteilung
+  der Primzahlen}.
+\newblock {\em Mathematische Zeitschrift}, 6:11--51, 1920.
+
+\bibitem{HoshiKanai}
+Akinari Hoshi and Kazuki Kanai.
+\newblock Davenport and {H}asse's theorems and lifts of multiplication matrices
+  of {G}aussian periods.
+\newblock {\em Finite Fields and Their Applications}, 84:102101, 2022.
+\newblock Theorem 1.1; \url{https://arxiv.org/abs/2105.14872v2}.
+
+\bibitem{Iwaniec}
+Henryk Iwaniec.
+\newblock {\em Topics in Classical Automorphic Forms}, volume~17 of {\em
+  Graduate Studies in Mathematics}.
+\newblock American Mathematical Society, Providence, RI, 1997.
+\newblock Section 12.3, Theorem 12.5 and the following remark, pp. 211--214.
+
+\bibitem{IK}
+Henryk Iwaniec and Emmanuel Kowalski.
+\newblock {\em Analytic Number Theory}, volume~53 of {\em American Mathematical
+  Society Colloquium Publications}.
+\newblock American Mathematical Society, Providence, RI, 2004.
+
+\bibitem{KP84}
+D.~A. Kazhdan and S.~J. Patterson.
+\newblock Metaplectic forms.
+\newblock {\em Publications math{\'e}matiques de l'IH{\'E}S}, 59:35--142, 1984.
+\newblock \url{https://www.numdam.org/item/PMIHES_1984__59__35_0/}.
+
+\bibitem{KP85}
+D.~A. Kazhdan and S.~J. Patterson.
+\newblock Corrections to: {Metaplectic forms}.
+\newblock {\em Publications math{\'e}matiques de l'IH{\'E}S}, 62:203, 1985.
+\newblock \url{https://doi.org/10.1007/BF02698809}.
+
+\bibitem{Khale}
+Tanmay Khale, Cooper O'Kuhn, Apoorva Panidapu, Alec Sun, and Shengtong Zhang.
+\newblock A {B}ombieri--{V}inogradov theorem for primes in short intervals and
+  small sectors.
+\newblock \url{https://arxiv.org/abs/2008.09677}, 2022.
+\newblock arXiv:2008.09677, version 3; Theorem 2.5 and Introduction.
+
+\bibitem{LiuImproved}
+Baiying Liu.
+\newblock Improved zero-free half-planes for the quasi-{R}iemann hypothesis.
+\newblock \url{https://arxiv.org/abs/2610.12234v2}, 2026.
+\newblock arXiv:2610.12234v2, submitted 8 October, revised 12 October 2026.
+
+\bibitem{LiuFields}
+Baiying Liu.
+\newblock Zero-free half-planes for {H}ecke {$L$}-functions over number fields.
+\newblock \url{https://arxiv.org/abs/2610.26835v1}, 2026.
+\newblock arXiv:2610.26835v1, submitted 19 October 2026.
+
+\bibitem{Neukirch}
+J{\"u}rgen Neukirch.
+\newblock {\em Algebraic Number Theory}, volume 322 of {\em Grundlehren der
+  mathematischen Wissenschaften}.
+\newblock Springer, 1999.
+
+\bibitem{DLMF}
+{NIST}.
+\newblock Digital library of mathematical functions.
+\newblock \url{https://dlmf.nist.gov/10.43.E19}.
+\newblock Equation 10.43.19, Mellin transform of the modified Bessel function;
+  accessed 24 October 2026.
+
+\bibitem{PrimitiveRoots}
+{OpenAI}.
+\newblock Primitive roots for every admissible integer base.
+\newblock OpenAI Math Release preprint,
+  \href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/primitive-roots-all-integer-bases.pdf}{Manuscript
+  at commit adc7f124}, October 2026.
+\newblock October 4, 2026; Theorem 1.2.
+
+\bibitem{QRH12}
+{OpenAI}.
+\newblock The quasi-{R}iemann hypothesis.
+\newblock OpenAI Math Release preprint,
+  \href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-October-5-2026/build/paper2.tex}{Source
+  manuscript at commit adc7f124}, October 2026.
+\newblock October 5, 2026. The $11/12$ paper, denoted p2.
+
+\bibitem{QRH78}
+{OpenAI}.
+\newblock The quasi-{R}iemann hypothesis: A zero-free half-plane {$\Re s>7/8$}.
+\newblock OpenAI Math Release preprint,
+  \href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf}{Manuscript
+  at commit adc7f124}, September 2026.
+\newblock September 30, 2026; Theorem 1.1.
+
+\bibitem{PT}
+Apoorva Panidapu and Jesse Thorner.
+\newblock Short-interval sector problems for {CM} elliptic curves.
+\newblock {\em Involve}, 16(1):1--12, 2023.
+\newblock arXiv:2105.11093, version 2; Theorems 1.1, 2.2 and Lemma 2.1;
+  \url{https://arxiv.org/abs/2105.11093}.
+
+\bibitem{Silverman}
+Joseph~H. Silverman.
+\newblock {\em Advanced Topics in the Arithmetic of Elliptic Curves}, volume
+  151 of {\em Graduate Texts in Mathematics}.
+\newblock Springer, 1994.
+
+\bibitem{Tate}
+John~T. Tate.
+\newblock Fourier analysis in number fields and {H}ecke's zeta-functions.
+\newblock In J.~W.~S. Cassels and A.~Fr{\"o}hlich, editors, {\em Algebraic
+  Number Theory}, pages 305--347. Academic Press, 1967.
+
+\bibitem{Watkins}
+Mark Watkins.
+\newblock Computing with {H}ecke {G}r{\"o}ssencharacters.
+\newblock {\em Publications math{\'e}matiques de Besan{\c c}on. Alg{\`e}bre et
+  th{\'e}orie des nombres}, pages 119--135, 2011.
+\newblock Section 5.3.
+
+\bibitem{Weil}
+Andr{\'e} Weil.
+\newblock Sur certains groupes d'op{\'e}rateurs unitaires.
+\newblock {\em Acta Mathematica}, 111:143--211, 1964.
+\newblock Chapter II, Sections 27--30; Chapter III, Section 41, equation (39).
+  \url{https://doi.org/10.1007/BF02391012}.
+
+\bibitem{XuSang}
+Yuanda Xu and Hejian Sang.
+\newblock Amplified moments and a refinement of the quasi-{R}iemann hypothesis.
+\newblock \url{https://arxiv.org/abs/2610.15291v2}, 2026.
+\newblock arXiv:2610.15291v2, submitted 11 October, revised 15 October 2026.
+
+\bibitem{Yates}
+Brandon Yates.
+\newblock Zero-free half-planes for {H}ecke {$L$}-functions of nonzero infinity
+  type over {$\mathbb{Q}(\sqrt{-3})$}.
+\newblock
+  \href{https://doi.org/10.5281/zenodo.23228131}{doi:10.5281/zenodo.23228131},
+  October 2026.
+\newblock Zenodo; version 1 of 7 October 2026, version 2 of 8 October 2026
+  (version DOI 10.5281/zenodo.23228131).
+
+\bibitem{Zhang}
+Shou-Wu Zhang.
+\newblock Elliptic curves, {$L$}-functions, and {CM}-points.
+\newblock \url{https://web.math.princeton.edu/~shouwu/publications/elc.pdf},
+  2002.
+\newblock July 11, 2002; Theorems 4.4--4.5, pp. 26--27.
+
+\end{thebibliography}
