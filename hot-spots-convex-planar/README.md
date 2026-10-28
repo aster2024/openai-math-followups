@@ -68,6 +68,16 @@ Results on the hot spots problem for classes of planar domains, each as stated i
 - Deng, Gui, Jiang, Yang, Yao and Zou ([arXiv:2604.19003](https://arxiv.org/abs/2604.19003)): isosceles
   trapezoids and convex kites (the hot spots assertions cover the cases in which the first positive eigenvalue is
   simple).
+- Burdzy ([arXiv:2610.12622](https://arxiv.org/abs/2610.12622v1), 8 October 2026), Theorem 2.1 and Corollary 2.2: the
+  weak hot spots conclusion without boundary smoothness for bounded simply connected planar domains with compact
+  Neumann resolvent and a simple first positive eigenvalue, using the smooth-domain assertion as input.
+  Bañuelos ([arXiv:2610.32920](https://arxiv.org/abs/2610.32920v1), 23 October 2026), Theorem 1.2: the corresponding
+  passage from smooth to nonsmooth simply connected finite-area domains, conditional on a smooth-domain hypothesis.
+  The two authors describe their arguments as independent and concurrent; both retain the simplicity assumption and
+  overlap the simple-eigenvalue case considered here.
+- Deng, Jiang and Yang ([arXiv:2610.18546](https://arxiv.org/abs/2610.18546v1), 13 October 2026), Theorem 1.1: strict
+  boundary attainment of the maximum modulus of every first positive eigenfunction on a bounded convex planar domain;
+  Corollaries 1.3–1.4 give both strict extrema in the equal-amplitude and centrally symmetric cases.
 - Outside the class considered here: counterexamples with holes (Burdzy and Werner 1999, two holes; Burdzy 2005,
   one hole, with both extreme values strictly in the interior) and convex counterexamples in all sufficiently
   large dimensions (de Dios Pont, [arXiv:2412.06344](https://arxiv.org/abs/2412.06344)).

@@ -84,6 +84,11 @@ continuous unitary Hecke character of every number field, under its Source Input
 analytic arguments of the OpenAI papers; the characters of Theorem A are among those it covers. It transfers between
 fields and works with finite-order twists of a character and of its conjugate.
 
+B. Hu's subsequent paper, [*A seven-eighths zero-free half-plane for unitary Weil L-functions*](https://hexagonmath.org/2610.00216v1)
+(Hexagon 2610.00216v1, 13 October 2026), supersedes that draft. Its Theorem 1.2 states the half-plane Re s > 7/8 for every
+unitary Hecke character of every number field, including characters of infinite order and hence the characters of
+Theorem A; its field and infinity-type transfer has not been independently verified here.
+
 For finite-order characters, B. Liu ([arXiv:2610.12234v2](https://arxiv.org/abs/2610.12234v2)) and Y. Xu and H. Sang
 ([arXiv:2610.15291v2](https://arxiv.org/abs/2610.15291v2)) state boundaries slightly below 7/8 for Dirichlet
 characters and for finite-order characters of Q(√−3), and B. Liu ([arXiv:2610.26835v1](https://arxiv.org/abs/2610.26835v1)) states

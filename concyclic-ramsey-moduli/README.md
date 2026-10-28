@@ -64,6 +64,10 @@ W. Strinz's *spherical-ramsey* note cited below.
   of the first three are not Ramsey. It does not apply to the family of Corollary C.
 - W. Strinz, *Ramsey-ness of finite spherical sets is Möbius invariant* (mobius-ramsey v1.0.0, 13 October 2026,
   [doi:10.5281/zenodo.23339523](https://doi.org/10.5281/zenodo.23339523)).
+- A. R. Towell, *Exact rotational moments and a triangular-base tensor obstruction (Family 172)* (24 October 2026,
+  [doi:10.5281/zenodo.23613220](https://doi.org/10.5281/zenodo.23613220)): a nine-point tensor obstruction built from
+  three equilateral triangles, with one transcendental parameter; its non-Ramsey consequence is stated conditional on
+  the source classification. It does not address the transcendence-degree-three classification proved here.
 
 ## Ancillary files
 

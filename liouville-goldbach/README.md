@@ -42,6 +42,10 @@ Dirichlet L-functions have a common zero-free half-plane Re s > θ₀ with θ₀
 supplies this input. Li and Liu ([arXiv:2610.26756](https://arxiv.org/abs/2610.26756), 19 October 2026) prove
 E(N) ≪ N^(1/2) (log N)^100, assuming that every non-trivial zero of every primitive Dirichlet L-function has real
 part at most a fixed Θ with 1/2 ≤ Θ < 11/12.
+For the thinner sequence of doubled squares, Perelli and Pintz ([arXiv:2610.29470](https://arxiv.org/abs/2610.29470v1),
+21 October 2026), Theorem 1, state that at most O(N^(19/24+ε)) parameters m ≤ N give a value 2m² that is not a sum
+of two primes, using the Dirichlet zero-free half-plane and the exponential-sum estimate of Maynard, Pandey and
+Radziwiłł.
 
 ## What the proof uses
 

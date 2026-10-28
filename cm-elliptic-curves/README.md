@@ -80,6 +80,18 @@ constructions and analytic arguments of the two OpenAI papers; it passes from a 
 finite-order twists of a fixed character and of its conjugate. The present paper treats Q(√−3) directly from the 11/12 paper, obtaining
 the angular modes from jets of the cubic theta function.
 
+B. Hu's subsequent paper, [*A seven-eighths zero-free half-plane for unitary Weil L-functions*](https://hexagonmath.org/2610.00216v1)
+(Hexagon 2610.00216v1, 13 October 2026), supersedes that draft. Its Theorem 1.2 states the half-plane Re s > 7/8 for every
+unitary Hecke character of every number field, including characters of infinite order and hence the characters
+considered here; its field and infinity-type transfer has not been independently verified here.
+
+M. Rubinstein and M. Restrepo Borrero, [*A zero-free strip for the L-functions of the elliptic curves y² = x³ + d*](https://hexagonmath.org/2610.00220v1)
+(Hexagon 2610.00220v1, 13 October 2026), Part II, Theorem 1, state the half-plane Re s > 7/8 for finite-order twists of
+the angular type-one character of Q(√−3), and hence the arithmetic half-plane Re s > 11/8 for these curves. T. Winarski,
+[*A 15/16 zero-free half-plane for angular Hecke L-functions over the Eisenstein field*](https://hexagonmath.org/2610.00458v1)
+(Hexagon 2610.00458v1, 22 October 2026), Theorem 1.2, records a weaker boundary for all unit-compatible angular types
+and norm twists, with a Lean development. These arguments have not been independently verified here.
+
 ## Files
 
 | Path | Content |
