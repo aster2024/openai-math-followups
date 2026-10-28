@@ -1,0 +1,20 @@
+constants: 1 s
+digamma: 2 s
+lemma5: 3 s
+kummer_conductor: 6 s
+small_cases: 1 s
+main_term: 1 s
+zetaF: 8 s
+hecke_fe: 0 s
+hecke_lines: 11 s
+hecke_zeros: 16 s
+constants: OK; -zeta_F'/zeta_F(2)=0.3973122; I0=7.947855, I1=7.973167; (C2) coefficients 29.094/91.269/158.31; 36+100/log9=81.512; 36log243+100=297.75021; Thm1 min ratio=1.000000028; Thm2 min ratio=1.0000494; exponents for sigma_dagger, B_flat: 7.9973, 7.9928
+digamma: OK; grid t in [0, 2010] (7800 points), min slack per case: (a) 0.022, (a) 1.588, (b) 1.917, (b) 1.840, (c) 2.334, (d) 2.414; Binet formula max error 1.4e-25
+hecke_fe: OK; a_n of L(s,chi_2) for n <= 400; theta(1/y) = y theta(y) holds with D = 108 (W = 1) to 2.0e-31 at y = 1.1, 1.3, 0.95, 1.7, and fails for D = 36, 27, 324, 12 (deviations 0.84, 1.2, 0.46, 3.4)
+hecke_lines: OK; chi_2 (D = 108): expansion agrees with the Dirichlet series to 3.2e-5; at t = 0,1,2,3,5,8,10,12,15,18 |L'/L| is at most 0.583% of (B1) on Re s = 15/16 and 9.49% of (B2) on Re s = 1/16 (|L'/L(1/16)| = 15.66, close to 16 = 1/(1/16) from the trivial zero at 0); 9.7 s
+hecke_zeros: OK; 12 sign changes of Lambda(1/2+it, chi_2) in (0,16] (first [2.85, 4.55, 6.15, 7.25]); count in |gamma-t|<=1 stays >= 4.09 below the bound of Lemma 4.1(b) for t in [0,15]; 15.4 s
+kummer_conductor: OK; 18 values of a, prime ideals of norm <= 60000: lambda-exponent of f(F(a^(1/3))/F) always <= 4 = v_lambda(9) (max 4, attained for a in [(3, 0), (6, 0), (12, 0), (1, -1), (2, 1), (-3, 0), (9, 0)]); every tame prime q | a enters with exponent 1 and is needed; hence f | 9a in every case
+lemma5: OK; primes pi of norms [7, 13, 4, 25, 37, 31, 121, 73]: 14355 random checks of well-definedness and multiplicativity, 0 violations; all three values taken: True; lambda-exponent of the conductor = 2 when N(pi) != 1 (mod 9) and 0 when N(pi) = 1 (mod 9): True; Remark 9.4 example pi = 5+2w = (19, w-7): (lambda/pi)_3 = w^2 != 1: True
+main_term: OK; S_1(x)/(x/2) = 0.999743 (x=1e4), 0.999918 (x=1e5), 0.999996 (x=1e6), 0.999999 (x=1e7); Proposition 6.4 holds at these x
+small_cases: OK; 2 <= a <= 20000 non-cubes: least p < (36 log(243 a^2)+100)^8 always; max least p = 73 at a = 2478 (bound there 3.00e+23); records [(2, 7), (6, 13), (13, 19), (57, 31), (77, 37), (714, 43), (806, 61), (2478, 73)]; least p for a=2,3,5,10 is 7 and for a=6,7 is 13; inert-prime violations 0; prime-ideal least norms agree with least p
+zetaF: OK; t in [0,40]: |zeta_F'/zeta_F| is at most 20.5% of (B1_F) on Re s=15/16 and 2.87% of (B2_F) on Re s=1/16; zero count in |gamma-t|<=1 (zeros of zeta and L(chi_-3) to height 42: 7+13) stays >= 3.31 below the bound of Lemma 4.1(b); 7.9 s

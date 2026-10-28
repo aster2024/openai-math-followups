@@ -1,0 +1,1 @@
+kummer_conductor: OK; 18 values of a, prime ideals of norm <= 60000: lambda-exponent of f(F(a^(1/3))/F) always <= 4 = v_lambda(9) (max 4, attained for a in [(3, 0), (6, 0), (12, 0), (1, -1), (2, 1), (-3, 0), (9, 0)]); every tame prime q | a enters with exponent 1 and is needed; hence f | 9a in every case

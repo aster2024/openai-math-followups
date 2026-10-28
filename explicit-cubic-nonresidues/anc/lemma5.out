@@ -1,0 +1,1 @@
+lemma5: OK; primes pi of norms [7, 13, 4, 25, 37, 31, 121, 73]: 14355 random checks of well-definedness and multiplicativity, 0 violations; all three values taken: True; lambda-exponent of the conductor = 2 when N(pi) != 1 (mod 9) and 0 when N(pi) = 1 (mod 9): True; Remark 9.4 example pi = 5+2w = (19, w-7): (lambda/pi)_3 = w^2 != 1: True

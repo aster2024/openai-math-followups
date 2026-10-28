@@ -123,6 +123,27 @@ number at most 2000 from the release's exclusion of Landau–Siegel zeros) note 
 h(−d) ≫ √d/log log d with an effective constant; the paper works out explicit constants and compares the thresholds
 with those of Watkins and Kimura.
 
+### [`explicit-cubic-nonresidues/`](explicit-cubic-nonresidues/) — Explicit least prime ideals and cubic non-residues over Q(√−3) from a zero-free half-plane
+
+Paper (19 pages), 28 October 2026: [PDF](explicit-cubic-nonresidues/paper.pdf). Programs checking the constants and the analytic lemmas numerically are in [`explicit-cubic-nonresidues/anc/`](explicit-cubic-nonresidues/anc/).
+
+Let F = Q(√−3). Taking as a hypothesis the statement of Theorem 1.1 of OpenAI's paper
+[The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane Re s > 7/8](https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf)
+for finite-order Hecke L-functions of F, the paper gives fully explicit bounds of norm (C log N(m) + C′)^8 for the
+least prime ideal outside a proper subgroup of a ray class group modulo m, for the least cubic non-residue modulo a
+prime ideal, and for the least prime ideal in each ray class (with a factor h_m^8, which cannot be replaced by a power
+of log N(m)). For every integer a that is not a perfect cube it gives a prime p ≡ 1 (mod 3) modulo which a is not a
+cubic residue, with
+
+```math
+p\ <\ (72\log|a|+297.76)^8\ \le\ (502\log|a|)^8 ;
+```
+
+here the character p ↦ (a/p)₃ is a ray class character of F, so the half-plane for Dirichlet L-functions alone does
+not suffice. The shape of the bounds and the exponent 1/(1 − 7/8) = 8 are those of Bach (1982, 1990); B. Hu's
+[preprint](https://hexagonmath.org/2610.00216v1) states an effective Chebotarev bound with exponent 8 over every number
+field with an unspecified constant. The paper works out explicit constants over Q(√−3).
+
 ### [`hot-spots-convex-planar/`](hot-spots-convex-planar/) — First Neumann eigenfunctions of convex planar domains attain their extrema on the boundary
 
 Paper (32 pages), 10 October 2026: [PDF](hot-spots-convex-planar/paper.pdf).

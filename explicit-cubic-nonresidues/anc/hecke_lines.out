@@ -1,0 +1,1 @@
+hecke_lines: OK; chi_2 (D = 108): expansion agrees with the Dirichlet series to 3.2e-5; at t = 0,1,2,3,5,8,10,12,15,18 |L'/L| is at most 0.583% of (B1) on Re s = 15/16 and 9.49% of (B2) on Re s = 1/16 (|L'/L(1/16)| = 15.66, close to 16 = 1/(1/16) from the trivial zero at 0); 9.7 s

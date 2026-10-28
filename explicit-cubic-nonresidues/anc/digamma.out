@@ -1,0 +1,1 @@
+digamma: OK; grid t in [0, 2010] (7800 points), min slack per case: (a) 0.022, (a) 1.588, (b) 1.917, (b) 1.840, (c) 2.334, (d) 2.414; Binet formula max error 1.4e-25

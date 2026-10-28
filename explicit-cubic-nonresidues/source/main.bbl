@@ -1,0 +1,196 @@
+\begin{thebibliography}{10}
+
+\bibitem{openai2026q}
+{OpenAI}.
+\newblock {The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane
+  {$\operatorname{Re}s>7/8$}}, September 2026.
+\newblock OpenAI Math Release preprint, 30 September 2026. Repository
+  \url{https://github.com/openai/math}, commit
+  \nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}. Version:
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf}.
+
+\bibitem{openai2026lean}
+{OpenAI}.
+\newblock {The quasi-Riemann hypothesis: scope of the Lean formalization},
+  2026.
+\newblock Scope document \nolinkurl{lean/docs/003.md}, repository
+  \url{https://github.com/openai/math}, commit
+  \nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/lean/docs/003.md}.
+
+\bibitem{ankeny1952}
+N.~C. Ankeny.
+\newblock The least quadratic non residue.
+\newblock {\em Ann. of Math. (2)}, 55:65--72, 1952.
+
+\bibitem{bach1982}
+Eric Bach.
+\newblock Fast algorithms under the extended {R}iemann hypothesis: a concrete
+  estimate.
+\newblock In {\em Proceedings of the Fourteenth Annual {ACM} Symposium on
+  Theory of Computing ({STOC} '82)}, pages 290--295. ACM, 1982.
+\newblock Read here in the transcription kept in the repository
+  \nolinkurl{brycesandlund/quasi-riemann-algorithms}, not in the printed
+  original.
+
+\bibitem{bach1990}
+Eric Bach.
+\newblock Explicit bounds for primality testing and related problems.
+\newblock {\em Math. Comp.}, 55(191):355--380, 1990.
+\newblock Read here in the transcription kept in the repository
+  \nolinkurl{brycesandlund/quasi-riemann-algorithms}, not in the printed
+  original.
+
+\bibitem{lo1977}
+J.~C. Lagarias and A.~M. Odlyzko.
+\newblock Effective versions of the {C}hebotarev density theorem.
+\newblock In {\em Algebraic Number Fields: {$L$}-functions and Galois
+  Properties (Proc. Sympos., Univ. Durham, 1975)}, pages 409--464. Academic
+  Press, London, 1977.
+
+\bibitem{bs1996}
+Eric Bach and Jonathan Sorenson.
+\newblock Explicit bounds for primes in residue classes.
+\newblock {\em Math. Comp.}, 65(216):1717--1735, 1996.
+
+\bibitem{neukirch1999}
+J{\"u}rgen Neukirch.
+\newblock {\em Algebraic Number Theory}, volume 322 of {\em Grundlehren der
+  mathematischen Wissenschaften}.
+\newblock Springer, 1999.
+
+\bibitem{ik2004}
+Henryk Iwaniec and Emmanuel Kowalski.
+\newblock {\em Analytic Number Theory}, volume~53 of {\em American Mathematical
+  Society Colloquium Publications}.
+\newblock American Mathematical Society, 2004.
+
+\bibitem{davenport2000}
+Harold Davenport.
+\newblock {\em Multiplicative Number Theory}, volume~74 of {\em Graduate Texts
+  in Mathematics}.
+\newblock Springer, 3rd edition, 2000.
+
+\bibitem{dlmf}
+{NIST}.
+\newblock {NIST} digital library of mathematical functions.
+\newblock \url{https://dlmf.nist.gov/}, Section 5.9 (Binet's second formula for
+  the digamma function).
+
+\bibitem{irelandrosen1990}
+Kenneth Ireland and Michael Rosen.
+\newblock {\em A Classical Introduction to Modern Number Theory}, volume~84 of
+  {\em Graduate Texts in Mathematics}.
+\newblock Springer, 2nd edition, 1990.
+
+\bibitem{serre1979}
+Jean-Pierre Serre.
+\newblock {\em Local Fields}, volume~67 of {\em Graduate Texts in Mathematics}.
+\newblock Springer, 1979.
+
+\bibitem{lang1994}
+Serge Lang.
+\newblock {\em Algebraic Number Theory}, volume 110 of {\em Graduate Texts in
+  Mathematics}.
+\newblock Springer, 2nd edition, 1994.
+
+\bibitem{lemmermeyer2000}
+Franz Lemmermeyer.
+\newblock {\em Reciprocity Laws: From {E}uler to {E}isenstein}.
+\newblock Springer Monographs in Mathematics. Springer, 2000.
+
+\bibitem{ahnkwon2019}
+Jeoung-Hwan Ahn and Soun-Hi Kwon.
+\newblock An explicit upper bound for the least prime ideal in the {C}hebotarev
+  density theorem.
+\newblock {\em Ann. Inst. Fourier (Grenoble)}, 69(3):1411--1458, 2019.
+\newblock arXiv:1807.00508.
+
+\bibitem{lmo1979}
+J.~C. Lagarias, H.~L. Montgomery, and A.~M. Odlyzko.
+\newblock A bound for the least prime ideal in the {C}hebotarev density
+  theorem.
+\newblock {\em Invent. Math.}, 54:271--296, 1979.
+
+\bibitem{openai2026heckelean}
+{OpenAI}.
+\newblock {Comparator statement \nolinkurl{HeckeSevenEighths.lean}}, 2026.
+\newblock Repository \url{https://github.com/openai/math}, commit
+  \nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}, file
+  \nolinkurl{lean/ComparatorChallenges/HeckeSevenEighths.lean}:
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/lean/ComparatorChallenges/HeckeSevenEighths.lean}.
+
+\bibitem{sandlund2026}
+Bryce Sandlund.
+\newblock Algorithmic consequences of a fixed zero-free half-plane, 2026.
+\newblock Research memo, 7 October 2026 (second pass). Repository
+  \url{https://github.com/brycesandlund/quasi-riemann-algorithms}, file
+  \nolinkurl{research/algorithmic-consequences.tex}; the statements quoted here
+  are those of the repository README.
+
+\bibitem{pathak2024}
+Aritro Pathak.
+\newblock Conditional upper bounds on the least character non-residue, 2024.
+\newblock arXiv:2405.13316v2, revised 15 March 2026; only the abstract page was
+  read here.
+
+\bibitem{guo2026lg}
+Jizhou Guo.
+\newblock Goldbach-type representations with prescribed {L}iouville signs,
+  2026.
+\newblock Preprint, 8 October 2026.
+  \url{https://github.com/aster2024/openai-math-followups/tree/main/liouville-goldbach}.
+  Part II of the README lists consequences of the Dirichlet zero-free
+  half-plane.
+
+\bibitem{guo2026zf}
+Jizhou Guo.
+\newblock {A zero-free half-plane beyond seven eighths for {D}irichlet
+  {$L$}-functions and finite-order {H}ecke {$L$}-functions over
+  {$\mathbb{Q}(\sqrt{-3})$}}, 2026.
+\newblock Preprint, 8 October 2026.
+  \url{https://github.com/aster2024/openai-math-followups/tree/main/zero-free-beyond-7-8}.
+
+\bibitem{liu2026}
+Baiying Liu.
+\newblock Zero-free half-planes for {H}ecke {$L$}-functions over number fields,
+  2026.
+\newblock arXiv:2610.26835v1, 19 October 2026 (preprint, not refereed; only the
+  abstract was read here).
+
+\bibitem{ct2026}
+Dean Cureton and Jesse Thorner.
+\newblock A quasi-{R}iemann hypothesis for {D}edekind zeta functions, 2026.
+\newblock Hexagon preprint 2610.00200v1, 12 October 2026,
+  \url{https://hexagonmath.org/2610.00200v1}; only the abstract page was read
+  here.
+
+\bibitem{hu2026}
+Boyang Hu.
+\newblock A seven-eighths zero-free half-plane for unitary {W}eil
+  {$L$}-functions, 2026.
+\newblock Hexagon preprint 2610.00216v1, 13 October 2026,
+  \url{https://hexagonmath.org/2610.00216v1}. The abstract page states that the
+  text was generated predominantly by AI language models and that the complete
+  proof has not been independently verified by a human; only the abstract page
+  and Corollary~9.6 were read here.
+
+\bibitem{lls2015}
+Youness Lamzouri, Xiannan Li, and Kannan Soundararajan.
+\newblock Conditional bounds for the least quadratic non-residue and related
+  problems.
+\newblock {\em Math. Comp.}, 84(295):2391--2412, 2015.
+\newblock Corrigendum: Math. Comp. 86 (2017), 2551--2554.
+
+\bibitem{weiss1983}
+Alfred Weiss.
+\newblock The least prime ideal.
+\newblock {\em J. Reine Angew. Math.}, 338:56--94, 1983.
+
+\bibitem{tz2017}
+Jesse Thorner and Asif Zaman.
+\newblock An explicit bound for the least prime ideal in the {C}hebotarev
+  density theorem.
+\newblock {\em Algebra Number Theory}, 11(5):1135--1197, 2017.
+
+\end{thebibliography}

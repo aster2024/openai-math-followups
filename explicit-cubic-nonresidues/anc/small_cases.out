@@ -1,0 +1,1 @@
+small_cases: OK; 2 <= a <= 20000 non-cubes: least p < (36 log(243 a^2)+100)^8 always; max least p = 73 at a = 2478 (bound there 3.00e+23); records [(2, 7), (6, 13), (13, 19), (57, 31), (77, 37), (714, 43), (806, 61), (2478, 73)]; least p for a=2,3,5,10 is 7 and for a=6,7 is 13; inert-prime violations 0; prime-ideal least norms agree with least p

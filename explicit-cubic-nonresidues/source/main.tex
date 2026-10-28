@@ -1,0 +1,551 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+ pdftitle={Explicit least prime ideals and cubic non-residues over Q(sqrt(-3)) from a zero-free half-plane},pdfauthor={Jizhou Guo},hypertexnames=false}
+\newtheorem{mainthm}{Theorem}
+\newtheorem*{propprime}{Proposition 2$'$}
+\newtheorem*{corprime}{Corollary 4$'$}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}[lemma]{Proposition}
+\newtheorem{corollary}[lemma]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[lemma]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[lemma]{Remark}
+\numberwithin{equation}{section}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\fa}{\mathfrak a}
+\newcommand{\fb}{\mathfrak b}
+\newcommand{\fp}{\mathfrak p}
+\newcommand{\fP}{\mathfrak P}
+\newcommand{\fm}{\mathfrak m}
+\newcommand{\ff}{\mathfrak f}
+\newcommand{\fq}{\mathfrak q}
+\newcommand{\Nm}{\mathrm N}
+\newcommand{\Cl}{\operatorname{Cl}}
+\newcommand{\Frob}{\operatorname{Frob}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\pos}[1]{\left(#1\right)_+}
+\newcommand{\cubic}[2]{\bigl(\tfrac{#1}{#2}\bigr)_{3}}
+\newcommand{\HF}{\textup{(H$_F$)}}
+\allowdisplaybreaks[2]
+\setlength{\emergencystretch}{2em}
+\title{Explicit least prime ideals and cubic non-residues\protect\\over $\Q(\sqrt{-3})$ from a zero-free half-plane}
+\author{Jizhou Guo\\\texttt{mitsuha2021b@gmail.com}}
+\date{28 October 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $F=\Q(\sqrt{-3})$, $\cO=\Z[\omega]$. Theorem~1.1 of OpenAI's paper of 30 September 2026 states that every finite-order Hecke $L$-function of $F$ has no zero in $\Rea s>7/8$. Taking this statement as a hypothesis, we prove, with every constant explicit: for every ideal $\fm\ne(1)$ of $\cO$ and every proper subgroup $H$ of the ray class group $\Cl_\fm$ there is a prime ideal $\fp\nmid\fm$ whose class is not in $H$ with $\Nm\fp<(36\log(3\Nm\fm)+100)^8$; every ray class modulo $\fm$ contains a prime ideal of norm less than $(h_\fm(36\log(3\Nm\fm)+100))^8$, and the factor $h_\fm^8$ cannot be replaced by a power of $\log\Nm\fm$; for every prime ideal $\pi\nmid3$ there is a prime ideal $\fp\nmid3\pi$ of norm less than $(36\log(27\Nm\pi)+100)^8$ whose generator $\equiv1\pmod3$ is a cubic non-residue modulo $\pi$; and for every $a\in\cO$ that is not a cube there is a prime ideal $\fp\nmid3a$ with $\cubic{a}{\fp}\ne1$ and $\Nm\fp<(36\log(243\Nm a)+100)^8$, so that for every integer $a$ that is not a perfect cube there is a prime $p\equiv1\pmod3$ modulo which $a$ is not a cubic residue, with $p<(72\log|a|+297.76)^8\le(502\log|a|)^8$. The exponent is $8=1/(1-7/8)$, without $\varepsilon$, by a smoothed explicit formula whose contour is moved past all zeros. The shape of the results and the exponent $1/(1-\Theta)$ for a zero-free half-plane $\Rea s>\Theta$ are Bach's (1982, Dirichlet characters; 1990, explicit constants over number fields under the extended Riemann hypothesis), and the analogues over number fields under the generalised Riemann hypothesis are those of Lagarias--Odlyzko and Bach--Sorenson; what is done here is to give fully explicit constants over $\Q(\sqrt{-3})$ from the released theorem, and to treat the Kummer-extension application with numbers, for which the half-plane for Dirichlet $L$-functions alone does not suffice. The input is not verified here; the constants are checked by the scripts in the ancillary files.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+Let $F=\Q(\sqrt{-3})$, $\cO=\Z[\omega]$ with $\omega=e^{2\pi i/3}$, and let $\Nm\fa=|\cO/\fa|$ be the norm of a nonzero integral ideal. For a nonzero integral ideal $\fm$ let $\Cl_\fm$ be the ray class group modulo $\fm$ and $h_\fm=|\Cl_\fm|$. Following the paper \cite{openai2026q}, a \emph{finite-order Hecke character modulo $\fm$} is a character of $\Cl_\fm$, extended by zero to the ideals not coprime to $\fm$, and $L_F(s,\chi)=\sum_\fa\chi(\fa)\Nm\fa^{-s}$. Theorem~1.1 of \cite{openai2026q} states:
+
+\begin{quote}
+Every finite-order Hecke $L$-function over $F=\Q(\sqrt{-3})$ has no zero in $\Rea s>7/8$. The same holds for every Dirichlet $L$-function, including $\zeta(s)$. A pole at $s=1$ for a principal character is allowed.
+\end{quote}
+
+The Lean scope document \cite{openai2026lean} describes a formalization covering $\zeta$, all Dirichlet $L$-functions and the finite-order Hecke $L$-functions over $\Q(\sqrt{-3})$, and says that the paper's later applications are not included. Neither the paper nor the Lean files are verified here. Throughout we assume exactly the Hecke part of that statement, for every nonzero ideal $\ff$ and every character $\chi$ of $\Cl_\ff$:
+\begin{equation}\label{eq:HF}
+\HF\qquad L_F(s,\chi)\ne0\quad\text{for }\Rea s>7/8,
+\end{equation}
+including the Dedekind zeta function $\zeta_F=L_F(\cdot,1)$, whose pole at $s=1$ is allowed. Every statement below has the form ``\HF{} implies\ldots'' with explicit constants, so it is unconditional exactly when the input theorem is correct.
+
+\subsection*{Results}
+
+\begin{mainthm}\label{thm:1}
+Assume \HF. Let $\fm\ne(1)$ be a nonzero integral ideal of $\cO$ and let $H\subsetneq\Cl_\fm$ be a proper subgroup. Then there is a prime ideal $\fp\nmid\fm$ whose class is not in $H$ with
+\[
+ \Nm\fp<\bigl(36\log(3\Nm\fm)+100\bigr)^8\le\bigl(82\log(3\Nm\fm)\bigr)^8 .
+\]
+In particular, for every nonprincipal finite-order Hecke character $\chi$ modulo $\fm$ there is a prime ideal $\fp\nmid\fm$ with $\chi(\fp)\ne1$ and $\Nm\fp<(36\log(3\Nm\fm)+100)^8$.
+\end{mainthm}
+
+\begin{mainthm}\label{thm:2}
+Assume \HF. For every nonzero integral ideal $\fm$ and every class $C\in\Cl_\fm$ there is a prime ideal $\fp\in C$ with
+\[
+ \Nm\fp<\bigl(h_\fm(36\log(3\Nm\fm)+100)\bigr)^8,\qquad h_\fm\le\Nm\fm ,
+\]
+and, if $\fm\ne(1)$, $\bigl(h_\fm(36\log(3\Nm\fm)+100)\bigr)^8\le\bigl(82\,h_\fm\log(3\Nm\fm)\bigr)^8$.
+\end{mainthm}
+
+Some dependence on $h_\fm$ is unavoidable: by Proposition~2$'$ no bound of the form $(\log\Nm\fm)^{C}$ can hold for every class, because some class contains no prime ideal of norm below about $h_\fm/2$. The exponent $8$ on $h_\fm$ comes from the method (Remark~\ref{rem:LO}).
+
+\begin{propprime}
+For every prime ideal $\fq$ of $\cO$ some class of $\Cl_\fq$ contains no prime ideal of norm at most $(\Nm\fq-7)/12$. Consequently there is no constant $C$ such that every class of $\Cl_\fm$ contains a prime ideal of norm at most $(\log\Nm\fm)^{C}$ for every $\fm$.
+\end{propprime}
+
+For a prime ideal $\pi\nmid3$ and $\alpha\in\cO$ prime to $\pi$, the cubic residue symbol $\cubic{\alpha}{\pi}\in\mu_3$ is the cube root of unity congruent to $\alpha^{(\Nm\pi-1)/3}$ modulo $\pi$ (Section~\ref{sec:cubic}); $\cubic{\alpha}{\pi}=1$ exactly when $\alpha$ is a cube modulo $\pi$. Every ideal prime to $3$ has a unique generator $\equiv1\pmod3$ (Lemma~\ref{lem:oneprimary}).
+
+\begin{mainthm}\label{thm:3}
+Assume \HF. For every prime ideal $\pi$ of $\cO$ with $\pi\nmid3$ there is a prime ideal $\fp\nmid3\pi$ with
+\[
+ \Nm\fp<\bigl(36\log(27\Nm\pi)+100\bigr)^8
+\]
+whose generator $\alpha\equiv1\pmod3$ is a cubic non-residue modulo $\pi$, that is, $\cubic{\alpha}{\pi}\ne1$.
+\end{mainthm}
+
+\begin{mainthm}\label{thm:4}
+Assume \HF. Let $a\in\cO$, $a\ne0$, and suppose that $a$ is not a cube in $F$. Then there is a prime ideal $\fp\nmid3a$ with $\cubic{a}{\fp}\ne1$ and
+\[
+ \Nm\fp<\bigl(36\log(243\Nm a)+100\bigr)^8 .
+\]
+\end{mainthm}
+
+\begin{corprime}
+Assume \HF. For every integer $a$ that is not a perfect cube (so $|a|\ge2$) there is a prime $p\equiv1\pmod3$, $p\nmid a$, such that $a$ is not a cubic residue modulo $p$, with
+\[
+ p<\bigl(36\log(243a^2)+100\bigr)^8=\bigl(72\log|a|+c_0\bigr)^8,\qquad c_0=36\log243+100=297.7502\ldots,
+\]
+hence $p<(72\log|a|+297.76)^8\le(502\log|a|)^8$.
+\end{corprime}
+
+\subsection*{Positioning}
+Under the generalised Riemann hypothesis (GRH) the statements above are classical in shape, and the exponent is Bach's. Ankeny \cite{ankeny1952} proved that the least non-residue of a nonprincipal character modulo $p$ is $O(\log^2p)$. Bach \cite{bach1982} proved that if $\Theta<1$ is an upper bound for the real parts of the nontrivial zeros of all Dirichlet $L$-functions, then for a nonprincipal character $\chi$ modulo $q$ the least $N$ with $\chi(N)\notin\{0,1\}$ satisfies $N\le C(\log q)^{1/(1-\Theta)}$ for all sufficiently large $q$, and deduced the same bound for the least integer outside a proper subgroup of $(\Z/q\Z)^\times$; his proof uses the kernel $1/(s(s+1))$ and a bound $A\log q+B$ for the zero sum, which is the argument of this paper. For number fields Bach also gave explicit constants: under ERH a nonprincipal ray class character $\chi$ modulo $\ff$ of a field of degree greater than one and discriminant $\pm A$ has $\chi(\fp)\notin\{0,1\}$ for some $\fp$ with $\Nm\fp<12\log^2(A^2\Nm\ff)$ \cite[Theorem~4]{bach1990}, and he remarks that a zero-free strip $\Rea s>1-\delta$ would already give a bound polynomial in $\log(A\Nm\ff)$ \cite[p.~365]{bach1990}. Lagarias and Odlyzko \cite{lo1977} proved that a Galois extension $L/K$ has, for each conjugacy class, an unramified prime ideal with that Frobenius class of norm $O((\log d_L)^2)$, and Bach and Sorenson \cite{bs1996} gave an explicit form. The mechanism of this paper is Bach's: an explicit formula for a smoothed sum over prime ideals, in which the zero-free half-plane bounds the zero sum by $x^{7/8}$ times a quantity of size $\log(3\Nm\ff)$, so that the main term $x/2$ wins as soon as $x^{1/8}\gg\log\Nm\fm$; as in Bach's theorem, the exponent $8=1/(1-7/8)$ replaces the exponent $2=1/(1-1/2)$ of GRH. What this paper adds is fully explicit constants over $\Q(\sqrt{-3})$ from the released theorem, including the zero-counting and log-derivative lemmas for Hecke $L$-functions over $F$ needed for that, and the application to Kummer extensions (Theorem~\ref{thm:4}) with numbers, where the character involved is a ray class character of $F$ and not a Dirichlet character, so that the half-plane for Dirichlet $L$-functions alone gives nothing. No claim of novelty or priority is made for any statement; Section~\ref{sec:related} records what the sources we know of state, including Bach's theorems, the public statements of the Dirichlet analogue $(\log q)^8$, Hu's effective Chebotarev statement with exponent $8$, the smaller boundaries announced since, and the unconditional results.
+
+\subsection*{Method}
+Section~\ref{sec:inputs} collects the standard facts used (functional equation, Hadamard product, Perron kernel, Binet's formula) and the numerical constants. Sections~\ref{sec:digamma}--\ref{sec:lines} prove the three analytic lemmas: digamma bounds, the zero count $\#\{\rho:|\gamma-t|\le1\}\le\tfrac54\log(3\Nm\ff)+\tfrac52\log(|t|+2)-3.5$, and bounds for $L'/L$ on $\Rea s=15/16$ and $\Rea s=1/16$. Section~\ref{sec:explicit} proves the smoothed explicit formula
+\[
+ \sum_\fa\chi(\fa)\Lambda(\fa)\pos{1-\frac{\Nm\fa}{x}}=-\sum_\rho\frac{x^\rho}{\rho(\rho+1)}+R_\chi(x),\qquad|R_\chi(x)|\le x^{1/16}\bigl(30\log(3\Nm\ff)+92\bigr),
+\]
+with the contour moved to $\Rea s=1/16$, past every nontrivial zero (they lie in $1/8\le\Rea s\le7/8$ under \HF{} and the functional equation) and short of the trivial zeros at $0,-1,\ldots$, which would collide with the poles of the kernel. Since $\sum_\rho|\rho(\rho+1)|^{-1}\le18\log(3\Nm\ff)$ carries no $\log x$, the exponent is exactly $8$, as in Bach's argument; stopping the contour at $\Rea s=7/8+1/\log x$ instead would cost a factor $\log x$ and give $(\log\Nm\fm\cdot\log\log\Nm\fm)^8$. Sections~\ref{sec:thm1} and~\ref{sec:thm2} prove Theorems~\ref{thm:1} and~\ref{thm:2} and Proposition~2$'$. Section~\ref{sec:cubic} normalises the cubic residue symbol to a character of $\Cl_{3\pi}$ and proves Theorem~\ref{thm:3}; Section~\ref{sec:kummer} identifies $\fp\mapsto\cubic{a}{\fp}$ with the Artin character of $F(a^{1/3})/F$, bounds its conductor by $9a$, and proves Theorem~\ref{thm:4} and Corollary~4$'$. Section~\ref{sec:numerics} contains the numerical checks (small $a$, and a check of the archimedean factor and conductor normalisation on a cubic Hecke character), Section~\ref{sec:related} the comparison with other results, and Section~\ref{sec:anc} describes the ancillary scripts. The constants are crude; no attempt was made to optimise them.
+
+\section{Inputs}\label{sec:inputs}
+
+\subsection{The field}\label{sec:field}
+Let $\lambda=1-\omega$, so $\Nm\lambda=3$, $(3)=(\lambda)^2$, $d_F=-3$, the class number of $F$ is $1$, and $\cO^\times=\mu_6=\{\pm1,\pm\omega,\pm\omega^2\}$. The prime $2$ is inert in $F$, so no ideal has norm $2$, the smallest norm of a proper ideal is $3$, and for $\fm\ne(1)$
+\begin{equation}\label{eq:L}
+ L:=\log(3\Nm\fm)\ge\log9>2.197 .
+\end{equation}
+For a nonzero integral ideal $\fm$, $\Cl_\fm=I^{(\fm)}/P_{\fm,1}$ is the group of fractional ideals prime to $\fm$ modulo the principal ideals with a generator $\equiv1\pmod{\fm}$ \cite[Chapter~VI, \S1]{neukirch1999}. Since the class number is $1$ and all units are roots of unity, $\Cl_\fm\cong(\cO/\fm)^\times/(\text{image of }\mu_6)$, so
+\begin{equation}\label{eq:hm}
+ \Phi(\fm)/6\le h_\fm\le\Phi(\fm)\le\Nm\fm,\qquad\Phi(\fm)=|(\cO/\fm)^\times| .
+\end{equation}
+Every finite-order Hecke character $\chi$ modulo $\fm$ is induced by a unique primitive character $\chi^*$ modulo its conductor $\ff\mid\fm$, and
+\begin{equation}\label{eq:induced}
+ L(s,\chi)=L(s,\chi^*)\prod_{\fp\mid\fm,\ \fp\nmid\ff}\bigl(1-\chi^*(\fp)\Nm\fp^{-s}\bigr).
+\end{equation}
+We write $\Lambda(\fa)$ for the von Mangoldt function of $F$ ($\Lambda(\fp^k)=\log\Nm\fp$, $\Lambda(\fa)=0$ otherwise), so that $-L'/L(s,\chi)=\sum_\fa\chi(\fa)\Lambda(\fa)\Nm\fa^{-s}$ for $\Rea s>1$, and $\omega_F(\fm)$ for the number of distinct prime ideals dividing $\fm$; as every prime ideal has norm at least $2$,
+\begin{equation}\label{eq:omega}
+ \omega_F(\fm)\le\frac{\log\Nm\fm}{\log2}\le\frac{L}{\log2}\le1.45\,L .
+\end{equation}
+
+\subsection{Standard facts}\label{sec:standard}
+The following are quoted, not re-proved. Sums over $\rho$ run over the nontrivial zeros with multiplicity, and $\psi=\Gamma'/\Gamma$.
+
+\begin{enumerate}
+\item[(S1)] Let $\chi$ be a primitive nonprincipal finite-order Hecke character of conductor $\ff\ne(1)$ and put $D=|d_F|\Nm\ff=3\Nm\ff$. Then
+\[
+ \Lambda(s,\chi):=D^{s/2}(2\pi)^{-s}\Gamma(s)L(s,\chi)
+\]
+is entire of order $1$ and satisfies $\Lambda(s,\chi)=W(\chi)\Lambda(1-s,\bar\chi)$ with $|W(\chi)|=1$ \cite[Chapter~VII, \S8]{neukirch1999}, \cite[Chapter~5]{ik2004}. (For a finite-order character of an imaginary quadratic field the archimedean factor is $\Gamma_\C(s)=2(2\pi)^{-s}\Gamma(s)$; the constant $2$ is irrelevant. Section~\ref{sec:gamma} checks this normalisation numerically on an example.) The zeros of $\Lambda(\cdot,\chi)$ are the zeros of $L(\cdot,\chi)$ in $0<\Rea s<1$, the \emph{nontrivial zeros}; $L(s,\chi)\ne0$ for $\Rea s\ge1$; and in $\Rea s\le0$ the zeros of $L(\cdot,\chi)$ are exactly the simple \emph{trivial zeros} at $s=0,-1,-2,\ldots$ (the poles of $\Gamma$, since $\Lambda(-n,\chi)=W(\chi)\Lambda(1+n,\bar\chi)\ne0$). Under \HF{} and the functional equation, which maps a zero $\rho$ to $1-\bar\rho$, every nontrivial zero $\rho=\beta+i\gamma$ satisfies
+\begin{equation}\label{eq:strip}
+ 1/8\le\beta\le7/8 .
+\end{equation}
+\item[(S2)] (Hadamard) $\Lambda(s,\chi)=e^{A+Bs}\prod_\rho(1-s/\rho)e^{s/\rho}$ with $\Rea B=-\sum_\rho\Rea(1/\rho)$. This is proved in \cite[Chapter~12]{davenport2000} for Dirichlet $L$-functions; the proof uses only that $\Lambda$ is entire of order $1$, the functional equation with $|W|=1$, the symmetry $\rho\mapsto1-\bar\rho$ of the zero set and $\Lambda(\bar s,\bar\chi)=\overline{\Lambda(s,\chi)}$, and transfers verbatim (see also \cite[Chapter~5]{ik2004}). Hence, for every $s$ that is not a zero,
+\begin{align}
+ \frac{\Lambda'}{\Lambda}(s,\chi)=\tfrac12\log D-\log2\pi+\psi(s)+\frac{L'}{L}(s,\chi)&=B+\sum_\rho\Bigl(\frac1{s-\rho}+\frac1\rho\Bigr),\label{eq:hadamard}\\
+ \Rea\Bigl[\tfrac12\log D-\log2\pi+\psi(s)+\frac{L'}{L}(s,\chi)\Bigr]&=\sum_\rho\Rea\frac1{s-\rho}.\label{eq:realpart}
+\end{align}
+\item[(S3)] For $\zeta_F$: $\Lambda_F(s):=3^{s/2}(2\pi)^{-s}\Gamma(s)\zeta_F(s)$ satisfies $\Lambda_F(s)=\Lambda_F(1-s)$ and has simple poles at $s=0$ and $s=1$ and no others; $\xi_F(s):=s(s-1)\Lambda_F(s)$ is entire of order $1$ with $\xi_F(s)=e^{A+Bs}\prod_\rho(1-s/\rho)e^{s/\rho}$ and $\Rea B=-\sum_\rho\Rea(1/\rho)$, whence
+\begin{equation}\label{eq:hadamardF}
+ \frac{\zeta_F'}{\zeta_F}(s)=-\frac1s-\frac1{s-1}-\tfrac12\log3+\log2\pi-\psi(s)+B+\sum_\rho\Bigl(\frac1{s-\rho}+\frac1\rho\Bigr).
+\end{equation}
+Here $\zeta_F=\zeta\cdot L(\cdot,\chi_{-3})$, so the nontrivial zeros of $\zeta_F$ are those of $\zeta$ and of $L(\cdot,\chi_{-3})$; under \HF{} (which covers $\zeta_F=L_F(\cdot,1)$ directly) they satisfy \eqref{eq:strip}. Further $\zeta_F(0)=-h_F/w_F=-1/6\ne0$, and the trivial zeros of $\zeta_F$ are at $-1,-2,\ldots$.
+\item[(S4)] (Perron kernel) For $c>0$ and $y>0$, $\dfrac1{2\pi i}\displaystyle\int_{(c)}\frac{y^{w}\dd w}{w(w+1)}=\pos{1-\frac1y}$: for $y>1$ move the line to the left and pick up the residues $1$ and $-1/y$ at $w=0,-1$; for $y<1$ move it to the right; for $y=1$ both sides vanish.
+\item[(S5)] (Binet's second formula \cite[\S5.9]{dlmf}) For $\Rea z>0$,
+\begin{equation}\label{eq:binet}
+ \psi(z)=\log z-\frac1{2z}-2\int_0^\infty\frac{t\dd t}{(t^2+z^2)(e^{2\pi t}-1)},\qquad\int_0^\infty\frac{t\dd t}{e^{2\pi t}-1}=\frac1{24}.
+\end{equation}
+\end{enumerate}
+
+\subsection{Numerical constants}\label{sec:constants}
+All decimals below were computed with \texttt{mpmath} (\texttt{anc/constants.py}). First,
+\begin{equation}\label{eq:zF2}
+ \sum_\fa\Lambda(\fa)\Nm\fa^{-2}=-\frac{\zeta_F'}{\zeta_F}(2)=-\frac{\zeta'}{\zeta}(2)-\frac{L'}{L}(2,\chi_{-3})=0.569961\ldots-0.172649\ldots=0.397312\ldots,
+\end{equation}
+so that $\sum_\fa\Lambda(\fa)\Nm\fa^{-2}\le0.3974$; this was cross-checked by summing $\Lambda(\fa)\Nm\fa^{-2}$ over the prime ideals above the rational primes $p<2\cdot10^5$ ($0.397307\ldots$). Next $\log2\pi=1.837877\ldots$, and
+\begin{equation}\label{eq:I0I1}
+ I_0:=\int_{-\infty}^\infty\frac{\dd t}{|\tfrac1{16}+it|\,|\tfrac{17}{16}+it|}=7.947855\ldots,\qquad
+ I_1:=\int_{-\infty}^\infty\frac{\log(|t|+2)\dd t}{|\tfrac1{16}+it|\,|\tfrac{17}{16}+it|}=7.973167\ldots .
+\end{equation}
+
+\section{Digamma bounds}\label{sec:digamma}
+
+\begin{lemma}\label{lem:digamma}
+Let $z=\sigma+it$.
+\begin{enumerate}
+\item[\textup{(a)}] $\Rea\psi(2+it)\le\log(|t|+2)+1/48$ and $|\psi(2+it)|\le\log(|t|+2)+1.85$.
+\item[\textup{(b)}] $|\psi(\tfrac{15}{16}+it)|\le\log(|t|+2)+2.2$ and $|\psi(\tfrac{17}{16}+it)|\le\log(|t|+2)+2.12$.
+\item[\textup{(c)}] $|\psi(\tfrac1{16}+it)|\le\log(|t|+2)+18.12$.
+\item[\textup{(d)}] For $1/16\le\sigma\le2$, $|\psi(\sigma+it)|\le\log(|t|+2)+1/\sigma+2.2$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Let $\sigma>0$. In \eqref{eq:binet}, $|t'^2+z^2|=|(t'+t)-i\sigma|\,|(t'-t)+i\sigma|\ge\sigma^2$ for real $t'$, so the integral term has absolute value at most $2\cdot\frac1{24}\cdot\sigma^{-2}=1/(12\sigma^2)$; also $\Rea(-1/(2z))=-\sigma/(2|z|^2)\le0$ and $|1/(2z)|\le1/(2\sigma)$; and $|\log z|\le|\log|z||+\pi/2$ since $|\arg z|<\pi/2$. If $15/16\le\sigma\le2$ then $15/16\le|z|\le|t|+2$, and $\log(16/15)<\log2\le\log(|t|+2)$, so $|\log|z||\le\log(|t|+2)$.
+
+(a) With $\sigma=2$: $\Rea\psi(z)\le\log|z|+1/48\le\log(|t|+2)+1/48$, and $|\psi(z)|\le\log(|t|+2)+1.5708+0.25+0.0209\le\log(|t|+2)+1.85$.
+
+(b) With $\sigma=15/16$: $1.5708+8/15+\frac1{12}\cdot\frac{256}{225}=2.1990\ldots\le2.2$; with $\sigma=17/16$: $1.5708+8/17+\frac1{12}\cdot\frac{256}{289}=2.1152\ldots\le2.12$.
+
+(c) $\psi(z)=\psi(z+1)-1/z$ with $|1/z|\le16$ and, by (b) at $\sigma=17/16$, $|\psi(z+1)|\le\log(|t|+2)+2.12$.
+
+(d) For $15/16\le\sigma\le2$ the first paragraph gives $|\psi(z)|\le\log(|t|+2)+1.5708+8/15+0.0948\le\log(|t|+2)+2.2$. For $1/16\le\sigma<15/16$ use $\psi(z)=\psi(z+1)-1/z$: here $17/16\le\Rea(z+1)<31/16$, so $17/16\le|z+1|\le|t|+2$, $|\log|z+1||\le\log(|t|+2)$, and the first paragraph gives $|\psi(z+1)|\le\log(|t|+2)+1.5708+8/17+0.0738\le\log(|t|+2)+2.12$, while $|1/z|\le1/\sigma$.
+
+The script \texttt{anc/digamma.py} evaluates each bound on a grid of $7800$ heights $t\in[0,2010]$ (and $125$ values of $\sigma$ for (d)); the slack is at least $0.02$ in the first bound of (a) and at least $1.5$ in the others.
+\end{proof}
+
+\section{Zero counts}\label{sec:zeros}
+
+\begin{lemma}\label{lem:zeros}
+Let $\chi$ be a primitive nonprincipal finite-order Hecke character of conductor $\ff$ and put
+\[
+ \ell(t):=\tfrac12\log(3\Nm\ff)+\log(|t|+2)-1.4\qquad(\ell(t)>0.39\text{ since }\Nm\ff\ge3).
+\]
+Then for every real $t$:
+\begin{enumerate}
+\item[\textup{(a)}] $\displaystyle\sum_\rho\Rea\frac1{2+it-\rho}\le\ell(t)$ and $\displaystyle\sum_\rho\frac1{4+(t-\gamma)^2}\le\ell(t)$;
+\item[\textup{(b)}] $N_\chi(t):=\#\{\rho:|\gamma-t|\le1\}\le\tfrac52\ell(t)=\tfrac54\log(3\Nm\ff)+\tfrac52\log(|t|+2)-3.5$.
+\end{enumerate}
+The same holds for $\zeta_F$ with $\ell$ replaced by $\ell_F(t):=\log(|t|+2)+0.63$ and $N_\chi$ by $N_F(t):=\#\{\rho:\zeta_F(\rho)=0,\ |\gamma-t|\le1\}$.
+\end{lemma}
+
+\begin{proof}
+Put $s_0=2+it$ in \eqref{eq:realpart}. By the Euler product, $|L'/L(s_0,\chi)|\le\sum_\fa\Lambda(\fa)\Nm\fa^{-2}\le0.3974$ by \eqref{eq:zF2}, and $\Rea\psi(s_0)\le\log(|t|+2)+1/48$ by Lemma~\ref{lem:digamma}(a); so
+\[
+ \sum_\rho\Rea\frac1{s_0-\rho}\le\tfrac12\log(3\Nm\ff)-1.8379+\log(|t|+2)+0.0209+0.3974\le\ell(t).
+\]
+Each term is $u/(u^2+v^2)$ with $u=2-\beta\in[1,2]$ and $v=t-\gamma$; it is positive, and $u/(u^2+v^2)\ge1/(4+v^2)$ because $u(4+v^2)-(u^2+v^2)=u(4-u)-v^2(1-u)\ge0$. This gives (a). If $|v|\le1$ then $u\mapsto u/(u^2+v^2)$ is decreasing on $[|v|,\infty)\supset[1,2]$, so $u/(u^2+v^2)\ge2/(4+v^2)\ge2/5$; summing over the zeros with $|\gamma-t|\le1$ gives $\tfrac25N_\chi(t)\le\ell(t)$, which is (b). For $\zeta_F$ use \eqref{eq:hadamardF} with $\Rea B=-\sum\Rea(1/\rho)$:
+\begin{align*}
+ \sum_\rho\Rea\frac1{s_0-\rho}&=\Rea\frac{\zeta_F'}{\zeta_F}(s_0)+\Rea\frac1{s_0}+\Rea\frac1{s_0-1}+\tfrac12\log3-\log2\pi+\Rea\psi(s_0)\\
+ &\le0.3974+\tfrac12+1+0.5493-1.8379+\log(|t|+2)+0.0209,
+\end{align*}
+which is at most $\log(|t|+2)+0.63$ (the constant is $0.6296\ldots$), and the rest is as before.
+\end{proof}
+
+The lemma does not use \HF{}: it holds for any zeros with $0\le\beta\le1$. The window is $|\gamma-t|\le1$, of length $2$. Section~\ref{sec:numerics} compares (b) with the actual zero counts of $\zeta_F$ and of a cubic Hecke $L$-function at small heights.
+
+\section{The logarithmic derivative on two lines}\label{sec:lines}
+
+\begin{lemma}\label{lem:lines}
+Assume \HF. For a primitive nonprincipal finite-order Hecke character $\chi$ of conductor $\ff$ and all real $t$,
+\begin{align}
+ \Bigl|\frac{L'}{L}\bigl(\tfrac{15}{16}+it,\chi\bigr)\Bigr|&\le22\log(3\Nm\ff)+46\log(|t|+2),\tag{B1}\label{eq:B1}\\
+ \Bigl|\frac{L'}{L}\bigl(\tfrac{1}{16}+it,\chi\bigr)\Bigr|&\le23\log(3\Nm\ff)+48\log(|t|+2)+24 .\tag{B2}\label{eq:B2}
+\end{align}
+For $\zeta_F$:
+\begin{equation}
+ \Bigl|\frac{\zeta_F'}{\zeta_F}\bigl(\tfrac{15}{16}+it\bigr)\Bigr|\le46\log(|t|+2)+51,\qquad
+ \Bigl|\frac{\zeta_F'}{\zeta_F}\bigl(\tfrac{1}{16}+it\bigr)\Bigr|\le48\log(|t|+2)+77 .\tag{B1$_F$, B2$_F$}\label{eq:BF}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+\eqref{eq:B1}: Let $s=\tfrac{15}{16}+it$ and $s_0=2+it$; neither is a zero (\eqref{eq:strip}). Subtracting \eqref{eq:hadamard} at $s$ and at $s_0$ cancels $B$ and $\sum1/\rho$:
+\begin{equation}\label{eq:subtract}
+ \frac{L'}{L}(s)-\frac{L'}{L}(s_0)=-\bigl(\psi(s)-\psi(s_0)\bigr)+\sum_\rho\frac{s_0-s}{(s-\rho)(s_0-\rho)},\qquad|s_0-s|=\tfrac{17}{16}.
+\end{equation}
+For a zero with $|\gamma-t|\le1$: $|s-\rho|\ge\tfrac{15}{16}-\beta\ge\tfrac1{16}$ by \eqref{eq:strip} (this is where \HF{} enters) and $|s_0-\rho|\ge2-\beta\ge\tfrac98$, so the term is at most $\tfrac{17}{16}\cdot16\cdot\tfrac89=15.12$; by Lemma~\ref{lem:zeros}(b) there are at most $\tfrac52\ell(t)$ such zeros, contributing at most $37.8\,\ell(t)$. For $|\gamma-t|>1$: $|s-\rho|,|s_0-\rho|\ge|t-\gamma|$ and $(t-\gamma)^{-2}\le5/(4+(t-\gamma)^2)$, so by Lemma~\ref{lem:zeros}(a) these zeros contribute at most $\tfrac{17}{16}\cdot5\,\ell(t)\le5.32\,\ell(t)$. With $|L'/L(s_0)|\le0.4$ and Lemma~\ref{lem:digamma}(a),(b),
+\[
+ \Bigl|\frac{L'}{L}(s)\Bigr|\le0.4+2\log(|t|+2)+4.05+43.12\,\ell(t)\le21.56\log(3\Nm\ff)+45.12\log(|t|+2)-55.9,
+\]
+which gives \eqref{eq:B1}.
+
+\eqref{eq:B2}: The functional equation gives $\Lambda'/\Lambda(s,\chi)=-\Lambda'/\Lambda(1-s,\bar\chi)$, that is,
+\begin{equation}\label{eq:FE}
+ \frac{L'}{L}(s,\chi)=-\log(3\Nm\ff)+2\log2\pi-\psi(s)-\psi(1-s)-\frac{L'}{L}(1-s,\bar\chi).
+\end{equation}
+At $s=\tfrac1{16}+it$ we have $1-s=\tfrac{15}{16}-it$; $\bar\chi$ is primitive of conductor $\ff$ and satisfies \HF, so \eqref{eq:B1} applies to it. With Lemma~\ref{lem:digamma}(b),(c) and $2\log2\pi=3.6758\ldots$,
+\[
+ \Bigl|\frac{L'}{L}(s,\chi)\Bigr|\le\log(3\Nm\ff)+3.68+\bigl(\log(|t|+2)+18.12\bigr)+\bigl(\log(|t|+2)+2.2\bigr)+22\log(3\Nm\ff)+46\log(|t|+2),
+\]
+and $3.68+18.12+2.2=24$.
+
+$\zeta_F$: by \eqref{eq:hadamardF} the subtraction \eqref{eq:subtract} acquires the extra terms $-(1/s-1/s_0)-(1/(s-1)-1/(s_0-1))$, which on $\Rea s=15/16$ are bounded by $\tfrac{16}{15}+\tfrac12+16+1=18.57$; with $\ell_F(t)=\log(|t|+2)+0.63$ and $N_F(t)\le\tfrac52\ell_F(t)$ the same computation gives $|\zeta_F'/\zeta_F(\tfrac{15}{16}+it)|\le0.4+18.57+2\log(|t|+2)+4.05+43.12\,\ell_F(t)\le46\log(|t|+2)+51$ (the constant is $50.19$). Then $\Lambda_F(s)=\Lambda_F(1-s)$ gives $\zeta_F'/\zeta_F(s)=-\log3+2\log2\pi-\psi(s)-\psi(1-s)-\zeta_F'/\zeta_F(1-s)$, and on $\Rea s=1/16$ this is at most $1.1+3.68+18.12+2.2+2\log(|t|+2)+46\log(|t|+2)+51\le48\log(|t|+2)+77$.
+\end{proof}
+
+\section{The smoothed explicit formula}\label{sec:explicit}
+
+For $x\ge1$ and a finite-order Hecke character $\chi$ modulo $\fm$ put
+\begin{equation}\label{eq:S}
+ S_\chi(x):=\sum_\fa\chi(\fa)\Lambda(\fa)\pos{1-\frac{\Nm\fa}{x}},\qquad S_1(x):=\sum_\fa\Lambda(\fa)\pos{1-\frac{\Nm\fa}{x}},
+\end{equation}
+the second sum over all nonzero integral ideals.
+
+\begin{lemma}\label{lem:explicit}
+Assume \HF. Let $\chi$ be primitive nonprincipal of conductor $\ff$ and $x\ge1$. Then
+\begin{equation}\label{eq:explicit}
+ S_\chi(x)=-\sum_\rho\frac{x^\rho}{\rho(\rho+1)}+R_\chi(x),\qquad R_\chi(x):=\frac1{2\pi i}\int_{(1/16)}\Bigl(-\frac{L'}{L}(s,\chi)\Bigr)\frac{x^s\dd s}{s(s+1)},
+\end{equation}
+the sum converging absolutely. Likewise
+\begin{equation}\label{eq:explicitF}
+ S_1(x)=\frac x2-\sum_{\rho:\,\zeta_F(\rho)=0}\frac{x^\rho}{\rho(\rho+1)}+R_1(x),\qquad R_1(x):=\frac1{2\pi i}\int_{(1/16)}\Bigl(-\frac{\zeta_F'}{\zeta_F}(s)\Bigr)\frac{x^s\dd s}{s(s+1)} .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+On $\Rea s=2$ the series $-L'/L(s,\chi)=\sum_\fa\chi(\fa)\Lambda(\fa)\Nm\fa^{-s}$ converges absolutely and $\sum_\fa\Lambda(\fa)\Nm\fa^{-2}\int_{(2)}|x^s||\dd s|/|s(s+1)|<\infty$, so (S4) with $y=x/\Nm\fa$ and Fubini give
+\begin{equation}\label{eq:perron}
+ S_\chi(x)=\frac1{2\pi i}\int_{(2)}\Bigl(-\frac{L'}{L}(s,\chi)\Bigr)\frac{x^s\dd s}{s(s+1)} .
+\end{equation}
+In the closed strip $1/16\le\Rea s\le2$ the integrand is meromorphic with poles exactly at the nontrivial zeros $\rho$: by (S1) and \eqref{eq:strip} these lie in $1/8\le\Rea s\le7/8$, so none is on the two lines; the trivial zeros are in $\Rea s\le0$; the poles $s=0,-1$ of the kernel are outside the strip; and there is no pole at $s=1$ since $\chi$ is nonprincipal. Near $\rho$ of multiplicity $m_\rho$, $-L'/L(s,\chi)=-m_\rho/(s-\rho)+O(1)$, so the residue is $-m_\rho x^\rho/(\rho(\rho+1))$.
+
+\emph{Horizontal segments.} Fix an integer $j\ge1$. The zeros with $\gamma\in[j-1,j+2]$ number at most $M_j:=N_\chi(j)+N_\chi(j+1)$ (the windows $|\gamma-j|\le1$ and $|\gamma-(j+1)|\le1$ cover $[j-1,j+2]$). Put $\delta_j=1/(4M_j+4)$. The intervals $(\gamma-\delta_j,\gamma+\delta_j)$ of these zeros have total length at most $2\delta_jM_j<1/2$, so some $T_j\in[j,j+1]$ satisfies $|T_j-\gamma|\ge\delta_j$ for all of them, and trivially $|T_j-\gamma|\ge1\ge\delta_j$ for every other zero. For $s=\sigma+iT_j$ with $1/16\le\sigma\le2$ and $s_0=2+iT_j$, the identity \eqref{eq:subtract} (with $|s_0-s|\le2$) and the same splitting as in the proof of Lemma~\ref{lem:lines} give: each zero with $|\gamma-T_j|\le1$ contributes at most $2\cdot\tfrac89\delta_j^{-1}$, and there are at most $N_\chi(T_j)$ of them; the others contribute at most $2(T_j-\gamma)^{-2}\le10/(4+(T_j-\gamma)^2)$, in total at most $10\,\ell(T_j)$. With $|\psi(s)|\le\log(T_j+2)+18.2$ (Lemma~\ref{lem:digamma}(d)), $|\psi(s_0)|\le\log(T_j+2)+1.85$ and $|L'/L(s_0)|\le0.4$, we get, uniformly in $\sigma\in[1/16,2]$,
+\[
+ \Bigl|\frac{L'}{L}(\sigma+iT_j,\chi)\Bigr|\le0.4+2\log(T_j+2)+20.1+\tfrac{16}9(4M_j+4)N_\chi(T_j)+10\,\ell(T_j)=:C_j,
+\]
+and $C_j\ll(\log(3\Nm\ff(j+2)))^2$ by Lemma~\ref{lem:zeros}(b). On the segment $\Ima s=T_j$, $1/16\le\Rea s\le2$, we have $|x^s|\le x^2$ and $|s(s+1)|\ge T_j^2$, so the integral over it is at most $2C_jx^2/T_j^2\to0$ as $j\to\infty$. The same construction applied to the zeros with $\gamma\in[-j-2,-j+1]$ (Lemma~\ref{lem:zeros} holds for negative $t$) gives heights $T_j'\in[j,j+1]$ with the same bound on the segment $\Ima s=-T_j'$.
+
+\emph{Conclusion.} Apply the residue theorem to the rectangle with vertices $\tfrac1{16}-iT_j'$, $2-iT_j'$, $2+iT_j$, $\tfrac1{16}+iT_j$ and let $j\to\infty$. The integrals over $\Rea s=2$ and $\Rea s=1/16$ converge absolutely: on $\Rea s=1/16$ the integrand is at most $(23\log(3\Nm\ff)+48\log(|t|+2)+24)x^{1/16}/(|\tfrac1{16}+it||\tfrac{17}{16}+it|)$ by \eqref{eq:B2}. The sum of residues converges absolutely because $|x^\rho/(\rho(\rho+1))|\le x^{7/8}\cdot36/(4+\gamma^2)$ by \eqref{eq:C1} below (whose proof uses only \eqref{eq:strip}) and $\sum_\rho(4+\gamma^2)^{-1}\le\ell(0)$ by Lemma~\ref{lem:zeros}(a). This proves \eqref{eq:explicit}. For $\zeta_F$ the only additional pole in the strip is $s=1$, where $-\zeta_F'/\zeta_F$ has residue $+1$, contributing $x^1/(1\cdot2)=x/2$; on the horizontal segments the extra terms of \eqref{eq:hadamardF} are bounded by $4$ since $|s|,|s-1|\ge T_j\ge1$ there, and the rest is identical with $\ell_F$, $N_F$ and \eqref{eq:BF}.
+\end{proof}
+
+\begin{lemma}\label{lem:bounds}
+Assume \HF{} and let $\chi$, $\ff$ be as in Lemma~\ref{lem:explicit}. For every nontrivial zero $\rho=\beta+i\gamma$ of $L(\cdot,\chi)$ or of $\zeta_F$,
+\begin{equation}\label{eq:C1}
+ \frac1{|\rho(\rho+1)|}\le\frac{36}{4+\gamma^2},
+\end{equation}
+hence
+\begin{equation}\label{eq:C1sum}
+ \sum_\rho\frac1{|\rho(\rho+1)|}\le36\,\ell(0)\le18\log(3\Nm\ff)\qquad\text{and}\qquad\sum_{\rho:\,\zeta_F(\rho)=0}\frac1{|\rho(\rho+1)|}\le36\,\ell_F(0)\le48 .
+\end{equation}
+For $x\ge1$,
+\begin{equation}\label{eq:C2}
+ |R_\chi(x)|\le x^{1/16}\bigl(30\log(3\Nm\ff)+92\bigr),\qquad|R_1(x)|\le159\,x^{1/16}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+If $|\gamma|\le1$ then $|\rho|\ge\beta\ge1/8$ and $|\rho+1|\ge1+\beta\ge9/8$ by \eqref{eq:strip}, so $1/|\rho(\rho+1)|\le64/9<36/5\le36/(4+\gamma^2)$; if $|\gamma|>1$ then $|\rho|,|\rho+1|\ge|\gamma|$ and $1/|\rho(\rho+1)|\le\gamma^{-2}\le5/(4+\gamma^2)$. Lemma~\ref{lem:zeros}(a) at $t=0$ gives \eqref{eq:C1sum}: $36\,\ell(0)=18\log(3\Nm\ff)+36\log2-50.4=18\log(3\Nm\ff)-25.4$ and $36\,\ell_F(0)=36(\log2+0.63)=47.64$. For \eqref{eq:C2}, on $\Rea s=1/16$ use \eqref{eq:B2}, $|x^s|=x^{1/16}$ and \eqref{eq:I0I1}:
+\[
+ |R_\chi(x)|\le\frac{x^{1/16}}{2\pi}\bigl(23I_0\log(3\Nm\ff)+48I_1+24I_0\bigr)=x^{1/16}\bigl(29.09\ldots\log(3\Nm\ff)+91.27\ldots\bigr),
+\]
+and $|R_1(x)|\le x^{1/16}(48I_1+77I_0)/(2\pi)=158.31\ldots\,x^{1/16}$ by \eqref{eq:BF}.
+\end{proof}
+
+\begin{proposition}\label{prop:A}
+Assume \HF. Let $\chi$ be a nonprincipal finite-order Hecke character modulo $\fm$, with primitive $\chi^*$ of conductor $\ff$. For $x\ge1$,
+\[
+ |S_\chi(x)|\le18\,x^{7/8}\log(3\Nm\ff)+x^{1/16}\bigl(30\log(3\Nm\ff)+92\bigr)+\omega_F(\fm)\log x .
+\]
+\end{proposition}
+
+\begin{proof}
+For $\chi^*$, Lemma~\ref{lem:explicit}, $|x^\rho|=x^\beta\le x^{7/8}$ and Lemma~\ref{lem:bounds} give $|S_{\chi^*}(x)|\le18x^{7/8}\log(3\Nm\ff)+x^{1/16}(30\log(3\Nm\ff)+92)$. By \eqref{eq:induced}, $\chi$ and $\chi^*$ agree on ideals prime to $\fm$, while $\chi$ vanishes on the others; so
+\[
+ S_\chi(x)-S_{\chi^*}(x)=-\sum_{\fp\mid\fm,\ \fp\nmid\ff}\ \sum_{k\ge1}\chi^*(\fp^k)\log\Nm\fp\,\pos{1-\frac{\Nm\fp^k}{x}},
+\]
+of absolute value at most $\sum_{\fp\mid\fm}\log\Nm\fp\cdot\#\{k\ge1:\Nm\fp^k<x\}\le\sum_{\fp\mid\fm}\log\Nm\fp\cdot\frac{\log x}{\log\Nm\fp}=\omega_F(\fm)\log x$.
+\end{proof}
+
+\begin{proposition}\label{prop:B}
+Assume \HF. For $x\ge1$, $S_1(x)\ge x/2-48\,x^{7/8}-159\,x^{1/16}$. Moreover, for the principal character $\chi_0$ modulo $\fm$,
+\begin{equation}\label{eq:principal}
+ S_{\chi_0}(x)=\sum_{(\fa,\fm)=1}\Lambda(\fa)\pos{1-\frac{\Nm\fa}{x}}\ge S_1(x)-\omega_F(\fm)\log x .
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The first assertion is \eqref{eq:explicitF} with \eqref{eq:C1sum} and \eqref{eq:C2}. For \eqref{eq:principal}, $S_1-S_{\chi_0}$ is the sum over the prime powers $\fp^k$ with $\fp\mid\fm$, $\Nm\fp^k<x$, of $\log\Nm\fp\,(1-\Nm\fp^k/x)\le\log\Nm\fp$, and there are at most $\log x/\log\Nm\fp$ such $k$ for each $\fp$.
+\end{proof}
+
+The script \texttt{anc/main\_term.py} computes $S_1(x)$ directly from the prime ideals and finds $S_1(x)/(x/2)=0.999743$, $0.999918$, $0.999996$, $0.999999$ for $x=10^4,10^5,10^6,10^7$, consistent with the main term $x/2$.
+
+\section{Proof of Theorem \texorpdfstring{\ref{thm:1}}{1}}\label{sec:thm1}
+
+Let $L=\log(3\Nm\fm)$, so $L>2.197$ by \eqref{eq:L}, and put
+\[
+ y:=36L+100\ (\ge179),\qquad x:=y^8 .
+\]
+Suppose, for a contradiction, that every prime ideal $\fp\nmid\fm$ with $\Nm\fp<x$ has class in $H$. As $H$ is a proper subgroup of the finite abelian group $\Cl_\fm$, there is a character $\chi$ of $\Cl_\fm$ with $\chi|_H=1$ and $\chi\ne1$; extend it by zero to a nonprincipal Hecke character modulo $\fm$, with primitive $\chi^*$ of conductor $\ff\mid\fm$, so that $\log(3\Nm\ff)\le L$. If $\fa$ is prime to $\fm$, $\Lambda(\fa)\ne0$ and $\Nm\fa<x$, then $\fa=\fp^k$ with $\fp\nmid\fm$ and $\Nm\fp\le\Nm\fa<x$, so $\chi(\fa)=\chi(\fp)^k=1$; and $\chi(\fa)=0$ if $\fa$ is not prime to $\fm$. Hence $S_\chi(x)=S_{\chi_0}(x)$, and by Propositions~\ref{prop:A} and~\ref{prop:B} and \eqref{eq:omega},
+\[
+ \frac x2-48x^{7/8}-159x^{1/16}-1.45L\log x\le S_{\chi_0}(x)=S_\chi(x)\le18Lx^{7/8}+x^{1/16}(30L+92)+1.45L\log x,
+\]
+that is,
+\begin{equation}\label{eq:final1}
+ \frac x2\le(18L+48)x^{7/8}+(30L+251)x^{1/16}+2.9L\log x .
+\end{equation}
+Divide by $y^7=x^{7/8}$, using $x/2=y^7(18L+50)$, $x^{1/16}=y^{1/2}$ and $\log x=8\log y$:
+\[
+ 18L+50\le18L+48+(30L+251)y^{-13/2}+23.2L(\log y)y^{-7}.
+\]
+Since $L<y/36$, the last two terms are at most $(y+251)y^{-13/2}+0.65(\log y)y^{-6}<10^{-10}$ for $y\ge179$, so the inequality is false. Therefore some prime ideal $\fp\nmid\fm$ with $\Nm\fp<x=(36L+100)^8$ has class outside $H$. Finally $36L+100\le(36+100/\log9)L=81.52\ldots L\le82L$. For the last assertion take $H=\ker\chi$, which is proper since $\chi\ne1$; its complement is exactly $\{[\fp]:\chi(\fp)\ne1\}$. The script \texttt{anc/constants.py} evaluates the ratio of the two sides of \eqref{eq:final1} on a grid of $L\in[\log9,4\cdot10^6]$; its minimum is $1.00000003$ (the ratio tends to $1$ like $(18L+50)/(18L+48)$, so the constants $36$ and $100$ are essentially forced by $18$ and $48$). \qed
+
+\section{Proof of Theorem \texorpdfstring{\ref{thm:2}}{2} and of Proposition \texorpdfstring{2$'$}{2'}}\label{sec:thm2}
+
+\begin{proof}[Proof of Theorem~\ref{thm:2}]
+For $\fm=(1)$ take $\fp=(\lambda)$, $\Nm\fp=3$. Let $\fm\ne(1)$, $L$ as before, $h=h_\fm$,
+\[
+ y:=h(36L+100)\ (\ge179),\qquad x:=y^8 .
+\]
+By orthogonality of the characters of $\Cl_\fm$ (all sums $S_\chi$ involve only ideals prime to $\fm$),
+\begin{align*}
+ \sum_{\fa\in C}\Lambda(\fa)\pos{1-\frac{\Nm\fa}{x}}&=\frac1h\sum_\chi\bar\chi(C)S_\chi(x)\ \ge\ \frac1h\Bigl[S_{\chi_0}(x)-\sum_{\chi\ne\chi_0}|S_\chi(x)|\Bigr]\\
+ &\ge\frac1h\Bigl[\frac x2-48x^{7/8}-159x^{1/16}-1.45L\log x\\
+ &\qquad\qquad-(h-1)\bigl(18Lx^{7/8}+x^{1/16}(30L+92)+1.45L\log x\bigr)\Bigr]\\
+ &\ge\frac1h\Bigl[\frac x2-h\bigl((18L+48)x^{7/8}+(30L+251)x^{1/16}+2.9L\log x\bigr)\Bigr],
+\end{align*}
+by Propositions~\ref{prop:A}, \ref{prop:B} and $\log(3\Nm\ff_\chi)\le L$. The prime powers $\fp^k$ with $k\ge2$ in $C$ contribute at most $\sum_{\Nm\fp<\sqrt x}\log\Nm\fp\cdot\#\{k\ge2:\Nm\fp^k<x\}\le\#\{\fp:\Nm\fp<\sqrt x\}\log x\le2\sqrt x\log x$, since there are at most two prime ideals above each rational prime $p\le\Nm\fp$ and $\pi(u)\le u$. Hence
+\[
+ \sum_{\fp\in C,\ \Nm\fp<x}\log\Nm\fp\Bigl(1-\frac{\Nm\fp}x\Bigr)\ge\frac1h\Bigl[\frac x2-h\bigl((18L+48)x^{7/8}+(30L+251)x^{1/16}+2.9L\log x+2\sqrt x\log x\bigr)\Bigr].
+\]
+Now $x/2-h(18L+48)x^{7/8}=hy^7(18L+50)-hy^7(18L+48)=2hy^7$, and the remaining terms divided by $hy^7$ are $(30L+251)y^{-13/2}+23.2L(\log y)y^{-7}+16(\log y)y^{-3}<10^{-4}$ for $y\ge179$ (and $L<y/36$). So the bracket is at least $hy^7(2-10^{-4})>0$, and $C$ contains a prime ideal of norm less than $x$. The bound $h_\fm\le\Nm\fm$ is \eqref{eq:hm}, and $36L+100\le82L$ for $\fm\ne(1)$ as before.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~2$'$]
+Since each prime ideal lies above a rational prime $p\le\Nm\fp$ and at most two prime ideals lie above each $p$, $\#\{\fp:\Nm\fp\le u\}\le2\pi(u)\le2u$. If $2u<h_\fm$, some class of $\Cl_\fm$ contains no prime ideal of norm at most $u$; take $u=(h_\fm-1)/2$. For $\fm=\fq$ prime, \eqref{eq:hm} gives $h_\fq\ge(\Nm\fq-1)/6$ and $(h_\fq-1)/2\ge(\Nm\fq-7)/12$, which is not $O((\log\Nm\fq)^C)$ for any $C$.
+\end{proof}
+
+\begin{remark}\label{rem:LO}
+For the ray class field $L_\fm$ of $F$ modulo $\fm$, the conductor--discriminant formula \cite[Chapter~VII, \S11]{neukirch1999} gives $\log d_{L_\fm}=h_\fm\log3+\sum_\chi\log\Nm\ff_\chi\le h_\fm\log(3\Nm\fm)$, the sum over the characters of $\Cl_\fm$. So the bound of Theorem~\ref{thm:2} has the shape $(\log d_{L_\fm})^8$ of the Lagarias--Odlyzko bound $(\log d_L)^2$ under GRH \cite{lo1977} with $2$ replaced by $8$. Improving the factor $h_\fm^8$ would require a zero-density estimate for Hecke $L$-functions of $F$ near $\Rea s=7/8$, which the half-plane alone does not contain; this is not attempted here.
+\end{remark}
+
+\section{Cubic residues modulo a prime ideal: Theorem \texorpdfstring{\ref{thm:3}}{3}}\label{sec:cubic}
+
+Let $\pi$ be a prime ideal of $\cO$ with $\pi\ne(\lambda)$. Then $\Nm\pi\equiv1\pmod3$ (split primes have $\Nm\pi=p\equiv1\pmod3$, inert ones $\Nm\pi=\ell^2\equiv1\pmod3$), and for $\alpha\in\cO$ prime to $\pi$ the cubic residue symbol $\cubic{\alpha}{\pi}\in\mu_3$ is defined as the unique cube root of unity congruent to $\alpha^{(\Nm\pi-1)/3}$ modulo $\pi$ \cite[Chapter~9]{irelandrosen1990}; it depends only on $\alpha$ modulo $\pi$, is multiplicative in $\alpha$, and equals $1$ exactly when $\alpha$ is a cube modulo $\pi$ (as $(\cO/\pi)^\times$ is cyclic of order $\Nm\pi-1$). It is \emph{not} a function of the ideal $(\alpha)$: $\cubic{\pm1}{\pi}=1$, but $\cubic{\omega}{\pi}=\omega^{(\Nm\pi-1)/3}$, which is $\ne1$ unless $\Nm\pi\equiv1\pmod9$. The usual remedy is to normalise the generator.
+
+\begin{lemma}\label{lem:oneprimary}
+The reduction map $\mu_6\to(\cO/3)^\times$ is a bijection. Hence every ideal $\fa$ prime to $3$ has a unique generator $\alpha_1(\fa)\equiv1\pmod3$, and $\alpha_1(\fa\fb)=\alpha_1(\fa)\alpha_1(\fb)$.
+\end{lemma}
+
+\begin{proof}
+$|(\cO/3)^\times|=\Nm(3)-\Nm(\lambda)=9-3=6$. The map is injective: two distinct elements of $\mu_6$ differ by $u(\zeta-1)$ with $u\in\mu_6$ and $\zeta\in\mu_6\setminus\{1\}$, and $\Nm(\zeta-1)=|\zeta-1|^2\in\{1,3,4\}$ is not divisible by $\Nm(3)=9$, so $\zeta-1\notin3\cO$. A bijection between sets of six elements. The six associates $u\alpha$ ($u\in\mu_6$) of a generator $\alpha$ of $\fa$ therefore have pairwise distinct residues modulo $3$, exhausting $(\cO/3)^\times$, so exactly one is $\equiv1$. Multiplicativity follows from uniqueness. (The classical ``primary'' generator $\equiv2\pmod3$ is $-\alpha_1(\fa)$ and gives the same cubic symbols.)
+\end{proof}
+
+\begin{lemma}\label{lem:psi}
+Let $\pi\ne(\lambda)$ be a prime ideal. Then $\psi_\pi(\fa):=\cubic{\alpha_1(\fa)}{\pi}$, for $\fa$ prime to $3\pi$, is a character of $\Cl_{3\pi}$ of order exactly $3$.
+\end{lemma}
+
+\begin{proof}
+$\psi_\pi$ is multiplicative by Lemma~\ref{lem:oneprimary} and the multiplicativity of the symbol. It is trivial on $P_{3\pi,1}$: if $\fa=(\alpha)$ with $\alpha\equiv1\pmod{3\pi}$ then $\alpha\equiv1\pmod3$, so $\alpha=\alpha_1(\fa)$, and $\alpha\equiv1\pmod\pi$ gives $\cubic{\alpha}{\pi}=1$. So $\psi_\pi$ is a character of $\Cl_{3\pi}=I^{(3\pi)}/P_{3\pi,1}$ with values in $\mu_3$. It is nontrivial: $(\cO/\pi)^\times$ is cyclic of order divisible by $3$, so some $\alpha_0$ has $\cubic{\alpha_0}{\pi}\ne1$; by the Chinese remainder theorem (the ideals $(3)$ and $\pi$ are coprime) choose $\alpha\equiv\alpha_0\pmod\pi$, $\alpha\equiv1\pmod3$; then $\alpha_1((\alpha))=\alpha$ and $\psi_\pi((\alpha))=\cubic{\alpha_0}{\pi}\ne1$.
+\end{proof}
+
+The script \texttt{anc/lemma5.py} checks, for eight prime ideals $\pi$ of norms $4$, $7$, $13$, $25$, $31$, $37$, $73$, $121$ (split and inert), that $\psi_\pi$ is constant on ray classes modulo $3\pi$ and multiplicative ($14\,355$ random instances, no violation) and takes all three values; it also finds that the $\lambda$-part of the conductor of $\psi_\pi$ is $\lambda^2$ when $\Nm\pi\not\equiv1\pmod9$ and trivial when $\Nm\pi\equiv1\pmod9$.
+
+\begin{proof}[Proof of Theorem~\ref{thm:3}]
+Apply Theorem~\ref{thm:1} with $\fm=(3)\pi$ and $H=\ker\psi_\pi$, which is a proper subgroup by Lemma~\ref{lem:psi}. Here $\Nm\fm=9\Nm\pi$ (as $\Nm\pi$ is prime to $3$), so $3\Nm\fm=27\Nm\pi$. The conclusion is a prime ideal $\fp\nmid3\pi$ with $\psi_\pi(\fp)\ne1$, that is, with $\cubic{\alpha_1(\fp)}{\pi}\ne1$, and $\Nm\fp<(36\log(27\Nm\pi)+100)^8$.
+\end{proof}
+
+\begin{remark}\label{rem:rational}
+(i) If $\pi=(\ell)$ is inert ($\ell\equiv2\pmod3$, $\Nm\pi=\ell^2$), every rational integer prime to $\ell$ is a cube modulo $\pi$: for $n\in\mathbb F_\ell^\times\subset\mathbb F_{\ell^2}^\times$, $n^{(\ell^2-1)/3}=(n^{\ell-1})^{(\ell+1)/3}=1$ because $3\mid\ell+1$. So ``least rational cubic non-residue modulo $\pi$'' is void for inert $\pi$, and Theorem~\ref{thm:3} is the only content there.
+(ii) If $\pi$ is split ($\Nm\pi=p\equiv1\pmod3$, $\cO/\pi=\mathbb F_p$), then $n\mapsto\cubic{n}{\pi}$ on $\Z$ is the cubic Dirichlet character modulo $p$ attached to $\pi$, and the least positive integer $n$ with $\cubic{n}{\pi}\ne1$ is the least non-residue of that character. This is a statement about Dirichlet $L$-functions, covered by the public Dirichlet consequence $O((\log p)^8)$ of the $7/8$ half-plane (Section~\ref{sec:dirichlet}); Theorem~\ref{thm:3} adds nothing to it. What Theorem~\ref{thm:3} gives is the ideal-theoretic statement, a prime \emph{element} $\alpha\equiv1\pmod3$ of small norm that is a non-residue; $\psi_\pi$ is a ray class character of $F$ whose restriction to $\Z$ is only part of it.
+\end{remark}
+
+\begin{remark}\label{rem:mod9}
+If $\Nm\pi\equiv1\pmod9$ then $\cubic{u}{\pi}=1$ for every $u\in\mu_6$, so $\fa\mapsto\cubic{\alpha}{\pi}$ (any generator $\alpha$) is already a character of $\Cl_\pi$, hence of $\Cl_{\lambda\pi}$, and Theorem~\ref{thm:1} with $\fm=\lambda\pi$ ($3\Nm\fm=9\Nm\pi$) gives $\Nm\fp<(36\log(9\Nm\pi)+100)^8$ in Theorem~\ref{thm:3}. (The modulus $\pi$ alone does not suffice: the prime ideal it yields may be $(\lambda)$, which has no generator $\equiv1\pmod3$; for $\pi=(19,\omega-7)=(5+2\omega)$ one has $\cubic{\lambda}{\pi}=\omega^2\ne1$, checked in \texttt{anc/lemma5.py}.)
+\end{remark}
+
+\section{Kummer extensions: Theorem \texorpdfstring{\ref{thm:4}}{4} and Corollary \texorpdfstring{4$'$}{4'}}\label{sec:kummer}
+
+Let $a\in\cO$, $a\ne0$, not a cube in $F$. Since $\mu_3\subset F$, the polynomial $X^3-a$ is irreducible over $F$ and $K:=F(\theta)$, $\theta^3=a$, is a cyclic extension of degree $3$, unramified outside the prime ideals dividing $3a$ (the discriminant of $X^3-a$ is $-27a^2$).
+
+\begin{lemma}\label{lem:conductor}
+The conductor $\ff(K/F)$ divides $(9a)$.
+\end{lemma}
+
+\begin{proof}
+The conductor is $\prod_\fp\fp^{f_\fp}$, where $f_\fp$ is the conductor exponent of the local abelian extension $K_\fP/F_\fp$ ($\fP\mid\fp$), namely the least $n\ge0$ with $U^{(n)}_\fp\subset N_{K_\fP/F_\fp}(K_\fP^\times)$, $U^{(0)}_\fp=\cO_\fp^\times$, $U^{(n)}_\fp=1+\fp^n\cO_\fp$ \cite[Chapter~V, \S1, and Chapter~VI, \S6]{neukirch1999}; $f_\fp=0$ if and only if $\fp$ is unramified, and $f_\fp\le1$ if $\fp$ is tamely ramified\footnote{Equivalently, by the definition of the Artin conductor, the exponent is $1$ when the higher ramification groups $G_i$, $i\ge1$, are trivial \cite[Chapter~VI, \S2; Chapter~XV, \S2]{serre1979}.}. For $\fp\nmid3a$ the extension is unramified, so $f_\fp=0$. For $\fp\mid a$, $\fp\ne(\lambda)$, the residue characteristic is prime to $3=[K:F]$, so the ramification is tame and $f_\fp\le1\le v_\fp(a)=v_\fp(9a)$. At $\fp=(\lambda)$ we claim $U^{(4)}_\lambda\subset(F_\lambda^\times)^3$. Let $u=1+x$ with $v_\lambda(x)=n\ge4$ and $g(Y)=(1+Y)^3-u=Y^3+3Y^2+3Y-x$. With $y_0=x/3$ (note $v_\lambda(3)=2$, so $v_\lambda(y_0)=n-2\ge2$) we get $g(y_0)=y_0^2(y_0+3)$, of valuation at least $2(n-2)+2=2n-2\ge6$ (as $v_\lambda(y_0+3)\ge2$), and $g'(y_0)=3(1+y_0)^2$, of valuation $2$. Since $v_\lambda(g(y_0))>2v_\lambda(g'(y_0))$, Hensel's lemma \cite[Chapter~II, \S2]{lang1994} gives $y\in\cO_\lambda$ with $g(y)=0$, so $u=(1+y)^3$. As $[K_\fP:F_\lambda]\in\{1,3\}$, the norm group contains $(F_\lambda^\times)^3\supset U^{(4)}_\lambda$, hence $f_\lambda\le4=v_\lambda(9)\le v_\lambda(9a)$.
+\end{proof}
+
+The script \texttt{anc/kummer\_conductor.py} determines empirically, for $18$ values of $a$ (rational and not), the least modulus $\lambda^k\prod_{\fq\mid a,\fq\ne\lambda}\fq$ on whose ray classes $\fp\mapsto\cubic{a}{\fp}$ is constant (tested on all prime ideals of norm up to $60\,000$): the $\lambda$-exponent is $0$, $2$, $3$ or $4$, with $4$ attained for $a=3,6,12,\lambda,2+\omega,-3,9$, and every tame prime dividing $a$ is needed with exponent $1$. So the bound $\ff(K/F)\mid(9a)$ is consistent with these cases and $9$ cannot be replaced by $3$.
+
+\begin{lemma}\label{lem:artin}
+For a prime ideal $\fp\nmid3a$ with $\fP\mid\fp$ in $K$, the Frobenius $\Frob_\fp\in\Gal(K/F)$ satisfies $\Frob_\fp(\theta)=\cubic{a}{\fp}\theta$. Consequently $\chi_a(\fp):=\cubic{a}{\fp}$ ($\fp\nmid3a$), extended by zero, is a finite-order Hecke character modulo $(9a)$ of order exactly $3$.
+\end{lemma}
+
+\begin{proof}
+$\Frob_\fp$ acts on $\cO_K/\fP$ as $x\mapsto x^{\Nm\fp}$, so $\Frob_\fp(\theta)\equiv\theta^{\Nm\fp}=\theta\,a^{(\Nm\fp-1)/3}\equiv\cubic{a}{\fp}\theta\pmod\fP$ (recall $\Nm\fp\equiv1\pmod3$ as $\fp\ne(\lambda)$). Both $\Frob_\fp(\theta)/\theta$ and $\cubic{a}{\fp}$ lie in $\mu_3$, and distinct cube roots of unity are distinct modulo $\fP$, their differences being unit multiples of $\lambda$ and $\fP\nmid\lambda$. Hence $\Frob_\fp(\theta)=\cubic{a}{\fp}\theta$: the cubic residue symbol is the Artin symbol composed with the Kummer isomorphism $\Gal(K/F)\cong\mu_3$, $\sigma\mapsto\sigma(\theta)/\theta$ (cf.\ \cite[Chapter~4]{lemmermeyer2000}). By the Artin reciprocity law \cite[Chapter~VI, \S7]{neukirch1999} the map $\fp\mapsto\Frob_\fp$ factors through $\Cl_\fm$ for every $\fm$ divisible by $\ff(K/F)$, in particular for $\fm=(9a)$ by Lemma~\ref{lem:conductor}, and induces a surjection $\Cl_\fm\to\Gal(K/F)$. So $\chi_a$ is a character of $\Cl_{(9a)}$ whose image is $\mu_3$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:4}]
+Apply Theorem~\ref{thm:1} with $\fm=(9a)$ and $H=\ker\chi_a$, proper by Lemma~\ref{lem:artin}. Here $\Nm\fm=\Nm(9)\Nm a=81\Nm a$ and $3\Nm\fm=243\Nm a$. The prime ideal obtained satisfies $\fp\nmid9a$, that is, $\fp\nmid3a$, and $\chi_a(\fp)=\cubic{a}{\fp}\ne1$.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~4$'$]
+Let $a\in\Z$ be a non-cube, so $a\ne0$ and $|a|\ge2$. If $a$ were a cube $\beta^3$ with $\beta\in F$, then $a^2=N_{F/\Q}(a)=N_{F/\Q}(\beta)^3$ would be the cube of a rational number, so $2v_p(a)\equiv0\pmod3$, hence $3\mid v_p(a)$, for every prime $p$, and $|a|$ would be a cube in $\Z$, hence so would $a=\pm|a|$ (as $-1=(-1)^3$). So $a$ is not a cube in $F$, and $\Nm a=a^2$. Theorem~\ref{thm:4} gives a prime ideal $\fp\nmid3a$ with $\cubic{a}{\fp}\ne1$ and $\Nm\fp<(36\log(243a^2)+100)^8$. By Remark~\ref{rem:rational}(i), $\fp$ is not inert (for an inert $\fp=(\ell)$, $\ell\nmid a$, the rational integer $a$ is a cube modulo $\fp$); and $\fp\ne(\lambda)$. So $\fp$ has degree one: $\Nm\fp=p\equiv1\pmod3$, $p\nmid a$ (since $\fp\nmid a$ and $p\in\fp$), and $\cO/\fp=\Z/p$. Then $\cubic{a}{\fp}\ne1$ means $a^{(p-1)/3}\not\equiv1\pmod\fp$, i.e.\ $a^{(p-1)/3}\not\equiv1\pmod p$, i.e.\ $a$ is not a cube modulo $p$ ($\mathbb F_p^\times$ is cyclic). Finally $36\log(243a^2)+100=72\log|a|+36\log243+100$ with $36\log243+100=297.7502\ldots<297.76$, and for $|a|\ge2$, $72\log|a|+297.76\le(72+297.76/\log2)\log|a|=501.58\ldots\log|a|\le502\log|a|$.
+\end{proof}
+
+\begin{remark}\label{rem:hecke}
+For $p\equiv1\pmod3$, ``$a$ is a cube modulo $p$'' is the condition that $p$ splits completely in $\Q(\omega,a^{1/3})$, an $S_3$-extension of $\Q$ when $a$ is not a cube. This condition is not periodic in $p$, so $p\mapsto[a\text{ is a cube mod }p]$ is not described by Dirichlet characters, and the half-plane for Dirichlet $L$-functions gives nothing here; it is described by the ray class character $\chi_a$ of $F$ evaluated at the primes above $p$ (cubic reciprocity makes the same point: $\cubic{a}{\pi}$ is a function of $\pi$ modulo $9a$ up to the supplementary laws). Nothing in the proof above uses cubic reciprocity. Under GRH, the Lagarias--Odlyzko theorem \cite{lo1977} applied to $\Q(\omega,a^{1/3})/\Q$ (degree $6$) gives the shape $(\log|a|)^2$, and the explicit form of Bach and Sorenson \cite{bs1996}, for a Galois extension $L/K$ and a degree-one prime with prescribed Artin symbol, is $\Nm\fp\le(4\log d_L+2.5n_L+5)^2$ as quoted in the introduction of \cite{ahnkwon2019} (we have not checked it against the original); unconditionally, the theorem of Lagarias, Montgomery and Odlyzko \cite{lmo1979} and its explicit forms (Section~\ref{sec:classical}) give a fixed power of $d_L$, that is, of $|a|$; Hu's Corollary~9.6 (Section~\ref{sec:other}) states the shape $(\log d_L+n_L)^8$ with an unspecified constant.
+\end{remark}
+
+\section{Numerical section}\label{sec:numerics}
+
+\subsection{Small \texorpdfstring{$a$}{a}}\label{sec:smalla}
+For an integer $a\ge2$ that is not a cube let $p(a)$ be the least prime $p\equiv1\pmod3$ with $p\nmid a$ modulo which $a$ is not a cubic residue; since $-1$ is a cube, $p(-a)=p(a)$. Table~\ref{tab:small} lists $p(a)$ for $a\le40$ and Table~\ref{tab:records} the record values up to $20\,000$. The script \texttt{anc/small\_cases.py} computes $p(a)$ for every non-cube $2\le a\le20\,000$: the maximum is $p(2478)=73$, and $p(a)<(36\log(243a^2)+100)^8$ throughout (the bound at $a=2478$ is $3.0\cdot10^{23}$). It also checks Remark~\ref{rem:rational}(i) (no rational $2\le a<300$ is a non-residue modulo an inert prime $5\le\ell<400$) and that, for $a=2,3,5,6,7,10$, the least norm of a prime ideal $\fp\nmid3a$ with $\cubic{a}{\fp}\ne1$ (the quantity of Theorem~\ref{thm:4}) equals $p(a)$. Since the bounds exceed $10^{18}$, these checks test the constants' consistency with the data, not the input theorem.
+
+\begin{table}[ht]
+\centering\small
+\caption{$p(a)$ for non-cubes $2\le a\le40$.}\label{tab:small}
+\begin{tabular}{l*{18}{r}}
+\toprule
+$a$ & 2 & 3 & 4 & 5 & 6 & 7 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20\\
+$p(a)$ & 7 & 7 & 7 & 7 & 13 & 13 & 7 & 7 & 7 & 7 & 19 & 19 & 13 & 7 & 7 & 7 & 7 & 13\\
+\midrule
+$a$ & 21 & 22 & 23 & 24 & 25 & 26 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 & 39\\
+$p(a)$ & 19 & 13 & 7 & 7 & 7 & 7 & 13 & 13 & 7 & 7 & 7 & 7 & 19 & 13 & 13 & 7 & 7 & 7\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering\small
+\caption{Record values of $p(a)$ for $2\le a\le20\,000$ ($p(40)=7$).}\label{tab:records}
+\begin{tabular}{l*{8}{r}}
+\toprule
+$a$ & 2 & 6 & 13 & 57 & 77 & 714 & 806 & 2478\\
+$p(a)$ & 7 & 13 & 19 & 31 & 37 & 43 & 61 & 73\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The archimedean factor and the conductor}\label{sec:gamma}
+The constant $\tfrac12\log D-\log2\pi$ in Lemma~\ref{lem:zeros} depends on the normalisation of (S1). To check it on an example, let $\chi_2(\fp)=\cubic{2}{\fp}$, the Artin character of $F(2^{1/3})/F$; by \texttt{anc/kummer\_conductor.py} its conductor is $(6)$ ($\lambda$-exponent $2$, exponent $1$ at the inert prime $(2)$), so $\Nm\ff=36$ and $D=108$. With the Dirichlet coefficients $a_n=\sum_{\Nm\fa=n}\chi_2(\fa)$ and $\vartheta(y)=\sum_na_ne^{-2\pi ny/\sqrt D}$ one has $\Lambda(s,\chi_2)=(\sqrt D/2\pi)^s\Gamma(s)L(s,\chi_2)=\int_0^\infty\vartheta(y)y^{s}\dd y/y$, and the functional equation $\Lambda(s)=W\Lambda(1-s)$ is equivalent to $\vartheta(1/y)=Wy\vartheta(y)$. The script \texttt{anc/hecke\_fe.py} finds $\vartheta(1/y)/(y\vartheta(y))=1$ to $30$ digits at $y=1.1,1.3,0.95,1.7$ with $D=108$ (so $W(\chi_2)=1$), whereas $D\in\{12,27,36,324\}$ give ratios that differ from $1$ by at least $0.46$ at one of these $y$. This confirms, for $\chi_2$, the archimedean factor $\Gamma_\C$ and the conductor normalisation $D=3\Nm\ff$, and that $\chi_2$ is a finite-order Hecke character in the sense of \cite{openai2026q}.
+
+\subsection{The lemmas on an example}\label{sec:lemmas-numeric}
+Using the incomplete-gamma expansion of $\Lambda(s,\chi_2)$ (with $W=1$), \texttt{anc/hecke\_lines.py} evaluates $|L'/L(s,\chi_2)|$ at ten heights $t\le18$: on $\Rea s=15/16$ the values are at most $0.6\%$ of the bound \eqref{eq:B1}, and on $\Rea s=1/16$ at most $9.5\%$ of \eqref{eq:B2} (the largest value, $15.66$ at $t=0$, is the contribution $\approx16$ of the trivial zero at $s=0$). \texttt{anc/hecke\_zeros.py} locates $12$ sign changes of the real function $\Lambda(\tfrac12+it,\chi_2)$ for $0<t\le16$ (ordinates $2.85$, $4.55$, $6.15$, $7.25$, \ldots); the resulting count in every window $|\gamma-t|\le1$, $t\le15$, stays at least $4.09$ below the bound of Lemma~\ref{lem:zeros}(b) (zeros off the line would be missed, so this is a sanity check of the size of the constants, not a proof). For $\zeta_F$, \texttt{anc/zetaF.py} finds $|\zeta_F'/\zeta_F|$ at most $20.5\%$ of \eqref{eq:BF} on $\Rea s=15/16$ and $2.9\%$ on $\Rea s=1/16$ for $t\le40$, and the count of zeros of $\zeta$ and $L(\cdot,\chi_{-3})$ (seven and thirteen with $0<\gamma\le42$) in $|\gamma-t|\le1$ at least $3.31$ below the bound. All bounds of Lemmas~\ref{lem:zeros} and~\ref{lem:lines} are thus loose by a large factor; the constants in the theorems could be reduced by a more careful kernel and zero count, which is not attempted.
+
+\section{Comparison with other results}\label{sec:related}
+
+Nothing in this section is used in the proofs. Each source is described by what it states; none of the preprints is verified here.
+
+\subsection{The input}\label{sec:input}
+Theorem~1.1 of \cite{openai2026q} is quoted in the introduction; by the definition on p.~4 of that paper, a finite-order Hecke character is a character of the ray class group modulo any nonzero ideal $\ff$ extended by zero, so imprimitive characters and every modulus are covered, and there is no implied constant to track. The Lean scope document \cite{openai2026lean} states that the formalization gives the same bound for finite-order Hecke $L$-functions over $\Q(\sqrt{-3})$, principal poles excluded; the comparator statement it links, \texttt{HeckeSevenEighths.lean} at the pinned commit \cite{openai2026heckelean}, quantifies over every nonzero modulus $\fm$ and every multiplicative character of $\cO/\fm$ trivial on the units, that is, over all characters of $\Cl_\fm$ (that file states the theorem; its proof is not in the file). The stated application of the half-plane in \cite{openai2026q} in this direction is its Corollary~1.2, a bound $C(\log p)^A$ for the least quadratic non-residue (``for example with $A=32$''); we found no statement there about least prime ideals in ray classes or cubic non-residues.
+
+\subsection{The Dirichlet analogue}\label{sec:dirichlet}
+The Dirichlet analogue of Theorem~\ref{thm:1} under a half-plane $\Rea s>\Theta$ is Bach's theorem \cite{bach1982}, with exponent $1/(1-\Theta)$ (we read Bach's two papers in the transcriptions kept in Sandlund's repository \cite{sandlund2026}, not in the printed originals); Pathak \cite{pathak2024} states, according to his abstract, upper bounds for least character non-residues contingent on zero-free regions inside the critical strip, and \cite{sandlund2026} describes his Theorem~2 as a general character bound with the exponent $1/(1-\Theta)$. For $\Theta=7/8$ the bound is stated in the following public sources. The README of the repository paper \cite{guo2026lg} lists, in its summary of Part~II, among the consequences of inserting the Dirichlet half-plane $\Rea s>7/8$ into results of Pintz, Chen--Gupta--Li, Montgomery--Vaughan and Martin: ``the least non-residue of a non-principal character modulo $q$ is $O((\log q)^8)$'' and ``the least primitive root and the least prime primitive root modulo $p$ are $O((\log p)^{24})$''; it also says that the memo of Sandlund precedes it and that two notes in another repository (\texttt{teal-sea/zeta-lab}) state $n(\chi)\le(\log q)^8$ for every non-principal character modulo $q\ge3$. The README of Sandlund's repository \cite{sandlund2026} (research memo of 7 October 2026, ``Algorithmic consequences of a fixed zero-free half-plane'') takes as premise a zero-free boundary $1-\delta$ for all primitive Dirichlet $L$-functions, states that the analytic proof has not been independently audited there, and gives in a table the bound $O_\delta(\log(2m)^{1/\delta})$, exponent $8$ for $\delta=1/8$, for the least prime outside a proper subgroup of $(\Z/m\Z)^\times$, and $O_\delta(\log(2p)^{3/\delta})$, exponent $24$, for the least prime primitive root by a separate Shoup sieve argument. The same README credits the conditional implication to Bach's 1982 paper (printed p.~293) and to Pathak, and the classification table of the memo lists ``ray-class applications over $\Q(\sqrt{-3})$'' as covered by the OpenAI Hecke family but not carried out there. The rational case of Theorem~\ref{thm:3} for split $\pi$ (Remark~\ref{rem:rational}(ii)) is contained in these statements; Theorems~\ref{thm:1}--\ref{thm:4} concern ray class characters of $F$.
+
+\subsection{Smaller boundaries and other fields}\label{sec:other}
+The preprint \cite{guo2026zf} states the boundary $\sigma_\dagger=0.8749570194\ldots$ for Dirichlet $L$-functions and for finite-order Hecke $L$-functions over $\Q(\sqrt{-3})$. Liu \cite{liu2026} (arXiv:2610.26835, 19 October 2026) states in the abstract that an earlier preprint of his gave the boundary $0.874957019\ldots$ (the value $\sigma_\dagger$) for Dirichlet $L$-functions and finite-order Hecke $L$-functions over $\Q(\sqrt{-3})$, and a boundary $B^\flat=0.874886647\ldots$, the root near $0.8749$ of a quartic polynomial, for every finite-order Hecke $L$-function over every number field, obtained over cyclotomic fields containing $\mu_{12}$ and then by class-field descent; no least-prime applications are stated in the abstract. Cureton and Thorner \cite{ct2026} state the half-plane $\Rea s>31/32$ for every Dedekind zeta function and, wherever holomorphic, for every finite-order Hecke $L$-function over every number field, proved and formalized in Lean according to their abstract; with $\theta=31/32$ the method of this paper, with the two lines of Lemma~\ref{lem:lines} moved closer to the boundary of the strip, would give exponent $32$ over every number field, which is not carried out here. If \HF{} is replaced by a half-plane $\Rea s>\theta$ with $\theta\le7/8$, the proofs above go through unchanged except that $x^{7/8}$ becomes $x^{\theta}$ in Propositions~\ref{prop:A} and~\ref{prop:B} (the strip \eqref{eq:strip} shrinks, and \eqref{eq:C1} and \eqref{eq:B1} only use $\beta\ge1/8$ and $\beta\le7/8$), so \eqref{eq:final1} gives $x^{1-\theta}\le36L+96+o(1)$ and the exponent $8$ becomes $1/(1-\theta)$: $7.9973\ldots$ for $\sigma_\dagger$ and $7.9928\ldots$ for $B^\flat$ (\texttt{anc/constants.py}). If Liu's statement is accepted, Theorems~\ref{thm:1} and~\ref{thm:2} transfer to every number field $K$ by the same proof, with constants depending on the degree and discriminant of $K$ through the archimedean factors, the value of $-\zeta_K'/\zeta_K(2)$ and the zero count; Theorems~\ref{thm:3} and~\ref{thm:4} need $\mu_3\subset K$. This is not carried out here. Hu \cite{hu2026} (Hexagon 2610.00216v1, 13 October 2026) states in the abstract that for every number field $F$ and every finite-dimensional continuous unitary representation of the Weil group $W_F$ the $L$-function has no zeros in $\Rea s>7/8$, the rank-one case being every unitary Hecke character of every number field, including characters of infinite order; the abstract lists an effective Chebotarev theorem among the consequences, and Corollary~9.6 there states that for every finite Galois extension $L/F$ of number fields and every conjugacy class $C$ there is an unramified prime ideal of $F$ with Frobenius class $C$ and norm $\ll(\log(e\,d_L)+n_L)^8$, with an absolute, effectively computable implied constant. Applied to the ray class field of $\fm$ and to $F(a^{1/3})/F$, that statement would give Theorems~\ref{thm:2} and~\ref{thm:4} and Corollary~4$'$ up to the values of the constants (and Theorem~\ref{thm:1} when the index $[\Cl_\fm:H]$ is bounded); its proof uses Hecke $L$-functions over extensions of $F$, so it needs more than \HF. The abstract page states that the text was generated predominantly by AI language models and that the complete proof has not been independently verified by a human. We only report this.
+
+\subsection{Classical results}\label{sec:classical}
+Under GRH: Ankeny \cite{ankeny1952} (least non-residue of a nonprincipal character modulo $p$ is $O(\log^2p)$), Bach \cite{bach1990} (explicit constants: $3\log^2m$ for the least integer prime to $m$ outside a proper subgroup of $(\Z/m\Z)^\times$, Theorem~3, and the number-field bounds of Theorem~4 quoted in the introduction), Bach \cite{bach1982} (exponent $1/(1-\Theta)$ under a half-plane, quoted in the introduction), Lamzouri, Li and Soundararajan \cite{lls2015} (explicit bounds for the least quadratic non-residue and the least prime in a progression), Lagarias--Odlyzko \cite{lo1977} and Bach--Sorenson \cite{bs1996} (prime ideals with prescribed Frobenius, $O((\log d_L)^2)$ and explicit). Theorems~\ref{thm:1} and~\ref{thm:2} are the $7/8$ analogues of these with exponent $8$ (Remark~\ref{rem:LO}); Theorem~\ref{thm:4} is the analogue of the Chebotarev bound for $\Q(\omega,a^{1/3})$ (Remark~\ref{rem:hecke}). Unconditionally, Lagarias, Montgomery and Odlyzko \cite{lmo1979} proved that a prime ideal with prescribed Frobenius exists with norm at most $d_L^{B}$ for an absolute $B$; Weiss \cite{weiss1983} proved Linnik-type bounds for the least prime ideal in a ray class, uniform in the field; Thorner and Zaman \cite{tz2017} gave explicit versions; and Ahn and Kwon \cite{ahnkwon2019} proved the explicit bound $d_L^{12577}$. For Theorem~\ref{thm:4} these give a fixed power of $|a|$.
+
+\subsection{What is not proved}\label{sec:notproved}
+Nothing with exponent better than $8$; nothing better than $h_\fm^8$ in Theorem~\ref{thm:2}, which would need zero-density information (Remark~\ref{rem:LO}); nothing about the rational least cubic non-residue beyond the Dirichlet statement (Remark~\ref{rem:rational}); nothing over fields other than $\Q(\sqrt{-3})$. The constants $36$ and $100$ come from the crude pointwise bound \eqref{eq:C1} and the zero count at height $0$, and could be lowered substantially.
+
+\section{Ancillary files}\label{sec:anc}
+The directory \texttt{anc/} contains Python~3 scripts (\texttt{mpmath}, \texttt{numpy}, \texttt{scipy}, \texttt{sympy}), each printing one summary line (\texttt{-v} for details), their outputs, and \texttt{run\_all.sh}. \texttt{constants.py}: \eqref{eq:zF2}, \eqref{eq:I0I1}, every constant of Lemmas~\ref{lem:zeros}--\ref{lem:bounds}, the inequalities of Sections~\ref{sec:thm1} and~\ref{sec:thm2} on a grid, $c_0$ and $502$, and the exponents of Section~\ref{sec:other}. \texttt{digamma.py}: Lemma~\ref{lem:digamma} on grids and Binet's formula at six points. \texttt{main\_term.py}: $S_1(x)$ against $x/2$ and Proposition~\ref{prop:B}. \texttt{lemma5.py}: Lemma~\ref{lem:psi} and the conductor of $\psi_\pi$ at $\lambda$. \texttt{kummer\_conductor.py}: the conductor of $F(a^{1/3})/F$ for $18$ values of $a$. \texttt{small\_cases.py}: Section~\ref{sec:smalla}. \texttt{zetaF.py}, \texttt{hecke\_fe.py}, \texttt{hecke\_lines.py}, \texttt{hecke\_zeros.py}: Sections~\ref{sec:gamma} and~\ref{sec:lemmas-numeric}; \texttt{zw.py} and \texttt{hecke\_chi2.py} are the libraries (arithmetic in $\Z[\omega]$, cubic symbol, coefficients of $L(s,\chi_2)$). The scripts check arithmetic and sanity; the proofs are in the text, and \HF{} is not checked anywhere in this paper.
+
+\begingroup\raggedright
+\bibliographystyle{unsrt}
+\bibliography{references}
+\endgroup
+\section*{Use of AI}
+The proofs and the text of this paper were produced with AI systems (Claude Fable~5.1 and Claude Opus~5.5) under the author's direction. They were checked by independent reviews with AI models and by the computations in the ancillary files. No human expert has reviewed them. The author takes responsibility for the content.
+\end{document}
