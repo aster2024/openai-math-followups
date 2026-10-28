@@ -1,0 +1,388 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+ pdftitle={Explicit Littlewood-type bounds for L(1,chi) and class numbers from a zero-free half-plane},pdfauthor={Jizhou Guo}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\asinh}{\operatorname{arsinh}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\pos}[1]{\left(#1\right)_+}
+\allowdisplaybreaks[2]
+\setlength{\emergencystretch}{2em}
+\title{Explicit Littlewood-type bounds for $L(1,\chi)$\protect\\and class numbers from a zero-free half-plane}
+\author{Jizhou Guo\\\texttt{mitsuha2021b@gmail.com}}
+\date{28 October 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $1/2\le\theta<1$ and let $\chi$ be a nonprincipal Dirichlet character modulo $q\ge3$ whose $L$-function has no zeros in $\Rea s>\theta$. We prove, with every constant explicit, that
+\[
+ \frac{\zeta(2)e^{-\gamma}a\,e^{-\Theta}}{M+\log\log q}\le|L(1,\chi)|\le\frac{e^{\gamma}e^{\Theta}(M+\log\log q)}{a},\qquad a=\tfrac{22}{25}(1-\theta),
+\]
+for every $M\ge5$, where $\Theta=\Theta(\theta,M,q)$ is an explicit small quantity ($\Theta<0.0554$ for $\theta=7/8$, $M=10$). For $\theta=7/8$, the half-plane asserted for all Dirichlet $L$-functions by OpenAI's paper of 30 September 2026, this gives
+\[
+ \frac{1}{10.41\,(10+\log\log q)}\le|L(1,\chi)|\le17.12\,(10+\log\log q),
+\]
+and, for every fundamental discriminant $-d<0$, $h(-d)\ge\sqrt d/(32.69\,(10+\log\log d))$; in particular $h(-d)>100$ for $d\ge1.83\cdot10^{9}$ and $h(-d)>1000$ for $d\ge1.88\cdot10^{11}$. The shape of the bounds is Littlewood's (1928, under GRH, for quadratic characters); that it persists under a zero-free half-plane, with the width entering the constants, is stated by Friedlander (1977) as an easy extension of Littlewood's method. The explicit constants given here are unconditional exactly when the input theorem is correct. A Hecke--Landau-type bound $L(1,\chi)\ge1/(120\log q)$ for real $\chi$ is also proved from the exclusion of real zeros in $(1-1/(40\log q),1)$ alone. The constants are checked by the scripts in the ancillary files.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+Let $\chi$ be a nonprincipal Dirichlet character modulo $q\ge3$ and write $s=\sigma+it$. Throughout, $\log L(s,\chi)$ denotes the branch obtained by analytic continuation of the absolutely convergent series $\sum_{n\ge2}\Lambda(n)\chi(n)n^{-s}/\log n$ from $\Rea s>1$; on any simply connected region containing $\Rea s>1$ on which $L(s,\chi)$ has no zeros this branch is single-valued. We consider the hypothesis
+\begin{equation}\label{eq:H}
+ \textup{(H$_\theta$)}\qquad L(s,\chi)\ne0\quad\text{for }\Rea s>\theta,
+\end{equation}
+for a fixed $\theta\in[1/2,1)$. For $\theta=1/2$ it is the Generalised Riemann Hypothesis for $\chi$. For $\theta=7/8$ and every Dirichlet character it is Theorem~1.1 of OpenAI's paper \cite{openai2026q}, which states that every Dirichlet $L$-function, including $\zeta(s)$, has no zero in $\Rea s>7/8$, poles of principal characters being allowed; the Lean scope document \cite{openai2026lean} describes a formalization of that statement for all moduli and all characters. Smaller boundaries have since been stated: $\sigma_\dagger=0.8749570194\ldots$ in \cite{guo2026zf}, and the Quasi-Riemann Tracker \cite{tracker2026} records $4369779/5000000=0.8739558$ for Dirichlet $L$-functions. None of these inputs is verified in this paper; every statement below is of the form ``(H$_\theta$) implies\ldots'' with explicit constants, so that it is unconditional exactly when the input theorem is correct.
+
+Under GRH, Littlewood \cite{littlewood1928} proved that $L(1,\chi_d)$, for a quadratic character $\chi_d$, is of size $(\log\log|d|)^{\pm1}$, with the constants $(\tfrac12+o(1))\zeta(2)e^{-\gamma}$ and $(2+o(1))e^{\gamma}$ (as quoted in \cite[(1.1)]{gs2003}). Friedlander \cite[(1)]{friedlander1977}, writing for the Legendre symbol modulo a prime $q$, states as a theorem of Littlewood that if $L(s,\chi)\ne0$ for $\Rea s>1-\theta(q)$ then $c_1\theta(q)/\log\log q<L(1,\chi)<c_2\log\log q/\theta(q)$ with positive absolute constants $c_1,c_2$, and remarks that Littlewood proved this only for $\theta(q)=1/2$ but that his method extends easily (as remarked by Elliott for the lower bound); the width enters to the first power there, as it does here through $a$. The modern form of the underlying approximation is the lemma of Granville and Soundararajan \cite[Lemma~2.1]{gs2003}, which under a zero-free rectangle expresses $\log L(s,\chi)$ by a short sum over prime powers. Explicit constants have been given under GRH by Lamzouri, Li and Soundararajan \cite{lls2015} for primitive $\chi$ with $q\ge10^{10}$, extended to all $q\ge3$ (class numbers: $q\ge5$) by Languasco and Trudgian \cite{lt2022}. OpenAI's paper of 5 October 2026 \cite[\S1]{openai2026lm} notes that Littlewood's short Euler-product argument applied to a fixed zero-free half-plane gives $h(D)\gg\sqrt{|D|}/\log\log|D|$ with a computable implied constant, without giving one. Kimura \cite[v2, Remark~11]{kimura2026}, in a preprint (not yet refereed) that determines all imaginary quadratic fields with class number at most $2000$ by making the Landau--Siegel exclusion of \cite{openai2026ls} explicit, notes that under such a half-plane Littlewood's argument gives $h(-d)\gg\sqrt d/\log\log d$ with an effective implied constant, as observed in \cite[\S1]{openai2026lm}, and writes that he has not made it explicit under the half-plane. Here we work out explicit constants.
+
+\subsection*{Constants}
+The constants below are functions of $\theta$ and of a free parameter $M\ge5$; their definitions are collected in Definition~\ref{def:const} and their values for several $\theta$ in Table~\ref{tab:const}. We write $\gamma$ for Euler's constant and $\zeta(2)=\pi^2/6$.
+
+\begin{theorem}\label{thm:main}
+Let $1/2\le\theta<1$, $\delta=1-\theta$ and $a=22\delta/25$. Let $\chi$ be a nonprincipal Dirichlet character modulo $q\ge3$ satisfying \textup{(H$_\theta$)}. Let $\kappa,T_0,A_1,A_2,A_3,K_0^+,J^+$ be as in Definition~\ref{def:const}.
+\begin{enumerate}
+\item[\textup{(i)}] For $1-a\le\sigma\le3+a$ and all real $t$,
+\[
+ |\log L(\sigma+it,\chi)|\le A_1\log q+A_2\log(|t|+T_0)+A_3 .
+\]
+\item[\textup{(ii)}] Let $M\ge5$, $y=(e^{M}\log q)^{1/a}$ and $\mathcal L=\log y=(M+\log\log q)/a$. Then
+\[
+ \log L(1,\chi)=\sum_{p\le y}-\log\Bigl(1-\frac{\chi(p)}{p}\Bigr)+\eps,\qquad
+ |\eps|\le E_0(q)+\frac{1.25506}{\mathcal L}+\frac{2.5}{\sqrt y}+\frac{\mathcal L}{y^{2/3}},
+\]
+where $E_0(q)=\bigl(A_1K_0^++(A_2J^++A_3K_0^+)/\log q\bigr)/(2\pi e^{M})$ and each $-\log(1-\chi(p)/p)=\sum_{k\ge1}\chi(p)^k/(kp^k)$.
+\item[\textup{(iii)}] With $\Theta(q)=E_0(q)+1.25506/\mathcal L+2.5/\sqrt y+\mathcal L/y^{2/3}+1/(2\mathcal L^2-1)+2/y$,
+\[
+ \frac{\zeta(2)e^{-\gamma}\,a\,e^{-\Theta(q)}}{M+\log\log q}\le|L(1,\chi)|\le\frac{e^{\gamma}\,e^{\Theta(q)}\,(M+\log\log q)}{a}.
+\]
+$\Theta(q)$ is decreasing in $q$, so both bounds hold with $\Theta(3)$ in place of $\Theta(q)$. For real $\chi$ the bounds hold for $L(1,\chi)$ itself, which is positive.
+\end{enumerate}
+\end{theorem}
+
+The restriction $\theta\ge1/2$ costs nothing: for $\theta<1/2$ the hypothesis is never satisfied, since $L(s,\chi)$ has infinitely many zeros in the critical strip and the functional equation pairs a zero $\rho$ with $1-\bar\rho$. Primitivity of $\chi$ is not needed; for an imprimitive $\chi$ the hypothesis is inherited from the primitive character inducing it, because the missing Euler factors have their zeros on $\Rea s=0$.
+
+For $\theta=7/8$ and $M=10$ one has $a=0.11$, $\Theta(3)=0.05534\ldots$, $e^{\gamma}e^{\Theta(3)}/(a\zeta(2))=10.4034\ldots$ and $e^{\gamma}e^{\Theta(3)}/a=17.1129\ldots$, whence:
+
+\begin{corollary}\label{cor:78}
+Let $\chi$ be a nonprincipal character modulo $q\ge3$ with $L(s,\chi)\ne0$ for $\Rea s>7/8$. Then
+\[
+ \frac{1}{10.41\,(10+\log\log q)}\le|L(1,\chi)|\le17.12\,(10+\log\log q),
+\]
+and, for $0.89\le\sigma\le3.11$ and all $t$, $|\log L(\sigma+it,\chi)|\le26.64\log q+222\log(|t|+11.58)+139.37$.
+\end{corollary}
+
+\begin{corollary}\label{cor:class}
+Assume that $L(s,\chi_{-d})\ne0$ for $\Rea s>7/8$ for every fundamental discriminant $-d<0$, where $\chi_{-d}$ is the Kronecker symbol. Then for every fundamental discriminant $-d<0$ the class number of $\Q(\sqrt{-d})$ satisfies
+\[
+ h(-d)\ge\frac{\sqrt d}{32.69\,(10+\log\log d)} .
+\]
+In particular $h(-d)>1$ for $d\ge1.67\cdot10^{5}$, $h(-d)>10$ for $d\ge1.76\cdot10^{7}$, $h(-d)>100$ for $d\ge1.83\cdot10^{9}$ and $h(-d)>1000$ for $d\ge1.88\cdot10^{11}$. Choosing $M$ depending on the target improves these thresholds to $1.10\cdot10^{5}$, $1.13\cdot10^{7}$, $1.15\cdot10^{9}$ and $1.17\cdot10^{11}$ (Table~\ref{tab:thr}).
+\end{corollary}
+
+The hypothesis of Corollary~\ref{cor:class} is contained in Theorem~1.1 of \cite{openai2026q}. The same proof gives $h(-d)\ge\sqrt d/(32.41\,(10+\log\log d))$ from the tracker boundary $0.8739558$ (Table~\ref{tab:const}); the gain from the smaller boundaries is below one per cent because the constant is essentially $e^{\gamma}/(\zeta(2)a)$ with $a$ proportional to the width $1-\theta$.
+
+We also record the explicit form of the older Hecke--Landau argument, which needs only the absence of real zeros close to $1$ and is proved by a different method (an auxiliary function with nonnegative coefficients).
+
+\begin{theorem}\label{thm:HL}
+Let $q\ge3$, let $\chi$ be a real nonprincipal character modulo $q$, and put $\eta=1/(40\log q)$. If $L(\sigma,\chi)\ne0$ for every real $\sigma$ with $1-\eta<\sigma<1$, then $L(1,\chi)\ge1/(120\log q)$. The hypothesis follows from \textup{(H$_\theta$)} whenever $\theta\le1-1/(40\log 3)=0.9772\ldots$; in that case $h(-d)\ge\sqrt d/(120\pi\log d)$ for every fundamental discriminant $-d<0$.
+\end{theorem}
+
+For $q\ge3$ the bound of Corollary~\ref{cor:78} is stronger than $1/(120\log q)$ (the two agree at $\log q=0.853$); Theorem~\ref{thm:HL} is included because its hypothesis is weaker and because it is the explicit form of the implication ``no real zero in $(1-c/\log q,1)$ $\Rightarrow$ $L(1,\chi)\gg1/\log q$'' of Hecke (Landau \cite{landau1918}), with $c=1/40$. Kimura \cite[Lemma~8, Proposition~9]{kimura2026} gives another explicit form of that implication, which he applies with gaps $c\approx0.0055$--$0.006$ (his Table~1) and, under a half-plane, with $c\approx0.6$ (his Remark~11); the Lean statement described in \cite{openai2026lean} gives such a gap with an unspecified $c$, so Theorem~\ref{thm:HL} does not follow from it, while it does follow from the $7/8$ half-plane.
+
+\subsection*{Method}
+The analytic route is the classical one: a Borel--Carath\'eodory bound for $\log L$ on discs inside the zero-free half-plane (Section~\ref{sec:bc}), a smoothed Perron integral moved to $\Rea s=1-a$, which expresses $\log L(1,\chi)$ by the Euler product over $p\le y=(e^M\log q)^{1/a}$ with an error that is explicitly small (Section~\ref{sec:perron}), and the explicit Mertens product bounds of Rosser and Schoenfeld (Section~\ref{sec:proofs}). The only choices are the geometry of the discs, which fixes $a=22\delta/25$ and the Borel--Carath\'eodory factor $\kappa=25/\delta+22$, and the parameter $M$, which trades the size of the Perron error against the additive constant in $M+\log\log q$. The bound for $|L(s,\chi)|$ on the discs is obtained by partial summation with the trivial estimate for character sums, not by convexity, which costs a factor of about two in the exponent of $q$ but keeps the proof self-contained; the loss is absorbed by $e^{M}$. The constant $e^{\gamma}/(\zeta(2)a)$ in the lower bound compares with Littlewood's $2e^{\gamma}/\zeta(2)$ for $\theta=1/2$ (where $1/a=25/11$), so the method loses only the factor $25/22$ and the additive $M$ against the GRH result. A first version of the main theorem with weaker constants ($19.1$ and $61$ in place of $10.41$ and $32.69$) was checked by an independent AI review (see the statement on the use of AI at the end); the improvements here come from treating the prime powers through the Euler product and from using Theorem~7 instead of Theorem~5 of \cite{rs1962}.
+
+Section~\ref{sec:numerics} compares the thresholds with the unconditional determinations of Watkins \cite{watkins2004} ($h\le100$) and Kimura \cite{kimura2026} ($h\le2000$). It also explains why no computable data can contradict Corollary~\ref{cor:class}: for $d<1.83\cdot10^9$ the bound is below $101$, so there the corollary follows from Watkins's theorem and a direct computation. Section~\ref{sec:HL} proves Theorem~\ref{thm:HL}, and Section~\ref{sec:anc} describes the ancillary scripts.
+
+\section{Inputs and constants}\label{sec:inputs}
+
+\subsection{Classical inputs}\label{sec:classical}
+The following facts are used in the form stated.
+
+\begin{lemma}[partial summation]\label{lem:ps}
+Let $\chi$ be a nonprincipal character modulo $q$ and $S(x)=\sum_{n\le x}\chi(n)$. Then $|S(x)|\le q$ for all $x$, $S(q)=0$, and for $\sigma>0$
+\begin{equation}\label{eq:ps}
+ L(s,\chi)=\sum_{n\le q}\chi(n)n^{-s}+s\int_q^\infty S(x)x^{-s-1}\dd x .
+\end{equation}
+Consequently, for $0<\sigma_0<1$ and $\sigma\ge\sigma_0$,
+\begin{equation}\label{eq:psbound}
+ |L(s,\chi)|\le\frac{q^{1-\sigma_0}}{1-\sigma_0}+\frac{|s|\,q^{1-\sigma_0}}{\sigma_0}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+$S$ vanishes at multiples of $q$ and has at most $q$ nonzero terms in any incomplete period, so $|S(x)|\le q$. For $\sigma>1$, partial summation of $\sum_{n>q}\chi(n)n^{-s}$ against $S$ gives \eqref{eq:ps}, the boundary term being $-S(q)q^{-s}=0$; the integral converges absolutely and is analytic for $\sigma>0$, so \eqref{eq:ps} holds there. For \eqref{eq:psbound}: $\sum_{n\le q}n^{-\sigma}\le\sum_{n\le q}n^{-\sigma_0}\le1+\int_1^qx^{-\sigma_0}\dd x=1+(q^{1-\sigma_0}-1)/(1-\sigma_0)\le q^{1-\sigma_0}/(1-\sigma_0)$, and $|s\int_q^\infty S(x)x^{-s-1}\dd x|\le|s|q\cdot q^{-\sigma}/\sigma\le|s|q^{1-\sigma_0}/\sigma_0$, since $q^{1-\sigma}\le q^{1-\sigma_0}$ and $1/\sigma\le1/\sigma_0$.
+\end{proof}
+
+\begin{lemma}[Borel--Carath\'eodory, {\cite[\S5.5]{titchmarsh1939}}]\label{lem:bc}
+Let $f$ be analytic on $|z-z_0|\le R$ and $A=\max_{|z-z_0|=R}\Rea f(z)$. Then for $0<r<R$ and $|z-z_0|\le r$,
+\[
+ |f(z)|\le\frac{2r}{R-r}\bigl(A+|f(z_0)|\bigr)+|f(z_0)| .
+\]
+\end{lemma}
+\begin{proof}
+Apply the standard form $\max_{|z-z_0|\le r}|g|\le\frac{2r}{R-r}\max_{|z-z_0|=R}\Rea g$ for $g=f-f(z_0)$, which has $g(z_0)=0$ and $\max\Rea g\le A+|f(z_0)|$.
+\end{proof}
+
+\begin{lemma}[Perron kernel]\label{lem:kernel}
+For $c>0$ and $x>0$, $\dfrac1{2\pi i}\displaystyle\int_{c-i\infty}^{c+i\infty}\frac{x^{w}\dd w}{w(w+1)}=\pos{1-\frac1x}$.
+\end{lemma}
+\begin{proof}
+The integrand is $O(x^{\Rea w}|w|^{-2})$. For $x>1$ move the line to $\Rea w=-N$ and let $N\to\infty$; the residues at $w=0$ and $w=-1$ are $1$ and $-1/x$. For $0<x<1$ move the line to $\Rea w=N$: no poles, and the integral tends to $0$. For $x=1$ the integral over $\Rea w=N$ is $O(1/N)$, so the value is $0=\pos{1-1/x}$.
+\end{proof}
+
+\begin{lemma}[Rosser--Schoenfeld]\label{lem:rs}
+For $x>1$, $\pi(x)<1.25506\,x/\log x$ \textup{\cite[(3.6)]{rs1962}}. For $x\ge285$,
+\begin{equation}\label{eq:mertens}
+ \prod_{p\le x}\Bigl(1-\frac1p\Bigr)>\frac{e^{-\gamma}}{\log x}\Bigl(1-\frac1{2\log^2x}\Bigr)
+\end{equation}
+\textup{\cite[Theorem~7, (3.25)]{rs1962}}. (Dusart \textup{\cite[Theorem~6.12]{dusart2010}} gives \eqref{eq:mertens} with $0.2$ in place of $1/2$ for $x\ge2973$; either version suffices below, since $x\ge e^{11}$ throughout.)
+\end{lemma}
+
+\begin{lemma}[class number formula, {\cite[Chapter~6]{davenport2000}}]\label{lem:cnf}
+For a fundamental discriminant $-d<0$ let $\chi_{-d}$ be the Kronecker symbol, a real primitive character of conductor $d$, and $w\in\{2,4,6\}$ the number of roots of unity in $\Q(\sqrt{-d})$. Then $h(-d)=w\sqrt d\,L(1,\chi_{-d})/(2\pi)\ge\sqrt d\,L(1,\chi_{-d})/\pi$.
+\end{lemma}
+
+\subsection{Constants}\label{sec:const}
+
+\begin{definition}\label{def:const}
+For $1/2\le\theta<1$ put $\delta=1-\theta$ and
+\[
+ a=\frac{22\delta}{25},\quad \delta'=\frac{24\delta}{25},\quad \sigma_0=1-\delta',\quad
+ \kappa=\frac{25}{\delta}+22,\quad T_0=3+2\delta'+\frac1{\delta'},
+\]
+\[
+ A_1=\kappa\delta',\quad A_2=\kappa,\quad A_3=\kappa\log\frac1{\sigma_0}+(\kappa+1)\log\zeta(2),
+\]
+\[
+ K_0^+=\frac{2\asinh(1/a)}{1-a}+2,\qquad J^+=2\log(1+T_0)\Bigl(\frac{\asinh(1/a)}{1-a}+1+\frac1{T_0}\Bigr),
+\]
+where $\asinh x=\log(x+\sqrt{x^2+1})$. For $M\ge5$ and $q\ge3$ put $\mathcal L=(M+\log\log q)/a$, $y=e^{\mathcal L}$,
+\[
+ E_0(q)=\frac{A_1K_0^++(A_2J^++A_3K_0^+)/\log q}{2\pi e^{M}},\qquad
+ \Theta(q)=E_0(q)+\frac{1.25506}{\mathcal L}+\frac{2.5}{\sqrt y}+\frac{\mathcal L}{y^{2/3}}+\frac1{2\mathcal L^2-1}+\frac2y .
+\]
+\end{definition}
+
+The geometric meaning: $R=1+\delta'$ and $r=1+a$ are the radii of the Borel--Carath\'eodory discs centred at $2+it$, so that the outer disc lies in $\Rea s\ge\sigma_0=1-\delta'>\theta$ and the inner disc reaches $\Rea s=1-a$; $\kappa=2r/(R-r)$; $T_0=2+2R+\sigma_0/\delta'$. Since $a\le0.44$ and $M\ge5$, one has $\mathcal L\ge(5+\log\log3)/0.44>11.5$ and $y>10^5$. Every term of $\Theta(q)$ is decreasing in $q$ ($\mathcal L/y^{2/3}=\mathcal Le^{-2\mathcal L/3}$ decreases for $\mathcal L\ge3/2$), so $\Theta(q)\le\Theta(3)$.
+
+\begin{table}[ht]
+\centering\small
+\caption{Constants of Theorem~\ref{thm:main} for $M=10$, rounded to the digits shown, with $C_-=e^{\gamma}e^{\Theta(3)}/(a\zeta(2))$ and $C_+=e^{\gamma}e^{\Theta(3)}/a$; the constants $10.41$, $17.12$, $32.69$ and $32.41$ used in the text are upper bounds for the corresponding entries. Computed by \texttt{anc/constants.py}.}\label{tab:const}
+\begin{tabular}{lcccc}
+\toprule
+ & $\theta=7/8$ & $\theta=\sigma_\dagger$ \cite{guo2026zf} & $\theta=0.8739558$ \cite{tracker2026} & $\theta=1/2$ (GRH)\\
+\midrule
+$a$ & $0.11$ & $0.110038$ & $0.110919$ & $0.44$\\
+$\kappa$ & $222$ & $221.93$ & $220.34$ & $72$\\
+$T_0$ & $11.5733$ & $11.5706$ & $11.5063$ & $6.0433$\\
+$A_1$ & $26.64$ & $26.641$ & $26.662$ & $34.56$\\
+$A_3$ & $139.366$ & $139.334$ & $138.581$ & $83.415$\\
+$K_0^+$ & $8.5246$ & $8.5241$ & $8.5127$ & $7.5691$\\
+$J^+$ & $22.0181$ & $22.0150$ & $21.9442$ & $15.4215$\\
+$E_0(3)$ & $0.04160$ & $0.04159$ & $0.04120$ & $0.01335$\\
+$\Theta(3)$ & $0.05534$ & $0.05533$ & $0.05505$ & $0.06904$\\
+$C_-$ & $10.4034$ & $10.3997$ & $10.3142$ & $2.6367$\\
+$C_+$ & $17.1129$ & $17.1068$ & $16.9662$ & $4.3372$\\
+$\pi C_-$ & $32.6832$ & $32.6715$ & $32.4031$ & $8.2835$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{The Borel--Carath\'eodory bound}\label{sec:bc}
+
+\begin{proposition}\label{prop:bc}
+Under the hypotheses of Theorem~\ref{thm:main}, \textup{(i)} holds.
+\end{proposition}
+\begin{proof}
+Fix $t\in\R$ and put $z_0=2+it$, $R=1+\delta'$, $r=1+a$, so that $r<R$ and $2r/(R-r)=\kappa$. The closed disc $|s-z_0|\le R$ lies in $\Rea s\ge2-R=\sigma_0=1-\tfrac{24}{25}\delta>\theta$, where $L(\cdot,\chi)$ is analytic (it is entire, $\chi$ being nonprincipal) and has no zeros by (H$_\theta$). Hence $f(s)=\log L(s,\chi)$, defined on the disc by continuation from $z_0$ (where it equals the Dirichlet series), is analytic on the disc; the disc and the half-plane $\Rea s>\theta$ are simply connected, so this $f$ is the restriction of the branch fixed in Section~\ref{sec:intro}.
+
+On the disc, $\sigma_0\le\sigma\le2+R$ and $|\Ima s|\le|t|+R$, so $|s|\le|t|+2+2R$. By \eqref{eq:psbound} with this $\sigma_0$, using $1-\sigma_0=\delta'$,
+\[
+ |L(s,\chi)|\le q^{\delta'}\Bigl(\frac1{\delta'}+\frac{|t|+2+2R}{\sigma_0}\Bigr)=\frac{q^{\delta'}}{\sigma_0}\bigl(|t|+T_0\bigr),
+\]
+since $T_0=2+2R+\sigma_0/\delta'$. Therefore $A:=\max_{|s-z_0|=R}\Rea f(s)=\max\log|L(s,\chi)|\le\delta'\log q+\log(|t|+T_0)+\log(1/\sigma_0)$. At the centre, $|f(z_0)|\le\sum_{n\ge2}\Lambda(n)n^{-2}/\log n=\log\zeta(2)$. Lemma~\ref{lem:bc} gives, for $|s-z_0|\le r$,
+\begin{align*}
+ |\log L(s,\chi)|&\le\kappa\bigl(\delta'\log q+\log(|t|+T_0)+\log(1/\sigma_0)+\log\zeta(2)\bigr)+\log\zeta(2)\\
+ &=A_1\log q+A_2\log(|t|+T_0)+A_3 .
+\end{align*}
+The segment $\{\sigma+it:1-a\le\sigma\le3+a\}$ is the diameter of the inner disc, which proves (i).
+\end{proof}
+
+\section{The short Euler product}\label{sec:perron}
+
+\begin{lemma}\label{lem:KJ}
+Let $0<a<1$, $T_0>0$, and for $v\in\R$ put $w=-a+iv$, so $|w|=\sqrt{a^2+v^2}$ and $|w+1|=\sqrt{(1-a)^2+v^2}$. Then
+\[
+ K_0:=\int_{-\infty}^{\infty}\frac{\dd v}{|w||w+1|}\le K_0^+,\qquad J:=\int_{-\infty}^{\infty}\frac{\log(|v|+T_0)\dd v}{|w||w+1|}\le J^+ .
+\]
+\end{lemma}
+\begin{proof}
+For $|v|\le1$ use $|w+1|\ge1-a$ and $\int_{-1}^{1}(a^2+v^2)^{-1/2}\dd v=2\asinh(1/a)$; for $|v|>1$ use $|w|,|w+1|\ge|v|$, $\int_{|v|>1}v^{-2}\dd v=2$ and $\int_1^\infty\log(v+T_0)v^{-2}\dd v=\log(1+T_0)+\int_1^\infty\frac{\dd v}{v(v+T_0)}=\log(1+T_0)(1+1/T_0)$. For $J$ on $|v|\le1$ bound $\log(|v|+T_0)\le\log(1+T_0)$.
+\end{proof}
+
+\begin{lemma}\label{lem:main}
+Let $y\ge2$ and let $\chi$ be any Dirichlet character. Then
+\[
+ \Bigl|\sum_{n\le y}\frac{\Lambda(n)\chi(n)}{n\log n}\Bigl(1-\frac ny\Bigr)-\sum_{p\le y}-\log\Bigl(1-\frac{\chi(p)}p\Bigr)\Bigr|\le\frac{\pi(y)}y+\frac{2.5}{\sqrt y}+\frac{\log y}{y^{2/3}} .
+\]
+\end{lemma}
+\begin{proof}
+The first sum is $\sum_{p^k\le y}\chi(p)^k(1-p^k/y)/(kp^k)$ and the second is $\sum_{p\le y}\sum_{k\ge1}\chi(p)^k/(kp^k)$ (for $p\mid q$ both are $0$). Their difference is
+\[
+ D=\sum_{p\le y}\ \sum_{k:\,p^k>y}\frac{\chi(p)^k}{kp^k}+\frac1y\sum_{p^k\le y}\frac{\chi(p)^k}{k}.
+\]
+In the first term, if $p>\sqrt y$ then $\sum_{k\ge2}p^{-k}/k\le1/(2p(p-1))$, and $\sum_{n>\sqrt y}1/(2n(n-1))=1/(2\lfloor\sqrt y\rfloor)\le1/\sqrt y$; if $p\le\sqrt y$ and $k_0\ge3$ is the least $k$ with $p^k>y$, then $\sum_{k\ge k_0}p^{-k}/k\le\frac1{k_0}\frac{p^{-k_0}}{1-1/p}<\frac2{3y}$, and there are at most $\sqrt y$ such $p$. So the first term is at most $5/(3\sqrt y)$. In the second term, $\sum_{p^k\le y}1/k\le\pi(y)+\sum_{k=2}^{K}\pi(y^{1/k})/k$ with $K=\lfloor\log y/\log2\rfloor$, and $\sum_{k=2}^{K}\pi(y^{1/k})/k\le\sqrt y/2+y^{1/3}\sum_{k=3}^{K}1/k\le\sqrt y/2+y^{1/3}\log y$. Adding, $|D|\le\pi(y)/y+5/(3\sqrt y)+1/(2\sqrt y)+\log y/y^{2/3}$, which is less than the stated bound.
+\end{proof}
+
+\begin{proposition}\label{prop:perron}
+Under the hypotheses of Theorem~\ref{thm:main}, \textup{(ii)} holds.
+\end{proposition}
+\begin{proof}
+Let $M\ge5$, $y=(e^M\log q)^{1/a}$, so $y^{-a}=1/(e^M\log q)$ and $y>10^5$. For $\Rea w=1$ the series $\log L(1+w,\chi)=\sum_{n\ge2}\Lambda(n)\chi(n)n^{-1-w}/\log n$ converges absolutely, and $\sum_n\frac{\Lambda(n)}{n^2\log n}\int_{(1)}\frac{|y^w||\dd w|}{|w||w+1|}<\infty$. By Lemma~\ref{lem:kernel} with $x=y/n$ and Fubini,
+\begin{equation}\label{eq:perron1}
+ \sum_{n\le y}\frac{\Lambda(n)\chi(n)}{n\log n}\Bigl(1-\frac ny\Bigr)=\frac1{2\pi i}\int_{(1)}\log L(1+w,\chi)\frac{y^w\dd w}{w(w+1)} .
+\end{equation}
+In the strip $-a\le\Rea w\le1$ we have $\Rea(1+w)\ge1-a>\theta$, so $\log L(1+w,\chi)$ is analytic there and the integrand has exactly one singularity, the simple pole at $w=0$ with residue $\log L(1,\chi)$ (the point $w=-1$ lies outside). On the horizontal segments $\Ima w=\pm T$, $-a\le\Rea w\le1$, the point $s=1+w$ has $1-a\le\sigma\le2$, so (i) gives $|\log L(1+w,\chi)|\le A_1\log q+A_2\log(T+T_0)+A_3$, while $|y^w|\le y$ and $|w(w+1)|\ge T^2$; these contributions tend to $0$ as $T\to\infty$. Hence
+\begin{equation}\label{eq:perron2}
+ \sum_{n\le y}\frac{\Lambda(n)\chi(n)}{n\log n}\Bigl(1-\frac ny\Bigr)=\log L(1,\chi)+E,\qquad E=\frac1{2\pi i}\int_{(-a)}\log L(1+w,\chi)\frac{y^w\dd w}{w(w+1)} .
+\end{equation}
+On $\Rea w=-a$ write $w=-a+iv$; then $s=1+w=(1-a)+iv$ is in the range of (i) with $t=v$, and $|y^w|=y^{-a}$. Therefore
+\[
+ |E|\le\frac{y^{-a}}{2\pi}\int_{-\infty}^{\infty}\frac{A_1\log q+A_2\log(|v|+T_0)+A_3}{|w||w+1|}\dd v
+ =\frac{A_1K_0\log q+A_2J+A_3K_0}{2\pi e^M\log q}\le E_0(q)
+\]
+by Lemma~\ref{lem:KJ}. Finally Lemma~\ref{lem:main} replaces the left side of \eqref{eq:perron2} by $\sum_{p\le y}-\log(1-\chi(p)/p)$ at a cost of $\pi(y)/y+2.5/\sqrt y+\log y/y^{2/3}$, and $\pi(y)/y<1.25506/\log y$ by Lemma~\ref{lem:rs}.
+\end{proof}
+
+\section{Proof of Theorem \ref{thm:main}(iii) and of the corollaries}\label{sec:proofs}
+
+\begin{proof}[Proof of \textup{(iii)}]
+Take real parts in (ii): $\log|L(1,\chi)|=\sum_{p\le y}-\log|1-\chi(p)/p|+\Rea\eps$. Since $|\chi(p)|\le1$, $1-1/p\le|1-\chi(p)/p|\le1+1/p$, so
+\begin{equation}\label{eq:sandwich}
+ -\sum_{p\le y}\log\Bigl(1+\frac1p\Bigr)-|\eps|\le\log|L(1,\chi)|\le-\sum_{p\le y}\log\Bigl(1-\frac1p\Bigr)+|\eps| .
+\end{equation}
+Write $\mathcal L=\log y\ge11.5$. By \eqref{eq:mertens} (valid since $y>10^5$) and $-\log(1-x)\le x/(1-x)$,
+\begin{equation}\label{eq:upperprod}
+ -\sum_{p\le y}\log\Bigl(1-\frac1p\Bigr)<\gamma+\log\mathcal L-\log\Bigl(1-\frac1{2\mathcal L^2}\Bigr)\le\gamma+\log\mathcal L+\frac1{2\mathcal L^2-1} .
+\end{equation}
+For the lower bound use $1+1/p=(1-1/p^2)/(1-1/p)$, so that $\sum_{p\le y}\log(1+1/p)=\log\prod_{p\le y}(1-p^{-2})-\sum_{p\le y}\log(1-1/p)$. Now $\prod_{p\le y}(1-p^{-2})^{-1}=\sum n^{-2}$ over the integers all of whose prime factors are at most $y$, which is at least $\sum_{n\le y}n^{-2}\ge\zeta(2)-1/\lfloor y\rfloor\ge\zeta(2)-2/y$. Hence $\log\prod_{p\le y}(1-p^{-2})\le-\log(\zeta(2)-2/y)\le-\log\zeta(2)+2/y$ (as $y\ge4$), and with \eqref{eq:upperprod}
+\[
+ \sum_{p\le y}\log\Bigl(1+\frac1p\Bigr)\le-\log\zeta(2)+\gamma+\log\mathcal L+\frac1{2\mathcal L^2-1}+\frac2y .
+\]
+Inserting this and \eqref{eq:upperprod} into \eqref{eq:sandwich}, and using the bound for $|\eps|$ of (ii), we obtain
+\[
+ \log\zeta(2)-\gamma-\log\mathcal L-\Theta(q)\le\log|L(1,\chi)|\le\gamma+\log\mathcal L+\Theta(q),
+\]
+which is (iii) since $\mathcal L=(M+\log\log q)/a$. The monotonicity of $\Theta$ was noted after Definition~\ref{def:const}. For real $\chi$, $L(1,\chi)$ is real and positive (Dirichlet), so $|L(1,\chi)|=L(1,\chi)$.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:78}]
+For $\theta=7/8$: $\delta=1/8$, $a=0.11$, $\delta'=0.12$, $\sigma_0=0.88$, $\kappa=222$, $T_0=11.5733\ldots<11.58$, $A_1=26.64$, $A_2=222$, $A_3=222\log(1/0.88)+223\log\zeta(2)=139.366\ldots<139.37$; the range $1-a\le\sigma\le3+a$ is $0.89\le\sigma\le3.11$. This gives the bound on $\log L$. For $M=10$, $\mathcal L(3)=(10+\log\log3)/0.11=91.76\ldots$, $K_0^+=8.5246\ldots$, $J^+=22.0181\ldots$, $E_0(3)=0.04160\ldots$, $1.25506/\mathcal L(3)=0.01368\ldots$, and the remaining four terms of $\Theta(3)$ are below $6\cdot10^{-5}$ in total, so $\Theta(3)=0.05534\ldots$. Then $e^{\gamma}e^{\Theta(3)}/(0.11\,\zeta(2))=10.4034\ldots<10.41$ and $e^{\gamma}e^{\Theta(3)}/0.11=17.1129\ldots<17.12$.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:class}]
+For a fundamental discriminant $-d<0$, $\chi_{-d}$ is a real primitive nonprincipal character modulo $d\ge3$, so Corollary~\ref{cor:78} and Lemma~\ref{lem:cnf} give $h(-d)\ge\sqrt d/(\pi\cdot10.4034\ldots(10+\log\log d))$ and $\pi\cdot10.4034\ldots=32.6832\ldots<32.69$. The function $d\mapsto\sqrt d/(10+\log\log d)$ is increasing for $d\ge3$ (its logarithmic derivative is $\frac1{2d}-\frac1{d\log d\,(10+\log\log d)}>0$), so for each $H$ the set of $d$ with $\sqrt d>32.69\,H(10+\log\log d)$ is an interval $[d_0(H),\infty)$, and $d_0(H)$ is computed by bisection in \texttt{anc/constants.py}: $d_0=1.6662\cdot10^5$, $1.7548\cdot10^7$, $1.8227\cdot10^9$, $1.8780\cdot10^{11}$ for $H=1,10,100,1000$. The last sentence of the corollary is proved in Section~\ref{sec:numerics}.
+\end{proof}
+
+\section{Numerical section}\label{sec:numerics}
+
+\subsection{Thresholds}
+For a given target $H$ the parameter $M$ may be chosen freely, and the error $\Theta(q)$ of Theorem~\ref{thm:main}(iii) decreases with $q$; both can be used when only large $d$ matter. For each $M$ the function $d\mapsto\sqrt d\,e^{-\Theta(d)}/(M+\log\log d)$ is increasing, so Theorem~\ref{thm:main}(iii) with $q=d$ gives $h(-d)>H$ for all $d\ge d_0(H;M)$, where $d_0(H;M)$ is the root of $\sqrt d=\pi C_-(d)H(M+\log\log d)$ with $C_-(d)=e^{\gamma}e^{\Theta(d)}/(a\zeta(2))$. Table~\ref{tab:thr} lists, for $\theta=7/8$, the uniform thresholds (constant $32.69$, $M=10$) and the best thresholds over $M\in\{5,5.25,\ldots,15\}$; the optimum is $M\approx6.5$--$7$, where $E_0(d)\approx0.08$--$0.1$. The last two columns show what is known unconditionally.
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{Thresholds $d_0(H)$ such that $h(-d)>H$ for all fundamental discriminants $-d<0$ with $d\ge d_0(H)$, under the $7/8$ half-plane (columns 2--3, this paper, rounded up; column 2 uses the constant $32.69$), compared with the largest $d$ with $h(-d)\le H$ \cite{watkins2004,kimura2026} and with the unconditional thresholds of \cite[Table~1]{kimura2026}.}\label{tab:thr}
+\begin{tabular}{rllll}
+\toprule
+$H$ & uniform ($M=10$) & best $M$ & largest $d$, $h(-d)\le H$ & unconditional \cite{kimura2026}\\
+\midrule
+$1$ & $1.67\cdot10^{5}$ & $1.10\cdot10^{5}$ ($M=7$) & $163$ & --\\
+$10$ & $1.76\cdot10^{7}$ & $1.13\cdot10^{7}$ ($M=6.75$) & $13\,843$ & --\\
+$100$ & $1.83\cdot10^{9}$ & $1.15\cdot10^{9}$ ($M=6.75$) & $2\,383\,747$ & $2.86\cdot10^{12}$\\
+$1000$ & $1.88\cdot10^{11}$ & $1.17\cdot10^{11}$ ($M=6.5$) & $227\,932\,027$ & $3.46\cdot10^{14}$\\
+$2000$ & $7.58\cdot10^{11}$ & $4.69\cdot10^{11}$ ($M=6.5$) & $1\,062\,350\,083$ & $1.61\cdot10^{15}$\\
+$10^5$ & $1.97\cdot10^{15}$ & $1.21\cdot10^{15}$ ($M=6.5$) & unknown & --\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The values $163$, $13\,843$ and $2\,383\,747$ are from Watkins's table \cite{watkins2004} (all three were recomputed in \texttt{anc/checks.py} for $d\le3\cdot10^6$); $1\,062\,350\,083$ is the largest discriminant with $h\le2000$ found by Kimura \cite[Theorem~2]{kimura2026}, attained at $h=1978$, and $227\,932\,027$ (attained at $h=996$) is his value for $h\le1000$ \cite[p.~3]{kimura2026}; his preprint is not yet refereed, its analytic part comes with Lean proofs and its sieve computation does not. Kimura's unconditional thresholds come from explicit real-zero gaps $(1-\beta)\log q\ge c_N$ with $c_N\approx0.0055$--$0.0060$ for $\log q\ge T_N$ \cite[Table~1]{kimura2026}, made explicit from the argument of \cite{openai2026ls} (the uniform constant for all $q\ge3$ is $5.8\cdot10^{-4}$); his Remark~11 states that under a half-plane $\Rea s>31/32$, which gives the gap $1/32$, his Hecke--Landau-type bound with $c\approx0.6$ yields $h(-d)>2000$ for $d\ge e^{27.2}\approx6.50\cdot10^{11}$ and $h(-d)>10^5$ for $d\ge e^{35.4}\approx2.37\cdot10^{15}$, and that the half-planes $\Rea s>7/8$ and $\Rea s>11/12$ give the same thresholds. At $d=e^{27.2}$ Corollary~\ref{cor:class} gives only $h(-d)\ge1853$, while the best choice of $M$ gives $h(-d)\ge2353$; at $d=e^{35.4}$ the two versions give $1.09\cdot10^5$ and $1.40\cdot10^5$. Thus in the range of current computations the Littlewood-type bound with the present constants is comparable to, not far better than, the explicit Hecke--Landau-type bound from the same input; its advantage, a denominator $\log\log d$ instead of $\log d$, becomes decisive only for larger $d$. For the finiteness statement ``$h(-d)=H$ for at most finitely many $d$'' it gives, under (H$_{7/8}$), the explicit bound $d<d_0(H)$, where $\sqrt{d_0(H)}=32.69\,H\,(10+\log\log d_0(H))$, against the ineffective bound of Siegel \cite{siegel1935} and the effective but logarithmic bounds of Goldfeld, Gross--Zagier and Oesterl\'e \cite{goldfeld1976,grosszagier1986,oesterle1985}.
+
+\subsection{Why computation cannot test Corollary \ref{cor:class}}
+The lower bound $\sqrt d/(32.69(10+\log\log d))$ is below $1$ for $d<1.67\cdot10^5$, below $2$ for $d<6.7\cdot10^5$, and below $101$ for $d<1.83\cdot10^9$. The script \texttt{anc/checks.py} computes $h(-d)$ for all fundamental $d\le3\cdot10^6$ by counting reduced forms and verifies the corollary there (the minimum of $h(-d)$ divided by the bound is $26.1$, at $d=991\,027$). For $3\cdot10^6<d<1.83\cdot10^9$ one has $h(-d)\ge101$ by Watkins's theorem \cite{watkins2004}, since all $d$ with $h(-d)\le100$ are at most $2\,383\,747$, while the bound is below $101$. So the corollary is a theorem, unconditionally, for all $d<1.83\cdot10^9$, and, relying on Kimura's determination of all $d$ with $h(-d)\le2000$ \cite{kimura2026} (not yet refereed), for all $d<7.5\cdot10^{11}$. Numerical checks of the corollary are therefore only sanity checks of the constants, not tests of the input theorem. The same script checks Corollary~\ref{cor:78} for all $164\,562$ nonprincipal characters modulo the primes $q\le1500$ (minimum of $|L(1,\chi)|$ divided by the lower bound: $29.7$, attained at $q=163$ by the real character; maximum of $|L(1,\chi)|$ divided by the upper bound: $0.019$).
+
+\subsection{Comparison with other bounds}
+For $\theta=1/2$ (GRH) Theorem~\ref{thm:main} gives $L(1,\chi)\ge\zeta(2)e^{-\gamma}\cdot0.44\,e^{-\Theta}/(M+\log\log q)$, against Littlewood's $(\tfrac12+o(1))\zeta(2)e^{-\gamma}/\log\log q$; the loss is the factor $0.88$ in the width, the additive $M$ and the factor $e^{-\Theta}$. The upper bound $17.12(10+\log\log q)$ of Corollary~\ref{cor:78} improves on the trivial $|L(1,\chi)|\le\log q+2$ (from \eqref{eq:ps} at $s=1$) only for $\log q>264.7$; the content of the corollary is the lower bound. For primitive non-quadratic $\chi$ of conductor $q$ the unconditional bound $|L(1,\chi)|\ge1/(9.69030\log(q/\pi))$ of Mossinghoff, Starichkova and Trudgian \cite{mst2021} is stronger than Corollary~\ref{cor:78} for $\log q<14.78$, i.e.\ $q<2.6\cdot10^{6}$.
+
+\section{Proof of Theorem \ref{thm:HL}}\label{sec:HL}
+
+The inputs are \eqref{eq:ps}, Dirichlet's theorem $L(1,\chi)\ne0$, and the representation
+\begin{equation}\label{eq:zeta}
+ \zeta(s)=1+\frac1{s-1}-s\int_1^\infty\{x\}x^{-s-1}\dd x\qquad(\sigma>0,\ s\ne1),
+\end{equation}
+where $\{x\}=x-\lfloor x\rfloor$; it follows by partial summation of $\sum n^{-s}$ against $\lfloor x\rfloor$ for $\sigma>1$ and analytic continuation (see \cite[Chapter~1]{mv2007}).
+
+\begin{proof}
+Let $r=L(1,\chi)$ and $F(s)=\zeta(s)L(s,\chi)=\sum_{n\ge1}a_nn^{-s}$ for $\sigma>1$, $a_n=\sum_{d\mid n}\chi(d)$. As $\chi$ is real, $a_n=\prod_{p^k\parallel n}(1+\chi(p)+\dots+\chi(p)^k)\ge0$ and $a_1=1$.
+
+\emph{Step 0: $r>0$.} For real $s>1$, $F(s)\ge a_1=1$, while $\zeta(s)\to+\infty$ and $L(s,\chi)\to r$ as $s\to1^+$; so $r\ge0$, and $r\ne0$ by Dirichlet's theorem.
+
+\emph{Step 1.} $F$ is meromorphic on $\C$ with a single simple pole at $s=1$, of residue $r$, so $\Phi(s)=F(s)-r/(s-1)$ is entire. Expand $\Phi(s)=\sum_{k\ge0}c_k(2-s)^k$ at $s=2$. Since $(-1)^k\frac{\dd^k}{\dd s^k}\frac1{s-1}\big|_{s=2}=k!$, the pole term contributes $-r$ to each $c_k$, and the series contributes $b_k=\sum_na_n(\log n)^kn^{-2}/k!\ge0$ with $b_0=F(2)\ge1$. Thus $c_k=b_k-r$.
+
+\emph{Step 2.} On the circle $|s-2|=3/2$ we have $\sigma\ge1/2$, $|s|\le7/2$ and $|s-1|\ge1/2$. By \eqref{eq:zeta}, $|\zeta(s)|\le1+2+\tfrac72\cdot\tfrac1\sigma\le10$. By \eqref{eq:ps}, $|L(s,\chi)|\le\sum_{n\le q}n^{-1/2}+\tfrac72q\cdot q^{-\sigma}/\sigma\le(2\sqrt q-1)+7\sqrt q\le9\sqrt q$. Also, by \eqref{eq:ps} at $s=1$, $r\le\sum_{n\le q}1/n+1\le2+\log q$, so $|r/(s-1)|\le4+2\log q\le10\sqrt q$ for $q\ge3$. Hence $|\Phi(s)|\le100\sqrt q$ on the circle and Cauchy's estimate gives $|c_k|\le100\sqrt q\,(2/3)^k$.
+
+\emph{Step 3.} Let $\sigma=1-\eta$, so $2-\sigma=1+\eta<3/2$ and $F(\sigma)=-r/\eta+\sum_{k\ge0}(b_k-r)(1+\eta)^k$. Put $K=\lceil30\log q\rceil$. For the terms $k<K$, using $b_k\ge0$, $b_0\ge1$, $K\le31\log q$ (as $\log q>1$) and $(1+\eta)^K\le e^{\eta K}\le e^{31/40}<2.171$,
+\[
+ \sum_{k<K}(b_k-r)(1+\eta)^k\ge1-rK(1+\eta)^K\ge1-2.171\cdot31\,r\log q\ge1-68\,r\log q .
+\]
+For the tail, since $\eta\le1/(40\log3)<1/8$ we have $(2/3)(1+\eta)\le3/4$, so
+\[
+ \sum_{k\ge K}|b_k-r|(1+\eta)^k\le100\sqrt q\sum_{k\ge K}(3/4)^k=400\sqrt q\,(3/4)^K\le400\,q^{1/2+30\log(3/4)}\le400\cdot3^{-8.13}<0.06,
+\]
+because $30\log(3/4)=-8.6304\ldots$ and the exponent $1/2+30\log(3/4)<-8.13$ is negative. Therefore
+\begin{equation}\label{eq:Fsigma}
+ F(\sigma)\ge-40\,r\log q+1-68\,r\log q-0.06>0.9-108\,r\log q .
+\end{equation}
+
+\emph{Step 4.} Suppose $r<1/(120\log q)$. Then $108\,r\log q<0.9$ and $F(\sigma)>0$ by \eqref{eq:Fsigma}. By \eqref{eq:zeta} with real $\sigma\in(0,1)$, $\zeta(\sigma)=\sigma/(\sigma-1)-\sigma\int_1^\infty\{x\}x^{-\sigma-1}\dd x<0$. Hence $L(\sigma,\chi)=F(\sigma)/\zeta(\sigma)<0<L(1,\chi)$, and the real continuous function $L(\cdot,\chi)$ vanishes somewhere in $(\sigma,1)=(1-\eta,1)$, contrary to the hypothesis. So $r\ge1/(120\log q)$.
+
+For the last assertions: if $\theta\le1-1/(40\log3)$ then $(1-\eta,1)\subset(\theta,1)$ for all $q\ge3$, and the class-number bound follows from Lemma~\ref{lem:cnf}.
+\end{proof}
+
+\section{Ancillary files}\label{sec:anc}
+The directory \texttt{anc/} contains two scripts (Python~3, \texttt{mpmath}, \texttt{numpy}, \texttt{scipy}) and their outputs.
+\begin{itemize}
+\item \texttt{constants.py} evaluates Definition~\ref{def:const} for $\theta\in\{7/8,\sigma_\dagger,0.8739558,1/2\}$ and $M=10$ (Table~\ref{tab:const}), the thresholds of Table~\ref{tab:thr} (uniform constant and best $M$), the comparison at Kimura's points $e^{27.2}$, $e^{35.4}$, and the numerical inequalities of Section~\ref{sec:HL} ($e^{31/40}<2.171$, $400\cdot3^{1/2+30\log(3/4)}<0.06$).
+\item \texttt{checks.py} verifies numerically: $K_0\le K_0^+$ and $J\le J^+$ by quadrature; $\sum_{n\le q}n^{-\sigma_0}\le q^{\delta'}/\delta'$ at sample $q$; the prime-power count of Lemma~\ref{lem:main} at $y=10^5,10^6,10^7$; the two Rosser--Schoenfeld inequalities at sample $x\le10^7$; the kernel identity; the class-number corollary for $d\le3\cdot10^6$; and Corollary~\ref{cor:78} for all characters modulo primes $q\le1500$ via $L(1,\chi)=-q^{-1}\sum_{a}\chi(a)\psi(a/q)$.
+\end{itemize}
+The scripts check arithmetic and sanity; the proofs are in the text, and the input (H$_{7/8}$) is not checked anywhere in this paper.
+
+\begingroup\raggedright
+\bibliographystyle{unsrt}
+\bibliography{references}
+\endgroup
+\section*{Use of AI}
+The proofs and the text of this paper were produced with AI systems (Claude Fable~5.1 and Claude Opus~5.5) under the author's direction. They were checked by independent reviews with AI models and by the computations in the ancillary files. No human expert has reviewed them. The author takes responsibility for the content.
+\end{document}

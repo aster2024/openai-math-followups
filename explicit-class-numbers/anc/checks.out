@@ -1,0 +1,37 @@
+== 1. K0, J: exact integrals vs bounds ==
+  theta=0.8750: K0 = 7.83499 <= K0+ = 8.52457: True;  J = 19.90758 <= J+ = 22.01810: True
+  theta=0.5000: K0 = 6.30599 <= K0+ = 7.56911: True;  J = 12.51925 <= J+ = 15.42154: True
+== 2. sum_{n<=q} n^-sigma0 <= q^delta'/delta' ==
+  theta=0.8750: all sample q pass: True  (q=10^6: 35.9690 <= 43.7340)
+  theta=0.5000: all sample q pass: True  (q=10^6: 1578.8282 <= 1580.3699)
+== 3. prime-power count: sum_{k>=2} pi(y^(1/k))/k <= sqrt(y)/2 + y^(1/3) log y ==
+  y=100000: lhs=41.769 <= rhs=692.497: True
+  y=1000000: lhs=99.112 <= rhs=1881.551: True
+  y=10000000: lhs=248.299 <= rhs=5053.677: True
+== 4. Rosser-Schoenfeld (3.6) and Theorem 7 (lower bound, x >= 285) ==
+  max_(x<=1e7) pi(x) log x/x = 1.255059 at x = 113  (< 1.25506: True)
+  x=285: prod(1-1/p) = 0.09779231 > e^-gamma/log x (1-1/(2log^2 x)) = 0.09777518: True
+  x=286: prod(1-1/p) = 0.09779231 > e^-gamma/log x (1-1/(2log^2 x)) = 0.09771655: True
+  x=300: prod(1-1/p) = 0.09745855 > e^-gamma/log x (1-1/(2log^2 x)) = 0.09692348: True
+  x=1000: prod(1-1/p) = 0.08096526 > e^-gamma/log x (1-1/(2log^2 x)) = 0.08042790: True
+  x=10000: prod(1-1/p) = 0.06088469 > e^-gamma/log x (1-1/(2log^2 x)) = 0.06060039: True
+  x=100000: prod(1-1/p) = 0.04875292 > e^-gamma/log x (1-1/(2log^2 x)) = 0.04858379: True
+  x=1000000: prod(1-1/p) = 0.04063821 > e^-gamma/log x (1-1/(2log^2 x)) = 0.04053333: True
+  x=10000000: prod(1-1/p) = 0.03483377 > e^-gamma/log x (1-1/(2log^2 x)) = 0.03476707: True
+  all pass: True
+== 5. Perron kernel (1/2 pi i) int_(c) x^w dw/(w(w+1)) = max(0, 1-1/x) ==
+  x=0.5: integral = -0.00000127  target = 0.00000000
+  x=1.0: integral = 0.00000000  target = 0.00000000
+  x=2.0: integral = 0.49999510  target = 0.50000000
+  x=10.0: integral = 0.90022324  target = 0.90000000
+== 6. class numbers h(-d) for fundamental d <= 3*10^6 vs Corollary 1.3 ==
+  #fundamental d in [3, 3000000]: 911878; spot checks h(-163)=1, h(-1555)=4, h(-4027)=9 ok
+  largest fundamental d <= 3000000 with h(-d) <= 1: 163 (literature value: 163); h(-163) = 1
+  largest fundamental d <= 3000000 with h(-d) <= 10: 13843 (literature value: 13843); h(-13843) = 10
+  largest fundamental d <= 3000000 with h(-d) <= 100: 2383747 (literature value: 2383747); h(-2383747) = 98
+  bound sqrt(d)/(32.69(10+loglog d)): violations = 0, min h/bound = 26.12 at d = 991027, max bound in range = 4.171
+  q-dependent bound (M=7) at sample d: violations = 0
+== 7. |L(1,chi)| for all nonprincipal chi mod primes q <= 1500 vs Corollary 1.2 ==
+  164562 characters; min |L|/lower = 29.767 at q = 163 (>= 1 required), max |L|/upper = 0.0190 (<= 1 required)
+  check: |L(1,chi_-7)| = 1.1874104117, pi/sqrt(7) = 1.1874104117
+total 8.1 s

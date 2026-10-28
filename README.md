@@ -100,6 +100,29 @@ tensor condition and derives the classification from a second-order expansion of
 derivations of M(A). An explicit Ramsey family on the curve y² = x³ − 2, with moduli of transcendence degree one and
 no algebraic cross ratio, shows that the dimension hypothesis cannot simply be dropped.
 
+### [`explicit-class-numbers/`](explicit-class-numbers/) — Explicit Littlewood-type bounds for L(1,χ) and class numbers from a zero-free half-plane
+
+Paper (13 pages), 28 October 2026: [PDF](explicit-class-numbers/paper.pdf). Programs evaluating the constants and checking the bounds numerically are in [`explicit-class-numbers/anc/`](explicit-class-numbers/anc/).
+
+Let 1/2 ≤ θ < 1 and let χ be a nonprincipal Dirichlet character modulo q ≥ 3 whose L-function has no zeros with
+Re s > θ. The paper gives two-sided bounds for |L(1,χ)| of Littlewood's shape (M + log log q)^(±1), with every
+constant explicit in θ. For θ = 7/8, the half-plane of OpenAI's paper
+[The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane Re s > 7/8](https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf)
+(30 September 2026), this gives 1/(10.41 (10 + log log q)) ≤ |L(1,χ)| ≤ 17.12 (10 + log log q) and, for every
+fundamental discriminant −d < 0,
+
+```math
+h(-d)\ \ge\ rac{\sqrt d}{32.69\,(10+\log\log d)},
+```
+
+so that h(−d) > 100 for d ≥ 1.83·10⁹ and h(−d) > 1000 for d ≥ 1.88·10¹¹. The statements hold unconditionally exactly
+when the input theorem is correct. Friedlander (1977) records that Littlewood's GRH argument extends to a zero-free
+half-plane, and OpenAI's paper of 5 October 2026 and K. Kimura
+([arXiv:2610.21511v2](https://arxiv.org/abs/2610.21511v2), which determines all imaginary quadratic fields with class
+number at most 2000 from the release's exclusion of Landau–Siegel zeros) note the resulting bound
+h(−d) ≫ √d/log log d with an effective constant; the paper works out explicit constants and compares the thresholds
+with those of Watkins and Kimura.
+
 ### [`hot-spots-convex-planar/`](hot-spots-convex-planar/) — First Neumann eigenfunctions of convex planar domains attain their extrema on the boundary
 
 Paper (32 pages), 10 October 2026: [PDF](hot-spots-convex-planar/paper.pdf).
