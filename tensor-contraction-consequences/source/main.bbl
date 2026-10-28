@@ -1,0 +1,138 @@
+\begin{thebibliography}{10}
+
+\bibitem{BW24}
+Gabriel Bathie and R.~Ryan Williams.
+\newblock Towards stronger depth lower bounds.
+\newblock In {\em 15th Innovations in Theoretical Computer Science Conference
+  (ITCS 2024)}, volume 287 of {\em Leibniz International Proceedings in
+  Informatics}, pages 10:1--10:24, 2024.
+\newblock \url{https://doi.org/10.4230/LIPIcs.ITCS.2024.10}.
+
+\bibitem{Bjorklund14}
+Andreas Bj{\"o}rklund.
+\newblock Determinant sums for undirected hamiltonicity.
+\newblock {\em SIAM Journal on Computing}, 43(1):280--299, 2014.
+\newblock \url{https://doi.org/10.1137/110839229}.
+
+\bibitem{BCKN15}
+Hans~L. Bodlaender, Marek Cygan, Stefan Kratsch, and Jesper Nederlof.
+\newblock Deterministic single exponential time algorithms for connectivity
+  problems parameterized by treewidth.
+\newblock {\em Information and Computation}, 243:86--111, 2015.
+\newblock Preprint title: Solving weighted and counting variants of
+  connectivity problems parameterized by treewidth deterministically in single
+  exponential time, arXiv:1211.1505.
+  \url{https://doi.org/10.1016/j.ic.2014.12.008}.
+
+\bibitem{CLW20}
+Lijie Chen, Xin Lyu, and R.~Ryan Williams.
+\newblock Almost-everywhere circuit lower bounds from non-trivial
+  derandomization.
+\newblock Electronic Colloquium on Computational Complexity, TR20-150, 2020.
+\newblock Full version, including Appendix A.
+  \url{https://eccc.weizmann.ac.il/report/2020/150/}.
+
+\bibitem{CTW26}
+Lijie Chen, Avishay Tal, and Yichuan Wang.
+\newblock Super-quadratic lower bounds for depth-2 linear threshold circuits.
+\newblock Electronic Colloquium on Computational Complexity, TR26-039, 2026.
+\newblock Manuscript dated 14 March 2026.
+  \url{https://eccc.weizmann.ac.il/report/2026/039/}.
+
+\bibitem{CW19}
+Lijie Chen and R.~Ryan Williams.
+\newblock Stronger connections between circuit analysis and circuit lower
+  bounds, via {PCPs} of proximity.
+\newblock In {\em 34th Computational Complexity Conference (CCC 2019)}, volume
+  137 of {\em Leibniz International Proceedings in Informatics}, pages
+  19:1--19:43, 2019.
+\newblock \url{https://doi.org/10.4230/LIPIcs.CCC.2019.19}.
+
+\bibitem{CutCount11}
+Marek Cygan, Jesper Nederlof, Marcin Pilipczuk, Micha{\l} Pilipczuk, Johan
+  M.~M. van Rooij, and Jakub~Onufry Wojtaszczyk.
+\newblock Solving connectivity problems parameterized by treewidth in single
+  exponential time.
+\newblock In {\em 52nd Annual IEEE Symposium on Foundations of Computer
+  Science}, pages 150--159, 2011.
+\newblock Full version: arXiv:1103.0534.
+  \url{https://doi.org/10.1109/FOCS.2011.23}.
+
+\bibitem{IPS97}
+Russell Impagliazzo, Ramamohan Paturi, and Michael~E. Saks.
+\newblock Size--depth tradeoffs for threshold circuits.
+\newblock {\em SIAM Journal on Computing}, 26(3):693--707, 1997.
+\newblock
+  \url{https://cseweb.ucsd.edu/~paturi/myPapers/pubs/ImpagliazzoPaturiSaks_1997_siamjc.pdf}.
+
+\bibitem{IPZ01}
+Russell Impagliazzo, Ramamohan Paturi, and Francis Zane.
+\newblock Which problems have strongly exponential complexity?
+\newblock {\em Journal of Computer and System Sciences}, 63(4):512--530, 2001.
+\newblock
+  \url{https://courses.cs.washington.edu/courses/cse599i/24sp/papers/ImpagliazzoPaturiZane_2001_jcss.pdf}.
+
+\bibitem{KW16}
+Daniel~M. Kane and Ryan Williams.
+\newblock Super-linear gate and super-quadratic wire lower bounds for depth-two
+  and depth-three threshold circuits.
+\newblock In {\em Proceedings of the 48th Annual ACM Symposium on Theory of
+  Computing}, pages 633--643, 2016.
+\newblock \url{https://doi.org/10.1145/2897518.2897636}.
+
+\bibitem{LiYang22}
+Jiatu Li and Tianqi Yang.
+\newblock $3.1n-o(n)$ circuit lower bounds for explicit functions.
+\newblock In {\em Proceedings of the 54th Annual ACM SIGACT Symposium on Theory
+  of Computing}, pages 1180--1193, 2022.
+\newblock \url{https://doi.org/10.1145/3519935.3519976}.
+
+\bibitem{Nisan93}
+Noam Nisan.
+\newblock The communication complexity of threshold gates.
+\newblock In {\em Combinatorics, Paul Erd\H{o}s is Eighty}, volume~1 of {\em
+  Bolyai Society Mathematical Studies}, pages 301--315. J\'anos Bolyai
+  Mathematical Society, 1993.
+
+\bibitem{OpenAILean26}
+{OpenAI}.
+\newblock Scope of the {Lean} formalization: {The Exponential Time Hypothesis
+  is False}.
+\newblock OpenAI Math repository, lean/docs/378.md, 2026.
+\newblock
+  \url{https://github.com/openai/math/blob/42907c9e999cc00d6abe7a50bfc1023250edd1b9/lean/docs/378.md}.
+
+\bibitem{OpenAI26}
+{OpenAI}.
+\newblock {The Exponential Time Hypothesis is False}.
+\newblock OpenAI Math Release preprint, dated 25 October 2026, 2026.
+\newblock Theorem D.1, Theorem 1.1, and Corollary 1.4.
+  \url{https://github.com/openai/math/blob/42907c9e999cc00d6abe7a50bfc1023250edd1b9/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf}.
+
+\bibitem{Rosser62}
+J.~Barkley Rosser and Lowell Schoenfeld.
+\newblock Approximate formulas for some functions of prime numbers.
+\newblock {\em Illinois Journal of Mathematics}, 6:64--94, 1962.
+\newblock
+  \url{https://projecteuclid.org/journals/illinois-journal-of-mathematics/volume-6/issue-1/Approximate-formulas-for-some-functions-of-prime-numbers/10.1215/ijm/1255631807.full}.
+
+\bibitem{STV01}
+Madhu Sudan, Luca Trevisan, and Salil~P. Vadhan.
+\newblock Pseudorandom generators without the {XOR} lemma.
+\newblock {\em Journal of Computer and System Sciences}, 62(2):236--266, 2001.
+\newblock \url{https://doi.org/10.1006/jcss.2000.1730}.
+
+\bibitem{Viola15}
+Emanuele Viola.
+\newblock The communication complexity of addition.
+\newblock {\em Combinatorica}, 35(6):703--747, 2015.
+\newblock Author manuscript dated 12 December 2013.
+  \url{https://doi.org/10.1007/s00493-014-3078-3}.
+
+\bibitem{Williams13}
+Ryan Williams.
+\newblock Improving exhaustive search implies superpolynomial lower bounds.
+\newblock {\em SIAM Journal on Computing}, 42(3):1218--1244, 2013.
+\newblock \url{https://doi.org/10.1137/10080703X}.
+
+\end{thebibliography}

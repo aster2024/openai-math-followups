@@ -1,0 +1,1 @@
+{"test":"marker_determinant_vs_enumerated_augmented_spanning_trees","max_n":5,"checks":254254,"status":"PASS"}

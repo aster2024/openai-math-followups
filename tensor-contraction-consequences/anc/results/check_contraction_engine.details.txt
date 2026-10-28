@@ -1,0 +1,1 @@
+{"status": "PASS", "cases": 300, "brute_force_assignments": 10794, "seed": 10282026, "scope": "small weighted factor graphs, scalar and disconnected factors, arbitrary retained subsets", "engine_sha256": "3d0f8d59271ca93267ecfd0890f0110e5ced491932cfaa7fb753b57f887b0cef"}

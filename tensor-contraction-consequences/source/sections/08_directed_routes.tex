@@ -1,0 +1,170 @@
+\section{Directed graphs and sparse-base routing}
+\label{sec:directed-routes}
+
+\subsection{The directed marker identity}
+
+Assume \HTC. Let a loopless digraph have selected vertices $U$,
+selected arcs $F$ with endpoints in $U$, and markers $M_0\subseteq U$.
+Replace~\eqref{eq:marker-matrix} by the outgoing Laplacian
+\begin{equation}\label{eq:directed-matrix}
+ A^+_{vv}=d^+_F(v)+[v\in M_0]+[v\notin U],\qquad
+ A^+_{vw}=-[v\mathbin{\to}w\in F]\quad(v\ne w).
+\end{equation}
+Its determinant counts spanning arborescences directed toward the
+new root $\rho$, after adding $v\to\rho$ for every marker $v$.
+Here every selected vertex has one outgoing tree arc and every orbit
+reaches $\rho$.
+
+We verify this identity directly. Remove the identity block outside
+$U$. Expand each diagonal entry as a choice of one outgoing selected
+arc or an available root arc. Fix all these choices, a function
+$f:U\to U\cup\{\rho\}$. Its nonroot directed cycles are disjoint.
+A nontrivial permutation cycle in a determinant term must be one of
+these cycles: its off-diagonal entries require the corresponding
+choices of $f$. Conversely any subset of these cycles may be used,
+with every other vertex a diagonal fixed point. A length-$d$ cycle
+has permutation sign $(-1)^{d-1}$ and $d$ negative entries, so
+contributes $-1$. The total for this $f$ is
+\[
+ \sum_{Q\subseteq\operatorname{cycles}(f)}(-1)^{|Q|}
+ =(1-1)^{|\operatorname{cycles}(f)|}.
+\]
+It is one exactly when every orbit reaches the root. Thus
+$\det A^+\ge0$, and it is positive exactly when every selected vertex
+can reach a marker along selected arcs. For the converse existence
+claim, choose for each vertex an arc decreasing its shortest distance
+to a marker or to the new root. Empty $U$ has determinant one.
+The exclusion of loops keeps diagonal choices separate from
+permutation cycles.
+
+The potential matrix positions number at most $n+m$, and outgoing
+degree counters and entry scopes are $O(n+m)$. Combining this
+identity with the sparse sign gadget obeys the same wire, degree,
+entry-cost, and ring bounds as before.
+
+\subsection{Directed applications}
+
+\begin{proof}[Proof of Theorem~\ref{thm:directed}]
+For directed HC, require indegree and outdegree one at every vertex
+and fix one marker $r$. Candidates are disjoint directed cycles.
+A spanning cycle has exactly one rooted arborescence in the augmented
+graph: replace $r$'s outgoing cycle arc by its root arc, and keep the
+other arcs. Any additional cycle misses the marker and has determinant
+zero. The final sum is therefore the directed HC count itself; it
+is not divided by $n$.
+
+For a directed $s$--$t$ path, $s\ne t$, require selected indegree/outdegree
+$(0,1)$ at $s$, $(1,0)$ at $t$, $(1,1)$ at other selected vertices,
+and $(0,0)$ outside $U$. Use $t$ as the sole marker. The path contributes
+one, and any extra directed cycle makes the determinant zero. This
+proves exact counting with a prescribed length and longest-path
+optimization. Unspecified endpoints are enumerated as \emph{ordered}
+pairs. A single-vertex path is treated separately. A two-vertex directed
+cycle with opposite arcs is a valid HC under these conventions.
+Empty graphs and the one-vertex loopless case are checked directly.
+
+For directed Steiner tree toward a root $r$, require $r\in U$,
+outdegree zero at $r$, outdegree one at each other selected vertex,
+and inclusion of all terminals. With marker $r$ the determinant is
+one precisely on arborescences toward $r$. A feasible rooted-reachability
+subgraph contains a suitable arborescence, obtained by selecting arcs
+that decrease distance to the root; extra branches not needed for the
+terminals can be deleted. With nonnegative costs this restriction
+preserves the optimum. Reverse the input for the usual version with
+paths from the root to the terminals. The same network exactly counts
+arborescent subgraphs of the specified direction. Even when terminals
+consist only of the root, the counting problem includes all such
+subgraphs; only the optimum can immediately be the single root.
+
+For a strongly connected selected subgraph, fix $r\in U$ and multiply
+two determinant gadgets on the \emph{same} selected-arc bits: one for
+$F$ and one for its reverse. The second matrix's diagonal uses the
+original indegrees; it is recomputed rather than obtained by merely
+transposing the original matrix. The product is positive exactly when
+every selected vertex can reach $r$ and can be reached from $r$.
+This is strong connectivity. The product stays inside the common
+sum over candidates. It is not the product of two separately
+contracted sums. For a spanning subgraph use $U=V$. For a terminal
+version use $T\subseteq U$ and a fixed $r\in T$ when $T$ is nonempty.
+For an empty terminal set use the requested empty-subgraph convention,
+or enumerate roots to cover nonempty solutions.
+
+Each arborescence is a subset of at most $m+n$ potential augmented
+arcs. At most two determinant factors and at most $2^{n+m}$
+candidates give the uniform bound
+\[
+ 0\le Z\le2^{3(n+m)}<2^{4(n+m+2)}.
+\]
+Use $P_0=4(n+m+2)+1$, $\ell=1$, and a fixed multiple of $n+m+2$
+for the \HTC\ scale. Costs use the exact statistics gadget; objective
+and witness bits are recovered by the same positive-sum self-reduction
+as in the undirected case. All query counts are polynomial. This
+proves the theorem.
+\end{proof}
+
+\subsection{Closed walks, required edges, and metric TSP}
+
+\begin{proof}[Proof of Theorem~\ref{thm:routing}]
+A nonempty closed walk determines a connected even-degree edge
+multiset. If an edge has multiplicity at least three, delete two of
+its copies. Its support remains unchanged, degrees stay even, and
+required-edge and terminal constraints remain satisfied. The cost
+does not increase. Repeating gives an optimum with multiplicities
+\begin{equation}\label{eq:walk-multiplicity}
+ \mu_e\in\{0,1,2\}.
+\end{equation}
+Conversely a connected even-degree multigraph has an Euler tour:
+follow unused edges to a closed trail, and splice in further closed
+trails wherever unused edges remain. Connectivity and parity ensure
+this process exhausts every edge. A selected single vertex without
+edges represents its zero-length closed walk.
+
+Encode $\mu_e=a_e+2b_e$ with Boolean bits and forbid $a_e=b_e=1$.
+Define its support $f_e=a_e\vee b_e$ uniquely. Required edges have
+$f_e=1$. Select $U$ containing the terminals and every support
+endpoint; the single-marker determinant on the support graph
+$(U,\{e:f_e=1\})$ enforces connectivity. Extra isolated selected
+vertices are thereby eliminated except for the valid singleton case.
+For nonempty requirements fix
+$r\in T\cup V(R)$ as the marker and require $r\in U$. If a depot is
+specified, include it in $T$. Empty requirements allow an empty walk
+of cost zero and are handled directly.
+
+A parity chain at vertex $v$ requires
+\[
+ \sum_{e\ni v}a_e\equiv0\pmod2,
+\]
+which is exactly the parity of its multidegree. The chains and the
+multiplicity/support relations together have $O(n+m)$ wires. The
+cost is the exact statistic
+\[
+ \sum_e w_ea_e+2w_eb_e.
+\]
+Its coefficient width is at most one more than the input width;
+this constant change is covered by the fixed-scale long-coefficient
+gadget. The determinant counts trees of the \emph{simple support}
+graph, as a positive feasibility weight.
+
+There are at most $2^n3^m$ candidates $(U,\mu)$, and at most $2^m$
+support spanning trees for a single marker. Thus
+\[
+ 0\le Z\le2^n6^m<2^{4(n+m+2)}.
+\]
+The same precision and \HTC\ scale apply. Binary search on cost,
+followed by fixing $a_e,b_e,u_v$ while preserving positive sums,
+recovers an optimal even connected multiset. Its Euler tour has at
+most $2m$ edge traversals. With a depot, rotate the tour to start
+and end there.
+
+Finally suppose the base graph is connected, $T=V$, and $R$ is empty.
+Expand any Hamiltonian tour of its shortest-path metric into base-graph
+shortest paths. This gives a closed spanning walk of the same cost.
+Conversely, visit vertices in their order of earliest appearance along a
+spanning walk and shortcut repeats in the metric. The triangle
+inequality gives a Hamiltonian metric tour of no greater cost.
+Therefore the optima are equal, and shortcutting an optimal returned
+walk gives an optimal metric tour. Zero costs can give a pseudometric;
+the same inequalities still hold. Distances are needed only for this
+polynomial-time output step; a dense metric closure is not part of
+the tensor network. The proof of~\eqref{eq:graph-time} follows.
+\end{proof}

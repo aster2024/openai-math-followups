@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "case": "one_round_bad_seed",
+  "parameters": {
+    "t": 2,
+    "B_prime": 2,
+    "target": 0,
+    "primes": [
+      3
+    ]
+  },
+  "graph": {
+    "vertices": 547,
+    "edges": 628,
+    "max_degree": 7,
+    "bipartite": true,
+    "every_edge_has_two_ports": true,
+    "all_original_entries_zero_one": true,
+    "max_copy_fanout": 16
+  },
+  "native": {
+    "boolean_gates": 85,
+    "boolean_input_ports": 164,
+    "max_party_degree": 7,
+    "max_control_degree": 3,
+    "final_degree": 5,
+    "J": 1,
+    "r": 2,
+    "ell": 2
+  },
+  "input_assignments": 16,
+  "extension_count_histogram": {
+    "1": 16
+  },
+  "output_one_count": 11,
+  "trace_histogram": {
+    "LOW": 4,
+    "HIGH": 8,
+    "FALSE-h": 4
+  },
+  "allowed_bad_seed_examples": [
+    {
+      "inputs": [
+        2,
+        2
+      ],
+      "protocol": 0,
+      "exact_comparison": 1
+    },
+    {
+      "inputs": [
+        2,
+        3
+      ],
+      "protocol": 0,
+      "exact_comparison": 1
+    },
+    {
+      "inputs": [
+        3,
+        2
+      ],
+      "protocol": 0,
+      "exact_comparison": 1
+    },
+    {
+      "inputs": [
+        3,
+        3
+      ],
+      "protocol": 0,
+      "exact_comparison": 1
+    }
+  ],
+  "contraction": {
+    "elimination_steps": 623,
+    "peak_nonzero_table_rows": 1216
+  },
+  "seconds": 2.5464376769959927,
+  "script_sha256": "98b28e6230f1ad90980cef85f86863f13f5269fad4e23154781a5186faed1c46"
+}

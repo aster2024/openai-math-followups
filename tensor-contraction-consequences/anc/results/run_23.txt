@@ -1,0 +1,1 @@
+Residue-chain tensor checks passed: 136896 (gadget, x, p) triples; family 24 primes, wire width 7 ; integer tensors=int64

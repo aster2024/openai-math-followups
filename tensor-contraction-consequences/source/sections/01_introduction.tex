@@ -1,0 +1,225 @@
+\section{Introduction}
+
+Theorem D.1 of OpenAI's 25 October 2026 manuscript~\cite{OpenAI26}
+asserts a deterministic, polynomial-space contraction algorithm for
+Boolean tensor networks with linearly many edges and maximum degree
+$\lceil s^{9/10}\rceil$. We denote this assertion by \HTC, and state its
+full interface in Section~\ref{sec:interface}. This paper studies its
+consequences. The degree bound, the allowed coefficient ring, the cost
+of evaluating implicit tensors, and exact integer readback are part of
+every application.
+
+Throughout, $\log_2$ is the binary logarithm, and
+$g(s)=s/\sqrt{\log_2(s+16)}$. Running times count bit operations, including
+polynomial factors in the description length. Polynomial space means
+polynomially many bits. A circuit wire is an occurrence in a gate's
+input list; arbitrary fan-out is permitted. Circuit depth and fan-in
+are unrestricted unless a statement explicitly bounds them.
+
+\subsection{Statements of the consequences}
+
+\begin{theorem}[Threshold acceptance probability, conditional on \HTC]
+\label{thm:capp}
+Assume \HTC. Fix $a\ge1$. Let $C$ be a single-output Boolean threshold
+circuit with $n$ declared inputs, $w$ wires, and integer weights and
+thresholds in a complete description of length $L\le S^a$, where
+$S=n+w+2$. For every
+\[
+ 2^{-S^{9/10}/\log_2(S+16)}\le\eps<1,
+\]
+there is a deterministic algorithm producing a rational $\widehat p$
+with
+\[
+ \left|\widehat p-2^{-n}|\{x:C(x)=1\}|\right|\le\eps
+\]
+in $\poly_a(S+L)2^{O_a(g(S))}$ time and $\poly_a(S+L)$ space.
+In particular this holds for $\eps\ge S^{-a}$. The algorithm can use the
+fixed lower endpoint as its target error, so no arbitrary-precision real
+encoding of $\eps$ is required.
+\end{theorem}
+
+The proof is in Sections~\ref{sec:protocol}--\ref{sec:unified}.
+Theorem~\ref{thm:unified} gives the precise per-gate version. It allows
+$\THR$, $\ETHR$, and weighted $\MOD_m$ gates, as well as small gates
+with polynomial-time evaluators. Each large gate is assigned either an
+exact sliced gadget, an exact supplied weight-factorization gadget, or
+a hashed gadget. Under the explicit wire budget~\eqref{eq:budget},
+the same time and space bounds hold, with error at most the sum of the
+hashed gates' error budgets. When that set is empty, the answer is the
+exact number of accepting assignments. In that exact-only case
+the description length $L$ is arbitrary, with polynomial cost in $S+L$.
+In particular, exact counting is available when the wire-weighted sum
+of large gates' parameter bit lengths is $O(S^{19/10})$.
+
+\begin{theorem}[Real-weight wire lower bounds, conditional on \HTC]
+\label{thm:lower}
+Assume \HTC. There are a constant $c>0$ and a language
+$L_{\mathrm{ae}}\in\ENP$ such that, for every sufficiently large $N$,
+every real-weight threshold circuit computing
+$(L_{\mathrm{ae}})_N$ has more than $cN\sqrt{\log_2N}$ wires.
+Consequently there is also such a language with this lower bound at
+infinitely many lengths. For every fixed $\gamma\in(0,1/2)$ there are
+$c_\gamma>0$ and $L_\gamma\in\ENP$ such that, for every sufficiently
+large $N$, every real-weight threshold circuit with at most
+$c_\gamma N\sqrt{\log_2N}$ wires agrees with $(L_\gamma)_N$ on at most
+a $1/2+\gamma$ fraction of inputs. The circuits have arbitrary depth
+and fan-in. The language in the last assertion may depend on $\gamma$.
+\end{theorem}
+
+Section~\ref{sec:lower} proves these statements by substituting the
+acceptance-probability algorithm into the proofs of known transfer
+constructions. We also give the separate infinitely-often construction,
+since it makes the two-stage verification cost explicit.
+
+\begin{theorem}[Undirected sparse connectivity, conditional on \HTC]
+\label{thm:undirected}
+Assume \HTC. Fix $c>0$. On simple undirected graphs with $n$ vertices
+and $m\le cn$ edges, Hamiltonian cycle, Hamiltonian path (with specified
+or unspecified endpoints), longest simple path, Hamiltonian TSP,
+Steiner tree, feedback vertex set, connected vertex cover, and connected
+dominating set admit deterministic decision, optimization, and witness
+recovery in
+\begin{equation}\label{eq:graph-time}
+ \poly_c(n+L)2^{O_c(g(n))}\quad\hbox{time and}\quad\poly_c(n+L)
+ \quad\hbox{space}.
+\end{equation}
+The relevant vertex and edge costs may be nonnegative integers of at
+most $\lceil n^{9/10}\rceil$ bits. One can also exactly count undirected
+Hamiltonian cycles as edge sets, Hamiltonian paths with specified
+endpoints, simple paths with specified endpoints and length, and
+Steiner tree subgraphs $(U,F)$. For connected covers, connected
+dominating sets, and feedback vertex sets, the proof uses positive
+weighted counts to decide existence and optimize.
+\end{theorem}
+
+\begin{theorem}[Directed sparse connectivity, conditional on \HTC]
+\label{thm:directed}
+Assume \HTC. Fix $c>0$. On digraphs without loops or parallel arcs and
+with $m\le cn$, the bounds~\eqref{eq:graph-time} hold for exact directed
+Hamiltonian-cycle counting, exact counting of directed paths with
+specified endpoints and length, longest directed simple path,
+nonnegative-cost directed Steiner tree, and minimum strongly connected
+spanning subgraph. They also hold for a minimum strongly connected
+subgraph containing specified terminals. Directed Steiner arborescences
+with a fixed root, direction, and terminal set can be counted exactly.
+Costs have at most $\lceil n^{9/10}\rceil$ bits. Optimization includes
+recovery of an optimal subgraph.
+\end{theorem}
+
+\begin{theorem}[Routing on a sparse base graph, conditional on \HTC]
+\label{thm:routing}
+Assume \HTC. Fix $c>0$. Given a simple undirected base graph with
+$m\le cn$, nonnegative integer edge costs of at most
+$\lceil n^{9/10}\rceil$ bits, a terminal set $T$, and a required edge
+set $R$, a minimum-cost closed walk visiting $T$ and traversing $R$
+can be found, or infeasibility detected, within~\eqref{eq:graph-time}.
+This includes graphical TSP, Steiner TSP, and undirected Rural Postman.
+On a connected base graph, $T=V$ and $R=\varnothing$ give TSP on its
+shortest-path metric, with an optimal metric tour recovered for $n\ge3$.
+\end{theorem}
+
+\subsection{Comparison and scope}
+
+Table~\ref{tab:comparison} compares exponent scales. In its previous-best
+column, $2^{\Theta(n)}$ denotes the single-exponential scale of the
+available generic bounds; different problems and graph subclasses have
+different constant bases. The cited algorithms specify representative
+bounds within that scale. The comparison concerns unrestricted depth in
+the circuit rows and a fixed edge-to-vertex ratio in the graph rows.
+\begin{table}[ht]
+\centering\small
+\renewcommand{\arraystretch}{1.18}
+\begin{tabular}{@{}P{.29\linewidth}P{.32\linewidth}P{.32\linewidth}@{}}
+\toprule
+Problem & Previous best (exponent scale) & Under \HTC\\
+\midrule
+Arbitrary-depth THR CAPP, $w=O(n)$ & $2^{\Theta(n)}$ generic enumeration & $2^{O(g(n))}$, error down to $2^{-\Theta(n^{.9}/\log n)}$\\
+Mixed-gate exact counting under~\eqref{eq:budget} & $2^n\poly(L)$ enumeration & $\poly(S+L)2^{O(g(S))}$ for arbitrary $L$ if no gate is hashed\\
+Unrestricted-depth real THR wires for explicit $\ENP$ languages & Linear scale; depth-restricted bounds differ & $>cN\sqrt{\log N}$ a.e.; fixed-advantage average case\\
+Sparse Hamiltonicity & Single exponential; e.g. randomized $O^*(1.657^n)$~\cite{Bjorklund14} & Deterministic $2^{O(g(n))}$; exact \#HC\\
+Sparse paths, Steiner, FVS, connected cover/domination & $2^{\Theta(n)}$ scale; connectivity frameworks~\cite{CutCount11,BCKN15} & Deterministic $2^{O(g(n))}$, optimization and witnesses\\
+Sparse directed connectivity and sparse-base routing & $2^{\Theta(n)}$ scale (enumerate selected arcs or edge multiplicities) & Deterministic $2^{O(g(n))}$\\
+\bottomrule
+\end{tabular}
+\caption{Polynomial factors in the input length are suppressed.
+Algorithmic comparisons are deterministic unless randomization is marked. The
+conditional bounds retain polynomial space. The exact-counting rows use
+the object conventions in the theorem statements.}
+\label{tab:comparison}
+\end{table}
+
+The polynomial description condition in Theorem~\ref{thm:capp} is a bit
+length condition. For lower bounds, each real-weight threshold gate has
+an equivalent polynomial-bit integer representation, with no change
+in wires. This is an existence assertion, sufficient for guessing
+circuits; it does not prescribe how to read arbitrary real-number
+oracles. For an algorithm on a larger wire budget, the displayed bound
+is in $S$, and may exceed exhaustive enumeration over the $n$ inputs.
+
+\subsection{Related work}
+
+OpenAI's manuscript itself derives a circuit lower bound from the
+fixed-density case of its Theorem~1.1~\cite[Corollary~1.4]{OpenAI26}:
+there are $L\in\ENP$ and $c>0$ such that circuits of fan-in-two Boolean
+gates computing $L$ need more than $cn\sqrt{\log n}$ noninput gates for
+infinitely many $n$. Its proof combines Williams' witness-circuit
+argument with a local reduction to 3-CNF. Theorem~\ref{thm:lower} uses the
+stronger input \HTC\ and a different measure. Every fan-in-two Boolean
+gate has a threshold implementation with at most five wires, so
+Theorem~\ref{thm:lower} implies a gate lower bound of the same order for
+fan-in-two circuits, at every sufficiently large length and in the
+constant-advantage form. In the other direction, the generic simulation
+of Section~\ref{sec:lower} replaces a fan-in-$r$ threshold gate by
+$O(r^2\log(r+2))$ fan-in-two gates, so Corollary~1.4 does not yield the
+wire bound of Theorem~\ref{thm:lower} by gate simulation.
+
+Williams' algorithmic method~\cite{Williams13} connects savings in
+circuit analysis to circuit lower bounds. Chen and Williams~\cite{CW19}
+use PCPs of proximity to reduce the composition overhead in such
+connections. Bathie and Williams~\cite[Section 3.2--3.3]{BW24} give a
+two-stage PCP/ECC/PCPP construction whose circuit queries are small
+compositions of proof-bit circuits. The infinitely-often argument here
+is a routine instantiation of that proof framework in the wire measure.
+Chen, Lyu, and Williams~\cite{CLW20} give the refuter for a hierarchy
+with sublinear nondeterminism and an XOR amplification based on linear
+sums. Their proof mechanisms supply the almost-everywhere and
+constant-advantage arguments below; the polynomial parameters and the
+per-term wire counts are recalculated explicitly.
+
+Depth-restricted threshold bounds have different quantitative behavior.
+Impagliazzo, Paturi, and Saks~\cite{IPS97} prove that parity requires
+$n^{1+c\theta^{-d}}$ wires at depth $d$, for absolute constants $c>0$
+and $\theta\le3$. Kane and Williams~\cite{KW16} prove, for a fixed
+advantage, depth-two lower bounds of order
+$n^{5/2}/\log^{7/2}n$ wires and $n^{3/2}/\log^3n$ gates for an explicit
+function; their depth-three result has a majority output gate.
+Chen, Tal, and Wang's 2026 manuscript~\cite[Theorems 1.1--1.2]{CTW26}
+states $n^{2.5-\eps}$ gate lower bounds in $\ENP$ for depth-two linear
+threshold circuits, via a CAPP algorithm for an XOR of two such
+circuits. These gate and wire measures and their depth restrictions
+are retained in the comparison. Li and Yang~\cite{LiYang22} prove a
+$3.1n-o(n)$ gate lower bound over the full binary Boolean basis. A
+binary Boolean gate has a constant-size threshold implementation; the
+reverse simulation of an arbitrary-weight threshold gate has a larger
+bit cost, as quantified in Section~\ref{sec:lower}.
+
+The comparison protocol used here follows Nisan's
+integer-comparison construction~\cite{Nisan93}. Viola~\cite{Viola15}
+improves the communication for addition and comparison. We use an
+explicit half-splitting and prime-fingerprinting implementation to keep
+seed length, local evaluation, and tensor ports in the same ledger.
+The conversion from a deterministic transcript to local consistency
+tensors and the union bound over the earliest erroneous gate are standard constructions.
+
+For graph connectivity, Cut\&Count~\cite{CutCount11} combines consistent
+cuts with isolation to filter disconnected candidates modulo two.
+Bodlaender, Cygan, Kratsch, and Nederlof~\cite[Section 4]{BCKN15}
+use determinants and the matrix-tree theorem for deterministic
+connectivity counting parameterized by treewidth. Bj\"orklund's
+Hamiltonicity algorithm~\cite{Bjorklund14} uses a different determinant
+summation and cancellation. Our graph proofs instantiate the
+matrix-tree approach using an explicit representation of the sparse
+permutation sign by linearly many Boolean wires. The resulting scale is
+$n+m$; no treewidth parameter is substituted for the number of vertices.
+The $0/1/2$ multiplicity reduction for graphical TSP also appears in
+the Cut\&Count treatment~\cite[Section 4.10]{CutCount11}.

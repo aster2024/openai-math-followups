@@ -1,0 +1,463 @@
+\section{From acceptance probability to wire lower bounds}
+\label{sec:lower}
+
+Write $\THR[s]$ for real-weight, arbitrary-depth threshold circuits
+with at most $s$ wires. Fixing or negating an input changes weights
+and thresholds without increasing wires; output negation replaces
+$[w\cdot y\ge\theta]$ by $[-w\cdot y\ge1-\theta]$ once integer weights
+are chosen. Two-input AND, OR, and XOR have constant-wire implementations,
+so an $r$-bit parity has $O(r)$ wires.
+After a projection fixes every input of a gate, evaluate that gate and
+replace it by constant unary tensors, preserving all remaining declared
+inputs and adding no wires.
+
+\subsection{Finite descriptions and the transfer ingredients}
+
+A threshold function on $r$ bits has integer weights and threshold of
+$O(r\log(r+2))$ bits. Here is the existence proof. Let $D=r+1$ and
+for each $x$ put $a_x=(2f(x)-1)(x,-1)$. Move the original threshold
+slightly downward to make all margins strict, and scale to obtain
+$a_xz\ge1$ for all $x$. The rows have rank $D$, since the rows at
+$0,e_1,\ldots,e_r$ do. A feasible point with maximal rank among its
+tight rows has $D$ independent tight rows: otherwise move in a
+nonzero direction orthogonal to them, choosing its sign to decrease
+another inequality, until a new row becomes tight. This
+increases the rank. For the resulting invertible matrix $B$, Cramer's
+rule applied to $Bz=\mathbf1$ and Hadamard's inequality bound every
+numerator and denominator by $D^{D/2}$. Multiplication by
+$|\det B|$ gives the asserted integer representation. Constant
+functions are handled separately.
+
+Thus a $w$-wire threshold circuit has a normalized description of
+$O((n+w)^2\log(n+w+2))$ bits. This remains true after projections.
+A normalized fan-in-$r$ gate can also be simulated with
+$O(r^2\log(r+2))$ fan-in-two Boolean gates: form the weighted sum
+with binary addition and compare. A circuit with
+$w=O(t\sqrt{\log t})$ and $n=O(t)$ consequently has ordinary
+Boolean size at most $t^3$ for all sufficiently large $t$.
+
+We use the following published ingredients in their specified forms.
+They are quoted tools inside the proofs, and do not add an unproved
+algorithmic assumption to \HTC.
+All fixed probability thresholds used by a machine are chosen rational,
+weakening completeness and soundness bounds within their positive gaps
+when necessary. Thus the acceptance comparisons have finite encodings.
+\begin{enumerate}
+\item The unary nondeterministic time hierarchy supplies
+$H\in\NTIME(2^t)\setminus\NTIME(2^{t/2})$
+\cite[Theorem 2.1 (full version)]{Williams13}.
+\item A succinct PCP for such computations has perfect completeness,
+constant soundness $\beta<1$, proof and randomness indices padded to
+$q=t+O(\log t)$, and polynomial-size query and verification circuits.
+For the refuter computation of time $T(n)$ we use the stronger
+soundness $n^{-10}$ and $q=\log_2T(n)+O(\log\log T(n))$ from
+\cite[Lemma 3.10]{CLW20}. Its queries are projections. The projection
+query lists and the verifier's fixed-width CNF give fixed polynomial
+bounds in $q$ on the composed verifier size; their construction time
+may additionally be polynomial in the original input length.
+\item A constant-rate linear error-correcting code $\Enc$ with
+polynomial-time decoder $\Dec$ has a fixed decoding radius. The
+Circuit-Eval PCPP in \cite[Lemma 24]{CW19}, used in
+\cite[Lemma 3.6]{BW24}, has perfect completeness, constant soundness
+$\sigma<1$ at a fixed proximity, polynomial proof length and proof
+construction, and constraints that are signed ORs of three queried
+bits.
+\item The refuter in \cite[Theorem 4.6]{CLW20} applies to any
+time-constructible $n\le T(n)\le2^{\poly(n)}$. It supplies a language
+$A^T_{\mathrm{FS}}\in\NTIME[T(n)]$ and, for each fixed
+nondeterministic machine $M$ running in $o(T(n))$ time with at most
+$n/10$ guessed bits, finds for every sufficiently large $n$ an input
+$z\in\{0,1\}^n$ with $M(z)\ne A^T_{\mathrm{FS}}(z)$, in
+$\poly(T(n))$ time with a SAT oracle.
+\end{enumerate}
+
+Fix once and for all the algorithm supplied by \HTC; it is part of
+the finite description of each cheating machine below. The languages
+constructed from their refuters are then fixed languages.
+For each fixed description exponent $a$, fix an exponent constant
+$A_5(a)$ such that the inverse-polynomial CAPP algorithm takes
+\[
+ \poly_a(S)2^{A_5(a)g(S)}
+\]
+time on normalized descriptions of length at most $S^a$, with error
+at least $S^{-a}$. This constant is fixed before choosing wire-bound
+constants.
+
+All wire caps below can be made computable integer functions. For a
+fixed positive rational $d$, use
+\begin{equation}\label{eq:cap}
+ B_d(r)=\left\lfloor 2d\,\operatorname{isqrt}
+ \bigl(r^2\max\{1,\lfloor\log_2r\rfloor\}\bigr)\right\rfloor
+ =(2d+o(1))r\sqrt{\log_2r}.
+\end{equation}
+The floor is computed using rational integer arithmetic. Every
+candidate circuit is padded to a predetermined polynomial description
+length, and invalid topologies or out-of-range codes are rejected.
+
+\subsection{The infinitely-often construction}
+\label{subsec:io}
+
+Assume \HTC. Apply the succinct PCP to the unary hierarchy language
+$H$. Fix a common nondecreasing index bound
+$q(t)=t+O(\log t)$, and pad proof and randomness indices to this bound.
+Extra random bits are ignored and unused proof bits are zero.
+The lexicographically least proof accepted on all random strings,
+if it exists, defines a proof-bit function $W_1(t,x)$; otherwise set
+that function to zero. The full verifier has size $2^{O(t)}$ when all
+random strings are written out. Prefix SAT queries recover its
+lexicographically least proof in $2^{O(t)}$ time with an NP oracle.
+
+Fix a small positive rational $d$. Define $W_2(t,x,j)$ as follows.
+Find the lexicographically least normalized integer threshold circuit
+$F_t$ of at most $B_d(q)$ wires whose truth table is a fully accepted
+PCP proof. This search is in $2^{O(t)}$ time with SAT queries: for
+each candidate description, write out the verification at every one
+of the $2^q$ random strings, and regard their conjunction as an NP
+condition on the description bits. Let $G_t(x)$ be rejection by the
+original PCP using this circuit, and put
+\[
+ D_t(y)=1-G_t(\Dec(y)).
+\]
+The verifier $G_t$ is an ordinary Boolean circuit. If an
+exact-threshold or MOD gate is used in such a verifier with
+polynomial-bit parameters, expand it into binary arithmetic and
+comparison circuits of polynomial size before applying the PCPP.
+For every $x$ with $D_t(\Enc(x))=1$, take the canonical PCPP proof
+from its polynomial-time constructor. Its $j$th bit is $W_2(t,x,j)$.
+If no $F_t$ exists, or for an invalid index, output zero. Proof lengths
+are padded to one fixed $t^u$ bound covering all legal candidates, so
+$j$ has $\ell(t)=O(\log t)$ bits.
+
+Both functions belong to $\ENP$ when inputs include a self-delimiting
+$t$ header. Before doing any exponential work, check that $t$ is at
+most the full input length and that the payload length is correct.
+Form a single language $L_\star$ by a bit selecting $W_1$ or $W_2$.
+Its legal lengths are $t+O(\log t)$, with possibly different padding
+for the two branches. If $L_\star$ had circuits of at most
+$dN\sqrt{\log_2N}$ wires at every sufficiently large $N$, projection
+would give circuits for both bit functions within $B_d(q)$.
+
+A fast nondeterministic simulator for $H(1^t)$ guesses $F$ and a
+universal proof-bit circuit $T(x,j)$, each of at most $B_d(q)$ wires.
+Generate the PCPP constraints $H_1,\ldots,H_m$ of the associated
+$D$. Replace every code query by its parity on $x$ and every proof
+query by the corresponding fixed-$j$ projection of the \emph{same}
+$T$. The resulting threshold circuit $J_i(x)$ satisfies
+\begin{equation}\label{eq:three-copy}
+ w(J_i)\le3B_d(q)+O(q)
+       \le6d\,q\sqrt{\log_2q}+O(q).
+\end{equation}
+For example, using six wires per two-input XOR gives the explicit
+bound $3B_d(q)+18q+3$. The polynomial-size original verifier is used
+to generate the PCPP; it is not copied into $J_i$.
+
+If $H(1^t)=1$, the assumed small circuit for $W_1$ makes a legal
+$F_t$ exist; the small circuit for $W_2$ supplies $T$, and every
+$J_i$ is identically one. If $H(1^t)=0$, every $F$ makes $G(x)=1$
+on at least $1-\beta$ of the inputs. For such $x$, every word within
+the code's decoding radius of $\Enc(x)$ decodes to $x$, so is rejected
+by $D$. The PCPP soundness then makes at least $1-\sigma$ of the
+constraints fail for \emph{any} proof at that $x$. Averaging gives
+some $i$ with
+\[
+ \Pr_x[J_i(x)=0]\ge\tau=(1-\beta)(1-\sigma)>0.
+\]
+CAPP error $1/S_i<\tau/4$ distinguishes these cases by testing all
+estimates against $1-\tau/2$.
+
+Integer normalization ensures $L_i\le S_i^5$ for all large $t$.
+Set $A_5=A_5(5)$ before choosing $d$. From~\eqref{eq:three-copy},
+\[
+ S_i\le6d\,t\sqrt{\log_2t}+O(t),\qquad
+ g(S_i)\le(6d+o(1))t.
+\]
+Choose $6A_5d<1/4$. Polynomially many deterministic queries and the
+polynomial-size guesses then give a simulation below $2^{t/2}$ time,
+contradicting the hierarchy. Thus infinitely many lengths require
+more than $dN\sqrt{\log_2N}$ wires. This is the two-stage
+Bathie--Williams proof instantiated at the present scale.
+
+\subsection{Every sufficiently large length}
+\label{subsec:ae}
+
+Assume \HTC. Let $n$ denote the input length of the refuter, and
+choose
+\[
+ T(n)=2^{\lceil n^{1/K}\rceil}
+\]
+for a fixed sufficiently large integer $K$. It is time constructible
+and satisfies the refuter's range for all large $n$; finitely many
+smaller values can be adjusted. At the sampled lengths $n=t^K$,
+write $q(t)=t+O(\log t)$ for a fixed nondecreasing bound on PCP proof
+indices and random bits. The two-stage simulator $A_{\mathrm{PCP}}$
+just described now runs on arbitrary $z\in\{0,1\}^n$, using the PCP
+for $A^T_{\mathrm{FS}}(z)$, with initial PCP soundness $n^{-10}$.
+It guesses the two normalized threshold circuits $F,T$, each capped
+by $B_d(q)$. The number of guessed bits is polynomial in $t$, with
+fixed degree: the two circuit descriptions have that property even
+though generating all PCPP constraints can take a larger polynomial
+time. Choose $K$ greater than this degree. There are at most $n/10$
+guessed bits for all large $n$.
+
+The same error analysis shows
+$A_{\mathrm{PCP}}(z)\le A^T_{\mathrm{FS}}(z)$. Its time is
+\[
+ \poly(n)+\poly(t)2^{(6A_5d+o(1))t}=o(2^t)
+ \quad\text{if }6A_5d<1.
+\]
+The promise holds on every sufficiently large input length, with
+$t=\lceil n^{1/K}\rceil$. The refuter therefore produces, for each
+large sampled $n=t^K$, a $z_t$ satisfying
+\begin{equation}\label{eq:refuter-gap}
+ A^T_{\mathrm{FS}}(z_t)=1,
+ \qquad A_{\mathrm{PCP}}(z_t)=0.
+\end{equation}
+
+It remains to encode both proof-bit functions at the \emph{same}
+length. Let $h_0(t)=O(\log t)$ be a fixed canonical header length
+and $\ell(t)=O(\log t)$ the uniformly padded proof-bit index length.
+Use nondecreasing versions and define
+\begin{equation}\label{eq:ae-padding}
+ P(t)=h_0(t)+1+q(t)+\ell(t),\qquad
+ t(N)=\max\{t:P(t)\le N\}.
+\end{equation}
+One may take $q(t)=t+C\lceil\log_2(t+2)\rceil$ and analogous
+ceiling-log bounds for the other lengths. Thus $P(t+1)-P(t)=O(\log t)$
+and $N=q(t)+O(\log t)$ for $t=t(N)$. Use fields
+$(\text{header},b,x,j,\text{padding})$, with $|x|=q(t)$ and
+$|j|=\ell(t)$. Invalid headers give zero. The $b=0$ branch outputs
+the canonical fully accepted PCP proof bit $W_1(t,x)$ for $z_t$ and
+ignores $j$; the $b=1$ branch uses the canonical budgeted $F_t$ and
+outputs $W_2(t,x,j)$ as above. Both branches ignore padding.
+The language is in $\ENP$: the refuter takes $2^{O(t)}$ time with
+SAT queries, as do the explicitly expanded canonical searches, and
+$t\le N$.
+
+Suppose a circuit of at most $dN\sqrt{\log_2N}$ wires computes this
+language at one sufficiently large $N$. Fix the correct header,
+padding, and branch bit. For $W_1$ also fix $j$. The resulting
+circuits have at most
+\[
+ dN\sqrt{\log_2N}\le B_d(q(t))
+\]
+wires for all large $N$, by the factor-two slack in~\eqref{eq:cap}.
+The $W_1$ circuit makes a fully accepted $F_t$ exist; this ensures
+that the second is a universal PCPP proof circuit for that canonical
+$F_t$. Together they make $A_{\mathrm{PCP}}(z_t)=1$, contradicting
+\eqref{eq:refuter-gap}. This works separately at every sufficiently
+large $N$, proving the worst-case assertion of
+Theorem~\ref{thm:lower}. Any sufficiently small positive rational
+$d$ with $6A_5(5)d<1$ is admissible.
+
+\subsection{Constant-advantage average-case hardness}
+\label{subsec:average}
+
+Assume \HTC. We give the polynomial-parameter version of the proof
+in \cite[Section 6]{CLW20}, including the per-term size needed here.
+Let the two-query PCPP in \cite[Lemma 3.11]{CLW20} have constants
+$0<s_{\mathrm p}<c_{\mathrm p}<1$ and gap
+$\Delta=c_{\mathrm p}-s_{\mathrm p}$. Its code bits are parities.
+Its constraint count is a power of two, and its proof constructor is
+polynomial time. Fix a rational
+\begin{equation}\label{eq:delta0}
+ 0<\delta_0\le\Delta^2/10^6.
+\end{equation}
+Choose integer exponents $K_1,K_2,K_3$ as specified below, and then
+choose the hierarchy's $K$ larger than the fixed degree of all guesses.
+
+The cheating machine $A_{\mathrm{PCPP}}$ obtains the succinct PCP
+for $A^T_{\mathrm{FS}}(z)$ and guesses an \emph{ordinary fan-in-two}
+circuit $C_1$ of size $t^{K_1}$ as its oracle. The composed verifier
+is an ordinary polynomial-size circuit. Apply the two-query PCPP,
+with variables $Y\cup Z$, $m=\poly(t)$ constraints, and code word
+$Y=\Enc(x)$. Enlarge fixed polynomial bounds on proof lengths and
+constraint count uniformly across all candidate $C_1$; the native
+power-of-two constraint convention makes binary indexing uniform.
+To reach a common larger power of two, repeat every original
+constraint equally many times, preserving all satisfaction averages.
+The machine guesses, for each proof variable, a rational linear sum
+of at most $M=t^{K_2}$ threshold circuits, each with at most $s_1$
+wires, and total coefficient absolute value at most $t^{K_2}$.
+Coefficients have a fixed $O(\log t)$-bit bound large enough for the
+constructions below. These guesses are not assumed to take values
+in $[0,1]$.
+
+For a constraint $i$, let $T_{i1},T_{i2}$ be its two (unsigned)
+variable functions. Let $F_i$ be its OR polynomial after replacing
+a positive literal by $T$ and a negative one by $1-T$. Define
+\begin{equation}\label{eq:validity-polys}
+ P_{ij}=\begin{cases}
+ T_{ij}^2(1-T_{ij})^2,&T_{ij}\text{ corresponds to a }Z\text{ variable},\\
+ (\Enc_s-T_{ij})^2,&T_{ij}\text{ corresponds to }Y_s,
+ \end{cases}
+ \qquad Q_{ij}=T_{ij}^2.
+\end{equation}
+Estimate expectations of all these polynomials by expanding products
+of at most four sum terms. Each expectation is a linear combination
+of at most polynomially many expectations of ANDs of at most four
+threshold circuits, together with an $O(q)$-wire parity when required.
+Every CAPP query has
+\begin{equation}\label{eq:four-copy}
+ w\le4s_1+O(q).
+\end{equation}
+The parity is computed as part of the circuit; no enumeration of its
+input support is needed. Taking per-product error $t^{-K_3}$ gives
+total expectation error $O(t^{4K_2-K_3})=o(1)$ when $K_3>4K_2$.
+Increase $K_3$ so all errors below are eventually at most $\delta_0/10$.
+
+Reject unless the estimated average of $P_{ij}$ is at most
+$2\delta_0$ and every estimated $Q_{ij}$ is at most $1+\delta_0$.
+After this validity test, accept precisely when
+\begin{equation}\label{eq:avg-accept}
+ \frac1m\sum_i\widetilde{\E}_x F_i
+ \ge c_{\mathrm p}-\Delta/2.
+\end{equation}
+These are the tests of \cite[Section 6.2.2]{CLW20}; their requisite
+estimates involve only~\eqref{eq:four-copy}.
+
+Here are the validity estimates explicitly. If the guessed functions
+are $[0,1]$-valued and their average $\ell_1$ distance, over occurrences,
+from a Boolean PCPP proof is at most $\delta_0$, then the true average
+of $P$ is at most $\delta_0$ and every $Q$ is at most one. Thus they
+pass. Conversely, passing implies a true average $P\le3\delta_0$
+and $\E Q_{ij}\le1+2\delta_0$. Round every $Z$ function to its
+nearest Boolean value, and set $Y=\Enc(x)$. For real $u$,
+\[
+ \min\{u^2,(1-u)^2\}\le4u^2(1-u)^2.
+\]
+Hence, by Cauchy--Schwarz, the average $L_2$ distance of the guessed
+occurrences from the rounded proof is at most
+$\sqrt{12\delta_0}$. For each OR polynomial, telescoping its two
+arguments, using the Boolean rounded argument and
+$\|T_{ij}\|_2\le\sqrt{1+2\delta_0}$, gives
+\[
+ \|F_i-\widehat F_i\|_1
+ \le7\,\E_{j\in\{1,2\}}\|T_{ij}-\widehat T_{ij}\|_2.
+\]
+For a negated literal use
+$\|1-T_{ij}\|_2\le1+\sqrt{1+2\delta_0}$ in the same telescoping;
+this gives the constant $7$. If
+$A^T_{\mathrm{FS}}(z)=0$, the initial PCP accepts on at most $n^{-10}$
+of the $x$'s, so every Boolean PCPP proof has average satisfaction
+at most $s_{\mathrm p}+o(1)$. The guessed proof's average is at most
+\[
+ s_{\mathrm p}+7\sqrt{12\delta_0}+o(1)
+ <c_{\mathrm p}-\Delta/2.
+\]
+Including estimation error preserves the strict inequality. Therefore
+$A_{\mathrm{PCPP}}(z)\le A^T_{\mathrm{FS}}(z)$ for all large inputs.
+
+Now fix $\gamma\in(0,1/2)$, and choose the least $k\ge1$ with
+\begin{equation}\label{eq:xor-k}
+ \eps_k=(1-\delta_0)^{k-1}(1/2-\delta_0)\le\gamma/2.
+\end{equation}
+Let $c_{\mathrm{STV}}$ be a fixed integer upper bound on the input-length blow-up in the
+ordinary-circuit amplification \cite[Lemma 3.9]{CLW20}, originating
+in~\cite{STV01}, and put
+\begin{equation}\label{eq:kprime}
+ k'=\max\{k,c_{\mathrm{STV}}\}.
+\end{equation}
+Take $s_1=B_{dk}(q)$. Fix
+$a_*\ge\max\{5,K_3\}$ large enough for all query descriptions and
+precisions, and write $A_5=A_5(a_*)$. Choose a small positive rational
+$d$ such that
+\begin{equation}\label{eq:avg-time-condition}
+ 8A_5dk<1.
+\end{equation}
+Indeed,~\eqref{eq:four-copy} has $4s_1\le8dkq\sqrt{\log_2q}$, so
+the machine's time is
+$\poly(t)2^{(8A_5dk+o(1))t}=o(2^t)$. The fixed exponent $a_*$ is
+chosen to cover the required inverse-polynomial error; the constant
+$A_5$ need not equal $A_5(5)$ from the worst-case argument.
+All guesses have polynomial length in $t$, so a sufficiently large
+$K$ gives the refuter promise. Obtain $z_t$ with
+$A^T_{\mathrm{FS}}(z_t)=1$ and $A_{\mathrm{PCPP}}(z_t)=0$.
+
+There are two cases, decidable in $2^{O(t)}$ time with SAT queries by
+expanding all PCP random strings.
+If no $C_1$ of size $t^{K_1}$ gives a fully accepted oracle, the
+canonical fully accepted proof's truth table has ordinary circuit
+complexity greater than $t^{K_1}$. The amplification in
+\cite[Lemma 3.9]{CLW20} constructs, in $2^{O(q)}$ time from that
+truth table, a function $g$ on at most $c_{\mathrm{STV}}q$ inputs
+that is $(1/2+t^{-1})$-hard for ordinary size $t^3$, provided
+$K_1$ exceeds three times the fixed amplification exponent. The
+Boolean simulation of threshold circuits above makes $g$ hard for
+the required near-linear threshold wire budget as well.
+
+In the other case take the lexicographically least successful ordinary $C_1$
+and a canonical Boolean PCPP proof $\widehat T$, using the proof
+constructor separately for each $x$. Set
+\[
+ f(i,j,x)=\widehat T_{ij}(x),\qquad
+ n'=q+\log_2m+1=t+O(\log t).
+\]
+This function is $\delta_0$-far in $\ell_1$ from every $[0,1]$-valued
+linear sum with at most $M/(2m)$ terms, each of at most $s_1$ wires,
+and coefficient absolute sum at most $t^{K_2}/(2m)$. To see this,
+suppose $D$ is a closer sum and define the guessed function for each
+proof variable $X$ by averaging $D(i,j,x)$ over occurrences of $X$.
+Empty occurrence lists can be assigned zero. Each resulting function
+has at most $M$ terms, no larger per-term wire bound, and no larger
+coefficient absolute sum than the allowed cap. For $v_i\in[0,1]$
+and $b\in\{0,1\}$,
+\[
+ \left|\frac1h\sum_i v_i-b\right|=
+ \frac1h\sum_i|v_i-b|.
+\]
+Apply this equality for each $x$ and occurrence list: the average
+$\ell_1$ distance to $\widehat T$ remains at most $\delta_0$.
+The validity test passes, and the OR polynomials, Lipschitz on
+$[0,1]^2$, lose at most $2\delta_0$ average satisfaction relative
+to the canonical proof. They therefore satisfy~\eqref{eq:avg-accept},
+contradicting $A_{\mathrm{PCPP}}(z_t)=0$.
+
+Apply the \emph{proof of Lemma 3.8 in Appendix A} of~\cite{CLW20},
+rather than only its complexity statement. For completeness, its
+reconstruction has the following form. Given a circuit approximating
+$f^{\oplus k}$, either fix one block and recurse on $k-1$, possibly
+negating the circuit, or sample
+$\ell=O(n'/(\delta_0\eps_k)^2)$ fixed values of the other blocks.
+A Chernoff bound and a union bound over the $2^{n'}$ remaining inputs
+make the empirical conditional agreement uniformly accurate. An
+affine rescaling of that empirical mean produces a $[0,1]$-valued
+linear sum approximating $f$ within $\delta_0$ in $\ell_1$.
+Every term is a projection, possibly negated, of the original
+approximator. In particular, each term retains its original wire
+bound; there are $O_\gamma(t)$ terms, and the sum of coefficient
+absolute values is $O_\gamma(1)$, or the weaker sufficient
+$O_\gamma(t)$. All coefficients are rational with $O_\gamma(\log t)$
+bits because $\delta_0$ and $\eps_k$ are rational. Increasing the
+fixed $K_2$ makes these sums fit the preceding caps. Thus
+$f^{\oplus k}$ cannot have agreement $1/2+\eps_k$ with the
+threshold approximators under consideration.
+
+Finally use a nondecreasing payload bound
+\[
+ P_\gamma(t)=h_0(t)+
+ \max\{k(q(t)+\log_2m(t)+1),\ c_{\mathrm{STV}}q(t)\}
+ =(k'+o(1))t,
+\]
+where polynomial padding of the PCPP supplies a common dyadic
+$m(t)$ bound. For each input length $N$ choose the largest $t$ with
+$P_\gamma(t)\le N$, and read the active function input from the leading payload bits, ignoring
+all other bits. The length $N$ determines $t$; no header is validated and
+every word of length $N$ is used. In Case 1, output $g$; in Case 2, output $f^{\oplus k}$. Canonical
+searches, case selection, and truth-table amplification all run in
+$2^{O(t)}$ time with an NP oracle, so this defines $L_\gamma\in\ENP$.
+Set $c_\gamma=dk/k'$. A length-$N$ approximator of at most
+$c_\gamma N\sqrt{\log_2N}$ wires has
+\[
+ s_0\le(dk+o(1))t\sqrt{\log_2t}<B_{dk}(q)=s_1
+\]
+wires for all large $t$. Averaging over padding gives a fixing with
+the same agreement. Both cases yield a contradiction to agreement
+greater than $1/2+\gamma$. One can take
+\[
+ c_\gamma=\Theta\!\left(\frac{1}{A_5k'}\right)
+ =\Theta\!\left(\frac{\delta_0}{A_5\log(1/\gamma)}\right)
+ \quad\text{as }\gamma\downarrow0.
+\]
+This proves the average-case assertion of
+Theorem~\ref{thm:lower}. The proof uses inverse-polynomial CAPP
+precision throughout.

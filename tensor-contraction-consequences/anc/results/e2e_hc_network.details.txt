@@ -1,0 +1,10 @@
+n=4 m=6 B=2 row-blocks=4 col-blocks=4: network readback #HC=3, brute force=3
+n=4 m=6 B=8 row-blocks=2 col-blocks=2: network readback #HC=3, brute force=3
+n=5 m=5 B=2 row-blocks=5 col-blocks=5: network readback #HC=1, brute force=1
+n=5 m=5 B=6 row-blocks=3 col-blocks=3: network readback #HC=1, brute force=1
+n=5 m=6 B=3 row-blocks=5 col-blocks=5: network readback #HC=1, brute force=1
+n=5 m=6 B=7 row-blocks=3 col-blocks=3: network readback #HC=1, brute force=1
+n=6 m=6 B=2 row-blocks=6 col-blocks=6: network readback #HC=0, brute force=0
+n=6 m=6 B=6 row-blocks=3 col-blocks=3: network readback #HC=0, brute force=0
+n=6 m=6 B=9 row-blocks=2 col-blocks=2: network readback #HC=0, brute force=0
+ALL PASS

@@ -1,0 +1,169 @@
+\section{Undirected connectivity: exact sums, optimization, and witnesses}
+\label{sec:undirected-proof}
+
+We prove Theorem~\ref{thm:undirected}, always assuming \HTC.
+Let $S_G=n+m+2$. The determinant scale in
+Section~\ref{sec:determinants} is
+\[
+ T_{\mathrm{det}}=n+(n+2m)+2=2n+2m+2=O(S_G).
+\]
+These are distinct parameters; the precision below is measured in
+$S_G$.
+
+\subsection{Local candidate systems}
+
+Write $u_v$ for selected-vertex bits and $x_e$ for selected-edge
+bits. Requiring selected-edge endpoints to be selected is a constant
+scope condition. Incidence degree conditions, including exact degrees
+zero, one, and two, have $O(\deg_G(v)+1)$-wire functional chains:
+pass the saturated count $\min\{3,\text{count so far}\}$ in two
+bits. Domination is checked by an OR chain on each closed neighborhood,
+with a total of $O(n+m)$ gates. Vertex cover has the binary constraints
+$u_v\vee u_w$ for every edge $vw$. In induced systems introduce the
+unique bit $x_{vw}=u_vu_w$ by an AND relation. All such systems have
+$O(S_G)$ original and auxiliary bits and total scopes $O(S_G)$.
+Global cardinalities and cost relations are the fixed number of
+statistics from Section~\ref{subsec:weights}.
+
+For each candidate choose the matrix~\eqref{eq:marker-matrix} and
+combine its sparse determinant gadget with these constraints. The
+contraction is exactly
+\begin{equation}\label{eq:object-sum}
+ Z=\sum_{y\text{ satisfying the local and target conditions}}\det A(y).
+\end{equation}
+The sum over permutation bits is taken inside the sum over $y$; all
+other auxiliary states have unique extensions. Table~\ref{tab:objects}
+lists the candidates and the determinant value on the objects that
+survive the filter. Each single-root row explicitly requires $r\in U$.
+
+\begin{table}[ht]
+\centering\small
+\renewcommand{\arraystretch}{1.16}
+\begin{tabular}{@{}P{.23\linewidth}P{.44\linewidth}P{.25\linewidth}@{}}
+\toprule
+Problem & Candidate constraints and markers & Surviving weight\\
+\midrule
+HC / Hamiltonian TSP & $U=V$, all selected degrees two; $M_0=\{r\}$ & $n$ for a Hamiltonian edge set\\
+Hamiltonian path & $U=V$, degrees one at distinct $s,t$, two elsewhere; $M_0=\{s\}$ & $1$ for a spanning $s$--$t$ path\\
+Simple path & $s,t\in U$, degree one at $s,t$, two at other selected vertices, zero outside; $M_0=\{s\}$ & $1$ for an $s$--$t$ path on $U$\\
+Steiner tree & Terminals in $U$, $F\subseteq E_G[U]$, $|F|=|U|-1$; $M_0=\{r\}$ for a fixed terminal & $1$ for a tree $(U,F)$\\
+Connected vertex cover & Cover constraints, $F=E_G[U]$, $M_0=\{r\}$ & $\tau(G[U])>0$\\
+Connected domination & Domination constraints, $F=E_G[U]$, $M_0=\{r\}$ & $\tau(G[U])>0$\\
+Feedback vertex set & $F=E_G[U]$, $M_0\subseteq U$, $|F|+|M_0|=|U|$ & $1$ for each forest with one marker per component\\
+\bottomrule
+\end{tabular}
+\caption{In every row the determinant is zero on candidates failing
+the required connectivity condition. Costs and a specified path length
+can be added as target relations.}
+\label{tab:objects}
+\end{table}
+
+Here is the verification of each row. A simple graph of degree two at
+every vertex is a disjoint union of cycles. A single marker allows
+only the component containing that marker. A surviving cycle on $n$
+vertices has exactly $n$ spanning trees, obtained by deleting one
+edge. Consequently
+\begin{equation}\label{eq:hc-readback}
+ Z=n\,\#\mathrm{HC}.
+\end{equation}
+No orientation or starting-vertex multiplicity is present: the objects
+are undirected edge sets. The matrix remains unweighted even when
+cost constraints are imposed on these edge sets.
+
+For path candidates, the two odd-degree endpoints must lie in the
+same path component, and every other component is a cycle. The
+single marker eliminates those cycles; the remaining path has tree
+number one. For a specified length $\ell$, impose $|U|=\ell+1$.
+For Steiner candidates, connectivity and $|F|=|U|-1$ make the chosen
+subgraph a tree. The counted objects are all tree subgraphs containing
+the terminal set, including ones with nonterminal leaves. For
+connected covers and dominating sets, the determinant is their induced
+subgraph's positive tree count, so positivity of~\eqref{eq:object-sum}
+is exactly existence.
+
+For FVS, append a root adjacent to every marker. When the determinant
+is positive, this augmented graph is connected, and the imposed equation
+makes its number of edges equal to its vertex count minus one. It is
+therefore a tree and the determinant equals one. Removing its root
+leaves the induced forest $G[U]$, with exactly one marker per component.
+Conversely every induced forest has such marker choices, all of weight
+one. Thus $Z>0$ decides whether a forest of the specified deletion
+cost exists. Different marker choices give a positive multiplicity
+for the same deletion set.
+
+\subsection{Precision and exact readback}
+
+All matrices in~\eqref{eq:object-sum} have nonnegative determinant by
+\eqref{eq:matrix-tree}. Each augmented graph has at most $m+n$ edges,
+so its tree count is at most $2^{m+n}$. The numbers of candidates
+$(U,F)$, $(U,M_0)$, or $U$ are at most $2^{n+m}$, $3^n$, and $2^n$,
+respectively. Uniformly,
+\begin{equation}\label{eq:graph-readback-bound}
+ 0\le Z\le2^{\max\{2n+2m,\,3n+m\}}<2^{4S_G}.
+\end{equation}
+Take
+\begin{equation}\label{eq:graph-precision}
+ P_0=4S_G+1,\qquad \ell=1.
+\end{equation}
+The local signed entries, including $-1$, are legitimate residues in
+$\Z/2^{P_0}\Z$. Their intermediate products may cancel; the final
+sum is the bounded nonnegative integer in
+\eqref{eq:graph-readback-bound}. Its least nonnegative residue is
+therefore exactly $Z$. For HC divide that integer by $n$, as in
+\eqref{eq:hc-readback}. Even when $n$ is even, no inverse modulo a
+power of two is required.
+
+The local candidate constraints, degree counters, and numerical
+matrix factors have linear total scope length. The sparse sign gadget
+has degree $O(S_G^{2/3})$; adding long cost constraints raises the
+degree to $O(S_G^{9/10})$ and keeps $O(S_G)$ wires. Choose
+$s=\lceil K S_G\rceil$ with a fixed sufficiently large $K$, and
+subdivide edges for bipartiteness. Precision~\eqref{eq:graph-precision},
+vertex count, description length, and polynomial-time local evaluation
+then satisfy every part of \HTC. One query takes
+\begin{equation}\label{eq:one-graph-query}
+ \poly(S_G+L)2^{O(g(S_G))}
+\end{equation}
+time and polynomial space.
+
+\subsection{Optimization, witnesses, and boundary conventions}
+
+Nonnegative edge and vertex costs are attached to the \emph{object}
+bits, not to the spanning trees counted by the determinant. For FVS
+the objective is the cost of $V\setminus U$, implemented with
+complement bits. Use a cost-at-most predicate for minimization and
+a cost-at-least predicate for maximization. The sum of the input
+costs has $O(n^{9/10}+\log n)$ bits on a sparse graph, and binary
+search needs only polynomially many queries. For longest path one
+may maximize the number of selected vertices, or an explicitly given
+nonnegative selected-edge/vertex weight. The long-coefficient gadget
+handles these exact target relations without enumerating cost values.
+
+If a target has $Z>0$, fix its object bits successively. For a bit $y_i$
+we have $Z=Z_{y_i=0}+Z_{y_i=1}$, with both summands nonnegative.
+Keep any positive child. Apply this only to object bits (and, for
+FVS, marker bits), retaining the determinant's permutation sum.
+At the end the surviving object satisfies the target and its graph
+property. Direct polynomial-time graph and cost checks verify the
+returned witness. At most a linear number of additional queries is
+needed.
+
+Enumerating possible roots and endpoint pairs costs only a polynomial
+factor. For exact counting of unspecified-endpoint undirected paths,
+use $s<t$ to count each nontrivial edge set once. Single-vertex paths
+are counted separately. For prescribed $s=t$, only the zero-length
+single-vertex path is included. Simple undirected cycles require at
+least three vertices. An empty terminal set allows the empty Steiner
+tree of cost zero in optimization. For counting all nonempty Steiner
+tree subgraphs with no terminals, choose the unique root $r=\min U$
+and force smaller vertices outside $U$; add the empty tree only if
+that convention is requested. With a nonempty terminal set, fix one
+terminal as the root, so that no root multiplicity is introduced.
+Single-root trees are included. Empty-cover and empty-graph conventions
+are checked directly; all nonempty connected sets are covered by the
+root enumeration.
+
+The number of queries, including roots, endpoints, binary search, and
+self-reduction, is polynomial. Their workspace is reused. Since
+$m\le cn$, $g(S_G)=O_c(g(n))$, proving
+Theorem~\ref{thm:undirected}.

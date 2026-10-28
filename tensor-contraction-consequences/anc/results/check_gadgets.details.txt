@@ -1,0 +1,5 @@
+sliced gadget checks passed: 9000
+hashed residue gadget: one-sided OK, bad-prime bound OK; worst bad fraction 0.035
+Lemma R MOD r=1: 4 distinct functions from moduli <= 80; largest minimal modulus needed = 2; proof bound ~5
+Lemma R MOD r=2: 12 distinct functions from moduli <= 60; largest minimal modulus needed = 3; proof bound ~256
+Lemma R MOD r=3: 60 distinct functions from moduli <= 20; largest minimal modulus needed = 4; proof bound ~13584

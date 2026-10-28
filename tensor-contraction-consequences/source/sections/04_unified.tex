@@ -1,0 +1,353 @@
+\section{Per-gate exact and approximate counting}
+\label{sec:unified}
+
+Let $C$ be a single-output Boolean DAG. Its gates have ordered input
+lists, possibly with repetitions. Put $S=n+w+2$ and
+$b=\lceil S^{9/10}\rceil$. A gate of fan-in $r_v>b$ is large; all
+other gates are small. The allowed types are
+\[
+\begin{aligned}
+\THR &: \ind{\sum_jw_jy_j\ge\theta},\\
+\ETHR &: \ind{\sum_jw_jy_j=\theta},\\
+\MOD_m &: \ind{\sum_jw_jy_j\equiv\theta\pmod m},
+\end{aligned}
+\]
+where all parameters are integers and $m\ge1$. Let $L$ be the length
+of the complete input description, including the mode assignment and
+the certificates below, and fix $a\ge1$. A small gate can instead
+be an arbitrary Boolean function supplied by an evaluator. When any
+gate is hashed, require $L\le S^a$ and evaluator time at most $S^a$.
+For an exact-only assignment, $L$ may be arbitrary and evaluator time
+at most $(S+L)^a$ is sufficient.
+
+For a large threshold or exact-threshold gate, let $B_v$ be the maximum
+bit length of $|w_j|$, at least one. For a modular gate let
+$B_v=\max\{1,\bits(m-1)\}$. Each large gate receives one of the
+following modes. In the factorization mode, preprocessing verifies the
+dimensions and entry bounds of the certificate and checks each row of
+$w=C_vg_v$ by integer arithmetic. A malformed certificate is rejected;
+the verification costs polynomial time in $S+L$.
+\begin{center}\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}P{.16\linewidth}P{.22\linewidth}P{.37\linewidth}P{.15\linewidth}@{}}
+\toprule
+Mode & Gate types & Cost $\sigma_v$ & Error\\
+\midrule
+Exact slices & All three & $B_v$ & $0$\\
+Exact factorization & All three & $\kappa_v=d_v(\beta_v+\lceil\log_2(r_v+1)\rceil+2)$ & $0$\\
+Hashed comparison & $\THR$ & $h_v\lceil\log_2S\rceil$, $h_v\ge1$ & $2^{-h_v}$\\
+Hashed equality & $\ETHR$, $\MOD_m$ & $h_v$, $h_v\ge1$ & $2^{-h_v}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+For factorization, $C_v$ is an $r_v\times d_v$ integer matrix with
+entries of absolute value less than $2^{\beta_v}$, $\beta_v\ge1$,
+and $g_v\in\Z^{d_v}$. Its coordinates can be large; their full bit
+length is charged to $L$.
+
+\begin{theorem}[Per-gate counting, conditional on \HTC]
+\label{thm:unified}
+Assume \HTC. Fix $a,c\ge1$. Suppose the assigned modes satisfy
+\begin{equation}\label{eq:budget}
+ \sum_{v\text{ large}}r_v\left\lceil\frac{\sigma_v}{b}\right\rceil
+ \le cS,
+ \qquad \sigma_v\le cb
+ \quad\text{for every factorized or hashed large gate}.
+\end{equation}
+Let $\mathcal H$ be the set of hashed gates. If
+$\mathcal H\ne\varnothing$, under $L\le S^a$, in
+$\poly_{a,c}(S)2^{O_{a,c}(g(S))}$ time and polynomial space a
+deterministic algorithm outputs a rational $\widehat p$ with
+\[
+ \left|\widehat p-\Pr_x[C(x)=1]\right|
+ \le\sum_{v\in\mathcal H}2^{-h_v}.
+\]
+If $\mathcal H=\varnothing$, the restriction $L\le S^a$ is unnecessary:
+the algorithm outputs the exact accepting-input count in
+$\poly_{a,c}(S+L)2^{O_{a,c}(g(S))}$ time and
+$\poly_{a,c}(S+L)$ space, under the exact-only evaluator condition above.
+\end{theorem}
+
+\subsection{Exact sliced gadgets}
+
+A small gate has the single factor $[z=f(y)]$ of degree $r_v+1$.
+Now fix a large gate with fan-in $r$, width $B$, and let
+$K=\lceil B/b\rceil$. For $\THR$ or $\ETHR$, replace signed weights
+by $u_j=|w_j|$ and the corresponding literal $\xi_j$ as above. Write
+$T=\theta+\sum_{w_j<0}|w_j|$ and
+$\Sigma=\sum_ju_j\xi_j$. We have
+$0\le\Sigma<r2^B$. For a threshold gate clamp $T<0$ to zero; for an
+exact-threshold gate replace $T<0$ by $r2^B$. In either case clamp
+$T>r2^B$ to $r2^B$. These operations preserve the Boolean function.
+For a modular gate, replace $w_j$ by $u_j=w_j\bmod m$ and $\theta$
+by $\theta'=\theta\bmod m$, with $\xi_j=y_j$. Then $u_j<2^B$ and
+$0\le\Sigma<rm$.
+
+Decompose each $u_j$ into base-$2^b$ digits $u_j^{(k)}$, $0\le k<K$.
+For each digit position compute
+\[
+ Y^{(k)}=\sum_ju_j^{(k)}\xi_j,\qquad
+ \Sigma=\sum_{k=0}^{K-1}2^{kb}Y^{(k)}.
+\]
+Partition the $r$ inputs into $t=\lceil r/b\rceil\le2r/b$ blocks.
+A chain for each $k$ reads one block at a time and checks the exact
+partial-sum update, passing a state of
+$\mu=b+\lceil\log_2(r+1)\rceil$ bits. Each input is read $K$ times.
+The chain has $O(r)$ wires per slice, degree $b+2\mu$, and unique
+states on every original input.
+
+The final arithmetic relates the slice sums by short carries. For
+nonnegative constants $A,T'$ occurring below put
+\[
+ K^*=\left\lceil\frac{B+\lceil\log_2(r+2)\rceil}{b}\right\rceil.
+\]
+They are less than $2^{K^*b}$. Let $A_k,T'_k$ be their base-$2^b$
+digits and $Y^{(k)}=0$ for $k\ge K$. Starting with
+$c_{-1}=0,e_{-1}=1$, enforce
+\begin{align}
+ z_k&=Y^{(k)}+A_k-T'_k+c_{k-1},\nonumber\\
+ c_k&=\left\lfloor z_k/2^b\right\rfloor,
+ &e_k&=e_{k-1}\wedge[z_k\equiv0\pmod{2^b}].
+ \label{eq:carry}
+\end{align}
+Induction shows
+\[
+ \Sigma+A-T'=c_{K^*-1}2^{K^*b}+R_0,
+ \qquad 0\le R_0<2^{K^*b}.
+\]
+Thus the difference is nonnegative exactly when the last carry is
+nonnegative, and it is zero exactly when that carry is zero and the
+last zero flag is one. Every carry lies in $[-1,r+1]$: if the previous
+one does, then $-2^b\le z_k\le(r+1)2^b$. An offset encoding therefore
+uses $\lceil\log_2(r+3)\rceil$ bits. With $A=0,T'=T$ the last carry
+and flag give the required $\THR$ or $\ETHR$ output.
+
+For $\MOD_m$, put $A=m-\theta'$ and introduce a quotient code
+$q\in\{0,\ldots,r\}$. Compute two instances of~\eqref{eq:carry},
+with $T'=qm$ and $T'=(q+1)m$. The terminal factor requires
+\[
+ 0\le\Sigma+(m-\theta')-qm<m
+\]
+and outputs one exactly when its left side is zero. There is precisely
+one legal $q$, namely $\lfloor(\Sigma+m-\theta')/m\rfloor$; invalid
+binary codes are rejected. Every carry factor can read the short
+$q$ code and compute its needed digits locally. The same quotient
+gadget includes $m=1$ without a separate case.
+
+The slice chains, carries, quotient copies, and output use $O(rK)$
+wires, degree $O(b+\log S)$, and polynomial-time local entry programs.
+The bound $K^*\le K+1$ holds for sufficiently large $S$; more generally
+$K^*=K+O(1)$ suffices. The $O(K\log S)$ carry and quotient wires
+are absorbed by $O(Kr)$ because $r>b$. All internal states and the
+output are unique once the input is fixed. This establishes the exact
+sliced mode.
+
+\subsection{Exact factorization gadgets}
+
+For $w=Cg$, write $\kappa=\kappa_v$ for this gate's state width.
+The information to transmit across blocks is a vector,
+rather than the weighted sum itself. After block $i$ store
+\[
+ Y_i=\sum_{j\text{ in blocks }1,\ldots,i}y_jC_{j,\cdot}\in\Z^d.
+\]
+Each coordinate has absolute value less than $r2^\beta$. A fixed
+signed code of $\beta+\lceil\log_2(r+1)\rceil+2$ bits suffices, so
+the complete vector uses $\kappa$ bits. Block factors enforce the
+updates. The last factor checks the desired comparison, equality,
+or congruence of $g\cdot Y_t$ with $\theta$. The supplied identity
+$w=Cg$ proves correctness. Updates and output are unique. Before
+equality expansion and subdivision, the logical wire count satisfies
+\begin{align*}
+ r+t\kappa+1
+ &\le r+(r/b+1)\kappa+1\\
+ &\le r+cr+cb+1\le(2c+2)r,
+\end{align*}
+using $t=\lceil r/b\rceil\le r/b+1$, $\kappa\le cb$, and $r>b$.
+Thus there are $O_c(r)$ wires for every fixed $c\ge1$, and degree at most
+$b+2\kappa+O(1)=O_c(b)$ when $\kappa\le cb$.
+
+For example, if a gate's weights have at most $d$ distinct values,
+one may take $C$ to be their indicator matrix and $g$ the list of
+values. This gives $\beta=1$ and $\kappa=O(d\log S)$ independently
+of the bit lengths of those values. The factorization is part of the
+input; no search for an optimal one is used.
+
+\subsection{Hashed equality and congruence}
+
+For an exact-threshold gate set
+$\Sigma=\sum_jw_jy_j$ and $\mathcal T=\{\theta\}$. For a modular
+gate use reduced weights and the target set
+\[
+ \mathcal T=\{\theta'+qm:0\le q<r\}.
+\]
+Because $\Sigma\in[0,rm)$, membership in this set is exactly the
+original modular predicate. Given a prime $p>S$, replace either
+predicate by
+\[
+ f_p(y)=\ind{\Sigma\bmod p\in\mathcal T\bmod p}.
+\]
+Every true input remains true. For a false input, a false positive
+requires a prime divisor of some nonzero $\Sigma-\tau$,
+$\tau\in\mathcal T$. Each such integer has bit length at most
+$S^{\lceil a\rceil}+2\lceil\log_2S\rceil+3$. Put
+\[
+ N_v=r(S^{\lceil a\rceil}+2\lceil\log_2S\rceil+3)
+\]
+and let $K_v$ be the least power of two at least $N_v2^{h_v}$.
+Selecting among the $K_v$ smallest primes greater than $S$ gives error
+at most $2^{-h_v}$. Their common bit bound is
+$\pi_v=h_v+O_a(\log S)$.
+
+A block chain passes the partial sum modulo $p$ in $\pi_v$ bits.
+Its last factor tests membership in the at-most-$r$ reduced targets.
+Reject residue codes outside $[0,p)$. For each fixed prime this is a
+unique-extension circuit relation, with $O_{a,c}(r)$ wires and degree
+$O_{a,c}(b)$ if $h_v\le cb$. In particular the end-state contribution
+is bounded by $O_{a,c}(r)$; it need not be at most $r$ when $c>1$.
+
+\subsection{Hashed comparisons}
+
+For a large $\THR$ gate, use the compact comparison realization
+\eqref{eq:compact-edges}--\eqref{eq:compact-degree}, grouping $b$
+input occurrences per party and choosing error $2^{-h_v}$. Its
+parameters satisfy
+\[
+ J=O_a(\log S),\quad \pi_v=O_a(h_v+\log S),\quad
+ \lambda=O(\log S),\quad t\le2r/b.
+\]
+If $h_v\lceil\log_2S\rceil\le cb$, then
+$J\pi_v=O_{a,c}(b)$ and $J^2\lambda=o(b)$. The edge count is
+$O_{a,c}(r)$ and the degree is $O_{a,c}(b)$. For the terminal
+$J\pi_v$ term, use $r>b$. The seed length is
+$O_a(h_v\log S+\log^2S)=O_{a,c}(b)$.
+The comparison's pointwise error and the functional property are the
+ones proved in Section~\ref{sec:protocol}.
+
+\subsection{Assembling the network}
+
+\begin{proof}[Proof of Theorem~\ref{thm:unified}]
+For every hashed gate use the required prefix of a common seed of
+length $R$, where $R$ is the maximum of the gate seed lengths and is
+zero if no gate is hashed. Both kinds of hashing above give
+$R=O_{a,c}(S^{9/10})$. A uniform seed has uniform prefixes, so each
+gate retains its own error guarantee. Generate the selected primes
+by index, as described above. Per seed the extra time is
+$2^{O_{a,c}(S^{9/10})}$ and the space is polynomial.
+
+Replace each gate by its gadget. Connect every occurrence of each
+original signal by the equality construction of
+Section~\ref{sec:interface}, including a factor two for each unused
+input, and pin the final output. Internal signals read by several
+factors, including the MOD quotient code and the comparison protocol's
+branch history, also use equality trees; these copies are already
+included in the gadget port counts. For a fixed seed the resulting
+network counts precisely the accepting assignments of $C_\rho$.
+Its edges, including equality and bipartite subdivision, are at most
+\[
+ O_{a,c}\left(n+w+
+ \sum_{v\text{ large}}r_v\lceil\sigma_v/b\rceil\right)=O_{a,c}(S).
+\]
+Its degree is at most $D_{a,c}S^{9/10}$ for a fixed $D_{a,c}$ and its
+vertex count is $O_{a,c}(S)$. Its description length and entry costs
+are polynomial in $S+L$, hence polynomial in $S$ in the hashed case.
+Use~\eqref{eq:rescale} with $s=\lceil K_{a,c}S\rceil$,
+$P_0=n+1$, and $\ell=1$. All the hypotheses of \HTC\ hold.
+
+Recover the count $Z_\rho\in[0,2^n]$ exactly. If $R=0$, this is the
+answer. Otherwise form~\eqref{eq:capp-output}. Applying
+\eqref{eq:gate-error} and averaging over $x$ gives the stated error.
+The number of seeds and the prime-generation cost together add
+$2^{O_{a,c}(S^{9/10})}$, absorbed by $2^{O_{a,c}(g(S))}$.
+All calls are serial, and the accumulator uses $n+R+1$ bits.
+
+In the exact-only case there are no primes to generate and $R=0$.
+All arithmetic on weights, thresholds, moduli, and supplied certificates
+uses polynomial time and space in $S+L$. The edge, degree, vertex,
+and precision bounds above depend on the mode budget, not on an upper
+bound for $L$. Retain the original input in the tensor description,
+so its length $\mathcal L$ satisfies
+$L\le\mathcal L\le\poly_{a,c}(S+L)$. Thus the local evaluation
+bound is also polynomial in $S+\mathcal L$, and the same \HTC\ call
+gives the stated arbitrary-description bound.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:capp}, including high precision]
+Use Theorem~\ref{thm:unified} with the fixed description exponent
+$\lceil a\rceil+2$ to include generated mode parameters; all resulting
+constants still depend only on $a$.
+Assign hashed-comparison mode to every large gate and choose
+\[
+ h_v=\left\lceil\log_2(2S/\eps)\right\rceil.
+\]
+Then $\sum_v2^{-h_v}\le\eps/2$, and at the lower endpoint
+$h_v\lceil\log_2S\rceil\le2b$ for all sufficiently large $S$.
+Each summand in~\eqref{eq:budget} is at most $2r_v$; taking a fixed
+$c\ge2$ proves the required budget. For a parameter-free endpoint
+implementation one can use the integer target
+\[
+ h_v=\left\lceil\frac{\lceil S^{9/10}\rceil}
+ {\lfloor\log_2(S+16)\rfloor}\right\rceil
+ +\lceil\log_2(2S)\rceil+2,
+\]
+which gives at least the requested accuracy and still obeys the same
+constant budget. Finite small $S$ are enumerated. Apply
+Theorem~\ref{thm:unified}.
+\end{proof}
+
+\begin{corollary}[Exact specializations, conditional on \HTC]
+\label{cor:exact}
+Assume \HTC\ and the exact-only evaluator condition above; let $L$ be
+the arbitrary complete description length.
+If all large gates are assigned exact slices and
+\[
+ \sum_{v\text{ large}}r_vB_v\le c_1S^{19/10}
+\]
+for a fixed $c_1$, exact counting takes
+$\poly_{a,c_1}(S+L)2^{O_{a,c_1}(g(S))}$ time and
+$\poly_{a,c_1}(S+L)$ space.
+The same holds when every large gate has a supplied factorization
+with $\kappa_v\le c_1b$. Small gates may have arbitrary parameters
+with their full lengths charged to $L$. In particular, this recovers exact
+counting for bounded-fan-in circuits at the allowed degree scale and
+for large gates whose weight bit lengths are $O(S^{9/10})$; the
+modular sliced mode also allows modulus bit lengths $O(S^{9/10})$.
+\end{corollary}
+\begin{proof}
+For slicing use
+$\lceil B_v/b\rceil\le1+B_v/b$ and $\sum_vr_v\le w<S$.
+For factorization use
+$\lceil\kappa_v/b\rceil\le\lceil c_1\rceil$.
+Theorem~\ref{thm:unified} has no hashed gate in either case.
+\end{proof}
+
+\subsection{Relations between the specializations}
+
+For integer weights, an equality gate has the identity
+\begin{equation}\label{eq:equality-thresholds}
+ \ind{\sum_jw_jy_j=\theta}
+ =\ind{\sum_jw_jy_j\ge\theta}
+ \wedge\neg\ind{\sum_jw_jy_j\ge\theta+1}.
+\end{equation}
+This uses the same weight vector in two threshold gates and only a
+constant-factor increase in wires. Ordinary unweighted MOD gates of
+fixed modulus likewise have $O(r)$-wire Boolean, and hence threshold,
+simulations: pass the running residue in a constant number of bits.
+They therefore fit the threshold-circuit lower-bound framework of
+Section~\ref{sec:lower}. For a fixed modulus, arbitrary weights can
+also be reduced modulo that modulus before this simulation. The
+modular cases requiring the bit-length or certificate accounting here
+are predicates with growing modulus and potentially large reduced
+weights.
+
+The sliced budget is an aggregate condition even for pure THR
+circuits, whereas the factorization condition bounds each supplied
+state width $\kappa_v$. For example, a large gate with
+$r_v=\Theta(S^{.95})$ and $B_v=\Theta(S^{.94})$ contributes
+$\Theta(S^{1.89})$ to the sliced sufficient condition, while its
+one-dimensional certificate $C=w$, $g=1$ has width
+$\kappa_v=B_v+O(\log S)$, above the factorization cap.
+A shorter certificate is a separate property of its weights. Thus
+the two sufficient conditions are not identified, including on pure
+THR circuits. With $L\le S^a$ they are specializations of the
+polynomial-description statement; their arbitrary-$L$ versions use
+its exact-only clause.

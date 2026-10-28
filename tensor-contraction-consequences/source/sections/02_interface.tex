@@ -1,0 +1,118 @@
+\section{The contraction interface and encoding conventions}
+\label{sec:interface}
+
+\begin{hypothesis}[\HTC: OpenAI, Theorem D.1]
+Fix positive constants $C_0,A_0,b_0$. For an integer $s\ge2$, let a
+bipartite multigraph carry one Boolean variable on each edge. There
+are at most $C_0s$ edges and a number of vertices bounded by a fixed
+polynomial in $s$, on which the constants below may also depend, and its
+maximum degree is at most $\lceil s^{9/10}\rceil$. If the total graph
+and tensor description length is $\mathcal L$, the tensor entries lie
+in
+\[
+ \mathcal B_{P_0,\ell}=(\Z/2^{P_0}\Z)[V]/(V^\ell),
+ \qquad 1\le P_0,\ell\le C_0s.
+\]
+Uniformly for every vertex and every Boolean port assignment, an entry
+can be computed from its description in time
+$(s+\mathcal L)^{b_0}2^{A_0s^{9/10}}$ and space
+$(s+\mathcal L)^{b_0}$. Then the contraction
+\begin{equation}\label{eq:contraction}
+ Z=\sum_{x\in\{0,1\}^{E}}\prod_v T_v(x|_{\delta(v)})
+\end{equation}
+is computable deterministically in
+$(s+\mathcal L)^{O(1)}2^{O(g(s))}$ bit operations and
+$(s+\mathcal L)^{O(1)}$ space. Constants depend only on the fixed
+bounds just specified. Isolated vertices contribute their scalar
+entries; $\ell=1$ is allowed.
+\end{hypothesis}
+
+This is Theorem~D.1 (Boolean tensor contraction) of~\cite{OpenAI26}.
+All our applications use $\ell=1$. The only
+coefficients required are integers modulo a power of two, including
+negative residues for determinants.
+
+For comparison, write \HBB\ for Theorem 1.1 of~\cite{OpenAI26}:
+for each fixed $k\ge2$, exact counting for $k$-CNF on $n\ge20$
+declared variables and $m$ clauses takes polynomial space and time
+\[
+ (n+m)^{O_k(1)}
+ 2^{O_k(n\log\log n/\sqrt{\log n})}.
+\]
+For each fixed $D$, if $m\le Dn$, the exponent improves to
+$O_{k,D}(g(n))$. The quantifier fixes $k$ and $D$ before the input
+size grows.
+
+The accompanying Lean scope document~\cite{OpenAILean26},
+\ancfile{lean/docs/378.md}, describes exact counting for fixed $k$ on
+canonical encodings, in time
+\[
+ (L+1)^{O_k(1)}
+ 2^{O_k(n(\log\log n)^2/\sqrt{\log n})}
+\]
+and with polynomially many visited tape cells. Its stated scope is
+this fixed-$k$ counting assertion. It does not include \HTC, nor the
+sharper arbitrary-density or fixed-density bounds in the October 25
+Theorem 1.1. Thus that formalization does not certify the hypothesis
+used by the results of this paper.
+
+\subsection{Boolean wires and unique extensions}
+
+A functional gadget has input and output ports and internal Boolean
+wires. For each assignment to its input ports, exactly one assignment
+to its internal wires and output ports has nonzero product of local
+$0/1$ entries. A circuit of such gadgets has a unique extension of each
+original input, by induction in a topological order. Pinning the final
+output to one then makes its contraction the accepting-input count.
+
+Fan-out is handled by equality trees. For a signal with $d\ge2$
+occurrences, join its ports by a tree of binary and ternary equality
+vertices; fixing the common signal determines every internal bit.
+For $d=1$, attach the free unary tensor $(1,1)$. A declared input
+with no occurrence is represented by a wire between two copies of
+$(1,1)$, contributing exactly two. In particular, changing a gate to a
+constant never deletes the factor contributed by an input that thereby
+becomes unused. These rules also apply when the circuit output is an
+input or a constant.
+
+A constant gate is evaluated directly and its outgoing uses are fixed
+by unary pins. A nonconstant gate has at least one input wire, so the
+number of remaining gates is at most $w$. Constants, dead gates, and
+zero-arity scalar factors can be removed from the network description
+after accounting for their effect and retaining all declared inputs.
+
+Given any finite factor graph, insert a binary equality tensor on
+each edge. The old and new vertices form a bipartition, edge count
+doubles, maximum degree does not increase, and the assignment on each
+old edge has exactly one extension to its two replacements. If the
+sum of port occurrences is $O(S)$, equality trees and subdivision
+therefore use $O(S)$ edges and vertices.
+Distinct occurrences at the same factor are distinct ports. If a
+two-occurrence signal joins two ports of that factor, subdivision
+creates parallel edges to the equality vertex. These are allowed by
+the bipartite multigraph interface of \HTC.
+
+\subsection{Scaling and integer readback}
+
+Suppose an encoding has $C_1S$ edges, $O(S)$ vertices, degree at most
+$D_1S^{9/10}$, precision $P_0\le C_2S$, and total description length
+$\mathcal L$. Suppose its local entry programs use fixed polynomial
+time and space in $S+\mathcal L$. Set
+\begin{equation}\label{eq:rescale}
+ s=\lceil KS\rceil,\qquad
+ K\ge\max\{1,(2D_1)^{10/9}\},
+\end{equation}
+and fix a sufficiently large interface constant $C_0$. All the bounds
+in \HTC\ now hold, including its precise maximum-degree condition.
+Since $K$ is fixed, $g(s)=O(g(S))$. The same reasoning applies to
+$O(S^{2/3})$ degrees. The resulting time is
+$(S+\mathcal L)^{O(1)}2^{O(g(S))}$ and the space is polynomial in
+$S+\mathcal L$, allowing arbitrary description length. Bounded small
+instances may be enumerated with polynomial cost in their descriptions.
+
+If a contraction is known, as an integer, to satisfy
+$0\le Z<2^{P_0}$, its least nonnegative residue modulo $2^{P_0}$
+recovers $Z$ exactly. For a circuit with unique extensions, $P_0=n+1$
+is sufficient, since $0\le Z\le2^n$. For a signed graph encoding the
+bound is proved after cancellation, before choosing $P_0$. Division by
+a known multiplicity is performed on this recovered integer.

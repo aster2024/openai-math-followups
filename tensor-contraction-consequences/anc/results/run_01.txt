@@ -1,0 +1,1 @@
+{"test":"sign_all_permutations_all_contiguous_partitions","max_n":7,"checks":21413481,"status":"PASS"}

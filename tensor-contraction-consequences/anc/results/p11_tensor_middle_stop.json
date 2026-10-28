@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "case": "middle_stop",
+  "parameters": {
+    "t": 2,
+    "B_prime": 4,
+    "target": 3,
+    "primes": [
+      3,
+      5
+    ]
+  },
+  "graph": {
+    "vertices": 1467,
+    "edges": 1696,
+    "max_degree": 15,
+    "bipartite": true,
+    "every_edge_has_two_ports": true,
+    "all_original_entries_zero_one": true,
+    "max_copy_fanout": 39
+  },
+  "native": {
+    "boolean_gates": 234,
+    "boolean_input_ports": 454,
+    "max_party_degree": 15,
+    "max_control_degree": 6,
+    "final_degree": 7,
+    "J": 2,
+    "r": 3,
+    "ell": 2
+  },
+  "input_assignments": 256,
+  "extension_count_histogram": {
+    "1": 256
+  },
+  "output_one_count": 116,
+  "trace_histogram": {
+    "LOW/LOW": 12,
+    "HIGH/LOW": 32,
+    "FALSE-h/STOP": 80,
+    "FALSE-h/LOW": 60,
+    "LOW/HIGH": 4,
+    "FALSE-h/HIGH": 20,
+    "HIGH/HIGH": 48
+  },
+  "allowed_bad_seed_examples": [
+    {
+      "inputs": [
+        0,
+        8
+      ],
+      "protocol": 0,
+      "exact_comparison": 1
+    },
+    {
+      "inputs": [
+        0,
+        9
+      ],
+      "protocol": 0,
+      "exact_comparison": 1
+    },
+    {
+      "inputs": [
+        0,
+        10
+      ],
+      "protocol": 0,
+      "exact_comparison": 1
+    },
+    {
+      "inputs": [
+        0,
+        11
+      ],
+      "protocol": 0,
+      "exact_comparison": 1
+    }
+  ],
+  "contraction": {
+    "elimination_steps": 1687,
+    "peak_nonzero_table_rows": 65536
+  },
+  "seconds": 48.15212518069893,
+  "script_sha256": "98b28e6230f1ad90980cef85f86863f13f5269fad4e23154781a5186faed1c46"
+}

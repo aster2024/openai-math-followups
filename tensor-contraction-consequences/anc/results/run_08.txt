@@ -1,0 +1,1 @@
+seed=4: undirected graphs 60 (with >=1 HC: 31), directed graphs 40, metric-TSP graphs 33; ALL PASS

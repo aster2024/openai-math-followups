@@ -1,0 +1,187 @@
+\section{Sparse determinants with linearly many Boolean wires}
+\label{sec:determinants}
+
+The determinant will be a nonnegative connectivity weight after its
+permutation terms have been summed. The required tensor representation
+must therefore preserve permutation signs as well as matrix entries.
+We give the sign construction explicitly; the inverse-pair accounting
+is related to the determinant method in~\cite[Section 4]{BCKN15}.
+
+\subsection{A sparse permutation-sign gadget}
+
+Let $E\subseteq[N]\times[N]$ be the potential nonzero positions of
+an $N\times N$ matrix, let $M=|E|$, and set
+\[
+ T_{\mathrm{det}}=N+M+2.
+\]
+Position bits $z_{ij}$ select one entry per row and column. A legal
+selection is a permutation $\sigma$ supported on $E$. We construct
+its sign with $O(T_{\mathrm{det}})$ edges and maximum degree
+$O(T_{\mathrm{det}}^{2/3})$. The following construction is a
+structural identity used under our standing assumption \HTC.
+
+Put $B=\max\{1,\lfloor T_{\mathrm{det}}^{2/3}\rfloor\}$. Rows
+having more than $B$ potential positions are heavy; each is a singleton
+block. Split every consecutive run of light rows greedily, preserving
+row order, so that the total number of potential positions in a block
+is at most $B$. Columns are treated independently in their own order.
+A zero potential row or column makes the determinant identically zero
+and can be handled directly.
+
+If there are $a$ row blocks and $b'$ column blocks, then
+\begin{equation}\label{eq:block-count}
+ a,b'=O(M/B+1),\qquad ab'=O(T_{\mathrm{det}}^{2/3}).
+\end{equation}
+Indeed there are at most $M/B$ heavy rows. In one light run, any two
+consecutive greedy blocks have total load greater than $B$, so its
+block count is at most twice the load divided by $B$, plus one.
+There are at most one more light runs than heavy rows. In particular
+$a\le4M/B+1$, and the column bound is identical. In a cell
+$E_{uv}=E\cap(R_u\times C_v)$, a light side bounds its size by $B$;
+if both sides are heavy singletons it contains at most one position.
+
+For a legal permutation write $r(i)$ for its row-block index,
+$c(j)$ for its column-block index, and
+$n_{uv}=|\{i\in R_u:\sigma(i)\in C_v\}|$. Define
+\begin{align*}
+ I_R&=|\{i<i':r(i)=r(i'),\ c(\sigma(i))>c(\sigma(i'))\}|,\\
+ I_C&=|\{j<j':c(j)=c(j'),\ r(\sigma^{-1}(j))>r(\sigma^{-1}(j'))\}|,\\
+ I_{uv}&=|\{i<i':i,i'\in R_u,\ \sigma(i),\sigma(i')\in C_v,
+                    \ \sigma(i)>\sigma(i')\}|,\\
+ I_\times&=\sum_{u<u',\ v>v'}n_{uv}n_{u'v'}.
+\end{align*}
+The exact integer identity is
+\begin{equation}\label{eq:sign-split}
+ \inv(\sigma)=I_R+I_C+\sum_{u,v}I_{uv}+I_\times.
+\end{equation}
+To prove it, classify a pair $i<i'$ by whether its two row blocks
+are equal and whether its two image column blocks are equal. If both
+are equal, it is counted in $I_{uv}$. If only the row blocks are
+equal, order preservation makes a column inversion equivalent to a
+column-block inversion, counted in $I_R$. If only the column blocks
+are equal, let $j<j'$ be the two image columns; an inversion is
+exactly a reversal of the corresponding row-block order, counted in
+$I_C$. If neither is equal, inversions occur precisely in cells with
+$u<u'$ and $v>v'$, giving $I_\times$. The four classes are disjoint.
+
+Use constant-state exact-one chains to check row and column selection.
+Each light row block reads its at-most-$B$ position bits and contributes
+$(-1)^{I_R}$ for that block; a heavy singleton contributes one.
+Column blocks similarly contribute $(-1)^{I_C}$. Each cell reads its
+position bits, contributes $(-1)^{I_{uv}}$, and outputs one parity bit
+\[
+ p_{uv}=\sum_{(i,j)\in E_{uv}}z_{ij}\pmod2.
+\]
+It can also reject repeated selected rows or columns in the cell.
+Empty cells output a forced zero bit. A single factor reads the
+$ab'$ parity bits and contributes
+\begin{equation}\label{eq:cross-root}
+ (-1)^{\sum_{u<u',\ v>v'}p_{uv}p_{u'v'}}.
+\end{equation}
+This gives $(-1)^{I_\times}$. Its degree is bounded by
+\eqref{eq:block-count}. Every selected-position bit occurs in only a
+constant number of checks. Total port count is
+$O(N+M+ab')=O(T_{\mathrm{det}})$; maximum degree is
+$O(B+ab')=O(T_{\mathrm{det}}^{2/3})$. Each entry is computed by
+polynomially many arithmetic and pair-comparison operations on its
+ports. Exact-one states and cell parities are unique on each legal
+selection. Equality trees and subdivision preserve these bounds.
+
+For each position multiply the factor
+\[
+ z_{ij}=0:\ 1,\qquad z_{ij}=1:\ A_{ij}.
+\]
+Summing over the position bits and the unique states gives precisely
+\begin{equation}\label{eq:sparse-det}
+ \sum_{\sigma\text{ supported on }E}
+    \sgn(\sigma)\prod_iA_{i,\sigma(i)}=\det A.
+\end{equation}
+The $A_{ij}$ may depend on external Boolean variables. If those
+variables and the total scopes of their conditions and numerical
+entry factors are $O(T_{\mathrm{det}})$, the combined representation
+still has linear edges. Its maximum degree is the larger of the
+sign-gadget degree and the external degree. This is a representation
+of a determinant inside a larger sum over external choices.
+
+\subsection{Marker Laplacians and positivity}
+\label{subsec:matrix-tree}
+
+Fix a simple undirected graph $G=(V,E_G)$, $U\subseteq V$,
+$F\subseteq E_G[U]$, and markers $M_0\subseteq U$. Define
+\begin{equation}\label{eq:marker-matrix}
+ A_{vv}=d_F(v)+[v\in M_0]+[v\notin U],\qquad
+ A_{vw}=-[vw\in F]\quad(v\ne w).
+\end{equation}
+The unselected vertices form an identity block. On $U$, the matrix
+is the Laplacian of the graph $H^+$ obtained from $H=(U,F)$ by
+adjoining one root $\rho$ and the edges $\rho v$ for $v\in M_0$,
+with the root row and column deleted.
+
+For completeness, orient the edges of $H^+$ arbitrarily, and let
+$B_\rho$ be its incidence matrix with the root row removed.
+Then $A|_U=B_\rho B_\rho^T$, and Cauchy--Binet gives
+\begin{equation}\label{eq:matrix-tree}
+ \det A=\sum_{\substack{Q\subseteq E(H^+)\\|Q|=|U|}}
+            \det((B_\rho)_Q)^2=\tau(H^+).
+\end{equation}
+A cyclic edge set has dependent incidence columns. An acyclic set
+of $|U|$ edges on $|U|+1$ vertices is a spanning tree. Its incidence
+minor has determinant $\pm1$, by repeatedly expanding at a nonroot
+leaf. Thus every tree contributes one and every other set contributes
+zero. Empty $U$ gives determinant one. In particular,
+\begin{equation}\label{eq:marker-positive}
+ \det A\ge0,\qquad \det A>0
+ \ \Longleftrightarrow\
+ \text{every component of }(U,F)\text{ meets }M_0.
+\end{equation}
+If $M_0=\{r\}$ with $r\in U$, positivity is connectivity of $(U,F)$,
+and $\det A=\tau(U,F)$ because the root's single incident edge is a
+bridge.
+
+The potential positions in~\eqref{eq:marker-matrix} number at most
+$n+2m$. For local evaluation, compute every $d_F(v)$ by an
+$O(\deg_G(v)+1)$-gate Boolean population counter. One construction
+repeatedly uses constant-size full adders to reduce triples in each
+binary column: each full adder reduces the total number of live bits
+by one, so $O(d)$ suffice for $d$ input bits, followed by addition
+of two $O(\log(d+2))$-bit words. Its internal states are functional.
+All degree circuits together have $O(n+m)$ wires and gates.
+Their output-bit count is $O(n+m)$ as well. A diagonal numerical
+factor reads only its degree output, marker bit, selected-vertex bit,
+and position bit; an off-diagonal factor reads a position bit and an
+edge-selection bit. Total scope length stays $O(n+m)$, including at
+vertices of high graph degree.
+
+\subsection{Exact statistics with long binary coefficients}
+\label{subsec:weights}
+
+The applications also use a fixed number of statistics
+$A_j(y)=\sum_i a_{ji}y_i$ on $p=O(S)$ object bits, with nonnegative
+coefficients of at most $H=\lceil S^{9/10}\rceil$ bits. Any fixed
+polynomial-time relation on these statistics, including a threshold,
+can be added using $O(S)$ wires, degree $O(S^{9/10})$, and a unique
+auxiliary extension.
+
+Indeed, group the object bits in blocks of
+$B=\max\{1,\lfloor S^{9/10}\rfloor\}$ bits. There are
+$h=O(S^{1/10}+1)$ blocks. Every partial or total sum fits in
+\[
+ q=H+\lceil\log_2(p+1)\rceil+1=O(S^{9/10})
+\]
+bits. A block factor reads its original bits and checks its output
+partial sums. For each statistic, a binary tree of addition factors
+combines these outputs. Each addition factor reads three $q$-bit
+words, rejects overflow, and enforces exact addition; on genuine
+inputs there is no overflow. The root relation reads only the fixed
+number of total sums. The total number of state wires is $O(hq)=O(S)$,
+whereas the maximum degree is $O(S^{9/10})$. The use of an addition
+tree, rather than one factor reading every block sum, is essential to
+this degree bound. Local entry arithmetic is polynomial in $S+L$.
+
+For coefficients bounded in value by $S^{O(1)}$, a smaller-block
+variant also works: take blocks of $S^{2/3}$ inputs, transmit
+$O(\log S)$-bit partial sums, and let a terminal factor read all of
+them. Its degree is $O(S^{1/3}\log S)$, and the block degree is
+$O(S^{2/3})$. Both encodings are compatible with the determinant
+representation. The larger-degree one uses the constant rescaling
+\eqref{eq:rescale} before invoking \HTC.

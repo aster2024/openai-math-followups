@@ -1,0 +1,177 @@
+\section{Encoding boundaries and finite checks}
+\label{sec:checks}
+
+\subsection{Precision and representation boundaries}
+
+At $S=\Theta(n)$, the high-precision error in
+Theorem~\ref{thm:capp} is still much larger than $2^{-n}$. Its
+absolute-error guarantee does not distinguish zero accepting inputs
+from one. Exact modes require their weight-cost budget or a supplied
+short factorization. A general polynomial-bit equality constraint on
+$n$ input bits need not satisfy those exact budgets.
+
+The sum in~\eqref{eq:budget} is a sufficient condition for the
+constructions above; no necessity is claimed for circuits whose
+gates share realizations. The seed estimate used by
+the algorithm is $R=O_{a,c}(S^{9/10})$, measured in the scale $S$.
+Exact-only assignments have $R=0$; hashed assignments use their
+pointwise error bounds for the precision comparison.
+
+A ring calculation clarifies the cost of a particular congruence
+filter. In $R=(\Z/2^P\Z)[V]/(V^\ell)$ let $\mathfrak m=(2,V)$.
+If units $\zeta_j\in R$ and coefficients $c_j\in R$ satisfy
+\[
+ \sum_jc_j\zeta_j^u=2^e[u=0],\qquad 0\le u<M,\quad e<P,
+\]
+then $e\ge M-1$. Every unit is one modulo $\mathfrak m$; the
+$(M-1)$st forward difference of the left side belongs to
+$\mathfrak m^{M-1}$, while that of the right side is
+$(-1)^{M-1}2^e$. The constant coefficient of
+$\mathfrak m^{M-1}$ is divisible by $2^{M-1}$, forcing the bound.
+Filters of this specified unit-power form therefore consume precision
+proportional to their modulus range.
+
+\subsection{The fixed-width counting interface}
+
+The local condition ``two selected incident edges at every vertex''
+recognizes a spanning 2-factor. Two disjoint triangles satisfy it and
+have no HC. Joining them by a bridge and leaving the bridge unselected
+gives the same example on a connected input. Rooted consistent cuts
+give exactly $2^{\cc(F)-1}$ extensions and filter disconnected
+2-factors modulo two. Distinct Hamiltonian solutions in one weight
+layer can still cancel. The deterministic proofs use nonnegative
+determinant sums instead.
+
+Known fixed-width CNF encodings used in this comparison do not by
+themselves derive these sparse connectivity bounds from \HBB.
+Numbering-based certificates with $\Theta(n\log n)$ Boolean
+variables give, even with fixed clause density, only the displayed
+bound $2^{O(n\sqrt{\log n})}$. Compiling weighted isolation sums
+into Boolean arithmetic has a similar logarithmic cost. The implicit
+sign and arithmetic factors are where the graph proofs use \HTC.
+Whether a smaller encoding or a different reduction derives these
+bounds from \HBB\ alone remains open in this analysis.
+
+One \HBB-only example can be verified directly. On a sparse graph,
+exact chromatic number and an optimal coloring are computable,
+conditional on \HBB, in
+$\poly(n+L)2^{O(n\log\log n/\sqrt{\log n})}$ time and polynomial
+space. Take $D=\lceil\log_2(n+2)\rceil^2$ and let $H$ contain
+vertices of original degree greater than $D$. Then
+$|H|=O(n/\log^2n)$. Compute $\chi(G[H])$ by enumerating all
+$|H|^{|H|}$ color labelings. If it is at least $D+1$, an optimal
+coloring of $H$ extends greedily to the remaining vertices and is
+optimal. Otherwise try $q\le D+1$ and every $q^{|H|}$ coloring of
+$H$. Represent each remaining color in $O(\log q)$ bits, reject
+codes at least $q$, and test each remaining or crossing edge with an
+$O(\log q)$-gate inequality circuit. The functional Tseitin 3-CNF
+has $O(n\log\log n)$ variables and clauses. Add one fixed-zero dummy
+bit per clause, plus twenty, to make density less than two while
+preserving the count. Apply \HBB\ with fixed $k=3$ and density two;
+all enumeration factors are absorbed in the stated exponent. Fixing
+original color bits recovers an optimal extension. Empty graphs and
+the case $q=1$ are checked directly. This is a routine
+composition of degree splitting, binary comparison, and \HBB.
+
+\subsection{Budget scales in lower-bound simulations}
+
+All \HTC\ calls in Section~\ref{sec:lower} go through
+Theorem~\ref{thm:capp}, whose scale is the actual $S$ of the query
+circuit; the proofs use only upper bounds on the resulting running time,
+so no lower bound on the size of a guessed circuit is needed.
+
+For average-case amplification, the input length grows by $k$ and the
+analysis-query exponent is proportional to $ck$. Condition
+\eqref{eq:avg-time-condition} permits constant $k$ at a fixed positive
+wire constant. Increasing CAPP precision alone does not remove that
+time constraint.
+
+\subsection{Classical sparse baselines}
+
+The sparse reductions for the usual ETH comparison have explicit
+linear budgets. Sparsification~\cite{IPZ01} gives a 3-CNF with $v$
+variables and $a=O(v)$ clauses. The standard vertex-cover construction
+has a variable edge and a clause triangle, with each clause vertex
+joined to its literal's variable vertex. Its budget is $v+2a$;
+there are $2v+3a$ vertices and at most $v+6a$ edges. The forced
+one-per-variable and two-per-triangle choices make an unchosen clause
+vertex imply a true literal. The standard dominating-set construction
+has triangles $(t_i,f_i,z_i)$ and a vertex for each clause joined to
+its literals, with budget $v$. The private $z_i$ forces one selection
+per triangle; choosing $z_i$ can be replaced by a literal. It has
+$3v+a$ vertices and at most $3v+3a$ edges.
+
+From vertex cover, make a new triangle on each retained edge by adding
+one vertex. Deleting a cover leaves a forest; a selected new vertex
+in an FVS can be replaced by an endpoint without creating a cycle.
+Adding a universal root and $k+2$ private leaves gives connected
+vertex cover with budget $k+1$. For a dominating-set instance use
+selectors $a_u$, elements $b_v$, edges $a_ub_v$ for $v\in N[u]$,
+and a root joined to every selector. Root plus $k+2$ private leaves,
+with budget $k+1$, gives connected domination. Selected elements can
+be replaced by adjacent selectors because the root already dominates
+all selectors. Alternatively declare the root and all elements Steiner
+terminals: a tree using $s$ selectors has $n+s$ edges, so budget
+$n+k$ is equivalent to $s\le k$. These graphs have linear vertex
+and edge counts, and edge-to-vertex ratios at most four. They give
+the standard sparse ETH baselines for these problems. The algorithms
+in this paper use their explicit \HTC\ encodings.
+
+\subsection{Ancillary computations}
+
+The directory \ancfile{anc/} contains finite checks of the reductions.
+Each check prints one summary line and writes its details to
+\ancfile{anc/results/}. The counting checks use
+integer or rational arithmetic; the floating-point threshold scan is
+a diagnostic. Full exhaustive families and exhaustive
+checks on sampled supports are distinguished in Table~\ref{tab:checks}.
+The runner executes the checks serially.
+
+\begin{table}[ht]
+\centering\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}P{.37\linewidth}P{.55\linewidth}@{}}
+\toprule
+Check & Actual finite coverage\\
+\midrule
+\ancfile{finite_audit.cpp} & All permutations and interval partitions through $N=7$: 21,413,481 sign identities; 254,254 undirected marker cases through $n=5$; 333,544 directed cases through $n=4$\\
+\ancfile{p6_sign_check.py} & 16,362 supported permutation identities; 350 sampled-support factor sums, including 218 explicit parity-wire sums\\
+\ancfile{p7_p8_filter_check.py} & 120 sampled undirected graphs, 76 directed graphs; object sums and 68 metric-TSP comparisons\\
+\ancfile{e2e_hc_network.py} & Nine graph/blocking combinations, including disjoint triangles; modular readback and integer division\\
+\ancfile{check_gadgets.py} & 9,000 arithmetic replays of sliced threshold/equality/modular formulas, residue hashes, and small modular-function enumeration; no tensor contraction\\
+\ancfile{check_G1_tensor.py} & 3,816 consistent-input factor contractions and 411 independently assigned slice-copy cases, including full auxiliary code domains\\
+\ancfile{check_G3_tensor.py} & 136,896 residue-chain factor contractions on sampled instances, all their inputs and 24 primes; invalid residue codes included\\
+\ancfile{protocol_exact_check.cpp} & Two parties, eight-bit inputs, 2,048-prime family: 3,346,110 nontrivial state/threshold classes\\
+Explicit protocol tensor checks & Local tensors, equality subdivision, generic exact elimination, early stops and wrong-hash seeds; one extension for every original input\\
+\bottomrule
+\end{tabular}
+\caption{Validation of the reductions. Auxiliary engine, block-count,
+and unused-input checks and commands appear in \ancfile{anc/README.md}.}
+\label{tab:checks}
+\end{table}
+
+The program \ancfile{hc_accounting.py} gives approximately $42.8S_G$ to
+$52.4S_G$ bipartite wires on its five listed sparse fixtures, with
+$P_0=4S_G+1$. These are finite examples; the asymptotic bounds follow
+from the port counts proved above. The computations do not execute
+the algorithm asserted by \HTC. Source hashes, commands, logs,
+and scopes accompany the programs.
+The arithmetic replay in \ancfile{check_gadgets.py} does not test
+tensor-level extension counts, invalid auxiliary codes, or independently
+assigned copies; its modular enumeration does not implement the general
+integer-representation construction.
+The tensor checks \ancfile{check_G1_tensor.py} (sliced gadgets) and
+\ancfile{check_G3_tensor.py} (residue chains) cover the stated full-code
+domains. In the sliced-gadget check, independently assigned slice copies test the local gadget's
+extension count; the circuit's equality trees impose consistency of
+those copies. The ancillary numerical threshold scan is a finite scan,
+and the eventual inequalities are justified by the asymptotic proofs.
+
+\noindent\begin{minipage}{\linewidth}
+\subsection*{Use of AI}
+The proofs and the text were produced with AI systems (GPT-6.1 Sol,
+GPT-6 Astra, Claude Opus 5.5, and Claude Fable 5.1) under the author's
+direction. They were checked by independent reviews with AI models and by the
+computations in the ancillary files. No human expert has reviewed
+them. The author takes responsibility for the content.
+\end{minipage}\par

@@ -1,0 +1,1 @@
+check_gadgets.py: PASS; details=check_gadgets.details.txt

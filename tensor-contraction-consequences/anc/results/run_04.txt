@@ -1,0 +1,1 @@
+seed=1: identity checked on 8014 (E,sigma) pairs; network==det on 173 instances (111 with explicit sum over all parity wires); instances with heavy block 126, with multi-row block 61; ALL PASS

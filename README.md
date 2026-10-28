@@ -280,6 +280,23 @@ Theorem 1.1 of OpenAI's paper
 the Type II sum, expanded into Dirichlet characters of the rough variable, and the local factors at the primes
 dividing 2h.
 
+### [`tensor-contraction-consequences/`](tensor-contraction-consequences/) — Conditional consequences of a Boolean tensor-contraction theorem: threshold circuits and sparse connectivity
+
+Paper (32 pages), 29 October 2026: [PDF](tensor-contraction-consequences/paper.pdf). Exhaustive finite checks of the reductions are in [`tensor-contraction-consequences/anc/`](tensor-contraction-consequences/anc/).
+
+All results are conditional on the Boolean tensor-contraction theorem stated as Theorem D.1 of OpenAI's manuscript
+[The Exponential Time Hypothesis is False](https://github.com/openai/math/blob/42907c9e999cc00d6abe7a50bfc1023250edd1b9/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf)
+(25 October 2026, cited at commit `42907c9e`); the Lean formalization listed for that manuscript covers its fixed-width
+counting theorem, not Theorem D.1. Under this hypothesis: deterministic approximate counting, with error as small as
+2^(−S^(9/10)/log S), for integer-weight threshold circuits of arbitrary depth and fan-in in time 2^(O(S/√log S)),
+S = inputs + wires, with a per-gate version that is exact when no gate is hashed; an E^NP language that needs more than
+c·N·√(log N) wires for real-weight threshold circuits at every large input length, with a constant-advantage
+average-case version (instantiating the algorithmic method of Williams and the frameworks of Chen–Williams,
+Bathie–Williams and Chen–Lyu–Williams; it implies the every-length form of OpenAI's Corollary 1.4); and deterministic
+2^(O(n/√log n)) algorithms with witness recovery for Hamiltonian cycle and path, longest path, TSP, Steiner tree,
+feedback vertex set and connected vertex cover and dominating set on graphs with O(n) edges, with exact counting of
+Hamiltonian cycles.
+
 ### [`zero-free-beyond-7-8/`](zero-free-beyond-7-8/) — A zero-free half-plane beyond 7/8
 
 Paper (44 pages), 8 October 2026: [PDF](zero-free-beyond-7-8/paper.pdf). Exact-arithmetic certificates are in [`zero-free-beyond-7-8/anc/`](zero-free-beyond-7-8/anc/).

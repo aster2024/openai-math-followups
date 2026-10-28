@@ -1,0 +1,178 @@
+\section{Comparison protocols as bounded-degree relations}
+\label{sec:protocol}
+
+We give the comparison implementation used in the threshold gadgets.
+It is the half-splitting comparison underlying Nisan's
+protocol~\cite{Nisan93}; explicit parameters are useful for applying
+\HTC. Fix the circuit scale $S$, and suppose $t\le S$ parties hold
+nonnegative integers $X_i$, each of bit length polynomial in $S$.
+The public target $T$ has the same bit bound. We compare
+$\sum_iX_i>T$. Targets outside the possible sum range are handled by
+public constant answers. Pad the bit width to a power of two $B'$ and
+put $J=\log_2 B'=O_a(\log S)$ when the input description is at most
+$S^a$ bits.
+
+\subsection{The half-splitting step}
+
+For a current even width $B$, put $d=B/2$ and write
+\[
+ X_i=2^dH_i+L_i,\quad T=2^dT_H+T_L,
+ \quad 0\le L_i,T_L<2^d.
+\]
+If $\sum_iH_i=T_H-h$ for some $h\in\{0,\ldots,t-1\}$, then the
+comparison is equivalent to
+\begin{equation}\label{eq:low-comparison}
+ \sum_i L_i>T_L+h2^d.
+\end{equation}
+If there is no such $h$, put $u=\sum_iH_i-T_H$. Then either $u\ge1$
+or $u\le-t$. In the former case the original comparison is true, since
+$2^du+\sum_iL_i-T_L\ge1$; in the latter case it is false. Both
+answers equal the answer to $\sum_iH_i>T_H$. Thus one may recurse on
+that high-half comparison. The range for $h$ includes $t-1$.
+
+Let $\delta=2^{-h_0}$, with integer $h_0\ge1$. Choose the least power
+of two $K$ such that
+\begin{equation}\label{eq:prime-family}
+ K\ge 4JS(B'+\lceil\log_2S\rceil+3)\,2^{h_0}.
+\end{equation}
+Use the $K$ smallest primes greater than $S$. At each level a fresh
+$\log_2K$-bit seed chooses one such prime $p$. The parties broadcast
+$H_i\bmod p$, and public arithmetic computes the least nonnegative
+residue
+\[
+ h'=T_H-\sum_i(H_i\bmod p)\pmod p.
+\]
+If $h'<t$, follow~\eqref{eq:low-comparison} with $h=h'$; otherwise
+follow the high-half comparison. Since $p>t$, a genuine $h$ is always
+returned correctly. When no genuine $h$ exists, an incorrect choice
+requires $p$ to divide one of the nonzero integers
+\[
+ \sum_iH_i-T_H+j,\qquad 0\le j<t.
+\]
+After the range checks, each has bit length at most
+$B'+\lceil\log_2S\rceil+3$. An integer of that bit length has at most
+that many distinct prime factors. Consequently the conditional error
+at a level is at most $\delta/(4J)$, even after fixing all earlier
+messages and seeds. A union bound on the earliest erroneous level gives
+error at most $\delta$. At width one the parties send their remaining
+bits and compare exactly.
+
+The prime bound of Rosser and Schoenfeld~\cite{Rosser62} implies that
+the largest prime used has
+\begin{equation}\label{eq:prime-bits}
+ \pi=O_a(h_0+\log S)
+\end{equation}
+bits. Each seed is only a prime index. For a particular index,
+enumerate integers and use trial division until reaching that prime.
+The polynomial upper bound on the indexed prime implies
+$2^{O_a(h_0+\log S)}$ time and polynomial bit space. This construction
+stores the selected primes, rather than the entire family. The total
+seed length is
+\begin{equation}\label{eq:seedlength}
+ R=J\log_2K=O_a(h_0\log S+\log^2S).
+\end{equation}
+Fixed-width message frames, range checks, and forced zero padding
+after an early stop make every transcript canonical.
+
+\subsection{Two tensor realizations}
+
+Fix the seed. If a party reads at most $b$ original input bits and
+the full transcript has $C$ bits, make one factor for each party,
+reading its private input and a copy of the transcript. The factor
+checks only that party's messages, each against the earlier prefix.
+A referee factor checks public control, formatting, padding, and the
+output. Sharing transcript bits by equality trees gives
+\begin{equation}\label{eq:full-transcript}
+ M=O(tb+tC+C+1),\qquad
+ \Delta\le\max\{b+C,C+1,3\}.
+\end{equation}
+For fixed private inputs, the initial message is determined. Inductively
+each next message, stop flag, and final output is determined; the
+checks force exactly this execution. Hence the gadget is a functional
+relation even for a seed at which the comparison is wrong.
+
+For higher precision we use the addition-specific compact
+realization. Encode each public branch (a value of $h$ or ``no such
+value'') in $\lambda=\lceil\log_2(t+1)\rceil$ bits. The factor for
+party $i$ reads its original input, the public branch history, its own
+$J$ residues, and its final remaining bit. It replays its local
+state and checks these messages. It reads no other party's residues.
+At each level a public factor uses earlier history to produce the
+target residue and the stop flag. A fan-in-two Boolean circuit adds
+the $t$ residues modulo the known prime, subtracts from the target
+modulo that prime, and compares the result with $t$. Addition of two
+$\pi$-bit residues, comparison with $p$, subtraction, and multiplexing
+have $O(\pi)$ gates and wires. Therefore this public arithmetic costs
+$O(t\pi)$ wires per level. A final factor checks the output from the
+$t$ last bits and the public history.
+
+Counting original input ports, residues, arithmetic wires, and history
+copies gives
+\begin{align}
+ M&=O\bigl(tb+tJ\pi+tJ^2\lambda+J\pi+1\bigr),
+       \label{eq:compact-edges}\\
+ \Delta&=O\bigl(\max\{b+J(\pi+\lambda),\,
+ \pi+J\lambda,\,t+J\lambda,\,3\}\bigr).
+       \label{eq:compact-degree}
+\end{align}
+The history-copy bound is a convenient overestimate of the actual
+port count. Given the inputs, earlier branches determine current
+messages; those messages determine the next branch. This induction
+also proves uniqueness for the compact realization. All local entry
+programs use polynomial-time integer arithmetic on the original
+weights and the selected primes.
+
+\subsection{Shared seeds and the inverse-polynomial CAPP bound}
+
+For a circuit, suppose gate $v$ is replaced by $f_{v,\rho}$ satisfying
+\[
+ \Pr_\rho[f_{v,\rho}(y)\ne f_v(y)]\le\eta_v
+ \quad\hbox{for each fixed local input }y.
+\]
+Every gate may read a prefix of the same uniform seed. For an original
+input $x$, evaluate the original circuit and let $y_v(x)$ be its fixed
+local input at gate $v$. If the replaced circuit disagrees, its earliest
+erroneous gate has input exactly $y_v(x)$. Therefore
+\begin{equation}\label{eq:gate-error}
+ \Pr_\rho[C_\rho(x)\ne C(x)]
+ \le\sum_v\Pr_\rho[f_{v,\rho}(y_v(x))\ne f_v(y_v(x))]
+ \le\sum_v\eta_v.
+\end{equation}
+No independence between gates is needed.
+
+For clarity, the inverse-polynomial case already follows from the
+full-transcript realization. Put $b=\lceil S^{2/3}\rceil$ and leave
+smaller gates exact. For a large threshold gate, replace negative
+weights by literals: with $u_j=|w_j|$ and
+$\xi_j=x_j$ for $w_j\ge0$, $\xi_j=1-x_j$ otherwise,
+\[
+ \sum_jw_jx_j\ge\theta
+ \quad\Longleftrightarrow\quad
+ \sum_j u_j\xi_j>\theta+\sum_{w_j<0}|w_j|-1.
+\]
+Party $i$ computes the nonnegative sum in one block of at most $b$
+inputs. Give each large gate error $\eta=\eps/(2S)$, using the
+protocol with a dyadic error at most this value. If $\eps\ge S^{-a}$,
+then $R=O_a(\log^2S)$ and a gate with fan-in $r_v$ has
+$t_v\le2r_v/b$ parties and transcript
+$C_v=O_a(t_v\log^2S)$. The total additional edges in
+\eqref{eq:full-transcript} satisfy
+\[
+ \sum_{r_v>b}O(t_vC_v)
+ \le O_a\left(\frac{\log^2S}{b^2}\sum_vr_v^2\right)
+ \le O_a(S^{2/3}\log^2S)=o(S).
+\]
+The degree is at most
+$S^{2/3}+O_a(S^{1/3}\log^2S)+O(1)=o(S^{9/10})$.
+For each fixed seed, the circuit has a unique-extension network and
+hence an exact count $Z_\rho$ from \HTC\ with $P_0=n+1$.
+Enumerating all seeds gives the rational
+\begin{equation}\label{eq:capp-output}
+ \widehat p=\frac{\sum_\rho Z_\rho}{2^{n+R}}.
+\end{equation}
+There are at most $S$ gates, so~\eqref{eq:gate-error} bounds the
+error by $\eps$. The seed enumeration is absorbed by
+$2^{O_a(g(S))}$, and the accumulator has $n+R+1$ bits. This proves
+the inverse-polynomial assertion of Theorem~\ref{thm:capp} under
+\HTC. The compact realization supplies its stated endpoint in the
+next section.

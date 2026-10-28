@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "test_runs": 24,
+  "compilations": 2,
+  "started_utc": "2026-10-28T14:22:02.588969+00:00",
+  "nice": 19,
+  "address_space_bytes": 8589934592,
+  "per_child_timeout_seconds": 900,
+  "serial": true,
+  "native_threads_per_child": 1,
+  "source_sha256": {
+    "c2_p2_p3_check.py": "50eea0f3fa4fd33e4e40453f8cbfbf8508b7105d1af0245e33284141532c042c",
+    "check_G1_tensor.py": "95b186564a3020b904b673bf8a50b673af05e059b002f559499af9c0021b7227",
+    "check_G3_tensor.py": "bfc43ace77b7ac17a383e09c75622798ef55f16109d3d43f4846e92ece57a0b5",
+    "check_contraction_engine.py": "8bfeb831998437d780c15feafb86230af1c1140baa48fb6f3e4831c6ba1476f1",
+    "check_gadgets.py": "8655dc5e3547c49794e9d4b6baaafcd93655b21c150f2aba9c99a98d31d786c7",
+    "check_thresholds.py": "2728730e1772cc3051f87ced4eabbcc686743c5d6528b7588cacb7c80146e48d",
+    "check_unused_inputs.py": "88b57b574b1efe7a1e67ebb792a5bbd02d7e0d573eb587d7994fad382fbfb7c3",
+    "e2e_hc_network.py": "ae51bf23c1249279590f8c746cfc94740ee015454b6d36ccd3bb8f72df07f29b",
+    "finite_audit.cpp": "d91a8fc6f0d3a2987d4e3415324bc0bb5940fbff389b883557fbf1ca6e8f9811",
+    "hc_accounting.py": "a34b6746df86a089507308c48a263dcf8ce3ed04ea421b382c780a3396f7e689",
+    "p11_middle_stop.py": "baf65be2c7918c12a9e4f55be3e1084a8801930adb90ba85c01398ed33a6783f",
+    "p11_tensor_check.py": "98b28e6230f1ad90980cef85f86863f13f5269fad4e23154781a5186faed1c46",
+    "p6_blockcount_check.py": "05699f3f81f66ca19bf7d931c8d2d49225479fc9474e51fa675bd93c5813c865",
+    "p6_sign_check.py": "fcc8d554c790d3d701461962bece5c466d4530a34dc1374f762681aeba3d8719",
+    "p7_p8_filter_check.py": "eda614ab80714b2cb0ab79f7816c658db6b3818198f37011cee7b72e8915b60d",
+    "protocol_exact_check.cpp": "8c7c927175c0b87802758d1c4f95d5e42ecbd5b0f8170c676eff20b839f03891",
+    "run_all.py": "7f54cd185b4dacbbe98c83bbef5adb666b8af319cb9ed5bbce08e76df9ae003c",
+    "tensor_realization_check.py": "3d0f8d59271ca93267ecfd0890f0110e5ced491932cfaa7fb753b57f887b0cef",
+    "tensor_realization_t3_check.py": "855e04b4ee8c3de974734c5046ce8745dc80f68c1cf9f9dcb529e91fb9bbcc6a"
+  }
+}

@@ -1,0 +1,6 @@
+High-precision inequality last failure in scan: 90
+Inverse-polynomial inequality (a=1) last failure in scan: 215
+Inverse-polynomial inequality (a=2) last failure in scan: 430
+Inverse-polynomial inequality (a=5) last failure in scan: 1448
+Sliced-gadget 4r bound last failure: 11
+Wire-lower-bound THR-hash cap last failure: 215

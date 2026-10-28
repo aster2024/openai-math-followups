@@ -1,0 +1,1 @@
+Sliced-gadget tensor checks: PASS; consistent {'THR': 1424, 'ETHR': 1200, 'MOD': 1192} ; independently assigned slice copies 411 ; max internal bits 139 ; integer tensors=int64

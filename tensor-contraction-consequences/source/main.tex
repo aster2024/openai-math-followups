@@ -1,0 +1,90 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,longtable}
+\usepackage[expansion=false]{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\emergencystretch}{3em}
+\allowdisplaybreaks[2]
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\HTC}{\ensuremath{H_{\mathrm{TC}}}}
+\newcommand{\HBB}{\ensuremath{H_{\mathrm{BB}}}}
+\newcommand{\poly}{\operatorname{poly}}
+\newcommand{\THR}{\mathrm{THR}}
+\newcommand{\ETHR}{\mathrm{exact\text{-}THR}}
+\newcommand{\MOD}{\mathrm{MOD}}
+\newcommand{\ENP}{\mathrm{E}^{\mathrm{NP}}}
+\newcommand{\NTIME}{\mathrm{NTIME}}
+\newcommand{\cc}{\operatorname{cc}}
+\newcommand{\inv}{\operatorname{inv}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Enc}{\operatorname{Enc}}
+\newcommand{\Dec}{\operatorname{Dec}}
+\newcommand{\bits}{\operatorname{bits}}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ind}[1]{\left[#1\right]}
+\newcommand{\ancfile}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\gfun}[1]{\frac{#1}{\sqrt{\log_2(#1+16)}}}
+\hypersetup{pdftitle={Conditional consequences of a Boolean tensor-contraction theorem},pdfauthor={Jizhou Guo}}
+\title{Conditional consequences of a Boolean\\ tensor-contraction theorem:\\ threshold circuits and sparse connectivity}
+\author{Jizhou Guo\\\texttt{mitsuha2021b@gmail.com}}
+\date{29 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Assuming the Boolean tensor-contraction theorem in OpenAI's manuscript
+\emph{The Exponential Time Hypothesis is False} (25 October 2026), we collect
+consequences for threshold circuits and sparse graph problems.
+For an $n$-input circuit with $w$ wires and a polynomial length integer
+weight description, put $S=n+w+2$. Its acceptance probability has a
+deterministic additive approximation, down to error
+$2^{-S^{9/10}/\log_2(S+16)}$, in
+$\poly(S)2^{O(S/\sqrt{\log S})}$ time and polynomial space, with unrestricted
+depth and fan-in. A per-gate theorem combines exact threshold, equality,
+and modular gadgets with hashed gadgets; it gives exact counting when
+no gate is hashed. Exact-only assignments allow arbitrary description
+length, charged polynomially. Applying established algorithms-to-lower-bounds
+constructions yields an $\ENP$ language requiring more than
+$cN\sqrt{\log N}$ real-weight threshold wires at every sufficiently large
+length, and a corresponding statement for every fixed constant
+approximation advantage. For graphs with $m=O(n)$, a sparse representation
+of the permutation sign and the matrix-tree identity give deterministic
+$2^{O(n/\sqrt{\log n})}$ algorithms for connectivity optimization, witness
+recovery, and exact Hamiltonian-cycle counting. Directed and sparse
+shortest-path-metric variants are included. Every algorithmic and
+complexity-theoretic conclusion is conditional on the stated input
+theorem. The accompanying finite computations check the reductions.
+\end{abstract}
+\tableofcontents
+\input{sections/01_introduction}
+\input{sections/02_interface}
+\part{Threshold circuits}
+\input{sections/03_protocol}
+\input{sections/04_unified}
+\input{sections/05_lower_bounds}
+\part{Sparse connectivity}
+\input{sections/06_determinants}
+\input{sections/07_applications}
+\input{sections/08_directed_routes}
+\input{sections/09_scope_checks}
+\begingroup
+\small
+\raggedright
+\bibliographystyle{plain}
+\bibliography{references}
+\endgroup
+\end{document}

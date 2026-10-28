@@ -1,0 +1,1 @@
+Consistent cuts checked on 215 2-factors (incl. mod-2 weight generating function), marked cuts on 4627 (U,M) pairs; ALL PASS

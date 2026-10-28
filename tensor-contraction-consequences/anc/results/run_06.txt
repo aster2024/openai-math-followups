@@ -1,0 +1,1 @@
+block-count bound a <= 4M/B+1 holds on 20000 random degree sequences; max a/(M/B+1) = 1.414
