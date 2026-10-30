@@ -9,7 +9,7 @@ Read [paper.pdf](paper.pdf). The complete LaTeX source is in [source/](source/),
 
 Assuming the Boolean tensor-contraction theorem stated as Theorem D.1 in OpenAI's manuscript of 25 October 2026 (H_TC), the paper proves:
 
-- Deterministic acceptance-probability approximation for integer-weight threshold circuits of arbitrary depth and fan-in, with polynomial description length, in polynomial space and time `poly(S+L) · 2^{O(S/sqrt(log S))}`, where `S = n+w+2`. The absolute error may be as small as `2^{-S^{9/10}/log_2(S+16)}`. A unified per-gate theorem includes exact-threshold and weighted modular gates under explicit parameter budgets; when no gate is hashed, the count is exact and the description length may be arbitrary.
+- Deterministic acceptance-probability approximation for integer-weight threshold circuits of arbitrary depth and fan-in, with polynomial description length, in polynomial space and time `poly(S+L) · 2^{O(S/sqrt(log S))}`, where `S = n+w+2`. The absolute error may be as small as `2^{-S^{9/10}/log_2(S+16)}`. A unified per-gate theorem includes exact-threshold and weighted modular gates under explicit parameter budgets; when no gate is hashed, the count is exact, and under the wire budget (4.1) of the paper (long weights confined to small-fan-in gates or short weight factorizations) the description length may be arbitrary.
 - Real-weight threshold-wire lower bounds in `E^NP` of more than `c N sqrt(log N)` wires, at every sufficiently large input length, together with infinitely-often and fixed-advantage average-case versions.
 - Deterministic polynomial-space algorithms taking `poly(n+L) · 2^{O(n/sqrt(log n))}` time on graphs with `O(n)` edges for Hamiltonian cycles and paths, longest paths, TSP, Steiner tree, feedback vertex set, connected vertex cover, and connected dominating set, with witness recovery. The paper specifies exact-counting conventions, directed variants, shortest-path-metric TSP and Rural Postman, and nonnegative costs of up to `ceil(n^{9/10})` bits.
 
@@ -60,3 +60,15 @@ Rerunning the checks replaces the recorded results and their timings, so verify 
 ## Use of AI
 
 The proofs and the text of the paper were produced with AI systems (GPT-6.1 Sol, GPT-6 Astra, Claude Opus 5.5, and Claude Fable 5.1) under the author's direction. They were checked by independent reviews with AI models and by the computations in the ancillary files. No human expert has reviewed them. The author takes responsibility for the content.
+
+## Citation
+
+```bibtex
+@misc{Guo2026TensorContraction,
+  author = {Guo, Jizhou},
+  title = {Conditional consequences of a {B}oolean tensor-contraction theorem: threshold circuits and sparse connectivity},
+  year = {2026},
+  month = oct,
+  note = {29 October 2026}
+}
+```

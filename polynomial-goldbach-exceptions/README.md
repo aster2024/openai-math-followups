@@ -119,3 +119,15 @@ The proofs and the text were produced with AI systems (GPT-6.1 Sol, GPT-6 Astra
 and Claude Opus 5.5) under the author's direction, checked by independent reviews
 with AI models and by the computations in the ancillary files. No human expert
 has reviewed them. The author takes responsibility for the content.
+
+## Citation
+
+```bibtex
+@misc{Guo2026PolynomialGoldbach,
+  author = {Guo, Jizhou},
+  title = {Exceptional sets for sums and differences of two primes along polynomial sequences},
+  year = {2026},
+  month = oct,
+  note = {29 October 2026}
+}
+```

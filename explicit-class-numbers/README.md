@@ -7,7 +7,7 @@ Let 1/2 ≤ θ < 1 and let χ be a nonprincipal Dirichlet character modulo q ≥
 
     ζ(2) e^(-γ) a e^(-Θ) / (M + log log q)  ≤  |L(1,χ)|  ≤  e^γ e^Θ (M + log log q) / a,      a = 22(1-θ)/25,
 
-for every M ≥ 5, where Θ = Θ(θ, M, q) is an explicit small quantity (Θ < 0.0554 for θ = 7/8, M = 10). For θ = 7/8, the half-plane asserted for all Dirichlet L-functions by OpenAI's paper of 30 September 2026, this gives
+for every M ≥ 5, where Θ = Θ(θ, M, q) is an explicit error term, small once e^M (1 − θ) is large (Θ < 0.0554 for θ = 7/8, M = 10). For θ = 7/8, the half-plane asserted for all Dirichlet L-functions by OpenAI's paper of 30 September 2026, this gives
 
     1/(10.41 (10 + log log q))  ≤  |L(1,χ)|  ≤  17.12 (10 + log log q),
 

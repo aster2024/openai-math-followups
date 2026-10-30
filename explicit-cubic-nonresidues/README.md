@@ -5,13 +5,13 @@ mitsuha2021b@gmail.com
 
 Let F = Q(√−3) and O = Z[ω]. Theorem 1.1 of OpenAI's paper of 30 September 2026 states that every finite-order Hecke L-function of F has no zero in Re(s) > 7/8. Taking this statement as a hypothesis (H_F), the paper proves, with every constant explicit:
 
-- for every ideal m ≠ (1) of O and every proper subgroup H of the ray class group Cl_m there is a prime ideal p ∤ m whose class is not in H with
+- for every nonzero ideal m ≠ (1) of O and every proper subgroup H of the ray class group Cl_m there is a prime ideal p ∤ m whose class is not in H with
 
       N(p) < (36 log(3 N(m)) + 100)^8 ≤ (82 log(3 N(m)))^8;
 
 - every ray class modulo m contains a prime ideal of norm less than (h_m (36 log(3 N(m)) + 100))^8, where h_m = |Cl_m| ≤ N(m); the factor h_m^8 cannot be replaced by any power of log N(m) (a pigeonhole argument shows that for a prime ideal q some class of Cl_q contains no prime ideal of norm ≤ (N(q) − 7)/12);
 
-- for every prime ideal π ∤ 3 there is a prime ideal p ∤ 3π of norm less than (36 log(27 N(π)) + 100)^8 whose generator ≡ 1 (mod 3) is a cubic non-residue modulo π;
+- for every nonzero prime ideal π ∤ 3 there is a prime ideal p ∤ 3π of norm less than (36 log(27 N(π)) + 100)^8 whose generator ≡ 1 (mod 3) is a cubic non-residue modulo π;
 
 - for every a ∈ O that is not a cube there is a prime ideal p ∤ 3a with (a/p)_3 ≠ 1 and N(p) < (36 log(243 N(a)) + 100)^8; hence for every integer a that is not a perfect cube there is a prime p ≡ 1 (mod 3) modulo which a is not a cubic residue, with
 

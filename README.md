@@ -1,8 +1,9 @@
 # Follow-ups to the OpenAI mathematics release
 
 Notes and papers by Jizhou Guo (mitsuha2021b@gmail.com) that build on results of the
-[OpenAI mathematics release](https://github.com/openai/math) of October 2026, pinned throughout to commit
-`adc7f1241b42e322a6451854ab7e4b4c146bf78a`.
+[OpenAI mathematics release](https://github.com/openai/math) of October 2026, pinned to commit
+`adc7f1241b42e322a6451854ab7e4b4c146bf78a` unless an entry states another commit (later manuscripts, such as that of
+25 October 2026, are cited at the commit given in their entry).
 
 ## Contents
 
@@ -112,12 +113,12 @@ constant explicit in θ. For θ = 7/8, the half-plane of OpenAI's paper
 fundamental discriminant −d < 0,
 
 ```math
-h(-d)\ \ge\ rac{\sqrt d}{32.69\,(10+\log\log d)},
+h(-d)\ \ge\ \frac{\sqrt d}{32.69\,(10+\log\log d)},
 ```
 
 so that h(−d) > 100 for d ≥ 1.83·10⁹ and h(−d) > 1000 for d ≥ 1.88·10¹¹. The statements hold unconditionally exactly
 when the input theorem is correct. Friedlander (1977) records that Littlewood's GRH argument extends to a zero-free
-half-plane, and OpenAI's paper of 5 October 2026 and K. Kimura
+half-plane, and OpenAI's paper of 5 October 2026 and I. Kimura
 ([arXiv:2610.21511v2](https://arxiv.org/abs/2610.21511v2), which determines all imaginary quadratic fields with class
 number at most 2000 from the release's exclusion of Landau–Siegel zeros) note the resulting bound
 h(−d) ≫ √d/log log d with an effective constant; the paper works out explicit constants and compares the thresholds
@@ -341,7 +342,9 @@ independently by B. Liu ([arXiv:2610.12234](https://arxiv.org/abs/2610.12234), 8
 version 2 of that note (12 October 2026) states a boundary that agrees with σ† to the 18 digits shown there. Later preprints state smaller boundaries:
 0.8748867 for Dirichlet L-functions and finite-order Hecke L-functions over Q(√−3) (Y. Xu and H. Sang,
 [arXiv:2610.15291](https://arxiv.org/abs/2610.15291)), and 0.874886647… for finite-order Hecke L-functions over
-every number field (B. Liu, [arXiv:2610.26835](https://arxiv.org/abs/2610.26835)).
+every number field (B. Liu, [arXiv:2610.26835](https://arxiv.org/abs/2610.26835)). For Dirichlet L-functions the
+[Quasi-Riemann Tracker](https://gtimg.github.io/QuasiRiemannTracker/) records 4369779/5000000 = 0.8739558
+(J. Sussman, [PR 86](https://github.com/GTimG/QuasiRiemannTracker/pull/86), 28 October 2026; not re-verified here).
 
 ### [`consequences/`](consequences/) — Consequences of results in the release
 
@@ -363,7 +366,7 @@ release input, the bridging results and the deduction written out:
 
 Every statement is conditional on the release theorem named in its entry.
 
-Each paper directory contains the PDF, the LaTeX source, and any ancillary files, with a README stating exactly which
+Each paper directory (every directory above except `consequences/`) contains the PDF, the LaTeX source, and any ancillary files, with a README stating exactly which
 statements are taken from the release and which deductions are new.
 
 ## Citation
@@ -382,6 +385,6 @@ The papers and text are under CC BY 4.0 (see [`LICENSE-papers.md`](LICENSE-paper
 
 ## Use of AI
 
-The proofs and the texts in this repository were produced with AI systems (GPT-6 Astra, GPT-6.1 Sol, Claude Fable 5.1, Claude Opus 5.5
-and Claude Sonnet 5.5) under the author's direction. They were checked by independent reviews with AI models, by Lean where a
+The proofs and the texts in this repository were produced with AI systems (GPT-6 Astra, GPT-6.1 Sol, Claude Fable 5.1, Claude Opus 5.5,
+Claude Sonnet 5.5 and, for some reviews, Gemini 4 Argon) under the author's direction. They were checked by independent reviews with AI models, by Lean where a
 part is formalized, and by the computations in the ancillary directories. The author takes responsibility for the content.

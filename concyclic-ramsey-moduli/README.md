@@ -81,3 +81,15 @@ The proofs and the text were produced with AI systems (GPT-6.1 Sol, with editing
 author's direction. They were checked by independent reviews with AI models (GPT-6.1 Sol and Gemini 4 Argon) and by
 the exact computations in [`anc/`](anc/). No human expert has reviewed the paper. The author takes responsibility for
 the content.
+
+## Citation
+
+```bibtex
+@misc{Guo2026ConcyclicRamsey,
+  author = {Guo, Jizhou},
+  title = {Concyclic {E}uclidean {R}amsey sets with three-dimensional moduli},
+  year = {2026},
+  month = oct,
+  note = {23 October 2026}
+}
+```
