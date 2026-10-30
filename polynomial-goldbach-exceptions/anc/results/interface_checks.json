@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "coefficient_triples": 1940,
+  "zero_norm_instances": 684,
+  "negative_norm_instances": 6612,
+  "physical_exponents": [
+    "1/4",
+    "7/24"
+  ],
+  "PP_parameter_exponents": [
+    "19/24",
+    "7/12"
+  ],
+  "minor_arc_prefix_exponent": "113/144 < 19/24",
+  "tracker_boundary": "4369779/5000000",
+  "scope": "Exact algebra and finite examples; analytic inputs remain cited theorems."
+}

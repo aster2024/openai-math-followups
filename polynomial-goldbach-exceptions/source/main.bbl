@@ -1,0 +1,132 @@
+\begin{thebibliography}{16}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{Argonaut Math}(2026)]{Argonaut}
+{Argonaut Math}.
+\newblock Beyond the seven-eighths barrier: a sharper quasi-{Riemann} boundary,
+  2026.
+\newblock URL
+  \url{https://github.com/Argonaut-Math/argonaut-math-quasi-riemann-boundary/tree/5971383edcb0b1cf863927eed3b359d2d3ba346e}.
+\newblock Preprint with Lean files, 8 October 2026. Repository commit
+  \nolinkurl{5971383edcb0b1cf863927eed3b359d2d3ba346e}.
+
+\bibitem[Br{\"u}dern et~al.(2000)Br{\"u}dern, Kawada, and Wooley]{BKW}
+J.~Br{\"u}dern, K.~Kawada, and T.~D. Wooley.
+\newblock Additive representation in thin sequences, {II}: The binary
+  {Goldbach} problem.
+\newblock \emph{Mathematika}, 47\penalty0 (1--2):\penalty0 117--125, 2000.
+\newblock \doi{10.1112/S002557930001576X}.
+\newblock URL \url{https://doi.org/10.1112/S002557930001576X}.
+
+\bibitem[Gao(2026)]{Gao}
+Zhongpai Gao.
+\newblock A quantitative refinement of the seven-eighths zero-free half-plane,
+  2026.
+\newblock URL
+  \url{https://github.com/Gaozhongpai/seven-eighths-refinement-certificates/blob/309a757ea539e2bf11558d8b5539e1269b792386/report.pdf}.
+\newblock Draft dated 7 October 2026. Repository commit
+  \nolinkurl{309a757ea539e2bf11558d8b5539e1269b792386}.
+
+\bibitem[Li and Liu(2026)]{LL}
+Huixi Li and Zhixin Liu.
+\newblock Fourth moments of prime exponential sums and exceptional sets for
+  sums and differences of primes, 2026.
+\newblock URL \url{https://arxiv.org/abs/2610.26756v1}.
+\newblock arXiv:2610.26756v1, 19 October 2026.
+
+\bibitem[Liu(2026{\natexlab{a}})]{LiuHecke}
+Baiying Liu.
+\newblock Zero-free half-planes for {Hecke} {$L$}-functions over number fields,
+  2026{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2610.26835v1}.
+\newblock arXiv:2610.26835v1, 19 October 2026.
+
+\bibitem[Liu(2026{\natexlab{b}})]{LiuRefinement}
+Baiying Liu.
+\newblock Improved zero-free half-planes for the quasi-{Riemann} hypothesis,
+  2026{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2610.12234v2}.
+\newblock arXiv:2610.12234v2, 12 October 2026.
+
+\bibitem[Maynard et~al.(2026)Maynard, Pandey, and Radziwi{\l}{\l}]{MPR}
+James Maynard, Mayank Pandey, and Maksym Radziwi{\l}{\l}.
+\newblock Exponential sums over primes, 2026.
+\newblock URL \url{https://arxiv.org/abs/2608.14777v1}.
+\newblock arXiv:2608.14777v1, 14 August 2026.
+
+\bibitem[{OpenAI}(2026{\natexlab{a}})]{OpenAIQ78}
+{OpenAI}.
+\newblock {The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane
+  $\operatorname{Re}s>7/8$}, September 2026{\natexlab{a}}.
+\newblock URL
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf}.
+\newblock OpenAI Math Release manuscript, 30 September 2026. Repository commit
+  \nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+
+\bibitem[{OpenAI}(2026{\natexlab{b}})]{OpenAIScope}
+{OpenAI}.
+\newblock The quasi-{Riemann} hypothesis: scope of the {Lean} formalization,
+  2026{\natexlab{b}}.
+\newblock URL
+  \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/lean/docs/003.md}.
+\newblock Family 003 scope document, \nolinkurl{lean/docs/003.md}. Repository
+  commit \nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+
+\bibitem[Perelli(1996)]{Perelli}
+Alberto Perelli.
+\newblock {Goldbach} numbers represented by polynomials.
+\newblock \emph{Revista Matem{\'a}tica Iberoamericana}, 12\penalty0
+  (2):\penalty0 477--490, 1996.
+\newblock \doi{10.4171/rmi/205}.
+\newblock URL \url{https://doi.org/10.4171/rmi/205}.
+
+\bibitem[Perelli and Pintz(2026)]{PP}
+Alberto Perelli and J{\'a}nos Pintz.
+\newblock The exceptional set of {Goldbach} numbers within the set of squares,
+  2026.
+\newblock URL \url{https://arxiv.org/abs/2610.29470v1}.
+\newblock arXiv:2610.29470v1, submitted 21 October 2026.
+
+\bibitem[Pintz(2021)]{Pintz2021}
+J{\'a}nos Pintz.
+\newblock An approximate formula for {Goldbach}'s problem with applications.
+\newblock \emph{Rivista di Matematica della Universit{\`a} di Parma},
+  12\penalty0 (1):\penalty0 181--199, 2021.
+\newblock URL \url{https://real.mtak.hu/124681/1/Cikk2020Rivista.pdf}.
+
+\bibitem[Pintz(2023)]{PintzMajor}
+J{\'a}nos Pintz.
+\newblock A new explicit formula in the additive theory of primes with
+  applications {I}. the explicit formula for the {Goldbach} problem and the
+  {Generalized Twin Prime Problem}.
+\newblock \emph{Acta Arithmetica}, 210:\penalty0 53--94, 2023.
+\newblock \doi{10.4064/aa220728-31-3}.
+\newblock URL \url{https://arxiv.org/abs/1804.05561v1}.
+\newblock Theorem and equation numbering in this paper refers to
+  arXiv:1804.05561v1 (16 April 2018).
+
+\bibitem[Pintz and Alth{\"o}fer(2026)]{PA}
+J{\'a}nos Pintz and Ingo Alth{\"o}fer.
+\newblock The {Goldbach} exceptional set: an exponent 7/12 and conditional
+  refinement, 2026.
+\newblock URL \url{https://arxiv.org/abs/2610.15559v1}.
+\newblock arXiv:2610.15559v1, 11 October 2026.
+
+\bibitem[Sussman(2026)]{Sussman}
+Jacob Sussman.
+\newblock Add {Dirichlet} nonvanishing bound 0.8739558, 2026.
+\newblock URL \url{https://github.com/GTimG/QuasiRiemannTracker/pull/86}.
+\newblock Quasi-Riemann Tracker, pull request 86; Dirichlet boundary 0.8739558.
+
+\bibitem[Xu and Sang(2026)]{XuSang}
+Yuanda Xu and Hejian Sang.
+\newblock Amplified moments and a refinement of the quasi-{Riemann} hypothesis,
+  2026.
+\newblock URL \url{https://arxiv.org/abs/2610.15291v2}.
+\newblock arXiv:2610.15291v2, 15 October 2026.
+
+\end{thebibliography}

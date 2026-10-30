@@ -1,0 +1,1022 @@
+\documentclass[11pt]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+  pdftitle={Exceptional sets for sums and differences of two primes along polynomial sequences},
+  pdfauthor={Jizhou Guo}}
+\Urlmuskip=0mu plus 1mu
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{inputthm}[theorem]{Input}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\numberwithin{equation}{section}
+\newcommand{\e}{\mathrm e}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\T}{\mathbb T}
+\newcommand{\M}{\mathfrak M}
+\newcommand{\m}{\mathfrak m}
+\newcommand{\A}{\mathcal A}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\DeclareMathOperator{\Rea}{Re}
+\DeclareMathOperator{\cond}{cond}
+\title{Exceptional sets for sums and differences of two primes\protect\\
+along polynomial sequences}
+\author{Jizhou Guo\\
+  \href{mailto:mitsuha2021b@gmail.com}{\texttt{mitsuha2021b@gmail.com}}}
+\date{29 October 2026}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+For a fixed integer polynomial $Q$ of degree $d=2$ or $3$ with positive
+leading coefficient, we study the parameters $1\le m\le N$ for which
+$Q(m)$ is positive and even but is not a sum of two primes.
+Assuming the fourth-moment and major-arc theorems of Li--Liu under a
+common fixed Dirichlet zero-free boundary $\Theta<11/12$, we obtain
+$O_{Q,\eps}(N^{d/4+\eps})$ exceptions. The same bound holds for failure
+of a prime-difference representation with both primes at most $C_QN^d$,
+where $C_Q$ is explicit. Pintz's major-arc formula and the exponential-sum
+estimate of Maynard--Pandey--Radziwi\l\l, under a common boundary
+$\Theta<1$, give the alternative bound $O_{Q,\eps}(N^{7d/24+\eps})$.
+For quadratic polynomials mapping an entire integer interval into
+$[X/2,X]$, the corresponding bounds are $O_\eps(X^{1/4+\eps})$ and
+$O_\eps(X^{7/24+\eps})$, uniformly in the coefficients and the interval.
+OpenAI's seven-eighths theorem supplies the zero-free hypothesis in
+both routes. The argument is the classical thin-set exceptional-set
+mechanism, with the exponential sum taken over the exceptions themselves;
+for $Q(t)=2t^2$ the alternative route is the argument of Perelli--Pintz
+with this restriction. We give the elementary multiplicity arguments,
+including the cubic zero branches.
+\end{abstract}
+\noindent\textit{2020 Mathematics Subject Classification.}
+Primary 11P32; Secondary 11L07, 11M26.
+
+\section{Statements and context}\label{sec:introduction}
+
+All logarithms are natural, $e(t)=\exp(2\pi it)$, and primes may repeat.
+Parameters $m\le N$ always mean positive integers $1\le m\le N$.
+Let $Q\in\Z[t]$ have degree $d\in\{2,3\}$ and positive leading
+coefficient. For $N,Z\ge2$ define
+\begin{align}
+ E_+(N;Q)
+ &=\#\{1\le m\le N: Q(m)>0,\ 2\mid Q(m),\ Q(m)\ne p_1+p_2\},
+       \label{eq:Eplus}\\
+ E_-(N;Q;Z)
+ &=\#\{1\le m\le N: Q(m)>0,\ 2\mid Q(m),\notag\\[-2mm]
+ &\hspace{40mm} Q(m)\ne p_2-p_1
+                         \text{ for primes }p_1,p_2\le Z\}.
+       \label{eq:Eminus}
+\end{align}
+The coefficients of a fixed polynomial are independent of $N$.
+Set
+\begin{equation}\label{eq:CQ}
+ A_Q=\sum_{j=0}^d\abs{[t^j]Q},\qquad C_Q=2(1+A_Q).
+\end{equation}
+We use the notation $\mathrm{ZF}(\Theta)$ for the following common
+zero-free hypothesis: every nontrivial zero of every primitive
+Dirichlet $L$-function, including the character of conductor one,
+has real part at most the same fixed number $\Theta$.
+The boundary is uniform in conductor and height. A principal pole at
+$s=1$ is allowed. We state all analytic inputs in Section~\ref{sec:inputs}.
+
+\begin{theorem}[Conditional on the Li--Liu inputs]\label{thm:fixed}
+Assume $\mathrm{ZF}(\Theta)$ for a fixed $1/2\le\Theta<11/12$,
+and use Li--Liu's Theorem~1 and Proposition~4.1 as stated in
+Inputs~\ref{input:LL4} and~\ref{input:LLmajor}.
+For every fixed $Q$ as above and every $\eps>0$,
+\begin{equation}\label{eq:main}
+ E_+(N;Q)+E_-(N;Q;C_QN^d)
+       \ll_{Q,\Theta,\eps} N^{d/4+\eps}.
+\end{equation}
+Thus the parameter exponents are $1/2$ for quadratics and $3/4$ for
+cubics. No irreducibility hypothesis or additional local condition
+on $Q$ is required.
+\end{theorem}
+
+\begin{theorem}[Conditional Pintz--MPR alternative]\label{thm:fallback}
+Assume $\mathrm{ZF}(\Theta)$ for a fixed $1/2\le\Theta<1$,
+and use Pintz's Theorem~1, (2.10)--(2.11), and
+Maynard--Pandey--Radziwi\l\l's Theorem~1.1 as stated in
+Inputs~\ref{input:Pintz} and~\ref{input:MPR}.
+For every fixed $Q$ as above and every $\eps>0$,
+\begin{equation}\label{eq:fallback}
+ E_+(N;Q)+E_-(N;Q;C_QN^d)
+       \ll_{Q,\Theta,\eps} N^{7d/24+\eps}.
+\end{equation}
+The parameter exponents are $7/12$ and $7/8$, respectively.
+\end{theorem}
+
+Here and below constants may also depend on the fixed weight and the
+fixed constants of the cited analytic inputs. The alternative theorem
+uses a different prime sum and a different choice of arcs from
+Theorem~\ref{thm:fixed}.
+
+For a finite interval $I$ of consecutive integers and a quadratic
+$Q\in\Z[t]$, put
+\begin{align*}
+ U_+(I;Q)&=\#\{m\in I:2\mid Q(m),\ Q(m)\ne p_1+p_2\},\\
+ U_-(I;Q;Z)&=\#\{m\in I:2\mid Q(m),\ Q(m)\ne p_2-p_1
+                                      \text{ with }p_1,p_2\le Z\}.
+\end{align*}
+The range condition in the next theorem makes all these values positive.
+Perelli \cite[p.~478]{Perelli} leaves estimates uniform in the coefficients
+as a separate question.
+
+\begin{theorem}[Conditional uniform quadratic bound]\label{thm:uniform}
+Let $X\ge2$, let $I$ be a finite interval of consecutive integers, and
+let $Q\in\Z[t]$ have degree exactly two. Suppose that
+\begin{equation}\label{eq:wholeinterval}
+                 Q(m)\in[X/2,X]\qquad(m\in I).
+\end{equation}
+Under the inputs of Theorem~\ref{thm:fixed},
+\begin{equation}\label{eq:uniformLL}
+ U_+(I;Q)+U_-(I;Q;2X)\ll_{\Theta,\eps}X^{1/4+\eps}.
+\end{equation}
+Under the inputs of Theorem~\ref{thm:fallback},
+\begin{equation}\label{eq:uniformfallback}
+ U_+(I;Q)+U_-(I;Q;2X)\ll_{\Theta,\eps}X^{7/24+\eps}.
+\end{equation}
+The constants are independent of the coefficients of $Q$, the location
+of $I$, and its length. Either sign separately is also bounded by $|I|$.
+The leading coefficient may have either sign.
+\end{theorem}
+
+\begin{corollary}[Specialization of the zero-free input]\label{cor:openai}
+OpenAI's Theorem~1.1, stated in Input~\ref{input:openai}, gives
+$\mathrm{ZF}(7/8)$. Hence the conclusions of
+Theorems~\ref{thm:fixed}--\ref{thm:uniform} hold with $\Theta=7/8$,
+relative to the remaining inputs of each theorem
+(Inputs~\ref{input:LL4}--\ref{input:LLmajor}, respectively
+Inputs~\ref{input:Pintz}--\ref{input:MPR}). In particular this applies
+to $Q(t)=2t^2$ and $Q(t)=2t^3$ and to their bounded prime-difference versions.
+\end{corollary}
+
+\subsection{The classical thin-set mechanism}
+
+If $\A$ is the set of distinct exceptional polynomial values and
+$E=|\A|$, the exponential sum
+$K(\alpha)=\sum_{a\in\A}e(a\alpha)$ retains the exceptional set itself.
+A bound $r_\A(s)\le D$ for ordered pair-sum multiplicities gives
+\[
+ \int_\T|K(\alpha)|^4\,d\alpha\le DE^2.
+\]
+The major coefficients are of size at least $X$, whereas the full
+coefficients vanish at the exceptional values. H\"older's inequality
+therefore transfers either a fourth moment or a pointwise bound for the
+prime sum to a bound for $E$. Br\"udern--Kawada--Wooley
+\cite[Introduction]{BKW} describe working with an exponential sum over
+the exceptions. In the proof of their Theorem~1 \cite[\S2, (5)]{BKW},
+as in Perelli--Pintz \cite[(3.6)--(3.10)]{PP}, this is the sign-weighted
+sum over all parameters, whose moments are bounded by the full polynomial
+mean value. Here the sum runs over the exceptional values only, so that
+its fourth moment is at most $DE^2$.
+The elementary part of the present argument supplies $D\ll X^\eta$
+for fixed quadratics and cubics, and uniformly for the quadratic
+families in \eqref{eq:wholeinterval}. Applying the two analytic
+interfaces gives the bounds in Table~\ref{tab:exponents}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Analytic route & Physical block & Fixed degree $2$ & Fixed degree $3$\\
+\midrule
+Li--Liu & $X^{1/4+\eps}$ & $N^{1/2+\eps}$ & $N^{3/4+\eps}$\\
+Pintz--MPR & $X^{7/24+\eps}$ & $N^{7/12+\eps}$ & $N^{7/8+\eps}$\\
+\bottomrule
+\end{tabular}
+\caption{Bounds for the number of exceptional parameters, relative to
+the inputs in the corresponding theorem. A physical block means
+$Q(m)\in[X/2,X]$; for fixed $Q$ its largest scale is $O_Q(N^d)$.
+The physical bounds are uniform in the quadratic setting of
+Theorem~\ref{thm:uniform}.}\label{tab:exponents}
+\end{table}
+
+The difference problem uses the Fourier coefficients of $|S|^2$ in
+place of $S^2$. The fourth moment of $K$ still counts pair \emph{sums}
+of exceptional values. This observation allows the same polynomial
+multiplicity lemmas to treat both signs.
+
+\subsection{Related work}\label{sec:related}
+
+Perelli \cite[Theorem~1 and Corollary~1]{Perelli} treats a fixed
+polynomial $F\in\Z[t]$ of degree $k$ with positive leading coefficient.
+Writing his physical scale as $Y$, for
+$Y^{1/(3k)+\eps}\le H\le Y^{1/k}$ his Corollary~1 gives, among the
+parameters $Y^{1/k}\le m\le Y^{1/k}+H$ with even $F(m)$,
+$O_{A,\eps,F}(H(\log Y)^{-A})$ Goldbach exceptions, for every $A>0$.
+His Theorem~1 is the underlying mean-square estimate for the weighted
+representation function. Br\"udern--Kawada--Wooley
+\cite[Theorem~1]{BKW} prove that, for a fixed positive-leading
+degree-$k$ polynomial $\Phi$, the number of $m\le N$ for which
+$2\Phi(m)$ is not a sum of two primes is
+$O_\Phi(N^{1-c/k})$, where $c>0$ is absolute. Their introduction
+describes the use of an exponential sum over the exceptions; in the
+proof of Theorem~1 this is a sign-weighted sum over all parameters
+\cite[\S2, (5)]{BKW}. A polynomial
+whose even values occur only on some residue classes is accommodated
+by splitting $m$ modulo two: whenever $Q(r)$ is even,
+$Q(2t+r)/2\in\Z[t]$.
+
+For doubled squares write
+\[
+ E_2(N)=\#\{1\le m\le N:2m^2\ne p_1+p_2\}.
+\]
+Pintz \cite[Theorem~5]{Pintz2021}, in a theorem attributed there to
+Perelli and Pintz, states, unconditionally, $E_2(N)\ll_\eps N^{4/5+\eps}$.
+Perelli--Pintz \cite[Theorem~1 and (1.4)]{PP} state
+$E_2(N)\ll_\eps N^{19/24+\eps}$, using the fixed Dirichlet zero-free
+half-plane together with Pintz's major arcs and MPR's exponential-sum
+estimate. Here $N$ is the parameter cutoff for $2m^2$. In physical
+size $2m^2\le X$, their stated bound becomes $X^{19/48+\eps}$.
+For $Q(t)=2t^2$ the proof of Theorem~\ref{thm:fallback} is the argument
+of \cite[(3.1)--(3.10)]{PP}, with the same inputs and the same H\"older
+inequality, except that the sign-weighted sum over all $m\le N$ is
+replaced by the sum over the exceptional values. Its fourth moment is
+then $O(E^2N^{\eps})$ instead of $O(N^{2+\eps})$, which gives
+$N^{7/12+\eps}$ in place of $N^{19/24+\eps}$.
+Theorem~\ref{thm:fixed} gives $N^{1/2+\eps}$ by using the Li--Liu
+fourth moment in place of the pointwise bound.
+
+Pintz--Alth\"ofer \cite[Theorem~1 and Corollary~2]{PA} prove
+$E(X)\ll_\eps X^{7/12+\eps}$ for the ordinary Goldbach exceptional
+set under any common fixed Dirichlet zero-free boundary below one,
+and insert OpenAI's seven-eighths theorem. Their Sections~2.1--2.2
+align Pintz's major arcs with the MPR bound. Li--Liu
+\cite[Theorems~1--2 and Proposition~4.1]{LL} obtain
+$E_+(X),E_-(X)\ll_\Theta X^{1/2}(\log X)^{100}$ under
+$\mathrm{ZF}(\Theta)$ for $\Theta<11/12$; their new analytic estimate
+is the minor-arc fourth moment. We use that estimate together with
+their major coefficients, preserving its weight and arc parameter.
+
+Later work lowers the zero-free boundary below $7/8$ (for instance
+\cite{Gao,Argonaut,LiuRefinement,XuSang,LiuHecke}). The QRH tracker
+records the Dirichlet boundary $0.8739558$ \cite{Sussman}.
+Within the two routes of this paper such improvements leave every
+exponent in Table~\ref{tab:exponents} unchanged: in the Li--Liu parameter
+selection $\Theta$ occurs through $\max(\Theta,7/8)$, and in the
+alternative route the term $X^{19/24}$ in the MPR estimate determines
+the power $7/24$.
+
+Section~\ref{sec:inputs} records the inputs and their compatibility.
+Section~\ref{sec:transfer} proves the finite transfer, and
+Section~\ref{sec:multiplicities} supplies the algebraic multiplicity
+bounds. Sections~\ref{sec:LLproof}--\ref{sec:fallbackproof} prove the
+main results. The appendix describes the scope of the ancillary checks.
+
+\section{Analytic inputs}\label{sec:inputs}
+
+\begin{hypothesis}[Common Dirichlet zero-free boundary]\label{hyp:ZF}
+For one fixed $1/2\le\Theta<1$, every nontrivial zero $\rho$ of every
+primitive Dirichlet $L$-function satisfies $\Rea\rho\le\Theta$.
+This includes $\zeta$, the $L$-function of conductor one, and applies
+at all conductors and all heights. Denote this assertion by
+$\mathrm{ZF}(\Theta)$.
+\end{hypothesis}
+
+\begin{inputthm}[OpenAI, Theorem~1.1, Dirichlet specialization]\label{input:openai}
+Every Dirichlet $L$-function, including $\zeta$, has no zero in
+$\Rea s>7/8$. A pole at $s=1$ for a principal character is allowed.
+This is the Dirichlet assertion of \cite[Theorem~1.1]{OpenAIQ78}.
+\end{inputthm}
+
+References to the OpenAI manuscript and its Lean scope document
+\cite{OpenAIQ78,OpenAIScope} are pinned to the repository commit
+\begin{center}\small
+\nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+\end{center}
+The full Theorem~1.1 also treats finite-order Hecke $L$-functions over
+$\mathbb Q(\sqrt{-3})$. The Dirichlet assertion alone supplies
+Hypothesis~\ref{hyp:ZF} at $\Theta=7/8$. The Dirichlet comparator
+linked by the family~003 scope document uses the declaration name
+\begin{center}\small
+\nolinkurl{OAI.DirichletCharacter.LFunction_ne_zero_of_seven_eighths_lt_re}.
+\end{center}
+We use the written theorem with this scope. The ancillary computations
+below verify finite algebra and examples.
+
+\subsection{The Li--Liu weight, arcs, and theorems}
+
+Fix a real function $w\in C_c^\infty((0,1))$ such that $0\le w\le1$
+and $w=1$ on $[1/8,7/8]$. Choose it in the logarithmic Gevrey class
+of order two specified in \cite[\S2]{LL}: for fixed constants
+$C_0,C_1>0$ and all integers $j\ge0$,
+\begin{equation}\label{eq:Gevrey}
+ \sup_{v\in\R}\abs{\frac{d^j}{dv^j}w(e^v)}
+             \le C_0C_1^j(j!)^2.
+\end{equation}
+The weight is fixed once and for all. Put
+\begin{equation}\label{eq:prime-sum}
+ S_X(\alpha)=\sum_p(\log p)w(p/X)e(p\alpha).
+\end{equation}
+On $\T=\R/\Z$ use Lebesgue measure of total mass one. Write
+$\norm{t}_\T$ for the distance from $t$ to the nearest integer, and define
+\begin{equation}\label{eq:arcs}
+ \M_X(P)=\bigcup_{q\le P}\ \bigcup_{\substack{a\bmod q\\(a,q)=1}}
+ \left\{\alpha:\norm{\alpha-a/q}_{\T}\le\frac{P}{qX}\right\},
+ \qquad \m_X(P)=\T\setminus\M_X(P).
+\end{equation}
+For a fixed exponent $\kappa<1/2$ and $P=X^\kappa$, the arcs are
+disjoint for sufficiently large $X$.
+
+\begin{inputthm}[Li--Liu, Theorem~1]\label{input:LL4}
+Assume $\mathrm{ZF}(\Theta)$ for a fixed $1/2\le\Theta<11/12$.
+There is a fixed $\kappa=\kappa(\Theta)\in(4/9,9/20)$ such that
+\begin{equation}\label{eq:LL4}
+ \int_{\m_X(X^\kappa)}|S_X(\alpha)|^4\,d\alpha
+                   \ll_{w,\Theta}X^{5/2}(\log X)^{100}.
+\end{equation}
+The weight and arcs are those in \eqref{eq:Gevrey}--\eqref{eq:arcs}.
+\end{inputthm}
+
+For a nonzero even integer $r$ define
+\begin{equation}\label{eq:singularseries}
+ \mathfrak S(r)=2\prod_{p>2}\left(1-\frac1{(p-1)^2}\right)
+                  \prod_{\substack{p\mid r\\p>2}}\frac{p-1}{p-2}.
+\end{equation}
+The infinite product converges to a positive number, since
+$\sum_{p>2}(p-1)^{-2}<\infty$, and each factor in the finite product
+is at least one. Thus $\mathfrak S(r)\gg1$ uniformly in nonzero even $r$.
+Define the finite weight convolutions
+\begin{equation}\label{eq:Iw}
+ I_w^+(n)=\sum_{k\in\Z}w(k/X)w((n-k)/X),\quad
+ I_w^-(h)=\sum_{k\in\Z}w(k/X)w((k+h)/X).
+\end{equation}
+
+\begin{inputthm}[Li--Liu, Proposition~4.1]\label{input:LLmajor}
+Assume $\mathrm{ZF}(\Theta)$ for a fixed $1/2\le\Theta<1$.
+For every fixed $0<\kappa<9/20$ there is $c_1>0$ such that, with
+$P=X^\kappa$,
+\begin{align}
+ \int_{\M_X(P)}S_X(\alpha)^2e(-n\alpha)\,d\alpha
+   &=\mathfrak S(n)I_w^+(n)+O_{w,\Theta,\kappa}(X^{1-c_1}),
+               \label{eq:LLmajorplus}\\
+ \int_{\M_X(P)}|S_X(\alpha)|^2e(-h\alpha)\,d\alpha
+   &=\mathfrak S(h)I_w^-(h)+O_{w,\Theta,\kappa}(X^{1-c_1}),
+               \label{eq:LLmajorminus}
+\end{align}
+uniformly for even $n\in[X/2,X]$ and even $2\le h\le X/2$,
+respectively. The weight is the same as in Input~\ref{input:LL4}.
+\end{inputthm}
+
+The flat portion of $w$ makes the main terms uniformly positive.
+For $n\in[X/2,X]$, the intersection
+$[X/8,7X/8]\cap[n-7X/8,n-X/8]$ has length at least $X/4$.
+For $2\le h\le X/2$, the intersection
+$[X/8,7X/8]\cap[X/8-h,7X/8-h]$ has length
+$3X/4-h\ge X/4$. Counting integers in these intervals gives
+$I_w^+(n),I_w^-(h)\ge X/4-O(1)$. Consequently, for some fixed $c>0$
+and all sufficiently large $X$,
+\begin{align}
+ \Rea\int_{\M_X(P)}S_X^2 e(-n\alpha)\,d\alpha&\ge cX,
+                    \label{eq:LLpositiveplus}\\
+ \Rea\int_{\M_X(P)}|S_X|^2 e(-h\alpha)\,d\alpha&\ge cX
+                    \label{eq:LLpositiveminus}
+\end{align}
+on the stated ranges. In particular Input~\ref{input:LLmajor} applies
+to the same $\kappa$ supplied by Input~\ref{input:LL4}.
+
+The proof of Li--Liu's Theorem~1 chooses $\kappa$ as in
+\cite[Proposition~9.4]{LL}, which uses
+\begin{equation}\label{eq:kappa-choice}
+ \max\left\{\frac{1351}{3006},\frac{5-24\delta}{10-40\delta}\right\}
+       <\kappa<\frac9{20},\qquad
+ \delta=1-\max(\Theta,7/8)>\frac1{12}.
+\end{equation}
+At $\Theta=7/8$, taking $\kappa=899/2000$ gives
+\begin{equation}\label{eq:kappa-exact}
+ \frac{(5/2)(1/2-\kappa)}{1+10(1/2-\kappa)}=\frac{101}{1204}<\frac18,
+ \qquad
+ \frac92\left(\frac12-\kappa\right)=\frac{909}{4000}<\frac{38}{167}.
+\end{equation}
+The last margin is $197/668000$. These rational inequalities are
+checked in \path{anc/exact_checks.py}. Theorem~1 of Li--Liu is used
+with its existential choice of $\kappa$; \eqref{eq:kappa-choice}
+records the narrower choice from its proof.
+
+\subsection{Pintz's major-arc formula and MPR's pointwise estimate}
+
+Fix a sufficiently small $\nu>0$, with $\nu<1/72$, and set
+\begin{equation}\label{eq:P0}
+ P_0=X^{4/9-\nu},\quad X_1=X^{1-\rho},\quad
+ T_X(\alpha)=\sum_{X_1<p\le X}(\log p)e(p\alpha).
+\end{equation}
+Here $\rho>0$ is a fixed sufficiently small admissible cutoff exponent
+chosen as in Pintz's theorem after $\nu$. We keep this cutoff exponent
+separate from positive exponents in error terms.
+
+\begin{inputthm}[Pintz, Theorem~1, (2.10)--(2.11), zero-free specialization]
+\label{input:Pintz}
+Use the numbering of \cite[arXiv v1]{PintzMajor}. Assume
+$\mathrm{ZF}(\Theta)$ for a fixed $1/2\le\Theta<1$.
+With \eqref{eq:P0}, for each fixed sufficiently large $H$ and all
+sufficiently large $X$, one can choose the same
+$P\in[P_0X^{-\nu},P_0]$ for the two formulas
+\begin{align}
+ \int_{\M_X(P)}T_X(\alpha)^2e(-n\alpha)\,d\alpha
+ &=\mathfrak S(n)n+
+ O_\nu(\mathfrak S(n)Xe^{-c_\nu H})+O_\nu(X^{1-c_2}),
+                       \label{eq:Pintzplus}\\
+ \int_{\M_X(P)}|T_X(\alpha)|^2e(-h\alpha)\,d\alpha
+ &=\mathfrak S(h)(X-X_1-h+O(1))\notag\\
+ &\quad+O_\nu(\mathfrak S(h)Xe^{-c_\nu H})+O_\nu(X^{1-c_2}),
+                       \label{eq:Pintzminus}
+\end{align}
+for even $n\in[X/2,X]$ and even $h\in[X/4,X/2]$, respectively.
+Here $c_\nu,c_2>0$ are fixed, and the implicit constants may depend
+on the fixed parameters of the formula. The arcs are \eqref{eq:arcs}
+at this same $P$.
+\end{inputthm}
+
+To specify this specialization, Pintz's set of generalized exceptional
+singularities consists of the principal pole and nontrivial zeros with
+conductor at most $P$, real part at least $1-H/\log X$, and ordinate
+of absolute value at most $\sqrt X$. First fix $H$; then
+$1-H/\log X>\Theta$ for large $X$, so only the pole remains.
+Its term in (2.10) is $\mathfrak S(n)n$, since
+$\Gamma(1)^2/\Gamma(2)=1$. In (2.11) its integer convolution is
+\[
+ \#\{(k,\ell)\in(X_1,X]^2\cap\Z^2:k-\ell=h\}
+                  =X-X_1-h+O(1).
+\]
+The positive power $c_2$ may be decreased to absorb fixed logarithmic
+factors or the cutoff error. Choosing $H$ large and then $X$ large
+gives a common lower bound $cX$ for the real parts of both major
+coefficients. This is a pointwise lower bound for every target in the
+displayed ranges. The sum specialization also appears in
+\cite[\S2.1]{PA}.
+
+\begin{inputthm}[Maynard--Pandey--Radziwi\l\l, Theorem~1.1]\label{input:MPR}
+Let $Y\ge2$, $q\in\N$, $(a,q)=1$, $q\le\sqrt Y$, and
+$|\alpha-a/q|\le1/(q\sqrt Y)$. Put
+$B_Y=\max\{q,qY|\alpha-a/q|\}$. For every $\eta>0$,
+\begin{equation}\label{eq:MPR}
+ \abs{\sum_{n<Y}\Lambda(n)e(n\alpha)}
+       \ll_\eta Y^\eta\left(\frac{Y}{\sqrt{B_Y}}+Y^{19/24}\right).
+\end{equation}
+Here $\Lambda(p^j)=\log p$ for primes $p$ and integers $j\ge1$,
+and $\Lambda(n)=0$ otherwise. This is the arbitrary-small-power
+form of \cite[Theorem~1.1]{MPR}.
+\end{inputthm}
+
+Changing $n<Y$ to $n\le Y$ costs at most $\log(2Y)$.
+Theorem~\ref{thm:fallback} uses the external estimate \eqref{eq:MPR}.
+
+\section{A finite exceptional-set transfer}\label{sec:transfer}
+
+For a finite set $\A$ of distinct integers write
+\begin{equation}\label{eq:multiplicity}
+ r_\A(v)=\#\{(a,b)\in\A^2:a+b=v\}.
+\end{equation}
+These pairs are ordered. For $K(\alpha)=\sum_{a\in\A}e(a\alpha)$,
+finite orthogonality gives
+\begin{equation}\label{eq:energy}
+ \int_\T|K(\alpha)|^4\,d\alpha
+       =\sum_{v\in\Z}r_\A(v)^2
+       \le \left(\sup_v r_\A(v)\right)|\A|^2.
+\end{equation}
+
+\begin{lemma}[Finite transfer]\label{lem:transfer}
+Let $S$ be a trigonometric polynomial on $\T$, and let $\M,\m$ be
+complementary measurable subsets of $\T$. Let $\A$ be a finite set
+of distinct integers, $E=|\A|$, and $c,X>0$. Choose either
+$F=S^2$ or $F=|S|^2$. Suppose that, for every $a\in\A$,
+\begin{equation}\label{eq:Fourierconditions}
+ \int_\T F(\alpha)e(-a\alpha)\,d\alpha=0,\qquad
+ \Rea\int_\M F(\alpha)e(-a\alpha)\,d\alpha\ge cX.
+\end{equation}
+If $r_\A(v)\le D$ for every integer $v$, put
+$B_j=\int_\m|S|^j$ for $j=2,4$, and $M=\sup_\m|S|$, with
+$M=0$ when $\m$ is empty. Then
+\begin{equation}\label{eq:transfer}
+ E\le c^{-2}X^{-2}D^{1/2}
+              \min\{B_2B_4^{1/2},\ M B_2^{3/2}\}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+If $E=0$, the conclusion holds directly. Suppose $E>0$, so $D\ge1$,
+and put $K(\alpha)=\sum_{a\in\A}e(a\alpha)$. Summing the real parts
+of the major coefficients in \eqref{eq:Fourierconditions} and using
+the vanishing full coefficients gives
+\begin{equation}\label{eq:basictransfer}
+ cXE\le\abs{\int_\m F(\alpha)\overline{K(\alpha)}\,d\alpha}
+              \le\int_\m|S(\alpha)|^2|K(\alpha)|\,d\alpha.
+\end{equation}
+Both choices of $F$ have modulus $|S|^2$. H\"older's inequality with
+exponents $2,4,4$, followed by \eqref{eq:energy}, yields
+\[
+ cXE\le B_2^{1/2}B_4^{1/4}
+                  \left(\int_\T|K|^4\right)^{1/4}
+        \le B_2^{1/2}B_4^{1/4}D^{1/4}E^{1/2}.
+\]
+Alternatively, $|S|^2\le M^{1/2}|S|^{3/2}$ on $\m$. H\"older
+with exponents $4/3,4$ gives
+\[
+ cXE\le M^{1/2}B_2^{3/4}
+                  \left(\int_\T|K|^4\right)^{1/4}
+        \le M^{1/2}B_2^{3/4}D^{1/4}E^{1/2}.
+\]
+Squaring either inequality and cancelling $c^2X^2E$ proves its part
+of \eqref{eq:transfer}. If $\m$ is empty, the hypotheses force
+$E=0$, which is covered by the first case.
+\end{proof}
+
+For either prime sum used here the second moment has the elementary
+bound
+\begin{equation}\label{eq:secondmoment}
+ \int_\T\abs{\sum_{p\le X}(\log p)a_pe(p\alpha)}^2\,d\alpha
+ =\sum_{p\le X}(\log p)^2|a_p|^2
+ \le X(\log X)^2\qquad(|a_p|\le1).
+\end{equation}
+Thus the only prime-distribution estimates used in the transfer are
+the major-arc lower bound and the chosen minor-arc input.
+
+\begin{corollary}[The two physical powers]\label{cor:physical}
+Suppose the conditions of Lemma~\ref{lem:transfer} hold, and for
+every $\eta>0$ suppose $D\ll_\eta X^\eta$ and
+$B_2\ll X(\log X)^2$, with the desired uniformity of constants.
+If $B_4\ll_\eta X^{5/2+\eta}$, then
+$E\ll_\eps X^{1/4+\eps}$. If instead
+$M\ll_\eta X^{19/24+\eta}$, then
+$E\ll_\eps X^{7/24+\eps}$.
+\end{corollary}
+
+\begin{proof}
+The first expression on the right of \eqref{eq:transfer} is
+\[
+ \ll_\eta X^{-2+\eta/2}X(\log X)^2 X^{5/4+\eta/2}
+        =X^{1/4+\eta}(\log X)^2.
+\]
+The second is
+\[
+ \ll_\eta X^{-2+\eta/2}X^{19/24+\eta}
+                  X^{3/2}(\log X)^3
+        =X^{7/24+3\eta/2}(\log X)^3.
+\]
+Choose $\eta$ sufficiently small relative to $\eps$, then absorb
+the fixed logarithmic factors into the remaining small power.
+\end{proof}
+
+The set $\A$ in this application consists of the actual distinct
+exceptions. Its cardinality $E$ enters the fourth moment as $E^2$,
+preserving the arithmetic information used in the classical method.
+
+\section{Polynomial pair-sum multiplicities}\label{sec:multiplicities}
+
+\subsection{Divisors and quadratic polynomials}
+
+\begin{lemma}[Elementary divisor bounds]\label{lem:divisors}
+Let $\tau(n)$ be the number of positive divisors of the positive integer
+$n$. For every $\eta>0$, $\tau(n)\ll_\eta n^\eta$.
+For $V>0$, the number of ordered integer pairs satisfying
+$x^2+y^2=V$ is at most $4\tau(V)$.
+\end{lemma}
+
+\begin{proof}
+For all sufficiently large primes $p$ and every integer $a\ge1$,
+$a+1\le2^a\le p^{\eta a}$. For each of the finitely many smaller
+primes, $\sup_{a\ge0}(a+1)p^{-\eta a}<\infty$. Multiplying over the
+prime factorization proves the divisor bound.
+
+The Gaussian integers are Euclidean for the norm: after dividing in
+$\C$, round both coordinates to obtain a remainder of norm at most
+half the divisor's norm. The Euclidean algorithm gives a greatest
+common divisor and B\'ezout's identity. An irreducible is therefore
+prime, and induction on the norm gives unique factorization.
+If a rational prime $p$ is reducible in $\Z[i]$, its factors have
+norm $p$, since their integer norms multiply to $p^2$; thus
+$p$ is associated to $\pi\bar\pi$. The two factors may be associates.
+If $p$ remains irreducible, its exponent in an element of norm $V$
+is determined by the exponent of $p$ in $V$, when such an element
+exists. The same is true in the associate case. If $\pi,\bar\pi$
+are nonassociate and $p^a\Vert V$, there are at most $a+1$ ways to
+distribute their exponents. The four units give at most
+$4\prod_{p^a\Vert V}(a+1)=4\tau(V)$ elements $x+iy$ of norm $V$.
+\end{proof}
+
+\begin{lemma}[Fixed quadratic]\label{lem:quadratic}
+Fix $Q(t)=at^2+bt+c\in\Z[t]$ with $a\ne0$.
+For $N\ge2$ and any $B\subseteq[1,N]\cap\Z$, the number of ordered
+solutions $(u,v)\in B^2$ of $Q(u)+Q(v)=s$ is
+$O_{Q,\eta}(N^\eta)$, uniformly in the integer $s$.
+If instead $B$ is any set of integer parameters whose values lie
+in $[0,X]$, $X\ge2$, that number is $O_{Q,\eta}(X^\eta)$,
+independently of a parameter cutoff. Every value of $Q$ has at
+most two parameter preimages.
+\end{lemma}
+
+\begin{proof}
+The identity
+\begin{equation}\label{eq:quadraticidentity}
+       4aQ(t)=(2at+b)^2+4ac-b^2
+\end{equation}
+maps a solution injectively to $x=2au+b$, $y=2av+b$ satisfying
+\begin{equation}\label{eq:quadraticnorm}
+             x^2+y^2=4as+2b^2-8ac=:V.
+\end{equation}
+For $V<0$ there is no solution; for $V=0$ there is at most one;
+for $V>0$ Lemma~\ref{lem:divisors} bounds their number by $4\tau(V)$.
+When an original solution exists, $|s|\ll_QN^2$ and hence
+$|V|\ll_QN^2$. Apply the divisor bound with exponent $\eta/2$.
+In the physical-size setting $0\le s\le2X$, so
+$|V|\ll_QX$ and the same proof applies with a suitably small
+divisor exponent. Finally, $Q(t)-z$ has at most two roots for any $z$.
+\end{proof}
+
+\subsection{Fixed cubics and their zero branches}
+
+\begin{lemma}[Fixed cubic]\label{lem:cubic}
+Fix $Q(t)=at^3+bt^2+ct+d_0\in\Z[t]$ with $a\ne0$.
+For $N\ge2$ and $B\subseteq[1,N]\cap\Z$, the number of ordered
+solutions $(u,v)\in B^2$ of $Q(u)+Q(v)=s$ is
+$O_{Q,\eta}(N^\eta)$, uniformly in the integer $s$.
+If $B$ is any set of \emph{positive} integer parameters with
+$Q(B)\subseteq[0,X]$, $X\ge2$, the number is
+$O_{Q,\eta}(X^\eta)$, independently of a parameter cutoff.
+Every value has at most three parameter preimages.
+\end{lemma}
+
+\begin{proof}
+Put
+\begin{equation}\label{eq:cubicAB}
+ A=9ac-3b^2,\qquad B_0=2b^3-9abc+27a^2d_0.
+\end{equation}
+Direct expansion gives
+\begin{equation}\label{eq:cubicidentity}
+       27a^2Q(t)=(3at+b)^3+A(3at+b)+B_0.
+\end{equation}
+For $x=3au+b$, $y=3av+b$, the pair-sum equation implies
+\begin{equation}\label{eq:cubicfactor}
+ V:=27a^2s-2B_0=(x+y)(x^2-xy+y^2+A).
+\end{equation}
+The affine maps to $x$ and $y$ are injective.
+
+If $V\ne0$, let $\ell=x+y$. This is a signed divisor of $V$;
+there are $2\tau(|V|)$ possibilities. For fixed $\ell$,
+\begin{equation}\label{eq:cubicproduct}
+                 xy=\frac{\ell^2+A-V/\ell}{3}.
+\end{equation}
+The sum and product determine at most two ordered root pairs.
+Thus there are at most $4\tau(|V|)$ solutions. For parameters at
+most $N$ and an existing solution, $|V|\ll_QN^3$. For selected values
+in $[0,X]$, one has $s\in[0,2X]$ and $|V|\ll_QX$.
+Lemma~\ref{lem:divisors}, with the exponent decreased as needed,
+gives both asserted estimates when $V\ne0$.
+
+If $V=0$, the first branch in \eqref{eq:cubicfactor} is $x+y=0$.
+It forces
+\begin{equation}\label{eq:cubiclinearbranch}
+                         u+v=-\frac{2b}{3a}.
+\end{equation}
+If the right side is a positive integer $H$, there are at most $H-1$
+ordered positive pairs; otherwise there are none. This is a constant
+depending only on the fixed polynomial. The other branch is
+$x^2-xy+y^2=-A$. Since
+\begin{equation}\label{eq:cubicpositiveform}
+       2(x^2-xy+y^2)=(x-y)^2+x^2+y^2,
+\end{equation}
+it lies in the fixed disk $x^2+y^2\le-2A$ and has $O_Q(1)$ integer
+points. For $A>0$ it is empty. These branches cover $V=0$;
+their intersection causes only overcounting. The restriction to
+positive parameters and the fixed coefficients are both used.
+The three-preimage bound follows from the degree.
+\end{proof}
+
+For a set of distinct selected values, choose one parameter preimage
+per value. This injects ordered value pairs into parameter pairs.
+Hence Lemmas~\ref{lem:quadratic} and~\ref{lem:cubic} bound
+\eqref{eq:multiplicity} for any subset of the selected values.
+
+\subsection{Coefficient-uniform quadratics}
+
+\begin{lemma}[Three consecutive values]\label{lem:uniform}
+Under \eqref{eq:wholeinterval}, the pair-sum multiplicity of $Q(I)$
+is $O_\eta(X^\eta)$, with a constant independent of the coefficients
+and of $I$. The same holds for every subset of $Q(I)$, and every
+value has at most two parameter preimages.
+\end{lemma}
+
+\begin{proof}
+If $|I|\le2$, there are at most four ordered parameter pairs.
+Otherwise let $m_0$ be the left endpoint and write
+$q(j)=Q(m_0+j)=Aj^2+Bj+C$. The integers $j=0,1,2$ belong to the
+translated interval. Set $y_j=q(j)$ for these three integers.
+Then
+\begin{align}
+ A&=(y_2-2y_1+y_0)/2,\quad B=y_1-y_0-A,\quad C=y_0,
+                      \label{eq:coefficientformulas}\\
+ |A|&\le X/2,\qquad |B|\le X,\qquad |C|\le X.
+                      \label{eq:coefficientbounds}
+\end{align}
+The translated polynomial has integer coefficients and $A\ne0$.
+If $q(j)+q(k)=s$ with parameters in this interval, then $s\in[X,2X]$.
+Its quadratic norm parameter satisfies
+\begin{equation}\label{eq:uniformnorm}
+                     |4As+2B^2-8AC|\le10X^2.
+\end{equation}
+Use the cases $V<0$, $V=0$, $V>0$ from \eqref{eq:quadraticnorm}.
+In the last case the divisor bound with exponent $\eta/2$ gives a
+constant depending only on $\eta$. Passing to distinct value pairs,
+and then to subsets, decreases the count. Each value has at most
+two preimages by the degree.
+\end{proof}
+
+The interval condition supplies the three consecutive values.
+The proof allows an interval crossing the vertex and a negative
+leading coefficient. For example $q(j)=-j^2+2j+1$ on $j=0,1,2$
+has values $1,2,1$ in $[1,2]$, including a repeated value.
+
+\begin{proposition}[Moving cubic multiplicities]\label{prop:moving}
+For integers $M\ge3$ let
+\begin{equation}\label{eq:moving}
+            Q_M(t)=2(2t-M-1)^3+6M^3,\qquad X=8M^3.
+\end{equation}
+The values $Q_M(1),\ldots,Q_M(M)$ are even, positive, distinct, and
+belong to $[X/2,X]$. Their pair-sum multiplicity at $12M^3$ is at
+least $M$. Consequently a coefficient-independent bound
+$O_\eta(X^\eta)$ for these multiplicities fails for every
+$0<\eta<1/3$.
+\end{proposition}
+
+\begin{proof}
+For $1\le t\le M$, $z_t=2t-M-1$ lies in $[-(M-1),M-1]$. Thus
+\[
+ 4M^3\le6M^3-2(M-1)^3\le Q_M(t)
+     \le6M^3+2(M-1)^3\le8M^3.
+\]
+The cubic is strictly increasing, and the values are even.
+Since $z_{M+1-t}=-z_t$, their sum is $12M^3$ for all $M$ ordered
+choices of $t$. Finally $M/(8M^3)^\eta\to\infty$ when $\eta<1/3$.
+\end{proof}
+
+This construction exhibits the growing linear zero branch for moving
+cubic coefficients. Its conclusion concerns the uniform multiplicity
+extension of Lemma~\ref{lem:uniform}. The constant for a fixed cubic
+in Lemma~\ref{lem:cubic} is allowed to depend on $Q$.
+
+\section{The Li--Liu consequences}\label{sec:LLproof}
+
+We make explicit the Fourier coefficients to which the transfer is
+applied. By finite orthogonality,
+\begin{align}
+ \int_\T S_X(\alpha)^2e(-n\alpha)\,d\alpha
+ &=\sum_{p_1+p_2=n}(\log p_1)(\log p_2)
+                    w(p_1/X)w(p_2/X),\label{eq:fullplus}\\
+ \int_\T|S_X(\alpha)|^2e(-h\alpha)\,d\alpha
+ &=\sum_{p_2-p_1=h}(\log p_1)(\log p_2)
+                    w(p_1/X)w(p_2/X).\label{eq:fullminus}
+\end{align}
+The second identity assigns the positive exponent to $p_2$.
+In both sums the support of $w$ places the primes below $X$.
+For a value having no prime-sum representation,
+\eqref{eq:fullplus} is zero. For a value having no prime-difference
+representation with both primes at most $X$, \eqref{eq:fullminus}
+is zero. These implications supply the vanishing conditions in
+Lemma~\ref{lem:transfer}.
+
+\subsection{Physical blocks for sums}
+
+Assume the inputs of Theorem~\ref{thm:fixed}. Fix $Y$ above the
+analytic threshold and let $\A$ consist of the distinct even values
+$Q(m)\in(Y/2,Y]$, $m\ge1$, that are not sums of two primes.
+The physical forms of Lemmas~\ref{lem:quadratic} and~\ref{lem:cubic}
+give
+\begin{equation}\label{eq:Dfixed}
+                           r_\A(v)\ll_{Q,\eta}Y^\eta.
+\end{equation}
+Use $S_Y$ with the common $\kappa$ of Inputs~\ref{input:LL4}
+and~\ref{input:LLmajor}. Equations~\eqref{eq:LLpositiveplus},
+\eqref{eq:secondmoment}, and~\eqref{eq:LL4} verify all the
+conditions of Corollary~\ref{cor:physical}. Hence
+\begin{equation}\label{eq:LLphysical}
+                         |\A|\ll_{Q,\Theta,\eps}Y^{1/4+\eps}.
+\end{equation}
+There are at most $d$ parameters per value, so the same
+bound holds for parameters on this physical block.
+
+\begin{proof}[Proof of the sum assertion in Theorem~\ref{thm:fixed}]
+For $1\le m\le N$, $|Q(m)|\le A_QN^d=:T$.
+Use the disjoint physical blocks
+\begin{equation}\label{eq:anchoredblocks}
+                         (T2^{-j-1},T2^{-j}],\qquad j\ge0.
+\end{equation}
+For fixed $\gamma>0$, apply \eqref{eq:LLphysical} with exponent
+$1/4+\gamma$ to the blocks above the analytic threshold. Their
+sum is
+\[
+ \ll_{Q,\Theta,\gamma}\sum_{j\ge0}(T2^{-j})^{1/4+\gamma}
+               \ll_{Q,\Theta,\gamma}T^{1/4+\gamma}.
+\]
+Values below the threshold form a fixed finite set of integers,
+each with at most $d$ preimages, so they contribute $O_{Q,\Theta}(1)$.
+Choose $\gamma>0$ so that $d\gamma\le\eps$ and substitute $T=A_QN^d$.
+This gives the sum bound in \eqref{eq:main}.
+\end{proof}
+
+\subsection{One global scale for differences}
+
+\begin{proof}[Proof of the difference assertion in Theorem~\ref{thm:fixed}]
+Take the prime scale $Z=C_QN^d$. Every positive even value
+$h=Q(m)$ with $m\le N$ lies in $[2,Z/2]$, by \eqref{eq:CQ}.
+Let $\A$ consist of those distinct values which fail to have a
+prime-difference representation with both primes at most $Z$.
+Use $S_Z$, $F=|S_Z|^2$, and the same Li--Liu arcs.
+Equation~\eqref{eq:fullminus} gives the vanishing full coefficient,
+and \eqref{eq:LLpositiveminus} gives its major lower bound.
+The physical multiplicity lemmas apply to selected values in
+$[0,Z]$ and give $r_\A(v)\ll_{Q,\eta}Z^\eta$ for the entire set.
+Corollary~\ref{cor:physical} yields
+$|\A|\ll_{Q,\Theta,\gamma}Z^{1/4+\gamma}$.
+Multiply by at most $d$ preimages per value and choose
+$d\gamma\le\eps$. The bounded range of $Z$ below the analytic
+threshold is absorbed by increasing the constant.
+\end{proof}
+
+The smooth sum delivers primes strictly below $Z$. The common
+statement uses $\le Z$ to include the endpoint convention in the
+alternative route. An integer having no unrestricted prime-difference
+representation belongs to this bounded exceptional set as well.
+
+\subsection{Uniform quadratic families}
+
+\begin{proof}[Proof of \eqref{eq:uniformLL}]
+Assume first that $X$ exceeds the analytic threshold. For sums take
+the distinct exceptional even values in $Q(I)$, use $S_X$, and replace
+\eqref{eq:Dfixed} by Lemma~\ref{lem:uniform}. Corollary~\ref{cor:physical}
+gives $O_{\Theta,\eps}(X^{1/4+\eps})$ values, uniformly in the
+coefficients. Each value has at most two parameter preimages.
+For differences take prime scale $2X$. All target values lie in
+$[(2X)/4,(2X)/2]$, within the range of Input~\ref{input:LLmajor}.
+The same multiplicity estimate and the difference transfer give
+the same count, and the Fourier support supplies primes below $2X$.
+
+For bounded $X$ there are at most $\lfloor X\rfloor+1$ integer values
+in $[X/2,X]$, each with at most two preimages. Their total is absorbed
+by a constant depending only on the fixed analytic threshold and
+$\eps$, uniformly in $Q$ and $I$. This includes empty intervals and
+those of length at most two.
+\end{proof}
+
+\section{The Pintz--MPR alternative}\label{sec:fallbackproof}
+
+The minor-arc estimate must hold for the same lower-truncated prime
+sum $T_X$ and the same $P$ as the major coefficients in
+Input~\ref{input:Pintz}.
+
+\begin{lemma}[Both prefixes on the same minor arcs]\label{lem:compatible}
+Fix the parameters of Input~\ref{input:Pintz}. For its chosen $P$,
+\begin{equation}\label{eq:MPRminor}
+               \sup_{\alpha\in\m_X(P)}|T_X(\alpha)|
+                            \ll_\eta X^{19/24+\eta}
+\end{equation}
+for every $\eta>0$, assuming Input~\ref{input:MPR}.
+\end{lemma}
+
+\begin{proof}
+We have
+\begin{equation}\label{eq:Prange}
+            X^{4/9-2\nu}\le P\le X^{4/9-\nu},
+                       \qquad 4/9-2\nu>5/12.
+\end{equation}
+Fix $\alpha\notin\M_X(P)$. For each $Y\in\{X,X_1\}$ choose a
+Dirichlet approximation $a/q$ with $q\le\sqrt Y$ and
+$|\alpha-a/q|\le1/(q\sqrt Y)$, reducing the fraction if needed.
+The approximation is taken modulo one in \eqref{eq:arcs}.
+If $q>P$, then $B_Y\ge q>P\ge PY/X$. If $q\le P$, exclusion
+from the same major arcs gives $|\alpha-a/q|>P/(qX)$, and again
+$B_Y>PY/X$. Thus
+\begin{equation}\label{eq:prefixineq}
+ \frac{Y}{\sqrt{B_Y}}<\sqrt{\frac{XY}{P}}\le\frac{X}{\sqrt P}
+                      \le X^{7/9+\nu}\le X^{19/24}.
+\end{equation}
+Apply \eqref{eq:MPR} to both prefixes, changing the strict endpoint
+if needed, and subtract. Since $Y\le X$, both the $Y^{19/24}$ term
+and the arbitrary small power are bounded at scale $X$.
+The total weight of proper prime powers is
+\begin{equation}\label{eq:primepowers}
+          \sum_{\substack{p^j\le X\\j\ge2}}\log p
+                         \ll X^{1/2}(\log X)^2.
+\end{equation}
+Indeed there are $O(\log X)$ possible exponents, at most $\sqrt X$
+bases for each, and weight at most $\log X$ per term.
+Removing these terms leaves $T_X$ and costs less than the bound in
+\eqref{eq:MPRminor}.
+\end{proof}
+
+The small constant $\nu$ is chosen admissibly for the major-arc
+formula before $X$ varies. As a rational illustration of the exponent
+comparison, $\nu=1/144$ gives $P_0=X^{7/16}$,
+$P\ge X^{31/72}$, and $X/\sqrt P\le X^{113/144}<X^{19/24}$.
+The proof only requires the strict inequality in \eqref{eq:Prange}.
+
+\begin{lemma}[Alternative physical block]\label{lem:fallbackphysical}
+Under the inputs of Theorem~\ref{thm:fallback}, for a fixed quadratic
+or cubic $Q$, the number of positive integer parameters with even
+$Q(m)\in(Y/2,Y]$ unrepresented as a prime sum is
+$O_{Q,\Theta,\eps}(Y^{7/24+\eps})$.
+The number lacking a prime-difference representation with both primes
+at most $2Y$ has the same bound. For a quadratic family satisfying
+\eqref{eq:wholeinterval} at scale $Y$, both bounds have constants
+independent of the coefficients and the parameter interval.
+\end{lemma}
+
+\begin{proof}
+For sums use $T_Y$, its arcs from Input~\ref{input:Pintz}, and the
+distinct exceptional values. The full Fourier coefficient is zero,
+the major real part is at least $cY$, and
+\eqref{eq:secondmoment} gives $B_2\le Y(\log Y)^2$.
+Lemma~\ref{lem:compatible} gives $M\ll_\eta Y^{19/24+\eta}$.
+The physical polynomial multiplicity lemmas and the second part of
+Corollary~\ref{cor:physical} give the desired bound for values;
+the degree bounds their parameter preimages.
+
+For differences use prime scale $X=2Y$. Every target
+$h\in(Y/2,Y]$ lies in $[X/4,X/2]$, exactly the range used in
+\eqref{eq:Pintzminus}. Failure of a representation with both primes
+at most $X$ makes the full coefficient of $|T_X|^2$ vanish.
+The same transfer gives the asserted count and prime bound.
+For uniform quadratics use Lemma~\ref{lem:uniform} instead of the
+fixed-coefficient lemmas. Bounded scales are covered by the number
+of integer values and the degree bound, as in the proof of
+\eqref{eq:uniformLL}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:fallback} and
+\eqref{eq:uniformfallback}]
+For fixed $Q$ sum Lemma~\ref{lem:fallbackphysical} over
+\eqref{eq:anchoredblocks} with $T=A_QN^d$. The geometric sum is
+$O_{Q,\Theta,\gamma}(T^{7/24+\gamma})$ for either sign.
+For each difference block its delivered primes have size at most
+$2T2^{-j}\le2A_QN^d<C_QN^d$. Every parameter failing the global
+prime bound therefore belongs to a block failure just counted.
+Values below the fixed analytic threshold give boundedly many
+parameters. Choose $d\gamma\le\eps$ to obtain \eqref{eq:fallback}.
+For a uniform quadratic family apply the physical lemma at $Y=X$,
+giving primes at most $2X$ and \eqref{eq:uniformfallback}.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:openai}]
+Input~\ref{input:openai} supplies Hypothesis~\ref{hyp:ZF} at
+$\Theta=7/8$, below both required boundaries.
+Apply the preceding theorems with this zero-free input and the
+remaining inputs specified in each theorem.
+\end{proof}
+
+\appendix
+\section{Ancillary checks}\label{app:checks}
+
+The ancillary programs check the polynomial identities
+\eqref{eq:quadraticidentity}, \eqref{eq:cubicidentity}, and
+\eqref{eq:cubicpositiveform}; the rational parameter choice recorded
+in \eqref{eq:kappa-exact}; and the exponent comparisons in the
+finite transfer and in \eqref{eq:prefixineq}.
+The program \path{anc/exact_checks.py} checks the identities and
+the fixed and moving cubic examples. The program
+\path{anc/interface_checks.py} checks the coefficient reconstruction,
+the power comparisons, and the change from $19/24$ to $7/12$ when
+the Perelli--Pintz sum is restricted to the exceptions.
+The program \path{anc/verify_claims.py} additionally enumerates
+pair-sum multiplicities of fixed quadratics and cubics on finite
+parameter ranges and checks the three-value bounds on integer samples.
+
+These are exact finite checks of the algebra and examples used here.
+The deductions for general parameters are proved in
+Sections~\ref{sec:transfer}--\ref{sec:fallbackproof}; the analytic
+theorems are the inputs of Section~\ref{sec:inputs}.
+The ancillary README gives the commands, dependencies, and scope of
+each check.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\section*{Use of AI}
+The proofs and the text of this paper were produced with AI systems
+(GPT-6.1 Sol, GPT-6 Astra and Claude Opus~5.5) under the author's
+direction, checked by independent reviews with AI models and by the
+computations in the ancillary files. No human expert has reviewed
+them. The author takes responsibility for the content.
+\end{document}

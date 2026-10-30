@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "serial": true,
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "exact_checks.py"
+      ],
+      "returncode": 0,
+      "summary": "PASS exact_checks: polynomial identities, rational parameters, fixed and moving cubic examples",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "interface_checks.py"
+      ],
+      "returncode": 0,
+      "summary": "PASS interface_checks: PP 19/24 to 7/12, 1940 coefficient triples, and prefix bounds",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "verify_claims.py"
+      ],
+      "returncode": 0,
+      "summary": "PASS verify_claims: {\"physical\": [\"1/4\", \"7/24\"], \"parameter_LL\": [\"1/2\", \"3/4\"], \"parameter_MPR\": [\"7/12\", \"7/8\"], \"PP_vs_restricted_parameter_exponent\": [\"19/24\", \"7/12\"], \"kappa_window_at_7_8\": [\"1351/3006\", \"9/20\"], \"uniform_triples_checked\": 15136}",
+      "stderr": ""
+    }
+  ],
+  "elapsed_seconds": 15.794
+}

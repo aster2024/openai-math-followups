@@ -1,0 +1,32 @@
+{
+  "identities": "all expanded differences exactly zero",
+  "kappa_7_8": "899/2000",
+  "scalar_threshold": "101/1204",
+  "raw_threshold": "909/4000",
+  "raw_density_cutoff": "38/167",
+  "fixed_cubic_zero_branch": {
+    "polynomial": "(t-101)^3+5000000",
+    "ordered_positive_pairs": 201,
+    "sum": 10000000
+  },
+  "moving_cubic_examples": [
+    {
+      "M": 3,
+      "X": 216,
+      "pair_count": 3,
+      "all_even_and_distinct": true
+    },
+    {
+      "M": 10,
+      "X": 8000,
+      "pair_count": 10,
+      "all_even_and_distinct": true
+    },
+    {
+      "M": 101,
+      "X": 8242408,
+      "pair_count": 101,
+      "all_even_and_distinct": true
+    }
+  ]
+}

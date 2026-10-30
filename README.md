@@ -213,6 +213,26 @@ q ≤ (log x)^C, for values εp + h (h even) without prime factors up to exp((lo
 conditions on the radical of N (one with a uniform real-zero gap, one with avoidance of a possible Landau–Page
 exceptional conductor) under which the reflected statements hold without the half-plane.
 
+### [`polynomial-goldbach-exceptions/`](polynomial-goldbach-exceptions/) — Exceptional sets for sums and differences of two primes along polynomial sequences
+
+Paper (15 pages), 29 October 2026: [PDF](polynomial-goldbach-exceptions/paper.pdf). Exact finite checks are in [`polynomial-goldbach-exceptions/anc/`](polynomial-goldbach-exceptions/anc/).
+
+For a fixed integer polynomial Q of degree d = 2 or 3 with positive leading coefficient, the number of m ≤ N for which
+Q(m) is positive and even but not a sum of two primes is
+
+```math
+E_+(N;Q)\ll_{Q,\varepsilon}N^{d/4+\varepsilon},
+```
+
+relative to the fourth-moment and major-arc theorems of Li–Liu ([arXiv:2610.26756](https://arxiv.org/abs/2610.26756v1))
+under a common fixed Dirichlet zero-free boundary Θ < 11/12, which OpenAI's 7/8 theorem supplies; the same holds for
+differences of two primes of size O(N^d). Pintz's major-arc formula with the exponential-sum bound of
+Maynard–Pandey–Radziwiłł ([arXiv:2608.14777](https://arxiv.org/abs/2608.14777v1)) gives the alternative
+N^(7d/24+ε); for doubled squares this is the argument of Perelli–Pintz
+([arXiv:2610.29470](https://arxiv.org/abs/2610.29470v1)), which gives N^(19/24+ε), with the exponential sum restricted to
+the exceptions. The method is the classical thin-set exceptional-set mechanism. Quadratics mapping an interval into
+[X/2, X] have O(X^(1/4+ε)) exceptions uniformly in the coefficients.
+
 ### [`rough-goldbach-parity/`](rough-goldbach-parity/) — Sums of two rough numbers with prescribed Liouville signs
 
 Paper (23 pages), 9 October 2026: [PDF](rough-goldbach-parity/paper.pdf). Programs checking finite instances of the algebraic identities are in [`rough-goldbach-parity/anc/`](rough-goldbach-parity/anc/).
