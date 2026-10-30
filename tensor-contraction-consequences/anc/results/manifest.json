@@ -6,10 +6,10 @@
       "-std=c++17",
       "finite_audit.cpp",
       "-o",
-      ".check-bin-kbsvylq7/finite_audit"
+      ".check-bin-191mu54c/finite_audit"
     ],
     "returncode": 0,
-    "seconds": 1.218,
+    "seconds": 1.3823,
     "log": "compile_01.txt",
     "stdout_lines": 0,
     "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -21,43 +21,43 @@
       "-std=c++17",
       "protocol_exact_check.cpp",
       "-o",
-      ".check-bin-kbsvylq7/protocol_exact_check"
+      ".check-bin-191mu54c/protocol_exact_check"
     ],
     "returncode": 0,
-    "seconds": 0.7228,
+    "seconds": 0.8389,
     "log": "compile_02.txt",
     "stdout_lines": 0,
     "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   {
     "command": [
-      "./.check-bin-kbsvylq7/finite_audit",
+      "./.check-bin-191mu54c/finite_audit",
       "sign"
     ],
     "returncode": 0,
-    "seconds": 6.3137,
+    "seconds": 6.3424,
     "log": "run_01.txt",
     "stdout_lines": 1,
     "log_sha256": "9a1c7ecadc405db881ff66915c0f55f6867af7694e2ba7fb00c0c6012a923db3"
   },
   {
     "command": [
-      "./.check-bin-kbsvylq7/finite_audit",
+      "./.check-bin-191mu54c/finite_audit",
       "marker"
     ],
     "returncode": 0,
-    "seconds": 0.6099,
+    "seconds": 0.5573,
     "log": "run_02.txt",
     "stdout_lines": 1,
     "log_sha256": "59eb2c19871a89788b794e6a6e7aadf81967d8251b8858b06c95eca7591512bc"
   },
   {
     "command": [
-      "./.check-bin-kbsvylq7/finite_audit",
+      "./.check-bin-191mu54c/finite_audit",
       "directed"
     ],
     "returncode": 0,
-    "seconds": 0.1799,
+    "seconds": 0.174,
     "log": "run_03.txt",
     "stdout_lines": 1,
     "log_sha256": "eb4e7b7e7cb7e1d0397a76cee77bba6e86012277ea85790fbc015b5e0caf4921"
@@ -72,7 +72,7 @@
       "300"
     ],
     "returncode": 0,
-    "seconds": 0.689,
+    "seconds": 1.1035,
     "log": "run_04.txt",
     "stdout_lines": 1,
     "log_sha256": "c2809c96c5cfd8c56a93159298e4b261eff169dab87e6e84c6fd3c54551268f4"
@@ -87,7 +87,7 @@
       "300"
     ],
     "returncode": 0,
-    "seconds": 0.8325,
+    "seconds": 1.2856,
     "log": "run_05.txt",
     "stdout_lines": 1,
     "log_sha256": "61d7f9e0cca9ecc5983d4ee9767de970a96511c406e34df743bbd49b5d63dbad"
@@ -100,7 +100,7 @@
       "p6_blockcount_check.py"
     ],
     "returncode": 0,
-    "seconds": 2.9299,
+    "seconds": 2.8275,
     "log": "run_06.txt",
     "stdout_lines": 1,
     "log_sha256": "4b73fc75d52471f23dcfb147ca6cb4ef55441bc741191bfa5013e60c0670b4cf"
@@ -114,7 +114,7 @@
       "3"
     ],
     "returncode": 0,
-    "seconds": 4.338,
+    "seconds": 7.6624,
     "log": "run_07.txt",
     "stdout_lines": 1,
     "log_sha256": "c1e1607878bf6085c8e587ddd57127859ec52dd90265a3a9d92cd4b54e2f2aca"
@@ -128,7 +128,7 @@
       "4"
     ],
     "returncode": 0,
-    "seconds": 6.2478,
+    "seconds": 10.6827,
     "log": "run_08.txt",
     "stdout_lines": 1,
     "log_sha256": "c94793179bbf7239dc27cdeb37eea8aa57ca8a7f548dfb0d577d01973464134c"
@@ -141,7 +141,7 @@
       "e2e_hc_network.py"
     ],
     "returncode": 0,
-    "seconds": 2.7997,
+    "seconds": 4.4634,
     "log": "run_09.txt",
     "stdout_lines": 1,
     "log_sha256": "bc11d0e422a1ccd3b6efbd40ff6687591443b67b57e6d963e52e7d38709aee82"
@@ -154,7 +154,7 @@
       "hc_accounting.py"
     ],
     "returncode": 0,
-    "seconds": 8.4653,
+    "seconds": 8.8945,
     "log": "run_10.txt",
     "stdout_lines": 1,
     "log_sha256": "9f27e7bf2d2199b60252c952d52cda238a1eb68bfc79180eceed66263680f485"
@@ -167,7 +167,7 @@
       "c2_p2_p3_check.py"
     ],
     "returncode": 0,
-    "seconds": 0.8418,
+    "seconds": 0.9537,
     "log": "run_11.txt",
     "stdout_lines": 1,
     "log_sha256": "e86bc495353c0fda3967bdc48ee7ed5a44d44684fc5c31eae06a86fc5b5865aa"
@@ -180,21 +180,21 @@
       "check_gadgets.py"
     ],
     "returncode": 0,
-    "seconds": 14.703,
+    "seconds": 12.6651,
     "log": "run_12.txt",
     "stdout_lines": 1,
     "log_sha256": "3ef6b68118ca473af943dd8ef835fb77adb11e45bcb832ec514d8da7b383121e"
   },
   {
     "command": [
-      "./.check-bin-kbsvylq7/protocol_exact_check",
+      "./.check-bin-191mu54c/protocol_exact_check",
       "2"
     ],
     "returncode": 0,
-    "seconds": 0.0529,
+    "seconds": 0.1288,
     "log": "run_13.txt",
     "stdout_lines": 1,
-    "log_sha256": "00d6c27410e335db477b00bb6cc9d30c96a548fa4ebd80da7f514cb0a5d7bdb6"
+    "log_sha256": "702eaca90ecd560a1e14091b0dfbf353da4176e3498c1be2c92b7aa5fa57916e"
   },
   {
     "command": [
@@ -204,7 +204,7 @@
       "check_contraction_engine.py"
     ],
     "returncode": 0,
-    "seconds": 0.1953,
+    "seconds": 0.4276,
     "log": "run_14.txt",
     "stdout_lines": 1,
     "log_sha256": "3ddf0dda51056a1ad64e2b3e1c7c3cacacbe9e5b2103a6300deb75a5a0117ddd"
@@ -217,7 +217,7 @@
       "tensor_realization_check.py"
     ],
     "returncode": 0,
-    "seconds": 1.1679,
+    "seconds": 1.5337,
     "log": "run_15.txt",
     "stdout_lines": 1,
     "log_sha256": "6381f50078fc556d22c5ff34b56b006ead9b592f64c1ee88deca5f2d72d80406"
@@ -230,7 +230,7 @@
       "tensor_realization_t3_check.py"
     ],
     "returncode": 0,
-    "seconds": 0.5493,
+    "seconds": 0.6042,
     "log": "run_16.txt",
     "stdout_lines": 1,
     "log_sha256": "e5aded96d3420904e6b7367f10371a776091d2543df2eb6893d21d4c8498d1b8"
@@ -244,7 +244,7 @@
       "one_round_bad_seed"
     ],
     "returncode": 0,
-    "seconds": 2.9779,
+    "seconds": 3.5919,
     "log": "run_17.txt",
     "stdout_lines": 1,
     "log_sha256": "3655ff4691e7ed1643fce28f5ebdb93bdf04439bcf814901a1135a8b1a55c8a3"
@@ -258,7 +258,7 @@
       "initial_stop"
     ],
     "returncode": 0,
-    "seconds": 2.8752,
+    "seconds": 3.5192,
     "log": "run_18.txt",
     "stdout_lines": 1,
     "log_sha256": "3655ff4691e7ed1643fce28f5ebdb93bdf04439bcf814901a1135a8b1a55c8a3"
@@ -272,7 +272,7 @@
       "two_rounds"
     ],
     "returncode": 0,
-    "seconds": 48.0616,
+    "seconds": 60.3399,
     "log": "run_19.txt",
     "stdout_lines": 1,
     "log_sha256": "3655ff4691e7ed1643fce28f5ebdb93bdf04439bcf814901a1135a8b1a55c8a3"
@@ -285,7 +285,7 @@
       "p11_middle_stop.py"
     ],
     "returncode": 0,
-    "seconds": 48.2558,
+    "seconds": 60.3591,
     "log": "run_20.txt",
     "stdout_lines": 1,
     "log_sha256": "83f4fc01d42ab96a6579cafc1f8b2d35d00eed382ff03c4753e51294c93bf1c7"
@@ -298,7 +298,7 @@
       "check_unused_inputs.py"
     ],
     "returncode": 0,
-    "seconds": 0.0612,
+    "seconds": 0.1994,
     "log": "run_21.txt",
     "stdout_lines": 1,
     "log_sha256": "9d97acf6ca2fb4bfe902f3d88a1c0f637d62ea3c0404ea18a0ff89cdd90792f2"
@@ -311,7 +311,7 @@
       "check_G1_tensor.py"
     ],
     "returncode": 0,
-    "seconds": 8.1595,
+    "seconds": 10.1867,
     "log": "run_22.txt",
     "stdout_lines": 1,
     "log_sha256": "185ceb2945640d2e3f89621ddd7e3a4c6740ad8c52894e0874f59ed5674cebc4"
@@ -324,7 +324,7 @@
       "check_G3_tensor.py"
     ],
     "returncode": 0,
-    "seconds": 10.368,
+    "seconds": 11.7026,
     "log": "run_23.txt",
     "stdout_lines": 1,
     "log_sha256": "b632e40531cd091860499c824db4c4a56541693c47acd6dc8b994002e936dde1"
@@ -337,9 +337,413 @@
       "check_thresholds.py"
     ],
     "returncode": 0,
-    "seconds": 0.075,
+    "seconds": 0.1253,
     "log": "run_24.txt",
     "stdout_lines": 1,
     "log_sha256": "a74fb8218e09c960bc6b295272896651d72532abac3f8446348032e1053ce48a"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_arithmetic.py",
+      "--max-inputs",
+      "7"
+    ],
+    "returncode": 0,
+    "seconds": 2.2448,
+    "log": "run_25.txt",
+    "stdout_lines": 1,
+    "log_sha256": "062a46897ece21cf7ae53196159515d156a7230d550641e51f007531f2849704"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_reference.py",
+      "gates"
+    ],
+    "returncode": 0,
+    "seconds": 0.3122,
+    "log": "run_26.txt",
+    "stdout_lines": 1,
+    "log_sha256": "8fcb6d3b48cdfb062a0f2e65e5a3c8ae9ad455330a6df251d18b9f8a1c36e612"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_reference.py",
+      "arithmetic",
+      "--start",
+      "0",
+      "--stop",
+      "12"
+    ],
+    "returncode": 0,
+    "seconds": 25.0,
+    "log": "run_27.txt",
+    "stdout_lines": 1,
+    "log_sha256": "5200ff77d528ab1298ed833db3b8e967be96920504aa379d156c07bbcbfbb627"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_layers.py",
+      "--n",
+      "5"
+    ],
+    "returncode": 0,
+    "seconds": 8.9348,
+    "log": "run_28.txt",
+    "stdout_lines": 1,
+    "log_sha256": "017ed7ef39cbcb5bdc7a9b51743a391f1eefc26487499be892fb35033722769a"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_reference.py",
+      "graphs",
+      "--n",
+      "6",
+      "--start",
+      "30000",
+      "--stop",
+      "30032"
+    ],
+    "returncode": 0,
+    "seconds": 1.5925,
+    "log": "run_29.txt",
+    "stdout_lines": 1,
+    "log_sha256": "f65b666077f50b27e2bb1aef290deb013d26fa7c873c7d8199db4030b0e383d6"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_witness.py",
+      "--n",
+      "4",
+      "--range",
+      "2"
+    ],
+    "returncode": 0,
+    "seconds": 0.8907,
+    "log": "run_30.txt",
+    "stdout_lines": 1,
+    "log_sha256": "6fe521b1e3425d74a7af9d96993e679fd3d239924221642f6b2294ce49d8699d"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_witness.py",
+      "--n",
+      "4",
+      "--range",
+      "2",
+      "--optimisation"
+    ],
+    "returncode": 0,
+    "seconds": 8.8746,
+    "log": "run_31.txt",
+    "stdout_lines": 1,
+    "log_sha256": "b1ef4d5817e2b56c24cc66e88e0d917d82c365223471f29067f7d84a4e803fb1"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_paths.py",
+      "--n",
+      "5",
+      "--path"
+    ],
+    "returncode": 0,
+    "seconds": 6.9242,
+    "log": "run_32.txt",
+    "stdout_lines": 1,
+    "log_sha256": "77ead8272486317cdd7217f7779342cc1fbfdb2a5ea3f02372a82f73f2a05103"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_paths.py",
+      "--n",
+      "4",
+      "--directed",
+      "--start",
+      "2048",
+      "--stop",
+      "2560",
+      "--max-edges",
+      "8"
+    ],
+    "returncode": 0,
+    "seconds": 1.1671,
+    "log": "run_33.txt",
+    "stdout_lines": 1,
+    "log_sha256": "cace641a5feda223000dd4c59ec17f4eac902eef167f0d4720468f0f05ba135f"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_paths.py",
+      "--n",
+      "4",
+      "--directed",
+      "--path",
+      "--start",
+      "3584",
+      "--stop",
+      "4096",
+      "--max-edges",
+      "8"
+    ],
+    "returncode": 0,
+    "seconds": 1.142,
+    "log": "run_34.txt",
+    "stdout_lines": 1,
+    "log_sha256": "3ccb09fe32efab426c43bd0f0174ebbad2ad0acc495c5067ab21aeccdc9e5e61"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_objects.py",
+      "--n",
+      "4"
+    ],
+    "returncode": 0,
+    "seconds": 0.966,
+    "log": "run_35.txt",
+    "stdout_lines": 1,
+    "log_sha256": "7e4c5655173ab5dcb305ba505ed156a00f5d5d938988acebb7eeae01a0df26e3"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_weighted_objects.py",
+      "--mode",
+      "steiner",
+      "--stop",
+      "4",
+      "--progress",
+      "results/cnf_steiner.progress.jsonl"
+    ],
+    "returncode": 0,
+    "seconds": 131.3527,
+    "log": "run_36.txt",
+    "stdout_lines": 1,
+    "log_sha256": "a10e718fdde13a7b92ccd29b355c143ef8e92a66961e98fa2ea43e4a5f97d92c"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_weighted_objects.py",
+      "--mode",
+      "cover",
+      "--stop",
+      "4",
+      "--progress",
+      "results/cnf_cover.progress.jsonl"
+    ],
+    "returncode": 0,
+    "seconds": 0.5128,
+    "log": "run_37.txt",
+    "stdout_lines": 1,
+    "log_sha256": "e6ac4424297e259bb0b8f36e3ddb7a80e6ed351a863f19aa041e246c9e4bfa5e"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_weighted_objects.py",
+      "--mode",
+      "dominating",
+      "--stop",
+      "4",
+      "--progress",
+      "results/cnf_dominating.progress.jsonl"
+    ],
+    "returncode": 0,
+    "seconds": 0.4793,
+    "log": "run_38.txt",
+    "stdout_lines": 1,
+    "log_sha256": "c0f346ed0c9dec9b18d1551646eb43d4ee2b040e4a8e7e6d20e54c5964524246"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_weighted_objects.py",
+      "--mode",
+      "fvs",
+      "--stop",
+      "4",
+      "--progress",
+      "results/cnf_fvs.progress.jsonl"
+    ],
+    "returncode": 0,
+    "seconds": 39.849,
+    "log": "run_39.txt",
+    "stdout_lines": 1,
+    "log_sha256": "30f658e4787d1c5af86ed9c4ec43b7b2c6dd47c26f7a656c4643db6a6c8827d6"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_failures.py"
+    ],
+    "returncode": 0,
+    "seconds": 0.1575,
+    "log": "run_40.txt",
+    "stdout_lines": 1,
+    "log_sha256": "65023a58226f203422d31da157d83c8892e95fd0fd309905bf008a7e5ac782ef"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_steiner.py",
+      "--start",
+      "0",
+      "--stop",
+      "512",
+      "--progress",
+      "results/cnf_steiner_low.progress.jsonl"
+    ],
+    "returncode": 0,
+    "seconds": 0.7296,
+    "log": "run_41.txt",
+    "stdout_lines": 1,
+    "log_sha256": "0fe53e72c58b87f9a44cc366ba96eb78603f392103b373ff70d33074c989acfc"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_steiner.py",
+      "--start",
+      "3584",
+      "--stop",
+      "4096",
+      "--progress",
+      "results/cnf_steiner_high.progress.jsonl"
+    ],
+    "returncode": 0,
+    "seconds": 2.7933,
+    "log": "run_42.txt",
+    "stdout_lines": 1,
+    "log_sha256": "f8ffa45027ffe8254c6216ca65fb6b3cab098fe6bee16b8ec3225c88a4eae17c"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_modular.py",
+      "--case",
+      "k6",
+      "--bits",
+      "2",
+      "--stop",
+      "20000",
+      "--progress",
+      "results/cnf_modular.progress.jsonl"
+    ],
+    "returncode": 0,
+    "seconds": 404.0036,
+    "log": "run_43.txt",
+    "stdout_lines": 1,
+    "log_sha256": "29bb5ba51b3a959a01c533c2f9e82ddaa026ac2e36e8e1ca885e86f1694b647a"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_boundaries.py",
+      "--start-case",
+      "2",
+      "--stop-case",
+      "8",
+      "--skip-family"
+    ],
+    "returncode": 0,
+    "seconds": 19.413,
+    "log": "run_44.txt",
+    "stdout_lines": 1,
+    "log_sha256": "e214ac68a1ae78d788d86ec71da3f9d2ac0ab2ce1ff255c56194a7ddece5068b"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_large.py",
+      "--p",
+      "253"
+    ],
+    "returncode": 0,
+    "seconds": 267.6278,
+    "log": "run_45.txt",
+    "stdout_lines": 1,
+    "log_sha256": "2b2b8247bd38a682d04ee2bf28203e3eba170cf4d7f47dc5a71e7913d39d4496"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_large.py",
+      "--p",
+      "254"
+    ],
+    "returncode": 0,
+    "seconds": 121.1276,
+    "log": "run_46.txt",
+    "stdout_lines": 1,
+    "log_sha256": "2926770bc8d205c84590e0857bca56b3187b10ffc9770fd797b2f68d64610c20"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-I",
+      "check_cnf_scaling.py",
+      "--max-power",
+      "12"
+    ],
+    "returncode": 0,
+    "seconds": 3.2133,
+    "log": "run_47.txt",
+    "stdout_lines": 1,
+    "log_sha256": "29b13ccedde14bf6ecf6ae713f3d1ebb8f0c2521c31475376a2fafc86bd6962a"
   }
 ]

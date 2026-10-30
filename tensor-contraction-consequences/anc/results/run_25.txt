@@ -1,0 +1,1 @@
+{"assignments": 8160, "circuits": 256, "elapsed_seconds": 1.8061357326805592, "independent_dpll_cases": 20, "status": "PASS"}

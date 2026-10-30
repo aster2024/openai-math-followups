@@ -1,0 +1,1 @@
+{"cnf_queries": 3820, "directed": true, "elapsed_seconds": 1.0020917020738125, "graphs": 382, "layers_with_disconnected_candidates": 22, "n": 4, "path": true, "start": 3584, "status": "PASS", "stop": 4096}

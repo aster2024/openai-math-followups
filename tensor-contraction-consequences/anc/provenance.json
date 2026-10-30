@@ -2,96 +2,166 @@
   {
     "file": "c2_p2_p3_check.py",
     "sha256": "50eea0f3fa4fd33e4e40453f8cbfbf8508b7105d1af0245e33284141532c042c",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "check_G1_tensor.py",
     "sha256": "95b186564a3020b904b673bf8a50b673af05e059b002f559499af9c0021b7227",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "check_G3_tensor.py",
     "sha256": "bfc43ace77b7ac17a383e09c75622798ef55f16109d3d43f4846e92ece57a0b5",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
+  },
+  {
+    "file": "check_cnf_arithmetic.py",
+    "sha256": "713bdc4b3610ef768adce36bb32c638e4fe73655a61c6bd00e88b090cc28b402",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
+  },
+  {
+    "file": "check_cnf_boundaries.py",
+    "sha256": "a8a1a7d2f75d52e389d9b95913e1a8287f796530fcab51d4f1b6eead938e95bf",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
+  },
+  {
+    "file": "check_cnf_failures.py",
+    "sha256": "b191832f4aae15c8afe2f6c1d03e00466262b9b836c67aec2fba09d5afb337c1",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
+  },
+  {
+    "file": "check_cnf_large.py",
+    "sha256": "31afc88d5454b9473c72796ac6dbe638ad1fe6cd5b127d503481cebd9d13e1fb",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
+  },
+  {
+    "file": "check_cnf_layers.py",
+    "sha256": "19d831f5ca855d2aa49d01de3c9488d1a095f888605ffb29d2bc69b711ddf99e",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
+  },
+  {
+    "file": "check_cnf_modular.py",
+    "sha256": "bc29e487b7fae05fe6d031c14ccdf5bac798b85db835c143476f535cf08f2054",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
+  },
+  {
+    "file": "check_cnf_objects.py",
+    "sha256": "c7f88d47f433cc4f274c65ac5bdd2314d380ddcd6256c708425050a43b061ff8",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
+  },
+  {
+    "file": "check_cnf_paths.py",
+    "sha256": "eccf6214a0d20b52bbe07e79eda4031f6048f9cfc10e4d380793bd73ce5f1bb2",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
+  },
+  {
+    "file": "check_cnf_reference.py",
+    "sha256": "39a00063e4f3c0525ecc574dfec40056823803090df0f230ce52be78767506e2",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
+  },
+  {
+    "file": "check_cnf_scaling.py",
+    "sha256": "766977e10f9ec1d6753db017b89754860a51f8e2ca7b352b467805c988cd5380",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
+  },
+  {
+    "file": "check_cnf_steiner.py",
+    "sha256": "341fba4eacf3b7577162a8f529eb03c3f1f8648f4b213b6be971dc49c055bb26",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
+  },
+  {
+    "file": "check_cnf_weighted_objects.py",
+    "sha256": "b5ab434e90e2e39b589ff94d550566f377a19653448fb573cd6fb4be72c5e4eb",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
+  },
+  {
+    "file": "check_cnf_witness.py",
+    "sha256": "4ce249efc94ed89dce5bed0f54b3dab70d6dc4adbfe7e0e45ea566cbeeb4576e",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "check_contraction_engine.py",
     "sha256": "8bfeb831998437d780c15feafb86230af1c1140baa48fb6f3e4831c6ba1476f1",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "check_gadgets.py",
     "sha256": "8655dc5e3547c49794e9d4b6baaafcd93655b21c150f2aba9c99a98d31d786c7",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "check_thresholds.py",
     "sha256": "2728730e1772cc3051f87ced4eabbcc686743c5d6528b7588cacb7c80146e48d",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "check_unused_inputs.py",
     "sha256": "88b57b574b1efe7a1e67ebb792a5bbd02d7e0d573eb587d7994fad382fbfb7c3",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
+  },
+  {
+    "file": "cnf_circuits.py",
+    "sha256": "621b3315c3e0dbb0d7df6da102fa25c29606fb0034cbdad23bd72e0e96f25849",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "e2e_hc_network.py",
     "sha256": "ae51bf23c1249279590f8c746cfc94740ee015454b6d36ccd3bb8f72df07f29b",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "finite_audit.cpp",
     "sha256": "d91a8fc6f0d3a2987d4e3415324bc0bb5940fbff389b883557fbf1ca6e8f9811",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "hc_accounting.py",
     "sha256": "a34b6746df86a089507308c48a263dcf8ce3ed04ea421b382c780a3396f7e689",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "p11_middle_stop.py",
     "sha256": "baf65be2c7918c12a9e4f55be3e1084a8801930adb90ba85c01398ed33a6783f",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "p11_tensor_check.py",
     "sha256": "98b28e6230f1ad90980cef85f86863f13f5269fad4e23154781a5186faed1c46",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "p6_blockcount_check.py",
     "sha256": "05699f3f81f66ca19bf7d931c8d2d49225479fc9474e51fa675bd93c5813c865",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "p6_sign_check.py",
     "sha256": "fcc8d554c790d3d701461962bece5c466d4530a34dc1374f762681aeba3d8719",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "p7_p8_filter_check.py",
     "sha256": "eda614ab80714b2cb0ab79f7816c658db6b3818198f37011cee7b72e8915b60d",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "protocol_exact_check.cpp",
     "sha256": "8c7c927175c0b87802758d1c4f95d5e42ecbd5b0f8170c676eff20b839f03891",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "run_all.py",
-    "sha256": "7f54cd185b4dacbbe98c83bbef5adb666b8af319cb9ed5bbce08e76df9ae003c",
-    "adaptation": "Serial execution with temporary C++ builds and relative command records."
+    "sha256": "be248de88187dfc4f24241a4ec586b04cdafc3efe70a117841edcc699cd97d09",
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "tensor_realization_check.py",
     "sha256": "3d0f8d59271ca93267ecfd0890f0110e5ced491932cfaa7fb753b57f887b0cef",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   },
   {
     "file": "tensor_realization_t3_check.py",
     "sha256": "855e04b4ee8c3de974734c5046ce8745dc80f68c1cf9f9dcb529e91fb9bbcc6a",
-    "adaptation": "Relative result destinations and one summary line per check."
+    "adaptation": "Relative result destinations; descriptive mathematical names; one summary per invoked check."
   }
 ]

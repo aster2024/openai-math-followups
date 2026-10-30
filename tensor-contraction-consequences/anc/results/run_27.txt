@@ -1,0 +1,1 @@
+{"args": {"mode": "arithmetic", "n": 6, "progress": null, "seed": 10300931, "start": 0, "stop": 12}, "circuits": 24, "elapsed_seconds": 24.841592390090227, "fixed_input_unique_extensions": 76, "literal_count_queries": 784, "max_N": 177, "status": "PASS"}

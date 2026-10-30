@@ -7,7 +7,7 @@ $\lceil s^{9/10}\rceil$. We denote this assertion by \HTC, and state its
 full interface in Section~\ref{sec:interface}. This paper studies its
 consequences. The degree bound, the allowed coefficient ring, the cost
 of evaluating implicit tensors, and exact integer readback are part of
-every application.
+each contraction application.
 
 Throughout, $\log_2$ is the binary logarithm, and
 $g(s)=s/\sqrt{\log_2(s+16)}$. Running times count bit operations, including
@@ -120,6 +120,23 @@ shortest-path metric, with an optimal metric tour recovered for $n\ge3$.
 
 \subsection{Comparison and scope}
 
+Section~\ref{sec:lean-connectivity}, added in Version 2, uses only the
+fixed-$k$ assertion within the stated Lean scope, denoted \HLean,
+always with $k=3$. On sparse graphs it gives randomized Hamiltonian
+cycle/path decision and witnesses, and optimization for polynomially
+bounded costs, with one-sided decision error and success probability at
+least $1/2$ per trial. The optimization problems include Hamiltonian
+TSP, undirected Steiner tree, FVS, connected cover and domination,
+and rooted directed Steiner arborescences, as stated precisely in
+Theorem~\ref{thm:lean-randomized}. Its time is
+$\poly(n)2^{O(f_2(n))}$, where
+$f_2(n)=n(\log_2\log_2(n+16))^2/\sqrt{\log_2(n+16)}$;
+the stronger linear-density statement in \HBB\ replaces $f_2$ by $g$.
+It also gives deterministic $\#\mathrm{HC}\bmod2^b$ on sparse simple
+undirected graphs in $2^{o(n)}$ time for supplied $b=o(n)$, as specified in
+Theorem~\ref{thm:lean-modular}. The deterministic decision, full exact
+counting, and $n^{9/10}$-bit cost results above continue to use \HTC.
+
 Table~\ref{tab:comparison} compares exponent scales. In its previous-best
 column, $2^{\Theta(n)}$ denotes the single-exponential scale of the
 available generic bounds; different problems and graph subclasses have
@@ -131,17 +148,20 @@ the circuit rows and a fixed edge-to-vertex ratio in the graph rows.
 \renewcommand{\arraystretch}{1.18}
 \begin{tabular}{@{}P{.29\linewidth}P{.32\linewidth}P{.32\linewidth}@{}}
 \toprule
-Problem & Previous best (exponent scale) & Under \HTC\\
+Problem & Previous best (exponent scale) & Conditional bound\\
 \midrule
 Arbitrary-depth THR CAPP, $w=O(n)$ & $2^{\Theta(n)}$ generic enumeration & $2^{O(g(n))}$, error down to $2^{-\Theta(n^{.9}/\log n)}$\\
 Mixed-gate exact counting under~\eqref{eq:budget} & $2^n\poly(L)$ enumeration & $\poly(S+L)2^{O(g(S))}$ for arbitrary $L$ if no gate is hashed\\
 Unrestricted-depth real THR wires for explicit $\ENP$ languages & Linear scale; depth-restricted bounds differ & $>cN\sqrt{\log N}$ a.e.; fixed-advantage average case\\
 Sparse Hamiltonicity & Single exponential; e.g. randomized $O^*(1.657^n)$~\cite{Bjorklund14} & Deterministic $2^{O(g(n))}$; exact \#HC\\
+Sparse HC/path and polynomial-cost connectivity & Single-exponential connectivity frameworks~\cite{CutCount11} & Under \HLean: randomized $2^{O(f_2(n))}$, witnesses; supplied $b=o(n)$ gives deterministic undirected \#HC mod $2^b$ in $2^{o(n)}$\\
 Sparse paths, Steiner, FVS, connected cover/domination & $2^{\Theta(n)}$ scale; connectivity frameworks~\cite{CutCount11,BCKN15} & Deterministic $2^{O(g(n))}$, optimization and witnesses\\
 Sparse directed connectivity and sparse-base routing & $2^{\Theta(n)}$ scale (enumerate selected arcs or edge multiplicities) & Deterministic $2^{O(g(n))}$\\
 \bottomrule
 \end{tabular}
 \caption{Polynomial factors in the input length are suppressed.
+Unmarked conditional bounds use \HTC; the \HLean\ row uses only
+the fixed-width counting assertion within the stated Lean scope.
 Algorithmic comparisons are deterministic unless randomization is marked. The
 conditional bounds retain polynomial space. The exact-counting rows use
 the object conventions in the theorem statements.}

@@ -1,0 +1,1 @@
+{"attempts": 64, "cnf_oracle_calls": 820, "elapsed_seconds": 0.573117483407259, "exhaustive_weights": true, "m": 6, "n": 4, "optimal_witnesses": 18, "optimisation": false, "status": "PASS", "unique_minimum_attempts": 33, "weight_range": 2, "witnesses_found": 64}

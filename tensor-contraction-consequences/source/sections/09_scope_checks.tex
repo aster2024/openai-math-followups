@@ -42,15 +42,15 @@ give exactly $2^{\cc(F)-1}$ extensions and filter disconnected
 layer can still cancel. The deterministic proofs use nonnegative
 determinant sums instead.
 
-Known fixed-width CNF encodings used in this comparison do not by
-themselves derive these sparse connectivity bounds from \HBB.
-Numbering-based certificates with $\Theta(n\log n)$ Boolean
-variables give, even with fixed clause density, only the displayed
-bound $2^{O(n\sqrt{\log n})}$. Compiling weighted isolation sums
-into Boolean arithmetic has a similar logarithmic cost. The implicit
-sign and arithmetic factors are where the graph proofs use \HTC.
-Whether a smaller encoding or a different reduction derives these
-bounds from \HBB\ alone remains open in this analysis.
+Section~\ref{sec:lean-connectivity} supplies a linear fixed-width encoding
+of each Cut\&Count weight layer, giving randomized decision and witnesses
+under \HLean. Numbering-based certificates with $\Theta(n\log n)$
+Boolean variables would give only $2^{O(n\sqrt{\log n})}$ even under
+the manuscript's linear-density bound. The digit grouping avoids that
+cost for fixed polynomially bounded coefficients. The deterministic
+decision, full integer counting, and long-cost results of
+Sections~\ref{sec:determinants}--\ref{sec:directed-routes} still use \HTC;
+the new reduction does not establish those statements from \HLean.
 
 One \HBB-only example can be verified directly. On a sparse graph,
 exact chromatic number and an optimal coloring are computable,
@@ -166,6 +166,21 @@ domains. In the sliced-gadget check, independently assigned slice copies test th
 extension count; the circuit's equality trees impose consistency of
 those copies. The ancillary numerical threshold scan is a finite scan,
 and the eventual inequalities are justified by the asymptotic proofs.
+
+For Section~\ref{sec:lean-connectivity}, \ancfile{cnf_circuits.py}
+constructs the functional 3-CNF gates and grouped weighted sums.
+The \ancfile{check_cnf_*.py} programs compare literal-level exact
+counts with direct graph and arithmetic references. They test
+weight-layer cut multiplicities, odd-branch recovery, polynomial-cost
+optimization, marker isolation, terminal-selection units, and the
+unsigned modular expansion. Counterexamples include a feasible but
+suboptimal TSP output and a missing-terminal directed Steiner formula.
+The arithmetic checks include fixed inputs across a radix boundary;
+large gate-accounting cases are distinguished from actual CNF solving.
+The precise graph ranges, commands, and elapsed times are recorded in
+\ancfile{anc/README.md} and \ancfile{anc/results/manifest.json}.
+These checks use elementary exact counters, not the fast algorithm
+assumed by \HLean, and do not formalize the reductions in Lean.
 
 \noindent\begin{minipage}{\linewidth}
 \subsection*{Use of AI}

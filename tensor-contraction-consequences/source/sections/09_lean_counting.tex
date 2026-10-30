@@ -1,0 +1,458 @@
+\section{Randomized consequences from the Lean-scoped fixed-width theorem}
+\label{sec:lean-connectivity}
+
+This section assumes \HLean, the fixed-width exact-counting assertion
+specified in Section~\ref{sec:interface}, using only $k=3$.
+Put
+\[
+ f_2(n)=\frac{n(\log_2\log_2(n+16))^2}{\sqrt{\log_2(n+16)}}.
+\]
+Graphs are simple and loopless, with $m\le cn$ for fixed $c$.
+Undirected cycles are counted as edge sets and have at least three
+vertices. Opposite arcs are allowed in a digraph. Boundary cases of
+constant size are handled directly. The graph and all sampled weights
+are constants of a constructed formula, rather than its free inputs.
+
+\begin{theorem}[Randomized sparse connectivity, conditional on \HLean]
+\label{thm:lean-randomized}
+Assume \HLean. Fix $a,c>0$. Hamiltonian-cycle and Hamiltonian-path
+decision, with specified or unspecified path endpoints, and witness
+recovery on undirected graphs or digraphs with $m\le cn$ admit
+randomized algorithms in time
+\begin{equation}\label{eq:lean-time}
+ \poly_{a,c}(n)2^{O_{a,c}(f_2(n))}
+\end{equation}
+and polynomial bit space. The same bounds hold for minimum-cost
+Hamiltonian TSP, undirected Steiner tree, feedback vertex set,
+connected vertex cover, and connected dominating set, with
+nonnegative integer edge or vertex costs at most $n^a$, and for
+directed Steiner arborescences with a specified root and direction.
+
+A decision trial has no false positives and, whenever a feasible
+object exists, returns a valid witness with probability at least $1/2$.
+An optimization trial returns an optimal value and witness with
+probability at least $1/2$ whenever the feasible family is nonempty.
+Every returned witness is feasible; a failed optimization trial can
+return a valid but suboptimal solution or report no solution found.
+With $R$ independent trials and the best returned witness, the success
+probability is at least $1-2^{-R}$; time is multiplied by $R$ and space
+is polynomial in $n+\log(R+1)$. If the manuscript's fixed-linear-density
+case of \HBB\ is assumed instead, $f_2(n)$ in~\eqref{eq:lean-time}
+can be replaced by $g(n)$.
+\end{theorem}
+
+Two trials give success at least $3/4$. A claimed cost bound can be
+checked on a returned witness; optimality is a probabilistic guarantee,
+not a certificate supplied by every successful feasibility check.
+For Hamiltonian TSP the same proof permits signed integer costs of
+absolute value at most $n^a$, by the normalization below. The other
+optimization problems use the nonnegative-cost conventions just stated.
+
+\subsection{Linear circuits for fixed polynomially bounded weights}
+\label{sec:lean-arithmetic}
+
+First consider the population count of $d$ Boolean bits. Place the
+bits in the unit column. Replace three live bits in one column by the
+sum bit in that column and the carry bit in the next, using a full
+adder with two XORs, two ANDs, and one OR. Each replacement reduces
+% Sum and carry are explicit functional outputs.
+the number of live bits by one. The sum of their column weights is
+invariant and equals $d$, so no live wire can lie in a column of
+weight exceeding $d$. After at most $d$ replacements there are at
+most two bits per column. A final ripple addition has
+$O(\log(d+2))$ gates. This gives $O(d+1)$ fan-in-two gates, with
+unique auxiliary values. The cases $d=0,1$ are immediate.
+
+Let $S\ge2$, $p\le S$, and let the known constants satisfy
+$0\le a_i\le S^a$, with $a$ fixed. We construct a circuit for the
+complete integer sum $\sum_{i=1}^p a_ix_i$. Choose
+\[
+ d=\max\{1,\lfloor\log_2 S/4\rfloor\},\qquad D=2^d,
+ \qquad a_i=\sum_{j=0}^{h-1}a_{ij}D^j.
+\]
+Here $0\le a_{ij}<D$ and $h=O_a(1)$; the constructor obtains $h$
+from the actual coefficient bit lengths. For each nonempty bucket
+$I_{j,u}=\{i:a_{ij}=u\}$ with $1\le u<D$, compute
+$C_{j,u}=\sum_{i\in I_{j,u}}x_i$ by a population counter.
+For each $j$ the buckets are disjoint, so these counters together
+cost $O(p+D)$ gates, not $O(pD)$. Different digit positions continue
+to read the same original bits $x_i$.
+
+Writing $q=\lceil\log_2(p+1)\rceil$, a shift-and-add multiplication
+by the constant $u<D$ costs $O(d(q+d+1))=O(\log^2 S)$ gates per
+bucket. There are at most $h\min(p,D-1)$ nonempty buckets. Shift
+each resulting number by $dj$ and add them using
+$Q=\lceil\log_2(p\max_i a_i+1)\rceil+1=O_a(\log S)$ bits.
+Partial sums never exceed $p\max_i a_i$, so there is no overflow.
+The total gate count is
+\begin{equation}\label{eq:lean-weight-size}
+ O_a\bigl(p+D\log^2 S+D\log S\bigr)=O_a(S).
+\end{equation}
+All-zero coefficients and $p=0$ are handled directly. Reading the
+$O_a(S\log S)$ coefficient bits takes polynomial time; those bits
+do not become free formula variables. Constantly many sums,
+comparisons, and cardinality constraints preserve the bound.
+
+An equivalent implementation computes digit subtotals
+$T_j=\sum_u uC_{j,u}\le p(D-1)$ and uses carries
+\[
+ K_0=0,\quad U_j=T_j+K_j,\quad
+ e_j=U_j\bmod D,\quad K_{j+1}=\lfloor U_j/D\rfloor.
+\]
+Inductively $0\le K_j\le p$, hence $U_j\le pD$; each digit step
+uses $O(\log S)$-bit arithmetic. The identity
+$T_j=e_j+DK_{j+1}-K_j$ telescopes to
+\[
+ \sum_{j<h}T_jD^j=\sum_{j<h}e_jD^j+K_hD^h.
+\]
+Keeping the final carry gives the full integer sum. This is the
+carry implementation exercised by the ancillary programs; both
+implementations satisfy~\eqref{eq:lean-weight-size}.
+
+Signed coefficients are normalized using literals. Set
+$C=\sum_{a_i<0}a_i$, and take $\ell_i=x_i$ for $a_i\ge0$ and
+$\ell_i=1-x_i$ otherwise. Then
+$\sum_i a_ix_i=C+\sum_i|a_i|\ell_i$. Translate the target by $C$.
+A complemented literal creates no independent free bit. This also
+handles deletion costs $\sum_v c_v(1-u_v)$.
+
+Every gate is encoded by its complete Tseitin equivalence. For example,
+$z=x\wedge y$ uses
+$(\neg z\vee x)$, $(\neg z\vee y)$, and
+$(z\vee\neg x\vee\neg y)$. For $z=x\oplus y$ the four clauses are
+\[
+\begin{aligned}
+ &(x\vee y\vee\neg z),&& (x\vee\neg y\vee z),\\
+ &(\neg x\vee y\vee z),&& (\neg x\vee\neg y\vee\neg z).
+\end{aligned}
+\]
+OR follows by De Morgan's law using complemented literals; NOT uses
+$(z\vee x)$ and $(\neg z\vee\neg x)$, and constants use units.
+There is one variable per gate output. Topological induction gives
+exactly one assignment to these variables for each assignment to the
+primary bits. Unused declared inputs retain both values. Unit and
+binary clauses are permitted by the fixed-width interface, so no
+padding variables are needed.
+
+\subsection{Weight layers, isolation, and recovery}
+\label{sec:lean-layers}
+
+Fix a root $r$. Use edge bits $x_e$ and cut-color bits $c_v$, and
+fix $c_r=0$. For $e=uv$ impose the guarded equalities
+\begin{equation}\label{eq:lean-cut-clauses}
+ (\neg x_e\vee\neg c_u\vee c_v),\qquad
+ (\neg x_e\vee c_u\vee\neg c_v).
+\end{equation}
+Thus an unselected edge imposes no cut constraint. Population
+counters require degree two at every vertex. The circuit above
+requires $\sum_e w_ex_e=t$, for fixed polynomially bounded $w_e$.
+For $S=n+m+2$, the resulting 3-CNF $\Phi_{G,w,t}$ has
+$N,M=O_a(S)$ variables and clauses, and
+\begin{equation}\label{eq:lean-layer-count}
+ \#\Phi_{G,w,t}
+ =\sum_{\substack{F\subseteq E:\deg_F(v)=2\ (v\in V)\\w(F)=t}}
+       2^{\cc(V,F)-1}.
+\end{equation}
+Indeed all arithmetic states are unique, each selected component
+has a common color, the root component has color zero, and every
+other component has two choices. Degree-two candidates are disjoint
+unions of cycles. Modulo two,~\eqref{eq:lean-layer-count} therefore
+counts exactly the Hamiltonian cycles in the layer. Its positive
+integer value alone does not certify Hamiltonicity.
+
+The size bound is total and amortized: a vertex of degree $d_v$
+uses $O(d_v+1)$ gates, and $\sum_vd_v=2m$. No constant bound on
+the maximum degree is imposed. More explicitly, if there are $G$
+gate outputs, then $N=m+n+1+G$ and at most $4G$ gate clauses,
+$2m$ cut clauses, $O(n+m)$ degree-output pins, and $O_a(\log S)$
+weight-output pins. Thus $M=O_a(S)$ as well. Pinning any subset of
+object bits adds at most $O(S)$ units. In these circuits $G$ bounds
+the number of output pins, and the remaining primary bits are
+declared, so $M\le D_0N$ for a fixed constant $D_0$.
+
+For completeness, the needed isolation bound follows by conditioning
+on all weights except one. For a nonempty family
+$\mathcal F\subseteq2^{[p]}$, let every $w_i$ be independent and
+uniform in $[W]$. For each $i$, the minimum weight among members
+containing $i$ has the form $w_i+A$, while the minimum among members
+not containing $i$ is $B$, with $A,B$ independent of $w_i$.
+If both types occur, equality is possible at at most one value of
+$w_i$. If the global minimum is attained by distinct members, some
+coordinate belongs to one and not the other, giving such an equality.
+The union bound gives failure probability at most $p/W$.
+This is the standard isolation step in Cut\&Count~\cite{CutCount11}.
+
+Reject degree-deficient HC inputs before sampling. For the remaining
+inputs take $p=m$ and $W$ the least power of two at least $2m$,
+so $2m\le W<4m$ on nontrivial inputs. Sampling takes exactly
+$m\log_2 W$ random bits. Scan $0\le t\le nW$ and count each
+formula exactly using \HLean, then reduce modulo two. No-HC inputs
+always reject. When the HC family is nonempty, it has a uniquely
+minimum-weight member with probability at least $1/2$; its layer
+is odd and is found by the scan.
+
+Keep the weights and an odd target layer fixed. If the current count
+is odd, the counts after setting a chosen object bit to zero and to
+one sum to it. Exactly one child count is odd. Query the zero child
+and retain the odd branch. After at most $m$ queries the edge set is
+fixed and its odd cut multiplicity forces a genuine HC. Cut colors
+and all gate outputs remain summed over throughout. Recovery is
+deterministic given the odd layer and loses no success probability.
+One can check the final cycle directly.
+
+Each formula has a polynomial-length canonical encoding. Even the
+unary natural-number encoding used by the fixed-width interface
+has length $O(NM+N)=\poly(n)$ here; a binary clause-list length is
+not being assumed for that interface. Each exact answer has at most
+$N+1$ bits. There are only polynomially many layers and recovery
+queries. Sequential calls to the single fixed $k=3$ machine therefore
+give~\eqref{eq:lean-time} and polynomial bit space. Under the
+manuscript's stronger fixed-density statement, use $M\le D_0N$
+and obtain exponent $g(n)$. These are distinct assumptions.
+
+\subsection{Optimization and other connectivity predicates}
+\label{sec:lean-objects}
+
+More generally, let $x\in\{0,1\}^p$, $p=O(n)$, encode an object,
+and let a linear-size 3-CNF $\Psi(x,z)$ satisfy
+\begin{equation}\label{eq:lean-parity-interface}
+ \#\{z:\Psi(x,z)\}\equiv[x\text{ is a true object}]\pmod2.
+\end{equation}
+Isolate the object bits $x$, not their auxiliary cut assignments.
+Adding a fixed-weight sum and target preserves linear size. The same
+layer scan and odd-branch recovery apply. If $p=0$, query the one
+empty object directly.
+
+For optimization with a linear integer cost
+$C(x)=C_0+\sum_i d_ix_i$, whose coefficients and range are fixed
+polynomially bounded quantities, take $P=pW+1$ and use the statistic
+\begin{equation}\label{eq:lean-lexicographic}
+ A(x)=P C(x)+\sum_{i=1}^p w_ix_i.
+\end{equation}
+The isolation-weight difference between two objects is at most $pW$,
+so $A$ orders costs first. Its coefficients and full range remain
+polynomially bounded. Scan its range in increasing order, including
+the known constant shift if signed literals are used, and recover
+from the first odd layer. Apply isolation to the nonempty family of
+originally optimal objects. With probability at least $1/2$ its
+minimum is unique, and that object is the unique global minimum of
+$A$. Thus the first odd layer then yields an original optimum.
+Off this event, all returned objects remain feasible but can be
+suboptimal. Independent repetition and retaining the smallest
+original cost proves the stated probability bound. This avoids
+assuming that a sequence of unamplified adaptive threshold decisions
+has the same success probability as a single query.
+
+Here are the predicates realizing~\eqref{eq:lean-parity-interface}.
+All cut equalities are guarded as in~\eqref{eq:lean-cut-clauses}.
+Arithmetic and size constraints use Section~\ref{sec:lean-arithmetic}.
+\begin{enumerate}
+\item For an undirected Hamiltonian $s$--$t$ path, the endpoint
+degrees are one and the remaining degrees two; fix the root color
+at $s$. The two odd-degree vertices lie in the same component.
+Every candidate is an $s$--$t$ path plus disjoint cycles, so the
+root-fixed cut parity retains precisely the spanning paths.
+Enumerate unordered endpoint pairs if unspecified; a one-vertex
+path is treated directly.
+
+\item In a digraph use selected indegree and outdegree one at every
+vertex for HC. For a path use $(0,1)$ at its start, $(1,0)$ at
+its end, and $(1,1)$ elsewhere. Cut constraints use the underlying
+undirected incidences. Weak connectivity makes the candidate a single
+directed cycle or path. Enumerate ordered endpoint pairs when needed.
+
+\item For an undirected Steiner tree isolate $(U,F)$, require
+$T\subseteq U$, both endpoints of every selected edge in $U$,
+and $|F|=|U|-1$. Fix the color of a root in the nonempty terminal
+set $T$, and fix colors outside $U$ to zero. The cut multiplicity is
+$2^{\cc(U,F)-1}$; oddness gives connectedness and then the cardinality
+equality gives a tree. If $T=\varnothing$, handle the empty-tree
+convention directly. With nonnegative costs, minimum connected
+Steiner subgraphs have an optimum tree.
+
+\item For connected vertex cover isolate $U$, require
+$u_v\vee u_w$ on every input edge, and let induced-edge bits be
+functional ANDs $u_vu_w$. For connected domination instead require
+the OR of the selected bits in every closed neighborhood to be true.
+Such OR chains have $O(n+m)$ inputs in total. For either problem,
+fix a selected root, set colors outside $U$ to zero, and impose
+same-color constraints on induced edges. Oddness is exactly
+connectedness. Enumerate selected roots; an empty allowed solution
+is checked separately. Choose a root in one optimal solution for
+the success-probability analysis; no simultaneous success for all
+roots is required.
+
+\item For FVS isolate $(U,M_0)$, where $U$ is retained and
+$M_0\subseteq U$ is a set of markers. Let $F=E[U]$ be functional
+AND outputs and impose $|F|+|M_0|=|U|$. Fix colors of markers and
+of unselected vertices to zero, with no additional unconditional
+root pin. The multiplicity is $2^z$, where $z$ counts selected
+components without a marker. Oddness gives $|M_0|\ge\cc(U,F)$.
+The elementary bound $|F|\ge|U|-\cc(U,F)$ and the equality give
+the reverse inequality. Thus each component has one marker and
+is a tree. Conversely such a marked forest has exactly one cut.
+The deleted set $V\setminus U$ is an FVS. Charge its cost only to
+deletions but isolate both $U$ and $M_0$; omitting marker bits from
+isolation could cancel all representations of a valid forest.
+Every retained forest admits a marker in each component, without
+changing the original cost, so optimization over these representations
+has the same optimum as the deletion problem.
+Empty $U=M_0=\varnothing$ has one auxiliary assignment.
+
+\item For an inward directed Steiner arborescence, isolate $(U,F)$
+and explicitly impose
+\[
+ u_r=1,\qquad u_v=1\quad(v\in T).
+\]
+These terminal requirements are unit clauses. The root has selected
+outdegree zero, other selected vertices outdegree one, and unselected
+vertices outdegree zero; selected arcs have both endpoints selected.
+Fix $c_r=0$ and all colors outside $U$ to zero, and use weak cut
+consistency on selected arcs. The arc count is $|U|-1$.
+Oddness gives weak connectivity, so the underlying multigraph is a
+tree. Following unique outgoing arcs cannot cycle and must reach
+the root. Conversely an inward tree has one root-fixed cut.
+Reverse all arcs for the outward version. Any feasible reachability
+subgraph has such an arborescence, and for nonnegative costs removing
+extra arcs does not increase the cost.
+\end{enumerate}
+
+Each construction uses $O(n+m)$ primary bits and gate inputs in total;
+the degree counters, functional induced edges, neighborhood ORs, and
+fixed number of statistics all have linear size. These observations,
+isolation, and sequential fixed-width counting prove
+Theorem~\ref{thm:lean-randomized}.
+
+\subsection{Deterministic sublinear-bit modular counting}
+\label{sec:lean-modular}
+
+\begin{theorem}[HC residues, conditional on \HLean]
+\label{thm:lean-modular}
+Assume \HLean. On simple undirected graphs with $m\le cn$, given
+an integer precision $b\ge1$, one can deterministically compute
+$\#\mathrm{HC}(G)\bmod2^b$. For every supplied precision sequence
+$b=b(n)=o(n)$, writing $t=b+v_2(n)$, the time is
+\begin{equation}\label{eq:lean-modular-time}
+ \poly_c(n+b)\,
+ 2^{O_c(f_2(n)+t\log_2(en/t))}=2^{o(n)},
+\end{equation}
+with polynomial bit space, for all sufficiently large $n$.
+The fixed-density case of \HBB\ permits $f_2$ to be replaced by $g$.
+The precision is an explicit input; any cost of generating it must be
+included if it is generated by an algorithm instead.
+\end{theorem}
+
+Here $v_2(n)$ is the exponent of two in $n$. We give a uniform
+algorithm for arbitrary $b$, with a finite-sum running-time bound
+below, and derive~\eqref{eq:lean-modular-time} when $b=o(n)$.
+Handle $n<3$ directly and fix a root $r$ otherwise.
+
+Use edge bits $x_e$ with degree-two constraints. For each potential
+matrix position in
+\[
+ \mathcal P=\{(v,v):v\in V\}\cup
+     \{(u,v),(v,u):uv\in E\},\qquad q=|\mathcal P|=n+2m,
+\]
+introduce a bit $z_{ij}$, and require exactly one selected position
+in each row and column. A selected off-diagonal position requires
+its edge bit $x_e=1$. The degree counters and row/column counters
+have total incidence $O(n+m)$.
+
+For each nonroot diagonal add a multiplicity bit implying $z_{vv}$.
+It has one assignment when $z_{vv}=0$ and two when $z_{vv}=1$.
+For the root add two bits, each implying $z_{rr}$, and forbid their
+simultaneous truth. They give one or three assignments. The resulting
+unsigned 3-CNF $\Psi$ has $N,M=O(n+m)$, with all ordinary gate states
+unique. It realizes the absolute determinant terms of
+\[
+ A_F=L_F+e_re_r^{\mathsf T}:
+ \quad (A_F)_{vv}=2+[v=r],\qquad
+ (A_F)_{uv}=-x_{uv}\quad(u\ne v)
+\]
+for every selected 2-factor $F$, with $x_{uv}=0$ on nonedges.
+The matrix-tree identity gives
+$\det A_F=0$ if $F$ is disconnected and $\det A_F=n$ if it is a
+Hamiltonian cycle. Therefore the signed sum of assignments of
+$\Psi$ is $n\,\#\mathrm{HC}(G)$.
+
+To evaluate that sum without a large sign circuit, define on every
+Boolean position vector
+\[
+ Q(z)=\sum_{\substack{(i,j),(k,l)\in\mathcal P\\i<k,\ j>l}}
+             z_{ij}z_{kl},\qquad
+ f(z)=(-1)^{Q(z)+\sum_{i\ne j}z_{ij}}.
+\]
+On a selected permutation this is exactly its sign times the signs
+of its negative matrix entries. For $S\subseteq\mathcal P$ put
+\begin{equation}\label{eq:lean-mobius}
+ c(S)=\sum_{R\subseteq S}(-1)^{|S|-|R|}f(1_R).
+\end{equation}
+Inclusion--exclusion gives $f(1_X)=\sum_{S\subseteq X}c(S)$:
+after exchanging the sums, the coefficient for $R\subseteq X$ is
+$(1-1)^{|X\setminus R|}$, leaving only $R=X$.
+
+In the Boolean integer polynomial ring, $f$ is a product of factors
+$1-2z_iz_j$ for inversions and $1-2z_i$ for off-diagonal positions.
+A term whose support has size $s$ uses at least $\lceil s/2\rceil$
+nonconstant factors. Reducing $z_i^2=z_i$ and adding terms with the
+same support preserves their divisibility. Uniqueness of the integer
+multilinear expansion, or~\eqref{eq:lean-mobius}, thus gives
+\[
+ 2^{\lceil|S|/2\rceil}\mid c(S).
+\]
+Modulo $2^t$, every support with $|S|\ge2t-1$ vanishes. Let
+$\Psi_S$ be $\Psi$ with $z_{ij}=1$ pinned for positions in $S$.
+Exchanging the finite sums now yields
+\begin{equation}\label{eq:lean-modular-expansion}
+ n\,\#\mathrm{HC}(G)\equiv
+ \sum_{|S|\le\min(q,2t-2)}c(S)\#\Psi_S\pmod{2^t}.
+\end{equation}
+Each query is still a linear-size 3-CNF. Conflicting row or column
+pins can be skipped since they have count zero.
+
+Write $h=v_2(n)$ and $n=2^hu$ with $u$ odd. Compute the least
+nonnegative residue $R_0$ in~\eqref{eq:lean-modular-expansion} at
+$t=b+h$. It is divisible by $2^h$, and the answer is
+\[
+ (R_0/2^h)u^{-1}\pmod{2^b}.
+\]
+This divides in the integers before inverting an odd number;
+it never inverts an even $n$ modulo a power of two.
+
+Computing each coefficient by its $2^{|S|}$-term definition gives
+the uniform bound
+\[
+ \poly_c(n+b)\,2^{O_c(f_2(n))}
+ \sum_{s=0}^{\min(q,2t-2)}\binom qs2^s.
+\]
+If $t=o(n)$ and $q=\Theta_c(n)$, the sum is
+$2^{O_c(t\log_2(en/t))}$. Since $v_2(n)=O(\log n)$, supplied
+$b=o(n)$ makes $t=o(n)$, and
+$(t/n)\log(en/t)\to0$, proving the stated subexponential bound.
+Enumerate $S$ and $R$ sequentially, storing one formula, one exact
+count, and a residue accumulator. This uses polynomial space.
+The argument invokes only explicit fixed-width formulas, not a
+tensor-contraction primitive.
+
+\subsection{Comparison and scope of the two inputs}
+
+Cut\&Count, isolation, and functional Tseitin encoding are established
+frameworks~\cite{CutCount11}. The randomized algorithms here are their
+composition with fixed-width exact counting, after the explicit linear
+encoding just proved. Its role here is a proved size and
+multiplicity bound.
+
+The main bound uses the narrower \HLean\ exponent $f_2$, not the
+manuscript's sharper fixed-density bound. The reductions themselves
+are not claimed to have been verified in Lean. Polynomially bounded
+costs mean $O(\log n)$ bits with a fixed exponent on their numerical
+size; the $n^{9/10}$-bit costs of the deterministic tensor results are
+outside this statement. Randomized feasibility and probabilistic
+optimality here do not replace the deterministic results of
+Sections~\ref{sec:determinants}--\ref{sec:directed-routes}.
+Similarly, a positive HC count may be divisible by $2^b$, so a zero
+residue does not imply infeasibility. Sublinear-bit residues are not
+full integer counting on arbitrary sparse graphs. General
+deterministic HC decision, full exact counting, and the long-cost
+range remain \HTC-dependent results in this paper; no impossibility
+of deriving them from a weaker hypothesis is asserted.

@@ -20,6 +20,7 @@
 \newtheorem{remark}[theorem]{Remark}
 \newcommand{\HTC}{\ensuremath{H_{\mathrm{TC}}}}
 \newcommand{\HBB}{\ensuremath{H_{\mathrm{BB}}}}
+\newcommand{\HLean}{\ensuremath{H_{\mathrm{BB}}^{\mathrm{Lean}}}}
 \newcommand{\poly}{\operatorname{poly}}
 \newcommand{\THR}{\mathrm{THR}}
 \newcommand{\ETHR}{\mathrm{exact\text{-}THR}}
@@ -39,10 +40,10 @@
 \newcommand{\ind}[1]{\left[#1\right]}
 \newcommand{\ancfile}[1]{\texttt{\detokenize{#1}}}
 \newcommand{\gfun}[1]{\frac{#1}{\sqrt{\log_2(#1+16)}}}
-\hypersetup{pdftitle={Conditional consequences of a Boolean tensor-contraction theorem},pdfauthor={Jizhou Guo}}
+\hypersetup{pdftitle={Conditional consequences of a Boolean tensor-contraction theorem (Version 2)},pdfauthor={Jizhou Guo}}
 \title{Conditional consequences of a Boolean\\ tensor-contraction theorem:\\ threshold circuits and sparse connectivity}
 \author{Jizhou Guo\\\texttt{mitsuha2021b@gmail.com}}
-\date{29 October 2026}
+\date{Version 2 --- 30 October 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -65,7 +66,16 @@ approximation advantage. For graphs with $m=O(n)$, a sparse representation
 of the permutation sign and the matrix-tree identity give deterministic
 $2^{O(n/\sqrt{\log n})}$ algorithms for connectivity optimization, witness
 recovery, and exact Hamiltonian-cycle counting. Directed and sparse
-shortest-path-metric variants are included. Every algorithmic and
+shortest-path-metric variants are included. Separately, the fixed-width
+counting assertion within the stated Lean scope, with $k=3$, suffices for
+randomized sparse Hamiltonicity, witness recovery, and connectivity
+optimization with polynomially bounded integer costs, in time
+$\poly(n)2^{O(n(\log\log n)^2/\sqrt{\log n})}$ and polynomial space.
+These decision algorithms have no false positives and success probability
+at least $1/2$ per trial; an optimization trial may return a valid but
+suboptimal solution. The same weaker input gives deterministic
+$\#\mathrm{HC}\bmod 2^b$ on sparse simple undirected graphs in $2^{o(n)}$ time for supplied $b=o(n)$.
+Every algorithmic and
 complexity-theoretic conclusion is conditional on the stated input
 theorem. The accompanying finite computations check the reductions.
 \end{abstract}
@@ -80,6 +90,7 @@ theorem. The accompanying finite computations check the reductions.
 \input{sections/06_determinants}
 \input{sections/07_applications}
 \input{sections/08_directed_routes}
+\input{sections/09_lean_counting}
 \input{sections/09_scope_checks}
 \begingroup
 \small

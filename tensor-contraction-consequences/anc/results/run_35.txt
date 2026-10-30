@@ -1,0 +1,1 @@
+{"cnf_queries": 256, "elapsed_seconds": 0.8242493057623506, "graphs": 64, "max_M": 198, "max_N": 62, "n": 4, "start": 0, "status": "PASS", "stop": 64, "totals": {"cover": {"cuts": 596, "true_objects": 190}, "dominating": {"cuts": 572, "true_objects": 184}, "fvs": {"cuts": 1959, "true_objects": 1533}, "steiner": {"cuts": 320, "true_objects": 256}}}

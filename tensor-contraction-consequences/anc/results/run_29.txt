@@ -1,0 +1,1 @@
+{"args": {"mode": "graphs", "n": 6, "progress": null, "seed": 10300931, "start": 30000, "stop": 30032}, "elapsed_seconds": 1.4101799130439758, "graphs": 32, "literal_count_queries": 244, "max_M": 590, "max_N": 179, "nonhamiltonian_layers": 8, "status": "PASS", "sum_hc": 48}

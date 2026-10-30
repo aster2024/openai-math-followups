@@ -303,9 +303,9 @@ dividing 2h.
 
 ### [`tensor-contraction-consequences/`](tensor-contraction-consequences/) — Conditional consequences of a Boolean tensor-contraction theorem: threshold circuits and sparse connectivity
 
-Paper (32 pages), 29 October 2026: [PDF](tensor-contraction-consequences/paper.pdf). Exhaustive finite checks of the reductions are in [`tensor-contraction-consequences/anc/`](tensor-contraction-consequences/anc/).
+Paper (39 pages), Version 2, 30 October 2026 (Version 1: 29 October 2026): [PDF](tensor-contraction-consequences/paper.pdf). Exhaustive finite checks of the reductions are in [`tensor-contraction-consequences/anc/`](tensor-contraction-consequences/anc/).
 
-All results are conditional on the Boolean tensor-contraction theorem stated as Theorem D.1 of OpenAI's manuscript
+The main results are conditional on the Boolean tensor-contraction theorem stated as Theorem D.1 of OpenAI's manuscript
 [The Exponential Time Hypothesis is False](https://github.com/openai/math/blob/42907c9e999cc00d6abe7a50bfc1023250edd1b9/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf)
 (25 October 2026, cited at commit `42907c9e`); the Lean formalization listed for that manuscript covers its fixed-width
 counting theorem, not Theorem D.1. Under this hypothesis: deterministic approximate counting, with error as small as
@@ -316,7 +316,12 @@ average-case version (instantiating the algorithmic method of Williams and the f
 Bathie–Williams and Chen–Lyu–Williams; it implies the every-length form of OpenAI's Corollary 1.4); and deterministic
 2^(O(n/√log n)) algorithms with witness recovery for Hamiltonian cycle and path, longest path, TSP, Steiner tree,
 feedback vertex set and connected vertex cover and dominating set on graphs with O(n) edges, with exact counting of
-Hamiltonian cycles.
+Hamiltonian cycles. Version 2 adds results that use only the Lean-scoped fixed-width counting statement, at k = 3:
+randomized Hamiltonian cycle and path decision with witness recovery, and randomized optimal values and witnesses for
+TSP with polynomially bounded costs, Steiner tree, feedback vertex set and connected vertex cover and dominating set,
+on graphs with O(n) edges in time 2^(O(n (log log n)²/√log n)) and polynomial space; and deterministic computation
+of the number of Hamiltonian cycles modulo 2^b, for supplied b = o(n), on simple undirected graphs with O(n) edges in
+time 2^(o(n)).
 
 ### [`zero-free-beyond-7-8/`](zero-free-beyond-7-8/) — A zero-free half-plane beyond 7/8
 

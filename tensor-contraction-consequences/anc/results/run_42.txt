@@ -1,0 +1,1 @@
+{"args": {"progress": "results/cnf_steiner_high.progress.jsonl", "start": 3584, "stop": 4096}, "elapsed_seconds": 2.637135047465563, "graphs": 512, "queries": 3584, "start": 3584, "status": "PASS", "stop": 4096, "sum_cut_counts": 44672, "sum_true_arborescences": 21120, "terminal_sets_per_graph": 7}

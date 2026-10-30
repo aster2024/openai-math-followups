@@ -40,7 +40,7 @@
     "elimination_steps": 127,
     "peak_nonzero_table_rows": 16640
   },
-  "seconds": 0.4548,
+  "seconds": 0.4432,
   "script_sha256": "855e04b4ee8c3de974734c5046ce8745dc80f68c1cf9f9dcb529e91fb9bbcc6a",
   "generic_engine_sha256": "3d0f8d59271ca93267ecfd0890f0110e5ced491932cfaa7fb753b57f887b0cef"
 }

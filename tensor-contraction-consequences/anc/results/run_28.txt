@@ -1,0 +1,1 @@
+{"arithmetic": "carry_scan", "elapsed_seconds": 8.779337453655899, "graphs": 1024, "layers_with_nonhamiltonian_2factors": 0, "max_M": 353, "max_N": 108, "max_edges": null, "mode": "weighted", "n": 5, "start": 0, "status": "PASS", "stop": 1024, "sum_brute_hc": 384, "weight_layer_cnf_queries": 20764}

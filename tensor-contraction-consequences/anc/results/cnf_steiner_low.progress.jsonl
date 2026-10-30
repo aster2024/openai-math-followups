@@ -1,0 +1,16 @@
+{"next_mask": 32, "graphs": 32, "queries": 224, "elapsed_seconds": 0.0202063899487257}
+{"next_mask": 64, "graphs": 64, "queries": 448, "elapsed_seconds": 0.04620804451406002}
+{"next_mask": 96, "graphs": 96, "queries": 672, "elapsed_seconds": 0.07197946403175592}
+{"next_mask": 128, "graphs": 128, "queries": 896, "elapsed_seconds": 0.10353430174291134}
+{"next_mask": 160, "graphs": 160, "queries": 1120, "elapsed_seconds": 0.13862335868179798}
+{"next_mask": 192, "graphs": 192, "queries": 1344, "elapsed_seconds": 0.1737135061994195}
+{"next_mask": 224, "graphs": 224, "queries": 1568, "elapsed_seconds": 0.20932917576283216}
+{"next_mask": 256, "graphs": 256, "queries": 1792, "elapsed_seconds": 0.25210036523640156}
+{"next_mask": 288, "graphs": 288, "queries": 2016, "elapsed_seconds": 0.28518538922071457}
+{"next_mask": 320, "graphs": 320, "queries": 2240, "elapsed_seconds": 0.31570532266050577}
+{"next_mask": 352, "graphs": 352, "queries": 2464, "elapsed_seconds": 0.35075147077441216}
+{"next_mask": 384, "graphs": 384, "queries": 2688, "elapsed_seconds": 0.39276730455458164}
+{"next_mask": 416, "graphs": 416, "queries": 2912, "elapsed_seconds": 0.42807749565690756}
+{"next_mask": 448, "graphs": 448, "queries": 3136, "elapsed_seconds": 0.46910142432898283}
+{"next_mask": 480, "graphs": 480, "queries": 3360, "elapsed_seconds": 0.5137281138449907}
+{"next_mask": 512, "graphs": 512, "queries": 3584, "elapsed_seconds": 0.561971178278327}

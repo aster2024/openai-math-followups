@@ -3,8 +3,8 @@
   "method": "explicit Boolean tensors; every edge subdivided; generic sparse factor variable elimination",
   "scope": "finite protocol tensor realization (Section 3.2); transcript tables, without arithmetic decomposition",
   "script_sha256": "3d0f8d59271ca93267ecfd0890f0110e5ced491932cfaa7fb753b57f887b0cef",
-  "run_start_unix": 1793197373.8655486,
-  "total_seconds": 1.0786,
+  "run_start_unix": 1793359941.3458388,
+  "total_seconds": 1.3784,
   "case_count": 8,
   "results": [
     {
@@ -48,7 +48,7 @@
       },
       "protocol_comparison_errors_for_fixed_seed": 0,
       "comparison_error_witness": null,
-      "seconds": 0.0053
+      "seconds": 0.0062
     },
     {
       "label": "b2_above_max_early_stop",
@@ -91,7 +91,7 @@
       },
       "protocol_comparison_errors_for_fixed_seed": 0,
       "comparison_error_witness": null,
-      "seconds": 0.0045
+      "seconds": 0.0059
     },
     {
       "label": "b2_interior",
@@ -135,7 +135,7 @@
       },
       "protocol_comparison_errors_for_fixed_seed": 0,
       "comparison_error_witness": null,
-      "seconds": 0.0054
+      "seconds": 0.0068
     },
     {
       "label": "b4_bad_seed",
@@ -198,7 +198,7 @@
           "HIGH"
         ]
       },
-      "seconds": 0.0918
+      "seconds": 0.0971
     },
     {
       "label": "b4_two_layers",
@@ -260,7 +260,7 @@
           "FALSE-h"
         ]
       },
-      "seconds": 0.0847
+      "seconds": 0.0955
     },
     {
       "label": "b4_mixed_primes",
@@ -322,7 +322,7 @@
           "LOW"
         ]
       },
-      "seconds": 0.8498
+      "seconds": 1.128
     },
     {
       "label": "b4_restricted_private_domain",
@@ -367,7 +367,7 @@
       },
       "protocol_comparison_errors_for_fixed_seed": 0,
       "comparison_error_witness": null,
-      "seconds": 0.0317
+      "seconds": 0.0328
     },
     {
       "label": "b2_one_padding_constraint_deleted",
@@ -410,7 +410,7 @@
       },
       "protocol_comparison_errors_for_fixed_seed": 0,
       "comparison_error_witness": null,
-      "seconds": 0.0042
+      "seconds": 0.0047
     }
   ]
 }

@@ -28,7 +28,7 @@ entries; $\ell=1$ is allowed.
 \end{hypothesis}
 
 This is Theorem~D.1 (Boolean tensor contraction) of~\cite{OpenAI26}.
-All our applications use $\ell=1$. The only
+All our applications of \HTC\ use $\ell=1$. The only
 coefficients required are integers modulo a power of two, including
 negative residues for determinants.
 
@@ -51,10 +51,13 @@ canonical encodings, in time
  2^{O_k(n(\log\log n)^2/\sqrt{\log n})}
 \]
 and with polynomially many visited tape cells. Its stated scope is
-this fixed-$k$ counting assertion. It does not include \HTC, nor the
+this fixed-$k$ counting assertion; we denote it by \HLean.
+Section~\ref{sec:lean-connectivity} uses only its $k=3$ instance.
+It does not include \HTC, nor the
 sharper arbitrary-density or fixed-density bounds in the October 25
-Theorem 1.1. Thus that formalization does not certify the hypothesis
-used by the results of this paper.
+Theorem 1.1. Thus that formalization does not certify \HTC.
+The reductions in Section~\ref{sec:lean-connectivity} are proved here;
+they are not claimed to have been formalized in Lean.
 
 \subsection{Boolean wires and unique extensions}
 

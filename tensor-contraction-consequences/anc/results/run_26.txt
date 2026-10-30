@@ -1,0 +1,1 @@
+{"args": {"mode": "gates", "n": 6, "progress": null, "seed": 10300931, "start": 0, "stop": 50}, "elapsed_seconds": 0.15412217564880848, "gate_truth_and_extension_cases": 864, "random_cnf_reference_cases": 1350, "status": "PASS"}
